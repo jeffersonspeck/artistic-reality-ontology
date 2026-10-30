@@ -1,0 +1,562 @@
+@prefix aro:    <https://w3id.org/aro/ontology#> .
+@prefix schema: <https://schema.org/> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+@prefix dbr:    <http://dbpedia.org/resource/> .
+@prefix oa:     <http://www.w3.org/ns/oa#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix ex:     <https://example.org/aro-cases/> .
+
+# =====================================================================================
+# Case studies: "Homem na Estrada" (Racionais MC's, 1993) and "Vidas Secas"
+# (Graciliano Ramos, 1938) with its film adaptation (Nelson Pereira dos Santos, 1963).
+#
+# Method of this example
+# - No lyrics or novel text are reproduced. Each Selection is one event of the narrative
+#   (in the song, the 2-8 lines where it happens; in the novel, a chapter). Song events
+#   are located by line ranges of the lyric transcription (RFC 5147 fragments).
+# - Situation descriptions are paraphrases representing ONE analyst's reading
+#   (InterpretationRecord), not the content of the work itself; confidenceScore marks
+#   how sure the reading is.
+# - Empirical cases cite real, public sources (URLs checked when the example was written).
+#   Correspondence claims state similarity or possibility, never that the work narrates
+#   a specific real event, and never causation.
+# =====================================================================================
+
+# ------------------------------------------------------------------ analyst and act
+ex:analyst a schema:Person ; schema:name "Example analyst" .
+ex:reading-act a aro:InterpretiveAct ; aro:hasParticipant ex:analyst .
+
+# =====================================================================================
+# 1. HOMEM NA ESTRADA — Racionais MC's
+# Line numbers refer to the LyricFind transcription (151 lyric lines; credits excluded,
+# refrain lines counted). Each event is located by an RFC 5147 line fragment
+# ("line=a,b" = lines a+1..b, zero-based) and by a readable expression. No lyric text
+# is stored in this repository.
+# =====================================================================================
+ex:homem-na-estrada a aro:Artwork ;
+  aro:textValue "Homem na Estrada"@pt-BR, "Homem na Estrada (Man on the Road)"@en ;
+  aro:externalLink "https://en.wikipedia.org/wiki/Raio-X_do_Brasil"^^xsd:anyURI .
+ex:homem-na-estrada-1993 a aro:Manifestation ;
+  aro:realizesArtwork ex:homem-na-estrada ;
+  aro:textValue "Recording on the album Raio X do Brasil (1993)"@en, "Gravação no álbum Raio X do Brasil (1993)"@pt-BR .
+ex:homem-na-estrada-lyrics a aro:Manifestation ;
+  aro:realizesArtwork ex:homem-na-estrada ;
+  aro:textValue "Lyric text (LyricFind transcription, 151 lines; composer Pedro Paulo Soares Pereira)"@en,
+                "Texto da letra (transcrição LyricFind, 151 linhas; compositor Pedro Paulo Soares Pereira)"@pt-BR .
+
+# Creation: written by Mano Brown (Pedro Paulo Soares Pereira), performed by Racionais MC's
+ex:homem-na-estrada-creation a aro:CreativeAct ;
+  aro:producesCreation ex:homem-na-estrada, ex:homem-na-estrada-1993 ;
+  aro:hasContribution ex:hne-author, ex:hne-performer .
+ex:hne-author a aro:CreativeContribution ; aro:contributionBy dbr:Mano_Brown ;
+  aro:contributionRole aro:AuthorRole, aro:LyricistRole .
+ex:hne-performer a aro:CreativeContribution ; aro:contributionBy <http://dbpedia.org/resource/Racionais_MC's> ;
+  aro:contributionRole aro:PerformerRole .
+dbr:Mano_Brown a schema:Person ; schema:name "Mano Brown" .
+<http://dbpedia.org/resource/Racionais_MC's> a schema:MusicGroup ; schema:name "Racionais MC's" .
+
+# --- event 1: lines 1-7
+ex:hne-e01 a aro:Selection ; aro:selectsFrom ex:homem-na-estrada-lyrics ;
+  aro:selectorExpression "lines 1-7 (event 1 of 15)" ;
+  aro:hasSelector ex:hne-e01-sel .
+ex:hne-e01-sel a oa:FragmentSelector ; oa:value "line=0,7" ;
+  dcterms:conformsTo <http://tools.ietf.org/rfc/rfc5147> .
+ex:hne-r01 a aro:InterpretationRecord ; aro:hasPrimarySelection ex:hne-e01 ;
+  aro:producedByAct ex:reading-act ; aro:describesSituation ex:hne-s01 ;
+  aro:confidenceScore 0.95 ; aro:citesSource ex:src-intexto .
+ex:hne-s01 a aro:SituationDescription ; aro:mentionsDepictedElement ex:hne-man ;
+  aro:textValue "A man leaves prison and restarts his life, wanting to prove he has changed and to leave crime behind."@en, "Um homem sai da prisão e recomeça a vida, querendo provar que mudou e deixar o crime para trás."@pt-BR ;
+  aro:generalizesAs ex:pattern-reintegration .
+
+# --- event 2: lines 8-9
+ex:hne-e02 a aro:Selection ; aro:selectsFrom ex:homem-na-estrada-lyrics ;
+  aro:selectorExpression "lines 8-9 (event 2 of 15)" ;
+  aro:hasSelector ex:hne-e02-sel .
+ex:hne-e02-sel a oa:FragmentSelector ; oa:value "line=7,9" ;
+  dcterms:conformsTo <http://tools.ietf.org/rfc/rfc5147> .
+ex:hne-r02 a aro:InterpretationRecord ; aro:hasPrimarySelection ex:hne-e02 ;
+  aro:producedByAct ex:reading-act ; aro:describesSituation ex:hne-s02 ;
+  aro:confidenceScore 0.95 .
+ex:hne-s02 a aro:SituationDescription ; aro:mentionsDepictedElement ex:hne-man, ex:hne-febem ;
+  aro:textValue "His childhood included painful memories of the juvenile detention system (FEBEM)."@en, "Sua infância incluiu lembranças dolorosas do sistema de internação de menores (FEBEM)."@pt-BR ;
+  aro:generalizesAs ex:pattern-youth-detention .
+
+# --- event 3: lines 22-26
+ex:hne-e03 a aro:Selection ; aro:selectsFrom ex:homem-na-estrada-lyrics ;
+  aro:selectorExpression "lines 22-26 (event 3 of 15)" ;
+  aro:hasSelector ex:hne-e03-sel .
+ex:hne-e03-sel a oa:FragmentSelector ; oa:value "line=21,26" ;
+  dcterms:conformsTo <http://tools.ietf.org/rfc/rfc5147> .
+ex:hne-r03 a aro:InterpretationRecord ; aro:hasPrimarySelection ex:hne-e03 ;
+  aro:producedByAct ex:reading-act ; aro:describesSituation ex:hne-s03 ;
+  aro:confidenceScore 0.95 .
+ex:hne-s03 a aro:SituationDescription ; aro:mentionsDepictedElement ex:hne-man ;
+  aro:textValue "His only home is a poorly built shack on an unstable slope, with sewage smell in the yard and risk of collapse when it rains."@en, "Seu único lar é um barraco mal acabado num barranco instável, com cheiro de esgoto no quintal e risco de desabar quando chove."@pt-BR ;
+  aro:generalizesAs ex:pattern-precarious-housing .
+
+# --- event 4: lines 28-30
+ex:hne-e04 a aro:Selection ; aro:selectsFrom ex:homem-na-estrada-lyrics ;
+  aro:selectorExpression "lines 28-30 (event 4 of 15)" ;
+  aro:hasSelector ex:hne-e04-sel .
+ex:hne-e04-sel a oa:FragmentSelector ; oa:value "line=27,30" ;
+  dcterms:conformsTo <http://tools.ietf.org/rfc/rfc5147> .
+ex:hne-r04 a aro:InterpretationRecord ; aro:hasPrimarySelection ex:hne-e04 ;
+  aro:producedByAct ex:reading-act ; aro:describesSituation ex:hne-s04 ;
+  aro:confidenceScore 0.9 .
+ex:hne-s04 a aro:SituationDescription ; aro:mentionsDepictedElement ex:hne-ibge ;
+  aro:textValue "The census bureau (IBGE) came once, numbered the shacks and never returned."@en, "O IBGE esteve lá uma única vez, contou os barracos e não retornou."@pt-BR ;
+  aro:generalizesAs ex:pattern-state-absence .
+
+# --- event 5: lines 31-38
+ex:hne-e05 a aro:Selection ; aro:selectsFrom ex:homem-na-estrada-lyrics ;
+  aro:selectorExpression "lines 31-38 (event 5 of 15)" ;
+  aro:hasSelector ex:hne-e05-sel .
+ex:hne-e05-sel a oa:FragmentSelector ; oa:value "line=30,38" ;
+  dcterms:conformsTo <http://tools.ietf.org/rfc/rfc5147> .
+ex:hne-r05 a aro:InterpretationRecord ; aro:hasPrimarySelection ex:hne-e05 ;
+  aro:producedByAct ex:reading-act ; aro:describesSituation ex:hne-s05 ;
+  aro:confidenceScore 0.95 .
+ex:hne-s05 a aro:SituationDescription ; aro:mentionsDepictedElement ex:hne-iml ;
+  aro:textValue "The body of a murdered woman stays in the street for hours; the forensic service (IML) arrives ten hours late."@en, "O corpo de uma mulher assassinada fica horas na rua; o IML chega dez horas atrasado."@pt-BR ;
+  aro:generalizesAs ex:pattern-state-absence .
+
+# --- event 6: lines 46-50
+ex:hne-e06 a aro:Selection ; aro:selectsFrom ex:homem-na-estrada-lyrics ;
+  aro:selectorExpression "lines 46-50 (event 6 of 15)" ;
+  aro:hasSelector ex:hne-e06-sel .
+ex:hne-e06-sel a oa:FragmentSelector ; oa:value "line=45,50" ;
+  dcterms:conformsTo <http://tools.ietf.org/rfc/rfc5147> .
+ex:hne-r06 a aro:InterpretationRecord ; aro:hasPrimarySelection ex:hne-e06 ;
+  aro:producedByAct ex:reading-act ; aro:describesSituation ex:hne-s06 ;
+  aro:confidenceScore 0.95 ; aro:citesSource ex:src-intexto .
+ex:hne-s06 a aro:SituationDescription ; aro:mentionsDepictedElement ex:hne-man ;
+  aro:textValue "Unemployed, with a bad reputation for having been in prison, nobody trusts him."@en, "Desempregado e com má reputação por ter passado pela detenção, ninguém confia nele."@pt-BR ;
+  aro:generalizesAs ex:pattern-reintegration .
+
+# --- event 7: lines 57-58
+ex:hne-e07 a aro:Selection ; aro:selectsFrom ex:homem-na-estrada-lyrics ;
+  aro:selectorExpression "lines 57-58 (event 7 of 15)" ;
+  aro:hasSelector ex:hne-e07-sel .
+ex:hne-e07-sel a oa:FragmentSelector ; oa:value "line=56,58" ;
+  dcterms:conformsTo <http://tools.ietf.org/rfc/rfc5147> .
+ex:hne-r07 a aro:InterpretationRecord ; aro:hasPrimarySelection ex:hne-e07 ;
+  aro:producedByAct ex:reading-act ; aro:describesSituation ex:hne-s07 ;
+  aro:confidenceScore 0.95 .
+ex:hne-s07 a aro:SituationDescription ;
+  aro:textValue "Water supply has failed for five days and the shortage is routine."@en, "Falta água há cinco dias e a falta já é rotina."@pt-BR ;
+  aro:generalizesAs ex:pattern-precarious-housing .
+
+# --- event 8: lines 62-66
+ex:hne-e08 a aro:Selection ; aro:selectsFrom ex:homem-na-estrada-lyrics ;
+  aro:selectorExpression "lines 62-66 (event 8 of 15)" ;
+  aro:hasSelector ex:hne-e08-sel .
+ex:hne-e08-sel a oa:FragmentSelector ; oa:value "line=61,66" ;
+  dcterms:conformsTo <http://tools.ietf.org/rfc/rfc5147> .
+ex:hne-r08 a aro:InterpretationRecord ; aro:hasPrimarySelection ex:hne-e08 ;
+  aro:producedByAct ex:reading-act ; aro:describesSituation ex:hne-s08 ;
+  aro:confidenceScore 0.9 .
+ex:hne-s08 a aro:SituationDescription ;
+  aro:textValue "A drunk man who attacked his own mother is dragged through the street and lynched by neighbours."@en, "Um homem embriagado que agrediu a própria mãe é arrastado pela rua e linchado pelos vizinhos."@pt-BR ;
+  aro:generalizesAs ex:pattern-lynching .
+
+# --- event 9: lines 73-76
+ex:hne-e09 a aro:Selection ; aro:selectsFrom ex:homem-na-estrada-lyrics ;
+  aro:selectorExpression "lines 73-76 (event 9 of 15)" ;
+  aro:hasSelector ex:hne-e09-sel .
+ex:hne-e09-sel a oa:FragmentSelector ; oa:value "line=72,76" ;
+  dcterms:conformsTo <http://tools.ietf.org/rfc/rfc5147> .
+ex:hne-r09 a aro:InterpretationRecord ; aro:hasPrimarySelection ex:hne-e09 ;
+  aro:producedByAct ex:reading-act ; aro:describesSituation ex:hne-s09 ;
+  aro:confidenceScore 0.9 .
+ex:hne-s09 a aro:SituationDescription ;
+  aro:textValue "Children compete with animals for food scraps at the street market and go to school only to eat."@en, "Crianças disputam restos de comida com animais na feira e só vão à escola para comer."@pt-BR ;
+  aro:generalizesAs ex:pattern-hunger .
+
+# --- event 10: lines 80-87
+ex:hne-e10 a aro:Selection ; aro:selectsFrom ex:homem-na-estrada-lyrics ;
+  aro:selectorExpression "lines 80-87 (event 10 of 15)" ;
+  aro:hasSelector ex:hne-e10-sel .
+ex:hne-e10-sel a oa:FragmentSelector ; oa:value "line=79,87" ;
+  dcterms:conformsTo <http://tools.ietf.org/rfc/rfc5147> .
+ex:hne-r10 a aro:InterpretationRecord ; aro:hasPrimarySelection ex:hne-e10 ;
+  aro:producedByAct ex:reading-act ; aro:describesSituation ex:hne-s10 ;
+  aro:confidenceScore 0.85 .
+ex:hne-s10 a aro:SituationDescription ;
+  aro:textValue "A young friend who sold cocaine to rich youths is shot dead at school and becomes sensational news."@en, "Um amigo jovem que vendia cocaína para jovens ricos é fuzilado na escola e vira notícia sensacionalista."@pt-BR ;
+  aro:generalizesAs ex:pattern-drug-trade-violence .
+
+# --- event 11: lines 103-108
+ex:hne-e11 a aro:Selection ; aro:selectsFrom ex:homem-na-estrada-lyrics ;
+  aro:selectorExpression "lines 103-108 (event 11 of 15)" ;
+  aro:hasSelector ex:hne-e11-sel .
+ex:hne-e11-sel a oa:FragmentSelector ; oa:value "line=102,108" ;
+  dcterms:conformsTo <http://tools.ietf.org/rfc/rfc5147> .
+ex:hne-r11 a aro:InterpretationRecord ; aro:hasPrimarySelection ex:hne-e11 ;
+  aro:producedByAct ex:reading-act ; aro:describesSituation ex:hne-s11 ;
+  aro:confidenceScore 0.9 .
+ex:hne-s11 a aro:SituationDescription ; aro:mentionsDepictedElement ex:hne-man ;
+  aro:textValue "After robberies nearby, the favela is blamed and his name appears on a list of suspects."@en, "Depois de assaltos na região, a favela é acusada e o nome dele aparece numa lista de suspeitos."@pt-BR ;
+  aro:generalizesAs ex:pattern-reintegration, ex:pattern-state-violence .
+
+# --- event 12: lines 111-118
+ex:hne-e12 a aro:Selection ; aro:selectsFrom ex:homem-na-estrada-lyrics ;
+  aro:selectorExpression "lines 111-118 (event 12 of 15)" ;
+  aro:hasSelector ex:hne-e12-sel .
+ex:hne-e12-sel a oa:FragmentSelector ; oa:value "line=110,118" ;
+  dcterms:conformsTo <http://tools.ietf.org/rfc/rfc5147> .
+ex:hne-r12 a aro:InterpretationRecord ; aro:hasPrimarySelection ex:hne-e12 ;
+  aro:producedByAct ex:reading-act ; aro:describesSituation ex:hne-s12 ;
+  aro:confidenceScore 0.9 .
+ex:hne-s12 a aro:SituationDescription ; aro:mentionsDepictedElement ex:hne-man ;
+  aro:textValue "His record (a tattoo, a past robbery conviction) is exposed; he will always be called an ex-convict."@en, "Seus antecedentes (uma tatuagem, uma condenação por roubo) são expostos; será sempre chamado de ex-presidiário."@pt-BR ;
+  aro:generalizesAs ex:pattern-reintegration .
+
+# --- event 13: lines 119-123
+ex:hne-e13 a aro:Selection ; aro:selectsFrom ex:homem-na-estrada-lyrics ;
+  aro:selectorExpression "lines 119-123 (event 13 of 15)" ;
+  aro:hasSelector ex:hne-e13-sel .
+ex:hne-e13-sel a oa:FragmentSelector ; oa:value "line=118,123" ;
+  dcterms:conformsTo <http://tools.ietf.org/rfc/rfc5147> .
+ex:hne-r13 a aro:InterpretationRecord ; aro:hasPrimarySelection ex:hne-e13 ;
+  aro:producedByAct ex:reading-act ; aro:describesSituation ex:hne-s13 ;
+  aro:confidenceScore 0.95 ; aro:citesSource ex:src-ufpb .
+ex:hne-s13 a aro:IntentionalStateDescription ; aro:mentionsDepictedElement ex:hne-man, ex:hne-police ;
+  aro:textValue "He distrusts the police, expects to be abused rather than helped if found wounded, and provides his own security."@en, "Ele não confia na polícia, espera ser agredido e não socorrido se for encontrado ferido, e faz a própria segurança."@pt-BR ;
+  aro:generalizesAs ex:pattern-state-violence .
+
+# --- event 14: lines 132-137
+ex:hne-e14 a aro:Selection ; aro:selectsFrom ex:homem-na-estrada-lyrics ;
+  aro:selectorExpression "lines 132-137 (event 14 of 15)" ;
+  aro:hasSelector ex:hne-e14-sel .
+ex:hne-e14-sel a oa:FragmentSelector ; oa:value "line=131,137" ;
+  dcterms:conformsTo <http://tools.ietf.org/rfc/rfc5147> .
+ex:hne-r14 a aro:InterpretationRecord ; aro:hasPrimarySelection ex:hne-e14 ;
+  aro:producedByAct ex:reading-act ; aro:describesSituation ex:hne-s14 ;
+  aro:confidenceScore 0.9 ; aro:citesSource ex:src-ufpb .
+ex:hne-s14 a aro:SituationDescription ; aro:mentionsDepictedElement ex:hne-man, ex:hne-police ;
+  aro:textValue "At dawn the police invade his shack, already set on killing him although he had no part in the crime."@en, "De madrugada a polícia invade seu barraco, decidida a matá-lo embora ele não tivesse participado do crime."@pt-BR ;
+  aro:generalizesAs ex:pattern-state-violence .
+
+# --- event 15: lines 148-151
+ex:hne-e15 a aro:Selection ; aro:selectsFrom ex:homem-na-estrada-lyrics ;
+  aro:selectorExpression "lines 148-151 (event 15 of 15)" ;
+  aro:hasSelector ex:hne-e15-sel .
+ex:hne-e15-sel a oa:FragmentSelector ; oa:value "line=147,151" ;
+  dcterms:conformsTo <http://tools.ietf.org/rfc/rfc5147> .
+ex:hne-r15 a aro:InterpretationRecord ; aro:hasPrimarySelection ex:hne-e15 ;
+  aro:producedByAct ex:reading-act ; aro:describesSituation ex:hne-s15 ;
+  aro:confidenceScore 0.85 ; aro:citesSource ex:src-ufpb .
+ex:hne-s15 a aro:SituationDescription ; aro:mentionsDepictedElement ex:hne-man, ex:hne-police, ex:hne-mboi ;
+  aro:textValue "A news-style report: a mixed-race man is found dead on the M'Boi Mirim road; the police attribute it to rival gangs and cite his long criminal record."@en, "Um relato em tom de notícia: um homem mulato é encontrado morto na estrada do M'Boi Mirim; a polícia atribui a morte a quadrilhas rivais e destaca seus antecedentes criminais."@pt-BR ;
+  aro:generalizesAs ex:pattern-state-violence .
+
+ex:hne-man a aro:DepictedAgent ; aro:textValue "the man on the road (protagonist)"@en, "o homem na estrada (protagonista)"@pt-BR .
+ex:hne-police a aro:DepictedAgent ; aro:textValue "the police"@en, "a polícia"@pt-BR .
+ex:hne-febem a aro:DepictedElement ; aro:textValue "FEBEM (juvenile detention system of São Paulo)"@en, "FEBEM (sistema de internação de menores de São Paulo)"@pt-BR .
+ex:hne-ibge a aro:DepictedElement ; aro:textValue "IBGE (Brazilian census bureau)"@en, "IBGE"@pt-BR .
+ex:hne-iml a aro:DepictedElement ; aro:textValue "IML (forensic medical institute)"@en, "IML (Instituto Médico Legal)"@pt-BR .
+ex:hne-mboi a aro:DepictedElement ; aro:textValue "Estrada do M'Boi Mirim (road in the south of São Paulo)"@en, "Estrada do M'Boi Mirim (zona sul de São Paulo)"@pt-BR .
+
+# Plural readings: the analyst's justification for event 15, and a recorded challenge
+ex:hne-r15 aro:hasJustification ex:hne-just15 .
+ex:hne-just15 a aro:InterpretiveJustification ;
+  aro:textValue "The narrative sequence (police raid at dawn, then the man's death) contrasts with the closing report attributing the death to rival gangs; the reading takes the report as the official version that criminalizes the victim."@en,
+                "A sequência narrativa (invasão policial de madrugada e depois a morte do homem) contrasta com o relato final que atribui a morte a quadrilhas rivais; a leitura toma o relato como versão oficial que criminaliza a vítima."@pt-BR .
+ex:hne-challenge15 a aro:InterpretationChallenge ; aro:challenges ex:hne-r15 ;
+  aro:textValue "Alternative reading: the lyrics leave the killers implicit, so the report's version cannot be excluded within the narrative itself."@en,
+                "Leitura alternativa: a letra deixa os autores implícitos, então a versão do relato não pode ser excluída dentro da própria narrativa."@pt-BR .
+
+# --- Derivation: the track samples Tim Maia's "Ela Partiu" ------------------------
+ex:ela-partiu a aro:Artwork ; aro:textValue "Ela Partiu (Tim Maia)"@pt-BR, "Ela Partiu (Tim Maia)"@en .
+ex:deriv-hne-sample a aro:DerivationClaim ;
+  aro:hasSourceAnchor ex:ela-partiu ; aro:hasDerivedAnchor ex:homem-na-estrada ;
+  aro:hasDerivationType aro:Sampling ;
+  aro:hasTransformation ex:deriv-hne-sound ;
+  aro:derivationReferencesSource ex:src-raio-x-wiki ;
+  aro:derivationRealizedBy ex:homem-na-estrada-creation .
+ex:deriv-hne-sound a aro:TransformationAspect ;
+  aro:hasDimension aro:RecordedSoundDimension ; aro:hasOperation aro:Recontextualized .
+
+# =====================================================================================
+# 2. VIDAS SECAS — Graciliano Ramos (novel, 1938) and the 1963 film
+# =====================================================================================
+ex:vidas-secas a aro:Artwork ;
+  aro:textValue "Vidas Secas"@pt-BR, "Vidas Secas (Barren Lives)"@en ;
+  aro:externalLink "https://pt.wikipedia.org/wiki/Vidas_Secas"^^xsd:anyURI .
+ex:vidas-secas-1938 a aro:Manifestation ; aro:realizesArtwork ex:vidas-secas ;
+  aro:textValue "First edition of the novel (1938)"@en, "Primeira edição do romance (1938)"@pt-BR .
+ex:vidas-secas-creation a aro:CreativeAct ; aro:producesCreation ex:vidas-secas ; aro:hasContribution ex:vs-author .
+ex:vs-author a aro:CreativeContribution ; aro:contributionBy dbr:Graciliano_Ramos ; aro:contributionRole aro:AuthorRole .
+dbr:Graciliano_Ramos a schema:Person ; schema:name "Graciliano Ramos" .
+
+# --- Events: one chapter each ------------------------------------------------------
+ex:vs-mudanca a aro:Selection ; aro:selectsFrom ex:vidas-secas-1938 ; aro:selectorExpression "chapter 1 «Mudança»" .
+ex:vs-cadeia  a aro:Selection ; aro:selectsFrom ex:vidas-secas-1938 ; aro:selectorExpression "chapter 3 «Cadeia»" .
+ex:vs-contas  a aro:Selection ; aro:selectsFrom ex:vidas-secas-1938 ; aro:selectorExpression "chapter 10 «Contas»" .
+ex:vs-fuga    a aro:Selection ; aro:selectsFrom ex:vidas-secas-1938 ; aro:selectorExpression "chapter 13 «Fuga»" .
+
+ex:vs-r1 a aro:InterpretationRecord ; aro:hasPrimarySelection ex:vs-mudanca ; aro:producedByAct ex:reading-act ;
+  aro:describesSituation ex:vs-s1 ; aro:confidenceScore 0.95 .
+ex:vs-s1 a aro:SituationDescription ; aro:mentionsDepictedElement ex:vs-fabiano ;
+  aro:textValue "A family of rural workers walks across the drought-stricken backlands looking for somewhere to survive."@en,
+                "Uma família de trabalhadores rurais atravessa o sertão castigado pela seca em busca de onde sobreviver."@pt-BR ;
+  aro:generalizesAs ex:pattern-drought-migration .
+
+ex:vs-r2 a aro:InterpretationRecord ; aro:hasPrimarySelection ex:vs-cadeia ; aro:producedByAct ex:reading-act ;
+  aro:describesSituation ex:vs-s2 ; aro:confidenceScore 0.95 .
+ex:vs-s2 a aro:SituationDescription ; aro:mentionsDepictedElement ex:vs-fabiano, ex:vs-soldier ;
+  aro:textValue "In town, a soldier provokes Fabiano, who is arrested, beaten and spends the night in jail without having committed a crime."@en,
+                "Na cidade, um soldado provoca Fabiano, que é preso, espancado e passa a noite na cadeia sem ter cometido crime."@pt-BR ;
+  aro:generalizesAs ex:pattern-state-violence .
+
+ex:vs-r3 a aro:InterpretationRecord ; aro:hasPrimarySelection ex:vs-contas ; aro:producedByAct ex:reading-act ;
+  aro:describesSituation ex:vs-s3 ; aro:confidenceScore 0.9 .
+ex:vs-s3 a aro:SituationDescription ; aro:mentionsDepictedElement ex:vs-fabiano ;
+  aro:textValue "The landowner's accounts, with interest Fabiano cannot check, leave him always in debt."@en,
+                "As contas do patrão, com juros que Fabiano não consegue conferir, o deixam sempre endividado."@pt-BR ;
+  aro:generalizesAs ex:pattern-debt-exploitation .
+
+ex:vs-r4 a aro:InterpretationRecord ; aro:hasPrimarySelection ex:vs-fuga ; aro:producedByAct ex:reading-act ;
+  aro:describesSituation ex:vs-s4 ; aro:confidenceScore 0.95 .
+ex:vs-s4 a aro:IntentionalStateDescription ; aro:mentionsDepictedElement ex:vs-fabiano ;
+  aro:textValue "With a new drought, the family leaves again, hoping for a better life in the cities of the south."@en,
+                "Com uma nova seca, a família parte de novo, esperando uma vida melhor nas cidades do sul."@pt-BR ;
+  aro:generalizesAs ex:pattern-drought-migration .
+
+ex:vs-fabiano a aro:DepictedAgent ; aro:textValue "Fabiano"@pt-BR, "Fabiano"@en .
+ex:vs-soldier a aro:DepictedAgent ; aro:textValue "the yellow soldier"@en, "o soldado amarelo"@pt-BR .
+
+# --- Derivation: the 1963 film adaptation ------------------------------------------
+ex:vidas-secas-film a aro:Artwork ;
+  aro:textValue "Vidas Secas (film, 1963)"@pt-BR, "Barren Lives (film, 1963)"@en ;
+  aro:externalLink "https://en.wikipedia.org/wiki/Barren_Lives_(film)"^^xsd:anyURI .
+ex:vidas-secas-film-production a aro:CreativeAct ; aro:producesCreation ex:vidas-secas-film ;
+  aro:hasContribution ex:vsf-director .
+ex:vsf-director a aro:CreativeContribution ; aro:contributionBy dbr:Nelson_Pereira_dos_Santos ;
+  aro:contributionRole aro:DirectorRole, aro:AdapterRole .
+dbr:Nelson_Pereira_dos_Santos a schema:Person ; schema:name "Nelson Pereira dos Santos" .
+ex:deriv-vs-film a aro:DerivationClaim ;
+  aro:hasSourceAnchor ex:vidas-secas ; aro:hasDerivedAnchor ex:vidas-secas-film ;
+  aro:hasDerivationType aro:IntermedialAdaptation ; aro:hasRegime aro:SeriousRegime ;
+  aro:derivationRealizedBy ex:vidas-secas-film-production ;
+  aro:derivationReferencesSource ex:src-barren-lives-wiki ;
+  aro:hasTransformation ex:deriv-vs-medium, ex:deriv-vs-situation .
+ex:deriv-vs-medium a aro:TransformationAspect ; aro:hasDimension aro:MediumDimension ; aro:hasOperation aro:Modified .
+ex:deriv-vs-situation a aro:TransformationAspect ; aro:hasDimension aro:SituationDimension ; aro:hasOperation aro:Retained ;
+  aro:aspectConcernsPattern ex:pattern-state-violence, ex:pattern-drought-migration ; aro:confidenceScore 0.7 .
+
+# =====================================================================================
+# 3. SITUATION PATTERNS (reused across works)
+# =====================================================================================
+ex:pattern-state-violence a aro:SituationPattern ;
+  aro:textValue "Arbitrary or lethal violence by state security agents against a poor man"@en,
+                "Violência arbitrária ou letal de agentes de segurança do Estado contra um homem pobre"@pt-BR ;
+  aro:hasCondition ex:c-sv-agent, ex:c-sv-victim, ex:c-sv-framing, ex:c-sv-lethal .
+ex:c-sv-agent a aro:PatternCondition ; aro:isRequiredCondition true ;
+  aro:textValue "The aggressor acts as an agent of state security (police, soldier)."@en, "O agressor age como agente de segurança do Estado (polícia, soldado)."@pt-BR .
+ex:c-sv-victim a aro:PatternCondition ; aro:isRequiredCondition true ;
+  aro:textValue "The victim is poor or socially marginalized."@en, "A vítima é pobre ou socialmente marginalizada."@pt-BR .
+ex:c-sv-framing a aro:PatternCondition ; aro:isRequiredCondition false ;
+  aro:textValue "The victim is framed as an offender."@en, "A vítima é retratada como infratora."@pt-BR .
+ex:c-sv-lethal a aro:PatternCondition ; aro:isRequiredCondition false ;
+  aro:textValue "The violence is lethal."@en, "A violência é letal."@pt-BR .
+
+ex:pattern-reintegration a aro:SituationPattern ;
+  aro:textValue "Barriers to social reintegration after prison"@en, "Barreiras à reintegração social após a prisão"@pt-BR ;
+  aro:hasCondition ex:c-ri-released, ex:c-ri-barrier .
+ex:c-ri-released a aro:PatternCondition ; aro:isRequiredCondition true ;
+  aro:textValue "A person has left prison."@en, "Uma pessoa saiu da prisão."@pt-BR .
+ex:c-ri-barrier a aro:PatternCondition ; aro:isRequiredCondition true ;
+  aro:textValue "Work or social acceptance is denied because of the criminal record."@en, "Trabalho ou aceitação social são negados por causa dos antecedentes."@pt-BR .
+
+ex:pattern-precarious-housing a aro:SituationPattern ;
+  aro:textValue "Precarious urban housing without basic sanitation or water supply"@en, "Moradia urbana precária sem saneamento ou abastecimento de água"@pt-BR ;
+  aro:hasCondition ex:c-ph .
+ex:c-ph a aro:PatternCondition ; aro:isRequiredCondition true ;
+  aro:textValue "Households lack sewage collection or other basic services."@en, "Domicílios sem coleta de esgoto ou outros serviços básicos."@pt-BR .
+
+ex:pattern-drought-migration a aro:SituationPattern ;
+  aro:textValue "Drought-driven forced migration of rural families"@en, "Migração forçada de famílias rurais causada pela seca"@pt-BR ;
+  aro:hasCondition ex:c-dm .
+ex:c-dm a aro:PatternCondition ; aro:isRequiredCondition true ;
+  aro:textValue "A family leaves its place of living because drought makes survival impossible."@en, "Uma família deixa seu lugar porque a seca torna a sobrevivência impossível."@pt-BR .
+
+ex:pattern-debt-exploitation a aro:SituationPattern ;
+  aro:textValue "Exploitation of rural workers through debt and opaque accounts"@en, "Exploração de trabalhadores rurais por dívidas e contas opacas"@pt-BR ;
+  aro:hasCondition ex:c-de .
+ex:c-de a aro:PatternCondition ; aro:isRequiredCondition true ;
+  aro:textValue "The worker's earnings are controlled by the employer's accounts and debts."@en, "Os ganhos do trabalhador são controlados pelas contas e dívidas do empregador."@pt-BR .
+
+ex:pattern-state-absence a aro:SituationPattern ;
+  aro:textValue "Absence or delay of public services in the urban periphery"@en,
+                "Ausência ou atraso de serviços públicos na periferia urbana"@pt-BR ;
+  aro:hasCondition ex:c-sa .
+ex:c-sa a aro:PatternCondition ; aro:isRequiredCondition true ;
+  aro:textValue "A public service (census, forensics, water, health) is absent or arrives very late in a poor neighbourhood."@en,
+                "Um serviço público (censo, perícia, água, saúde) está ausente ou chega muito atrasado num bairro pobre."@pt-BR .
+
+ex:pattern-youth-detention a aro:SituationPattern ;
+  aro:textValue "Institutionalization of poor youth in juvenile detention"@en,
+                "Institucionalização de jovens pobres em internação de menores"@pt-BR ;
+  aro:hasCondition ex:c-yd .
+ex:c-yd a aro:PatternCondition ; aro:isRequiredCondition true ;
+  aro:textValue "A poor child or adolescent is held in a juvenile detention institution."@en,
+                "Uma criança ou adolescente pobre é mantida numa instituição de internação."@pt-BR .
+
+ex:pattern-lynching a aro:SituationPattern ;
+  aro:textValue "Lynching as popular punishment in a neighbourhood"@en, "Linchamento como punição popular no bairro"@pt-BR ;
+  aro:hasCondition ex:c-ly .
+ex:c-ly a aro:PatternCondition ; aro:isRequiredCondition true ;
+  aro:textValue "Residents collectively attack a person accused of a crime, without any legal process."@en,
+                "Moradores atacam coletivamente uma pessoa acusada de crime, sem processo legal."@pt-BR .
+
+ex:pattern-hunger a aro:SituationPattern ;
+  aro:textValue "Child hunger and dependence on school meals"@en, "Fome infantil e dependência da merenda escolar"@pt-BR ;
+  aro:hasCondition ex:c-hu .
+ex:c-hu a aro:PatternCondition ; aro:isRequiredCondition true ;
+  aro:textValue "Children lack regular food and rely on scraps or school meals."@en,
+                "Crianças não têm alimentação regular e dependem de restos ou da merenda escolar."@pt-BR .
+
+ex:pattern-drug-trade-violence a aro:SituationPattern ;
+  aro:textValue "Lethal violence linked to the retail drug trade, with profits concentrated outside the periphery"@en,
+                "Violência letal ligada ao varejo de drogas, com lucros concentrados fora da periferia"@pt-BR ;
+  aro:hasCondition ex:c-dt .
+ex:c-dt a aro:PatternCondition ; aro:isRequiredCondition true ;
+  aro:textValue "A young retail drug seller from the periphery is killed while wealthier actors profit."@en,
+                "Um jovem vendedor de drogas da periferia é morto enquanto atores mais ricos lucram."@pt-BR .
+
+# Explanatory hypothesis (a claim, not an established cause)
+ex:hyp-selective-policing a aro:ExplanationHypothesis ; aro:explainsPattern ex:pattern-state-violence ;
+  aro:textValue "Hypothesis: selective policing of poor and Black populations increases their exposure to state violence."@en,
+                "Hipótese: o policiamento seletivo de populações pobres e negras aumenta sua exposição à violência do Estado."@pt-BR .
+
+# =====================================================================================
+# 4. REFERENCE SOURCES (real, public)
+# =====================================================================================
+ex:src-fbsp-2020 a aro:ReferenceSource ;
+  aro:textValue "Fórum Brasileiro de Segurança Pública — As mortes decorrentes de intervenção policial no Brasil em 2020 (Anuário Brasileiro de Segurança Pública 2021)"@pt-BR ;
+  aro:sourceURL "https://forumseguranca.org.br/wp-content/uploads/2021/07/4-as-mortes-decorrentes-de-intervencao-policial-no-brasil-em-2020.pdf"^^xsd:anyURI ;
+  aro:languageTag "pt-BR" .
+ex:src-carandiru a aro:ReferenceSource ;
+  aro:textValue "Massacre do Carandiru (encyclopedic article)"@en ;
+  aro:sourceURL "https://pt.wikipedia.org/wiki/Massacre_do_Carandiru"^^xsd:anyURI ; aro:languageTag "pt-BR" .
+ex:src-ipea-2015 a aro:ReferenceSource ;
+  aro:textValue "IPEA — Reincidência Criminal no Brasil: relatório de pesquisa (2015)"@pt-BR ;
+  aro:sourceURL "https://repositorio.ipea.gov.br/bitstream/11058/7510/1/RP_Reincid%c3%aancia_2015.pdf"^^xsd:anyURI ;
+  aro:languageTag "pt-BR" .
+ex:src-sanitation a aro:ReferenceSource ;
+  aro:textValue "Poder360 — 100 milhões de brasileiros não têm coleta de esgoto em casa (Trata Brasil study based on SNIS data)"@pt-BR ;
+  aro:sourceURL "https://www.poder360.com.br/brasil/100-milhoes-de-brasileiros-nao-tem-coleta-de-esgotos-em-casa/"^^xsd:anyURI ;
+  aro:languageTag "pt-BR" .
+ex:src-fapesp-seca a aro:ReferenceSource ;
+  aro:textValue "Revista Pesquisa FAPESP — Memórias da seca"@pt-BR ;
+  aro:sourceURL "https://revistapesquisa.fapesp.br/memorias-da-seca/"^^xsd:anyURI ; aro:languageTag "pt-BR" .
+ex:src-patu a aro:ReferenceSource ;
+  aro:textValue "Diário do Nordeste — Campo de concentração que abrigou retirantes no Ceará deve ter prédios e ruínas tombados"@pt-BR ;
+  aro:sourceURL "https://diariodonordeste.verdesmares.com.br/ceara/campo-de-concentracao-que-abrigou-16-mil-retirantes-no-ceara-deve-ter-predios-e-ruinas-tombados-1.3258221"^^xsd:anyURI ;
+  aro:languageTag "pt-BR" .
+# Sources about the works themselves
+ex:src-intexto a aro:ReferenceSource ;
+  aro:textValue "Intexto (UFRGS) — Análise interseccional e discursiva das identidades culturais na canção Homem na Estrada do Racionais MC's (1993)"@pt-BR ;
+  aro:sourceURL "https://seer.ufrgs.br/index.php/intexto/article/view/150581"^^xsd:anyURI ; aro:languageTag "pt-BR" .
+ex:src-ufpb a aro:ReferenceSource ;
+  aro:textValue "UFPB repository — undergraduate thesis on police violence and the absence of the State in Homem na Estrada"@en ;
+  aro:sourceURL "https://repositorio.ufpb.br/jspui/handle/123456789/31862"^^xsd:anyURI ; aro:languageTag "pt-BR" .
+ex:src-raio-x-wiki a aro:ReferenceSource ;
+  aro:textValue "Raio-X do Brasil (album article; lists the sample of Tim Maia's Ela Partiu)"@en ;
+  aro:sourceURL "https://en.wikipedia.org/wiki/Raio-X_do_Brasil"^^xsd:anyURI ; aro:languageTag "en" .
+ex:src-barren-lives-wiki a aro:ReferenceSource ;
+  aro:textValue "Barren Lives (film) — encyclopedic article on the 1963 adaptation"@en ;
+  aro:sourceURL "https://en.wikipedia.org/wiki/Barren_Lives_(film)"^^xsd:anyURI ; aro:languageTag "en" .
+
+# =====================================================================================
+# 5. EMPIRICAL CASES, EVIDENCE, CORRESPONDENCE CLAIMS AND ASSESSMENTS
+# =====================================================================================
+# --- Police lethality in Brazil --------------------------------------------------
+ex:case-police-lethality a aro:EmpiricalCase ;
+  aro:textValue "Deaths resulting from police interventions in Brazil (national statistics)"@en,
+                "Mortes decorrentes de intervenção policial no Brasil (estatísticas nacionais)"@pt-BR ;
+  aro:caseAboutSituation ex:sit-police-lethality ; aro:caseHasReference ex:src-fbsp-2020 .
+ex:sit-police-lethality a aro:EmpiricalSituation .
+ex:ev-fbsp a aro:EvidenceItem ; aro:derivedFromSource ex:src-fbsp-2020 ;
+  aro:externalLink "https://forumseguranca.org.br/wp-content/uploads/2021/07/4-as-mortes-decorrentes-de-intervencao-policial-no-brasil-em-2020.pdf"^^xsd:anyURI ;
+  aro:textValue "The report presents national and state counts of deaths resulting from police interventions and the profile of the victims."@en,
+                "O relatório apresenta contagens nacionais e estaduais de mortes decorrentes de intervenção policial e o perfil das vítimas."@pt-BR .
+ex:corr-hne-police a aro:CorrespondenceClaim ;
+  aro:assertsPattern ex:pattern-state-violence ; aro:assertsCase ex:case-police-lethality ;
+  aro:referencesSource ex:src-fbsp-2020 ;
+  aro:textValue "The pattern represented in the song is similar to documented, recurrent police lethality in Brazil."@en,
+                "O padrão representado na canção é semelhante à letalidade policial documentada e recorrente no Brasil."@pt-BR .
+ex:assess-hne-police a aro:EvidenceAssessment ; aro:assessesCorrespondence ex:corr-hne-police ; aro:assessesEvidence ex:ev-fbsp ;
+  aro:textValue "Supports that the represented situation is possible and recurrent; does not show that the song narrates a specific real event, nor any cause."@en,
+                "Apoia que a situação representada é possível e recorrente; não mostra que a canção narra um evento real específico, nem causa alguma."@pt-BR .
+
+# --- Carandiru massacre (1992), contemporary to the song -------------------------
+ex:case-carandiru a aro:EmpiricalCase ;
+  aro:textValue "Carandiru massacre, São Paulo, 2 October 1992"@en, "Massacre do Carandiru, São Paulo, 2 de outubro de 1992"@pt-BR ;
+  aro:caseAboutEvent ex:event-carandiru ; aro:caseHasReference ex:src-carandiru .
+ex:event-carandiru a aro:EmpiricalEvent .
+ex:ev-carandiru a aro:EvidenceItem ; aro:derivedFromSource ex:src-carandiru ;
+  aro:textValue "Military Police intervention in the Carandiru prison that left 111 prisoners dead."@en,
+                "Intervenção da Polícia Militar no presídio do Carandiru que deixou 111 presos mortos."@pt-BR .
+ex:corr-carandiru a aro:CorrespondenceClaim ;
+  aro:assertsPattern ex:pattern-state-violence ; aro:assertsCase ex:case-carandiru ; aro:referencesSource ex:src-carandiru ;
+  aro:textValue "A documented, large-scale instance of lethal state violence against marginalized men, one year before the song."@en,
+                "Instância documentada e de grande escala de violência letal do Estado contra homens marginalizados, um ano antes da canção."@pt-BR .
+ex:assess-carandiru a aro:EvidenceAssessment ; aro:assessesCorrespondence ex:corr-carandiru ; aro:assessesEvidence ex:ev-carandiru ;
+  aro:textValue "Supports the pattern as a real possibility in the song's historical context; the song is not claimed to describe this event."@en,
+                "Apoia o padrão como possibilidade real no contexto histórico da canção; não se alega que a canção descreva este evento."@pt-BR .
+
+# --- Reintegration after prison ----------------------------------------------------
+ex:case-reintegration a aro:EmpiricalCase ;
+  aro:textValue "Criminal recidivism and reintegration of former prisoners in Brazil"@en,
+                "Reincidência criminal e reintegração de egressos do sistema prisional no Brasil"@pt-BR ;
+  aro:caseAboutSituation ex:sit-reintegration ; aro:caseHasReference ex:src-ipea-2015 .
+ex:sit-reintegration a aro:EmpiricalSituation .
+ex:ev-ipea a aro:EvidenceItem ; aro:derivedFromSource ex:src-ipea-2015 ;
+  aro:textValue "The report estimates recidivism from data of several states, describes the profile of recidivists and warns against the widely repeated but unsupported 70% figure."@en,
+                "O relatório estima a reincidência a partir de dados de vários estados, descreve o perfil dos reincidentes e alerta contra o número de 70%, repetido sem fundamento."@pt-BR .
+ex:corr-reintegration a aro:CorrespondenceClaim ;
+  aro:assertsPattern ex:pattern-reintegration ; aro:assertsCase ex:case-reintegration ; aro:referencesSource ex:src-ipea-2015 ;
+  aro:textValue "The difficulties represented in the song correspond to a documented field of research on reintegration and recidivism."@en,
+                "As dificuldades representadas na canção correspondem a um campo documentado de pesquisa sobre reintegração e reincidência."@pt-BR .
+ex:assess-reintegration a aro:EvidenceAssessment ; aro:assessesCorrespondence ex:corr-reintegration ; aro:assessesEvidence ex:ev-ipea ;
+  aro:textValue "Partial support: documents recidivism and the profile of former prisoners, but does not by itself measure job refusal due to a criminal record."@en,
+                "Apoio parcial: documenta a reincidência e o perfil dos egressos, mas não mede por si a recusa de emprego por antecedentes."@pt-BR .
+
+# --- Sanitation -----------------------------------------------------------------------
+ex:case-sanitation a aro:EmpiricalCase ;
+  aro:textValue "Lack of household sewage collection in Brazil"@en, "Falta de coleta de esgoto domiciliar no Brasil"@pt-BR ;
+  aro:caseAboutSituation ex:sit-sanitation ; aro:caseHasReference ex:src-sanitation .
+ex:sit-sanitation a aro:EmpiricalSituation .
+ex:ev-sanitation a aro:EvidenceItem ; aro:derivedFromSource ex:src-sanitation ;
+  aro:textValue "About 100 million Brazilians (47.6% of the population) had no household sewage collection in 2017, according to SNIS data."@en,
+                "Cerca de 100 milhões de brasileiros (47,6% da população) não tinham coleta de esgoto em casa em 2017, segundo dados do SNIS."@pt-BR .
+ex:corr-sanitation a aro:CorrespondenceClaim ;
+  aro:assertsPattern ex:pattern-precarious-housing ; aro:assertsCase ex:case-sanitation ; aro:referencesSource ex:src-sanitation ;
+  aro:textValue "The precarious housing represented in the song is similar to a widespread, measured lack of sanitation."@en,
+                "A moradia precária representada na canção é semelhante a uma falta de saneamento ampla e medida."@pt-BR .
+ex:assess-sanitation a aro:EvidenceAssessment ; aro:assessesCorrespondence ex:corr-sanitation ; aro:assessesEvidence ex:ev-sanitation ;
+  aro:textValue "Supports the pattern at national scale, decades after the song; does not describe the specific neighbourhood."@en,
+                "Apoia o padrão em escala nacional, décadas depois da canção; não descreve o bairro específico."@pt-BR .
+
+# --- Drought migration (Ceará, 1932) ---------------------------------------------
+ex:case-ceara-1932 a aro:EmpiricalCase ;
+  aro:textValue "Concentration camps for drought refugees in Ceará, 1932"@en,
+                "Campos de concentração para retirantes da seca no Ceará, 1932"@pt-BR ;
+  aro:caseAboutEvent ex:event-ceara-1932 ; aro:caseHasReference ex:src-fapesp-seca, ex:src-patu .
+ex:event-ceara-1932 a aro:EmpiricalEvent .
+ex:ev-ceara-camps a aro:EvidenceItem ; aro:derivedFromSource ex:src-fapesp-seca ;
+  aro:textValue "During the 1932 drought the Ceará government set up camps along the railways to keep migrants from reaching Fortaleza."@en,
+                "Durante a seca de 1932 o governo do Ceará instalou campos junto às ferrovias para impedir que os retirantes chegassem a Fortaleza."@pt-BR .
+ex:ev-patu a aro:EvidenceItem ; aro:derivedFromSource ex:src-patu ;
+  aro:externalLink "https://diariodonordeste.verdesmares.com.br/ceara/campo-de-concentracao-que-abrigou-16-mil-retirantes-no-ceara-deve-ter-predios-e-ruinas-tombados-1.3258221"^^xsd:anyURI ;
+  aro:textValue "The Patu camp in Senador Pompeu, whose remains are being preserved as heritage."@en,
+                "O campo do Patu, em Senador Pompeu, cujas ruínas estão sendo tombadas como patrimônio."@pt-BR .
+ex:corr-drought a aro:CorrespondenceClaim ;
+  aro:assertsPattern ex:pattern-drought-migration ; aro:assertsCase ex:case-ceara-1932 ; aro:referencesSource ex:src-fapesp-seca ;
+  aro:textValue "The forced migration represented in the novel corresponds to documented drought migrations, contemporary with its writing."@en,
+                "A migração forçada representada no romance corresponde a migrações documentadas por seca, contemporâneas à sua escrita."@pt-BR .
+ex:assess-drought a aro:EvidenceAssessment ; aro:assessesCorrespondence ex:corr-drought ; aro:assessesEvidence ex:ev-ceara-camps, ex:ev-patu ;
+  aro:textValue "Supports the pattern as historically documented; the novel's family is fictional and is not claimed to have been in these camps."@en,
+                "Apoia o padrão como historicamente documentado; a família do romance é ficcional e não se alega que tenha estado nesses campos."@pt-BR .

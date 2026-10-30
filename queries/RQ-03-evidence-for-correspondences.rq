@@ -1,0 +1,16 @@
+# RQ-03: How is each correspondence between a represented pattern and a real case supported?
+# One row per (claim, evidence item): what the evidence says, where it comes from, and the
+# agent's assessment of what it supports (and what it does not).
+PREFIX aro: <https://w3id.org/aro/ontology#>
+SELECT ?pattern ?case ?evidence ?sourceURL ?assessment WHERE {
+  ?claim a aro:CorrespondenceClaim ;
+         aro:assertsPattern/aro:textValue ?pattern ;
+         aro:assertsCase/aro:textValue ?case .
+  ?a aro:assessesCorrespondence ?claim ;
+     aro:assessesEvidence ?ev ;
+     aro:textValue ?assessment .
+  ?ev aro:textValue ?evidence ;
+      aro:derivedFromSource/aro:sourceURL ?sourceURL .
+  FILTER(lang(?pattern) = "en" && lang(?case) = "en" && lang(?evidence) = "en" && lang(?assessment) = "en")
+}
+ORDER BY ?pattern ?case

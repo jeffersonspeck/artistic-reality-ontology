@@ -1,0 +1,9 @@
+# CQ-05: Which real-world cases have been claimed similar to a situation pattern?
+# Each row is one CorrespondenceClaim linking a pattern abstracted from artworks to an
+# empirical case. A row is a recorded, contestable claim, not proof of correspondence.
+PREFIX aro: <https://w3id.org/aro/ontology#>
+SELECT ?pattern ?claim ?case WHERE {
+  ?claim a aro:CorrespondenceClaim ;
+         aro:assertsPattern ?pattern ;   # the represented-world side
+         aro:assertsCase ?case .         # the empirical-world side
+}

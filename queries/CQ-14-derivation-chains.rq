@@ -1,0 +1,13 @@
+# CQ-14: Which artworks are connected by chains of explicit derivation claims
+# (two or more hops, e.g. fan story -> film -> novel)?
+# Each hop is represented as a separate, contestable claim with its own evidence, and the
+# ontology declares no transitive property (ADR-013); chains are retrieved by this query.
+PREFIX aro: <https://w3id.org/aro/ontology#>
+SELECT DISTINCT ?derivedWork ?ancestorWork WHERE {
+  ?derivedWork a aro:Artwork .
+  # One hop = from a derived anchor back through its claim to the claim's source anchor:
+  #   ^aro:hasDerivedAnchor / aro:hasSourceAnchor
+  # The first hop is mandatory and "+" requires at least one more.
+  ?derivedWork (^aro:hasDerivedAnchor/aro:hasSourceAnchor)/(^aro:hasDerivedAnchor/aro:hasSourceAnchor)+ ?ancestorWork .
+  ?ancestorWork a aro:Artwork .
+}

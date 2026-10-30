@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://w3id.org/aro/schema/reference-source.json",
+  "$comment": "Hand-written exchange format for one ReferenceSource. Bibliographic completeness is not credibility: support for a claim is recorded separately by an EvidenceAssessment.",
+  "title": "ARO Reference Source (application exchange)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "type",
+    "title",
+    "sourceType",
+    "uri"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "type": {
+      "const": "ReferenceSource"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "sourceType": {
+      "enum": [
+        "news",
+        "peerReviewedStudy",
+        "report",
+        "book",
+        "testimony",
+        "dataset",
+        "legalDocument",
+        "archivalDocument",
+        "other"
+      ]
+    },
+    "uri": {
+      "type": "string",
+      "format": "uri"
+    },
+    "doi": {
+      "type": "string"
+    },
+    "author": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "published": {
+      "type": "string",
+      "format": "date"
+    },
+    "accessedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "language": {
+      "type": "string"
+    },
+    "notes": {
+      "type": "string"
+    },
+    "license": {
+      "type": "string"
+    }
+  }
+}

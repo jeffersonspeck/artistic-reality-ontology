@@ -1,0 +1,20 @@
+# RQ-04: Which derivations (adaptations, samples...) retain a situation pattern of their source
+# that has been claimed to correspond to real cases?
+# Connects the derivation module with the evidence module: e.g. a film that keeps the
+# novel's represented police violence, a pattern linked to documented cases.
+PREFIX aro: <https://w3id.org/aro/ontology#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+SELECT ?source ?derived ?type ?pattern (COUNT(DISTINCT ?case) AS ?realCases) WHERE {
+  ?claim a aro:DerivationClaim ;
+         aro:hasSourceAnchor/aro:textValue ?source ;
+         aro:hasDerivedAnchor/aro:textValue ?derived ;
+         aro:hasDerivationType/skos:prefLabel ?type ;
+         aro:hasTransformation ?aspect .
+  ?aspect aro:hasOperation aro:Retained ;
+          aro:aspectConcernsPattern ?p .
+  ?p aro:textValue ?pattern .
+  ?corr aro:assertsPattern ?p ;
+        aro:assertsCase ?case .
+  FILTER(lang(?source) = "en" && lang(?derived) = "en" && lang(?type) = "en" && lang(?pattern) = "en")
+}
+GROUP BY ?source ?derived ?type ?pattern

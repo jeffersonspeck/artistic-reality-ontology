@@ -1,0 +1,12 @@
+{
+  "id": "ref-example-001",
+  "type": "ReferenceSource",
+  "title": "Illustrative study (synthetic metadata only)",
+  "sourceType": "peerReviewedStudy",
+  "uri": "https://example.org/illustrative-study",
+  "author": [
+    "Example Author"
+  ],
+  "language": "en",
+  "notes": "Fictional example. Not real-world corroboration."
+}

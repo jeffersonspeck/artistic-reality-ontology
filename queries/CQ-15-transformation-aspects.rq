@@ -1,0 +1,14 @@
+# CQ-15: What does each derivation retain, modify, add, remove or recontextualize?
+# Each TransformationAspect pairs one artistic dimension (melody, plot, framing...)
+# with one operation; a claim may have any number of aspects.
+PREFIX aro: <https://w3id.org/aro/ontology#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+SELECT ?claim ?dimension ?operation WHERE {
+  ?claim a aro:DerivationClaim ;
+         aro:hasTransformation ?aspect .
+  ?aspect aro:hasDimension/skos:prefLabel ?dimension ;
+          aro:hasOperation/skos:prefLabel ?operation .
+  # Labels in English; use "pt-BR" for Portuguese
+  FILTER(lang(?dimension) = "en" && lang(?operation) = "en")
+}
+ORDER BY ?claim ?dimension

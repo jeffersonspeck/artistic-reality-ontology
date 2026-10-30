@@ -1,0 +1,34 @@
+cff-version: 1.2.0
+message: >-
+  If you use this ontology, please cite it as below. This project is an integral part
+  of the doctoral research of Jefferson Rodrigo Speck in the Graduate Program in
+  Informatics (PPGInf) of the Federal University of Paraná (UFPR), supervised by
+  Prof. Dr. Roberto Pereira (UFPR) and co-supervised by Prof. Dr. Clodis Boscarioli
+  (UNIOESTE). No DOI has been assigned yet.
+title: "Artistic Reality Ontology (ARO)"
+version: 0.2.0-beta
+date-released: 2026-10-30
+type: software
+license: MIT
+authors:
+  - family-names: Speck
+    given-names: Jefferson Rodrigo
+    affiliation: "Universidade Federal do Paraná (UFPR), Programa de Pós-Graduação em Informática (PPGInf)"
+abstract: >-
+  Ontology (OWL, SHACL, SKOS) for representing artworks in any medium, plural
+  interpretations of their passages, represented situations and patterns, contestable
+  claims of correspondence with documented real cases, and derivation between works.
+  Developed with the SABiOx methodology and grounded in UFO.
+  Doctoral project, Graduate Program in Informatics (PPGInf), Federal University of
+  Paraná (UFPR). Supervisor: Prof. Dr. Roberto Pereira (UFPR). Co-supervisor:
+  Prof. Dr. Clodis Boscarioli (UNIOESTE). Linked to the Research Group on Technology
+  and Innovation in Education (GTIE), Western Paraná State University (UNIOESTE).
+keywords:
+  - ontology
+  - OntoUML
+  - UFO
+  - SABiOx
+  - art and reality
+  - interpretation
+  - derivation
+  - knowledge representation

@@ -1,0 +1,43 @@
+@prefix aro:    <https://w3id.org/aro/ontology#> .
+@prefix oa:     <http://www.w3.org/ns/oa#> .
+@prefix schema: <https://schema.org/> .
+@prefix ex:     <https://example.org/my-project/> .
+# Quick-start instance used in README.md / LEIA-ME.md. Entirely fictional.
+# Validate:  python scripts/validate.py examples/quickstart.ttl
+# Query:     python scripts/query.py examples/quickstart.ttl --query queries/CQ-13-derivations-of-work.rq
+
+# 1. An artwork, one manifestation (a recording) and a selection located by a W3C selector
+ex:song a aro:Artwork ; aro:textValue "Song A"@en, "Canção A"@pt-BR .
+ex:song-rec a aro:Manifestation ; aro:realizesArtwork ex:song .
+ex:riff a aro:Selection ; aro:selectsFrom ex:song-rec ; aro:hasSelector ex:riff-sel .
+ex:riff-sel a oa:FragmentSelector ; oa:value "t=12,16" .          # seconds 12 to 16
+
+# 2. An interpretation of that selection, produced by an analyst (any external agent IRI)
+ex:me a schema:Person .
+ex:act a aro:InterpretiveAct ; aro:hasParticipant ex:me .
+ex:reading a aro:InterpretationRecord ;
+  aro:hasPrimarySelection ex:riff ;
+  aro:producedByAct ex:act ;
+  aro:describesSituation ex:scene .
+ex:scene a aro:SituationDescription ;
+  aro:textValue "A character leaves home after a conflict."@en,
+                "Uma personagem sai de casa após um conflito."@pt-BR .
+
+# 3. A derivation: a new track samples the riff (selection-level claim)
+ex:track a aro:Artwork .
+ex:track-rec a aro:Manifestation ; aro:realizesArtwork ex:track .
+ex:loop a aro:Selection ; aro:selectsFrom ex:track-rec ; aro:hasSelector ex:loop-sel .
+ex:loop-sel a oa:FragmentSelector ; oa:value "t=0,4" .
+ex:claim a aro:DerivationClaim ;
+  aro:hasSourceAnchor ex:riff ;
+  aro:hasDerivedAnchor ex:loop ;
+  aro:hasDerivationType aro:Sampling ;          # from DerivationTypeScheme
+  aro:hasRegime aro:PlayfulRegime ;             # from DerivationRegimeScheme
+  aro:hasTransformation ex:aspect ;
+  aro:derivationJustifiedBy ex:why .
+ex:aspect a aro:TransformationAspect ;
+  aro:hasDimension aro:RecordedSoundDimension ;  # from ArtisticDimensionScheme
+  aro:hasOperation aro:Recontextualized .        # from TransformationOperationScheme
+ex:why a aro:InterpretiveJustification ;
+  aro:textValue "Same 4-second guitar riff, pitched up."@en,
+                "Mesmo riff de guitarra de 4 segundos, mais agudo."@pt-BR .

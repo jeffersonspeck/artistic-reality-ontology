@@ -1,0 +1,443 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rdf:RDF
+   xmlns:dcterms="http://purl.org/dc/terms/"
+   xmlns:owl="http://www.w3.org/2002/07/owl#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+   xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+>
+  <rdf:Description rdf:about="https://w3id.org/aro/ontology#assessesInterpretation">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://w3id.org/aro/ontology#InterpretationAssessment"/>
+    <rdfs:range rdf:resource="https://w3id.org/aro/ontology#InterpretationRecord"/>
+    <rdfs:label xml:lang="en">assessment targets interpretation</rdfs:label>
+    <rdfs:label xml:lang="pt-BR">avaliação incide sobre interpretação</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/aro/ontology#DepictedElement">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">DepictedElement</rdfs:label>
+    <skos:definition xml:lang="en">Information-level representation of a referent in an artwork.</skos:definition>
+    <skos:definition xml:lang="pt-BR">Representação informacional de um referente na obra.</skos:definition>
+    <rdfs:comment xml:lang="en">OntoUML stereotype (provisional): kind; foundation: UFO-C representation; not a real-world entity</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/aro/ontology#IntentionalStateDescription">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">IntentionalStateDescription</rdfs:label>
+    <skos:definition xml:lang="en">Situation description attributing desire, belief or intention to a depicted agent.</skos:definition>
+    <skos:definition xml:lang="pt-BR">Descrição de situação que atribui desejo, crença ou intenção a agente representado.</skos:definition>
+    <rdfs:comment xml:lang="en">OntoUML stereotype (provisional): subkind; foundation: UFO-C intentional content attribution</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://w3id.org/aro/ontology#SituationDescription"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/aro/ontology#InterpretiveAct">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">InterpretiveAct</rdfs:label>
+    <skos:definition xml:lang="en">Temporal intentional activity yielding interpretation records.</skos:definition>
+    <skos:definition xml:lang="pt-BR">Atividade intencional temporal que produz interpretações registradas.</skos:definition>
+    <rdfs:comment xml:lang="en">OntoUML stereotype (provisional): event; foundation: UFO-B event; UFO-C intentional action</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/aro/ontology#AnalysisUnit">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">AnalysisUnit</rdfs:label>
+    <skos:definition xml:lang="en">Intentional grouping of selections for analytical purposes.</skos:definition>
+    <skos:definition xml:lang="pt-BR">Agrupamento intencional de recortes com finalidade analítica.</skos:definition>
+    <rdfs:comment xml:lang="en">OntoUML stereotype (provisional): kind; foundation: UFO-C information object</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/aro/ontology#isRequiredCondition">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/aro/ontology#EvidenceAssessment">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">EvidenceAssessment</rdfs:label>
+    <skos:definition xml:lang="en">Judgment whether evidence supports, challenges or is irrelevant to a specified claim.</skos:definition>
+    <skos:definition xml:lang="pt-BR">Julgamento de apoio, contestação ou irrelevância de evidência para afirmação específica.</skos:definition>
+    <rdfs:comment xml:lang="en">OntoUML stereotype (provisional): kind; foundation: UFO-C information object</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/aro/ontology#derivedFromSource">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://w3id.org/aro/ontology#EvidenceItem"/>
+    <rdfs:range rdf:resource="https://w3id.org/aro/ontology#ReferenceSource"/>
+    <rdfs:label xml:lang="en">evidence obtained from source</rdfs:label>
+    <rdfs:label xml:lang="pt-BR">evidência obtida de fonte</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/aro/ontology#EvidenceItem">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">EvidenceItem</rdfs:label>
+    <skos:definition xml:lang="en">Extracted contextual assertion or observation from a reference source.</skos:definition>
+    <skos:definition xml:lang="pt-BR">Afirmação ou observação contextualizada extraída de uma fonte.</skos:definition>
+    <rdfs:comment xml:lang="en">OntoUML stereotype (provisional): kind; foundation: UFO-C information object</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/aro/ontology#hasParticipant">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://w3id.org/aro/ontology#InterpretiveAct"/>
+    <rdfs:range rdf:resource="https://w3id.org/aro/ontology#Analyst"/>
+    <rdfs:label xml:lang="en">agent participates in act</rdfs:label>
+    <rdfs:label xml:lang="pt-BR">agente participa de ato</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/aro/ontology#Manifestation">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Manifestation</rdfs:label>
+    <skos:definition xml:lang="en">Specific expression, version or realization of an artwork.</skos:definition>
+    <skos:definition xml:lang="pt-BR">Expressão, versão ou realização específica de uma obra.</skos:definition>
+    <rdfs:comment xml:lang="en">OntoUML stereotype (provisional): kind; foundation: UFO-A enduring object; UFO-C information artifact</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/aro/ontology#generalizesAs">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://w3id.org/aro/ontology#SituationDescription"/>
+    <rdfs:range rdf:resource="https://w3id.org/aro/ontology#SituationPattern"/>
+    <rdfs:label xml:lang="en">description motivates pattern abstraction</rdfs:label>
+    <rdfs:label xml:lang="pt-BR">descrição motiva abstração</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/aro/ontology#AssessmentCriterion">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">AssessmentCriterion</rdfs:label>
+    <skos:definition xml:lang="en">Specified epistemic or value-based assessment rule.</skos:definition>
+    <skos:definition xml:lang="pt-BR">Regra especificada de avaliação epistêmica ou de valores.</skos:definition>
+    <rdfs:comment xml:lang="en">OntoUML stereotype (provisional): kind; foundation: UFO-C normative/social information object</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/aro/ontology#supportsInterpretation">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://w3id.org/aro/ontology#InterpretationRecord"/>
+    <rdfs:range rdf:resource="https://w3id.org/aro/ontology#InterpretationRecord"/>
+    <rdfs:label xml:lang="en">interpretation supports another</rdfs:label>
+    <rdfs:label xml:lang="pt-BR">interpretação apoia outra</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/aro/ontology#selectsFrom">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://w3id.org/aro/ontology#Selection"/>
+    <rdfs:range rdf:resource="https://w3id.org/aro/ontology#Manifestation"/>
+    <rdfs:label xml:lang="en">selection references manifestation</rdfs:label>
+    <rdfs:label xml:lang="pt-BR">recorte referencia manifestação</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/aro/ontology#EmpiricalEvent">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">EmpiricalEvent</rdfs:label>
+    <skos:definition xml:lang="en">Real-world temporally bounded occurrence.</skos:definition>
+    <skos:definition xml:lang="pt-BR">Ocorrência do mundo real delimitada temporalmente.</skos:definition>
+    <rdfs:comment xml:lang="en">OntoUML stereotype (provisional): event; foundation: UFO-B event</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/aro/ontology#Analyst">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Analyst</rdfs:label>
+    <skos:definition xml:lang="en">Real human agent responsible for interpretation or evaluation.</skos:definition>
+    <skos:definition xml:lang="pt-BR">Agente humano real responsável por interpretar ou avaliar.</skos:definition>
+    <rdfs:comment xml:lang="en">OntoUML stereotype (provisional): kind; foundation: UFO-A agent/object and UFO-C agent</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/aro/ontology#SituationPattern">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">SituationPattern</rdfs:label>
+    <skos:definition xml:lang="en">Reusable informational specification of situation conditions.</skos:definition>
+    <skos:definition xml:lang="pt-BR">Especificação informacional reutilizável de condições situacionais.</skos:definition>
+    <rdfs:comment xml:lang="en">OntoUML stereotype (provisional): kind; foundation: UFO-C information object</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/aro/ontology#caseAboutEvent">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://w3id.org/aro/ontology#EmpiricalCase"/>
+    <rdfs:range rdf:resource="https://w3id.org/aro/ontology#EmpiricalEvent"/>
+    <rdfs:label xml:lang="en">dossier describes real events</rdfs:label>
+    <rdfs:label xml:lang="pt-BR">dossiê descreve evento</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/aro/ontology#confidenceScore">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/aro/ontology#CorrespondenceClaim">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">CorrespondenceClaim</rdfs:label>
+    <skos:definition xml:lang="en">Contestable assertion of similarity, instantiation or explanatory relevance between pattern and empirical case.</skos:definition>
+    <skos:definition xml:lang="pt-BR">Alegação contestável de similaridade, instanciação ou relevância explicativa entre padrão e caso empírico.</skos:definition>
+    <rdfs:comment xml:lang="en">OntoUML stereotype (provisional): kind; foundation: UFO-C information object; not UFO relator</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/aro/ontology#challenges">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://w3id.org/aro/ontology#InterpretationChallenge"/>
+    <rdfs:range rdf:resource="https://w3id.org/aro/ontology#InterpretationRecord"/>
+    <rdfs:label xml:lang="en">challenge targets interpretation</rdfs:label>
+    <rdfs:label xml:lang="pt-BR">contestação questiona interpretação</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/aro/ontology#referencesSource">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://w3id.org/aro/ontology#CorrespondenceClaim"/>
+    <rdfs:range rdf:resource="https://w3id.org/aro/ontology#ReferenceSource"/>
+    <rdfs:label xml:lang="en">correspondence directly cites source</rdfs:label>
+    <rdfs:label xml:lang="pt-BR">correspondência cita fonte</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/aro/ontology#InterpretiveJustification">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">InterpretiveJustification</rdfs:label>
+    <skos:definition xml:lang="en">Recorded argument connecting premises to an interpretation.</skos:definition>
+    <skos:definition xml:lang="pt-BR">Argumento registrado que liga premissas a uma interpretação.</skos:definition>
+    <rdfs:comment xml:lang="en">OntoUML stereotype (provisional): kind; foundation: UFO-C information object</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/aro/ontology#realizesArtwork">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://w3id.org/aro/ontology#Manifestation"/>
+    <rdfs:range rdf:resource="https://w3id.org/aro/ontology#Artwork"/>
+    <rdfs:label xml:lang="en">manifestation realizes artwork</rdfs:label>
+    <rdfs:label xml:lang="pt-BR">manifestação realiza obra</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/aro/ontology#supportsClaim">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://w3id.org/aro/ontology#EvidenceAssessment"/>
+    <rdfs:range rdf:resource="https://w3id.org/aro/ontology#EmpiricalClaim"/>
+    <rdfs:label xml:lang="en">assessment evaluates claim</rdfs:label>
+    <rdfs:label xml:lang="pt-BR">avaliação examina afirmação</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/aro/ontology#hasPrimarySelection">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://w3id.org/aro/ontology#InterpretationRecord"/>
+    <rdfs:range rdf:resource="https://w3id.org/aro/ontology#Selection"/>
+    <rdfs:label xml:lang="en">record is anchored in selection</rdfs:label>
+    <rdfs:label xml:lang="pt-BR">interpretação se ancora em recorte</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/aro/ontology#assessesEvidence">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://w3id.org/aro/ontology#EvidenceAssessment"/>
+    <rdfs:range rdf:resource="https://w3id.org/aro/ontology#EvidenceItem"/>
+    <rdfs:label xml:lang="en">assessment considers evidence</rdfs:label>
+    <rdfs:label xml:lang="pt-BR">avaliação considera evidência</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/aro/ontology#identifier">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/aro/ontology#caseHasReference">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://w3id.org/aro/ontology#EmpiricalCase"/>
+    <rdfs:range rdf:resource="https://w3id.org/aro/ontology#ReferenceSource"/>
+    <rdfs:label xml:lang="en">case cites sources</rdfs:label>
+    <rdfs:label xml:lang="pt-BR">caso cita fontes</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/aro/ontology#SituationDescription">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">SituationDescription</rdfs:label>
+    <skos:definition xml:lang="en">Recorded description of a represented situation.</skos:definition>
+    <skos:definition xml:lang="pt-BR">Descrição registrada de situação representada.</skos:definition>
+    <rdfs:comment xml:lang="en">OntoUML stereotype (provisional): kind; foundation: UFO-C information object, not gufo:Situation</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/aro/ontology#usesCriterion">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://w3id.org/aro/ontology#InterpretationAssessment"/>
+    <rdfs:range rdf:resource="https://w3id.org/aro/ontology#AssessmentCriterion"/>
+    <rdfs:label xml:lang="en">assessment follows criteria</rdfs:label>
+    <rdfs:label xml:lang="pt-BR">avaliação usa critérios</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/aro/ontology#hasCondition">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://w3id.org/aro/ontology#SituationPattern"/>
+    <rdfs:range rdf:resource="https://w3id.org/aro/ontology#PatternCondition"/>
+    <rdfs:label xml:lang="en">pattern specifies conditions</rdfs:label>
+    <rdfs:label xml:lang="pt-BR">padrão especifica condições</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/aro/ontology#EmpiricalCase">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">EmpiricalCase</rdfs:label>
+    <skos:definition xml:lang="en">Documented dossier about one real-world situation or occurrence.</skos:definition>
+    <skos:definition xml:lang="pt-BR">Dossiê documentado sobre uma situação ou ocorrência real.</skos:definition>
+    <rdfs:comment xml:lang="en">OntoUML stereotype (provisional): kind; foundation: UFO-C information object</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/aro/ontology#caseAboutSituation">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://w3id.org/aro/ontology#EmpiricalCase"/>
+    <rdfs:range rdf:resource="https://w3id.org/aro/ontology#EmpiricalSituation"/>
+    <rdfs:label xml:lang="en">dossier describes real situations</rdfs:label>
+    <rdfs:label xml:lang="pt-BR">dossiê descreve situação real</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/aro/ontology#ExplanationHypothesis">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">ExplanationHypothesis</rdfs:label>
+    <skos:definition xml:lang="en">Proposed mechanism or factors explaining a represented or observed phenomenon.</skos:definition>
+    <skos:definition xml:lang="pt-BR">Mecanismo ou fatores propostos para explicar fenômeno representado ou observado.</skos:definition>
+    <rdfs:comment xml:lang="en">OntoUML stereotype (provisional): kind; foundation: UFO-C information object</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/aro/ontology">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology"/>
+    <owl:versionInfo>0.1.0</owl:versionInfo>
+    <dcterms:title xml:lang="en">Artistic Reality Ontology</dcterms:title>
+    <dcterms:title xml:lang="pt-BR">Ontologia de Arte e Realidade</dcterms:title>
+    <dcterms:description xml:lang="en">Operational OWL vocabulary inspired by UFO; not a complete translation of the OntoUML reference model.</dcterms:description>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/aro/ontology#PatternCondition">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">PatternCondition</rdfs:label>
+    <skos:definition xml:lang="en">Individuated mandatory or optional condition within a pattern.</skos:definition>
+    <skos:definition xml:lang="pt-BR">Condição individualizada obrigatória ou opcional de um padrão.</skos:definition>
+    <rdfs:comment xml:lang="en">OntoUML stereotype (provisional): kind; foundation: UFO-C information object</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/aro/ontology#hasJustification">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://w3id.org/aro/ontology#InterpretationRecord"/>
+    <rdfs:range rdf:resource="https://w3id.org/aro/ontology#InterpretiveJustification"/>
+    <rdfs:label xml:lang="en">interpretation supported by argument</rdfs:label>
+    <rdfs:label xml:lang="pt-BR">interpretação tem fundamentação</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/aro/ontology#describesSituation">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://w3id.org/aro/ontology#InterpretationRecord"/>
+    <rdfs:range rdf:resource="https://w3id.org/aro/ontology#SituationDescription"/>
+    <rdfs:label xml:lang="en">interpretation yields descriptions</rdfs:label>
+    <rdfs:label xml:lang="pt-BR">interpretação descreve situação</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/aro/ontology#EmpiricalClaim">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">EmpiricalClaim</rdfs:label>
+    <skos:definition xml:lang="en">Recorded testable claim about the empirical world.</skos:definition>
+    <skos:definition xml:lang="pt-BR">Afirmação registrada e verificável acerca do mundo empírico.</skos:definition>
+    <rdfs:comment xml:lang="en">OntoUML stereotype (provisional): kind; foundation: UFO-C information object</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/aro/ontology#mentionsDepictedElement">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://w3id.org/aro/ontology#SituationDescription"/>
+    <rdfs:range rdf:resource="https://w3id.org/aro/ontology#DepictedElement"/>
+    <rdfs:label xml:lang="en">description mentions depicted element</rdfs:label>
+    <rdfs:label xml:lang="pt-BR">descrição menciona elemento</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/aro/ontology#retrievedAt">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/aro/ontology#DepictedAgent">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">DepictedAgent</rdfs:label>
+    <skos:definition xml:lang="en">Depicted element referring to an agent or character.</skos:definition>
+    <skos:definition xml:lang="pt-BR">Elemento representado que se refere a agente ou personagem.</skos:definition>
+    <rdfs:comment xml:lang="en">OntoUML stereotype (provisional): subkind; foundation: UFO-C representation</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://w3id.org/aro/ontology#DepictedElement"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/aro/ontology#languageTag">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/aro/ontology#hasManifestation">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://w3id.org/aro/ontology#Artwork"/>
+    <rdfs:range rdf:resource="https://w3id.org/aro/ontology#Manifestation"/>
+    <rdfs:label xml:lang="en">artwork realizes through manifestation</rdfs:label>
+    <rdfs:label xml:lang="pt-BR">obra se realiza por manifestação</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/aro/ontology#sourceURL">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#anyURI"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/aro/ontology#EmpiricalSituation">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">EmpiricalSituation</rdfs:label>
+    <skos:definition xml:lang="en">Configuration of entities and conditions in the real world.</skos:definition>
+    <skos:definition xml:lang="pt-BR">Configuração de entidades e condições no mundo real.</skos:definition>
+    <rdfs:comment xml:lang="en">OntoUML stereotype (provisional): situation; foundation: UFO-B situation; separate from descriptions</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/aro/ontology#Artwork">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Artwork</rdfs:label>
+    <skos:definition xml:lang="en">Identifiable artistic creation across media and manifestations.</skos:definition>
+    <skos:definition xml:lang="pt-BR">Criação artística identificável em diversas mídias e manifestações.</skos:definition>
+    <rdfs:comment xml:lang="en">OntoUML stereotype (provisional): kind; foundation: UFO-C social/information object (domain commitment)</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/aro/ontology#producedByAct">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://w3id.org/aro/ontology#InterpretationRecord"/>
+    <rdfs:range rdf:resource="https://w3id.org/aro/ontology#InterpretiveAct"/>
+    <rdfs:label xml:lang="en">interpretive act historically produces record</rdfs:label>
+    <rdfs:label xml:lang="pt-BR">ato produz registro</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/aro/ontology#groupsSelection">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://w3id.org/aro/ontology#AnalysisUnit"/>
+    <rdfs:range rdf:resource="https://w3id.org/aro/ontology#Selection"/>
+    <rdfs:label xml:lang="en">unit groups selections</rdfs:label>
+    <rdfs:label xml:lang="pt-BR">unidade agrupa recortes</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/aro/ontology#assessesCorrespondence">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://w3id.org/aro/ontology#EvidenceAssessment"/>
+    <rdfs:range rdf:resource="https://w3id.org/aro/ontology#CorrespondenceClaim"/>
+    <rdfs:label xml:lang="en">assessment evaluates correspondence</rdfs:label>
+    <rdfs:label xml:lang="pt-BR">avaliação examina correspondência</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/aro/ontology#Selection">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Selection</rdfs:label>
+    <skos:definition xml:lang="en">Addressable selected portion of a manifestation (not its physical component).</skos:definition>
+    <skos:definition xml:lang="pt-BR">Seleção endereçável de uma parte de manifestação (não componente físico).</skos:definition>
+    <rdfs:comment xml:lang="en">OntoUML stereotype (provisional): kind; foundation: UFO-C information object; domain category</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/aro/ontology#textValue">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/aro/ontology#assertsCase">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://w3id.org/aro/ontology#CorrespondenceClaim"/>
+    <rdfs:range rdf:resource="https://w3id.org/aro/ontology#EmpiricalCase"/>
+    <rdfs:label xml:lang="en">correspondence references case</rdfs:label>
+    <rdfs:label xml:lang="pt-BR">alegação referencia caso</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/aro/ontology#InterpretationAssessment">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">InterpretationAssessment</rdfs:label>
+    <skos:definition xml:lang="en">Explicit epistemic or axiological judgment of an interpretation.</skos:definition>
+    <skos:definition xml:lang="pt-BR">Julgamento epistêmico ou axiológico explícito de interpretação.</skos:definition>
+    <rdfs:comment xml:lang="en">OntoUML stereotype (provisional): kind; foundation: UFO-C information object</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/aro/ontology#InterpretationChallenge">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">InterpretationChallenge</rdfs:label>
+    <skos:definition xml:lang="en">Recorded criticism or alternative reasoning about an interpretation.</skos:definition>
+    <skos:definition xml:lang="pt-BR">Crítica ou raciocínio alternativo registrado sobre interpretação.</skos:definition>
+    <rdfs:comment xml:lang="en">OntoUML stereotype (provisional): kind; foundation: UFO-C information object</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/aro/ontology#versionLabel">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/aro/ontology#hasSupportingSelection">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://w3id.org/aro/ontology#InterpretationRecord"/>
+    <rdfs:range rdf:resource="https://w3id.org/aro/ontology#Selection"/>
+    <rdfs:label xml:lang="en">record has supporting selection</rdfs:label>
+    <rdfs:label xml:lang="pt-BR">interpretação usa recorte de apoio</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/aro/ontology#assertsPattern">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://w3id.org/aro/ontology#CorrespondenceClaim"/>
+    <rdfs:range rdf:resource="https://w3id.org/aro/ontology#SituationPattern"/>
+    <rdfs:label xml:lang="en">correspondence references pattern</rdfs:label>
+    <rdfs:label xml:lang="pt-BR">alegação referencia padrão</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/aro/ontology#InterpretationRecord">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">InterpretationRecord</rdfs:label>
+    <skos:definition xml:lang="en">Persistent authored record of an interpretation of a selection.</skos:definition>
+    <skos:definition xml:lang="pt-BR">Registro autoral persistente de uma interpretação de recorte.</skos:definition>
+    <rdfs:comment xml:lang="en">OntoUML stereotype (provisional): kind; foundation: UFO-C information object; not an event</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/aro/ontology#ReferenceSource">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">ReferenceSource</rdfs:label>
+    <skos:definition xml:lang="en">Citable external resource: news, study, report, legal document, testimony, dataset, etc.</skos:definition>
+    <skos:definition xml:lang="pt-BR">Recurso externo citável: notícia, estudo, relatório, documento legal, relato, conjunto de dados etc.</skos:definition>
+    <rdfs:comment xml:lang="en">OntoUML stereotype (provisional): kind; foundation: UFO-C information object</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/aro/ontology#citesSource">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://w3id.org/aro/ontology#InterpretationRecord"/>
+    <rdfs:range rdf:resource="https://w3id.org/aro/ontology#ReferenceSource"/>
+    <rdfs:label xml:lang="en">interpretation directly cites source (optional)</rdfs:label>
+    <rdfs:label xml:lang="pt-BR">interpretação cita fonte</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/aro/ontology#selectorExpression">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/aro/ontology#explainsPattern">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://w3id.org/aro/ontology#ExplanationHypothesis"/>
+    <rdfs:range rdf:resource="https://w3id.org/aro/ontology#SituationPattern"/>
+    <rdfs:label xml:lang="en">explanation addresses pattern</rdfs:label>
+    <rdfs:label xml:lang="pt-BR">hipótese explica padrão</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/aro/ontology#issuedDate">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date"/>
+  </rdf:Description>
+</rdf:RDF>

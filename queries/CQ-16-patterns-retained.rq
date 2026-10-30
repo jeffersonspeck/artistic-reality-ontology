@@ -1,0 +1,11 @@
+# CQ-16: Which derivations retain a situation pattern of their source?
+# Connects the derivation module to the pattern module: e.g. a film adaptation that
+# keeps the represented situation of the novel even when setting and medium change.
+PREFIX aro: <https://w3id.org/aro/ontology#>
+SELECT ?claim ?source ?derived ?pattern WHERE {
+  ?claim aro:hasSourceAnchor ?source ;
+         aro:hasDerivedAnchor ?derived ;
+         aro:hasTransformation ?aspect .
+  ?aspect aro:hasOperation aro:Retained ;          # only aspects marked as retained
+          aro:aspectConcernsPattern ?pattern .     # ...that concern a SituationPattern
+}

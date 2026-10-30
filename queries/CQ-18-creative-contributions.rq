@@ -1,0 +1,11 @@
+# CQ-18: Who contributed to the creative act that realizes a derivation, and in which role?
+# Agents are IRIs from external vocabularies (schema.org, FOAF, Wikidata...); ARO only
+# records their contribution through the CreativeContribution relator (ADR-019).
+PREFIX aro: <https://w3id.org/aro/ontology#>
+SELECT ?claim ?creation ?agent ?role WHERE {
+  ?claim aro:derivationRealizedBy ?act .
+  ?act aro:producesCreation ?creation ;     # the derived artwork or manifestation
+       aro:hasContribution ?c .
+  ?c aro:contributionBy ?agent ;
+     aro:contributionRole ?role .           # a concept from CreativeRoleScheme
+}

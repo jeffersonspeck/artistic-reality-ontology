@@ -1,0 +1,375 @@
+@prefix aro: <https://w3id.org/aro/ontology#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://w3id.org/aro/ontology> a owl:Ontology ;
+    dcterms:description "Operational OWL vocabulary inspired by UFO; not a complete translation of the OntoUML reference model."@en ;
+    dcterms:title "Artistic Reality Ontology"@en,
+        "Ontologia de Arte e Realidade"@pt-BR ;
+    owl:versionInfo "0.1.0" .
+
+aro:DepictedAgent a owl:Class ;
+    rdfs:label "DepictedAgent"@en ;
+    rdfs:comment "OntoUML stereotype (provisional): subkind; foundation: UFO-C representation"@en ;
+    rdfs:subClassOf aro:DepictedElement ;
+    skos:definition "Depicted element referring to an agent or character."@en,
+        "Elemento representado que se refere a agente ou personagem."@pt-BR .
+
+aro:IntentionalStateDescription a owl:Class ;
+    rdfs:label "IntentionalStateDescription"@en ;
+    rdfs:comment "OntoUML stereotype (provisional): subkind; foundation: UFO-C intentional content attribution"@en ;
+    rdfs:subClassOf aro:SituationDescription ;
+    skos:definition "Situation description attributing desire, belief or intention to a depicted agent."@en,
+        "Descrição de situação que atribui desejo, crença ou intenção a agente representado."@pt-BR .
+
+aro:assertsCase a owl:ObjectProperty ;
+    rdfs:label "correspondence references case"@en,
+        "alegação referencia caso"@pt-BR ;
+    rdfs:domain aro:CorrespondenceClaim ;
+    rdfs:range aro:EmpiricalCase .
+
+aro:assertsPattern a owl:ObjectProperty ;
+    rdfs:label "correspondence references pattern"@en,
+        "alegação referencia padrão"@pt-BR ;
+    rdfs:domain aro:CorrespondenceClaim ;
+    rdfs:range aro:SituationPattern .
+
+aro:assessesCorrespondence a owl:ObjectProperty ;
+    rdfs:label "assessment evaluates correspondence"@en,
+        "avaliação examina correspondência"@pt-BR ;
+    rdfs:domain aro:EvidenceAssessment ;
+    rdfs:range aro:CorrespondenceClaim .
+
+aro:assessesEvidence a owl:ObjectProperty ;
+    rdfs:label "assessment considers evidence"@en,
+        "avaliação considera evidência"@pt-BR ;
+    rdfs:domain aro:EvidenceAssessment ;
+    rdfs:range aro:EvidenceItem .
+
+aro:assessesInterpretation a owl:ObjectProperty ;
+    rdfs:label "assessment targets interpretation"@en,
+        "avaliação incide sobre interpretação"@pt-BR ;
+    rdfs:domain aro:InterpretationAssessment ;
+    rdfs:range aro:InterpretationRecord .
+
+aro:caseAboutEvent a owl:ObjectProperty ;
+    rdfs:label "dossier describes real events"@en,
+        "dossiê descreve evento"@pt-BR ;
+    rdfs:domain aro:EmpiricalCase ;
+    rdfs:range aro:EmpiricalEvent .
+
+aro:caseAboutSituation a owl:ObjectProperty ;
+    rdfs:label "dossier describes real situations"@en,
+        "dossiê descreve situação real"@pt-BR ;
+    rdfs:domain aro:EmpiricalCase ;
+    rdfs:range aro:EmpiricalSituation .
+
+aro:caseHasReference a owl:ObjectProperty ;
+    rdfs:label "case cites sources"@en,
+        "caso cita fontes"@pt-BR ;
+    rdfs:domain aro:EmpiricalCase ;
+    rdfs:range aro:ReferenceSource .
+
+aro:challenges a owl:ObjectProperty ;
+    rdfs:label "challenge targets interpretation"@en,
+        "contestação questiona interpretação"@pt-BR ;
+    rdfs:domain aro:InterpretationChallenge ;
+    rdfs:range aro:InterpretationRecord .
+
+aro:citesSource a owl:ObjectProperty ;
+    rdfs:label "interpretation directly cites source (optional)"@en,
+        "interpretação cita fonte"@pt-BR ;
+    rdfs:domain aro:InterpretationRecord ;
+    rdfs:range aro:ReferenceSource .
+
+aro:confidenceScore a owl:DatatypeProperty ;
+    rdfs:range xsd:decimal .
+
+aro:derivedFromSource a owl:ObjectProperty ;
+    rdfs:label "evidence obtained from source"@en,
+        "evidência obtida de fonte"@pt-BR ;
+    rdfs:domain aro:EvidenceItem ;
+    rdfs:range aro:ReferenceSource .
+
+aro:describesSituation a owl:ObjectProperty ;
+    rdfs:label "interpretation yields descriptions"@en,
+        "interpretação descreve situação"@pt-BR ;
+    rdfs:domain aro:InterpretationRecord ;
+    rdfs:range aro:SituationDescription .
+
+aro:explainsPattern a owl:ObjectProperty ;
+    rdfs:label "explanation addresses pattern"@en,
+        "hipótese explica padrão"@pt-BR ;
+    rdfs:domain aro:ExplanationHypothesis ;
+    rdfs:range aro:SituationPattern .
+
+aro:generalizesAs a owl:ObjectProperty ;
+    rdfs:label "description motivates pattern abstraction"@en,
+        "descrição motiva abstração"@pt-BR ;
+    rdfs:domain aro:SituationDescription ;
+    rdfs:range aro:SituationPattern .
+
+aro:groupsSelection a owl:ObjectProperty ;
+    rdfs:label "unit groups selections"@en,
+        "unidade agrupa recortes"@pt-BR ;
+    rdfs:domain aro:AnalysisUnit ;
+    rdfs:range aro:Selection .
+
+aro:hasCondition a owl:ObjectProperty ;
+    rdfs:label "pattern specifies conditions"@en,
+        "padrão especifica condições"@pt-BR ;
+    rdfs:domain aro:SituationPattern ;
+    rdfs:range aro:PatternCondition .
+
+aro:hasJustification a owl:ObjectProperty ;
+    rdfs:label "interpretation supported by argument"@en,
+        "interpretação tem fundamentação"@pt-BR ;
+    rdfs:domain aro:InterpretationRecord ;
+    rdfs:range aro:InterpretiveJustification .
+
+aro:hasManifestation a owl:ObjectProperty ;
+    rdfs:label "artwork realizes through manifestation"@en,
+        "obra se realiza por manifestação"@pt-BR ;
+    rdfs:domain aro:Artwork ;
+    rdfs:range aro:Manifestation .
+
+aro:hasParticipant a owl:ObjectProperty ;
+    rdfs:label "agent participates in act"@en,
+        "agente participa de ato"@pt-BR ;
+    rdfs:domain aro:InterpretiveAct ;
+    rdfs:range aro:Analyst .
+
+aro:hasPrimarySelection a owl:ObjectProperty ;
+    rdfs:label "record is anchored in selection"@en,
+        "interpretação se ancora em recorte"@pt-BR ;
+    rdfs:domain aro:InterpretationRecord ;
+    rdfs:range aro:Selection .
+
+aro:hasSupportingSelection a owl:ObjectProperty ;
+    rdfs:label "record has supporting selection"@en,
+        "interpretação usa recorte de apoio"@pt-BR ;
+    rdfs:domain aro:InterpretationRecord ;
+    rdfs:range aro:Selection .
+
+aro:identifier a owl:DatatypeProperty ;
+    rdfs:range xsd:string .
+
+aro:isRequiredCondition a owl:DatatypeProperty ;
+    rdfs:range xsd:boolean .
+
+aro:issuedDate a owl:DatatypeProperty ;
+    rdfs:range xsd:date .
+
+aro:languageTag a owl:DatatypeProperty ;
+    rdfs:range xsd:string .
+
+aro:mentionsDepictedElement a owl:ObjectProperty ;
+    rdfs:label "description mentions depicted element"@en,
+        "descrição menciona elemento"@pt-BR ;
+    rdfs:domain aro:SituationDescription ;
+    rdfs:range aro:DepictedElement .
+
+aro:producedByAct a owl:ObjectProperty ;
+    rdfs:label "interpretive act historically produces record"@en,
+        "ato produz registro"@pt-BR ;
+    rdfs:domain aro:InterpretationRecord ;
+    rdfs:range aro:InterpretiveAct .
+
+aro:realizesArtwork a owl:ObjectProperty ;
+    rdfs:label "manifestation realizes artwork"@en,
+        "manifestação realiza obra"@pt-BR ;
+    rdfs:domain aro:Manifestation ;
+    rdfs:range aro:Artwork .
+
+aro:referencesSource a owl:ObjectProperty ;
+    rdfs:label "correspondence directly cites source"@en,
+        "correspondência cita fonte"@pt-BR ;
+    rdfs:domain aro:CorrespondenceClaim ;
+    rdfs:range aro:ReferenceSource .
+
+aro:retrievedAt a owl:DatatypeProperty ;
+    rdfs:range xsd:dateTime .
+
+aro:selectorExpression a owl:DatatypeProperty ;
+    rdfs:range xsd:string .
+
+aro:selectsFrom a owl:ObjectProperty ;
+    rdfs:label "selection references manifestation"@en,
+        "recorte referencia manifestação"@pt-BR ;
+    rdfs:domain aro:Selection ;
+    rdfs:range aro:Manifestation .
+
+aro:sourceURL a owl:DatatypeProperty ;
+    rdfs:range xsd:anyURI .
+
+aro:supportsClaim a owl:ObjectProperty ;
+    rdfs:label "assessment evaluates claim"@en,
+        "avaliação examina afirmação"@pt-BR ;
+    rdfs:domain aro:EvidenceAssessment ;
+    rdfs:range aro:EmpiricalClaim .
+
+aro:supportsInterpretation a owl:ObjectProperty ;
+    rdfs:label "interpretation supports another"@en,
+        "interpretação apoia outra"@pt-BR ;
+    rdfs:domain aro:InterpretationRecord ;
+    rdfs:range aro:InterpretationRecord .
+
+aro:textValue a owl:DatatypeProperty ;
+    rdfs:range xsd:string .
+
+aro:usesCriterion a owl:ObjectProperty ;
+    rdfs:label "assessment follows criteria"@en,
+        "avaliação usa critérios"@pt-BR ;
+    rdfs:domain aro:InterpretationAssessment ;
+    rdfs:range aro:AssessmentCriterion .
+
+aro:versionLabel a owl:DatatypeProperty ;
+    rdfs:range xsd:string .
+
+aro:AnalysisUnit a owl:Class ;
+    rdfs:label "AnalysisUnit"@en ;
+    rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-C information object"@en ;
+    skos:definition "Intentional grouping of selections for analytical purposes."@en,
+        "Agrupamento intencional de recortes com finalidade analítica."@pt-BR .
+
+aro:Analyst a owl:Class ;
+    rdfs:label "Analyst"@en ;
+    rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-A agent/object and UFO-C agent"@en ;
+    skos:definition "Real human agent responsible for interpretation or evaluation."@en,
+        "Agente humano real responsável por interpretar ou avaliar."@pt-BR .
+
+aro:AssessmentCriterion a owl:Class ;
+    rdfs:label "AssessmentCriterion"@en ;
+    rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-C normative/social information object"@en ;
+    skos:definition "Specified epistemic or value-based assessment rule."@en,
+        "Regra especificada de avaliação epistêmica ou de valores."@pt-BR .
+
+aro:EmpiricalClaim a owl:Class ;
+    rdfs:label "EmpiricalClaim"@en ;
+    rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-C information object"@en ;
+    skos:definition "Recorded testable claim about the empirical world."@en,
+        "Afirmação registrada e verificável acerca do mundo empírico."@pt-BR .
+
+aro:EmpiricalEvent a owl:Class ;
+    rdfs:label "EmpiricalEvent"@en ;
+    rdfs:comment "OntoUML stereotype (provisional): event; foundation: UFO-B event"@en ;
+    skos:definition "Real-world temporally bounded occurrence."@en,
+        "Ocorrência do mundo real delimitada temporalmente."@pt-BR .
+
+aro:EmpiricalSituation a owl:Class ;
+    rdfs:label "EmpiricalSituation"@en ;
+    rdfs:comment "OntoUML stereotype (provisional): situation; foundation: UFO-B situation; separate from descriptions"@en ;
+    skos:definition "Configuration of entities and conditions in the real world."@en,
+        "Configuração de entidades e condições no mundo real."@pt-BR .
+
+aro:ExplanationHypothesis a owl:Class ;
+    rdfs:label "ExplanationHypothesis"@en ;
+    rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-C information object"@en ;
+    skos:definition "Proposed mechanism or factors explaining a represented or observed phenomenon."@en,
+        "Mecanismo ou fatores propostos para explicar fenômeno representado ou observado."@pt-BR .
+
+aro:InterpretationChallenge a owl:Class ;
+    rdfs:label "InterpretationChallenge"@en ;
+    rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-C information object"@en ;
+    skos:definition "Recorded criticism or alternative reasoning about an interpretation."@en,
+        "Crítica ou raciocínio alternativo registrado sobre interpretação."@pt-BR .
+
+aro:InterpretiveJustification a owl:Class ;
+    rdfs:label "InterpretiveJustification"@en ;
+    rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-C information object"@en ;
+    skos:definition "Recorded argument connecting premises to an interpretation."@en,
+        "Argumento registrado que liga premissas a uma interpretação."@pt-BR .
+
+aro:PatternCondition a owl:Class ;
+    rdfs:label "PatternCondition"@en ;
+    rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-C information object"@en ;
+    skos:definition "Individuated mandatory or optional condition within a pattern."@en,
+        "Condição individualizada obrigatória ou opcional de um padrão."@pt-BR .
+
+aro:Artwork a owl:Class ;
+    rdfs:label "Artwork"@en ;
+    rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-C social/information object (domain commitment)"@en ;
+    skos:definition "Identifiable artistic creation across media and manifestations."@en,
+        "Criação artística identificável em diversas mídias e manifestações."@pt-BR .
+
+aro:DepictedElement a owl:Class ;
+    rdfs:label "DepictedElement"@en ;
+    rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-C representation; not a real-world entity"@en ;
+    skos:definition "Information-level representation of a referent in an artwork."@en,
+        "Representação informacional de um referente na obra."@pt-BR .
+
+aro:EvidenceItem a owl:Class ;
+    rdfs:label "EvidenceItem"@en ;
+    rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-C information object"@en ;
+    skos:definition "Extracted contextual assertion or observation from a reference source."@en,
+        "Afirmação ou observação contextualizada extraída de uma fonte."@pt-BR .
+
+aro:InterpretationAssessment a owl:Class ;
+    rdfs:label "InterpretationAssessment"@en ;
+    rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-C information object"@en ;
+    skos:definition "Explicit epistemic or axiological judgment of an interpretation."@en,
+        "Julgamento epistêmico ou axiológico explícito de interpretação."@pt-BR .
+
+aro:InterpretiveAct a owl:Class ;
+    rdfs:label "InterpretiveAct"@en ;
+    rdfs:comment "OntoUML stereotype (provisional): event; foundation: UFO-B event; UFO-C intentional action"@en ;
+    skos:definition "Temporal intentional activity yielding interpretation records."@en,
+        "Atividade intencional temporal que produz interpretações registradas."@pt-BR .
+
+aro:EvidenceAssessment a owl:Class ;
+    rdfs:label "EvidenceAssessment"@en ;
+    rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-C information object"@en ;
+    skos:definition "Judgment whether evidence supports, challenges or is irrelevant to a specified claim."@en,
+        "Julgamento de apoio, contestação ou irrelevância de evidência para afirmação específica."@pt-BR .
+
+aro:Manifestation a owl:Class ;
+    rdfs:label "Manifestation"@en ;
+    rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-A enduring object; UFO-C information artifact"@en ;
+    skos:definition "Specific expression, version or realization of an artwork."@en,
+        "Expressão, versão ou realização específica de uma obra."@pt-BR .
+
+aro:CorrespondenceClaim a owl:Class ;
+    rdfs:label "CorrespondenceClaim"@en ;
+    rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-C information object; not UFO relator"@en ;
+    skos:definition "Contestable assertion of similarity, instantiation or explanatory relevance between pattern and empirical case."@en,
+        "Alegação contestável de similaridade, instanciação ou relevância explicativa entre padrão e caso empírico."@pt-BR .
+
+aro:EmpiricalCase a owl:Class ;
+    rdfs:label "EmpiricalCase"@en ;
+    rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-C information object"@en ;
+    skos:definition "Documented dossier about one real-world situation or occurrence."@en,
+        "Dossiê documentado sobre uma situação ou ocorrência real."@pt-BR .
+
+aro:ReferenceSource a owl:Class ;
+    rdfs:label "ReferenceSource"@en ;
+    rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-C information object"@en ;
+    skos:definition "Citable external resource: news, study, report, legal document, testimony, dataset, etc."@en,
+        "Recurso externo citável: notícia, estudo, relatório, documento legal, relato, conjunto de dados etc."@pt-BR .
+
+aro:Selection a owl:Class ;
+    rdfs:label "Selection"@en ;
+    rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-C information object; domain category"@en ;
+    skos:definition "Addressable selected portion of a manifestation (not its physical component)."@en,
+        "Seleção endereçável de uma parte de manifestação (não componente físico)."@pt-BR .
+
+aro:SituationDescription a owl:Class ;
+    rdfs:label "SituationDescription"@en ;
+    rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-C information object, not gufo:Situation"@en ;
+    skos:definition "Recorded description of a represented situation."@en,
+        "Descrição registrada de situação representada."@pt-BR .
+
+aro:SituationPattern a owl:Class ;
+    rdfs:label "SituationPattern"@en ;
+    rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-C information object"@en ;
+    skos:definition "Reusable informational specification of situation conditions."@en,
+        "Especificação informacional reutilizável de condições situacionais."@pt-BR .
+
+aro:InterpretationRecord a owl:Class ;
+    rdfs:label "InterpretationRecord"@en ;
+    rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-C information object; not an event"@en ;
+    skos:definition "Persistent authored record of an interpretation of a selection."@en,
+        "Registro autoral persistente de uma interpretação de recorte."@pt-BR .
+

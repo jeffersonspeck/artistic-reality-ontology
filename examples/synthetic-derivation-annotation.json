@@ -1,0 +1,64 @@
+{
+  "id": "ann-sample-001",
+  "type": "DerivationAnnotation",
+  "language": "en",
+  "source": {
+    "level": "Selection",
+    "target": "https://example.org/aro-test/songA-rec",
+    "selector": {
+      "type": "FragmentSelector",
+      "value": "t=12,16",
+      "conformsTo": "http://www.w3.org/TR/media-frags/"
+    }
+  },
+  "derived": {
+    "level": "Selection",
+    "target": "https://example.org/aro-test/trackC-rec",
+    "selector": {
+      "type": "FragmentSelector",
+      "value": "t=0,4"
+    }
+  },
+  "derivationTypes": [
+    "Sampling"
+  ],
+  "regimes": [
+    "PlayfulRegime"
+  ],
+  "extent": "4-second loop",
+  "aspects": [
+    {
+      "dimension": "RecordedSoundDimension",
+      "operation": "Recontextualized",
+      "sourceSelector": {
+        "type": "FragmentSelector",
+        "value": "t=12,16"
+      },
+      "derivedSelector": {
+        "type": "FragmentSelector",
+        "value": "t=0,4"
+      },
+      "confidence": 0.9
+    },
+    {
+      "dimension": "TempoDimension",
+      "operation": "Modified",
+      "note": {
+        "en": "Loop pitched up and played faster.",
+        "pt-BR": "Loop com altura elevada e tocado mais rápido."
+      }
+    }
+  ],
+  "justification": {
+    "en": "The producer states in an interview that the loop was cut from Song A; spectral comparison agrees.",
+    "pt-BR": "O produtor afirma em entrevista que o loop foi recortado da Canção A; a comparação espectral concorda.",
+    "es": "El productor afirma en una entrevista que el loop se cortó de la Canción A; la comparación espectral coincide."
+  },
+  "sources": [
+    "https://example.org/aro-test/interview"
+  ],
+  "confidence": 0.85,
+  "annotator": "https://example.org/people/annotator-1",
+  "createdAt": "2026-10-30T12:00:00Z",
+  "notes": "Entirely fictional example."
+}

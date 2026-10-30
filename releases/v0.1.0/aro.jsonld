@@ -1,0 +1,1631 @@
+[
+  {
+    "@id": "https://w3id.org/aro/ontology#EmpiricalSituation",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "OntoUML stereotype (provisional): situation; foundation: UFO-B situation; separate from descriptions"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "EmpiricalSituation"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#definition": [
+      {
+        "@language": "en",
+        "@value": "Configuration of entities and conditions in the real world."
+      },
+      {
+        "@language": "pt-BR",
+        "@value": "Configuração de entidades e condições no mundo real."
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aro/ontology#CorrespondenceClaim",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "OntoUML stereotype (provisional): kind; foundation: UFO-C information object; not UFO relator"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "CorrespondenceClaim"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#definition": [
+      {
+        "@language": "en",
+        "@value": "Contestable assertion of similarity, instantiation or explanatory relevance between pattern and empirical case."
+      },
+      {
+        "@language": "pt-BR",
+        "@value": "Alegação contestável de similaridade, instanciação ou relevância explicativa entre padrão e caso empírico."
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aro/ontology#InterpretiveAct",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "OntoUML stereotype (provisional): event; foundation: UFO-B event; UFO-C intentional action"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "InterpretiveAct"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#definition": [
+      {
+        "@language": "en",
+        "@value": "Temporal intentional activity yielding interpretation records."
+      },
+      {
+        "@language": "pt-BR",
+        "@value": "Atividade intencional temporal que produz interpretações registradas."
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aro/ontology#ExplanationHypothesis",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "OntoUML stereotype (provisional): kind; foundation: UFO-C information object"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "ExplanationHypothesis"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#definition": [
+      {
+        "@language": "en",
+        "@value": "Proposed mechanism or factors explaining a represented or observed phenomenon."
+      },
+      {
+        "@language": "pt-BR",
+        "@value": "Mecanismo ou fatores propostos para explicar fenômeno representado ou observado."
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aro/ontology#EmpiricalCase",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "OntoUML stereotype (provisional): kind; foundation: UFO-C information object"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "EmpiricalCase"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#definition": [
+      {
+        "@language": "en",
+        "@value": "Documented dossier about one real-world situation or occurrence."
+      },
+      {
+        "@language": "pt-BR",
+        "@value": "Dossiê documentado sobre uma situação ou ocorrência real."
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aro/ontology#retrievedAt",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/2001/XMLSchema#dateTime"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aro/ontology#issuedDate",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/2001/XMLSchema#date"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aro/ontology#referencesSource",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aro/ontology#CorrespondenceClaim"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "correspondence directly cites source"
+      },
+      {
+        "@language": "pt-BR",
+        "@value": "correspondência cita fonte"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "https://w3id.org/aro/ontology#ReferenceSource"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aro/ontology#isRequiredCondition",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/2001/XMLSchema#boolean"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aro/ontology#assertsCase",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aro/ontology#CorrespondenceClaim"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "correspondence references case"
+      },
+      {
+        "@language": "pt-BR",
+        "@value": "alegação referencia caso"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "https://w3id.org/aro/ontology#EmpiricalCase"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aro/ontology#InterpretationRecord",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "OntoUML stereotype (provisional): kind; foundation: UFO-C information object; not an event"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "InterpretationRecord"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#definition": [
+      {
+        "@language": "en",
+        "@value": "Persistent authored record of an interpretation of a selection."
+      },
+      {
+        "@language": "pt-BR",
+        "@value": "Registro autoral persistente de uma interpretação de recorte."
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aro/ontology#selectorExpression",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/2001/XMLSchema#string"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aro/ontology#SituationDescription",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "OntoUML stereotype (provisional): kind; foundation: UFO-C information object, not gufo:Situation"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "SituationDescription"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#definition": [
+      {
+        "@language": "en",
+        "@value": "Recorded description of a represented situation."
+      },
+      {
+        "@language": "pt-BR",
+        "@value": "Descrição registrada de situação representada."
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aro/ontology#Manifestation",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "OntoUML stereotype (provisional): kind; foundation: UFO-A enduring object; UFO-C information artifact"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "Manifestation"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#definition": [
+      {
+        "@language": "en",
+        "@value": "Specific expression, version or realization of an artwork."
+      },
+      {
+        "@language": "pt-BR",
+        "@value": "Expressão, versão ou realização específica de uma obra."
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aro/ontology#mentionsDepictedElement",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aro/ontology#SituationDescription"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "description mentions depicted element"
+      },
+      {
+        "@language": "pt-BR",
+        "@value": "descrição menciona elemento"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "https://w3id.org/aro/ontology#DepictedElement"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aro/ontology#DepictedAgent",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "OntoUML stereotype (provisional): subkind; foundation: UFO-C representation"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "DepictedAgent"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf": [
+      {
+        "@id": "https://w3id.org/aro/ontology#DepictedElement"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#definition": [
+      {
+        "@language": "en",
+        "@value": "Depicted element referring to an agent or character."
+      },
+      {
+        "@language": "pt-BR",
+        "@value": "Elemento representado que se refere a agente ou personagem."
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aro/ontology#citesSource",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aro/ontology#InterpretationRecord"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "interpretation directly cites source (optional)"
+      },
+      {
+        "@language": "pt-BR",
+        "@value": "interpretação cita fonte"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "https://w3id.org/aro/ontology#ReferenceSource"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aro/ontology#explainsPattern",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aro/ontology#ExplanationHypothesis"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "explanation addresses pattern"
+      },
+      {
+        "@language": "pt-BR",
+        "@value": "hipótese explica padrão"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "https://w3id.org/aro/ontology#SituationPattern"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aro/ontology",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Ontology"
+    ],
+    "http://purl.org/dc/terms/description": [
+      {
+        "@language": "en",
+        "@value": "Operational OWL vocabulary inspired by UFO; not a complete translation of the OntoUML reference model."
+      }
+    ],
+    "http://purl.org/dc/terms/title": [
+      {
+        "@language": "en",
+        "@value": "Artistic Reality Ontology"
+      },
+      {
+        "@language": "pt-BR",
+        "@value": "Ontologia de Arte e Realidade"
+      }
+    ],
+    "http://www.w3.org/2002/07/owl#versionInfo": [
+      {
+        "@value": "0.1.0"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aro/ontology#EmpiricalEvent",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "OntoUML stereotype (provisional): event; foundation: UFO-B event"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "EmpiricalEvent"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#definition": [
+      {
+        "@language": "en",
+        "@value": "Real-world temporally bounded occurrence."
+      },
+      {
+        "@language": "pt-BR",
+        "@value": "Ocorrência do mundo real delimitada temporalmente."
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aro/ontology#Selection",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "OntoUML stereotype (provisional): kind; foundation: UFO-C information object; domain category"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "Selection"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#definition": [
+      {
+        "@language": "en",
+        "@value": "Addressable selected portion of a manifestation (not its physical component)."
+      },
+      {
+        "@language": "pt-BR",
+        "@value": "Seleção endereçável de uma parte de manifestação (não componente físico)."
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aro/ontology#Analyst",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "OntoUML stereotype (provisional): kind; foundation: UFO-A agent/object and UFO-C agent"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "Analyst"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#definition": [
+      {
+        "@language": "en",
+        "@value": "Real human agent responsible for interpretation or evaluation."
+      },
+      {
+        "@language": "pt-BR",
+        "@value": "Agente humano real responsável por interpretar ou avaliar."
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aro/ontology#describesSituation",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aro/ontology#InterpretationRecord"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "interpretation yields descriptions"
+      },
+      {
+        "@language": "pt-BR",
+        "@value": "interpretação descreve situação"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "https://w3id.org/aro/ontology#SituationDescription"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aro/ontology#hasSupportingSelection",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aro/ontology#InterpretationRecord"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "record has supporting selection"
+      },
+      {
+        "@language": "pt-BR",
+        "@value": "interpretação usa recorte de apoio"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "https://w3id.org/aro/ontology#Selection"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aro/ontology#AnalysisUnit",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "OntoUML stereotype (provisional): kind; foundation: UFO-C information object"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "AnalysisUnit"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#definition": [
+      {
+        "@language": "en",
+        "@value": "Intentional grouping of selections for analytical purposes."
+      },
+      {
+        "@language": "pt-BR",
+        "@value": "Agrupamento intencional de recortes com finalidade analítica."
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aro/ontology#usesCriterion",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aro/ontology#InterpretationAssessment"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "assessment follows criteria"
+      },
+      {
+        "@language": "pt-BR",
+        "@value": "avaliação usa critérios"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "https://w3id.org/aro/ontology#AssessmentCriterion"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aro/ontology#InterpretiveJustification",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "OntoUML stereotype (provisional): kind; foundation: UFO-C information object"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "InterpretiveJustification"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#definition": [
+      {
+        "@language": "en",
+        "@value": "Recorded argument connecting premises to an interpretation."
+      },
+      {
+        "@language": "pt-BR",
+        "@value": "Argumento registrado que liga premissas a uma interpretação."
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aro/ontology#AssessmentCriterion",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "OntoUML stereotype (provisional): kind; foundation: UFO-C normative/social information object"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "AssessmentCriterion"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#definition": [
+      {
+        "@language": "en",
+        "@value": "Specified epistemic or value-based assessment rule."
+      },
+      {
+        "@language": "pt-BR",
+        "@value": "Regra especificada de avaliação epistêmica ou de valores."
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aro/ontology#sourceURL",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/2001/XMLSchema#anyURI"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aro/ontology#SituationPattern",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "OntoUML stereotype (provisional): kind; foundation: UFO-C information object"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "SituationPattern"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#definition": [
+      {
+        "@language": "en",
+        "@value": "Reusable informational specification of situation conditions."
+      },
+      {
+        "@language": "pt-BR",
+        "@value": "Especificação informacional reutilizável de condições situacionais."
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aro/ontology#assertsPattern",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aro/ontology#CorrespondenceClaim"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "correspondence references pattern"
+      },
+      {
+        "@language": "pt-BR",
+        "@value": "alegação referencia padrão"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "https://w3id.org/aro/ontology#SituationPattern"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aro/ontology#EvidenceAssessment",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "OntoUML stereotype (provisional): kind; foundation: UFO-C information object"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "EvidenceAssessment"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#definition": [
+      {
+        "@language": "en",
+        "@value": "Judgment whether evidence supports, challenges or is irrelevant to a specified claim."
+      },
+      {
+        "@language": "pt-BR",
+        "@value": "Julgamento de apoio, contestação ou irrelevância de evidência para afirmação específica."
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aro/ontology#PatternCondition",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "OntoUML stereotype (provisional): kind; foundation: UFO-C information object"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "PatternCondition"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#definition": [
+      {
+        "@language": "en",
+        "@value": "Individuated mandatory or optional condition within a pattern."
+      },
+      {
+        "@language": "pt-BR",
+        "@value": "Condição individualizada obrigatória ou opcional de um padrão."
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aro/ontology#selectsFrom",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aro/ontology#Selection"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "selection references manifestation"
+      },
+      {
+        "@language": "pt-BR",
+        "@value": "recorte referencia manifestação"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "https://w3id.org/aro/ontology#Manifestation"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aro/ontology#challenges",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aro/ontology#InterpretationChallenge"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "challenge targets interpretation"
+      },
+      {
+        "@language": "pt-BR",
+        "@value": "contestação questiona interpretação"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "https://w3id.org/aro/ontology#InterpretationRecord"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aro/ontology#assessesInterpretation",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aro/ontology#InterpretationAssessment"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "assessment targets interpretation"
+      },
+      {
+        "@language": "pt-BR",
+        "@value": "avaliação incide sobre interpretação"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "https://w3id.org/aro/ontology#InterpretationRecord"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aro/ontology#languageTag",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/2001/XMLSchema#string"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aro/ontology#InterpretationAssessment",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "OntoUML stereotype (provisional): kind; foundation: UFO-C information object"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "InterpretationAssessment"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#definition": [
+      {
+        "@language": "en",
+        "@value": "Explicit epistemic or axiological judgment of an interpretation."
+      },
+      {
+        "@language": "pt-BR",
+        "@value": "Julgamento epistêmico ou axiológico explícito de interpretação."
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aro/ontology#EvidenceItem",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "OntoUML stereotype (provisional): kind; foundation: UFO-C information object"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "EvidenceItem"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#definition": [
+      {
+        "@language": "en",
+        "@value": "Extracted contextual assertion or observation from a reference source."
+      },
+      {
+        "@language": "pt-BR",
+        "@value": "Afirmação ou observação contextualizada extraída de uma fonte."
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aro/ontology#Artwork",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "OntoUML stereotype (provisional): kind; foundation: UFO-C social/information object (domain commitment)"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "Artwork"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#definition": [
+      {
+        "@language": "en",
+        "@value": "Identifiable artistic creation across media and manifestations."
+      },
+      {
+        "@language": "pt-BR",
+        "@value": "Criação artística identificável em diversas mídias e manifestações."
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aro/ontology#hasCondition",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aro/ontology#SituationPattern"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "pattern specifies conditions"
+      },
+      {
+        "@language": "pt-BR",
+        "@value": "padrão especifica condições"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "https://w3id.org/aro/ontology#PatternCondition"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aro/ontology#caseAboutEvent",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aro/ontology#EmpiricalCase"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "dossier describes real events"
+      },
+      {
+        "@language": "pt-BR",
+        "@value": "dossiê descreve evento"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "https://w3id.org/aro/ontology#EmpiricalEvent"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aro/ontology#realizesArtwork",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aro/ontology#Manifestation"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "manifestation realizes artwork"
+      },
+      {
+        "@language": "pt-BR",
+        "@value": "manifestação realiza obra"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "https://w3id.org/aro/ontology#Artwork"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aro/ontology#assessesEvidence",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aro/ontology#EvidenceAssessment"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "assessment considers evidence"
+      },
+      {
+        "@language": "pt-BR",
+        "@value": "avaliação considera evidência"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "https://w3id.org/aro/ontology#EvidenceItem"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aro/ontology#IntentionalStateDescription",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "OntoUML stereotype (provisional): subkind; foundation: UFO-C intentional content attribution"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "IntentionalStateDescription"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf": [
+      {
+        "@id": "https://w3id.org/aro/ontology#SituationDescription"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#definition": [
+      {
+        "@language": "en",
+        "@value": "Situation description attributing desire, belief or intention to a depicted agent."
+      },
+      {
+        "@language": "pt-BR",
+        "@value": "Descrição de situação que atribui desejo, crença ou intenção a agente representado."
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aro/ontology#ReferenceSource",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "OntoUML stereotype (provisional): kind; foundation: UFO-C information object"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "ReferenceSource"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#definition": [
+      {
+        "@language": "en",
+        "@value": "Citable external resource: news, study, report, legal document, testimony, dataset, etc."
+      },
+      {
+        "@language": "pt-BR",
+        "@value": "Recurso externo citável: notícia, estudo, relatório, documento legal, relato, conjunto de dados etc."
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aro/ontology#caseHasReference",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aro/ontology#EmpiricalCase"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "case cites sources"
+      },
+      {
+        "@language": "pt-BR",
+        "@value": "caso cita fontes"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "https://w3id.org/aro/ontology#ReferenceSource"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aro/ontology#identifier",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/2001/XMLSchema#string"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aro/ontology#hasPrimarySelection",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aro/ontology#InterpretationRecord"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "record is anchored in selection"
+      },
+      {
+        "@language": "pt-BR",
+        "@value": "interpretação se ancora em recorte"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "https://w3id.org/aro/ontology#Selection"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aro/ontology#InterpretationChallenge",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "OntoUML stereotype (provisional): kind; foundation: UFO-C information object"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "InterpretationChallenge"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#definition": [
+      {
+        "@language": "en",
+        "@value": "Recorded criticism or alternative reasoning about an interpretation."
+      },
+      {
+        "@language": "pt-BR",
+        "@value": "Crítica ou raciocínio alternativo registrado sobre interpretação."
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aro/ontology#versionLabel",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/2001/XMLSchema#string"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aro/ontology#assessesCorrespondence",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aro/ontology#EvidenceAssessment"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "assessment evaluates correspondence"
+      },
+      {
+        "@language": "pt-BR",
+        "@value": "avaliação examina correspondência"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "https://w3id.org/aro/ontology#CorrespondenceClaim"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aro/ontology#supportsInterpretation",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aro/ontology#InterpretationRecord"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "interpretation supports another"
+      },
+      {
+        "@language": "pt-BR",
+        "@value": "interpretação apoia outra"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "https://w3id.org/aro/ontology#InterpretationRecord"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aro/ontology#confidenceScore",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/2001/XMLSchema#decimal"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aro/ontology#supportsClaim",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aro/ontology#EvidenceAssessment"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "assessment evaluates claim"
+      },
+      {
+        "@language": "pt-BR",
+        "@value": "avaliação examina afirmação"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "https://w3id.org/aro/ontology#EmpiricalClaim"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aro/ontology#caseAboutSituation",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aro/ontology#EmpiricalCase"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "dossier describes real situations"
+      },
+      {
+        "@language": "pt-BR",
+        "@value": "dossiê descreve situação real"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "https://w3id.org/aro/ontology#EmpiricalSituation"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aro/ontology#DepictedElement",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "OntoUML stereotype (provisional): kind; foundation: UFO-C representation; not a real-world entity"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "DepictedElement"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#definition": [
+      {
+        "@language": "en",
+        "@value": "Information-level representation of a referent in an artwork."
+      },
+      {
+        "@language": "pt-BR",
+        "@value": "Representação informacional de um referente na obra."
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aro/ontology#EmpiricalClaim",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "OntoUML stereotype (provisional): kind; foundation: UFO-C information object"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "EmpiricalClaim"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#definition": [
+      {
+        "@language": "en",
+        "@value": "Recorded testable claim about the empirical world."
+      },
+      {
+        "@language": "pt-BR",
+        "@value": "Afirmação registrada e verificável acerca do mundo empírico."
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aro/ontology#groupsSelection",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aro/ontology#AnalysisUnit"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "unit groups selections"
+      },
+      {
+        "@language": "pt-BR",
+        "@value": "unidade agrupa recortes"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "https://w3id.org/aro/ontology#Selection"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aro/ontology#hasJustification",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aro/ontology#InterpretationRecord"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "interpretation supported by argument"
+      },
+      {
+        "@language": "pt-BR",
+        "@value": "interpretação tem fundamentação"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "https://w3id.org/aro/ontology#InterpretiveJustification"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aro/ontology#hasManifestation",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aro/ontology#Artwork"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "artwork realizes through manifestation"
+      },
+      {
+        "@language": "pt-BR",
+        "@value": "obra se realiza por manifestação"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "https://w3id.org/aro/ontology#Manifestation"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aro/ontology#hasParticipant",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aro/ontology#InterpretiveAct"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "agent participates in act"
+      },
+      {
+        "@language": "pt-BR",
+        "@value": "agente participa de ato"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "https://w3id.org/aro/ontology#Analyst"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aro/ontology#textValue",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/2001/XMLSchema#string"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aro/ontology#generalizesAs",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aro/ontology#SituationDescription"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "description motivates pattern abstraction"
+      },
+      {
+        "@language": "pt-BR",
+        "@value": "descrição motiva abstração"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "https://w3id.org/aro/ontology#SituationPattern"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aro/ontology#producedByAct",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aro/ontology#InterpretationRecord"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "interpretive act historically produces record"
+      },
+      {
+        "@language": "pt-BR",
+        "@value": "ato produz registro"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "https://w3id.org/aro/ontology#InterpretiveAct"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aro/ontology#derivedFromSource",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aro/ontology#EvidenceItem"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "evidence obtained from source"
+      },
+      {
+        "@language": "pt-BR",
+        "@value": "evidência obtida de fonte"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "https://w3id.org/aro/ontology#ReferenceSource"
+      }
+    ]
+  }
+]

@@ -1,0 +1,59 @@
+@prefix aro: <https://w3id.org/aro/ontology#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+aro:CorrespondenceClaimShape a sh:NodeShape ;
+    sh:property aro:CorrespondenceClaimassertsCasePropertyShape,
+        aro:CorrespondenceClaimassertsPatternPropertyShape ;
+    sh:targetClass aro:CorrespondenceClaim .
+
+aro:EvidenceAssessmentShape a sh:NodeShape ;
+    sh:property aro:EvidenceAssessmentassessesEvidencePropertyShape ;
+    sh:targetClass aro:EvidenceAssessment .
+
+aro:EvidenceItemShape a sh:NodeShape ;
+    sh:property aro:EvidenceItemderivedFromSourcePropertyShape ;
+    sh:targetClass aro:EvidenceItem .
+
+aro:InterpretationRecordShape a sh:NodeShape ;
+    sh:property aro:InterpretationRecordhasPrimarySelectionPropertyShape,
+        aro:InterpretationRecordproducedByActPropertyShape ;
+    sh:targetClass aro:InterpretationRecord .
+
+aro:SelectionShape a sh:NodeShape ;
+    sh:property aro:SelectionselectsFromPropertyShape ;
+    sh:targetClass aro:Selection .
+
+aro:SituationPatternShape a sh:NodeShape ;
+    sh:property aro:SituationPatternhasConditionPropertyShape ;
+    sh:targetClass aro:SituationPattern .
+
+aro:CorrespondenceClaimassertsCasePropertyShape sh:maxCount 1 ;
+    sh:minCount 1 ;
+    sh:path aro:assertsCase .
+
+aro:CorrespondenceClaimassertsPatternPropertyShape sh:maxCount 1 ;
+    sh:minCount 1 ;
+    sh:path aro:assertsPattern .
+
+aro:EvidenceAssessmentassessesEvidencePropertyShape sh:minCount 1 ;
+    sh:path aro:assessesEvidence .
+
+aro:EvidenceItemderivedFromSourcePropertyShape sh:maxCount 1 ;
+    sh:minCount 1 ;
+    sh:path aro:derivedFromSource .
+
+aro:InterpretationRecordhasPrimarySelectionPropertyShape sh:maxCount 1 ;
+    sh:minCount 1 ;
+    sh:path aro:hasPrimarySelection .
+
+aro:InterpretationRecordproducedByActPropertyShape sh:maxCount 1 ;
+    sh:minCount 1 ;
+    sh:path aro:producedByAct .
+
+aro:SelectionselectsFromPropertyShape sh:minCount 1 ;
+    sh:path aro:selectsFrom .
+
+aro:SituationPatternhasConditionPropertyShape sh:minCount 1 ;
+    sh:path aro:hasCondition .
+

@@ -1,0 +1,2264 @@
+{
+  "$comment": [
+    "Single source of truth of ARO (ADR-017). Edit this file, then run: python scripts/build.py",
+    "version: release number, also written to owl:versionInfo.",
+    "ontology: bilingual title/description of the ontology document.",
+    "packages: modules with diagram colour; show_context draws neighbouring classes in the package diagram.",
+    "classes: name (English IRI local name), label_en/label_pt, provisional OntoUML stereotype, package, definition_*, dependency_*, grounding_* (UFO), optional specializes and alignments.",
+    "relations: object properties; source/target are class names, lists (owl:unionOf) or prefixed external classes; target_cardinality is documentation; shacl holds the constraints actually enforced.",
+    "datatype_properties: range is an XSD local name or a prefixed datatype (rdf:langString = multilingual text); label_* and comment_* in both languages.",
+    "concept_schemes: SKOS vocabularies; member_class is the high-order class typing each concept; broader builds the hierarchy; source cites the literature.",
+    "sparql_constraints: SHACL-SPARQL rules with bilingual messages.",
+    "module_diagram: relations drawn in the README module diagram (model/diagrams/modules.*.svg); a union range inside one package is drawn as a single edge to that package."
+  ],
+  "version": "0.2.0-beta",
+  "ontology": {
+    "title_en": "Artistic Reality Ontology",
+    "title_pt": "Ontologia de Arte e Realidade",
+    "description_en": "Operational OWL vocabulary inspired by UFO; not a complete translation of the OntoUML reference model. It represents claims made by agents and their grounds; it asserts no claim as true. Terms are identified in English and fully labelled and defined in English and Brazilian Portuguese; textual content may be recorded in any language using language-tagged literals.",
+    "description_pt": "Vocabulário OWL operacional inspirado na UFO; não é tradução completa do modelo de referência OntoUML. Representa alegações feitas por agentes e seus fundamentos; não afirma nenhuma alegação como verdadeira. Os termos são identificados em inglês e integralmente rotulados e definidos em inglês e português do Brasil; o conteúdo textual pode ser registrado em qualquer idioma com literais marcados por idioma.",
+    "creator": "Jefferson Rodrigo Speck (UFPR, PPGInf)",
+    "contributors": [
+      "Roberto Pereira (UFPR) — doctoral supervisor",
+      "Clodis Boscarioli (UNIOESTE) — doctoral co-supervisor"
+    ],
+    "affiliation_en": "Integral part of the doctoral research of Jefferson Rodrigo Speck in the Graduate Program in Informatics (PPGInf) of the Federal University of Paraná (UFPR), supervised by Prof. Dr. Roberto Pereira (UFPR) and co-supervised by Prof. Dr. Clodis Boscarioli (UNIOESTE), linked to the Research Group on Technology and Innovation in Education (GTIE), UNIOESTE.",
+    "affiliation_pt": "Parte integrante da pesquisa de doutorado de Jefferson Rodrigo Speck no Programa de Pós-Graduação em Informática (PPGInf) da Universidade Federal do Paraná (UFPR), sob orientação do Prof. Dr. Roberto Pereira (UFPR) e coorientação do Prof. Dr. Clodis Boscarioli (UNIOESTE), com vinculação ao Grupo de Pesquisa em Tecnologia e Inovação na Educação (GTIE), UNIOESTE.",
+    "prior_version": "0.1.0"
+  },
+  "packages": [
+    {
+      "name": "artwork",
+      "color": "#dbeafe",
+      "label_en": "Artwork and selection",
+      "label_pt": "Obra e recorte"
+    },
+    {
+      "name": "interpretation",
+      "color": "#e9d5ff",
+      "label_en": "Interpretation",
+      "label_pt": "Interpretação"
+    },
+    {
+      "name": "representation",
+      "color": "#fef3c7",
+      "label_en": "Representation",
+      "label_pt": "Representação"
+    },
+    {
+      "name": "pattern",
+      "color": "#fce7f3",
+      "label_en": "Situation pattern",
+      "label_pt": "Padrão situacional"
+    },
+    {
+      "name": "evidence",
+      "color": "#d1fae5",
+      "label_en": "Evidence and empirical world",
+      "label_pt": "Evidência e mundo empírico"
+    },
+    {
+      "name": "derivation",
+      "color": "#ffedd5",
+      "label_en": "Derivation and creation",
+      "label_pt": "Derivação e criação",
+      "show_context": true
+    }
+  ],
+  "classes": [
+    {
+      "name": "Artwork",
+      "label_en": "artwork",
+      "label_pt": "obra",
+      "stereotype": "kind",
+      "package": "artwork",
+      "definition_en": "Identifiable artistic creation across media and manifestations.",
+      "definition_pt": "Criação artística identificável em diversas mídias e manifestações.",
+      "dependency_en": "historically on creation; not on a single copy",
+      "dependency_pt": "historicamente da criação; não de uma cópia específica",
+      "grounding_en": "UFO-C social/information object (domain commitment)",
+      "grounding_pt": "objeto social/informacional UFO-C (compromisso de domínio)"
+    },
+    {
+      "name": "Manifestation",
+      "label_en": "manifestation",
+      "label_pt": "manifestação",
+      "stereotype": "kind",
+      "package": "artwork",
+      "definition_en": "Specific expression, version or realization of an artwork.",
+      "definition_pt": "Expressão, versão ou realização específica de uma obra.",
+      "dependency_en": "semantic identity relative to an artwork",
+      "dependency_pt": "identidade semântica relativa a uma obra",
+      "grounding_en": "UFO-A enduring object; UFO-C information artifact",
+      "grounding_pt": "objeto persistente UFO-A; artefato informacional UFO-C"
+    },
+    {
+      "name": "Selection",
+      "label_en": "selection",
+      "label_pt": "recorte",
+      "stereotype": "kind",
+      "package": "artwork",
+      "definition_en": "Addressable selected portion of a manifestation (not its physical component).",
+      "definition_pt": "Seleção endereçável de uma parte de manifestação (não componente físico).",
+      "dependency_en": "reference to manifestation and selectors",
+      "dependency_pt": "referência a manifestação e seletores",
+      "grounding_en": "UFO-C information object; domain category",
+      "grounding_pt": "objeto informacional UFO-C; categoria de domínio",
+      "alignments": {
+        "rdfs:seeAlso": [
+          "oa:SpecificResource"
+        ]
+      }
+    },
+    {
+      "name": "AnalysisUnit",
+      "label_en": "analysis unit",
+      "label_pt": "unidade de análise",
+      "stereotype": "kind",
+      "package": "artwork",
+      "definition_en": "Intentional grouping of selections for analytical purposes.",
+      "definition_pt": "Agrupamento intencional de recortes com finalidade analítica.",
+      "dependency_en": "organizational reference to selections",
+      "dependency_pt": "referência organizacional a recortes",
+      "grounding_en": "UFO-C information object",
+      "grounding_pt": "objeto informacional UFO-C"
+    },
+    {
+      "name": "InterpretationRecord",
+      "label_en": "interpretation record",
+      "label_pt": "registro de interpretação",
+      "stereotype": "kind",
+      "package": "interpretation",
+      "definition_en": "Persistent authored record of an interpretation of a selection.",
+      "definition_pt": "Registro autoral persistente de uma interpretação de recorte.",
+      "dependency_en": "anchor selection; historical interpretive act",
+      "dependency_pt": "recorte de ancoragem; ato interpretativo histórico",
+      "grounding_en": "UFO-C information object; not an event",
+      "grounding_pt": "objeto informacional UFO-C; não é evento"
+    },
+    {
+      "name": "InterpretiveAct",
+      "label_en": "interpretive act",
+      "label_pt": "ato interpretativo",
+      "stereotype": "event",
+      "package": "interpretation",
+      "definition_en": "Temporal intentional activity yielding interpretation records.",
+      "definition_pt": "Atividade intencional temporal que produz interpretações registradas.",
+      "dependency_en": "participating agents and temporal occurrence",
+      "dependency_pt": "agentes participantes e ocorrência temporal",
+      "grounding_en": "UFO-B event; UFO-C intentional action",
+      "grounding_pt": "evento UFO-B; ação intencional UFO-C"
+    },
+    {
+      "name": "Analyst",
+      "label_en": "analyst",
+      "label_pt": "analista",
+      "stereotype": "roleMixin",
+      "package": "interpretation",
+      "definition_en": "Any human agent, identified in an external vocabulary, insofar as they interpret or assess. Agent identity is represented by the external vocabulary, not by ARO.",
+      "definition_pt": "Qualquer agente humano, identificado em vocabulário externo, na medida em que interpreta ou avalia. A identidade do agente é representada pelo vocabulário externo, não pela ARO.",
+      "dependency_en": "relationally on participation in an InterpretiveAct; identity supplied by external kinds",
+      "dependency_pt": "relacionalmente da participação num InterpretiveAct; identidade fornecida por tipos externos",
+      "grounding_en": "UFO-A anti-rigid non-sortal (roleMixin); agents are individuals of external ontologies",
+      "grounding_pt": "não-sortal anti-rígido UFO-A (roleMixin); agentes são indivíduos de ontologias externas",
+      "alignments": {
+        "rdfs:seeAlso": [
+          "prov:Agent",
+          "foaf:Person",
+          "schema:Person"
+        ]
+      }
+    },
+    {
+      "name": "InterpretiveJustification",
+      "label_en": "interpretive justification",
+      "label_pt": "justificativa interpretativa",
+      "stereotype": "kind",
+      "package": "interpretation",
+      "definition_en": "Recorded argument connecting premises to an interpretation or to a derivation claim.",
+      "definition_pt": "Argumento registrado que liga premissas a uma interpretação ou a uma alegação de derivação.",
+      "dependency_en": "target interpretation, articulated premises",
+      "dependency_pt": "interpretação ou alegação-alvo, premissas articuladas",
+      "grounding_en": "UFO-C information object",
+      "grounding_pt": "objeto informacional UFO-C"
+    },
+    {
+      "name": "InterpretationChallenge",
+      "label_en": "interpretation challenge",
+      "label_pt": "contestação de interpretação",
+      "stereotype": "kind",
+      "package": "interpretation",
+      "definition_en": "Recorded criticism or alternative reasoning about an interpretation.",
+      "definition_pt": "Crítica ou raciocínio alternativo registrado sobre interpretação.",
+      "dependency_en": "challenged interpretation and argument",
+      "dependency_pt": "interpretação contestada e argumento",
+      "grounding_en": "UFO-C information object",
+      "grounding_pt": "objeto informacional UFO-C"
+    },
+    {
+      "name": "InterpretationAssessment",
+      "label_en": "interpretation assessment",
+      "label_pt": "avaliação de interpretação",
+      "stereotype": "kind",
+      "package": "interpretation",
+      "definition_en": "Explicit epistemic or axiological judgment of an interpretation.",
+      "definition_pt": "Julgamento epistêmico ou axiológico explícito de interpretação.",
+      "dependency_en": "target and criteria",
+      "dependency_pt": "alvo e critérios",
+      "grounding_en": "UFO-C information object",
+      "grounding_pt": "objeto informacional UFO-C"
+    },
+    {
+      "name": "AssessmentCriterion",
+      "label_en": "assessment criterion",
+      "label_pt": "critério de avaliação",
+      "stereotype": "kind",
+      "package": "interpretation",
+      "definition_en": "Specified epistemic or value-based assessment rule.",
+      "definition_pt": "Regra especificada de avaliação epistêmica ou de valores.",
+      "dependency_en": "specified normative meaning",
+      "dependency_pt": "significado normativo especificado",
+      "grounding_en": "UFO-C normative/social information object",
+      "grounding_pt": "objeto informacional normativo/social UFO-C"
+    },
+    {
+      "name": "DepictedElement",
+      "label_en": "depicted element",
+      "label_pt": "elemento representado",
+      "stereotype": "kind",
+      "package": "representation",
+      "definition_en": "Information-level representation of a referent in an artwork.",
+      "definition_pt": "Representação informacional de um referente na obra.",
+      "dependency_en": "representational context",
+      "dependency_pt": "contexto representacional",
+      "grounding_en": "UFO-C representation; not a real-world entity",
+      "grounding_pt": "representação UFO-C; não é entidade do mundo real"
+    },
+    {
+      "name": "DepictedAgent",
+      "label_en": "depicted agent",
+      "label_pt": "agente representado",
+      "stereotype": "subkind",
+      "package": "representation",
+      "definition_en": "Depicted element referring to an agent or character.",
+      "definition_pt": "Elemento representado que se refere a agente ou personagem.",
+      "dependency_en": "inherits DepictedElement identity",
+      "dependency_pt": "herda a identidade de DepictedElement",
+      "grounding_en": "UFO-C representation",
+      "grounding_pt": "representação UFO-C",
+      "specializes": "DepictedElement"
+    },
+    {
+      "name": "SituationDescription",
+      "label_en": "situation description",
+      "label_pt": "descrição de situação",
+      "stereotype": "kind",
+      "package": "representation",
+      "definition_en": "Recorded description of a represented situation.",
+      "definition_pt": "Descrição registrada de situação representada.",
+      "dependency_en": "interpretive support and conceptual content",
+      "dependency_pt": "suporte interpretativo e conteúdo conceitual",
+      "grounding_en": "UFO-C information object, not gufo:Situation",
+      "grounding_pt": "objeto informacional UFO-C, não gufo:Situation"
+    },
+    {
+      "name": "IntentionalStateDescription",
+      "label_en": "intentional state description",
+      "label_pt": "descrição de estado intencional",
+      "stereotype": "subkind",
+      "package": "representation",
+      "definition_en": "Situation description attributing desire, belief or intention to a depicted agent.",
+      "definition_pt": "Descrição de situação que atribui desejo, crença ou intenção a agente representado.",
+      "dependency_en": "inherits SituationDescription identity",
+      "dependency_pt": "herda a identidade de SituationDescription",
+      "grounding_en": "UFO-C intentional content attribution",
+      "grounding_pt": "atribuição de conteúdo intencional UFO-C",
+      "specializes": "SituationDescription"
+    },
+    {
+      "name": "SituationPattern",
+      "label_en": "situation pattern",
+      "label_pt": "padrão situacional",
+      "stereotype": "kind",
+      "package": "pattern",
+      "definition_en": "Reusable informational specification of situation conditions.",
+      "definition_pt": "Especificação informacional reutilizável de condições situacionais.",
+      "dependency_en": "defining conditions; not identical to universal",
+      "dependency_pt": "condições definidoras; não idêntico a universal",
+      "grounding_en": "UFO-C information object",
+      "grounding_pt": "objeto informacional UFO-C"
+    },
+    {
+      "name": "PatternCondition",
+      "label_en": "pattern condition",
+      "label_pt": "condição de padrão",
+      "stereotype": "kind",
+      "package": "pattern",
+      "definition_en": "Individuated mandatory or optional condition within a pattern.",
+      "definition_pt": "Condição individualizada obrigatória ou opcional de um padrão.",
+      "dependency_en": "host pattern and logical specification",
+      "dependency_pt": "padrão hospedeiro e especificação lógica",
+      "grounding_en": "UFO-C information object",
+      "grounding_pt": "objeto informacional UFO-C"
+    },
+    {
+      "name": "EmpiricalCase",
+      "label_en": "empirical case",
+      "label_pt": "caso empírico",
+      "stereotype": "kind",
+      "package": "evidence",
+      "definition_en": "Documented dossier about one real-world situation or occurrence.",
+      "definition_pt": "Dossiê documentado sobre uma situação ou ocorrência real.",
+      "dependency_en": "case description and empirical referent",
+      "dependency_pt": "descrição do caso e referente empírico",
+      "grounding_en": "UFO-C information object",
+      "grounding_pt": "objeto informacional UFO-C"
+    },
+    {
+      "name": "EmpiricalClaim",
+      "label_en": "empirical claim",
+      "label_pt": "afirmação empírica",
+      "stereotype": "kind",
+      "package": "evidence",
+      "definition_en": "Recorded testable claim about the empirical world.",
+      "definition_pt": "Afirmação registrada e verificável acerca do mundo empírico.",
+      "dependency_en": "claim content and intended empirical reference",
+      "dependency_pt": "conteúdo da afirmação e referência empírica pretendida",
+      "grounding_en": "UFO-C information object",
+      "grounding_pt": "objeto informacional UFO-C"
+    },
+    {
+      "name": "ReferenceSource",
+      "label_en": "reference source",
+      "label_pt": "fonte de referência",
+      "stereotype": "kind",
+      "package": "evidence",
+      "definition_en": "Citable external resource: news, study, report, legal document, testimony, dataset, etc.",
+      "definition_pt": "Recurso externo citável: notícia, estudo, relatório, documento legal, relato, conjunto de dados etc.",
+      "dependency_en": "source provenance; not tied to one interpretation",
+      "dependency_pt": "proveniência da fonte; não vinculada a uma interpretação",
+      "grounding_en": "UFO-C information object",
+      "grounding_pt": "objeto informacional UFO-C"
+    },
+    {
+      "name": "EvidenceItem",
+      "label_en": "evidence item",
+      "label_pt": "item de evidência",
+      "stereotype": "kind",
+      "package": "evidence",
+      "definition_en": "Extracted contextual assertion or observation from a reference source.",
+      "definition_pt": "Afirmação ou observação contextualizada extraída de uma fonte.",
+      "dependency_en": "reference source and observation content",
+      "dependency_pt": "fonte de referência e conteúdo observado",
+      "grounding_en": "UFO-C information object",
+      "grounding_pt": "objeto informacional UFO-C"
+    },
+    {
+      "name": "CorrespondenceClaim",
+      "label_en": "correspondence claim",
+      "label_pt": "alegação de correspondência",
+      "stereotype": "kind",
+      "package": "evidence",
+      "definition_en": "Contestable assertion of similarity, instantiation or explanatory relevance between pattern and empirical case.",
+      "definition_pt": "Alegação contestável de similaridade, instanciação ou relevância explicativa entre padrão e caso empírico.",
+      "dependency_en": "compared pattern/case and dimensions",
+      "dependency_pt": "padrão/caso comparados e dimensões",
+      "grounding_en": "UFO-C information object; not UFO relator",
+      "grounding_pt": "objeto informacional UFO-C; não é relator UFO"
+    },
+    {
+      "name": "EvidenceAssessment",
+      "label_en": "evidence assessment",
+      "label_pt": "avaliação de evidência",
+      "stereotype": "kind",
+      "package": "evidence",
+      "definition_en": "Judgment whether evidence supports, challenges or is irrelevant to a specified claim.",
+      "definition_pt": "Julgamento de apoio, contestação ou irrelevância de evidência para afirmação específica.",
+      "dependency_en": "claim and evidence and criteria",
+      "dependency_pt": "afirmação, evidência e critérios",
+      "grounding_en": "UFO-C information object",
+      "grounding_pt": "objeto informacional UFO-C"
+    },
+    {
+      "name": "ExplanationHypothesis",
+      "label_en": "explanation hypothesis",
+      "label_pt": "hipótese explicativa",
+      "stereotype": "kind",
+      "package": "evidence",
+      "definition_en": "Proposed mechanism or factors explaining a represented or observed phenomenon.",
+      "definition_pt": "Mecanismo ou fatores propostos para explicar fenômeno representado ou observado.",
+      "dependency_en": "explicit explanandum and explanatory content",
+      "dependency_pt": "explanandum explícito e conteúdo explicativo",
+      "grounding_en": "UFO-C information object",
+      "grounding_pt": "objeto informacional UFO-C"
+    },
+    {
+      "name": "EmpiricalSituation",
+      "label_en": "empirical situation",
+      "label_pt": "situação empírica",
+      "stereotype": "situation",
+      "package": "evidence",
+      "definition_en": "Configuration of entities and conditions in the real world.",
+      "definition_pt": "Configuração de entidades e condições no mundo real.",
+      "dependency_en": "real-world constituents",
+      "dependency_pt": "constituintes do mundo real",
+      "grounding_en": "UFO-B situation; separate from descriptions",
+      "grounding_pt": "situação UFO-B; separada de descrições"
+    },
+    {
+      "name": "EmpiricalEvent",
+      "label_en": "empirical event",
+      "label_pt": "evento empírico",
+      "stereotype": "event",
+      "package": "evidence",
+      "definition_en": "Real-world temporally bounded occurrence.",
+      "definition_pt": "Ocorrência do mundo real delimitada temporalmente.",
+      "dependency_en": "real occurrence and participants",
+      "dependency_pt": "ocorrência real e participantes",
+      "grounding_en": "UFO-B event",
+      "grounding_pt": "evento UFO-B"
+    },
+    {
+      "name": "DerivationClaim",
+      "label_en": "derivation claim",
+      "label_pt": "alegação de derivação",
+      "stereotype": "kind",
+      "package": "derivation",
+      "definition_en": "Contestable assertion, made by an agent, that one artistic entity (artwork, manifestation or selection) derives from another in specified ways. The derived entity is represented as a creation in its own right; legality and originality are outside the scope of the ontology.",
+      "definition_pt": "Alegação contestável, feita por um agente, de que uma entidade artística (obra, manifestação ou recorte) deriva de outra de modos especificados. A entidade derivada é representada como criação por direito próprio; legalidade e originalidade estão fora do escopo da ontologia.",
+      "dependency_en": "exactly one source anchor and one derived anchor; typed by at least one derivation type",
+      "dependency_pt": "exatamente uma âncora de origem e uma derivada; tipificada por ao menos um tipo de derivação",
+      "grounding_en": "UFO-C information object; not a UFO relator nor an asserted fact",
+      "grounding_pt": "objeto informacional UFO-C; nem relator UFO nem fato afirmado",
+      "alignments": {
+        "rdfs:seeAlso": [
+          "prov:wasDerivedFrom",
+          "schema:isBasedOn",
+          "wdt:P144"
+        ]
+      }
+    },
+    {
+      "name": "TransformationAspect",
+      "label_en": "transformation aspect",
+      "label_pt": "aspecto de transformação",
+      "stereotype": "kind",
+      "package": "derivation",
+      "definition_en": "Recorded statement of what happened to one artistic dimension in a derivation (retained, modified, added, removed or recontextualized).",
+      "definition_pt": "Registro do que ocorreu com uma dimensão artística numa derivação (mantida, modificada, acrescentada, removida ou recontextualizada).",
+      "dependency_en": "host derivation claim; one dimension and one operation",
+      "dependency_pt": "alegação de derivação hospedeira; uma dimensão e uma operação",
+      "grounding_en": "UFO-C information object",
+      "grounding_pt": "objeto informacional UFO-C"
+    },
+    {
+      "name": "CreativeAct",
+      "label_en": "creative act",
+      "label_pt": "ato criativo",
+      "stereotype": "event",
+      "package": "derivation",
+      "definition_en": "Intentional temporal activity that brings an artwork or manifestation into existence, including derivative ones.",
+      "definition_pt": "Atividade intencional temporal que dá origem a uma obra ou manifestação, inclusive derivadas.",
+      "dependency_en": "participating agents and temporal occurrence",
+      "dependency_pt": "agentes participantes e ocorrência temporal",
+      "grounding_en": "UFO-B event; UFO-C intentional action",
+      "grounding_pt": "evento UFO-B; ação intencional UFO-C"
+    },
+    {
+      "name": "CreativeAgent",
+      "label_en": "creative agent",
+      "label_pt": "agente criativo",
+      "stereotype": "roleMixin",
+      "package": "derivation",
+      "definition_en": "Any agent, identified and described in an external vocabulary (PROV-O, FOAF, schema.org, Wikidata...), insofar as it contributes to a creative act. Agent identity is represented by the external vocabulary, not by ARO.",
+      "definition_pt": "Qualquer agente, identificado e descrito em vocabulário externo (PROV-O, FOAF, schema.org, Wikidata...), na medida em que contribui para um ato criativo. A identidade do agente é representada pelo vocabulário externo, não pela ARO.",
+      "dependency_en": "relationally on a CreativeContribution; identity supplied by external kinds",
+      "dependency_pt": "relacionalmente de uma CreativeContribution; identidade fornecida por tipos externos",
+      "grounding_en": "UFO-A anti-rigid non-sortal (roleMixin); agents are individuals of external ontologies",
+      "grounding_pt": "não-sortal anti-rígido UFO-A (roleMixin); agentes são indivíduos de ontologias externas",
+      "alignments": {
+        "rdfs:seeAlso": [
+          "prov:Agent",
+          "foaf:Agent",
+          "schema:Person",
+          "schema:Organization"
+        ]
+      }
+    },
+    {
+      "name": "CreativeContribution",
+      "label_en": "creative contribution",
+      "label_pt": "contribuição criativa",
+      "stereotype": "relator",
+      "package": "derivation",
+      "definition_en": "Participation of one creative agent in one creative act under one or more roles.",
+      "definition_pt": "Participação de um agente criativo num ato criativo sob um ou mais papéis.",
+      "dependency_en": "existentially on the act and the agent",
+      "dependency_pt": "existencialmente do ato e do agente",
+      "grounding_en": "UFO-A relator; role qualification via CreativeRole",
+      "grounding_pt": "relator UFO-A; papel qualificado via CreativeRole"
+    },
+    {
+      "name": "DerivationType",
+      "label_en": "derivation type",
+      "label_pt": "tipo de derivação",
+      "stereotype": "type",
+      "package": "derivation",
+      "definition_en": "Kind of derivation (translation, cover, sampling, parody...); its instances are SKOS concepts.",
+      "definition_pt": "Tipo de derivação (tradução, cover, sample, paródia...); suas instâncias são conceitos SKOS.",
+      "dependency_en": "controlled vocabulary membership",
+      "dependency_pt": "pertencimento a vocabulário controlado",
+      "grounding_en": "UFO high-order type (provisional); operationalized as skos:Concept",
+      "grounding_pt": "tipo de alta ordem UFO (provisório); operacionalizado como skos:Concept"
+    },
+    {
+      "name": "DerivationRegime",
+      "label_en": "derivation regime",
+      "label_pt": "regime de derivação",
+      "stereotype": "type",
+      "package": "derivation",
+      "definition_en": "Stance of a derivation toward its source (playful, satirical, serious, reverential); its instances are SKOS concepts.",
+      "definition_pt": "Postura da derivação em relação à origem (lúdica, satírica, séria, reverencial); suas instâncias são conceitos SKOS.",
+      "dependency_en": "controlled vocabulary membership",
+      "dependency_pt": "pertencimento a vocabulário controlado",
+      "grounding_en": "UFO high-order type (provisional); operationalized as skos:Concept",
+      "grounding_pt": "tipo de alta ordem UFO (provisório); operacionalizado como skos:Concept"
+    },
+    {
+      "name": "ArtisticDimension",
+      "label_en": "artistic dimension",
+      "label_pt": "dimensão artística",
+      "stereotype": "type",
+      "package": "derivation",
+      "definition_en": "Aspect of a work along which derivation can be compared (melody, lyrics, plot, character, medium...).",
+      "definition_pt": "Aspecto da obra segundo o qual a derivação pode ser comparada (melodia, letra, enredo, personagem, mídia...).",
+      "dependency_en": "controlled vocabulary membership",
+      "dependency_pt": "pertencimento a vocabulário controlado",
+      "grounding_en": "UFO high-order type (provisional); operationalized as skos:Concept",
+      "grounding_pt": "tipo de alta ordem UFO (provisório); operacionalizado como skos:Concept"
+    },
+    {
+      "name": "TransformationOperation",
+      "label_en": "transformation operation",
+      "label_pt": "operação de transformação",
+      "stereotype": "type",
+      "package": "derivation",
+      "definition_en": "What a derivation does to a dimension: retain, modify, add, remove or recontextualize.",
+      "definition_pt": "O que a derivação faz com uma dimensão: manter, modificar, acrescentar, remover ou recontextualizar.",
+      "dependency_en": "controlled vocabulary membership",
+      "dependency_pt": "pertencimento a vocabulário controlado",
+      "grounding_en": "UFO high-order type (provisional); operationalized as skos:Concept",
+      "grounding_pt": "tipo de alta ordem UFO (provisório); operacionalizado como skos:Concept"
+    },
+    {
+      "name": "CreativeRole",
+      "label_en": "creative role",
+      "label_pt": "papel criativo",
+      "stereotype": "type",
+      "package": "derivation",
+      "definition_en": "Role qualifying a creative contribution (composer, performer, translator, remixer...).",
+      "definition_pt": "Papel que qualifica uma contribuição criativa (compositor, intérprete, tradutor, remixador...).",
+      "dependency_en": "controlled vocabulary membership",
+      "dependency_pt": "pertencimento a vocabulário controlado",
+      "grounding_en": "UFO role type (provisional); operationalized as skos:Concept",
+      "grounding_pt": "tipo de papel UFO (provisório); operacionalizado como skos:Concept"
+    }
+  ],
+  "relations": [
+    {
+      "name": "hasManifestation",
+      "source": "Artwork",
+      "target": "Manifestation",
+      "target_cardinality": "1..*",
+      "source_cardinality": "1",
+      "description_en": "artwork realizes through manifestation",
+      "description_pt": "obra se realiza por manifestação"
+    },
+    {
+      "name": "realizesArtwork",
+      "source": "Manifestation",
+      "target": "Artwork",
+      "target_cardinality": "1",
+      "source_cardinality": "1..*",
+      "description_en": "manifestation realizes artwork",
+      "description_pt": "manifestação realiza obra"
+    },
+    {
+      "name": "selectsFrom",
+      "source": "Selection",
+      "target": "Manifestation",
+      "target_cardinality": "1",
+      "source_cardinality": "0..*",
+      "description_en": "selection references manifestation",
+      "description_pt": "recorte referencia manifestação",
+      "shacl": {
+        "minCount": 1
+      }
+    },
+    {
+      "name": "hasSelector",
+      "source": "Selection",
+      "target": "oa:Selector",
+      "target_cardinality": "0..*",
+      "source_cardinality": "1",
+      "description_en": "selection located by W3C Web Annotation selector",
+      "description_pt": "recorte localizado por seletor W3C Web Annotation"
+    },
+    {
+      "name": "groupsSelection",
+      "source": "AnalysisUnit",
+      "target": "Selection",
+      "target_cardinality": "1..*",
+      "source_cardinality": "0..*",
+      "description_en": "unit groups selections",
+      "description_pt": "unidade agrupa recortes"
+    },
+    {
+      "name": "hasPrimarySelection",
+      "source": "InterpretationRecord",
+      "target": "Selection",
+      "target_cardinality": "1",
+      "source_cardinality": "0..*",
+      "description_en": "record is anchored in selection",
+      "description_pt": "interpretação se ancora em recorte",
+      "shacl": {
+        "minCount": 1,
+        "maxCount": 1
+      }
+    },
+    {
+      "name": "hasSupportingSelection",
+      "source": "InterpretationRecord",
+      "target": "Selection",
+      "target_cardinality": "0..*",
+      "source_cardinality": "0..*",
+      "description_en": "record has supporting selection",
+      "description_pt": "interpretação usa recorte de apoio"
+    },
+    {
+      "name": "producedByAct",
+      "source": "InterpretationRecord",
+      "target": "InterpretiveAct",
+      "target_cardinality": "1",
+      "source_cardinality": "0..*",
+      "description_en": "interpretive act historically produces record",
+      "description_pt": "ato produz registro",
+      "shacl": {
+        "minCount": 1,
+        "maxCount": 1
+      }
+    },
+    {
+      "name": "hasParticipant",
+      "source": "InterpretiveAct",
+      "target": "Analyst",
+      "target_cardinality": "1..*",
+      "source_cardinality": "0..*",
+      "description_en": "agent participates in act",
+      "description_pt": "agente participa de ato",
+      "shacl": {
+        "minCount": 1,
+        "nodeKind": "IRI"
+      }
+    },
+    {
+      "name": "hasJustification",
+      "source": "InterpretationRecord",
+      "target": "InterpretiveJustification",
+      "target_cardinality": "0..*",
+      "source_cardinality": "1",
+      "description_en": "interpretation supported by argument",
+      "description_pt": "interpretação tem fundamentação"
+    },
+    {
+      "name": "challenges",
+      "source": "InterpretationChallenge",
+      "target": "InterpretationRecord",
+      "target_cardinality": "1",
+      "source_cardinality": "0..*",
+      "description_en": "challenge targets interpretation",
+      "description_pt": "contestação questiona interpretação"
+    },
+    {
+      "name": "assessesInterpretation",
+      "source": "InterpretationAssessment",
+      "target": "InterpretationRecord",
+      "target_cardinality": "1",
+      "source_cardinality": "0..*",
+      "description_en": "assessment targets interpretation",
+      "description_pt": "avaliação incide sobre interpretação"
+    },
+    {
+      "name": "usesCriterion",
+      "source": "InterpretationAssessment",
+      "target": "AssessmentCriterion",
+      "target_cardinality": "1..*",
+      "source_cardinality": "0..*",
+      "description_en": "assessment follows criteria",
+      "description_pt": "avaliação usa critérios"
+    },
+    {
+      "name": "describesSituation",
+      "source": "InterpretationRecord",
+      "target": "SituationDescription",
+      "target_cardinality": "0..*",
+      "source_cardinality": "1..*",
+      "description_en": "interpretation yields descriptions",
+      "description_pt": "interpretação descreve situação"
+    },
+    {
+      "name": "mentionsDepictedElement",
+      "source": "SituationDescription",
+      "target": "DepictedElement",
+      "target_cardinality": "0..*",
+      "source_cardinality": "0..*",
+      "description_en": "description mentions depicted element",
+      "description_pt": "descrição menciona elemento"
+    },
+    {
+      "name": "generalizesAs",
+      "source": "SituationDescription",
+      "target": "SituationPattern",
+      "target_cardinality": "0..*",
+      "source_cardinality": "0..*",
+      "description_en": "description motivates pattern abstraction",
+      "description_pt": "descrição motiva abstração"
+    },
+    {
+      "name": "hasCondition",
+      "source": "SituationPattern",
+      "target": "PatternCondition",
+      "target_cardinality": "1..*",
+      "source_cardinality": "1",
+      "description_en": "pattern specifies conditions",
+      "description_pt": "padrão especifica condições",
+      "shacl": {
+        "minCount": 1
+      }
+    },
+    {
+      "name": "caseAboutSituation",
+      "source": "EmpiricalCase",
+      "target": "EmpiricalSituation",
+      "target_cardinality": "0..*",
+      "source_cardinality": "0..*",
+      "description_en": "dossier describes real situations",
+      "description_pt": "dossiê descreve situação real"
+    },
+    {
+      "name": "caseAboutEvent",
+      "source": "EmpiricalCase",
+      "target": "EmpiricalEvent",
+      "target_cardinality": "0..*",
+      "source_cardinality": "0..*",
+      "description_en": "dossier describes real events",
+      "description_pt": "dossiê descreve evento"
+    },
+    {
+      "name": "assertsPattern",
+      "source": "CorrespondenceClaim",
+      "target": "SituationPattern",
+      "target_cardinality": "1",
+      "source_cardinality": "0..*",
+      "description_en": "correspondence references pattern",
+      "description_pt": "alegação referencia padrão",
+      "shacl": {
+        "minCount": 1,
+        "maxCount": 1
+      }
+    },
+    {
+      "name": "assertsCase",
+      "source": "CorrespondenceClaim",
+      "target": "EmpiricalCase",
+      "target_cardinality": "1",
+      "source_cardinality": "0..*",
+      "description_en": "correspondence references case",
+      "description_pt": "alegação referencia caso",
+      "shacl": {
+        "minCount": 1,
+        "maxCount": 1
+      }
+    },
+    {
+      "name": "derivedFromSource",
+      "source": "EvidenceItem",
+      "target": "ReferenceSource",
+      "target_cardinality": "1",
+      "source_cardinality": "0..*",
+      "description_en": "evidence obtained from source",
+      "description_pt": "evidência obtida de fonte",
+      "shacl": {
+        "minCount": 1,
+        "maxCount": 1
+      }
+    },
+    {
+      "name": "supportsClaim",
+      "source": "EvidenceAssessment",
+      "target": "EmpiricalClaim",
+      "target_cardinality": "0..1",
+      "source_cardinality": "0..*",
+      "description_en": "assessment evaluates claim",
+      "description_pt": "avaliação examina afirmação"
+    },
+    {
+      "name": "assessesCorrespondence",
+      "source": "EvidenceAssessment",
+      "target": "CorrespondenceClaim",
+      "target_cardinality": "0..1",
+      "source_cardinality": "0..*",
+      "description_en": "assessment evaluates correspondence",
+      "description_pt": "avaliação examina correspondência"
+    },
+    {
+      "name": "assessesEvidence",
+      "source": "EvidenceAssessment",
+      "target": "EvidenceItem",
+      "target_cardinality": "1..*",
+      "source_cardinality": "0..*",
+      "description_en": "assessment considers evidence",
+      "description_pt": "avaliação considera evidência",
+      "shacl": {
+        "minCount": 1
+      }
+    },
+    {
+      "name": "citesSource",
+      "source": "InterpretationRecord",
+      "target": "ReferenceSource",
+      "target_cardinality": "0..*",
+      "source_cardinality": "0..*",
+      "description_en": "interpretation directly cites source (optional)",
+      "description_pt": "interpretação cita fonte"
+    },
+    {
+      "name": "referencesSource",
+      "source": "CorrespondenceClaim",
+      "target": "ReferenceSource",
+      "target_cardinality": "0..*",
+      "source_cardinality": "0..*",
+      "description_en": "correspondence directly cites source",
+      "description_pt": "correspondência cita fonte"
+    },
+    {
+      "name": "caseHasReference",
+      "source": "EmpiricalCase",
+      "target": "ReferenceSource",
+      "target_cardinality": "0..*",
+      "source_cardinality": "0..*",
+      "description_en": "case cites sources",
+      "description_pt": "caso cita fontes"
+    },
+    {
+      "name": "explainsPattern",
+      "source": "ExplanationHypothesis",
+      "target": "SituationPattern",
+      "target_cardinality": "0..*",
+      "source_cardinality": "0..*",
+      "description_en": "explanation addresses pattern",
+      "description_pt": "hipótese explica padrão"
+    },
+    {
+      "name": "supportsInterpretation",
+      "source": "InterpretationRecord",
+      "target": "InterpretationRecord",
+      "target_cardinality": "0..*",
+      "source_cardinality": "0..*",
+      "description_en": "interpretation supports another",
+      "description_pt": "interpretação apoia outra"
+    },
+    {
+      "name": "hasSourceAnchor",
+      "source": "DerivationClaim",
+      "target": [
+        "Artwork",
+        "Manifestation",
+        "Selection"
+      ],
+      "target_cardinality": "1",
+      "source_cardinality": "0..*",
+      "description_en": "claim names the source entity",
+      "description_pt": "alegação indica entidade de origem",
+      "shacl": {
+        "minCount": 1,
+        "maxCount": 1
+      }
+    },
+    {
+      "name": "hasDerivedAnchor",
+      "source": "DerivationClaim",
+      "target": [
+        "Artwork",
+        "Manifestation",
+        "Selection"
+      ],
+      "target_cardinality": "1",
+      "source_cardinality": "0..*",
+      "description_en": "claim names the derived entity",
+      "description_pt": "alegação indica entidade derivada",
+      "shacl": {
+        "minCount": 1,
+        "maxCount": 1
+      }
+    },
+    {
+      "name": "hasDerivationType",
+      "source": "DerivationClaim",
+      "target": "DerivationType",
+      "target_cardinality": "1..*",
+      "source_cardinality": "0..*",
+      "description_en": "claim is typed by derivation kind",
+      "description_pt": "alegação tipificada por tipo de derivação",
+      "shacl": {
+        "minCount": 1,
+        "class": "DerivationType"
+      }
+    },
+    {
+      "name": "hasRegime",
+      "source": "DerivationClaim",
+      "target": "DerivationRegime",
+      "target_cardinality": "0..*",
+      "source_cardinality": "0..*",
+      "description_en": "claim records derivation regime",
+      "description_pt": "alegação registra regime de derivação",
+      "shacl": {
+        "class": "DerivationRegime"
+      }
+    },
+    {
+      "name": "hasTransformation",
+      "source": "DerivationClaim",
+      "target": "TransformationAspect",
+      "target_cardinality": "0..*",
+      "source_cardinality": "1",
+      "description_en": "claim details a transformation aspect",
+      "description_pt": "alegação detalha aspecto de transformação"
+    },
+    {
+      "name": "hasDimension",
+      "source": "TransformationAspect",
+      "target": "ArtisticDimension",
+      "target_cardinality": "1",
+      "source_cardinality": "0..*",
+      "description_en": "aspect concerns a dimension",
+      "description_pt": "aspecto incide sobre dimensão",
+      "shacl": {
+        "minCount": 1,
+        "maxCount": 1,
+        "class": "ArtisticDimension"
+      }
+    },
+    {
+      "name": "hasOperation",
+      "source": "TransformationAspect",
+      "target": "TransformationOperation",
+      "target_cardinality": "1",
+      "source_cardinality": "0..*",
+      "description_en": "aspect applies an operation",
+      "description_pt": "aspecto aplica operação",
+      "shacl": {
+        "minCount": 1,
+        "maxCount": 1,
+        "class": "TransformationOperation"
+      }
+    },
+    {
+      "name": "aspectSourceSelection",
+      "source": "TransformationAspect",
+      "target": "Selection",
+      "target_cardinality": "0..1",
+      "source_cardinality": "0..*",
+      "description_en": "aspect points to source selection",
+      "description_pt": "aspecto aponta recorte de origem"
+    },
+    {
+      "name": "aspectDerivedSelection",
+      "source": "TransformationAspect",
+      "target": "Selection",
+      "target_cardinality": "0..1",
+      "source_cardinality": "0..*",
+      "description_en": "aspect points to derived selection",
+      "description_pt": "aspecto aponta recorte derivado"
+    },
+    {
+      "name": "aspectConcernsPattern",
+      "source": "TransformationAspect",
+      "target": "SituationPattern",
+      "target_cardinality": "0..*",
+      "source_cardinality": "0..*",
+      "description_en": "aspect concerns a situation pattern",
+      "description_pt": "aspecto envolve padrão situacional"
+    },
+    {
+      "name": "derivationJustifiedBy",
+      "source": "DerivationClaim",
+      "target": "InterpretiveJustification",
+      "target_cardinality": "0..*",
+      "source_cardinality": "0..*",
+      "description_en": "derivation claim explained by argument",
+      "description_pt": "alegação de derivação explicada por argumento"
+    },
+    {
+      "name": "derivationRealizedBy",
+      "source": "DerivationClaim",
+      "target": "CreativeAct",
+      "target_cardinality": "0..1",
+      "source_cardinality": "0..*",
+      "description_en": "derivation carried out by creative act",
+      "description_pt": "derivação realizada por ato criativo"
+    },
+    {
+      "name": "claimProducedByAct",
+      "source": "DerivationClaim",
+      "target": "InterpretiveAct",
+      "target_cardinality": "0..1",
+      "source_cardinality": "0..*",
+      "description_en": "analytical act that recorded the claim",
+      "description_pt": "ato analítico que registrou a alegação"
+    },
+    {
+      "name": "derivationReferencesSource",
+      "source": "DerivationClaim",
+      "target": "ReferenceSource",
+      "target_cardinality": "0..*",
+      "source_cardinality": "0..*",
+      "description_en": "derivation claim cites source",
+      "description_pt": "alegação de derivação cita fonte"
+    },
+    {
+      "name": "assessesDerivation",
+      "source": "EvidenceAssessment",
+      "target": "DerivationClaim",
+      "target_cardinality": "0..1",
+      "source_cardinality": "0..*",
+      "description_en": "assessment evaluates derivation claim",
+      "description_pt": "avaliação examina alegação de derivação"
+    },
+    {
+      "name": "producesCreation",
+      "source": "CreativeAct",
+      "target": [
+        "Artwork",
+        "Manifestation"
+      ],
+      "target_cardinality": "1..*",
+      "source_cardinality": "0..*",
+      "description_en": "act brings about artwork or manifestation",
+      "description_pt": "ato origina obra ou manifestação",
+      "shacl": {
+        "minCount": 1
+      }
+    },
+    {
+      "name": "hasContribution",
+      "source": "CreativeAct",
+      "target": "CreativeContribution",
+      "target_cardinality": "0..*",
+      "source_cardinality": "1",
+      "description_en": "act includes contribution",
+      "description_pt": "ato inclui contribuição"
+    },
+    {
+      "name": "contributionBy",
+      "source": "CreativeContribution",
+      "target": "CreativeAgent",
+      "target_cardinality": "1",
+      "source_cardinality": "0..*",
+      "description_en": "contribution made by agent",
+      "description_pt": "contribuição feita por agente",
+      "shacl": {
+        "minCount": 1,
+        "maxCount": 1,
+        "nodeKind": "IRI"
+      }
+    },
+    {
+      "name": "contributionRole",
+      "source": "CreativeContribution",
+      "target": "CreativeRole",
+      "target_cardinality": "1..*",
+      "source_cardinality": "0..*",
+      "description_en": "contribution qualified by role",
+      "description_pt": "contribuição qualificada por papel",
+      "shacl": {
+        "minCount": 1,
+        "class": "CreativeRole"
+      }
+    }
+  ],
+  "datatype_properties": [
+    {
+      "name": "identifier",
+      "range": "string",
+      "label_en": "identifier",
+      "label_pt": "identificador",
+      "comment_en": "Local identifier of a record; a stable URI is recommended. Not identity in the world.",
+      "comment_pt": "Identificador local de um registro; recomenda-se URI estável. Não é identidade no mundo."
+    },
+    {
+      "name": "textValue",
+      "range": "rdf:langString",
+      "label_en": "text value",
+      "label_pt": "valor textual",
+      "comment_en": "Human-readable text (labels, descriptions, explanations). Use language-tagged literals; the same resource may carry one value per language.",
+      "comment_pt": "Texto legível (rótulos, descrições, explicações). Use literais marcados por idioma; o mesmo recurso pode ter um valor por idioma.",
+      "shacl": {
+        "datatype": "rdf:langString"
+      }
+    },
+    {
+      "name": "selectorExpression",
+      "range": "string",
+      "domain": "Selection",
+      "label_en": "selector expression",
+      "label_pt": "expressão de seletor",
+      "comment_en": "Compact selector shortcut; prefer hasSelector with W3C Web Annotation selectors.",
+      "comment_pt": "Atalho compacto de seletor; prefira hasSelector com seletores W3C Web Annotation."
+    },
+    {
+      "name": "sourceURL",
+      "range": "anyURI",
+      "label_en": "source URL",
+      "label_pt": "URL da fonte",
+      "comment_en": "Web address of a reference source (news page, article, dataset, video...). Availability is not guaranteed and a link is not a credibility claim.",
+      "comment_pt": "Endereço web de uma fonte de referência (notícia, artigo, base de dados, vídeo...). A disponibilidade não é garantida e o link não é alegação de credibilidade.",
+      "domain": "ReferenceSource"
+    },
+    {
+      "name": "externalLink",
+      "range": "anyURI",
+      "label_en": "external link",
+      "label_pt": "link externo",
+      "comment_en": "Web address where the represented entity can be consulted: an artwork page, a recording, the exact location of an evidence item, a case report. Usable on any resource; a link is not a credibility claim.",
+      "comment_pt": "Endereço web onde a entidade representada pode ser consultada: página da obra, gravação, local exato de um item de evidência, relato de um caso. Usável em qualquer recurso; o link não é alegação de credibilidade."
+    },
+    {
+      "name": "issuedDate",
+      "range": "date",
+      "label_en": "issued date",
+      "label_pt": "data de publicação",
+      "comment_en": "Publication date when known.",
+      "comment_pt": "Data de publicação quando conhecida."
+    },
+    {
+      "name": "retrievedAt",
+      "range": "dateTime",
+      "label_en": "retrieved at",
+      "label_pt": "acessado em",
+      "comment_en": "Capture provenance timestamp.",
+      "comment_pt": "Momento de captura, para proveniência."
+    },
+    {
+      "name": "confidenceScore",
+      "range": "decimal",
+      "label_en": "confidence score",
+      "label_pt": "grau de confiança",
+      "comment_en": "Application-defined confidence in [0,1]; not a calibrated probability.",
+      "comment_pt": "Confiança definida pela aplicação em [0,1]; não é probabilidade calibrada."
+    },
+    {
+      "name": "isRequiredCondition",
+      "range": "boolean",
+      "label_en": "is required condition",
+      "label_pt": "é condição obrigatória",
+      "comment_en": "Whether a pattern condition is mandatory (true) or contextual (false).",
+      "comment_pt": "Se uma condição de padrão é obrigatória (true) ou contextual (false).",
+      "domain": "PatternCondition"
+    },
+    {
+      "name": "languageTag",
+      "range": "string",
+      "label_en": "language tag",
+      "label_pt": "etiqueta de idioma",
+      "comment_en": "BCP 47 tag of the main language of a resource, e.g. en, pt-BR, es.",
+      "comment_pt": "Etiqueta BCP 47 do idioma principal de um recurso, ex. en, pt-BR, es."
+    },
+    {
+      "name": "versionLabel",
+      "range": "string",
+      "label_en": "version label",
+      "label_pt": "rótulo de versão",
+      "comment_en": "Application version label.",
+      "comment_pt": "Rótulo de versão da aplicação."
+    },
+    {
+      "name": "derivationExtent",
+      "range": "rdf:langString",
+      "domain": "DerivationClaim",
+      "label_en": "derivation extent",
+      "label_pt": "extensão da derivação",
+      "comment_en": "Free-text extent of reuse (e.g. \"4-second loop\", \"whole plot\"); language-tagged.",
+      "comment_pt": "Extensão livre do reaproveitamento (ex. \"loop de 4 segundos\", \"enredo inteiro\"); marcada por idioma.",
+      "shacl": {
+        "datatype": "rdf:langString"
+      }
+    }
+  ],
+  "concept_schemes": [
+    {
+      "name": "DerivationTypeScheme",
+      "member_class": "DerivationType",
+      "label_en": "Derivation types",
+      "label_pt": "Tipos de derivação",
+      "definition_en": "Non-exclusive kinds of derivation grouped in five families; one claim may carry several types. Grounded in Genette, Tillett/Smiraglia, Burkholder, Rajewsky, Hutcheon and Jenkins (see derivation-typology.md).",
+      "definition_pt": "Tipos não exclusivos de derivação agrupados em cinco famílias; uma alegação pode ter vários tipos. Fundamentados em Genette, Tillett/Smiraglia, Burkholder, Rajewsky, Hutcheon e Jenkins (ver derivation-typology.md).",
+      "concepts": [
+        {
+          "name": "Rerealization",
+          "label_en": "re-realization",
+          "label_pt": "re-realização",
+          "definition_en": "New realization of substantially the same content; bibliographically often a new expression of the same work.",
+          "definition_pt": "Nova realização de conteúdo substancialmente igual; na biblioteconomia, frequentemente nova expressão da mesma obra.",
+          "source": "Tillett 1991; Smiraglia 2001; IFLA LRMoo 2024"
+        },
+        {
+          "name": "Translation",
+          "label_en": "translation",
+          "label_pt": "tradução",
+          "definition_en": "Rendering of verbal content in another language. Genette also classes it as a serious transformation (transposition).",
+          "definition_pt": "Transposição do conteúdo verbal para outra língua. Genette também a classifica como transformação séria (transposição).",
+          "broader": "Rerealization",
+          "source": "Smiraglia 2001; Genette 1982"
+        },
+        {
+          "name": "Performance",
+          "label_en": "performance",
+          "label_pt": "performance / execução",
+          "definition_en": "New performance of an existing work (recital, staging, recording).",
+          "definition_pt": "Nova execução de obra existente (recital, encenação, gravação).",
+          "broader": "Rerealization",
+          "source": "Smiraglia 2001"
+        },
+        {
+          "name": "CoverVersion",
+          "label_en": "cover version",
+          "label_pt": "versão cover",
+          "definition_en": "Popular-music performance or recording of an existing song by other performers; the term is systematically ambiguous, so record dimensions too. The covering artist is a creator in their own right.",
+          "definition_pt": "Interpretação ou gravação de canção popular existente por outros intérpretes; termo sistematicamente ambíguo, por isso registre também as dimensões. O artista do cover é criador por direito próprio.",
+          "broader": "Performance",
+          "source": "Mosser 2008; Mag Uidhir, Magnus & Magnus 2013"
+        },
+        {
+          "name": "Arrangement",
+          "label_en": "arrangement",
+          "label_pt": "arranjo",
+          "definition_en": "Reworking of instrumentation, harmony or form while keeping the piece recognizable.",
+          "definition_pt": "Reelaboração de instrumentação, harmonia ou forma mantendo a peça reconhecível.",
+          "broader": "Rerealization",
+          "source": "Burkholder 1994"
+        },
+        {
+          "name": "Transcription",
+          "label_en": "transcription",
+          "label_pt": "transcrição",
+          "definition_en": "Transfer to another notation or instrument.",
+          "definition_pt": "Transferência para outra notação ou instrumento.",
+          "broader": "Rerealization",
+          "source": "Burkholder 1994"
+        },
+        {
+          "name": "Revision",
+          "label_en": "revision",
+          "label_pt": "revisão / nova versão",
+          "definition_en": "Successive version by the same or authorized agents (revised edition, director's cut, remaster).",
+          "definition_pt": "Versão sucessiva pelos mesmos agentes ou autorizados (edição revista, director's cut, remasterização).",
+          "broader": "Rerealization",
+          "source": "Smiraglia 2001 (successive derivations)"
+        },
+        {
+          "name": "Abridgment",
+          "label_en": "abridgment / extraction",
+          "label_pt": "resumo / extração",
+          "definition_en": "Derivation keeping a reduced part of the source (abridgment, excerpt, radio edit).",
+          "definition_pt": "Derivação que mantém parte reduzida da origem (resumo, excerto, radio edit).",
+          "broader": "Rerealization",
+          "source": "Smiraglia 2001 (extractions)"
+        },
+        {
+          "name": "Amplification",
+          "label_en": "amplification",
+          "label_pt": "ampliação",
+          "definition_en": "Source reproduced with added material (annotated or illustrated edition, commentary track).",
+          "definition_pt": "Origem reproduzida com material acrescentado (edição anotada ou ilustrada, faixa de comentário).",
+          "broader": "Rerealization",
+          "source": "Smiraglia 2001 (amplifications)"
+        },
+        {
+          "name": "Remake",
+          "label_en": "remake",
+          "label_pt": "refilmagem / remake",
+          "definition_en": "New audiovisual production based on an earlier production of the same story.",
+          "definition_pt": "Nova produção audiovisual baseada em produção anterior da mesma história.",
+          "broader": "Rerealization",
+          "source": "Verevis 2006"
+        },
+        {
+          "name": "ExtendedRemix",
+          "label_en": "extended remix",
+          "label_pt": "remix estendido",
+          "definition_en": "Longer or re-edited version of the same recording that keeps its identity (e.g. club or extended mix).",
+          "definition_pt": "Versão mais longa ou reeditada da mesma gravação que mantém sua identidade (ex. club mix, extended mix).",
+          "broader": "Rerealization",
+          "source": "Navas 2012 (extended remix)"
+        },
+        {
+          "name": "Incorporation",
+          "label_en": "incorporation / copresence",
+          "label_pt": "incorporação / copresença",
+          "definition_en": "Material of, or explicit reference to, the source is present within a new whole.",
+          "definition_pt": "Material da origem, ou referência explícita a ela, está presente num novo todo.",
+          "source": "Genette 1982 (intertextuality); Burkholder 1994"
+        },
+        {
+          "name": "Quotation",
+          "label_en": "quotation",
+          "label_pt": "citação",
+          "definition_en": "Explicit, recognizable reproduction of an excerpt, verbal, musical or visual.",
+          "definition_pt": "Reprodução explícita e reconhecível de excerto, verbal, musical ou visual.",
+          "broader": "Incorporation",
+          "source": "Genette 1982; Burkholder 1994"
+        },
+        {
+          "name": "Allusion",
+          "label_en": "allusion",
+          "label_pt": "alusão",
+          "definition_en": "Indirect reference whose full sense presupposes recognition of the source.",
+          "definition_pt": "Referência indireta cujo sentido pleno pressupõe reconhecer a origem.",
+          "broader": "Incorporation",
+          "source": "Genette 1982"
+        },
+        {
+          "name": "UnacknowledgedBorrowing",
+          "label_en": "unacknowledged borrowing",
+          "label_pt": "empréstimo não declarado",
+          "definition_en": "Literal borrowing presented without acknowledgment of the source (Genette's 'plagiat'); a descriptive textual relation, not a legal or moral judgment.",
+          "definition_pt": "Empréstimo literal apresentado sem reconhecimento da origem (o 'plagiat' de Genette); relação textual descritiva, não julgamento jurídico ou moral.",
+          "broader": "Incorporation",
+          "source": "Genette 1982"
+        },
+        {
+          "name": "Sampling",
+          "label_en": "sampling",
+          "label_pt": "sample",
+          "definition_en": "Reuse of a portion of an existing recording.",
+          "definition_pt": "Reuso de trecho de gravação existente.",
+          "broader": "Incorporation",
+          "source": "Schloss 2004; Navas 2012"
+        },
+        {
+          "name": "Interpolation",
+          "label_en": "interpolation",
+          "label_pt": "interpolação",
+          "definition_en": "Re-performance of a portion of the source inside a new work, without reusing the recording.",
+          "definition_pt": "Reexecução de trecho da origem dentro de obra nova, sem reusar a gravação.",
+          "broader": "Incorporation",
+          "source": "Schloss 2004"
+        },
+        {
+          "name": "Paraphrase",
+          "label_en": "paraphrase",
+          "label_pt": "paráfrase",
+          "definition_en": "Source material reworked into a new line or passage while remaining traceable.",
+          "definition_pt": "Material de origem reelaborado em nova linha ou passagem, ainda rastreável.",
+          "broader": "Incorporation",
+          "source": "Burkholder 1994"
+        },
+        {
+          "name": "Medley",
+          "label_en": "medley",
+          "label_pt": "medley / pot-pourri",
+          "definition_en": "Succession of several existing pieces or excerpts.",
+          "definition_pt": "Sucessão de várias peças ou excertos existentes.",
+          "broader": "Incorporation",
+          "source": "Burkholder 1994"
+        },
+        {
+          "name": "Collage",
+          "label_en": "collage / mashup",
+          "label_pt": "colagem / mashup",
+          "definition_en": "Juxtaposition of several sources in one new whole.",
+          "definition_pt": "Justaposição de várias origens num novo todo.",
+          "broader": "Incorporation",
+          "source": "Burkholder 1994; Navas 2012"
+        },
+        {
+          "name": "Remix",
+          "label_en": "remix",
+          "label_pt": "remix",
+          "definition_en": "Selective or reflexive recombination of an existing recording's elements into a new whole; the remixer is a creator in their own right.",
+          "definition_pt": "Recombinação seletiva ou reflexiva dos elementos de gravação existente num novo todo; o remixador é criador por direito próprio.",
+          "broader": "Incorporation",
+          "source": "Navas 2012 (selective and reflexive remix)"
+        },
+        {
+          "name": "Appropriation",
+          "label_en": "appropriation",
+          "label_pt": "apropriação",
+          "definition_en": "Re-presentation of an existing work or image, often whole, in a new context that changes its sense.",
+          "definition_pt": "Reapresentação de obra ou imagem existente, frequentemente inteira, em novo contexto que altera seu sentido.",
+          "broader": "Incorporation",
+          "source": "Navas 2012"
+        },
+        {
+          "name": "Ekphrasis",
+          "label_en": "ekphrasis",
+          "label_pt": "écfrase",
+          "definition_en": "Representation in one medium of a work from another medium (e.g. poem about a painting); an intermedial reference.",
+          "definition_pt": "Representação, numa mídia, de obra de outra mídia (ex. poema sobre pintura); referência intermidiática.",
+          "broader": "Incorporation",
+          "source": "Rajewsky 2005 (intermedial reference)"
+        },
+        {
+          "name": "Transformation",
+          "label_en": "transformation",
+          "label_pt": "transformação",
+          "definition_en": "Hypertextual derivation that changes content, form or context of the source.",
+          "definition_pt": "Derivação hipertextual que altera conteúdo, forma ou contexto da origem.",
+          "source": "Genette 1982 (hypertextuality)"
+        },
+        {
+          "name": "Adaptation",
+          "label_en": "adaptation",
+          "label_pt": "adaptação",
+          "definition_en": "Acknowledged, extended transposition of a work for another form, audience or context (Genette's serious transformation).",
+          "definition_pt": "Transposição declarada e extensa de obra para outra forma, público ou contexto (transformação séria de Genette).",
+          "broader": "Transformation",
+          "source": "Hutcheon 2006; Genette 1982"
+        },
+        {
+          "name": "IntermedialAdaptation",
+          "label_en": "intermedial adaptation",
+          "label_pt": "adaptação intermidiática",
+          "definition_en": "Adaptation across media (novel to film, film to game, song to music video, novelization).",
+          "definition_pt": "Adaptação entre mídias (romance para filme, filme para jogo, canção para videoclipe, novelização).",
+          "broader": "Adaptation",
+          "source": "Rajewsky 2005 (medial transposition); Hutcheon 2006"
+        },
+        {
+          "name": "Parody",
+          "label_en": "parody",
+          "label_pt": "paródia",
+          "definition_en": "Transformation of a source in a playful or critical regime; repetition with critical difference.",
+          "definition_pt": "Transformação da origem em regime lúdico ou crítico; repetição com diferença crítica.",
+          "broader": "Transformation",
+          "source": "Genette 1982; Hutcheon 1985"
+        },
+        {
+          "name": "Travesty",
+          "label_en": "travesty",
+          "label_pt": "travestimento",
+          "definition_en": "Satirical transformation that keeps the content but degrades its style or register.",
+          "definition_pt": "Transformação satírica que mantém o conteúdo mas rebaixa estilo ou registro.",
+          "broader": "Transformation",
+          "source": "Genette 1982"
+        },
+        {
+          "name": "Variation",
+          "label_en": "variation",
+          "label_pt": "variação",
+          "definition_en": "Successive transformations of a given theme or motif.",
+          "definition_pt": "Transformações sucessivas de tema ou motivo dado.",
+          "broader": "Transformation",
+          "source": "Burkholder 1994"
+        },
+        {
+          "name": "Imitation",
+          "label_en": "imitation",
+          "label_pt": "imitação",
+          "definition_en": "Derivation through imitating the manner or style of the source rather than reworking its content.",
+          "definition_pt": "Derivação pela imitação da maneira ou estilo da origem, e não pela reelaboração do conteúdo.",
+          "source": "Genette 1982 (hypertextuality)"
+        },
+        {
+          "name": "Pastiche",
+          "label_en": "pastiche",
+          "label_pt": "pastiche",
+          "definition_en": "Imitation of a style in a playful or affectionate regime.",
+          "definition_pt": "Imitação de estilo em regime lúdico ou afetuoso.",
+          "broader": "Imitation",
+          "source": "Genette 1982; Dyer 2007"
+        },
+        {
+          "name": "Caricature",
+          "label_en": "caricature (charge)",
+          "label_pt": "caricatura (charge)",
+          "definition_en": "Imitation of a style in a satirical regime.",
+          "definition_pt": "Imitação de estilo em regime satírico.",
+          "broader": "Imitation",
+          "source": "Genette 1982"
+        },
+        {
+          "name": "SeriousImitation",
+          "label_en": "serious imitation (forgerie)",
+          "label_pt": "imitação séria (forgerie)",
+          "definition_en": "Imitation aiming to be taken as in the manner of the source, e.g. apocryphal continuation; not necessarily fraud.",
+          "definition_pt": "Imitação que pretende ser tomada como da maneira da origem, ex. continuação apócrifa; não necessariamente fraude.",
+          "broader": "Imitation",
+          "source": "Genette 1982"
+        },
+        {
+          "name": "Extension",
+          "label_en": "extension",
+          "label_pt": "extensão",
+          "definition_en": "New work extending the fictional world, timeline or cast of the source.",
+          "definition_pt": "Obra nova que estende o mundo ficcional, a linha do tempo ou o elenco da origem.",
+          "source": "Tillett 1991 (sequential); Jenkins 1992"
+        },
+        {
+          "name": "Continuation",
+          "label_en": "continuation",
+          "label_pt": "continuação",
+          "definition_en": "Work continuing the story of the source.",
+          "definition_pt": "Obra que continua a história da origem.",
+          "broader": "Extension",
+          "source": "Tillett 1991"
+        },
+        {
+          "name": "Sequel",
+          "label_en": "sequel",
+          "label_pt": "sequência",
+          "definition_en": "Continuation set after the source.",
+          "definition_pt": "Continuação situada depois da origem.",
+          "broader": "Continuation",
+          "source": "Tillett 1991"
+        },
+        {
+          "name": "Prequel",
+          "label_en": "prequel",
+          "label_pt": "prequela",
+          "definition_en": "Continuation set before the source.",
+          "definition_pt": "Continuação situada antes da origem.",
+          "broader": "Continuation",
+          "source": "Tillett 1991"
+        },
+        {
+          "name": "SpinOff",
+          "label_en": "spin-off",
+          "label_pt": "spin-off / derivado",
+          "definition_en": "Work centred on secondary elements (characters, places) of the source.",
+          "definition_pt": "Obra centrada em elementos secundários (personagens, lugares) da origem.",
+          "broader": "Extension",
+          "source": "Jenkins 1992"
+        },
+        {
+          "name": "Crossover",
+          "label_en": "crossover",
+          "label_pt": "crossover",
+          "definition_en": "Work combining characters or worlds from two or more sources.",
+          "definition_pt": "Obra que combina personagens ou mundos de duas ou mais origens.",
+          "broader": "Extension",
+          "source": "Jenkins 1992"
+        },
+        {
+          "name": "FanWork",
+          "label_en": "fan work",
+          "label_pt": "obra de fã",
+          "definition_en": "Non-official derivation by audience members; also type the mechanism (parody, continuation, crossover...).",
+          "definition_pt": "Derivação não oficial feita pelo público; tipifique também o mecanismo (paródia, continuação, crossover...).",
+          "broader": "Extension",
+          "source": "Jenkins 1992"
+        }
+      ]
+    },
+    {
+      "name": "ArtisticDimensionScheme",
+      "member_class": "ArtisticDimension",
+      "label_en": "Artistic dimensions",
+      "label_pt": "Dimensões artísticas",
+      "concepts": [
+        {
+          "name": "NarrativeDimension",
+          "label_en": "narrative",
+          "label_pt": "narrativa",
+          "definition_en": "Story-level and discourse-level properties of narratives in any medium.",
+          "definition_pt": "Propriedades de história e de discurso de narrativas em qualquer mídia.",
+          "source": "Chatman 1978; Genette 1972"
+        },
+        {
+          "name": "PlotDimension",
+          "label_en": "plot",
+          "label_pt": "enredo",
+          "definition_en": "Sequence of represented events.",
+          "definition_pt": "Sequência de eventos representados.",
+          "broader": "NarrativeDimension",
+          "source": "Chatman 1978"
+        },
+        {
+          "name": "CharacterDimension",
+          "label_en": "character",
+          "label_pt": "personagem",
+          "definition_en": "Represented agents and their traits.",
+          "definition_pt": "Agentes representados e seus traços.",
+          "broader": "NarrativeDimension",
+          "source": "Chatman 1978"
+        },
+        {
+          "name": "SettingDimension",
+          "label_en": "setting",
+          "label_pt": "ambientação",
+          "definition_en": "Represented time and place.",
+          "definition_pt": "Tempo e lugar representados.",
+          "broader": "NarrativeDimension",
+          "source": "Chatman 1978"
+        },
+        {
+          "name": "SituationDimension",
+          "label_en": "represented situation",
+          "label_pt": "situação representada",
+          "definition_en": "Represented situations, comparable through SituationPattern.",
+          "definition_pt": "Situações representadas, comparáveis via SituationPattern.",
+          "broader": "NarrativeDimension"
+        },
+        {
+          "name": "NarrationDimension",
+          "label_en": "narration / voice",
+          "label_pt": "narração / voz",
+          "definition_en": "Who narrates and from which narrative level.",
+          "definition_pt": "Quem narra e de qual nível narrativo.",
+          "broader": "NarrativeDimension",
+          "source": "Genette 1972"
+        },
+        {
+          "name": "FocalizationDimension",
+          "label_en": "focalization / point of view",
+          "label_pt": "focalização / ponto de vista",
+          "definition_en": "Whose perception or knowledge filters the story.",
+          "definition_pt": "Percepção ou saber que filtra a história.",
+          "broader": "NarrativeDimension",
+          "source": "Genette 1972"
+        },
+        {
+          "name": "NarrativeTimeDimension",
+          "label_en": "narrative time",
+          "label_pt": "tempo narrativo",
+          "definition_en": "Order, duration and frequency of events in the telling.",
+          "definition_pt": "Ordem, duração e frequência dos eventos na narração.",
+          "broader": "NarrativeDimension",
+          "source": "Genette 1972"
+        },
+        {
+          "name": "TextDimension",
+          "label_en": "verbal text",
+          "label_pt": "texto verbal",
+          "definition_en": "Verbal content in any medium.",
+          "definition_pt": "Conteúdo verbal em qualquer mídia."
+        },
+        {
+          "name": "LyricsDimension",
+          "label_en": "lyrics",
+          "label_pt": "letra",
+          "definition_en": "Sung or spoken verbal text of a song.",
+          "definition_pt": "Texto verbal cantado ou falado de canção.",
+          "broader": "TextDimension"
+        },
+        {
+          "name": "DialogueDimension",
+          "label_en": "dialogue",
+          "label_pt": "diálogo",
+          "definition_en": "Speech attributed to characters.",
+          "definition_pt": "Falas atribuídas a personagens.",
+          "broader": "TextDimension"
+        },
+        {
+          "name": "DictionDimension",
+          "label_en": "diction / register",
+          "label_pt": "dicção / registro",
+          "definition_en": "Vocabulary, register and verbal style.",
+          "definition_pt": "Vocabulário, registro e estilo verbal.",
+          "broader": "TextDimension",
+          "source": "Genette 1982"
+        },
+        {
+          "name": "VersificationDimension",
+          "label_en": "versification",
+          "label_pt": "versificação",
+          "definition_en": "Metre, rhyme and stanza form.",
+          "definition_pt": "Métrica, rima e forma estrófica.",
+          "broader": "TextDimension"
+        },
+        {
+          "name": "LanguageDimension",
+          "label_en": "language",
+          "label_pt": "língua",
+          "definition_en": "Natural language of verbal content.",
+          "definition_pt": "Língua natural do conteúdo verbal.",
+          "broader": "TextDimension"
+        },
+        {
+          "name": "MusicDimension",
+          "label_en": "music and sound",
+          "label_pt": "música e som",
+          "definition_en": "Musical and sonic parameters.",
+          "definition_pt": "Parâmetros musicais e sonoros.",
+          "source": "Burkholder 1994"
+        },
+        {
+          "name": "MelodyDimension",
+          "label_en": "melody",
+          "label_pt": "melodia",
+          "definition_en": "Pitch–rhythm contour of a musical line.",
+          "definition_pt": "Contorno de altura e ritmo de uma linha musical.",
+          "broader": "MusicDimension"
+        },
+        {
+          "name": "HarmonyDimension",
+          "label_en": "harmony",
+          "label_pt": "harmonia",
+          "definition_en": "Chordal and tonal organization.",
+          "definition_pt": "Organização acordal e tonal.",
+          "broader": "MusicDimension"
+        },
+        {
+          "name": "RhythmDimension",
+          "label_en": "rhythm / groove",
+          "label_pt": "ritmo / groove",
+          "definition_en": "Metric and rhythmic organization.",
+          "definition_pt": "Organização métrica e rítmica.",
+          "broader": "MusicDimension"
+        },
+        {
+          "name": "TempoDimension",
+          "label_en": "tempo",
+          "label_pt": "andamento",
+          "definition_en": "Speed and its changes.",
+          "definition_pt": "Velocidade e suas variações.",
+          "broader": "MusicDimension"
+        },
+        {
+          "name": "TimbreDimension",
+          "label_en": "timbre / instrumentation",
+          "label_pt": "timbre / instrumentação",
+          "definition_en": "Sound sources and their colour.",
+          "definition_pt": "Fontes sonoras e sua cor.",
+          "broader": "MusicDimension"
+        },
+        {
+          "name": "MusicalTextureDimension",
+          "label_en": "musical texture",
+          "label_pt": "textura musical",
+          "definition_en": "Relation among simultaneous lines (monophony, homophony, polyphony).",
+          "definition_pt": "Relação entre linhas simultâneas (monofonia, homofonia, polifonia).",
+          "broader": "MusicDimension"
+        },
+        {
+          "name": "MusicalFormDimension",
+          "label_en": "musical form",
+          "label_pt": "forma musical",
+          "definition_en": "Large-scale structure (verse–chorus, sonata, AABA).",
+          "definition_pt": "Estrutura em larga escala (verso–refrão, sonata, AABA).",
+          "broader": "MusicDimension"
+        },
+        {
+          "name": "DynamicsDimension",
+          "label_en": "dynamics",
+          "label_pt": "dinâmica",
+          "definition_en": "Loudness and its changes.",
+          "definition_pt": "Intensidade e suas variações.",
+          "broader": "MusicDimension"
+        },
+        {
+          "name": "VocalDeliveryDimension",
+          "label_en": "vocal delivery",
+          "label_pt": "interpretação vocal",
+          "definition_en": "Singing or speaking manner, phrasing, ornamentation.",
+          "definition_pt": "Maneira de cantar ou falar, fraseado, ornamentação.",
+          "broader": "MusicDimension",
+          "source": "Mag Uidhir, Magnus & Magnus 2013"
+        },
+        {
+          "name": "RecordedSoundDimension",
+          "label_en": "recorded sound",
+          "label_pt": "som gravado",
+          "definition_en": "The fixed sound recording itself (relevant to sampling).",
+          "definition_pt": "A própria gravação sonora fixada (relevante para sample).",
+          "broader": "MusicDimension",
+          "source": "Schloss 2004"
+        },
+        {
+          "name": "ProductionDimension",
+          "label_en": "production / mix",
+          "label_pt": "produção / mixagem",
+          "definition_en": "Studio processing, mix and sound design.",
+          "definition_pt": "Processamento de estúdio, mixagem e desenho de som.",
+          "broader": "MusicDimension"
+        },
+        {
+          "name": "VisualDimension",
+          "label_en": "visual",
+          "label_pt": "visual",
+          "definition_en": "Formal and iconographic properties of still or moving images.",
+          "definition_pt": "Propriedades formais e iconográficas de imagens fixas ou em movimento.",
+          "source": "Panofsky 1939"
+        },
+        {
+          "name": "VisualCompositionDimension",
+          "label_en": "visual composition",
+          "label_pt": "composição visual",
+          "definition_en": "Arrangement of elements in the frame or picture plane.",
+          "definition_pt": "Disposição dos elementos no quadro ou plano pictórico.",
+          "broader": "VisualDimension"
+        },
+        {
+          "name": "ColorDimension",
+          "label_en": "colour",
+          "label_pt": "cor",
+          "definition_en": "Hue, saturation, value and palette.",
+          "definition_pt": "Matiz, saturação, valor e paleta.",
+          "broader": "VisualDimension"
+        },
+        {
+          "name": "ShapeDimension",
+          "label_en": "line and shape",
+          "label_pt": "linha e forma",
+          "definition_en": "Contours, lines, shapes and volumes.",
+          "definition_pt": "Contornos, linhas, formas e volumes.",
+          "broader": "VisualDimension"
+        },
+        {
+          "name": "SurfaceTextureDimension",
+          "label_en": "surface texture",
+          "label_pt": "textura de superfície",
+          "definition_en": "Actual or represented surface quality.",
+          "definition_pt": "Qualidade de superfície real ou representada.",
+          "broader": "VisualDimension"
+        },
+        {
+          "name": "SpaceDimension",
+          "label_en": "space and perspective",
+          "label_pt": "espaço e perspectiva",
+          "definition_en": "Depth, perspective and scale.",
+          "definition_pt": "Profundidade, perspectiva e escala.",
+          "broader": "VisualDimension"
+        },
+        {
+          "name": "MaterialTechniqueDimension",
+          "label_en": "material and technique",
+          "label_pt": "material e técnica",
+          "definition_en": "Physical materials and making techniques (oil, fresco, photographic process).",
+          "definition_pt": "Materiais e técnicas de feitura (óleo, afresco, processo fotográfico).",
+          "broader": "VisualDimension"
+        },
+        {
+          "name": "IconographyDimension",
+          "label_en": "iconography / motif",
+          "label_pt": "iconografia / motivo",
+          "definition_en": "Conventional subjects, motifs, symbols and attributes.",
+          "definition_pt": "Temas convencionais, motivos, símbolos e atributos.",
+          "broader": "VisualDimension",
+          "source": "Panofsky 1939"
+        },
+        {
+          "name": "PoseGestureDimension",
+          "label_en": "pose and gesture",
+          "label_pt": "pose e gesto",
+          "definition_en": "Bodily posture and gesture of represented figures.",
+          "definition_pt": "Postura corporal e gesto de figuras representadas.",
+          "broader": "VisualDimension",
+          "source": "Panofsky 1939"
+        },
+        {
+          "name": "AudiovisualDimension",
+          "label_en": "audiovisual",
+          "label_pt": "audiovisual",
+          "definition_en": "Stylistic systems of film, video and other moving-image media.",
+          "definition_pt": "Sistemas estilísticos de cinema, vídeo e outras mídias de imagem em movimento.",
+          "source": "Bordwell & Thompson, Film Art"
+        },
+        {
+          "name": "MiseEnSceneDimension",
+          "label_en": "mise-en-scène",
+          "label_pt": "mise-en-scène",
+          "definition_en": "What is placed before the camera.",
+          "definition_pt": "O que é posto diante da câmera.",
+          "broader": "AudiovisualDimension",
+          "source": "Bordwell & Thompson, Film Art"
+        },
+        {
+          "name": "SetDesignDimension",
+          "label_en": "set and props",
+          "label_pt": "cenário e objetos",
+          "definition_en": "Sets, locations and props.",
+          "definition_pt": "Cenários, locações e objetos de cena.",
+          "broader": "MiseEnSceneDimension",
+          "source": "Bordwell & Thompson, Film Art"
+        },
+        {
+          "name": "CostumeMakeupDimension",
+          "label_en": "costume and make-up",
+          "label_pt": "figurino e maquiagem",
+          "definition_en": "Costume, make-up and hair.",
+          "definition_pt": "Figurino, maquiagem e cabelo.",
+          "broader": "MiseEnSceneDimension",
+          "source": "Bordwell & Thompson, Film Art"
+        },
+        {
+          "name": "LightingDimension",
+          "label_en": "lighting",
+          "label_pt": "iluminação",
+          "definition_en": "Quality, direction and source of light.",
+          "definition_pt": "Qualidade, direção e fonte da luz.",
+          "broader": "MiseEnSceneDimension",
+          "source": "Bordwell & Thompson, Film Art"
+        },
+        {
+          "name": "ActingDimension",
+          "label_en": "acting / staging",
+          "label_pt": "atuação / marcação",
+          "definition_en": "Performers' behaviour and movement in space.",
+          "definition_pt": "Comportamento dos atores e movimento no espaço.",
+          "broader": "MiseEnSceneDimension",
+          "source": "Bordwell & Thompson, Film Art"
+        },
+        {
+          "name": "CinematographyDimension",
+          "label_en": "cinematography",
+          "label_pt": "fotografia / cinematografia",
+          "definition_en": "Photographic qualities of the shot.",
+          "definition_pt": "Qualidades fotográficas do plano.",
+          "broader": "AudiovisualDimension",
+          "source": "Bordwell & Thompson, Film Art"
+        },
+        {
+          "name": "FramingDimension",
+          "label_en": "framing / shot scale",
+          "label_pt": "enquadramento / escala de plano",
+          "definition_en": "Frame, angle and shot scale.",
+          "definition_pt": "Quadro, ângulo e escala do plano.",
+          "broader": "CinematographyDimension",
+          "source": "Bordwell & Thompson, Film Art"
+        },
+        {
+          "name": "CameraMovementDimension",
+          "label_en": "camera movement",
+          "label_pt": "movimento de câmera",
+          "definition_en": "Pans, tilts, tracking and other mobile framing.",
+          "definition_pt": "Panorâmicas, travellings e outros enquadramentos móveis.",
+          "broader": "CinematographyDimension",
+          "source": "Bordwell & Thompson, Film Art"
+        },
+        {
+          "name": "EditingDimension",
+          "label_en": "editing / montage",
+          "label_pt": "montagem / edição",
+          "definition_en": "Joining of shots: transitions, rhythm, continuity.",
+          "definition_pt": "Junção de planos: transições, ritmo, continuidade.",
+          "broader": "AudiovisualDimension",
+          "source": "Bordwell & Thompson, Film Art"
+        },
+        {
+          "name": "FilmSoundDimension",
+          "label_en": "film sound",
+          "label_pt": "som fílmico",
+          "definition_en": "Speech, music and effects and their relation to the image.",
+          "definition_pt": "Fala, música e efeitos e sua relação com a imagem.",
+          "broader": "AudiovisualDimension",
+          "source": "Bordwell & Thompson, Film Art"
+        },
+        {
+          "name": "GeneralDimension",
+          "label_en": "cross-media",
+          "label_pt": "transmidiática",
+          "definition_en": "Dimensions applicable to any medium.",
+          "definition_pt": "Dimensões aplicáveis a qualquer mídia."
+        },
+        {
+          "name": "ThemeDimension",
+          "label_en": "theme",
+          "label_pt": "tema",
+          "definition_en": "Topics and meanings foregrounded.",
+          "definition_pt": "Assuntos e sentidos postos em evidência.",
+          "broader": "GeneralDimension"
+        },
+        {
+          "name": "StyleDimension",
+          "label_en": "style",
+          "label_pt": "estilo",
+          "definition_en": "Recognizable manner of a creator, genre or period.",
+          "definition_pt": "Maneira reconhecível de autor, gênero ou período.",
+          "broader": "GeneralDimension",
+          "source": "Dyer 2007"
+        },
+        {
+          "name": "GenreDimension",
+          "label_en": "genre",
+          "label_pt": "gênero",
+          "definition_en": "Generic affiliation (architextuality).",
+          "definition_pt": "Filiação genérica (arquitextualidade).",
+          "broader": "GeneralDimension",
+          "source": "Genette 1982"
+        },
+        {
+          "name": "ToneDimension",
+          "label_en": "tone / mood",
+          "label_pt": "tom / atmosfera",
+          "definition_en": "Affective colouring and mood.",
+          "definition_pt": "Coloração afetiva e atmosfera.",
+          "broader": "GeneralDimension"
+        },
+        {
+          "name": "MediumDimension",
+          "label_en": "medium",
+          "label_pt": "mídia",
+          "definition_en": "Material or technical medium of realization.",
+          "definition_pt": "Meio material ou técnico de realização.",
+          "broader": "GeneralDimension",
+          "source": "Rajewsky 2005"
+        },
+        {
+          "name": "ParatextDimension",
+          "label_en": "paratext",
+          "label_pt": "paratexto",
+          "definition_en": "Thresholds around the work: title, credits, covers, prefaces.",
+          "definition_pt": "Limiares em torno da obra: título, créditos, capas, prefácios.",
+          "source": "Genette 1987"
+        },
+        {
+          "name": "TitleDimension",
+          "label_en": "title",
+          "label_pt": "título",
+          "definition_en": "Title and naming.",
+          "definition_pt": "Título e nomeação.",
+          "broader": "ParatextDimension",
+          "source": "Genette 1987"
+        },
+        {
+          "name": "CreditsDimension",
+          "label_en": "credits / attribution",
+          "label_pt": "créditos / atribuição",
+          "definition_en": "Stated authorship and credits.",
+          "definition_pt": "Autoria declarada e créditos.",
+          "broader": "ParatextDimension",
+          "source": "Genette 1987"
+        },
+        {
+          "name": "CoverArtDimension",
+          "label_en": "cover art / poster",
+          "label_pt": "capa / cartaz",
+          "definition_en": "Packaging, cover and promotional imagery.",
+          "definition_pt": "Embalagem, capa e imagens promocionais.",
+          "broader": "ParatextDimension",
+          "source": "Genette 1987"
+        }
+      ],
+      "definition_en": "Dimensions for annotation, grouped by medium family (narrative, verbal, music, visual, audiovisual, cross-media, paratext).",
+      "definition_pt": "Dimensões para anotação, agrupadas por família de mídia (narrativa, verbal, música, visual, audiovisual, transmidiática, paratexto)."
+    },
+    {
+      "name": "DerivationRegimeScheme",
+      "member_class": "DerivationRegime",
+      "label_en": "Derivation regimes",
+      "label_pt": "Regimes de derivação",
+      "definition_en": "Stance of a derivation toward its source, orthogonal to its type (after Genette's regimes).",
+      "definition_pt": "Postura da derivação em relação à origem, ortogonal ao tipo (a partir dos regimes de Genette).",
+      "concepts": [
+        {
+          "name": "PlayfulRegime",
+          "label_en": "playful",
+          "label_pt": "lúdico",
+          "definition_en": "Derivation aimed at play or amusement.",
+          "definition_pt": "Derivação voltada ao jogo ou divertimento.",
+          "source": "Genette 1982"
+        },
+        {
+          "name": "SatiricalRegime",
+          "label_en": "satirical / critical",
+          "label_pt": "satírico / crítico",
+          "definition_en": "Derivation aimed at mocking or criticizing the source or its world.",
+          "definition_pt": "Derivação voltada a zombar ou criticar a origem ou seu mundo.",
+          "source": "Genette 1982; Hutcheon 1985"
+        },
+        {
+          "name": "SeriousRegime",
+          "label_en": "serious",
+          "label_pt": "sério",
+          "definition_en": "Derivation without comic or critical aim.",
+          "definition_pt": "Derivação sem objetivo cômico ou crítico.",
+          "source": "Genette 1982"
+        },
+        {
+          "name": "ReverentialRegime",
+          "label_en": "reverential / homage",
+          "label_pt": "reverencial / homenagem",
+          "definition_en": "Derivation explicitly honouring the source (ARO addition, not in Genette).",
+          "definition_pt": "Derivação que homenageia explicitamente a origem (acréscimo da ARO, não está em Genette).",
+          "source": "ARO"
+        }
+      ]
+    },
+    {
+      "name": "TransformationOperationScheme",
+      "member_class": "TransformationOperation",
+      "label_en": "Transformation operations",
+      "label_pt": "Operações de transformação",
+      "concepts": [
+        {
+          "name": "Retained",
+          "label_en": "retained",
+          "label_pt": "mantido",
+          "definition_en": "Dimension kept substantially as in the source.",
+          "definition_pt": "Dimensão mantida substancialmente como na origem."
+        },
+        {
+          "name": "Modified",
+          "label_en": "modified",
+          "label_pt": "modificado",
+          "definition_en": "Dimension present in both but changed.",
+          "definition_pt": "Dimensão presente em ambas, mas alterada."
+        },
+        {
+          "name": "Added",
+          "label_en": "added",
+          "label_pt": "acrescentado",
+          "definition_en": "Dimension content absent from the source.",
+          "definition_pt": "Conteúdo da dimensão ausente na origem."
+        },
+        {
+          "name": "Removed",
+          "label_en": "removed",
+          "label_pt": "removido",
+          "definition_en": "Source content omitted in the derivation.",
+          "definition_pt": "Conteúdo da origem omitido na derivação."
+        },
+        {
+          "name": "Recontextualized",
+          "label_en": "recontextualized",
+          "label_pt": "recontextualizado",
+          "definition_en": "Content kept but placed in a different context that changes its sense.",
+          "definition_pt": "Conteúdo mantido, mas posto em contexto que altera seu sentido."
+        }
+      ],
+      "definition_en": "What a derivation does to one artistic dimension.",
+      "definition_pt": "O que uma derivação faz com uma dimensão artística."
+    },
+    {
+      "name": "CreativeRoleScheme",
+      "member_class": "CreativeRole",
+      "label_en": "Creative roles",
+      "label_pt": "Papéis criativos",
+      "concepts": [
+        {
+          "name": "AuthorRole",
+          "label_en": "author",
+          "label_pt": "autor",
+          "definition_en": "Originator of verbal or narrative content.",
+          "definition_pt": "Criador do conteúdo verbal ou narrativo."
+        },
+        {
+          "name": "ComposerRole",
+          "label_en": "composer",
+          "label_pt": "compositor",
+          "definition_en": "Originator of musical content.",
+          "definition_pt": "Criador do conteúdo musical."
+        },
+        {
+          "name": "LyricistRole",
+          "label_en": "lyricist",
+          "label_pt": "letrista",
+          "definition_en": "Author of lyrics.",
+          "definition_pt": "Autor da letra."
+        },
+        {
+          "name": "PerformerRole",
+          "label_en": "performer",
+          "label_pt": "intérprete",
+          "definition_en": "Agent performing a manifestation.",
+          "definition_pt": "Agente que executa uma manifestação."
+        },
+        {
+          "name": "ArrangerRole",
+          "label_en": "arranger",
+          "label_pt": "arranjador",
+          "definition_en": "Agent producing an arrangement.",
+          "definition_pt": "Agente que produz um arranjo."
+        },
+        {
+          "name": "TranslatorRole",
+          "label_en": "translator",
+          "label_pt": "tradutor",
+          "definition_en": "Agent producing a translation.",
+          "definition_pt": "Agente que produz uma tradução."
+        },
+        {
+          "name": "AdapterRole",
+          "label_en": "adapter",
+          "label_pt": "adaptador",
+          "definition_en": "Agent producing an adaptation (e.g. screenwriter).",
+          "definition_pt": "Agente que produz uma adaptação (ex. roteirista)."
+        },
+        {
+          "name": "ProducerRole",
+          "label_en": "producer",
+          "label_pt": "produtor",
+          "definition_en": "Agent responsible for producing a recording or production.",
+          "definition_pt": "Agente responsável pela produção de gravação ou obra."
+        },
+        {
+          "name": "DirectorRole",
+          "label_en": "director",
+          "label_pt": "diretor",
+          "definition_en": "Agent directing an audiovisual or stage work.",
+          "definition_pt": "Agente que dirige obra audiovisual ou cênica."
+        },
+        {
+          "name": "RemixerRole",
+          "label_en": "remixer",
+          "label_pt": "remixador",
+          "definition_en": "Agent producing a remix or sample-based work.",
+          "definition_pt": "Agente que produz remix ou obra baseada em samples."
+        }
+      ],
+      "definition_en": "Roles qualifying a creative contribution; extensible.",
+      "definition_pt": "Papéis que qualificam uma contribuição criativa; extensível."
+    }
+  ],
+  "sparql_constraints": [
+    {
+      "name": "DerivationAnchorKindConstraint",
+      "target": "DerivationClaim",
+      "select": "SELECT $this ?value WHERE { $this aro:hasSourceAnchor|aro:hasDerivedAnchor ?value . FILTER NOT EXISTS { ?value a ?t . FILTER(?t IN (aro:Artwork, aro:Manifestation, aro:Selection)) } }",
+      "message_en": "Derivation anchors must be an Artwork, Manifestation or Selection.",
+      "message_pt": "As âncoras da derivação devem ser Artwork, Manifestation ou Selection."
+    },
+    {
+      "name": "DerivationDistinctAnchorsConstraint",
+      "target": "DerivationClaim",
+      "select": "SELECT $this ?value WHERE { $this aro:hasSourceAnchor ?value ; aro:hasDerivedAnchor ?value . }",
+      "message_en": "Source and derived anchors must differ.",
+      "message_pt": "As âncoras de origem e derivada devem ser diferentes."
+    }
+  ],
+  "module_diagram": {
+    "relations": [
+      "realizesArtwork",
+      "selectsFrom",
+      "hasPrimarySelection",
+      "producedByAct",
+      "hasParticipant",
+      "hasJustification",
+      "describesSituation",
+      "mentionsDepictedElement",
+      "generalizesAs",
+      "hasCondition",
+      "assertsPattern",
+      "assertsCase",
+      "caseAboutSituation",
+      "caseHasReference",
+      "derivedFromSource",
+      "assessesEvidence",
+      "assessesCorrespondence",
+      "explainsPattern",
+      "hasSourceAnchor",
+      "hasDerivedAnchor",
+      "hasTransformation",
+      "aspectConcernsPattern",
+      "derivationJustifiedBy",
+      "derivationRealizedBy",
+      "producesCreation",
+      "hasContribution",
+      "contributionBy",
+      "assessesDerivation"
+    ]
+  }
+}

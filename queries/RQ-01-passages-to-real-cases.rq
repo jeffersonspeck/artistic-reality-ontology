@@ -1,0 +1,26 @@
+# RQ-01: Which passages of a work represent situations that have been claimed to correspond
+# to documented real cases, and where can the supporting source be consulted?
+# Chain: work <- manifestation <- selection <- interpretation -> situation -> pattern
+#        <- correspondence claim -> empirical case -> source URL.
+# Texts are shown in English; replace "en" with "pt-BR" for Portuguese.
+PREFIX aro: <https://w3id.org/aro/ontology#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+SELECT ?work ?passage ?situation ?pattern ?case ?sourceURL WHERE {
+  ?reading aro:hasPrimarySelection ?sel ;
+           aro:describesSituation ?sd .
+  ?sel aro:selectsFrom/aro:realizesArtwork ?w ;
+       aro:selectorExpression ?passage .
+  ?w aro:textValue ?work .
+  ?sd aro:generalizesAs ?p ;
+      aro:textValue ?situation .
+  ?p aro:textValue ?pattern .
+  ?claim a aro:CorrespondenceClaim ;
+         aro:assertsPattern ?p ;
+         aro:assertsCase ?c .
+  ?c aro:textValue ?case .
+  OPTIONAL { ?claim aro:referencesSource/aro:sourceURL ?sourceURL }
+  # Narrative position: first number in the selector expression ("lines 22-26", "chapter 3")
+  BIND(xsd:integer(REPLACE(?passage, "^[^0-9]*([0-9]+).*$", "$1")) AS ?position)
+  FILTER(lang(?work) = "en" && lang(?situation) = "en" && lang(?pattern) = "en" && lang(?case) = "en")
+}
+ORDER BY ?work ?position

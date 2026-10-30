@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+.venv/
+.idea/
+.DS_Store
+# Researcher-owned texts (lyrics, novels) used locally by the annotator; never committed
+private/

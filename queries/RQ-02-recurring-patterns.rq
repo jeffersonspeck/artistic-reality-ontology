@@ -1,0 +1,13 @@
+# RQ-02: Which situation patterns recur across independent works?
+# A pattern recurs when situations described in passages of two or more different
+# artworks are generalized as that same pattern.
+PREFIX aro: <https://w3id.org/aro/ontology#>
+SELECT ?pattern (COUNT(DISTINCT ?w) AS ?works) (GROUP_CONCAT(DISTINCT ?title; SEPARATOR=" | ") AS ?titles) WHERE {
+  ?reading aro:hasPrimarySelection/aro:selectsFrom/aro:realizesArtwork ?w ;
+           aro:describesSituation/aro:generalizesAs ?p .
+  ?p aro:textValue ?pattern .
+  ?w aro:textValue ?title .
+  FILTER(lang(?pattern) = "en" && lang(?title) = "en")
+}
+GROUP BY ?pattern
+HAVING (COUNT(DISTINCT ?w) >= 2)
