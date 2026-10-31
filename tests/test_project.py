@@ -172,6 +172,19 @@ assert any(str(r.pattern).startswith('Arbitrary or lethal violence') and int(r.w
 assert all(str(r.sourceURL).startswith('https://') for r in run('RQ-03-evidence-for-correspondences.rq'))
 assert any(str(r.derived).startswith('Barren Lives') for r in run('RQ-04-derivations-keeping-real-patterns.rq'))
 
+# Content may be written in any language (ADR-024): the research questions must also answer
+# on data written only in Portuguese, with the default preferred language (en) and with pt-BR.
+pt_only = Graph()
+for s, p, o in Graph().parse(ROOT / 'examples/case-studies.ttl'):
+    if not (isinstance(o, Literal) and o.language and o.language.lower() != 'pt-br'):
+        pt_only.add((s, p, o))
+pt_cases = pt_only + g
+for lang in ('en', 'pt-BR'):
+    rq1 = read('queries/RQ-01-passages-to-real-cases.rq').replace('VALUES ?lang { "en" }', f'VALUES ?lang {{ "{lang}" }}')
+    rows = list(pt_cases.query(rq1))
+    assert len(rows) == len(run('RQ-01-passages-to-real-cases.rq')), (lang, len(rows))
+    assert all(r.situation.language.lower() == 'pt-br' for r in rows), lang
+
 # Per-work files are up to date and together cover the whole case-studies file
 split = subprocess.run([sys.executable, str(ROOT / 'scripts/split_examples.py'), '--check'],
                        capture_output=True, text=True, encoding='utf-8')

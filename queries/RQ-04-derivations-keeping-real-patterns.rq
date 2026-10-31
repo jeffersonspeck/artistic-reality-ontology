@@ -2,19 +2,27 @@
 # that has been claimed to correspond to real cases?
 # Connects the derivation module with the evidence module: e.g. a film that keeps the
 # novel's represented police violence, a pattern linked to documented cases.
+# Language: texts and labels in ?lang, or in the language they have when ?lang is missing.
 PREFIX aro: <https://w3id.org/aro/ontology#>
 PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
 SELECT ?source ?derived ?type ?pattern (COUNT(DISTINCT ?case) AS ?realCases) WHERE {
+  VALUES ?lang { "en" }
   ?claim a aro:DerivationClaim ;
-         aro:hasSourceAnchor/aro:textValue ?source ;
-         aro:hasDerivedAnchor/aro:textValue ?derived ;
-         aro:hasDerivationType/skos:prefLabel ?type ;
+         aro:hasSourceAnchor ?s ;
+         aro:hasDerivedAnchor ?d ;
+         aro:hasDerivationType ?t ;
          aro:hasTransformation ?aspect .
+  ?s aro:textValue ?source .
+  ?d aro:textValue ?derived .
+  ?t skos:prefLabel ?type .
   ?aspect aro:hasOperation aro:Retained ;
           aro:aspectConcernsPattern ?p .
   ?p aro:textValue ?pattern .
   ?corr aro:assertsPattern ?p ;
         aro:assertsCase ?case .
-  FILTER(lang(?source) = "en" && lang(?derived) = "en" && lang(?type) = "en" && lang(?pattern) = "en")
+  FILTER(langMatches(lang(?source), ?lang) || NOT EXISTS { ?s aro:textValue ?x1 FILTER(langMatches(lang(?x1), ?lang)) })
+  FILTER(langMatches(lang(?derived), ?lang) || NOT EXISTS { ?d aro:textValue ?x2 FILTER(langMatches(lang(?x2), ?lang)) })
+  FILTER(langMatches(lang(?type), ?lang) || NOT EXISTS { ?t skos:prefLabel ?x3 FILTER(langMatches(lang(?x3), ?lang)) })
+  FILTER(langMatches(lang(?pattern), ?lang) || NOT EXISTS { ?p aro:textValue ?x4 FILTER(langMatches(lang(?x4), ?lang)) })
 }
 GROUP BY ?source ?derived ?type ?pattern

@@ -795,10 +795,12 @@ async function openQueries() {
   // loading a query is asynchronous: "Run" waits for it, so it always runs the chosen query
   let loading = null;
   const load = () => (loading = queryText(list[Number(select.value)].file).then((text) => {
-    editor.value = text; output.replaceChildren();
+    editor.value = withLanguage(text); output.replaceChildren();
   }));
   select.addEventListener("change", load);
   const run = h("button", { class: "primary", onclick: async () => { await loading; executeQuery(editor.value, output); } }, t("run"));
+  // texts and labels in the results follow the content language (falling back to others)
+  const withLanguage = (text) => text.replace(/VALUES \?lang \{ "[^"]*" \}/g, `VALUES ?lang { "${state.contentLang}" }`);
   panel.replaceChildren(
     h("h3", {}, t("queriesTitle"), " ", h("button", { class: "link", onclick: () => panel.replaceChildren() }, t("close"))),
     h("p", { class: "muted small" }, t("queriesNote")),

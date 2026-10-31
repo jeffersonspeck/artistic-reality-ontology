@@ -1,16 +1,23 @@
 # RQ-03: How is each correspondence between a represented pattern and a real case supported?
 # One row per (claim, evidence item): what the evidence says, where it comes from, and the
 # agent's assessment of what it supports (and what it does not).
+# Language: texts in ?lang, or in the language they have when ?lang is missing.
 PREFIX aro: <https://w3id.org/aro/ontology#>
 SELECT ?pattern ?case ?evidence ?sourceURL ?assessment WHERE {
+  VALUES ?lang { "en" }
   ?claim a aro:CorrespondenceClaim ;
-         aro:assertsPattern/aro:textValue ?pattern ;
-         aro:assertsCase/aro:textValue ?case .
+         aro:assertsPattern ?p ;
+         aro:assertsCase ?c .
+  ?p aro:textValue ?pattern .
+  ?c aro:textValue ?case .
   ?a aro:assessesCorrespondence ?claim ;
      aro:assessesEvidence ?ev ;
      aro:textValue ?assessment .
   ?ev aro:textValue ?evidence ;
       aro:derivedFromSource/aro:sourceURL ?sourceURL .
-  FILTER(lang(?pattern) = "en" && lang(?case) = "en" && lang(?evidence) = "en" && lang(?assessment) = "en")
+  FILTER(langMatches(lang(?pattern), ?lang) || NOT EXISTS { ?p aro:textValue ?x1 FILTER(langMatches(lang(?x1), ?lang)) })
+  FILTER(langMatches(lang(?case), ?lang) || NOT EXISTS { ?c aro:textValue ?x2 FILTER(langMatches(lang(?x2), ?lang)) })
+  FILTER(langMatches(lang(?evidence), ?lang) || NOT EXISTS { ?ev aro:textValue ?x3 FILTER(langMatches(lang(?x3), ?lang)) })
+  FILTER(langMatches(lang(?assessment), ?lang) || NOT EXISTS { ?a aro:textValue ?x4 FILTER(langMatches(lang(?x4), ?lang)) })
 }
 ORDER BY ?pattern ?case

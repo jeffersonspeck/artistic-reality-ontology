@@ -1,14 +1,20 @@
 # CQ-15: What does each derivation retain, modify, add, remove or recontextualize?
 # Each TransformationAspect pairs one artistic dimension (melody, plot, framing...)
 # with one operation; a claim may have any number of aspects.
+# Language: ?lang is the preferred language of labels (another one is used when missing).
 PREFIX aro: <https://w3id.org/aro/ontology#>
 PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
 SELECT ?claim ?dimension ?operation WHERE {
+  VALUES ?lang { "en" }
   ?claim a aro:DerivationClaim ;
          aro:hasTransformation ?aspect .
-  ?aspect aro:hasDimension/skos:prefLabel ?dimension ;
-          aro:hasOperation/skos:prefLabel ?operation .
-  # Labels in English; use "pt-BR" for Portuguese
-  FILTER(lang(?dimension) = "en" && lang(?operation) = "en")
+  ?aspect aro:hasDimension ?d ;
+          aro:hasOperation ?o .
+  ?d skos:prefLabel ?dimension .
+  ?o skos:prefLabel ?operation .
+  FILTER(langMatches(lang(?dimension), ?lang)
+         || NOT EXISTS { ?d skos:prefLabel ?l1 FILTER(langMatches(lang(?l1), ?lang)) })
+  FILTER(langMatches(lang(?operation), ?lang)
+         || NOT EXISTS { ?o skos:prefLabel ?l2 FILTER(langMatches(lang(?l2), ?lang)) })
 }
 ORDER BY ?claim ?dimension

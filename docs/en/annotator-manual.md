@@ -150,6 +150,8 @@ The **Queries (CQ/RQ)** button opens a panel with every competency question (CQ)
 3. click a node in the table to go to it in the graph;
 4. under **SPARQL (editable)** you can adapt the query before running it.
 
+Texts in the results follow the **content language** chosen on the toolbar; a text missing in that language is shown in the language it has.
+
 The SPARQL engine (Oxigraph) is downloaded on first use, which needs internet.
 
 ## 9. Saving, loading and examples
@@ -174,8 +176,10 @@ python scripts/validate.py aro-annotations.ttl
 The command prints `OK` or one line per violation; add `--lang pt-BR` for Portuguese messages.
 
 ```bash
-python scripts/query.py aro-annotations.ttl --query queries/RQ-01-passages-to-real-cases.rq
+python scripts/query.py aro-annotations.ttl --query queries/RQ-01-passages-to-real-cases.rq --lang pt-BR
 ```
+
+`--lang` sets the preferred language of texts (default `en`); texts without a version in that language are shown in the language they have.
 
 The queries in `queries/` answer the competency questions (CQ-…) and the research questions (RQ-01 to RQ-04). They are described in the [README](../../README.md#validating-and-querying-your-data) and in the [case studies](case-studies.md).
 

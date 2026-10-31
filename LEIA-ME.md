@@ -199,7 +199,7 @@ Mostra `OK` ou uma linha por violação (recurso, propriedade e mensagem em port
 python scripts/query.py meus-dados.ttl --query queries/CQ-13-derivations-of-work.rq
 ```
 
-Executa uma consulta SPARQL sobre seus dados mais a ontologia. As consultas prontas em [`queries/`](queries/) respondem às questões de competência:
+Executa uma consulta SPARQL sobre seus dados mais a ontologia. Textos e rótulos aparecem em inglês por padrão; acrescente `--lang pt-BR` (ou qualquer etiqueta de idioma) para preferir outro idioma. Textos que não existem no idioma preferido aparecem no idioma que têm, então dados escritos em um só idioma respondem a todas as consultas. As consultas prontas em [`queries/`](queries/) respondem às questões de competência:
 
 | Consulta | Pergunta |
 |---|---|

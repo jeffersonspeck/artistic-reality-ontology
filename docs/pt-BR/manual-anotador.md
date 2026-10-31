@@ -150,6 +150,8 @@ O botão **Consultas (CQ/RQ)** abre um painel com todas as questões de competê
 3. clique num nó da tabela para ir até ele no grafo;
 4. em **SPARQL (editável)** você pode adaptar a consulta antes de executar.
 
+Os textos dos resultados seguem o **idioma do conteúdo** escolhido na barra; quando um texto não existe nesse idioma, aparece no idioma que tem.
+
 O motor SPARQL (Oxigraph) é baixado no primeiro uso; para isso é preciso internet.
 
 ## 9. Salvar, carregar e exemplos
@@ -174,8 +176,10 @@ python scripts/validate.py aro-annotations.ttl --lang pt-BR
 O comando mostra `OK` ou uma linha por violação, com mensagem em português.
 
 ```bash
-python scripts/query.py aro-annotations.ttl --query queries/RQ-01-passages-to-real-cases.rq
+python scripts/query.py aro-annotations.ttl --query queries/RQ-01-passages-to-real-cases.rq --lang pt-BR
 ```
+
+`--lang` escolhe o idioma preferido dos textos (padrão: `en`); textos sem versão nesse idioma aparecem no idioma que têm.
 
 As consultas de `queries/` respondem às questões de competência (CQ-…) e às questões de pesquisa (RQ-01 a RQ-04). Elas estão descritas no [LEIA-ME](../../LEIA-ME.md#validar-e-consultar-seus-dados) e nos [estudos de caso](case-studies.md).
 

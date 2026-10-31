@@ -199,7 +199,7 @@ Prints `OK` or one line per violation (resource, property and message; add `--la
 python scripts/query.py my-data.ttl --query queries/CQ-13-derivations-of-work.rq
 ```
 
-Runs a SPARQL query over your data plus the ontology. The ready-made queries in [`queries/`](queries/) answer the competency questions:
+Runs a SPARQL query over your data plus the ontology. Texts and labels appear in English by default; add `--lang pt-BR` (or any language tag) to prefer another language. Texts that do not exist in the preferred language are shown in the language they have, so data written in only one language still answers every query. The ready-made queries in [`queries/`](queries/) answer the competency questions:
 
 | Query | Question |
 |---|---|

@@ -2,9 +2,12 @@
 # (artwork, manifestation or selection) and by which derivation type?
 # Source anchors at manifestation/selection level are normalized up to their artwork,
 # so a sample taken from one recording is still listed under the song it realizes.
+# Language: ?lang is the preferred language of labels (scripts/query.py --lang and the
+# annotator replace it); when a label is missing in that language, another one is used.
 PREFIX aro: <https://w3id.org/aro/ontology#>
 PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
 SELECT ?sourceWork ?derived ?derivedLevel ?typeLabel WHERE {
+  VALUES ?lang { "en" }
   ?claim a aro:DerivationClaim ;
          aro:hasSourceAnchor ?src ;
          aro:hasDerivedAnchor ?derived ;
@@ -16,8 +19,9 @@ SELECT ?sourceWork ?derived ?derivedLevel ?typeLabel WHERE {
   # Level of the derived entity
   ?derived a ?derivedLevel .
   VALUES ?derivedLevel { aro:Artwork aro:Manifestation aro:Selection }
-  # Human-readable type label; change "en" to "pt-BR" for Portuguese
+  # Type label in the preferred language (or in another one if that one is missing)
   ?type skos:prefLabel ?typeLabel .
-  FILTER(lang(?typeLabel) = "en")
+  FILTER(langMatches(lang(?typeLabel), ?lang)
+         || NOT EXISTS { ?type skos:prefLabel ?l FILTER(langMatches(lang(?l), ?lang)) })
 }
 ORDER BY ?sourceWork ?derived
