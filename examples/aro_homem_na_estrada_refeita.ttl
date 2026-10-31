@@ -607,7 +607,8 @@ hne:contestacaoInterpretacao45 a aro:InterpretationChallenge ;
     aro:textValue "Uma hipótese atribuída à polícia não comprova acerto de contas; em direção inversa, o cerco prévio não demonstra por si só quem efetuou disparos letais. Evitar certeza indevida."@pt-BR .
 
 hne:criacao1993 a aro:CreativeAct ;
-    aro:hasContribution hne:contribuicao_interprete,
+    aro:hasContribution hne:contribuicao_compositor,
+        hne:contribuicao_interprete,
         hne:contribuicao_letrista ;
     aro:producesCreation hne:gravacao1993,
         hne:homemNaEstrada .
@@ -1005,7 +1006,9 @@ hne:unidadeVulnerabilidade a aro:AnalysisUnit ;
     aro:textValue "Conjunto de recortes sobre vulnerabilidade socioterritorial"@pt-BR .
 
 <http://dbpedia.org/resource/Mano_Brown> a schema:Person ;
-    rdfs:label "Mano Brown / Pedro Paulo Soares Pereira"@pt-BR .
+    rdfs:label "Mano Brown / Pedro Paulo Soares Pereira"@pt-BR ;
+    schema:name "Pedro Paulo Soares Pereira" ;
+    schema:alternateName "Mano Brown" .
 
 <http://dbpedia.org/resource/Racionais_MC's> a schema:MusicGroup ;
     rdfs:label "Racionais MC’s"@pt-BR .
@@ -1317,6 +1320,10 @@ hne:condicao_violencia-mulher a aro:PatternCondition ;
 hne:contribuicao_interprete a aro:CreativeContribution ;
     aro:contributionBy <http://dbpedia.org/resource/Racionais_MC's> ;
     aro:contributionRole aro:PerformerRole .
+
+hne:contribuicao_compositor a aro:CreativeContribution ;
+    aro:contributionBy <http://dbpedia.org/resource/Mano_Brown> ;
+    aro:contributionRole aro:ComposerRole .
 
 hne:contribuicao_letrista a aro:CreativeContribution ;
     aro:contributionBy <http://dbpedia.org/resource/Mano_Brown> ;
@@ -3606,5 +3613,37 @@ hne:transcricaoCifraClub a aro:Manifestation ;
     aro:textValue "Transcrição de referência online, Cifra Club; versão de linhas e posições pendente de fixação da transcrição autorizada."@pt-BR .
 
 hne:analistaPesquisador a schema:Person ;
-    rdfs:label "Pesquisador — instância analítica proposta, sujeita à revisão e validação humana"@pt-BR .
+    rdfs:label "Jefferson Rodrigo Speck"@pt-BR ;
+    schema:name "Jefferson Rodrigo Speck" ;
+    schema:affiliation "Programa de Pós-Graduação em Informática (PPGInf), Universidade Federal do Paraná (UFPR)"@pt-BR ;
+    rdfs:comment "Analista responsável pelas anotações deste arquivo; as interpretações são revisáveis."@pt-BR .
 
+# --- Derivação: a gravação de 1993 usa um sample de "Ela Partiu" (Tim Maia) ---------
+hne:elaPartiu a aro:Artwork ;
+    aro:textValue "Ela Partiu — Tim Maia"@pt-BR .
+
+hne:derivacao_sampleElaPartiu a aro:DerivationClaim ;
+    prov:wasAttributedTo hne:analistaPesquisador ;
+    aro:hasSourceAnchor hne:elaPartiu ;
+    aro:hasDerivedAnchor hne:gravacao1993 ;
+    aro:hasDerivationType aro:Sampling ;
+    aro:hasTransformation hne:aspecto_sampleElaPartiu ;
+    aro:derivationRealizedBy hne:criacao1993 ;
+    aro:derivationJustifiedBy hne:justificativa_sampleElaPartiu ;
+    aro:derivationReferencesSource hne:fonte_raioXWiki ;
+    aro:claimProducedByAct hne:atoInterpretativo2026 ;
+    aro:textValue "A gravação de Homem na Estrada (1993) usa um sample de Ela Partiu, de Tim Maia."@pt-BR .
+
+hne:aspecto_sampleElaPartiu a aro:TransformationAspect ;
+    aro:hasDimension aro:RecordedSoundDimension ;
+    aro:hasOperation aro:Recontextualized ;
+    aro:textValue "O som gravado de uma canção romântica de soul passa a acompanhar uma narrativa sobre violência, encarceramento e exclusão urbana."@pt-BR .
+
+hne:justificativa_sampleElaPartiu a aro:InterpretiveJustification ;
+    aro:textValue "O uso do sample é informado pela ficha do álbum Raio-X do Brasil. A leitura de que o sentido do som muda com o novo contexto é interpretativa e revisável; a anotação não avalia autorização nem licenciamento do sample."@pt-BR .
+
+hne:fonte_raioXWiki a aro:ReferenceSource ;
+    rdfs:label "Raio-X do Brasil (artigo sobre o álbum; lista o sample de Ela Partiu, de Tim Maia)"@pt-BR ;
+    aro:sourceURL "https://en.wikipedia.org/wiki/Raio-X_do_Brasil"^^xsd:anyURI ;
+    aro:textValue "Raio-X do Brasil (artigo sobre o álbum; lista o sample de Ela Partiu, de Tim Maia)"@pt-BR ;
+    aro:languageTag "en" .
