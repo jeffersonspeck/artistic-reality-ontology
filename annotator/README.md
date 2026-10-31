@@ -24,7 +24,9 @@ This serves the repository on `http://localhost:8765/annotator/` and opens the b
 
 | Action | How |
 |---|---|
-| Create a node | Left panel: choose a class (grouped by module, with its definition), type a name, **Create**. |
+| Create a node | Left panel: choose a class (grouped by module, with its definition), type a name and, optionally, **Link to** an existing node — only links the ontology allows for that class are listed (e.g. a selection can only be linked to a manifestation, by `selectsFrom`). **Create**. |
+| Right-click a node | Menu: **New node linked here…** (choose one of the relations the ontology allows in either direction, then the class of the new node), show/shorten the full text, open/close neighbours, open in focus, hide. |
+| Long texts | The right panel shows the node's text in full in a **Content** card. In the graph, long texts are shortened; show one in full (button or right-click) or tick **Full texts** to show all. |
 | Schema-driven forms | Every form follows the ontology: *Add relation* lists only properties whose domain fits the node; *Add as target* lists properties whose range accepts it (e.g. a new selection that `selectsFrom` this manifestation); new nodes can be of the range class or any subclass; properties at their SHACL maximum are no longer offered, and missing required ones are starred and listed in yellow. |
 | Edit a node | Click it. The right panel shows its class and definition, texts, links, data and relations. |
 | Open / close neighbours | Double-click the node, or **Open / close neighbours** in the right panel. Hidden neighbours appear in a ring around the node, grouped by relation, without moving the rest of the drawing. Nodes with hidden neighbours have a double border; the relations of the selected node are highlighted. |
@@ -38,6 +40,7 @@ This serves the repository on `http://localhost:8765/annotator/` and opens the b
 | Texts in several languages | *Texts*: one value per language (`aro:textValue`, `aro:derivationExtent`). The **content language** selector sets the default; *other…* accepts any BCP 47 tag. |
 | Links | *Links*: `aro:externalLink` (any node: work page, recording, evidence location) and `aro:sourceURL` (reference sources). Links open in a new tab. |
 | Investigate | Situations, patterns, empirical cases, claims and hypotheses have **Search on Google** with their text in the content language. |
+| Queries (CQ/RQ) | **Queries (CQ/RQ)** lists every query of `queries/` with the question it answers (in the interface language), runs it over your current annotations plus the ontology — same results as `python scripts/query.py` — and shows a table; annotated nodes in the results are clickable. The SPARQL can be edited before running. Engine: Oxigraph (WebAssembly), loaded on first use. |
 | Validate | **Validate** runs in-browser checks (cardinality, classes, language tags, derivation anchors) and lists problems; click one to jump to the node. Full SHACL: `python scripts/validate.py file.ttl`. |
 | Save / load | **Save .ttl** downloads `aro-annotations.ttl`; **Load .ttl** opens any ARO Turtle file to browse or continue it; **Load example** opens `examples/synthetic-derivation.ttl`. A draft is also kept in the browser between sessions. |
 | Languages | **Interface**: English or Português (class and concept names come from the ontology's own labels). **Content language**: language of the texts you write. |
@@ -51,6 +54,7 @@ This serves the repository on `http://localhost:8765/annotator/` and opens the b
 | `ontology.js` | loads `aro.ttl` and the catalog; class hierarchy, domains/ranges, vocabularies, labels |
 | `data.js` | the user's annotations (N3 store), Turtle import/export |
 | `graph.js` | graph view with open/close of neighbours (Cytoscape.js) |
+| `queries.js` | runs the CQ/RQ SPARQL queries in the browser (Oxigraph) |
 | `validate.js` | light checks driven by `validation/aro-shapes.ttl` |
 | `i18n.js` | interface strings in English and Portuguese |
 
@@ -74,7 +78,9 @@ O comando serve o repositório em `http://localhost:8765/annotator/` e abre o na
 
 | Ação | Como |
 |---|---|
-| Criar um nó | Painel esquerdo: escolha a classe (agrupada por módulo, com definição), digite um nome, **Criar**. |
+| Criar um nó | Painel esquerdo: escolha a classe (agrupada por módulo, com definição), digite um nome e, se quiser, **Ligar a** um nó existente — só aparecem as ligações que a ontologia permite para essa classe (ex.: um recorte só pode se ligar a uma manifestação, por `selectsFrom`). **Criar**. |
+| Botão direito num nó | Menu: **Novo nó ligado aqui…** (escolha uma das relações que a ontologia permite, em qualquer direção, e depois a classe do novo nó), mostrar/encurtar o texto completo, abrir/fechar vizinhos, abrir em foco, esconder. |
+| Textos longos | O painel direito mostra o texto do nó por inteiro num cartão **Conteúdo**. No grafo, textos longos aparecem encurtados; mostre um por inteiro (botão ou botão direito) ou marque **Textos completos** para mostrar todos. |
 | Formulários guiados pelo esquema | Todo formulário segue a ontologia: *Adicionar relação* lista só propriedades cujo domínio aceita o nó; *Adicionar como destino* lista propriedades cuja imagem o aceita (ex.: um novo recorte que `selectsFrom` esta manifestação); nós novos podem ser da classe da imagem ou de qualquer subclasse; propriedades no máximo do SHACL deixam de ser oferecidas, e as obrigatórias que faltam aparecem com asterisco e listadas em amarelo. |
 | Editar um nó | Clique nele. O painel direito mostra classe e definição, textos, links, dados e relações. |
 | Abrir / fechar vizinhos | Clique duas vezes no nó, ou **Abrir / fechar vizinhos** no painel direito. Os vizinhos ocultos aparecem num anel em volta do nó, agrupados por relação, sem mover o resto do desenho. Nós com vizinhos ocultos têm borda dupla; as relações do nó selecionado ficam destacadas. |
@@ -88,6 +94,7 @@ O comando serve o repositório em `http://localhost:8765/annotator/` e abre o na
 | Textos em vários idiomas | *Textos*: um valor por idioma (`aro:textValue`, `aro:derivationExtent`). O seletor **idioma do conteúdo** define o padrão; *outro…* aceita qualquer etiqueta BCP 47. |
 | Links | *Links*: `aro:externalLink` (qualquer nó: página da obra, gravação, local da evidência) e `aro:sourceURL` (fontes de referência). Os links abrem em nova aba. |
 | Investigar | Situações, padrões, casos empíricos, afirmações e hipóteses têm **Pesquisar no Google** com o texto no idioma do conteúdo. |
+| Consultas (CQ/RQ) | **Consultas (CQ/RQ)** lista todas as consultas de `queries/` com a pergunta que respondem (no idioma da interface), executa sobre as suas anotações atuais mais a ontologia — mesmos resultados que `python scripts/query.py` — e mostra uma tabela; os nós anotados nos resultados são clicáveis. O SPARQL pode ser editado antes de executar. Motor: Oxigraph (WebAssembly), carregado no primeiro uso. |
 | Validar | **Validar** executa verificações no navegador (cardinalidade, classes, idioma, âncoras de derivação) e lista os problemas; clique num deles para ir ao nó. SHACL completo: `python scripts/validate.py arquivo.ttl --lang pt-BR`. |
 | Salvar / carregar | **Salvar .ttl** baixa `aro-annotations.ttl`; **Carregar .ttl** abre qualquer arquivo Turtle da ARO para navegar ou continuar; **Carregar exemplo** abre `examples/synthetic-derivation.ttl`. Um rascunho também fica guardado no navegador entre sessões. |
 | Idiomas | **Interface**: English ou Português (nomes de classes e conceitos vêm dos rótulos da própria ontologia). **Idioma do conteúdo**: idioma dos textos que você escreve. |
@@ -101,6 +108,7 @@ O comando serve o repositório em `http://localhost:8765/annotator/` e abre o na
 | `ontology.js` | carrega `aro.ttl` e o catálogo; hierarquia, domínios/imagens, vocabulários, rótulos |
 | `data.js` | as anotações do usuário (store N3), importação/exportação Turtle |
 | `graph.js` | grafo com abrir/fechar vizinhos (Cytoscape.js) |
+| `queries.js` | executa as consultas SPARQL das CQ/RQ no navegador (Oxigraph) |
 | `validate.js` | verificações leves guiadas por `validation/aro-shapes.ttl` |
 | `i18n.js` | textos da interface em inglês e português |
 

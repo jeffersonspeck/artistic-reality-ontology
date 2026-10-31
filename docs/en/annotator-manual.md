@@ -87,6 +87,12 @@ For **derivations** (cover, sample, adaptation…), create a *derivation claim* 
 - `hasTransformation`, with a dimension and an operation;
 - `derivationJustifiedBy`, with the explanation.
 
+**Shortcuts to create already-linked nodes**
+- In the left panel, after choosing the class, use **Link to**: only existing nodes and relations that the ontology allows for that class are listed, in both directions (e.g. "new node → selection references manifestation → Recording X").
+- In the graph, **right-click** a node and choose **New node linked here…**: first the relation (only allowed ones still below their maximum), then the class of the new node and its name.
+
+**Long texts:** the right panel shows the full text in the **Content** card. In the graph, use **Show full text in the graph** (panel or right-click) for one node, or tick **Full texts** on the toolbar for all; long texts become wider cards.
+
 **How the forms follow the ontology**
 - *Add relation* shows only properties whose domain fits the node. **Required** ones (SHACL `minCount`) are marked `*`, and missing ones are listed in a yellow notice. Those already at their **maximum** (`maxCount`) are no longer offered.
 - *Add as target* creates a relation that **arrives** at the node, from an existing or new node. For example, on a manifestation: a new selection with `selectsFrom` pointing to it.
@@ -135,6 +141,16 @@ The attached text stays **only in your browser**: it is not written to the `.ttl
 - derivation anchors.
 
 Click a problem to jump to the node. Full validation (SHACL) is in section 11.
+
+### Queries in the browser
+
+The **Queries (CQ/RQ)** button opens a panel with every competency question (CQ) and research question (RQ):
+1. choose the question (shown in the interface language);
+2. click **Run**: the query runs over your current annotations plus the ontology and shows a table. The results are the same as `python scripts/query.py`;
+3. click a node in the table to go to it in the graph;
+4. under **SPARQL (editable)** you can adapt the query before running it.
+
+The SPARQL engine (Oxigraph) is downloaded on first use, which needs internet.
 
 ## 9. Saving, loading and examples
 

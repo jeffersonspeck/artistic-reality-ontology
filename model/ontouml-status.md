@@ -10,6 +10,8 @@ To produce an actual native OntoUML model, import/redraw these concepts in an On
 
 Do NOT rename the catalog file as a native OntoUML exchange file.
 
+OntoUML-notation class diagrams (class and association stereotypes, multiplicities, generalizations) are generated in `model/diagrams/ontouml/` and explained in [docs/en/ontouml.md](../docs/en/ontouml.md) / [docs/pt-BR/ontouml.md](../docs/pt-BR/ontouml.md).
+
 ---
 
 [← Back to README](../README.md) · [← Voltar para o LEIA-ME](../LEIA-ME.md)

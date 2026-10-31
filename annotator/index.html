@@ -20,12 +20,14 @@
       <button id="example" data-i18n="example"></button>
       <button id="save" class="primary" data-i18n="save"></button>
       <button id="validate" data-i18n="validate"></button>
+      <button id="queries" data-i18n="queries"></button>
       <span class="sep"></span>
       <button id="show-works" data-i18n="showWorks"></button>
       <button id="show-all" data-i18n="showAll"></button>
       <select id="layout-mode" aria-label="layout"><option value="tree" data-i18n="layoutTree"></option><option value="force" data-i18n="layoutForce"></option></select>
       <button id="relayout" data-i18n="layout"></button>
       <label class="inline"><input type="checkbox" id="edge-labels" checked> <span data-i18n="edgeLabels"></span></label>
+      <label class="inline"><input type="checkbox" id="full-text"> <span data-i18n="fullTexts"></span></label>
       <span class="sep"></span>
       <button id="export-png" data-i18n="exportPng"></button>
       <button id="print" data-i18n="print"></button>
@@ -47,6 +49,10 @@
       <p id="class-help" class="muted small"></p>
       <label data-i18n="nodeName"></label>
       <input id="node-name" type="text">
+      <!-- Optional link to an existing node; only links allowed by the ontology are offered -->
+      <label data-i18n="linkTo"></label>
+      <select id="link-to"></select>
+      <p class="muted small" data-i18n="linkHelp"></p>
       <button id="create" class="primary" data-i18n="create"></button>
       <hr>
       <label data-i18n="baseIri"></label>
@@ -63,6 +69,8 @@
     <section id="graph-wrap">
       <div id="graph"></div>
       <div id="validation"></div>
+      <!-- CQ/RQ queries and their results -->
+      <div id="queries-panel"></div>
     </section>
 
     <!-- Right: inspector of the selected node -->
@@ -70,6 +78,9 @@
   </main>
 
   <footer id="status"></footer>
+
+  <!-- Right-click menu of a graph node -->
+  <div id="context-menu" hidden></div>
 
   <!-- Filled just before printing; the only thing visible on paper -->
   <div id="print-area"></div>

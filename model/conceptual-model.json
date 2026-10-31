@@ -9,7 +9,8 @@
     "datatype_properties: range is an XSD local name or a prefixed datatype (rdf:langString = multilingual text); label_* and comment_* in both languages.",
     "concept_schemes: SKOS vocabularies; member_class is the high-order class typing each concept; broader builds the hierarchy; source cites the literature.",
     "sparql_constraints: SHACL-SPARQL rules with bilingual messages.",
-    "module_diagram: relations drawn in the README module diagram (model/diagrams/modules.*.svg); a union range inside one package is drawn as a single edge to that package."
+    "module_diagram: relations drawn in the README module diagram (model/diagrams/modules.*.svg); a union range inside one package is drawn as a single edge to that package.",
+    "relations[].ontouml: OntoUML association stereotype when one applies (participation, creation, mediation, instantiation); otherwise a plain association."
   ],
   "version": "0.2.0-beta",
   "ontology": {
@@ -646,7 +647,8 @@
       "shacl": {
         "minCount": 1,
         "maxCount": 1
-      }
+      },
+      "ontouml": "creation"
     },
     {
       "name": "hasParticipant",
@@ -659,7 +661,8 @@
       "shacl": {
         "minCount": 1,
         "nodeKind": "IRI"
-      }
+      },
+      "ontouml": "participation"
     },
     {
       "name": "hasJustification",
@@ -913,7 +916,8 @@
       "shacl": {
         "minCount": 1,
         "class": "DerivationType"
-      }
+      },
+      "ontouml": "instantiation"
     },
     {
       "name": "hasRegime",
@@ -925,7 +929,8 @@
       "description_pt": "alegação registra regime de derivação",
       "shacl": {
         "class": "DerivationRegime"
-      }
+      },
+      "ontouml": "instantiation"
     },
     {
       "name": "hasTransformation",
@@ -948,7 +953,8 @@
         "minCount": 1,
         "maxCount": 1,
         "class": "ArtisticDimension"
-      }
+      },
+      "ontouml": "instantiation"
     },
     {
       "name": "hasOperation",
@@ -962,7 +968,8 @@
         "minCount": 1,
         "maxCount": 1,
         "class": "TransformationOperation"
-      }
+      },
+      "ontouml": "instantiation"
     },
     {
       "name": "aspectSourceSelection",
@@ -1016,7 +1023,8 @@
       "target_cardinality": "0..1",
       "source_cardinality": "0..*",
       "description_en": "analytical act that recorded the claim",
-      "description_pt": "ato analítico que registrou a alegação"
+      "description_pt": "ato analítico que registrou a alegação",
+      "ontouml": "creation"
     },
     {
       "name": "derivationReferencesSource",
@@ -1049,7 +1057,8 @@
       "description_pt": "ato origina obra ou manifestação",
       "shacl": {
         "minCount": 1
-      }
+      },
+      "ontouml": "creation"
     },
     {
       "name": "hasContribution",
@@ -1058,7 +1067,8 @@
       "target_cardinality": "0..*",
       "source_cardinality": "1",
       "description_en": "act includes contribution",
-      "description_pt": "ato inclui contribuição"
+      "description_pt": "ato inclui contribuição",
+      "ontouml": "creation"
     },
     {
       "name": "contributionBy",
@@ -1072,7 +1082,8 @@
         "minCount": 1,
         "maxCount": 1,
         "nodeKind": "IRI"
-      }
+      },
+      "ontouml": "mediation"
     },
     {
       "name": "contributionRole",
@@ -1085,7 +1096,8 @@
       "shacl": {
         "minCount": 1,
         "class": "CreativeRole"
-      }
+      },
+      "ontouml": "instantiation"
     }
   ],
   "datatype_properties": [

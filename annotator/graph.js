@@ -17,6 +17,7 @@ const STYLE = [
   // Vocabulary concepts and external resources are visually secondary
   { selector: "node[kind = 'concept']", style: { "shape": "tag", "background-color": "#f1f5f9", "border-style": "dashed" } },
   { selector: "node[kind = 'external']", style: { "shape": "ellipse", "background-color": "#ffffff", "border-style": "dotted" } },
+  { selector: "node[?card]", style: { "text-max-width": 300, "text-justification": "left", "padding": 14, "font-size": 11 } },
   { selector: "node[?focus]", style: { "border-color": "#7c3aed", "border-width": 4 } },
   { selector: "node:selected", style: { "border-color": "#2563eb", "border-width": 3 } },
   { selector: "edge", style: {
@@ -30,7 +31,7 @@ const STYLE = [
 ];
 
 export class GraphView {
-  constructor(container, { onSelect }) {
+  constructor(container, { onSelect, onContext }) {
     this.cy = cytoscape({ container, style: STYLE, wheelSensitivity: 0.3, minZoom: 0.1, maxZoom: 3 });
     this.visible = new Set();
     this.edgeLabels = true;
@@ -42,6 +43,18 @@ export class GraphView {
     this.cy.on("tap", "node", (e) => onSelect(e.target.id()));
     this.cy.on("tap", (e) => { if (e.target === this.cy) onSelect(null); });
     this.cy.on("dbltap", "node", (e) => this.toggle(e.target.id()));
+    // right-click (or long press): context menu of the node, at the pointer position
+    this.cy.on("cxttap", "node", (e) => {
+      if (!onContext) return;
+      // pointer position in the window (falls back to the node position, e.g. on touch)
+      const box = container.getBoundingClientRect();
+      const ev = e.originalEvent;
+      const at = ev && "clientX" in ev ? { clientX: ev.clientX, clientY: ev.clientY }
+        : { clientX: box.left + e.target.renderedPosition().x, clientY: box.top + e.target.renderedPosition().y };
+      onContext(e.target.id(), at);
+    });
+    this.fullText = new Set();   // nodes whose full text is shown in the graph
+    this.textMode = "short";     // "short" (truncated labels) | "full" (every text in full)
     // highlight the relations of the selected node
     this.cy.on("select unselect", "node", () => {
       this.cy.edges().removeClass("highlight");
@@ -91,7 +104,11 @@ export class GraphView {
       const typeLabel = types.length ? shortIri(types[0]) : "";
       return { label: typeLabel ? `${truncate(name, 50)}\n${typeLabel}` : truncate(name, 50), color: "#ffffff", kind: "external" };
     }
-    return { label: `${truncate(name, 60)}\n‹${o.label(cls, this.uiLang)}›`,
+    // Long texts are truncated unless the node (or the whole graph) shows full text;
+    // a full long text is drawn as a wider, left-aligned "content card"
+    const full = this.textMode === "full" || this.fullText.has(id);
+    const card = full && name.length > 60;
+    return { label: `${full ? name : truncate(name, 60)}\n‹${o.label(cls, this.uiLang)}›`, card,
              color: o.packageColor(o.packageOf(cls)), kind: "individual" };
   }
 

@@ -9,6 +9,8 @@ The conceptual catalog is the single source of truth (ADR-017). This script writ
   docs/en/reference-model.md, docs/pt-BR/reference-model.md   bilingual reference documentation
   README.md, LEIA-ME.md                                        only the marked class-overview section
   model/diagrams/*.dot (and *.svg when Graphviz `dot` is available)
+  queries/index.json                                           list of CQ/RQ queries for the annotator
+  model/diagrams/ontouml/*.dot, *.svg                           OntoUML class diagrams (overview + per package)
 
 Usage:
   python scripts/build.py            # regenerate files that changed and render outdated SVGs
@@ -809,6 +811,127 @@ def build_module_dot(cat: dict, lang: str) -> str:
     return "\n".join(lines)
 
 
+# ------------------------------------------------------------------ query index
+def question_texts(lang: str) -> dict[str, str]:
+    """The wording of each CQ/RQ in one language, read from the documentation:
+    competency-questions.md ("- **CQ-13** — question  `[classes]`") and
+    case-studies.md (table rows "| RQ-01 | question | answer |")."""
+    import re
+    folder = ROOT / "docs" / lang
+    out = {}
+    cq = (folder / "competency-questions.md").read_text(encoding="utf-8")
+    for m in re.finditer(r"^- \*\*(CQ-\d+)\*\* — (.+?)(?:\s+`\[.*)?$", cq, re.M):
+        out[m.group(1)] = m.group(2).strip()
+    cs = folder / "case-studies.md"
+    if cs.exists():
+        for m in re.finditer(r"^\| (RQ-\d+) \| ([^|]+) \|", cs.read_text(encoding="utf-8"), re.M):
+            out[m.group(1)] = m.group(2).strip()
+    return out
+
+
+def build_query_index() -> str:
+    """queries/index.json: every SPARQL query with its id, file and the question it answers
+    (en / pt-BR), so the web annotator can list and run them."""
+    en, pt = question_texts("en"), question_texts("pt-BR")
+    entries = []
+    for path in sorted((ROOT / "queries").glob("*.rq")):
+        qid = "-".join(path.stem.split("-")[:2])          # e.g. CQ-13, RQ-01
+        first = path.read_text(encoding="utf-8").splitlines()[0].lstrip("# ").strip()
+        fallback = first.split(":", 1)[1].strip() if ":" in first else first
+        entries.append({"id": qid, "file": path.name,
+                        "question_en": en.get(qid, fallback), "question_pt": pt.get(qid, en.get(qid, fallback))})
+    return json.dumps({"$comment": GENERATED_NOTE, "queries": entries}, ensure_ascii=False, indent=2) + "\n"
+
+
+# ----------------------------------------------------------------- OntoUML diagrams
+# UML class diagrams with OntoUML notation: «class stereotype» above the class name,
+# datatype attributes in a second compartment, associations labelled with their OntoUML
+# stereotype (when one applies) and multiplicities at both ends, generalizations as hollow
+# triangles. They are views of the catalog, not an OntoUML exchange file (see ADR-009).
+ONTOUML_DIR = "model/diagrams/ontouml"
+
+
+def html_escape(text: str) -> str:
+    return text.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+
+
+def build_ontouml_dot(cat: dict, package: str | None) -> str:
+    colors = {p["name"]: p["color"] for p in cat["packages"]}
+    by_name = {c["name"]: c for c in cat["classes"]}
+    shown = [c for c in cat["classes"] if package is None or c["package"] == package]
+    names = {c["name"] for c in shown}
+    # neighbours from other packages are drawn faded so package views stay readable
+    context = set()
+    if package:
+        for r in cat["relations"]:
+            ends = ([r["source"]] if isinstance(r["source"], str) else r["source"]) + \
+                   ([r["target"]] if isinstance(r["target"], str) else r["target"])
+            if names & set(ends):
+                context |= {e for e in ends if e in by_name and e not in names}
+        for c in shown:
+            if c.get("specializes") and c["specializes"] not in names:
+                context.add(c["specializes"])
+    attrs = {}
+    for d in cat.get("datatype_properties", []):
+        doms = [d["domain"]] if isinstance(d.get("domain"), str) else (d.get("domain") or [])
+        for dom in doms:
+            attrs.setdefault(dom, []).append(f'{d["name"]} : {d["range"].split(":")[-1]}')
+
+    def box(c, faded=False):
+        colour = "#f8fafc" if faded else colors[c["package"]]
+        rows = [f'<TR><TD BGCOLOR="{colour}"><FONT POINT-SIZE="9">«{c["stereotype"]}»</FONT><BR/>'
+                f'<B>{html_escape(c["name"])}</B></TD></TR>']
+        if not faded:
+            body = "".join(f'{html_escape(a)}<BR ALIGN="LEFT"/>' for a in attrs.get(c["name"], [])) or " "
+            rows.append(f'<TR><TD ALIGN="LEFT" BALIGN="LEFT" BGCOLOR="white"><FONT POINT-SIZE="9">{body}</FONT></TD></TR>')
+        border = "#94a3b8" if faded else "#334155"
+        return (f'"{c["name"]}" [shape=plain, label=<<TABLE BORDER="1" COLOR="{border}" CELLBORDER="0" '
+                f'CELLSPACING="0" CELLPADDING="4">{"".join(rows)}</TABLE>>];')
+
+    lines = [f"// {GENERATED_NOTE}", "digraph ontouml {",
+             'graph [rankdir=BT, bgcolor="white", pad="0.4", nodesep="0.5", ranksep="0.8", fontname="Arial", '
+             'fontsize=12, labeljust="l", newrank=true, splines=true];',
+             'node [fontname="Arial", fontsize=10];',
+             'edge [fontname="Arial", fontsize=8, color="#475569", arrowsize=0.7];']
+    if package is None:
+        for p in cat["packages"]:
+            members = [c for c in shown if c["package"] == p["name"]]
+            lines.append(f'subgraph "cluster_{p["name"]}" {{ label="{p["label_en"]}"; style="rounded,dashed"; color="#94a3b8";')
+            lines += [box(c) for c in members]
+            lines.append("}")
+    else:
+        lines += [box(c) for c in shown]
+        lines += [box(by_name[n], faded=True) for n in sorted(context)]
+    drawn = names | context
+    externals = set()
+    for r in cat["relations"]:
+        sources = [r["source"]] if isinstance(r["source"], str) else r["source"]
+        targets = [r["target"]] if isinstance(r["target"], str) else r["target"]
+        union = len(targets) > 1
+        for s in sources:
+            if s not in drawn:
+                continue
+            for t in targets:
+                # in a package view, keep relations that touch the package (either end)
+                if package is not None and s not in names and t not in names:
+                    continue
+                if t not in by_name:
+                    externals.add(t)
+                elif t not in drawn:
+                    continue
+                stereo = f'«{r["ontouml"]}»\\n' if r.get("ontouml") else ""
+                note = " {union}" if union else ""
+                lines.append(f'"{s}" -> "{t}" [label="{stereo}{r["name"]}{note}", taillabel="{r["source_cardinality"]}", '
+                             f'headlabel="{r["target_cardinality"]}", arrowhead=open, labelfontsize=8];')
+    for e in sorted(externals):
+        lines.append(f'"{e}" [shape=box, style="rounded,dashed", color="#94a3b8", fontcolor="#475569", label="{e}\\n(external)"];')
+    for c in shown:
+        if c.get("specializes") and c["specializes"] in drawn:
+            lines.append(f'"{c["name"]}" -> "{c["specializes"]}" [arrowhead=empty, arrowsize=1.1, color="#0f172a"];')
+    lines.append("}")
+    return "\n".join(lines)
+
+
 # -------------------------------------------------------------------------- Main
 def build_package_module(onto: Graph, cat: dict, package: dict) -> Graph:
     """The part of the ontology that belongs to one package, as a stand-alone Turtle module.
@@ -902,6 +1025,7 @@ def outputs(cat: dict) -> dict[Path, str]:
         ROOT / "schemas/record.schema.json": json.dumps(build_record_schema(cat), ensure_ascii=False, indent=2) + "\n",
         ROOT / "schemas/derivation-annotation.schema.json":
             json.dumps(build_annotation_schema(cat), ensure_ascii=False, indent=2) + "\n",
+        ROOT / "queries/index.json": build_query_index(),
         ROOT / "docs/en/reference-model.md": build_reference_doc(cat, "en"),
         ROOT / "docs/pt-BR/reference-model.md": build_reference_doc(cat, "pt-BR"),
         ROOT / "model/diagrams/overview.dot": build_dot(cat, None),
@@ -910,6 +1034,9 @@ def outputs(cat: dict) -> dict[Path, str]:
         files[ROOT / f"model/diagrams/{p['name']}.dot"] = build_dot(cat, p["name"])
     for lang in MODULE_LANGS:
         files[ROOT / f"model/diagrams/modules.{lang}.dot"] = build_module_dot(cat, lang)
+    files[ROOT / ONTOUML_DIR / "overview.dot"] = build_ontouml_dot(cat, None)
+    for p in cat["packages"]:
+        files[ROOT / ONTOUML_DIR / f"{p['name']}.dot"] = build_ontouml_dot(cat, p["name"])
     for p in cat["packages"]:
         files[SRC / "modules" / f"{p['name']}.ttl"] = with_turtle_header(
             build_package_module(onto, cat, p).serialize(format="turtle"))
@@ -945,6 +1072,7 @@ def diagram_paths(cat: dict) -> list[Path]:
     """All DOT files the build owns (overview, one per package, module map per language)."""
     paths = [ROOT / "model/diagrams/overview.dot"]
     paths += [ROOT / f"model/diagrams/modules.{lang}.dot" for lang in MODULE_LANGS]
+    paths += [ROOT / ONTOUML_DIR / "overview.dot"] + [ROOT / ONTOUML_DIR / f"{p['name']}.dot" for p in cat["packages"]]
     return paths + [ROOT / f"model/diagrams/{p['name']}.dot" for p in cat["packages"]]
 
 

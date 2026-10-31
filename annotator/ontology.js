@@ -185,6 +185,7 @@ export async function loadOntology(ttlUrl, catalogUrl) {
     fetch(catalogUrl).then((r) => { if (!r.ok) throw new Error(catalogUrl); return r.json(); }),
   ]);
   const ontology = new Ontology(parseTurtle(ttl, NS.aro), catalog);
+  ontology.ttlText = ttl;   // raw Turtle, loaded again by the SPARQL engine (queries.js)
   ontology.shapesText = await fetch("../validation/aro-shapes.ttl").then((r) => (r.ok ? r.text() : ""));
   return ontology;
 }

@@ -53,6 +53,7 @@ Full documentation is available in both languages:
 | Design decisions (ADR-001 to ADR-024) | [English](docs/en/design-decisions.md) | [Português](docs/pt-BR/design-decisions.md) |
 | Datatypes and validation | [English](docs/en/datatypes-and-validation.md) | [Português](docs/pt-BR/datatypes-and-validation.md) |
 | Case studies (Homem na Estrada, Vidas Secas) | [English](docs/en/case-studies.md) | [Português](docs/pt-BR/case-studies.md) |
+| OntoUML diagrams | [English](docs/en/ontouml.md) | [Português](docs/pt-BR/ontouml.md) |
 | Traceability | [English](docs/en/traceability.md) | [Português](docs/pt-BR/traceability.md) |
 | SABiOx plan | [English](docs/en/sabiox-plan.md) | [Português](docs/pt-BR/sabiox-plan.md) |
 | SABiOx compilation (everything by phase) | [English](docs/en/sabiox-compilation.md) | [Português](docs/pt-BR/sabiox-compilado.md) |

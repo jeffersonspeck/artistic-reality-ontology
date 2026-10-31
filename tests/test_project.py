@@ -120,13 +120,22 @@ assert len(list(ann.iter_errors(bad_ann))) >= 3
 assert list(ann.iter_errors({**ann_example, 'justification': {'not a tag!': 'x'}}))
 
 # --- 6. SHACL ---------------------------------------------------------------------
-# All synthetic examples together must conform (RDFS inference lets external agents
-# be recognised as CreativeAgent/Analyst through property ranges).
-instances = Graph()
+# Every example file must conform on its own (RDFS inference lets external agents be
+# recognised as CreativeAgent/Analyst through property ranges). Files are validated
+# separately because a revised copy may reuse the IRIs of the file it revises.
+# synthetic-derivation.ttl reuses the pattern defined in synthetic-data.ttl
+DEPENDS_ON = {'synthetic-derivation.ttl': ['synthetic-data.ttl']}
 for example in sorted((ROOT / 'examples').glob('*.ttl')):
-    instances.parse(example)
-conforms, _, report = validate(instances, shacl_graph=sh, ont_graph=g, inference='rdfs', advanced=True)
-assert conforms, report
+    data = Graph().parse(example)
+    for extra in DEPENDS_ON.get(example.name, []):
+        data.parse(ROOT / 'examples' / extra)
+    conforms, _, report = validate(data, shacl_graph=sh, ont_graph=g,
+                                   inference='rdfs', advanced=True)
+    assert conforms, f'{example.name}:\n{report}'
+# Synthetic examples merged: input of the competency-question probes below
+instances = Graph()
+for name in ('synthetic-data.ttl', 'synthetic-derivation.ttl', 'quickstart.ttl', 'case-studies.ttl'):
+    instances.parse(ROOT / 'examples' / name)
 # Negative test: a claim deriving a non-artistic resource from itself, with no
 # derivation type and untagged text, must violate several constraints
 bad = Graph().parse(data='''@prefix aro: <https://w3id.org/aro/ontology#> . @prefix ex: <https://example.org/bad/> .
@@ -169,7 +178,8 @@ split = subprocess.run([sys.executable, str(ROOT / 'scripts/split_examples.py'),
 assert split.returncode == 0, split.stdout + split.stderr
 full = set(Graph().parse(ROOT / 'examples/case-studies.ttl'))
 per_work = set()
-for path in sorted((ROOT / 'examples').glob('example_*.ttl')):
+# only the files produced by scripts/split_examples.py (other example_*.ttl files are researchers' own)
+for path in [ROOT / 'examples' / 'example_homem_na_estrada.ttl', ROOT / 'examples' / 'example_vidas_secas.ttl']:
     per_work |= set(Graph().parse(path))
 assert full == per_work, f'{len(full - per_work)} triples of case-studies.ttl missing from example_*.ttl'
 

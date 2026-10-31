@@ -5,6 +5,7 @@ import { loadOntology, NS, localName } from "./ontology.js";
 import { Data } from "./data.js";
 import { GraphView, shortIri } from "./graph.js";
 import { validate, readShapes } from "./validate.js";
+import { queryIndex, queryText, runSelect } from "./queries.js";
 import { t, setUiLanguage, uiLanguage, UI_LANGUAGES, CONTENT_LANGUAGES } from "./i18n.js";
 
 const DRAFT_KEY = "aro-annotator-draft";
@@ -58,6 +59,7 @@ function changed(opts) {
   state.graph.render(state.data, state.ontology, uiLanguage(), state.contentLang, opts);
   renderInspector();
   renderWorksPanel();
+  renderLinkPicker();
   // shown / total nodes (hidden works and nodes are not counted as shown)
   $("#count").textContent = `${state.graph.visible.size} / ${state.data.nodes().length} ${t("nodes")}`;
   saveDraft();
@@ -266,6 +268,7 @@ function individualPanel(id, types) {
       " ", h("span", { class: "muted small" }, o.definition(cls, lang))),
     h("p", { class: "iri" }, id),
     toggleButton(id),
+    contentSection(id),
     SEARCHABLE.some((c) => o.isA(types, c)) ? googleButton(id) : null,
     excerptSection(id, types),
     sourceTextSection(id, types),
@@ -594,13 +597,164 @@ function focusNode(id) {
 }
 
 // ------------------------------------------------------------------ actions
+// ------------------------------------------------------------------ creating linked nodes
+/** Types of any node: its rdf:types, or for a vocabulary concept, its types in the ontology. */
+function typesOf(n) {
+  const own = state.data.types(n);
+  return own.length ? own : state.ontology.conceptTypes(n);
+}
+
+/** True if node `n` may fill a slot whose allowed classes are `classes` (rdfs:domain or rdfs:range). */
+function fits(n, classes) {
+  const o = state.ontology, types = typesOf(n);
+  return classes.some((c) => o.isA(types, c)
+    // agents come from external vocabularies: an untyped-by-ARO resource can fill a «roleMixin» slot
+    || (o.isAgentClass(c) && !types.some((x) => o.classes[x]) && !o.isConcept(n)));
+}
+
+/**
+ * Every link a NEW node of class `cls` may have with an EXISTING node, according to the
+ * ontology: out = new → prop → existing (domain accepts the class, range accepts the node);
+ * in = existing → prop → new (domain accepts the node and it is below its SHACL maximum,
+ * range accepts the class). Returned as [{dir, prop, node}].
+ */
+function validLinks(cls) {
+  const o = state.ontology;
+  const nodes = state.data.nodes();
+  const links = [];
+  for (const p of o.propertiesFor([cls])) {
+    for (const n of nodes) if (fits(n, p.range)) links.push({ dir: "out", prop: p, node: n });
+  }
+  for (const p of o.propertiesTargeting([cls])) {
+    for (const n of nodes) {
+      if (!state.data.types(n).some((x) => o.classes[x]) || !fits(n, p.domain)) continue;
+      const { max } = limits(typesOf(n), p.iri);
+      if (max === null || countOf(n, p.iri) < max) links.push({ dir: "in", prop: p, node: n });
+    }
+  }
+  return links;
+}
+
+/** Readable form of a link: "new → relation → node" or "node → relation → new". */
+function linkLabel({ dir, prop, node }) {
+  const rel = `${state.ontology.label(prop.iri, uiLanguage())} (${prop.name})`;
+  const other = short(displayName(node), 50);
+  return dir === "out" ? `${t("newNode2")} → ${rel} → ${other}` : `${other} → ${rel} → ${t("newNode2")}`;
+}
+
+/** Left panel: fill "Link to" with the links allowed for the chosen class. */
+function renderLinkPicker() {
+  const select = $("#link-to");
+  if (!select || !state.ontology) return;
+  const links = validLinks($("#class-select").value);
+  state.linkChoices = links;
+  select.replaceChildren(h("option", { value: "" }, t("noLink")),
+    ...links.map((l, i) => h("option", { value: i }, linkLabel(l))));
+}
+
+/** Create a node of `cls` named `name` and, optionally, link it as described by `link`. */
+function createLinked(cls, name, link) {
+  const id = state.data.createNode(cls, name, state.contentLang);
+  if (link) {
+    if (link.dir === "out") state.data.link(id, link.prop.iri, link.node);
+    else state.data.link(link.node, link.prop.iri, id);
+    state.graph.show(link.node);
+  }
+  return id;
+}
+
 function createFromPicker() {
   const cls = $("#class-select").value;
   const name = $("#node-name").value.trim();
   if (!cls) return;
-  const id = state.data.createNode(cls, name, state.contentLang);
+  const choice = $("#link-to").value;
+  const id = createLinked(cls, name, choice === "" ? null : state.linkChoices[Number(choice)]);
   $("#node-name").value = "";
   focusNode(id);
+}
+
+// ------------------------------------------------------------------ right-click menu
+function closeContextMenu() {
+  $("#context-menu").hidden = true;
+}
+
+/** Context menu of a node: create a linked node, show full text, neighbours, focus, hide. */
+function showContextMenu(id, event) {
+  const menu = $("#context-menu");
+  const item = (label, action) => h("button", { class: "item", onclick: () => { closeContextMenu(); action(); } }, label);
+  const isIndividual = state.data.types(id).some((x) => state.ontology.classes[x]);
+  const full = state.graph.fullText.has(id);
+  menu.replaceChildren(
+    h("div", { class: "muted small", style: "padding:4px 8px" }, short(displayName(id), 60)),
+    isIndividual ? h("button", { class: "item", onclick: () => menu.replaceChildren(...newLinkedForm(id)) }, "＋ " + t("newLinkedNode")) : null,
+    item((full ? "↤ " : "↦ ") + t(full ? "hideFullText" : "showFullText"), () => {
+      if (full) state.graph.fullText.delete(id); else state.graph.fullText.add(id);
+      changed();
+    }),
+    item("⊕ " + t("toggleNeighbours"), () => { state.graph.toggle(id); state.graph.select(id); }),
+    item(t("focusOpen"), async () => { await saveDraft(); window.open(`?focus=${encodeURIComponent(id)}`, "_blank"); }),
+    id !== state.graph.focus ? item("⊘ " + t("hideNode"), () => hideNode(id)) : null);
+  menu.hidden = false;
+  // keep the menu inside the window
+  const x = Math.min(event.clientX, window.innerWidth - 380), y = Math.min(event.clientY, window.innerHeight - 260);
+  menu.style.left = `${Math.max(4, x)}px`;
+  menu.style.top = `${Math.max(4, y)}px`;
+  state.selected = id; renderInspector(); state.graph.select(id);
+}
+
+/**
+ * Form shown inside the menu: relations the ontology allows between this node and a new one
+ * (both directions, SHACL maximum respected), then the classes allowed for the new node.
+ */
+function newLinkedForm(id) {
+  const o = state.ontology, lang = uiLanguage(), types = typesOf(id);
+  const options = [];
+  for (const p of o.propertiesFor(types)) {
+    const { max } = limits(types, p.iri);
+    const classes = creatableClasses(p.range);
+    if (classes.length && (max === null || countOf(id, p.iri) < max)) options.push({ dir: "in", prop: p, classes });
+  }
+  for (const p of o.propertiesTargeting(types)) {
+    const classes = creatableClasses(p.domain);
+    if (classes.length) options.push({ dir: "out", prop: p, classes });
+  }
+  if (!options.length) return [h("p", { class: "muted small", style: "padding:6px" }, t("noValidRelation"))];
+  const here = short(displayName(id), 30);
+  const rel = h("select", {}, options.map((op, i) => h("option", { value: i },
+    // dir is seen from the NEW node: "in" = this → prop → new; "out" = new → prop → this
+    op.dir === "in" ? `${here} → ${o.label(op.prop.iri, lang)} → ${t("newNode2")}` : `${t("newNode2")} → ${o.label(op.prop.iri, lang)} → ${here}`)));
+  const cls = h("select", {});
+  const fill = () => cls.replaceChildren(...options[Number(rel.value)].classes.map((c) => h("option", { value: c }, o.label(c, lang))));
+  rel.addEventListener("change", fill); fill();
+  const name = h("input", { placeholder: t("nodeName") });
+  const create = () => {
+    const op = options[Number(rel.value)];
+    const n = createLinked(cls.value, name.value.trim(), { dir: op.dir === "in" ? "in" : "out", prop: op.prop, node: id });
+    closeContextMenu();
+    state.graph.show(n);
+    focusNode(n);
+  };
+  name.addEventListener("keydown", (e) => { if (e.key === "Enter") create(); });
+  return [h("div", { class: "form" },
+    h("strong", {}, t("newLinkedNode")),
+    h("label", {}, t("relation")), rel,
+    h("label", {}, t("chooseClass")), cls,
+    h("label", {}, t("nodeName")), name,
+    h("div", { class: "row" }, h("button", { class: "primary", onclick: create }, t("create")),
+      h("button", { onclick: closeContextMenu }, t("cancel"))))];
+}
+
+/** Inspector: the node's main text in full, readable, with a switch for the graph label. */
+function contentSection(id) {
+  const lits = state.data.literals(id).filter((l) => l.prop === NS.aro + "textValue");
+  if (!lits.length) return null;
+  const main = lits.find((l) => l.lang === state.contentLang.toLowerCase()) || lits.find((l) => l.lang === "en") || lits[0];
+  const full = state.graph.fullText.has(id);
+  return section(t("content"), h("div", { class: "content-card", lang: main.lang }, main.value),
+    main.value.length > 60 ? h("button", { class: "link", onclick: () => {
+      if (full) state.graph.fullText.delete(id); else state.graph.fullText.add(id);
+      changed();
+    } }, t(full ? "hideFullText" : "showFullText")) : null);
 }
 
 async function saveFile() {
@@ -624,6 +778,59 @@ function loadText(text, label) {
     savePrefs();
   } catch (err) {
     alert(`${t("loadError")}\n${err.message}`);
+  }
+}
+
+// ------------------------------------------------------------------ CQ / RQ queries
+/** Panel listing the queries of queries/ (questions in the interface language), editable and runnable. */
+async function openQueries() {
+  const panel = $("#queries-panel");
+  if (panel.childElementCount) { panel.replaceChildren(); return; }   // the button toggles the panel
+  let list;
+  try { list = await queryIndex(); } catch (err) { status(`${t("queryError")} ${err.message}`); return; }
+  const pt = uiLanguage() === "pt-BR";
+  const select = h("select", {}, list.map((q, i) => h("option", { value: i }, `${q.id} — ${pt ? q.question_pt : q.question_en}`)));
+  const editor = h("textarea", { rows: 10, spellcheck: "false" });
+  const output = h("div", {});
+  // loading a query is asynchronous: "Run" waits for it, so it always runs the chosen query
+  let loading = null;
+  const load = () => (loading = queryText(list[Number(select.value)].file).then((text) => {
+    editor.value = text; output.replaceChildren();
+  }));
+  select.addEventListener("change", load);
+  const run = h("button", { class: "primary", onclick: async () => { await loading; executeQuery(editor.value, output); } }, t("run"));
+  panel.replaceChildren(
+    h("h3", {}, t("queriesTitle"), " ", h("button", { class: "link", onclick: () => panel.replaceChildren() }, t("close"))),
+    h("p", { class: "muted small" }, t("queriesNote")),
+    h("div", { class: "row" }, select, run),
+    h("details", {}, h("summary", {}, t("showSparql")), editor),
+    output);
+  await load();
+}
+
+/** Run one SELECT query over the annotations + ontology and show a table of results. */
+async function executeQuery(sparql, output) {
+  output.replaceChildren(h("p", { class: "muted small" }, t("loadingEngine")));
+  try {
+    const { vars, rows } = await runSelect(sparql, await state.data.toTurtle(), state.ontology.ttlText);
+    if (!rows.length) { output.replaceChildren(h("p", {}, t("noRows"))); return; }
+    const nodes = new Set(state.data.nodes());
+    // IRIs of annotated nodes become links that select the node in the graph
+    const cell = (term) => {
+      if (!term) return h("td", {});
+      if (term.termType === "NamedNode") {
+        return h("td", {}, nodes.has(term.value)
+          ? h("button", { class: "link", onclick: () => focusNode(term.value) }, displayName(term.value))
+          : (state.ontology.isConcept(term.value) ? state.ontology.label(term.value, uiLanguage()) : shortIri(term.value)));
+      }
+      return h("td", {}, term.value);
+    };
+    output.replaceChildren(
+      h("p", { class: "muted small" }, `${rows.length} ${t("rows")}`),
+      h("table", { class: "results" }, h("tr", {}, vars.map((v) => h("th", {}, v))),
+        rows.map((r) => h("tr", {}, r.map(cell)))));
+  } catch (err) {
+    output.replaceChildren(h("p", { class: "error" }, `${t("queryError")} ${err.message || err}`));
   }
 }
 
@@ -652,7 +859,14 @@ async function main() {
     document.body.replaceChildren(h("p", { class: "error" }, t("startError"), h("br"), String(err.message || err)));
     return;
   }
-  state.graph = new GraphView($("#graph"), { onSelect: (id) => { state.selected = id; renderInspector(); } });
+  state.graph = new GraphView($("#graph"), {
+    onSelect: (id) => { closeContextMenu(); state.selected = id; renderInspector(); },
+    onContext: (id, event) => showContextMenu(id, event),
+  });
+  // the browser's own menu is replaced by the node menu inside the graph
+  $("#graph").addEventListener("contextmenu", (e) => e.preventDefault());
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeContextMenu(); });
+  document.addEventListener("mousedown", (e) => { if (!$("#context-menu").contains(e.target)) closeContextMenu(); });
   state.graph.data = state.data;   // the Data object is kept; loading a file only replaces its store
 
   // Toolbar events
@@ -663,7 +877,7 @@ async function main() {
     state.contentLang = lang; savePrefs(); renderToolbar(); changed();
   });
   $("#base-iri").addEventListener("change", (e) => { state.data.base = e.target.value.trim() || state.data.base; savePrefs(); });
-  $("#class-select").addEventListener("change", updateClassHelp);
+  $("#class-select").addEventListener("change", () => { updateClassHelp(); renderLinkPicker(); });
   $("#create").addEventListener("click", createFromPicker);
   $("#node-name").addEventListener("keydown", (e) => { if (e.key === "Enter") createFromPicker(); });
   $("#new").addEventListener("click", () => { if (confirm(t("confirmNew"))) { state.data.clear(); state.graph.visible.clear(); state.graph.hiddenWorks.clear(); state.graph.hiddenNodes.clear(); state.selected = null; changed(); } });
@@ -672,9 +886,11 @@ async function main() {
   $("#example").addEventListener("click", async () => loadText(await fetch("../examples/case-studies.ttl").then((r) => r.text()), "case-studies.ttl"));
   $("#save").addEventListener("click", saveFile);
   $("#validate").addEventListener("click", runValidation);
+  $("#queries").addEventListener("click", openQueries);
   $("#layout-mode").addEventListener("change", (e) => { state.graph.mode = e.target.value; state.graph.layout(); });
   $("#relayout").addEventListener("click", () => state.graph.layout());
   $("#edge-labels").addEventListener("change", (e) => state.graph.setEdgeLabels(e.target.checked));
+  $("#full-text").addEventListener("change", (e) => { state.graph.textMode = e.target.checked ? "full" : "short"; changed(); });
   $("#show-all").addEventListener("click", () => { state.graph.showAll(); changed({ relayout: true }); });
   $("#show-works").addEventListener("click", () => { state.graph.showRoots(); changed({ relayout: true }); });
   $("#export-png").addEventListener("click", exportPng);

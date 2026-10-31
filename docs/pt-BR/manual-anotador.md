@@ -87,6 +87,12 @@ Para **derivações** (cover, sample, adaptação…), crie uma *alegação de d
 - `hasTransformation`, com dimensão e operação;
 - `derivationJustifiedBy`, com a explicação.
 
+**Atalhos para criar nós já ligados**
+- No painel esquerdo, depois de escolher a classe, use **Ligar a**: aparecem só os nós existentes e as relações que a ontologia permite para aquela classe, nos dois sentidos (ex.: "novo nó → recorte referencia manifestação → Gravação X").
+- No grafo, clique com o **botão direito** num nó e escolha **Novo nó ligado aqui…**: primeiro a relação (só as permitidas e ainda abaixo do máximo), depois a classe do novo nó e o nome.
+
+**Textos longos:** o painel direito mostra o texto inteiro no cartão **Conteúdo**. No grafo, use **Mostrar texto completo no grafo** (no painel ou no botão direito) para um nó, ou marque **Textos completos** na barra para todos; textos longos viram cartões mais largos.
+
 **Como os formulários seguem a ontologia**
 - *Adicionar relação* mostra só as propriedades cujo domínio aceita o nó. As **obrigatórias** (SHACL `minCount`) aparecem com `*`, e as que faltam ficam listadas num aviso amarelo. As que já atingiram o **máximo** (`maxCount`) deixam de aparecer.
 - *Adicionar como destino* cria uma relação que **chega** ao nó, a partir de um nó existente ou novo. Por exemplo, numa manifestação: um novo recorte com `selectsFrom` para ela.
@@ -135,6 +141,16 @@ O texto anexado fica **apenas no seu navegador**: não vai para o `.ttl` nem par
 - âncoras de derivação.
 
 Clique num problema para ir até o nó. A validação completa (SHACL) está na seção 11.
+
+### Consultas no navegador
+
+O botão **Consultas (CQ/RQ)** abre um painel com todas as questões de competência (CQ) e de pesquisa (RQ):
+1. escolha a pergunta (o texto aparece no idioma da interface);
+2. clique em **Executar**: a consulta roda sobre as suas anotações atuais mais a ontologia e mostra uma tabela. Os resultados são os mesmos de `python scripts/query.py`;
+3. clique num nó da tabela para ir até ele no grafo;
+4. em **SPARQL (editável)** você pode adaptar a consulta antes de executar.
+
+O motor SPARQL (Oxigraph) é baixado no primeiro uso; para isso é preciso internet.
 
 ## 9. Salvar, carregar e exemplos
 
