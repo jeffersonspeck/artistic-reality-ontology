@@ -53,11 +53,19 @@ python scripts/annotator.py
 
 | Área | Conteúdo |
 |---|---|
-| **Barra superior** | Novo, Carregar .ttl, Carregar exemplo, Salvar .ttl, Validar · Recolher às obras, Mostrar tudo, Árvore/Rede, Reorganizar, Nomes das relações · Imagem (PNG), Imprimir/PDF · idioma da interface e idioma do conteúdo |
-| **Painel esquerdo** | criar nó (classe + nome), IRI base dos seus dados, **Obras exibidas**, **Nós ocultos** e contador de nós (visíveis / total) |
-| **Centro** | o grafo |
-| **Painel direito** | o nó selecionado: classe e definição, botões de navegação, trecho, textos, links, dados, relações e "referenciado por" |
+| **Barra superior** | menus **Arquivo** (Novo, Carregar .ttl, Carregar exemplo, Salvar .ttl) · **Análise** (Validar, Consultas) · **Exibir** (Recolher às obras, Mostrar tudo, tipo de layout, Reorganizar, Nomes das relações, Textos completos) · **Exportar** (Imagem (PNG), Imprimir/PDF) · **Idioma** (interface e conteúdo) · **Salvar .ttl** sempre visível · à direita, os botões de painéis **Criar**, **Inspetor** e **Só o grafo** |
+| **Painel esquerdo (Criar)** | seções recolhíveis: *Adicionar um nó* (classe + nome + ligação), *Obras e visibilidade* (**Obras exibidas**, **Nós ocultos**, contador de nós) e *Configurações* (IRI base dos seus dados) |
+| **Centro** | o grafo; os resultados de validação e de consultas abrem em painéis flutuantes sobre ele |
+| **Painel direito (Inspetor)** | o nó selecionado: classe e definição, botões de navegação, trecho, textos, links, dados, relações e "referenciado por" |
 | **Rodapé** | mensagens (arquivo carregado, salvo…) |
+
+**Mais espaço para o grafo.** Todos os painéis podem ser escondidos e redimensionados:
+
+- **Painéis laterais:** os botões **Criar** e **Inspetor** (ou **«** / **»** em cada painel) mostram e escondem; um painel escondido deixa uma faixa fina com um botão para trazê-lo de volta. Arraste a linha entre o painel e o grafo para mudar a largura; clique duas vezes nessa linha para esconder o painel.
+- **Só o grafo:** esconde os dois painéis laterais e reduz a barra superior aos menus; **Mostrar painéis**, no canto superior direito do grafo, restaura.
+- **Painéis flutuantes** (Validação, Consultas): **–** minimiza para a barra de título (clique duplo no título também), **×** fecha, e arrastar a borda de cima muda a altura.
+
+Larguras, painéis escondidos e alturas ficam guardados neste navegador.
 
 As cores dos nós indicam o módulo da ontologia. Conceitos de vocabulário aparecem como etiquetas tracejadas, e recursos externos (pessoas, bandas, seletores) como elipses pontilhadas.
 
@@ -91,7 +99,7 @@ Para **derivações** (cover, sample, adaptação…), crie uma *alegação de d
 - No painel esquerdo, depois de escolher a classe, use **Ligar a**: aparecem só os nós existentes e as relações que a ontologia permite para aquela classe, nos dois sentidos (ex.: "novo nó → recorte referencia manifestação → Gravação X").
 - No grafo, clique com o **botão direito** num nó e escolha **Novo nó ligado aqui…**: primeiro a relação (só as permitidas e ainda abaixo do máximo), depois a classe do novo nó e o nome.
 
-**Textos longos:** o painel direito mostra o texto inteiro no cartão **Conteúdo**. No grafo, use **Mostrar texto completo no grafo** (no painel ou no botão direito) para um nó, ou marque **Textos completos** na barra para todos; textos longos viram cartões mais largos.
+**Textos longos:** o painel direito mostra o texto inteiro no cartão **Conteúdo**. No grafo, use **Mostrar texto completo no grafo** (no painel ou no botão direito) para um nó, ou marque **Textos completos** no menu **Exibir** para todos; textos longos viram cartões mais largos.
 
 **Como os formulários seguem a ontologia**
 - *Adicionar relação* mostra só as propriedades cujo domínio aceita o nó. As **obrigatórias** (SHACL `minCount`) aparecem com `*`, e as que faltam ficam listadas num aviso amarelo. As que já atingiram o **máximo** (`maxCount`) deixam de aparecer.

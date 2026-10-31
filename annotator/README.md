@@ -32,6 +32,7 @@ This serves the repository on `http://localhost:8765/annotator/` and opens the b
 | Open / close neighbours | Double-click the node, or **Open / close neighbours** in the right panel. Hidden neighbours appear in a ring around the node, grouped by relation, without moving the rest of the drawing. Nodes with hidden neighbours have a double border; the relations of the selected node are highlighted. |
 | Layout | **Tree** (works at the top, then what hangs from them) or **Network** (force-directed), then **Layout**. **Relation names** hides or shows edge labels. |
 | Show only some works | Left panel → **Works shown**: untick a work to hide it together with everything that only it uses (shared patterns, cases and sources stay while another shown work uses them). On an artwork, **Show only this work** unticks all the others. |
+| More room for the graph | Toolbar actions are grouped in menus (File, Analysis, View, Export, Language). **Create** / **Inspector** show or hide the side panels; drag the line next to a panel to resize it (double-click hides it). **Graph only** leaves the whole screen to the graph. Validation and query panels can be minimized (**–**), closed (**×**) and resized from their top edge. The layout is remembered in the browser. |
 | Hide a node | **Hide node** in the right panel; hidden nodes are listed on the left with **show** to bring them back. |
 | Focus on one node | **Open in focus ↗** opens a new tab with only that node and its neighbours (depth 1–3). Changes made in either tab are shared. |
 | Image / PDF | **Image (PNG)** downloads the current graph. **Print / PDF** prints the graph plus the selected node's details; choose "Save as PDF" in the print dialog. |
@@ -50,7 +51,8 @@ This serves the repository on `http://localhost:8765/annotator/` and opens the b
 | File | Role |
 |---|---|
 | `index.html`, `style.css` | page layout |
-| `app.js` | toolbar, creation panel, inspector, save/load |
+| `app.js` | toolbar actions, creation panel, inspector, save/load |
+| `layout.js` | toolbar menus, hideable and resizable panels, floating panels |
 | `ontology.js` | loads `aro.ttl` and the catalog; class hierarchy, domains/ranges, vocabularies, labels |
 | `data.js` | the user's annotations (N3 store), Turtle import/export |
 | `graph.js` | graph view with open/close of neighbours (Cytoscape.js) |
@@ -86,6 +88,7 @@ O comando serve o repositório em `http://localhost:8765/annotator/` e abre o na
 | Abrir / fechar vizinhos | Clique duas vezes no nó, ou **Abrir / fechar vizinhos** no painel direito. Os vizinhos ocultos aparecem num anel em volta do nó, agrupados por relação, sem mover o resto do desenho. Nós com vizinhos ocultos têm borda dupla; as relações do nó selecionado ficam destacadas. |
 | Layout | **Árvore** (obras no topo, depois o que se liga a elas) ou **Rede** (força), e então **Reorganizar**. **Nomes das relações** esconde ou mostra os rótulos das arestas. |
 | Ver só algumas obras | Painel esquerdo → **Obras exibidas**: desmarque uma obra para escondê-la junto com tudo o que só ela usa (padrões, casos e fontes compartilhados continuam enquanto outra obra exibida os usar). Numa obra, **Ver só esta obra** desmarca todas as outras. |
+| Mais espaço para o grafo | As ações da barra ficam em menus (Arquivo, Análise, Exibir, Exportar, Idioma). **Criar** / **Inspetor** mostram ou escondem os painéis laterais; arraste a linha ao lado de um painel para redimensioná-lo (clique duplo esconde). **Só o grafo** deixa a tela inteira para o grafo. Os painéis de validação e de consultas podem ser minimizados (**–**), fechados (**×**) e redimensionados pela borda de cima. O layout fica guardado no navegador. |
 | Esconder um nó | **Esconder nó** no painel direito; os nós ocultos ficam listados à esquerda, com **mostrar** para trazê-los de volta. |
 | Foco num nó | **Abrir em foco ↗** abre uma nova aba só com aquele nó e seus vizinhos (profundidade 1–3). Alterações feitas em qualquer aba são compartilhadas. |
 | Imagem / PDF | **Imagem (PNG)** baixa o grafo atual. **Imprimir / PDF** imprime o grafo e os detalhes do nó selecionado; no diálogo de impressão escolha "Salvar como PDF". |
@@ -104,7 +107,8 @@ O comando serve o repositório em `http://localhost:8765/annotator/` e abre o na
 | Arquivo | Papel |
 |---|---|
 | `index.html`, `style.css` | estrutura da página |
-| `app.js` | barra de ferramentas, painel de criação, inspetor, salvar/carregar |
+| `app.js` | ações da barra, painel de criação, inspetor, salvar/carregar |
+| `layout.js` | menus da barra, painéis que escondem e redimensionam, painéis flutuantes |
 | `ontology.js` | carrega `aro.ttl` e o catálogo; hierarquia, domínios/imagens, vocabulários, rótulos |
 | `data.js` | as anotações do usuário (store N3), importação/exportação Turtle |
 | `graph.js` | grafo com abrir/fechar vizinhos (Cytoscape.js) |

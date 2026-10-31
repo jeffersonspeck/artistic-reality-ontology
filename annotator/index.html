@@ -11,29 +11,63 @@
   <script type="module" src="app.js"></script>
 </head>
 <body>
+  <!-- Toolbar: actions grouped in drop-down menus, so it takes a single line -->
   <header>
     <h1 id="app-title">ARO Annotator</h1>
-    <div class="toolbar">
-      <button id="new" data-i18n="newProject"></button>
-      <button id="load" data-i18n="load"></button>
+    <nav class="toolbar">
+      <details class="menu">
+        <summary data-i18n="menuFile"></summary>
+        <div class="menu-body">
+          <button id="new" data-i18n="newProject"></button>
+          <button id="load" data-i18n="load"></button>
+          <button id="example" data-i18n="example"></button>
+          <button id="save-menu" data-i18n="save"></button>
+        </div>
+      </details>
       <input id="file" type="file" accept=".ttl,text/turtle" hidden>
-      <button id="example" data-i18n="example"></button>
+      <details class="menu">
+        <summary data-i18n="menuAnalysis"></summary>
+        <div class="menu-body">
+          <button id="validate" data-i18n="validate"></button>
+          <button id="queries" data-i18n="queries"></button>
+        </div>
+      </details>
+      <details class="menu">
+        <summary data-i18n="menuView"></summary>
+        <div class="menu-body">
+          <button id="show-works" data-i18n="showWorks"></button>
+          <button id="show-all" data-i18n="showAll"></button>
+          <hr>
+          <label><span data-i18n="layoutMode"></span>
+            <select id="layout-mode"><option value="tree" data-i18n="layoutTree"></option><option value="force" data-i18n="layoutForce"></option></select></label>
+          <button id="relayout" data-i18n="layout"></button>
+          <hr>
+          <label class="inline"><input type="checkbox" id="edge-labels" checked> <span data-i18n="edgeLabels"></span></label>
+          <label class="inline"><input type="checkbox" id="full-text"> <span data-i18n="fullTexts"></span></label>
+        </div>
+      </details>
+      <details class="menu">
+        <summary data-i18n="menuExport"></summary>
+        <div class="menu-body">
+          <button id="export-png" data-i18n="exportPng"></button>
+          <button id="print" data-i18n="print"></button>
+        </div>
+      </details>
+      <details class="menu">
+        <summary data-i18n="menuLanguage"></summary>
+        <div class="menu-body">
+          <label><span data-i18n="uiLanguage"></span> <select id="ui-lang"></select></label>
+          <label><span data-i18n="contentLanguage"></span> <select id="content-lang"></select></label>
+        </div>
+      </details>
+      <span class="sep"></span>
       <button id="save" class="primary" data-i18n="save"></button>
-      <button id="validate" data-i18n="validate"></button>
-      <button id="queries" data-i18n="queries"></button>
-      <span class="sep"></span>
-      <button id="show-works" data-i18n="showWorks"></button>
-      <button id="show-all" data-i18n="showAll"></button>
-      <select id="layout-mode" aria-label="layout"><option value="tree" data-i18n="layoutTree"></option><option value="force" data-i18n="layoutForce"></option></select>
-      <button id="relayout" data-i18n="layout"></button>
-      <label class="inline"><input type="checkbox" id="edge-labels" checked> <span data-i18n="edgeLabels"></span></label>
-      <label class="inline"><input type="checkbox" id="full-text"> <span data-i18n="fullTexts"></span></label>
-      <span class="sep"></span>
-      <button id="export-png" data-i18n="exportPng"></button>
-      <button id="print" data-i18n="print"></button>
-      <span class="sep"></span>
-      <label><span data-i18n="uiLanguage"></span> <select id="ui-lang"></select></label>
-      <label><span data-i18n="contentLanguage"></span> <select id="content-lang"></select></label>
+    </nav>
+    <!-- Panels: show/hide each side panel, or leave the whole screen to the graph -->
+    <div class="toolbar panels">
+      <button id="toggle-left" class="toggle" data-i18n="panelCreate" data-i18n-title="togglePanel"></button>
+      <button id="toggle-right" class="toggle" data-i18n="panelInspector" data-i18n-title="togglePanel"></button>
+      <button id="maximize" data-i18n="maximizeGraph" data-i18n-title="maximizeHelp"></button>
     </div>
   </header>
 
@@ -42,39 +76,61 @@
 
   <main>
     <!-- Left: create nodes -->
+    <!-- Each section can be folded; the panel itself can be hidden and resized -->
     <aside id="left">
-      <h2 data-i18n="addNode"></h2>
-      <label data-i18n="chooseClass"></label>
-      <select id="class-select"></select>
-      <p id="class-help" class="muted small"></p>
-      <label data-i18n="nodeName"></label>
-      <input id="node-name" type="text">
-      <!-- Optional link to an existing node; only links allowed by the ontology are offered -->
-      <label data-i18n="linkTo"></label>
-      <select id="link-to"></select>
-      <p class="muted small" data-i18n="linkHelp"></p>
-      <button id="create" class="primary" data-i18n="create"></button>
-      <hr>
-      <label data-i18n="baseIri"></label>
-      <input id="base-iri" type="url">
-      <p class="muted small" data-i18n="hint"></p>
-      <hr>
+      <div class="panel-head"><h2 data-i18n="panelCreate"></h2>
+        <button class="icon" data-hide-panel="left" data-i18n-title="hidePanel">«</button></div>
+      <details class="section" open>
+        <summary data-i18n="addNode"></summary>
+        <label data-i18n="chooseClass"></label>
+        <select id="class-select"></select>
+        <p id="class-help" class="muted small"></p>
+        <label data-i18n="nodeName"></label>
+        <input id="node-name" type="text">
+        <!-- Optional link to an existing node; only links allowed by the ontology are offered -->
+        <label data-i18n="linkTo"></label>
+        <select id="link-to"></select>
+        <p class="muted small" data-i18n="linkHelp"></p>
+        <button id="create" class="primary" data-i18n="create"></button>
+      </details>
       <!-- Works list (tick to show/hide each work) and nodes hidden one by one -->
-      <div id="works"></div>
-      <div id="hidden-list"></div>
-      <p class="muted small" id="count"></p>
+      <details class="section" open>
+        <summary data-i18n="visibility"></summary>
+        <div id="works"></div>
+        <div id="hidden-list"></div>
+        <p class="muted small" id="count"></p>
+      </details>
+      <details class="section">
+        <summary data-i18n="settings"></summary>
+        <label data-i18n="baseIri"></label>
+        <input id="base-iri" type="url">
+        <p class="muted small" data-i18n="hint"></p>
+      </details>
     </aside>
+    <!-- Drag to resize the panel; double-click to hide it; when hidden, the button reopens it -->
+    <div id="split-left" class="splitter" data-i18n-title="resizeSide">
+      <button class="reopen" data-show-panel="left" data-i18n-title="showPanel">»</button>
+    </div>
 
     <!-- Centre: graph -->
     <section id="graph-wrap">
       <div id="graph"></div>
-      <div id="validation"></div>
-      <!-- CQ/RQ queries and their results -->
-      <div id="queries-panel"></div>
+      <!-- Back from the graph-only view -->
+      <button id="restore" data-i18n="restoreLayout"></button>
+      <!-- Floating panels: validation results, CQ/RQ queries and their results -->
+      <div id="validation" class="float"></div>
+      <div id="queries-panel" class="float"></div>
     </section>
 
+    <div id="split-right" class="splitter" data-i18n-title="resizeSide">
+      <button class="reopen" data-show-panel="right" data-i18n-title="showPanel">«</button>
+    </div>
     <!-- Right: inspector of the selected node -->
-    <aside id="inspector"></aside>
+    <aside id="inspector-panel">
+      <div class="panel-head"><h2 data-i18n="panelInspector"></h2>
+        <button class="icon" data-hide-panel="right" data-i18n-title="hidePanel">»</button></div>
+      <div id="inspector"></div>
+    </aside>
   </main>
 
   <footer id="status"></footer>

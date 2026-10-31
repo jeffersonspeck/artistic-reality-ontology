@@ -6,6 +6,7 @@ import { Data } from "./data.js";
 import { GraphView, shortIri } from "./graph.js";
 import { validate, readShapes } from "./validate.js";
 import { queryIndex, queryText, runSelect } from "./queries.js";
+import { initLayout, floatPanel } from "./layout.js";
 import { t, setUiLanguage, uiLanguage, UI_LANGUAGES, CONTENT_LANGUAGES } from "./i18n.js";
 
 const DRAFT_KEY = "aro-annotator-draft";
@@ -801,8 +802,7 @@ async function openQueries() {
   const run = h("button", { class: "primary", onclick: async () => { await loading; executeQuery(editor.value, output); } }, t("run"));
   // texts and labels in the results follow the content language (falling back to others)
   const withLanguage = (text) => text.replace(/VALUES \?lang \{ "[^"]*" \}/g, `VALUES ?lang { "${state.contentLang}" }`);
-  panel.replaceChildren(
-    h("h3", {}, t("queriesTitle"), " ", h("button", { class: "link", onclick: () => panel.replaceChildren() }, t("close"))),
+  floatPanel(panel, t("queriesTitle"),
     h("p", { class: "muted small" }, t("queriesNote")),
     h("div", { class: "row" }, select, run),
     h("details", {}, h("summary", {}, t("showSparql")), editor),
@@ -841,8 +841,7 @@ function runValidation() {
   const list = problems.length
     ? h("ul", {}, problems.map((p) => h("li", {}, h("button", { class: "link", onclick: () => focusNode(p.node) }, displayName(p.node)), " — ", p.message)))
     : h("p", {}, "✅ " + t("validationOk"));
-  $("#validation").replaceChildren(h("h3", {}, t("validationTitle"), " ",
-    h("button", { class: "link", onclick: () => $("#validation").replaceChildren() }, t("close"))), list, h("p", { class: "muted small" }, t("validationNote")));
+  floatPanel($("#validation"), t("validationTitle"), list, h("p", { class: "muted small" }, t("validationNote")));
 }
 
 function status(msg) {
@@ -865,6 +864,8 @@ async function main() {
     onSelect: (id) => { closeContextMenu(); state.selected = id; renderInspector(); },
     onContext: (id, event) => showContextMenu(id, event),
   });
+  // menus, hideable/resizable panels; the graph is redrawn whenever its area changes size
+  initLayout(() => state.graph.cy.resize());
   // the browser's own menu is replaced by the node menu inside the graph
   $("#graph").addEventListener("contextmenu", (e) => e.preventDefault());
   document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeContextMenu(); });
@@ -887,6 +888,7 @@ async function main() {
   $("#file").addEventListener("change", async (e) => { const f = e.target.files[0]; if (f) loadText(await f.text(), f.name); e.target.value = ""; });
   $("#example").addEventListener("click", async () => loadText(await fetch("../examples/case-studies.ttl").then((r) => r.text()), "case-studies.ttl"));
   $("#save").addEventListener("click", saveFile);
+  $("#save-menu").addEventListener("click", saveFile);
   $("#validate").addEventListener("click", runValidation);
   $("#queries").addEventListener("click", openQueries);
   $("#layout-mode").addEventListener("change", (e) => { state.graph.mode = e.target.value; state.graph.layout(); });

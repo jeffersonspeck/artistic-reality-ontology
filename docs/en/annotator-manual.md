@@ -53,11 +53,19 @@ python scripts/annotator.py
 
 | Area | Contents |
 |---|---|
-| **Top bar** | New, Load .ttl, Load example, Save .ttl, Validate · Collapse to works, Show all, Tree/Network, Layout, Relation names · Image (PNG), Print/PDF · interface language and content language |
-| **Left panel** | create a node (class + name), base IRI of your data, **Works shown**, **Hidden nodes** and node counter (visible / total) |
-| **Centre** | the graph |
-| **Right panel** | the selected node: class and definition, navigation buttons, excerpt, texts, links, data, relations and "referenced by" |
+| **Top bar** | menus **File** (New, Load .ttl, Load example, Save .ttl) · **Analysis** (Validate, Queries) · **View** (Collapse to works, Show all, layout type, Layout, Relation names, Full texts) · **Export** (Image (PNG), Print/PDF) · **Language** (interface and content) · **Save .ttl** always visible · on the right, the panel buttons **Create**, **Inspector** and **Graph only** |
+| **Left panel (Create)** | folding sections: *Add a node* (class + name + link), *Works and visibility* (**Works shown**, **Hidden nodes**, node counter) and *Settings* (base IRI of your data) |
+| **Centre** | the graph; validation and query results open as floating panels over it |
+| **Right panel (Inspector)** | the selected node: class and definition, navigation buttons, excerpt, texts, links, data, relations and "referenced by" |
 | **Footer** | messages (file loaded, saved…) |
+
+**More room for the graph.** Every panel can be hidden and resized:
+
+- **Side panels:** the **Create** and **Inspector** buttons (or **«** / **»** in each panel) show and hide them; a hidden panel leaves a thin rail with a button to bring it back. Drag the line between a panel and the graph to change its width; double-click that line to hide the panel.
+- **Graph only:** hides both side panels and reduces the top bar to its menus; **Show panels**, at the top right of the graph, restores them.
+- **Floating panels** (Validation, Queries): **–** minimizes to the title bar (double-clicking the title also works), **×** closes, and dragging the top edge changes the height.
+
+Widths, hidden panels and heights are remembered in this browser.
 
 Node colours indicate the ontology module. Vocabulary concepts appear as dashed tags, and external resources (people, bands, selectors) as dotted ellipses.
 
@@ -91,7 +99,7 @@ For **derivations** (cover, sample, adaptation…), create a *derivation claim* 
 - In the left panel, after choosing the class, use **Link to**: only existing nodes and relations that the ontology allows for that class are listed, in both directions (e.g. "new node → selection references manifestation → Recording X").
 - In the graph, **right-click** a node and choose **New node linked here…**: first the relation (only allowed ones still below their maximum), then the class of the new node and its name.
 
-**Long texts:** the right panel shows the full text in the **Content** card. In the graph, use **Show full text in the graph** (panel or right-click) for one node, or tick **Full texts** on the toolbar for all; long texts become wider cards.
+**Long texts:** the right panel shows the full text in the **Content** card. In the graph, use **Show full text in the graph** (panel or right-click) for one node, or tick **Full texts** in the **View** menu for all; long texts become wider cards.
 
 **How the forms follow the ontology**
 - *Add relation* shows only properties whose domain fits the node. **Required** ones (SHACL `minCount`) are marked `*`, and missing ones are listed in a yellow notice. Those already at their **maximum** (`maxCount`) are no longer offered.
