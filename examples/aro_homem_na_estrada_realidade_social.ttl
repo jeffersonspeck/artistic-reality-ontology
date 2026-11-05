@@ -1,0 +1,888 @@
+# aro_homem_na_estrada_realidade_social.ttl
+# Nova anotação independente, iniciada a partir de aro_homem_na_estrada_refeita.ttl.
+# O arquivo-base não foi alterado. Esta versão reorganiza a camada empírica para
+# sustentar a existência e a persistência dos padrões sociais representados.
+
+@prefix aro: <https://w3id.org/aro/ontology#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix hnr: <https://example.org/aro-homem-na-estrada-realidade/> .
+@prefix oa: <http://www.w3.org/ns/oa#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <https://schema.org/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# -----------------------------------------------------------------------------
+# Metadados e compromisso epistêmico
+# -----------------------------------------------------------------------------
+
+hnr:anotacao2026 a schema:Dataset ;
+    dcterms:title "Homem na Estrada — realidade social sustentada por evidências"@pt-BR ;
+    dcterms:created "2026-11-05"^^xsd:date ;
+    dcterms:source "examples/aro_homem_na_estrada_refeita.ttl" ;
+    dcterms:creator hnr:analistaPesquisador ;
+    aro:textValue "Anotação nova e autossuficiente. As fontes sustentam que os tipos de situação representados existem ou persistem no mundo social. Não se exige contemporaneidade entre a obra e a fonte, e não se afirma que a fonte documente o personagem, o bairro ou o episódio ficcional."@pt-BR .
+
+hnr:notaMetodo aro:textValue "A cadeia empírica é: fonte de referência → item de evidência → afirmação empírica e caso empírico → alegação de correspondência com um padrão → avaliação explícita do alcance. Data estatística não é usada como substituto da afirmação social; é um dos elementos que a sustenta."@pt-BR .
+
+hnr:analistaPesquisador a schema:Person ;
+    rdfs:label "Jefferson Rodrigo Speck"@pt-BR ;
+    schema:name "Jefferson Rodrigo Speck" ;
+    schema:affiliation "Programa de Pós-Graduação em Informática (PPGInf), Universidade Federal do Paraná (UFPR)"@pt-BR .
+
+# -----------------------------------------------------------------------------
+# Obra, manifestações, criação e unidade de análise
+# -----------------------------------------------------------------------------
+
+hnr:homemNaEstrada a aro:Artwork ;
+    aro:hasManifestation hnr:gravacao1993,
+        hnr:transcricaoReferencia ;
+    aro:textValue "Homem na Estrada — Racionais MC's"@pt-BR ;
+    aro:externalLink "https://www.cifraclub.com.br/racionais-mcs/homem-na-estrada/letra/"^^xsd:anyURI .
+
+hnr:gravacao1993 a aro:Manifestation ;
+    aro:realizesArtwork hnr:homemNaEstrada ;
+    aro:textValue "Gravação publicada no álbum Raio X do Brasil"@pt-BR .
+
+hnr:transcricaoReferencia a aro:Manifestation ;
+    dcterms:source <https://www.cifraclub.com.br/racionais-mcs/homem-na-estrada/letra/> ;
+    aro:realizesArtwork hnr:homemNaEstrada ;
+    aro:textValue "Transcrição pública usada apenas para localizar recortes; nenhum verso é reproduzido nesta anotação."@pt-BR .
+
+hnr:criacao1993 a aro:CreativeAct ;
+    aro:hasContribution hnr:contribuicaoAutoria,
+        hnr:contribuicaoInterpretacao ;
+    aro:producesCreation hnr:homemNaEstrada,
+        hnr:gravacao1993 .
+
+hnr:contribuicaoAutoria a aro:CreativeContribution ;
+    aro:contributionBy <http://dbpedia.org/resource/Mano_Brown> ;
+    aro:contributionRole aro:AuthorRole,
+        aro:LyricistRole .
+
+hnr:contribuicaoInterpretacao a aro:CreativeContribution ;
+    aro:contributionBy <http://dbpedia.org/resource/Racionais_MC's> ;
+    aro:contributionRole aro:PerformerRole .
+
+<http://dbpedia.org/resource/Mano_Brown> a schema:Person ;
+    schema:name "Mano Brown" .
+
+<http://dbpedia.org/resource/Racionais_MC's> a schema:MusicGroup ;
+    schema:name "Racionais MC's" .
+
+hnr:unidadeRealidadeSocial a aro:AnalysisUnit ;
+    aro:groupsSelection hnr:recorte01,
+        hnr:recorte02,
+        hnr:recorte03,
+        hnr:recorte04,
+        hnr:recorte05,
+        hnr:recorte06,
+        hnr:recorte07,
+        hnr:recorte08,
+        hnr:recorte09,
+        hnr:recorte10,
+        hnr:recorte11,
+        hnr:recorte12,
+        hnr:recorte13,
+        hnr:recorte14,
+        hnr:recorte15 ;
+    aro:textValue "Recortes em que a narrativa representa situações sociais confrontáveis com evidência externa"@pt-BR .
+
+# -----------------------------------------------------------------------------
+# Recortes. Os intervalos seguem a segmentação temática do estudo de caso do
+# projeto; são coordenadas da transcrição, não reprodução da letra.
+# -----------------------------------------------------------------------------
+
+hnr:recorte01 a aro:Selection ;
+    aro:selectsFrom hnr:transcricaoReferencia ;
+    aro:selectorExpression "linhas 1–7: saída da prisão e projeto de recomeço" ;
+    aro:hasSelector [ a oa:FragmentSelector ;
+            dcterms:conformsTo <http://tools.ietf.org/rfc/rfc5147> ;
+            oa:value "line=0,7" ] .
+
+hnr:recorte02 a aro:Selection ;
+    aro:selectsFrom hnr:transcricaoReferencia ;
+    aro:selectorExpression "linhas 8–9: memória da institucionalização juvenil" ;
+    aro:hasSelector [ a oa:FragmentSelector ;
+            dcterms:conformsTo <http://tools.ietf.org/rfc/rfc5147> ;
+            oa:value "line=7,9" ] .
+
+hnr:recorte03 a aro:Selection ;
+    aro:selectsFrom hnr:transcricaoReferencia ;
+    aro:selectorExpression "linhas 22–26: moradia, esgoto e risco de desabamento" ;
+    aro:hasSelector [ a oa:FragmentSelector ;
+            dcterms:conformsTo <http://tools.ietf.org/rfc/rfc5147> ;
+            oa:value "line=21,26" ] .
+
+hnr:recorte04 a aro:Selection ;
+    aro:selectsFrom hnr:transcricaoReferencia ;
+    aro:selectorExpression "linhas 28–30: contagem estatística e ausência percebida de retorno público" ;
+    aro:hasSelector [ a oa:FragmentSelector ;
+            dcterms:conformsTo <http://tools.ietf.org/rfc/rfc5147> ;
+            oa:value "line=27,30" ] .
+
+hnr:recorte05 a aro:Selection ;
+    aro:selectsFrom hnr:transcricaoReferencia ;
+    aro:selectorExpression "linhas 31–38: violência contra mulher e demora institucional" ;
+    aro:hasSelector [ a oa:FragmentSelector ;
+            dcterms:conformsTo <http://tools.ietf.org/rfc/rfc5147> ;
+            oa:value "line=30,38" ] .
+
+hnr:recorte06 a aro:Selection ;
+    aro:selectsFrom hnr:transcricaoReferencia ;
+    aro:selectorExpression "linhas 46–50: desemprego e estigma penal" ;
+    aro:hasSelector [ a oa:FragmentSelector ;
+            dcterms:conformsTo <http://tools.ietf.org/rfc/rfc5147> ;
+            oa:value "line=45,50" ] .
+
+hnr:recorte07 a aro:Selection ;
+    aro:selectsFrom hnr:transcricaoReferencia ;
+    aro:selectorExpression "linhas 57–58: interrupção recorrente do abastecimento de água" ;
+    aro:hasSelector [ a oa:FragmentSelector ;
+            dcterms:conformsTo <http://tools.ietf.org/rfc/rfc5147> ;
+            oa:value "line=56,58" ] .
+
+hnr:recorte08 a aro:Selection ;
+    aro:selectsFrom hnr:transcricaoReferencia ;
+    aro:selectorExpression "linhas 62–66: punição coletiva extrajudicial" ;
+    aro:hasSelector [ a oa:FragmentSelector ;
+            dcterms:conformsTo <http://tools.ietf.org/rfc/rfc5147> ;
+            oa:value "line=61,66" ] .
+
+hnr:recorte09 a aro:Selection ;
+    aro:selectsFrom hnr:transcricaoReferencia ;
+    aro:selectorExpression "linhas 73–76: fome infantil e alimentação escolar" ;
+    aro:hasSelector [ a oa:FragmentSelector ;
+            dcterms:conformsTo <http://tools.ietf.org/rfc/rfc5147> ;
+            oa:value "line=72,76" ] .
+
+hnr:recorte10 a aro:Selection ;
+    aro:selectsFrom hnr:transcricaoReferencia ;
+    aro:selectorExpression "linhas 80–87: mercado ilícito, morte de jovem e exposição midiática" ;
+    aro:hasSelector [ a oa:FragmentSelector ;
+            dcterms:conformsTo <http://tools.ietf.org/rfc/rfc5147> ;
+            oa:value "line=79,87" ] .
+
+hnr:recorte11 a aro:Selection ;
+    aro:selectsFrom hnr:transcricaoReferencia ;
+    aro:selectorExpression "linhas 103–108: suspeição territorial e criminalização" ;
+    aro:hasSelector [ a oa:FragmentSelector ;
+            dcterms:conformsTo <http://tools.ietf.org/rfc/rfc5147> ;
+            oa:value "line=102,108" ] .
+
+hnr:recorte12 a aro:Selection ;
+    aro:selectsFrom hnr:transcricaoReferencia ;
+    aro:selectorExpression "linhas 111–118: permanência do rótulo de ex-presidiário" ;
+    aro:hasSelector [ a oa:FragmentSelector ;
+            dcterms:conformsTo <http://tools.ietf.org/rfc/rfc5147> ;
+            oa:value "line=110,118" ] .
+
+hnr:recorte13 a aro:Selection ;
+    aro:selectsFrom hnr:transcricaoReferencia ;
+    aro:selectorExpression "linhas 119–123: desconfiança da polícia e autodefesa" ;
+    aro:hasSelector [ a oa:FragmentSelector ;
+            dcterms:conformsTo <http://tools.ietf.org/rfc/rfc5147> ;
+            oa:value "line=118,123" ] .
+
+hnr:recorte14 a aro:Selection ;
+    aro:selectsFrom hnr:transcricaoReferencia ;
+    aro:selectorExpression "linhas 132–137: cerco armado à moradia" ;
+    aro:hasSelector [ a oa:FragmentSelector ;
+            dcterms:conformsTo <http://tools.ietf.org/rfc/rfc5147> ;
+            oa:value "line=131,137" ] .
+
+hnr:recorte15 a aro:Selection ;
+    aro:selectsFrom hnr:transcricaoReferencia ;
+    aro:selectorExpression "linhas 148–151: morte e enquadramento oficial da vítima" ;
+    aro:hasSelector [ a oa:FragmentSelector ;
+            dcterms:conformsTo <http://tools.ietf.org/rfc/rfc5147> ;
+            oa:value "line=147,151" ] .
+
+# -----------------------------------------------------------------------------
+# Ato interpretativo, registros e justificativas
+# -----------------------------------------------------------------------------
+
+hnr:atoInterpretativo2026 a aro:InterpretiveAct ;
+    dcterms:created "2026-11-05"^^xsd:date ;
+    aro:hasParticipant hnr:analistaPesquisador .
+
+hnr:interpretacao01 a aro:InterpretationRecord ;
+    aro:hasPrimarySelection hnr:recorte01 ;
+    aro:producedByAct hnr:atoInterpretativo2026 ;
+    aro:describesSituation hnr:situacao01 ;
+    aro:hasJustification hnr:justificativa01 ;
+    aro:confidenceScore 0.96 .
+
+hnr:interpretacao02 a aro:InterpretationRecord ;
+    aro:hasPrimarySelection hnr:recorte02 ;
+    aro:producedByAct hnr:atoInterpretativo2026 ;
+    aro:describesSituation hnr:situacao02 ;
+    aro:hasJustification hnr:justificativa02 ;
+    aro:confidenceScore 0.94 .
+
+hnr:interpretacao03 a aro:InterpretationRecord ;
+    aro:hasPrimarySelection hnr:recorte03 ;
+    aro:producedByAct hnr:atoInterpretativo2026 ;
+    aro:describesSituation hnr:situacao03 ;
+    aro:hasJustification hnr:justificativa03 ;
+    aro:confidenceScore 0.98 .
+
+hnr:interpretacao04 a aro:InterpretationRecord ;
+    aro:hasPrimarySelection hnr:recorte04 ;
+    aro:producedByAct hnr:atoInterpretativo2026 ;
+    aro:describesSituation hnr:situacao04 ;
+    aro:hasJustification hnr:justificativa04 ;
+    aro:confidenceScore 0.93 .
+
+hnr:interpretacao05 a aro:InterpretationRecord ;
+    aro:hasPrimarySelection hnr:recorte05 ;
+    aro:producedByAct hnr:atoInterpretativo2026 ;
+    aro:describesSituation hnr:situacao05 ;
+    aro:hasJustification hnr:justificativa05 ;
+    aro:confidenceScore 0.96 .
+
+hnr:interpretacao06 a aro:InterpretationRecord ;
+    aro:hasPrimarySelection hnr:recorte06 ;
+    aro:producedByAct hnr:atoInterpretativo2026 ;
+    aro:describesSituation hnr:situacao06 ;
+    aro:hasJustification hnr:justificativa06 ;
+    aro:confidenceScore 0.97 .
+
+hnr:interpretacao07 a aro:InterpretationRecord ;
+    aro:hasPrimarySelection hnr:recorte07 ;
+    aro:producedByAct hnr:atoInterpretativo2026 ;
+    aro:describesSituation hnr:situacao07 ;
+    aro:hasJustification hnr:justificativa07 ;
+    aro:confidenceScore 0.97 .
+
+hnr:interpretacao08 a aro:InterpretationRecord ;
+    aro:hasPrimarySelection hnr:recorte08 ;
+    aro:producedByAct hnr:atoInterpretativo2026 ;
+    aro:describesSituation hnr:situacao08 ;
+    aro:hasJustification hnr:justificativa08 ;
+    aro:confidenceScore 0.93 .
+
+hnr:interpretacao09 a aro:InterpretationRecord ;
+    aro:hasPrimarySelection hnr:recorte09 ;
+    aro:producedByAct hnr:atoInterpretativo2026 ;
+    aro:describesSituation hnr:situacao09 ;
+    aro:hasJustification hnr:justificativa09 ;
+    aro:confidenceScore 0.92 .
+
+hnr:interpretacao10 a aro:InterpretationRecord ;
+    aro:hasPrimarySelection hnr:recorte10 ;
+    aro:producedByAct hnr:atoInterpretativo2026 ;
+    aro:describesSituation hnr:situacao10 ;
+    aro:hasJustification hnr:justificativa10 ;
+    aro:confidenceScore 0.89 .
+
+hnr:interpretacao11 a aro:InterpretationRecord ;
+    aro:hasPrimarySelection hnr:recorte11 ;
+    aro:producedByAct hnr:atoInterpretativo2026 ;
+    aro:describesSituation hnr:situacao11 ;
+    aro:hasJustification hnr:justificativa11 ;
+    aro:confidenceScore 0.91 .
+
+hnr:interpretacao12 a aro:InterpretationRecord ;
+    aro:hasPrimarySelection hnr:recorte12 ;
+    aro:producedByAct hnr:atoInterpretativo2026 ;
+    aro:describesSituation hnr:situacao12 ;
+    aro:hasJustification hnr:justificativa12 ;
+    aro:confidenceScore 0.97 .
+
+hnr:interpretacao13 a aro:InterpretationRecord ;
+    aro:hasPrimarySelection hnr:recorte13 ;
+    aro:producedByAct hnr:atoInterpretativo2026 ;
+    aro:describesSituation hnr:situacao13 ;
+    aro:hasJustification hnr:justificativa13 ;
+    aro:confidenceScore 0.94 .
+
+hnr:interpretacao14 a aro:InterpretationRecord ;
+    aro:hasPrimarySelection hnr:recorte14 ;
+    aro:producedByAct hnr:atoInterpretativo2026 ;
+    aro:describesSituation hnr:situacao14 ;
+    aro:hasJustification hnr:justificativa14 ;
+    aro:confidenceScore 0.89 .
+
+hnr:interpretacao15 a aro:InterpretationRecord ;
+    aro:hasPrimarySelection hnr:recorte15 ;
+    aro:producedByAct hnr:atoInterpretativo2026 ;
+    aro:describesSituation hnr:situacao15 ;
+    aro:hasJustification hnr:justificativa15 ;
+    aro:confidenceScore 0.86 .
+
+hnr:justificativa01 a aro:InterpretiveJustification ;
+    aro:textValue "A passagem apresenta liberdade, mudança de vida e reinício como projeto do personagem; não como resultado já alcançado."@pt-BR .
+
+hnr:justificativa02 a aro:InterpretiveJustification ;
+    aro:textValue "A referência institucional é lida como memória de privação e sofrimento juvenil, sem transpor automaticamente categorias jurídicas atuais ao passado narrado."@pt-BR .
+
+hnr:justificativa03 a aro:InterpretiveJustification ;
+    aro:textValue "Moradia, esgoto, encosta e chuva formam uma configuração única de precariedade urbana e risco."@pt-BR .
+
+hnr:justificativa04 a aro:InterpretiveJustification ;
+    aro:textValue "A crítica contrapõe conhecimento estatístico e ausência percebida de melhoria. Ela não atribui ao instituto de estatística a competência de executar saneamento, habitação ou assistência."@pt-BR .
+
+hnr:justificativa05 a aro:InterpretiveJustification ;
+    aro:textValue "A cena articula violência contra uma mulher e resposta pública tardia. A motivação jurídica da morte não é especificada."@pt-BR .
+
+hnr:justificativa06 a aro:InterpretiveJustification ;
+    aro:textValue "A dificuldade laboral é associada pelo narrador ao antecedente penal e à desconfiança social."@pt-BR .
+
+hnr:justificativa07 a aro:InterpretiveJustification ;
+    aro:textValue "A interrupção prolongada é narrada como recorrente, portanto funciona como sinal de serviço básico instável."@pt-BR .
+
+hnr:justificativa08 a aro:InterpretiveJustification ;
+    aro:textValue "A ação de moradores é punição coletiva fora do processo legal; a anotação não a legitima nem presume culpa da vítima."@pt-BR .
+
+hnr:justificativa09 a aro:InterpretiveJustification ;
+    aro:textValue "A passagem usa fome infantil extrema para denunciar privação; a relação exclusiva entre frequência escolar e alimentação permanece uma interpretação contextual."@pt-BR .
+
+hnr:justificativa10 a aro:InterpretiveJustification ;
+    aro:textValue "A narrativa reúne mercado ilícito, desigualdade entre vendedores e consumidores, morte jovem e exploração midiática; esses componentes não são tratados como uma única relação causal comprovada."@pt-BR .
+
+hnr:justificativa11 a aro:InterpretiveJustification ;
+    aro:textValue "A suspeição recai sobre território e moradores; uma suspeita narrada não equivale a culpa comprovada."@pt-BR .
+
+hnr:justificativa12 a aro:InterpretiveJustification ;
+    aro:textValue "O antecedente penal aparece como identidade social duradoura que ultrapassa o término da pena."@pt-BR .
+
+hnr:justificativa13 a aro:InterpretiveJustification ;
+    aro:textValue "O medo de agressão ou omissão policial fundamenta a percepção de desproteção; não valida juridicamente a autodefesa armada."@pt-BR .
+
+hnr:justificativa14 a aro:InterpretiveJustification ;
+    aro:textValue "O cerco é percebido pelo personagem como ação policial letal. A autoria e a intenção permanecem internas à perspectiva narrativa."@pt-BR .
+
+hnr:justificativa15 a aro:InterpretiveJustification ;
+    aro:textValue "A notícia final associa a morte a uma versão atribuída à polícia e ao antecedente da vítima. A sequência permite crítica ao enquadramento, mas não encerra a disputa sobre autoria."@pt-BR .
+
+hnr:contestacaoIBGE a aro:InterpretationChallenge ;
+    aro:challenges hnr:interpretacao04 ;
+    aro:textValue "A distância entre medir e transformar uma realidade pode ser criticada, mas o IBGE não é o órgão executor das políticas de saneamento, moradia, segurança ou assistência."@pt-BR .
+
+hnr:contestacaoAutoriaMorte a aro:InterpretationChallenge ;
+    aro:challenges hnr:interpretacao15 ;
+    aro:textValue "A sequência narrativa sustenta desconfiança em relação à versão oficial, porém não fornece atribuição pericial independente da autoria da morte."@pt-BR .
+
+# -----------------------------------------------------------------------------
+# Situações representadas e padrões reutilizáveis
+# -----------------------------------------------------------------------------
+
+hnr:situacao01 a aro:SituationDescription ;
+    aro:generalizesAs hnr:padraoReinsercao ;
+    aro:textValue "Pessoa egressa do sistema prisional tenta reconstruir a vida e romper com o crime."@pt-BR .
+
+hnr:situacao02 a aro:SituationDescription ;
+    aro:generalizesAs hnr:padraoSocioeducacaoDesigual ;
+    aro:textValue "A institucionalização juvenil é lembrada como experiência de privação e sofrimento."@pt-BR .
+
+hnr:situacao03 a aro:SituationDescription ;
+    aro:generalizesAs hnr:padraoPrecariedadeConhecida ;
+    aro:textValue "Moradia autoconstruída combina saneamento deficiente, encosta e exposição a desastre."@pt-BR .
+
+hnr:situacao04 a aro:SituationDescription ;
+    aro:generalizesAs hnr:padraoPrecariedadeConhecida ;
+    aro:textValue "A população é contada e a precariedade se torna conhecida, mas o conhecimento não é percebido como convertido em resposta pública suficiente."@pt-BR .
+
+hnr:situacao05 a aro:SituationDescription ;
+    aro:generalizesAs hnr:padraoViolenciaMulher ;
+    aro:textValue "Uma mulher sofre violência letal e o atendimento institucional ao corpo é narrado como tardio."@pt-BR .
+
+hnr:situacao06 a aro:SituationDescription ;
+    aro:generalizesAs hnr:padraoReinsercao ;
+    aro:textValue "Antecedente penal e estigma dificultam a obtenção de trabalho após a prisão."@pt-BR .
+
+hnr:situacao07 a aro:SituationDescription ;
+    aro:generalizesAs hnr:padraoPrecariedadeConhecida ;
+    aro:textValue "Serviço de abastecimento de água é interrompido de modo prolongado e recorrente."@pt-BR .
+
+hnr:situacao08 a aro:SituationDescription ;
+    aro:generalizesAs hnr:padraoLinchamento ;
+    aro:textValue "Moradores aplicam punição violenta extrajudicial a uma pessoa acusada de agressão."@pt-BR .
+
+hnr:situacao09 a aro:SituationDescription ;
+    aro:generalizesAs hnr:padraoFomeInfantil ;
+    aro:textValue "Crianças vivem privação alimentar grave, e a escola aparece também como acesso a comida."@pt-BR .
+
+hnr:situacao10 a aro:SituationDescription ;
+    aro:generalizesAs hnr:padraoMorteJovem,
+        hnr:padraoEconomiaIlicitaMidia ;
+    aro:textValue "Jovem inserido no varejo de drogas é morto, enquanto consumidores mais ricos permanecem distantes do risco e a morte vira mercadoria noticiosa."@pt-BR .
+
+hnr:situacao11 a aro:SituationDescription ;
+    aro:generalizesAs hnr:padraoSuspeicaoViolenciaEstado ;
+    aro:textValue "Moradores de território periférico são generalizados como suspeitos, e o protagonista é incluído nessa suspeição."@pt-BR .
+
+hnr:situacao12 a aro:SituationDescription ;
+    aro:generalizesAs hnr:padraoReinsercao,
+        hnr:padraoSuspeicaoViolenciaEstado ;
+    aro:textValue "O passado penal permanece como rótulo e molda a leitura social do sujeito no presente."@pt-BR .
+
+hnr:situacao13 a aro:SituationDescription ;
+    aro:generalizesAs hnr:padraoSuspeicaoViolenciaEstado ;
+    aro:textValue "A expectativa de agressão ou omissão policial produz sensação de desproteção e recurso à autodefesa."@pt-BR .
+
+hnr:situacao14 a aro:SituationDescription ;
+    aro:generalizesAs hnr:padraoSuspeicaoViolenciaEstado ;
+    aro:textValue "Uma moradia periférica é cercada por agentes armados que o personagem identifica como policiais com intenção letal."@pt-BR .
+
+hnr:situacao15 a aro:SituationDescription ;
+    aro:generalizesAs hnr:padraoSuspeicaoViolenciaEstado ;
+    aro:textValue "Após a morte, uma versão oficial associa a vítima ao crime e mobiliza seus antecedentes para enquadrá-la."@pt-BR .
+
+hnr:padraoReinsercao a aro:SituationPattern ;
+    aro:hasCondition hnr:condicaoEgresso,
+        hnr:condicaoBarreiraTrabalho ;
+    aro:textValue "Reinserção social dificultada por estigma penal e barreiras de trabalho"@pt-BR .
+
+hnr:condicaoEgresso a aro:PatternCondition ;
+    aro:isRequiredCondition true ;
+    aro:textValue "Pessoa retorna à vida social após privação de liberdade."@pt-BR .
+
+hnr:condicaoBarreiraTrabalho a aro:PatternCondition ;
+    aro:isRequiredCondition true ;
+    aro:textValue "Antecedentes, estigma ou oferta institucional insuficiente restringem oportunidades de trabalho e reintegração."@pt-BR .
+
+hnr:padraoSocioeducacaoDesigual a aro:SituationPattern ;
+    aro:hasCondition hnr:condicaoPrivacaoJuvenil,
+        hnr:condicaoDireitosSocioeducacao ;
+    aro:textValue "Institucionalização juvenil atravessada por desigualdade e acesso incompleto a direitos"@pt-BR .
+
+hnr:condicaoPrivacaoJuvenil a aro:PatternCondition ;
+    aro:isRequiredCondition true ;
+    aro:textValue "Adolescente cumpre medida com restrição ou privação de liberdade."@pt-BR .
+
+hnr:condicaoDireitosSocioeducacao a aro:PatternCondition ;
+    aro:isRequiredCondition true ;
+    aro:textValue "Escolarização, profissionalização ou acompanhamento apresentam lacunas relevantes."@pt-BR .
+
+hnr:padraoPrecariedadeConhecida a aro:SituationPattern ;
+    aro:hasCondition hnr:condicaoTerritorioPopular,
+        hnr:condicaoDeficitPersistente,
+        hnr:condicaoDadosSemSolucao ;
+    aro:textValue "Precariedade urbana conhecida por dados públicos, mas não superada por políticas e serviços"@pt-BR .
+
+hnr:condicaoTerritorioPopular a aro:PatternCondition ;
+    aro:isRequiredCondition true ;
+    aro:textValue "Território popular formado por estratégias autônomas de acesso à moradia e à cidade."@pt-BR .
+
+hnr:condicaoDeficitPersistente a aro:PatternCondition ;
+    aro:isRequiredCondition true ;
+    aro:textValue "Persistem déficits de infraestrutura, serviços, segurança territorial ou proteção ambiental."@pt-BR .
+
+hnr:condicaoDadosSemSolucao a aro:PatternCondition ;
+    aro:isRequiredCondition false ;
+    aro:textValue "A realidade é medida e publicizada sem que a produção de dados, por si, garanta resposta pública suficiente."@pt-BR .
+
+hnr:padraoViolenciaMulher a aro:SituationPattern ;
+    aro:hasCondition hnr:condicaoViolenciaGenero,
+        hnr:condicaoRespostaTardia ;
+    aro:textValue "Violência grave contra mulheres e limites da resposta institucional"@pt-BR .
+
+hnr:condicaoViolenciaGenero a aro:PatternCondition ;
+    aro:isRequiredCondition true ;
+    aro:textValue "Mulher sofre violência física, sexual, psicológica ou letal."@pt-BR .
+
+hnr:condicaoRespostaTardia a aro:PatternCondition ;
+    aro:isRequiredCondition false ;
+    aro:textValue "A prevenção, denúncia, investigação, cuidado ou resposta posterior é ausente ou insuficiente."@pt-BR .
+
+hnr:padraoLinchamento a aro:SituationPattern ;
+    aro:hasCondition hnr:condicaoPunicaoColetiva ;
+    aro:textValue "Linchamento como punição coletiva extrajudicial"@pt-BR .
+
+hnr:condicaoPunicaoColetiva a aro:PatternCondition ;
+    aro:isRequiredCondition true ;
+    aro:textValue "Grupo agride ou mata pessoa acusada, substituindo o processo legal por justiçamento."@pt-BR .
+
+hnr:padraoFomeInfantil a aro:SituationPattern ;
+    aro:hasCondition hnr:condicaoPrivacaoAlimentar,
+        hnr:condicaoEscolaProtecao ;
+    aro:textValue "Fome infantil e escola como parte da proteção alimentar"@pt-BR .
+
+hnr:condicaoPrivacaoAlimentar a aro:PatternCondition ;
+    aro:isRequiredCondition true ;
+    aro:textValue "Crianças ou adolescentes sofrem restrição quantitativa severa de alimentos."@pt-BR .
+
+hnr:condicaoEscolaProtecao a aro:PatternCondition ;
+    aro:isRequiredCondition false ;
+    aro:textValue "A alimentação escolar integra a rede de proteção, sem que isso implique ser o único motivo da frequência."@pt-BR .
+
+hnr:padraoMorteJovem a aro:SituationPattern ;
+    aro:hasCondition hnr:condicaoLetalidadeJuvenil ;
+    aro:textValue "Violência letal concentrada sobre jovens, especialmente jovens negros"@pt-BR .
+
+hnr:condicaoLetalidadeJuvenil a aro:PatternCondition ;
+    aro:isRequiredCondition true ;
+    aro:textValue "Jovens são vitimados de modo expressivo e racialmente desigual por homicídios."@pt-BR .
+
+hnr:padraoEconomiaIlicitaMidia a aro:SituationPattern ;
+    aro:hasCondition hnr:condicaoMercadoIlicito,
+        hnr:condicaoExposicaoMidia ;
+    aro:textValue "Desigualdade no mercado ilícito e transformação da morte em espetáculo midiático"@pt-BR .
+
+hnr:condicaoMercadoIlicito a aro:PatternCondition ;
+    aro:isRequiredCondition true ;
+    aro:textValue "Riscos e ganhos de um mercado ilícito são distribuídos de forma desigual entre atores sociais."@pt-BR .
+
+hnr:condicaoExposicaoMidia a aro:PatternCondition ;
+    aro:isRequiredCondition false ;
+    aro:textValue "A morte violenta é explorada como conteúdo noticioso ou espetáculo."@pt-BR .
+
+hnr:padraoSuspeicaoViolenciaEstado a aro:SituationPattern ;
+    aro:hasCondition hnr:condicaoSuspeicao,
+        hnr:condicaoForcaLetal,
+        hnr:condicaoVersaoEstigmatizante ;
+    aro:textValue "Suspeição racializada e territorial associada à violência letal do Estado"@pt-BR .
+
+hnr:condicaoSuspeicao a aro:PatternCondition ;
+    aro:isRequiredCondition true ;
+    aro:textValue "Território, raça ou antecedente penal orientam suspeição e tratamento desigual."@pt-BR .
+
+hnr:condicaoForcaLetal a aro:PatternCondition ;
+    aro:isRequiredCondition true ;
+    aro:textValue "Intervenção de agentes estatais produz risco ou resultado letal."@pt-BR .
+
+hnr:condicaoVersaoEstigmatizante a aro:PatternCondition ;
+    aro:isRequiredCondition false ;
+    aro:textValue "A narrativa oficial posterior mobiliza o passado criminal para enquadrar a vítima."@pt-BR .
+
+# -----------------------------------------------------------------------------
+# Fontes externas. A data da fonte situa a observação, mas não limita a
+# correspondência: o objeto avaliado é a existência/persistência do padrão.
+# -----------------------------------------------------------------------------
+
+hnr:fonteIBGEFavelas a aro:ReferenceSource ;
+    rdfs:label "Favelas e Comunidades Urbanas — definição e resultados do Censo 2022"@pt-BR ;
+    dcterms:publisher "Instituto Brasileiro de Geografia e Estatística (IBGE)" ;
+    aro:sourceURL "https://www.ibge.gov.br/geociencias/organizacao-do-territorio/tipologias-do-territorio/15788-aglomeradossubnormais.html"^^xsd:anyURI ;
+    aro:versionLabel "página institucional consultada em 2026-11-05" ;
+    aro:textValue "Produto estatístico e conceitual do IBGE sobre favelas e comunidades urbanas"@pt-BR .
+
+hnr:fonteIBGECensoFavelas a aro:ReferenceSource ;
+    rdfs:label "Censo 2022: 16,39 milhões de pessoas moravam em favelas e comunidades urbanas"@pt-BR ;
+    dcterms:publisher "Instituto Brasileiro de Geografia e Estatística (IBGE)" ;
+    dcterms:issued "2024-12-16"^^xsd:date ;
+    aro:sourceURL "https://educa.ibge.gov.br/jovens/materias-especiais/22539-censo-2022-16-390-815-pessoas-moravam-em-favelas-e-comunidades-urbanas.html"^^xsd:anyURI ;
+    aro:textValue "Resultados de população, água, esgotamento e coleta de lixo em favelas e comunidades urbanas"@pt-BR .
+
+hnr:fonteCNJTrabalhoEgressos a aro:ReferenceSource ;
+    rdfs:label "O trabalho de pessoas privadas de liberdade e egressas do sistema prisional"@pt-BR ;
+    dcterms:publisher "Conselho Nacional de Justiça (CNJ)" ;
+    dcterms:issued "2024"^^xsd:gYear ;
+    aro:sourceURL "https://bibliotecadigital.cnj.jus.br/jspui/bitstream/123456789/986/3/O%20trabalho%20de%20pessoas%20privadas%20de%20liberdade%20e%20egressas%20do%20sistema%20prisional%20desafios_Sum%C3%A1rio%20Executivo.pdf"^^xsd:anyURI ;
+    aro:textValue "Pesquisa qualitativa do CNJ sobre inserção sociolaboral, estigma, serviços e políticas para pessoas egressas"@pt-BR .
+
+hnr:fonteSINASE2024 a aro:ReferenceSource ;
+    rdfs:label "Levantamento Nacional do SINASE 2024"@pt-BR ;
+    dcterms:publisher "Ministério dos Direitos Humanos e da Cidadania" ;
+    dcterms:issued "2025"^^xsd:gYear ;
+    aro:sourceURL "https://www.gov.br/mdh/pt-br/navegue-por-temas/crianca-e-adolescente/Levantamento_Nacional_SINASE_2024.pdf"^^xsd:anyURI ;
+    aro:textValue "Levantamento nacional sobre adolescentes em restrição e privação de liberdade e acesso a direitos"@pt-BR .
+
+hnr:fonteFBSPMulheres2025 a aro:ReferenceSource ;
+    rdfs:label "Visível e Invisível: a Vitimização de Mulheres no Brasil — 5ª edição"@pt-BR ;
+    dcterms:publisher "Fórum Brasileiro de Segurança Pública e Instituto Datafolha" ;
+    dcterms:issued "2025"^^xsd:gYear ;
+    aro:sourceURL "https://publicacoes.forumseguranca.org.br/handle/fbsp/269"^^xsd:anyURI ;
+    aro:textValue "Pesquisa nacional de vitimização de mulheres com 16 anos ou mais"@pt-BR .
+
+hnr:fonteIBGESegurancaAlimentar2024 a aro:ReferenceSource ;
+    rdfs:label "PNAD Contínua: Segurança Alimentar 2024"@pt-BR ;
+    dcterms:publisher "Instituto Brasileiro de Geografia e Estatística (IBGE)" ;
+    dcterms:issued "2025"^^xsd:gYear ;
+    aro:sourceURL "https://biblioteca.ibge.gov.br/visualizacao/livros/liv102212_informativo.pdf"^^xsd:anyURI ;
+    aro:textValue "Resultados da Escala Brasileira de Insegurança Alimentar aplicados pela PNAD Contínua"@pt-BR .
+
+hnr:fonteAtlasViolencia2025 a aro:ReferenceSource ;
+    rdfs:label "Atlas da Violência 2025"@pt-BR ;
+    dcterms:publisher "Instituto de Pesquisa Econômica Aplicada (Ipea) e Fórum Brasileiro de Segurança Pública" ;
+    dcterms:issued "2025"^^xsd:gYear ;
+    aro:sourceURL "https://www.ipea.gov.br/atlasviolencia/arquivos/artigos/5999-atlasdaviolencia2025.pdf"^^xsd:anyURI ;
+    aro:textValue "Relatório sobre homicídios, juventude, desigualdade racial e alcance das políticas públicas"@pt-BR .
+
+hnr:fonteAnuarioSeguranca2025 a aro:ReferenceSource ;
+    rdfs:label "19º Anuário Brasileiro de Segurança Pública"@pt-BR ;
+    dcterms:publisher "Fórum Brasileiro de Segurança Pública" ;
+    dcterms:issued "2025-07"^^xsd:gYearMonth ;
+    aro:sourceURL "https://forumseguranca.org.br/wp-content/uploads/2025/07/anuario-2025.pdf"^^xsd:anyURI ;
+    aro:textValue "Anuário baseado em dados oficiais estaduais sobre segurança pública e letalidade policial"@pt-BR .
+
+hnr:fonteLinchamentos2024 a aro:ReferenceSource ;
+    rdfs:label "A tortura nas ruas: linchamentos em três metrópoles brasileiras (2011–2020)"@pt-BR ;
+    dcterms:publisher "Dilemas — Revista de Estudos de Conflito e Controle Social" ;
+    dcterms:issued "2024"^^xsd:gYear ;
+    aro:sourceURL "https://www.scielo.br/j/dilemas/a/NhzWd9Rd88mQC6SnH6PCcdw/"^^xsd:anyURI ;
+    aro:textValue "Artigo empírico sobre linchamentos em Manaus, Grande São Luís e Grande Vitória"@pt-BR .
+
+# -----------------------------------------------------------------------------
+# Cadeias empíricas completas
+# -----------------------------------------------------------------------------
+
+# 1. Dados públicos e políticas insuficientes em favelas
+
+hnr:situacaoEmpiricaPrecariedade a aro:EmpiricalSituation ;
+    aro:textValue "No Brasil, milhões de pessoas vivem em favelas e comunidades urbanas com déficits territorialmente desiguais de infraestrutura e serviços; o próprio IBGE caracteriza esses territórios como expressão da incompletude ou precariedade das políticas governamentais e dos investimentos dirigidos ao direito à cidade."@pt-BR .
+
+hnr:casoPrecariedadeConhecida a aro:EmpiricalCase ;
+    aro:caseAboutSituation hnr:situacaoEmpiricaPrecariedade ;
+    aro:caseHasReference hnr:fonteIBGEFavelas,
+        hnr:fonteIBGECensoFavelas ;
+    prov:wasDerivedFrom hnr:fonteIBGEFavelas,
+        hnr:fonteIBGECensoFavelas ;
+    aro:textValue "Mensuração censitária coexistente com déficits e insuficiência de políticas urbanas"@pt-BR .
+
+hnr:afirmacaoPrecariedadeConhecida a aro:EmpiricalClaim ;
+    aro:textValue "A produção de dados detalhados sobre favelas torna a precariedade visível, mas não equivale à implementação ou à suficiência de políticas públicas; déficits de infraestrutura e serviços persistem nos territórios medidos."@pt-BR .
+
+hnr:evidenciaDefinicaoIBGE a aro:EvidenceItem ;
+    aro:derivedFromSource hnr:fonteIBGEFavelas ;
+    aro:textValue "O IBGE define favelas e comunidades urbanas como territórios formados diante da insuficiência e inadequação de políticas públicas e afirma que eles expressam a incompletude ou precariedade da infraestrutura, dos serviços, dos equipamentos coletivos e da proteção ambiental."@pt-BR .
+
+hnr:evidenciaCensoFavelas a aro:EvidenceItem ;
+    aro:derivedFromSource hnr:fonteIBGECensoFavelas ;
+    aro:textValue "O Censo 2022 contou cerca de 16,39 milhões de moradores em favelas; 86,5% dos domicílios tinham ligação à rede geral de água e 74,6% estavam conectados às formas de esgotamento agregadas pelo estudo, com fortes diferenças entre estados."@pt-BR .
+
+hnr:correspondenciaPrecariedadeConhecida a aro:CorrespondenceClaim ;
+    aro:assertsPattern hnr:padraoPrecariedadeConhecida ;
+    aro:assertsCase hnr:casoPrecariedadeConhecida ;
+    aro:referencesSource hnr:fonteIBGEFavelas,
+        hnr:fonteIBGECensoFavelas ;
+    aro:textValue "O padrão representado corresponde a uma realidade social documentada: conhecimento estatístico e déficits urbanos podem coexistir, pois medir não é o mesmo que executar ou completar políticas públicas."@pt-BR .
+
+hnr:avaliacaoPrecariedadeConhecida a aro:EvidenceAssessment ;
+    prov:wasAttributedTo hnr:analistaPesquisador ;
+    aro:assessesEvidence hnr:evidenciaDefinicaoIBGE,
+        hnr:evidenciaCensoFavelas ;
+    aro:supportsClaim hnr:afirmacaoPrecariedadeConhecida ;
+    aro:assessesCorrespondence hnr:correspondenciaPrecariedadeConhecida ;
+    aro:textValue "APOIA FORTEMENTE a existência do padrão social e, em particular, a coexistência entre mensuração e precariedade persistente. A diferença de época não reduz esse apoio, porque a alegação é sobre o tipo de situação. NÃO APOIA culpar o IBGE pela execução de serviços, identificar a comunidade ficcional ou afirmar que todo território popular possui o mesmo déficit."@pt-BR .
+
+# 2. Reinserção, trabalho e estigma penal
+
+hnr:situacaoEmpiricaReinsercao a aro:EmpiricalSituation ;
+    aro:textValue "Pesquisa do CNJ em nove estados identificou barreiras institucionais, oferta precária de postos, acesso limitado a serviços e estigmas negativos que dificultam a aceitação, a empregabilidade e a reintegração de pessoas egressas."@pt-BR .
+
+hnr:casoReinsercao a aro:EmpiricalCase ;
+    aro:caseAboutSituation hnr:situacaoEmpiricaReinsercao ;
+    aro:caseHasReference hnr:fonteCNJTrabalhoEgressos ;
+    prov:wasDerivedFrom hnr:fonteCNJTrabalhoEgressos ;
+    aro:textValue "Barreiras sociolaborais enfrentadas por pessoas egressas do sistema prisional"@pt-BR .
+
+hnr:afirmacaoReinsercao a aro:EmpiricalClaim ;
+    aro:textValue "Pessoas egressas enfrentam estigma e barreiras concretas de inserção e permanência no trabalho, enquanto os serviços e programas de reintegração são desiguais e por vezes limitados."@pt-BR .
+
+hnr:evidenciaReinsercao a aro:EvidenceItem ;
+    aro:derivedFromSource hnr:fonteCNJTrabalhoEgressos ;
+    aro:textValue "O relatório do CNJ registra estigmas sociais, baixa demanda privada, instabilidade dos empregos, acesso limitado a serviços em alguns estados e dificuldade de aceitação e reintegração social das pessoas egressas."@pt-BR .
+
+hnr:correspondenciaReinsercao a aro:CorrespondenceClaim ;
+    aro:assertsPattern hnr:padraoReinsercao ;
+    aro:assertsCase hnr:casoReinsercao ;
+    aro:referencesSource hnr:fonteCNJTrabalhoEgressos ;
+    aro:textValue "As barreiras narradas ao recomeço e ao emprego instanciam um tipo de dificuldade sociolaboral documentado pela pesquisa do CNJ."@pt-BR .
+
+hnr:avaliacaoReinsercao a aro:EvidenceAssessment ;
+    prov:wasAttributedTo hnr:analistaPesquisador ;
+    aro:assessesEvidence hnr:evidenciaReinsercao ;
+    aro:supportsClaim hnr:afirmacaoReinsercao ;
+    aro:assessesCorrespondence hnr:correspondenciaReinsercao ;
+    aro:textValue "APOIA DIRETAMENTE a realidade do estigma e das barreiras sociolaborais após a prisão. NÃO APOIA uma taxa nacional de recusa de emprego, nem prova a biografia ou a inocência do personagem. O apoio independe do ano da canção porque recai sobre a recorrência do padrão."@pt-BR .
+
+# 3. Institucionalização juvenil e direitos incompletos
+
+hnr:situacaoEmpiricaSocioeducacao a aro:EmpiricalSituation ;
+    aro:textValue "No levantamento do SINASE 2024, adolescentes em restrição ou privação de liberdade apresentavam lacunas de escolarização e profissionalização, com desigualdades por tipo de medida e raça."@pt-BR .
+
+hnr:casoSocioeducacao a aro:EmpiricalCase ;
+    aro:caseAboutSituation hnr:situacaoEmpiricaSocioeducacao ;
+    aro:caseHasReference hnr:fonteSINASE2024 ;
+    prov:wasDerivedFrom hnr:fonteSINASE2024 ;
+    aro:textValue "Acesso incompleto a educação e profissionalização no sistema socioeducativo"@pt-BR .
+
+hnr:afirmacaoSocioeducacao a aro:EmpiricalClaim ;
+    aro:textValue "A privação de liberdade de adolescentes continua atravessada por desigualdades e por acesso incompleto a direitos educacionais e de profissionalização."@pt-BR .
+
+hnr:evidenciaSocioeducacao a aro:EvidenceItem ;
+    aro:derivedFromSource hnr:fonteSINASE2024 ;
+    aro:textValue "O levantamento registrou frequência escolar de 85,3% no conjunto e de 61,0% na internação provisória, distorção idade-série para 52% dos adolescentes vinculados e ausência de profissionalização no mês de referência para 67% dos adolescentes em internação provisória."@pt-BR .
+
+hnr:correspondenciaSocioeducacao a aro:CorrespondenceClaim ;
+    aro:assertsPattern hnr:padraoSocioeducacaoDesigual ;
+    aro:assertsCase hnr:casoSocioeducacao ;
+    aro:referencesSource hnr:fonteSINASE2024 ;
+    aro:textValue "A memória de institucionalização juvenil encontra correspondência estrutural em um sistema contemporâneo que ainda apresenta lacunas no acesso a direitos."@pt-BR .
+
+hnr:avaliacaoSocioeducacao a aro:EvidenceAssessment ;
+    prov:wasAttributedTo hnr:analistaPesquisador ;
+    aro:assessesEvidence hnr:evidenciaSocioeducacao ;
+    aro:supportsClaim hnr:afirmacaoSocioeducacao ;
+    aro:assessesCorrespondence hnr:correspondenciaSocioeducacao ;
+    aro:textValue "APOIA a existência contemporânea do padrão de institucionalização juvenil com direitos incompletos. NÃO APOIA equiparar juridicamente FEBEM e SINASE, nem comprova abuso sofrido pelo personagem. A fonte posterior é pertinente para mostrar que o tipo de situação não é apenas ficcional ou historicamente encerrado."@pt-BR .
+
+# 4. Violência contra mulheres
+
+hnr:situacaoEmpiricaViolenciaMulher a aro:EmpiricalSituation ;
+    aro:textValue "Pesquisa nacional de 2025 registrou alta prevalência de violência física, sexual ou psicológica contra mulheres, inclusive em relações íntimas, mostrando persistência do fenômeno apesar de leis, canais e políticas existentes."@pt-BR .
+
+hnr:casoViolenciaMulher a aro:EmpiricalCase ;
+    aro:caseAboutSituation hnr:situacaoEmpiricaViolenciaMulher ;
+    aro:caseHasReference hnr:fonteFBSPMulheres2025 ;
+    prov:wasDerivedFrom hnr:fonteFBSPMulheres2025 ;
+    aro:textValue "Persistência e elevada prevalência da violência contra mulheres no Brasil"@pt-BR .
+
+hnr:afirmacaoViolenciaMulher a aro:EmpiricalClaim ;
+    aro:textValue "A violência contra mulheres permanece disseminada e grave no Brasil, de modo que a sua visibilidade pública e o aparato legal existente não significam que o problema tenha sido superado."@pt-BR .
+
+hnr:evidenciaViolenciaMulher a aro:EvidenceItem ;
+    aro:derivedFromSource hnr:fonteFBSPMulheres2025 ;
+    aro:textValue "Na quinta edição da pesquisa, 37,5% das mulheres brasileiras com 16 anos ou mais relataram alguma violência ou agressão no último ano, e 40,7% relataram violência física, sexual ou psicológica de parceiro ou ex-parceiro ao longo da vida."@pt-BR .
+
+hnr:correspondenciaViolenciaMulher a aro:CorrespondenceClaim ;
+    aro:assertsPattern hnr:padraoViolenciaMulher ;
+    aro:assertsCase hnr:casoViolenciaMulher ;
+    aro:referencesSource hnr:fonteFBSPMulheres2025 ;
+    aro:textValue "A violência extrema narrada participa de um padrão social de vitimização de mulheres cuja persistência é documentada em pesquisa nacional."@pt-BR .
+
+hnr:avaliacaoViolenciaMulher a aro:EvidenceAssessment ;
+    prov:wasAttributedTo hnr:analistaPesquisador ;
+    aro:assessesEvidence hnr:evidenciaViolenciaMulher ;
+    aro:supportsClaim hnr:afirmacaoViolenciaMulher ;
+    aro:assessesCorrespondence hnr:correspondenciaViolenciaMulher ;
+    aro:textValue "APOIA FORTEMENTE a existência e a persistência da violência contra mulheres. NÃO APOIA classificar juridicamente a morte ficcional como feminicídio, provar violência sexual no episódio ou comprovar atraso do IML; a condição de resposta tardia permanece contextual."@pt-BR .
+
+# 5. Insegurança alimentar grave e fome infantil
+
+hnr:situacaoEmpiricaFome a aro:EmpiricalSituation ;
+    aro:textValue "Em 2024, insegurança alimentar atingia parte expressiva dos domicílios brasileiros, e a forma grave incluía privação quantitativa que alcançava adultos, crianças e adolescentes."@pt-BR .
+
+hnr:casoFome a aro:EmpiricalCase ;
+    aro:caseAboutSituation hnr:situacaoEmpiricaFome ;
+    aro:caseHasReference hnr:fonteIBGESegurancaAlimentar2024 ;
+    prov:wasDerivedFrom hnr:fonteIBGESegurancaAlimentar2024 ;
+    aro:textValue "Fome e insegurança alimentar grave em domicílios com crianças e adolescentes"@pt-BR .
+
+hnr:afirmacaoFome a aro:EmpiricalClaim ;
+    aro:textValue "A privação alimentar grave, inclusive com fome entre crianças e adolescentes, permanece uma realidade mensurável no Brasil."@pt-BR .
+
+hnr:evidenciaFome a aro:EvidenceItem ;
+    aro:derivedFromSource hnr:fonteIBGESegurancaAlimentar2024 ;
+    aro:textValue "A PNAD Contínua estimou 24,2% dos domicílios em algum grau de insegurança alimentar e 3,2% em grau grave; cerca de 2,5 milhões de domicílios passaram por privação quantitativa que atingiu também crianças e adolescentes, com presença de fome em algum momento do período de referência."@pt-BR .
+
+hnr:correspondenciaFome a aro:CorrespondenceClaim ;
+    aro:assertsPattern hnr:padraoFomeInfantil ;
+    aro:assertsCase hnr:casoFome ;
+    aro:referencesSource hnr:fonteIBGESegurancaAlimentar2024 ;
+    aro:textValue "A cena de crianças em privação alimentar representa um tipo de situação cuja existência é diretamente documentada pela escala oficial de insegurança alimentar."@pt-BR .
+
+hnr:avaliacaoFome a aro:EvidenceAssessment ;
+    prov:wasAttributedTo hnr:analistaPesquisador ;
+    aro:assessesEvidence hnr:evidenciaFome ;
+    aro:supportsClaim hnr:afirmacaoFome ;
+    aro:assessesCorrespondence hnr:correspondenciaFome ;
+    aro:textValue "APOIA DIRETAMENTE a realidade da fome infantil e familiar. NÃO APOIA o episódio literal da feira nem afirma que uma criança frequente a escola exclusivamente para comer. A alimentação escolar é mantida como condição contextual de proteção, não como inferência produzida pela PNAD."@pt-BR .
+
+# 6. Letalidade juvenil e desigualdade racial
+
+hnr:situacaoEmpiricaMorteJovem a aro:EmpiricalSituation ;
+    aro:textValue "Em 2023, homicídios vitimaram 21.856 jovens de 15 a 29 anos e pessoas negras apresentaram risco de homicídio 2,7 vezes superior ao de pessoas não negras; o Atlas caracteriza a desigualdade como persistente e insuficientemente enfrentada pelas políticas públicas."@pt-BR .
+
+hnr:casoMorteJovem a aro:EmpiricalCase ;
+    aro:caseAboutSituation hnr:situacaoEmpiricaMorteJovem ;
+    aro:caseHasReference hnr:fonteAtlasViolencia2025 ;
+    prov:wasDerivedFrom hnr:fonteAtlasViolencia2025 ;
+    aro:textValue "Concentração da violência letal sobre jovens e pessoas negras"@pt-BR .
+
+hnr:afirmacaoMorteJovem a aro:EmpiricalClaim ;
+    aro:textValue "A violência letal atinge jovens em grande escala e de modo racialmente desigual, persistindo mesmo diante da redução geral dos homicídios e da ampliação da agenda pública sobre igualdade racial."@pt-BR .
+
+hnr:evidenciaMorteJovem a aro:EvidenceItem ;
+    aro:derivedFromSource hnr:fonteAtlasViolencia2025 ;
+    aro:textValue "O Atlas registra que 47,8% dos homicídios de 2023 vitimaram jovens de 15 a 29 anos e que uma pessoa negra tinha 2,7 vezes mais chance de ser vítima de homicídio que uma pessoa não negra; o relatório afirma que políticas sociais ainda não protegem a juventude negra no mesmo patamar que a branca."@pt-BR .
+
+hnr:correspondenciaMorteJovem a aro:CorrespondenceClaim ;
+    aro:assertsPattern hnr:padraoMorteJovem ;
+    aro:assertsCase hnr:casoMorteJovem ;
+    aro:referencesSource hnr:fonteAtlasViolencia2025 ;
+    aro:textValue "A morte de um jovem em contexto de desigualdade representa um padrão de vitimização letal juvenil e racialmente desigual documentado em escala nacional."@pt-BR .
+
+hnr:avaliacaoMorteJovem a aro:EvidenceAssessment ;
+    prov:wasAttributedTo hnr:analistaPesquisador ;
+    aro:assessesEvidence hnr:evidenciaMorteJovem ;
+    aro:supportsClaim hnr:afirmacaoMorteJovem ;
+    aro:assessesCorrespondence hnr:correspondenciaMorteJovem ;
+    aro:textValue "APOIA FORTEMENTE a recorrência e a desigualdade do padrão de morte jovem. NÃO APOIA identificar a vítima ficcional, atribuir sua morte ao varejo de drogas ou demonstrar sensacionalismo midiático. Esses últimos componentes exigiriam evidências próprias e não foram artificialmente derivados das estatísticas de homicídio."@pt-BR .
+
+# 7. Letalidade policial seletiva
+
+hnr:situacaoEmpiricaViolenciaEstado a aro:EmpiricalSituation ;
+    aro:textValue "Em 2024, milhares de pessoas morreram em intervenções policiais; as vítimas eram predominantemente homens, jovens e negras, e alguns estados apresentaram participação muito elevada dessas mortes no conjunto das mortes violentas intencionais."@pt-BR .
+
+hnr:casoViolenciaEstado a aro:EmpiricalCase ;
+    aro:caseAboutSituation hnr:situacaoEmpiricaViolenciaEstado ;
+    aro:caseHasReference hnr:fonteAnuarioSeguranca2025 ;
+    prov:wasDerivedFrom hnr:fonteAnuarioSeguranca2025 ;
+    aro:textValue "Persistência e seletividade da letalidade policial no Brasil"@pt-BR .
+
+hnr:afirmacaoViolenciaEstado a aro:EmpiricalClaim ;
+    aro:textValue "A letalidade policial é recorrente e seletiva no Brasil, atingindo desproporcionalmente pessoas negras e jovens e compondo parcela relevante das mortes violentas em diversos territórios."@pt-BR .
+
+hnr:evidenciaViolenciaEstado a aro:EvidenceItem ;
+    aro:derivedFromSource hnr:fonteAnuarioSeguranca2025 ;
+    aro:textValue "O Anuário registrou 6.243 mortes decorrentes de intervenções policiais em 2024; pessoas negras foram 82% das vítimas e tinham risco 3,5 vezes maior que pessoas brancas, enquanto a taxa atingiu o maior nível entre jovens de 18 a 24 anos."@pt-BR .
+
+hnr:correspondenciaViolenciaEstado a aro:CorrespondenceClaim ;
+    aro:assertsPattern hnr:padraoSuspeicaoViolenciaEstado ;
+    aro:assertsCase hnr:casoViolenciaEstado ;
+    aro:referencesSource hnr:fonteAnuarioSeguranca2025 ;
+    aro:textValue "O cerco, a desproteção e a morte sob suspeição encontram correspondência estrutural num padrão real e seletivo de uso letal da força estatal."@pt-BR .
+
+hnr:avaliacaoViolenciaEstado a aro:EvidenceAssessment ;
+    prov:wasAttributedTo hnr:analistaPesquisador ;
+    aro:assessesEvidence hnr:evidenciaViolenciaEstado ;
+    aro:supportsClaim hnr:afirmacaoViolenciaEstado ;
+    aro:assessesCorrespondence hnr:correspondenciaViolenciaEstado ;
+    aro:textValue "APOIA FORTEMENTE a existência, recorrência e seletividade racial e etária da letalidade policial. NÃO APOIA concluir que policiais mataram o personagem, que a intervenção ficcional foi juridicamente ilegal ou que a versão final é falsa. A fonte sustenta o padrão social, não a autoria do episódio."@pt-BR .
+
+# 8. Linchamentos
+
+hnr:situacaoEmpiricaLinchamento a aro:EmpiricalSituation ;
+    aro:textValue "Pesquisa sobre Manaus, Grande São Luís e Grande Vitória documentou linchamentos entre 2011 e 2020 e analisou frequência, mortes, motivações, instrumentos, perfil das vítimas, atuação policial e relações com racismo e violências de Estado."@pt-BR .
+
+hnr:casoLinchamento a aro:EmpiricalCase ;
+    aro:caseAboutSituation hnr:situacaoEmpiricaLinchamento ;
+    aro:caseHasReference hnr:fonteLinchamentos2024 ;
+    prov:wasDerivedFrom hnr:fonteLinchamentos2024 ;
+    aro:textValue "Linchamentos documentados em três metrópoles brasileiras"@pt-BR .
+
+hnr:afirmacaoLinchamento a aro:EmpiricalClaim ;
+    aro:textValue "Linchamentos constituem uma forma documentada de punição coletiva extrajudicial em cidades brasileiras, e não apenas um recurso ficcional."@pt-BR .
+
+hnr:evidenciaLinchamento a aro:EvidenceItem ;
+    aro:derivedFromSource hnr:fonteLinchamentos2024 ;
+    aro:textValue "O artigo empírico reuniu e analisou ocorrências de linchamento em três metrópoles de regiões distintas entre 2011 e 2020, incluindo frequência, mortes, motivações, instrumentos, perfil das vítimas e atuação policial."@pt-BR .
+
+hnr:correspondenciaLinchamento a aro:CorrespondenceClaim ;
+    aro:assertsPattern hnr:padraoLinchamento ;
+    aro:assertsCase hnr:casoLinchamento ;
+    aro:referencesSource hnr:fonteLinchamentos2024 ;
+    aro:textValue "A punição coletiva representada corresponde a uma prática extrajudicial documentada em contextos urbanos brasileiros."@pt-BR .
+
+hnr:avaliacaoLinchamento a aro:EvidenceAssessment ;
+    prov:wasAttributedTo hnr:analistaPesquisador ;
+    aro:assessesEvidence hnr:evidenciaLinchamento ;
+    aro:supportsClaim hnr:afirmacaoLinchamento ;
+    aro:assessesCorrespondence hnr:correspondenciaLinchamento ;
+    aro:textValue "APOIA DIRETAMENTE a existência do tipo de situação. NÃO APOIA identificar um caso real como origem do episódio, comprovar a acusação feita contra a vítima ficcional ou reduzir todo linchamento a uma única causa."@pt-BR .
+
+# -----------------------------------------------------------------------------
+# Hipóteses mantidas separadas das correspondências e das afirmações descritivas
+# -----------------------------------------------------------------------------
+
+hnr:hipoteseDesconexaoDadosPoliticas a aro:ExplanationHypothesis ;
+    aro:explainsPattern hnr:padraoPrecariedadeConhecida ;
+    aro:textValue "A fragmentação entre produção de informação, decisão orçamentária, competências federativas e execução territorial pode ajudar a explicar por que problemas mensurados permanecem sem resposta suficiente. Trata-se de hipótese explicativa, não de conclusão causal demonstrada pelas duas fontes do IBGE."@pt-BR .
+
+hnr:hipoteseSeletividadeEstrutural a aro:ExplanationHypothesis ;
+    aro:explainsPattern hnr:padraoSuspeicaoViolenciaEstado ;
+    aro:textValue "Racismo estrutural, estigma territorial e antecedentes penais podem operar conjuntamente na distribuição desigual da suspeição e da força letal. A hipótese organiza fatores sugeridos pelas fontes, sem atribuir causalidade a cada morte individual."@pt-BR .
