@@ -38,6 +38,10 @@ python -m pip install -r requirements.txt
 
 ## 2. Starting the annotator
 
+**Online:** open <https://jeffersonspeck.github.io/artistic-reality-ontology/annotator/>. Nothing to install; your annotations stay in your browser until you save them as a `.ttl` file (section 9), and local texts (section 7) never leave your computer. After a new version is published, reload with **Ctrl+F5** if the page looks outdated.
+
+**On your computer:**
+
 ```bash
 python scripts/annotator.py
 ```

@@ -14,6 +14,8 @@ A web tool to **instantiate the ARO ontology** while reading, listening to or wa
 
 ### Start
 
+Online: <https://jeffersonspeck.github.io/artistic-reality-ontology/annotator/>. Locally:
+
 ```bash
 python scripts/annotator.py
 ```
@@ -71,6 +73,8 @@ Nothing is sent to a server: files are read from and saved to your computer.
 Ferramenta web para **instanciar a ontologia ARO** enquanto se lê, ouve ou assiste a uma obra: você cria obras, recortes, interpretações, situações, derivações e fontes, liga-os conforme a ontologia e vê tudo como um **grafo que se abre passo a passo**. As anotações são salvas em Turtle e podem ser carregadas de novo, validadas e consultadas.
 
 ### Iniciar
+
+Online: <https://jeffersonspeck.github.io/artistic-reality-ontology/annotator/>. No seu computador:
 
 ```bash
 python scripts/annotator.py

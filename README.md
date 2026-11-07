@@ -240,7 +240,11 @@ Runs a SPARQL query over your data plus the ontology. Texts and labels appear in
 
 ## Annotator (web tool)
 
-The [`annotator/`](annotator/README.md) folder contains a browser tool to instantiate ARO without writing Turtle:
+The [`annotator/`](annotator/README.md) folder contains a browser tool to instantiate ARO without writing Turtle.
+
+**Online, nothing to install:** <https://jeffersonspeck.github.io/artistic-reality-ontology/annotator/> (GitHub Pages, always the current `main`). Your annotations stay in your browser until you save them as a `.ttl` file; nothing is sent to a server.
+
+**Locally** (works offline except for the libraries loaded from a CDN):
 
 ```bash
 python scripts/annotator.py

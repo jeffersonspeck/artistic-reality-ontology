@@ -240,7 +240,11 @@ Executa uma consulta SPARQL sobre seus dados mais a ontologia. Textos e rótulos
 
 ## Anotador (ferramenta web)
 
-A pasta [`annotator/`](annotator/README.md) traz uma ferramenta no navegador para instanciar a ARO sem escrever Turtle:
+A pasta [`annotator/`](annotator/README.md) traz uma ferramenta no navegador para instanciar a ARO sem escrever Turtle.
+
+**Online, sem instalar nada:** <https://jeffersonspeck.github.io/artistic-reality-ontology/annotator/> (GitHub Pages, sempre a versão atual do `main`). As anotações ficam no seu navegador até você salvá-las num arquivo `.ttl`; nada é enviado a um servidor.
+
+**No seu computador** (funciona sem internet, exceto as bibliotecas carregadas de um CDN):
 
 ```bash
 python scripts/annotator.py
