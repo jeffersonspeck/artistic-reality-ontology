@@ -2,6 +2,17 @@
 
 All notable changes to ARO. Versions follow the SABiOx development cycles (see `docs/*/sabiox-plan.md`).
 
+## [Unreleased]
+
+### Changed
+
+- **Homem na Estrada (researcher's annotation)**: `examples/aro_homem_na_estrada_realidade_social.ttl` redone in the 0.3 structure: agents typed `aro:Person`/`aro:Collective`; IFLA LRM levels (recording and lyric text as expressions, the album *Raio X do Brasil* and the public transcription as manifestations, passages located in the transcription); every analytical record authored by `producedByAct` through two dated interpretive acts (replacing `prov:wasAttributedTo`); every assessment with `assessmentOutcome`; `citesSource` instead of `prov:wasDerivedFrom`; dated empirical situations; depicted agents and elements; an `IntentionalStateDescription`; a criteria assessment and a justified challenge; the two explanatory hypotheses assessed as inconclusive (CQ-12); the sample of Tim Maia's *Ela Partiu* as a `DerivationClaim`. No claim is left without grounds (CQ-19). Report updated (`docs/pt-BR/relatorio-anotacao-homem-na-estrada-realidade-social.md`).
+- **Tests**: the OWL 2 RL consistency check also covers this annotation.
+
+### Removed
+
+- Annotations of *Homem na Estrada* left in the 0.2 structure: `examples/aro_homem_na_estrada_refeita.ttl` (its *Ela Partiu* derivation moved to the annotation above), its accidental copy `examples/aro_homem_na_estrada_refeita - Copia.ttl`, and `examples/example_homem_na_estrada_revisado.ttl` (v0.2.0-beta revision of the case study). The case study itself stays in `examples/case-studies.ttl` and `examples/example_homem_na_estrada.ttl`.
+
 ## [0.3.0-beta] - 2026-11-06
 
 Frozen files: [releases/v0.3.0-beta](releases/v0.3.0-beta/RELEASE-NOTES.md). SABiOx cycle 3: claims, UFO top level and IFLA LRM. **Breaking changes** for 0.2 data: run `python scripts/migrate.py file.ttl` (the annotator converts older files when it opens them).
