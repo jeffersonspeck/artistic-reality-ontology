@@ -2,6 +2,8 @@
 
 # ARO Annotator manual
 
+> 🖊️ **Open the online annotator:** <https://jeffersonspeck.github.io/artistic-reality-ontology/annotator/> (nothing to install; to run it on your computer, see [section 2](#2-starting-the-annotator)).
+
 The ARO Annotator is a web tool to **instantiate the ARO ontology** without writing RDF by hand. With it you record works, versions and passages, interpretations, situations, patterns, real cases and sources, as well as derivations between works. Everything appears in a graph that you open step by step, and your work is saved as Turtle (`.ttl`).
 
 ## Contents

@@ -4,6 +4,8 @@
 
 🇺🇸 [English](#english) · 🇧🇷 [Português](#português)
 
+> 🖊️ **Online annotator / Anotador online:** <https://jeffersonspeck.github.io/artistic-reality-ontology/annotator/>
+
 > Full step-by-step manual / Manual completo passo a passo: [English](../docs/en/annotator-manual.md) · [Português](../docs/pt-BR/manual-anotador.md)
 
 ---

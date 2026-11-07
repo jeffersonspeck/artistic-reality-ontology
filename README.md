@@ -1,8 +1,10 @@
 # Artistic Reality Ontology (ARO)
 
-![ARO](https://img.shields.io/badge/ARO-0.3.0--beta-orange) ![Beta](https://img.shields.io/badge/status-beta%20%C2%B7%20in%20development-orange) ![OWL](https://img.shields.io/badge/RDF%2FOWL-2-orange) ![SHACL](https://img.shields.io/badge/SHACL-validation-green) ![Languages](https://img.shields.io/badge/terms-EN%20%2B%20PT--BR-blue) ![PhD](https://img.shields.io/badge/PhD-PPGInf%2FUFPR-informational)
+![ARO](https://img.shields.io/badge/ARO-0.3.0--beta-orange) ![Beta](https://img.shields.io/badge/status-beta%20%C2%B7%20in%20development-orange) ![OWL](https://img.shields.io/badge/RDF%2FOWL-2-orange) ![SHACL](https://img.shields.io/badge/SHACL-validation-green) ![Languages](https://img.shields.io/badge/terms-EN%20%2B%20PT--BR-blue) ![PhD](https://img.shields.io/badge/PhD-PPGInf%2FUFPR-informational) [![Online annotator](https://img.shields.io/badge/annotator-online-2563eb)](https://jeffersonspeck.github.io/artistic-reality-ontology/annotator/)
 
 > 🇧🇷 **[Ler esta documentação em português](LEIA-ME.md)** · 🇺🇸 English (this page)
+
+> 🖊️ **Online annotator:** <https://jeffersonspeck.github.io/artistic-reality-ontology/annotator/> — use ARO in your browser, nothing to install ([manual](docs/en/annotator-manual.md)).
 
 > ⚠️ **Beta — under development.** Version 0.3.0 is a research draft of a doctoral project (PPGInf/UFPR, see [affiliation](#academic-and-institutional-affiliation)); terms and files may still change.
 
@@ -58,6 +60,7 @@ Full documentation is available in both languages:
 | Evaluation protocol (experts and real cases) | [English](docs/en/evaluation-protocol.md) | [Português](docs/pt-BR/evaluation-protocol.md) |
 | SABiOx plan | [English](docs/en/sabiox-plan.md) | [Português](docs/pt-BR/sabiox-plan.md) |
 | SABiOx compilation (everything by phase) | [English](docs/en/sabiox-compilation.md) | [Português](docs/pt-BR/sabiox-compilado.md) |
+| Online annotator (open in the browser) | [Open](https://jeffersonspeck.github.io/artistic-reality-ontology/annotator/) | [Acessar](https://jeffersonspeck.github.io/artistic-reality-ontology/annotator/) |
 | Annotator manual (step by step) | [English](docs/en/annotator-manual.md) | [Português](docs/pt-BR/manual-anotador.md) |
 | Annotator guide | [English](annotator/README.md#english) | [Português](annotator/README.md#português) |
 | User guide (this file) | [English](README.md) | [Português](LEIA-ME.md) |

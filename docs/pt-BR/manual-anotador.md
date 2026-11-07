@@ -2,6 +2,8 @@
 
 # Manual do Anotador ARO
 
+> 🖊️ **Acesse o anotador online:** <https://jeffersonspeck.github.io/artistic-reality-ontology/annotator/> (sem instalar nada; para rodar no seu computador, ver a [seção 2](#2-iniciar-o-anotador)).
+
 O Anotador ARO é uma ferramenta web para **instanciar a ontologia ARO** sem escrever RDF à mão. Com ele você registra obras, versões e trechos, interpretações, situações, padrões, casos reais e fontes, além de derivações entre obras. Tudo aparece num grafo que você abre passo a passo, e o trabalho é salvo em Turtle (`.ttl`).
 
 ## Sumário
