@@ -1,0 +1,13 @@
+# CQ-03: Which premises justify an interpretation?
+# The premises are the text of the Justification linked by hasJustification; the same property
+# justifies any claim (ADR-026), so derivations and correspondences can be asked the same way.
+# Language: texts in ?lang, or in the language they have when ?lang is missing.
+PREFIX aro: <https://w3id.org/aro/ontology#>
+SELECT ?interpretation ?selection ?premises WHERE {
+  VALUES ?lang { "en" }
+  ?interpretation a aro:InterpretationRecord ;
+                  aro:hasPrimarySelection ?selection ;
+                  aro:hasJustification ?j .
+  ?j aro:textValue ?premises .
+  FILTER(langMatches(lang(?premises), ?lang) || NOT EXISTS { ?j aro:textValue ?l1 FILTER(langMatches(lang(?l1), ?lang)) })
+}

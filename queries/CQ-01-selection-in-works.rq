@@ -1,0 +1,20 @@
+# CQ-01: Which works, expressions and manifestations contain a selected segment?
+# Walks the IFLA LRM levels up from each selection (ADR-028): selection -> expression -> artwork,
+# and the manifestations that embody the expression (or that the selection is located in).
+# Language: texts in ?lang, or in the language they have when ?lang is missing.
+PREFIX aro: <https://w3id.org/aro/ontology#>
+SELECT ?selection ?passage ?expression ?work ?manifestation WHERE {
+  VALUES ?lang { "en" }
+  ?selection a aro:Selection ;
+             aro:selectsFrom ?e .
+  ?e aro:realizesArtwork ?w ;
+     aro:textValue ?expression .
+  ?w aro:textValue ?work .
+  OPTIONAL { ?selection aro:selectorExpression ?passage }
+  OPTIONAL { { ?selection aro:locatedInManifestation ?m } UNION { ?e aro:hasManifestation|^aro:embodiesExpression ?m }
+             ?m aro:textValue ?manifestation .
+             FILTER(langMatches(lang(?manifestation), ?lang) || NOT EXISTS { ?m aro:textValue ?l3 FILTER(langMatches(lang(?l3), ?lang)) }) }
+  FILTER(langMatches(lang(?expression), ?lang) || NOT EXISTS { ?e aro:textValue ?l1 FILTER(langMatches(lang(?l1), ?lang)) })
+  FILTER(langMatches(lang(?work), ?lang) || NOT EXISTS { ?w aro:textValue ?l2 FILTER(langMatches(lang(?l2), ?lang)) })
+}
+ORDER BY ?work ?selection

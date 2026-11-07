@@ -12,597 +12,597 @@ hne:afirmacaoEmpirica_c40 a aro:EmpiricalClaim ;
 
 hne:avaliacao_agua_c06 a aro:EvidenceAssessment ;
     prov:wasAttributedTo hne:analistaPesquisador ;
-    aro:assessesCorrespondence hne:correspondencia_agua_c06 ;
+    aro:assessesClaim hne:correspondencia_agua_c06 ;
     aro:assessesEvidence hne:evidencia_agua_c06 ;
-    aro:supportsClaim hne:afirmacaoEmpirica_c06 ;
+    aro:assessesClaim hne:afirmacaoEmpirica_c06 ;
     aro:textValue "APOIO RESTRITO: documenta existência do fenômeno ou indicador contextual. NÃO APOIA: O agregado inclui modalidades distintas; não equivale a tratamento de esgoto nem informa sobre o cenário fictício. A semelhança é interpretativa e revisável."@pt-BR .
 
 hne:avaliacao_agua_c08 a aro:EvidenceAssessment ;
     prov:wasAttributedTo hne:analistaPesquisador ;
-    aro:assessesCorrespondence hne:correspondencia_agua_c08 ;
+    aro:assessesClaim hne:correspondencia_agua_c08 ;
     aro:assessesEvidence hne:evidencia_agua_c08 ;
-    aro:supportsClaim hne:afirmacaoEmpirica_c08 ;
+    aro:assessesClaim hne:afirmacaoEmpirica_c08 ;
     aro:textValue "APOIO RESTRITO: documenta existência do fenômeno ou indicador contextual. NÃO APOIA: Base de monitoramento não comprova interrupção específica de cinco dias nem ausência local de água. A semelhança é interpretativa e revisável."@pt-BR .
 
 hne:avaliacao_alcool_c29 a aro:EvidenceAssessment ;
     prov:wasAttributedTo hne:analistaPesquisador ;
-    aro:assessesCorrespondence hne:correspondencia_alcool_c29 ;
+    aro:assessesClaim hne:correspondencia_alcool_c29 ;
     aro:assessesEvidence hne:evidencia_alcool_c29 ;
-    aro:supportsClaim hne:afirmacaoEmpirica_c29 ;
+    aro:assessesClaim hne:afirmacaoEmpirica_c29 ;
     aro:textValue "APOIO RESTRITO: documenta existência do fenômeno ou indicador contextual. NÃO APOIA: Prevalência de consumo não identifica um agressor nem estabelece que álcool causou violência. A semelhança é interpretativa e revisável."@pt-BR .
 
 hne:avaliacao_alcool_c30 a aro:EvidenceAssessment ;
     prov:wasAttributedTo hne:analistaPesquisador ;
-    aro:assessesCorrespondence hne:correspondencia_alcool_c30 ;
+    aro:assessesClaim hne:correspondencia_alcool_c30 ;
     aro:assessesEvidence hne:evidencia_alcool_c30 ;
-    aro:supportsClaim hne:afirmacaoEmpirica_c30 ;
+    aro:assessesClaim hne:afirmacaoEmpirica_c30 ;
     aro:textValue "APOIO RESTRITO: documenta existência do fenômeno ou indicador contextual. NÃO APOIA: Consumo de bebida lícita não demonstra lucros dos agentes econômicos apontados no enredo. A semelhança é interpretativa e revisável."@pt-BR .
 
 hne:avaliacao_alcool_c33 a aro:EvidenceAssessment ;
     prov:wasAttributedTo hne:analistaPesquisador ;
-    aro:assessesCorrespondence hne:correspondencia_alcool_c33 ;
+    aro:assessesClaim hne:correspondencia_alcool_c33 ;
     aro:assessesEvidence hne:evidencia_alcool_c33 ;
-    aro:supportsClaim hne:afirmacaoEmpirica_c33 ;
+    aro:assessesClaim hne:afirmacaoEmpirica_c33 ;
     aro:textValue "APOIO RESTRITO: documenta existência do fenômeno ou indicador contextual. NÃO APOIA: Fonte adicional documental; dados de consumo não verificam alegações de comando de tráfico. A semelhança é interpretativa e revisável."@pt-BR .
 
 hne:avaliacao_antecedentes_c01 a aro:EvidenceAssessment ;
     prov:wasAttributedTo hne:analistaPesquisador ;
-    aro:assessesCorrespondence hne:correspondencia_antecedentes_c01 ;
+    aro:assessesClaim hne:correspondencia_antecedentes_c01 ;
     aro:assessesEvidence hne:evidencia_antecedentes_c01 ;
-    aro:supportsClaim hne:afirmacaoEmpirica_c01 ;
+    aro:assessesClaim hne:afirmacaoEmpirica_c01 ;
     aro:textValue "APOIO RESTRITO: documenta existência do fenômeno ou indicador contextual. NÃO APOIA: Não mede reincidência individual nem prova que um egresso específico abandonou o crime. A semelhança é interpretativa e revisável."@pt-BR .
 
 hne:avaliacao_antecedentes_c02 a aro:EvidenceAssessment ;
     prov:wasAttributedTo hne:analistaPesquisador ;
-    aro:assessesCorrespondence hne:correspondencia_antecedentes_c02 ;
+    aro:assessesClaim hne:correspondencia_antecedentes_c02 ;
     aro:assessesEvidence hne:evidencia_antecedentes_c02 ;
-    aro:supportsClaim hne:afirmacaoEmpirica_c02 ;
+    aro:assessesClaim hne:afirmacaoEmpirica_c02 ;
     aro:textValue "APOIO RESTRITO: documenta existência do fenômeno ou indicador contextual. NÃO APOIA: Atendimentos administrativos não medem diretamente discriminação no recrutamento ou reintegração bem-sucedida. A semelhança é interpretativa e revisável."@pt-BR .
 
 hne:avaliacao_aspiracao_c16 a aro:EvidenceAssessment ;
     prov:wasAttributedTo hne:analistaPesquisador ;
-    aro:assessesCorrespondence hne:correspondencia_aspiracao_c16 ;
+    aro:assessesClaim hne:correspondencia_aspiracao_c16 ;
     aro:assessesEvidence hne:evidencia_aspiracao_c16 ;
-    aro:supportsClaim hne:afirmacaoEmpirica_c16 ;
+    aro:assessesClaim hne:afirmacaoEmpirica_c16 ;
     aro:textValue "APOIO RESTRITO: documenta existência do fenômeno ou indicador contextual. NÃO APOIA: Diferenças agregadas não identificam mecanismo causal na biografia de um indivíduo. A semelhança é interpretativa e revisável."@pt-BR .
 
 hne:avaliacao_aspiracao_c17 a aro:EvidenceAssessment ;
     prov:wasAttributedTo hne:analistaPesquisador ;
-    aro:assessesCorrespondence hne:correspondencia_aspiracao_c17 ;
+    aro:assessesClaim hne:correspondencia_aspiracao_c17 ;
     aro:assessesEvidence hne:evidencia_aspiracao_c17 ;
-    aro:supportsClaim hne:afirmacaoEmpirica_c17 ;
+    aro:assessesClaim hne:afirmacaoEmpirica_c17 ;
     aro:textValue "APOIO RESTRITO: documenta existência do fenômeno ou indicador contextual. NÃO APOIA: Inquérito domiciliar não verifica criança catando alimentos em feira específica. A semelhança é interpretativa e revisável."@pt-BR .
 
 hne:avaliacao_cerco_c24 a aro:EvidenceAssessment ;
     prov:wasAttributedTo hne:analistaPesquisador ;
-    aro:assessesCorrespondence hne:correspondencia_cerco_c24 ;
+    aro:assessesClaim hne:correspondencia_cerco_c24 ;
     aro:assessesEvidence hne:evidencia_cerco_c24 ;
-    aro:supportsClaim hne:afirmacaoEmpirica_c24 ;
+    aro:assessesClaim hne:afirmacaoEmpirica_c24 ;
     aro:textValue "APOIO RESTRITO: documenta existência do fenômeno ou indicador contextual. NÃO APOIA: Não identifica autoria da morte narrada ou qualquer causalidade histórica com a canção. A semelhança é interpretativa e revisável."@pt-BR .
 
 hne:avaliacao_cerco_c25 a aro:EvidenceAssessment ;
     prov:wasAttributedTo hne:analistaPesquisador ;
-    aro:assessesCorrespondence hne:correspondencia_cerco_c25 ;
+    aro:assessesClaim hne:correspondencia_cerco_c25 ;
     aro:assessesEvidence hne:evidencia_cerco_c25 ;
-    aro:supportsClaim hne:afirmacaoEmpirica_c25 ;
+    aro:assessesClaim hne:afirmacaoEmpirica_c25 ;
     aro:textValue "APOIO RESTRITO: documenta existência do fenômeno ou indicador contextual. NÃO APOIA: Indicador agregado; não autoriza declarar ilegalidade de toda intervenção. A semelhança é interpretativa e revisável."@pt-BR .
 
 hne:avaliacao_cerco_c38 a aro:EvidenceAssessment ;
     prov:wasAttributedTo hne:analistaPesquisador ;
-    aro:assessesCorrespondence hne:correspondencia_cerco_c38 ;
+    aro:assessesClaim hne:correspondencia_cerco_c38 ;
     aro:assessesEvidence hne:evidencia_cerco_c38 ;
-    aro:supportsClaim hne:afirmacaoEmpirica_c38 ;
+    aro:assessesClaim hne:afirmacaoEmpirica_c38 ;
     aro:textValue "APOIO RESTRITO: documenta existência do fenômeno ou indicador contextual. NÃO APOIA: Período histórico e cobertura diferentes de 1993; associação somente de padrões. A semelhança é interpretativa e revisável."@pt-BR .
 
 hne:avaliacao_confronto_c24 a aro:EvidenceAssessment ;
     prov:wasAttributedTo hne:analistaPesquisador ;
-    aro:assessesCorrespondence hne:correspondencia_confronto_c24 ;
+    aro:assessesClaim hne:correspondencia_confronto_c24 ;
     aro:assessesEvidence hne:evidencia_confronto_c24 ;
-    aro:supportsClaim hne:afirmacaoEmpirica_c24 ;
+    aro:assessesClaim hne:afirmacaoEmpirica_c24 ;
     aro:textValue "APOIO RESTRITO: documenta existência do fenômeno ou indicador contextual. NÃO APOIA: Não identifica autoria da morte narrada ou qualquer causalidade histórica com a canção. A semelhança é interpretativa e revisável."@pt-BR .
 
 hne:avaliacao_confronto_c26 a aro:EvidenceAssessment ;
     prov:wasAttributedTo hne:analistaPesquisador ;
-    aro:assessesCorrespondence hne:correspondencia_confronto_c26 ;
+    aro:assessesClaim hne:correspondencia_confronto_c26 ;
     aro:assessesEvidence hne:evidencia_confronto_c26 ;
-    aro:supportsClaim hne:afirmacaoEmpirica_c26 ;
+    aro:assessesClaim hne:afirmacaoEmpirica_c26 ;
     aro:textValue "APOIO RESTRITO: documenta existência do fenômeno ou indicador contextual. NÃO APOIA: Estatística agregada nacional; não identifica pessoas ou episódios da ficção. A semelhança é interpretativa e revisável."@pt-BR .
 
 hne:avaliacao_crack_c31 a aro:EvidenceAssessment ;
     prov:wasAttributedTo hne:analistaPesquisador ;
-    aro:assessesCorrespondence hne:correspondencia_crack_c31 ;
+    aro:assessesClaim hne:correspondencia_crack_c31 ;
     aro:assessesEvidence hne:evidencia_crack_c31 ;
-    aro:supportsClaim hne:afirmacaoEmpirica_c31 ;
+    aro:assessesClaim hne:afirmacaoEmpirica_c31 ;
     aro:textValue "APOIO RESTRITO: documenta existência do fenômeno ou indicador contextual. NÃO APOIA: Não demonstra aumento contemporâneo, pelo contrário relata estabilidade na comparação com 2012. A semelhança é interpretativa e revisável."@pt-BR .
 
 hne:avaliacao_crack_c32 a aro:EvidenceAssessment ;
     prov:wasAttributedTo hne:analistaPesquisador ;
-    aro:assessesCorrespondence hne:correspondencia_crack_c32 ;
+    aro:assessesClaim hne:correspondencia_crack_c32 ;
     aro:assessesEvidence hne:evidencia_crack_c32 ;
-    aro:supportsClaim hne:afirmacaoEmpirica_c32 ;
+    aro:assessesClaim hne:afirmacaoEmpirica_c32 ;
     aro:textValue "APOIO RESTRITO: documenta existência do fenômeno ou indicador contextual. NÃO APOIA: Consumo agregado não indica estrutura local de mercados, renda ou vínculos com jovens ricos. A semelhança é interpretativa e revisável."@pt-BR .
 
 hne:avaliacao_crack_c33 a aro:EvidenceAssessment ;
     prov:wasAttributedTo hne:analistaPesquisador ;
-    aro:assessesCorrespondence hne:correspondencia_crack_c33 ;
+    aro:assessesClaim hne:correspondencia_crack_c33 ;
     aro:assessesEvidence hne:evidencia_crack_c33 ;
-    aro:supportsClaim hne:afirmacaoEmpirica_c33 ;
+    aro:assessesClaim hne:afirmacaoEmpirica_c33 ;
     aro:textValue "APOIO RESTRITO: documenta existência do fenômeno ou indicador contextual. NÃO APOIA: Fonte adicional documental; dados de consumo não verificam alegações de comando de tráfico. A semelhança é interpretativa e revisável."@pt-BR .
 
 hne:avaliacao_cultura_c34 a aro:EvidenceAssessment ;
     prov:wasAttributedTo hne:analistaPesquisador ;
-    aro:assessesCorrespondence hne:correspondencia_cultura_c34 ;
+    aro:assessesClaim hne:correspondencia_cultura_c34 ;
     aro:assessesEvidence hne:evidencia_cultura_c34 ;
-    aro:supportsClaim hne:afirmacaoEmpirica_c34 ;
+    aro:assessesClaim hne:afirmacaoEmpirica_c34 ;
     aro:textValue "APOIO RESTRITO: documenta existência do fenômeno ou indicador contextual. NÃO APOIA: Não permite inferir religiosidade real do personagem e nem associar culto a crime ou violência. A semelhança é interpretativa e revisável."@pt-BR .
 
 hne:avaliacao_cultura_c39 a aro:EvidenceAssessment ;
     prov:wasAttributedTo hne:analistaPesquisador ;
-    aro:assessesCorrespondence hne:correspondencia_cultura_c39 ;
+    aro:assessesClaim hne:correspondencia_cultura_c39 ;
     aro:assessesEvidence hne:evidencia_cultura_c39 ;
-    aro:supportsClaim hne:afirmacaoEmpirica_c39 ;
+    aro:assessesClaim hne:afirmacaoEmpirica_c39 ;
     aro:textValue "APOIO RESTRITO: documenta existência do fenômeno ou indicador contextual. NÃO APOIA: Não define todas as favelas como espaços sem lei; a própria classificação é plural. A semelhança é interpretativa e revisável."@pt-BR .
 
 hne:avaliacao_economia-ilicita_c16 a aro:EvidenceAssessment ;
     prov:wasAttributedTo hne:analistaPesquisador ;
-    aro:assessesCorrespondence hne:correspondencia_economia-ilicita_c16 ;
+    aro:assessesClaim hne:correspondencia_economia-ilicita_c16 ;
     aro:assessesEvidence hne:evidencia_economia-ilicita_c16 ;
-    aro:supportsClaim hne:afirmacaoEmpirica_c16 ;
+    aro:assessesClaim hne:afirmacaoEmpirica_c16 ;
     aro:textValue "APOIO RESTRITO: documenta existência do fenômeno ou indicador contextual. NÃO APOIA: Diferenças agregadas não identificam mecanismo causal na biografia de um indivíduo. A semelhança é interpretativa e revisável."@pt-BR .
 
 hne:avaliacao_economia-ilicita_c32 a aro:EvidenceAssessment ;
     prov:wasAttributedTo hne:analistaPesquisador ;
-    aro:assessesCorrespondence hne:correspondencia_economia-ilicita_c32 ;
+    aro:assessesClaim hne:correspondencia_economia-ilicita_c32 ;
     aro:assessesEvidence hne:evidencia_economia-ilicita_c32 ;
-    aro:supportsClaim hne:afirmacaoEmpirica_c32 ;
+    aro:assessesClaim hne:afirmacaoEmpirica_c32 ;
     aro:textValue "APOIO RESTRITO: documenta existência do fenômeno ou indicador contextual. NÃO APOIA: Consumo agregado não indica estrutura local de mercados, renda ou vínculos com jovens ricos. A semelhança é interpretativa e revisável."@pt-BR .
 
 hne:avaliacao_escola-fome_c18 a aro:EvidenceAssessment ;
     prov:wasAttributedTo hne:analistaPesquisador ;
-    aro:assessesCorrespondence hne:correspondencia_escola-fome_c18 ;
+    aro:assessesClaim hne:correspondencia_escola-fome_c18 ;
     aro:assessesEvidence hne:evidencia_escola-fome_c18 ;
-    aro:supportsClaim hne:afirmacaoEmpirica_c18 ;
+    aro:assessesClaim hne:afirmacaoEmpirica_c18 ;
     aro:textValue "APOIO RESTRITO: documenta existência do fenômeno ou indicador contextual. NÃO APOIA: Correlação observacional; frequentar a escola não pode ser tratado automaticamente como causa isolada. A semelhança é interpretativa e revisável."@pt-BR .
 
 hne:avaliacao_escola-fome_c19 a aro:EvidenceAssessment ;
     prov:wasAttributedTo hne:analistaPesquisador ;
-    aro:assessesCorrespondence hne:correspondencia_escola-fome_c19 ;
+    aro:assessesClaim hne:correspondencia_escola-fome_c19 ;
     aro:assessesEvidence hne:evidencia_escola-fome_c19 ;
-    aro:supportsClaim hne:afirmacaoEmpirica_c19 ;
+    aro:assessesClaim hne:afirmacaoEmpirica_c19 ;
     aro:textValue "APOIO RESTRITO: documenta existência do fenômeno ou indicador contextual. NÃO APOIA: Cobertura administrativa da política; não demonstra que estudantes vão à escola exclusivamente para comer. A semelhança é interpretativa e revisável."@pt-BR .
 
 hne:avaliacao_escola-fome_c20 a aro:EvidenceAssessment ;
     prov:wasAttributedTo hne:analistaPesquisador ;
-    aro:assessesCorrespondence hne:correspondencia_escola-fome_c20 ;
+    aro:assessesClaim hne:correspondencia_escola-fome_c20 ;
     aro:assessesEvidence hne:evidencia_escola-fome_c20 ;
-    aro:supportsClaim hne:afirmacaoEmpirica_c20 ;
+    aro:assessesClaim hne:afirmacaoEmpirica_c20 ;
     aro:textValue "APOIO RESTRITO: documenta existência do fenômeno ou indicador contextual. NÃO APOIA: Valor transferido não equivale a avaliação de efeito em aprendizado ou frequência. A semelhança é interpretativa e revisável."@pt-BR .
 
 hne:avaliacao_escola-futuro_c16 a aro:EvidenceAssessment ;
     prov:wasAttributedTo hne:analistaPesquisador ;
-    aro:assessesCorrespondence hne:correspondencia_escola-futuro_c16 ;
+    aro:assessesClaim hne:correspondencia_escola-futuro_c16 ;
     aro:assessesEvidence hne:evidencia_escola-futuro_c16 ;
-    aro:supportsClaim hne:afirmacaoEmpirica_c16 ;
+    aro:assessesClaim hne:afirmacaoEmpirica_c16 ;
     aro:textValue "APOIO RESTRITO: documenta existência do fenômeno ou indicador contextual. NÃO APOIA: Diferenças agregadas não identificam mecanismo causal na biografia de um indivíduo. A semelhança é interpretativa e revisável."@pt-BR .
 
 hne:avaliacao_escola-futuro_c18 a aro:EvidenceAssessment ;
     prov:wasAttributedTo hne:analistaPesquisador ;
-    aro:assessesCorrespondence hne:correspondencia_escola-futuro_c18 ;
+    aro:assessesClaim hne:correspondencia_escola-futuro_c18 ;
     aro:assessesEvidence hne:evidencia_escola-futuro_c18 ;
-    aro:supportsClaim hne:afirmacaoEmpirica_c18 ;
+    aro:assessesClaim hne:afirmacaoEmpirica_c18 ;
     aro:textValue "APOIO RESTRITO: documenta existência do fenômeno ou indicador contextual. NÃO APOIA: Correlação observacional; frequentar a escola não pode ser tratado automaticamente como causa isolada. A semelhança é interpretativa e revisável."@pt-BR .
 
 hne:avaliacao_espetaculo_c14 a aro:EvidenceAssessment ;
     prov:wasAttributedTo hne:analistaPesquisador ;
-    aro:assessesCorrespondence hne:correspondencia_espetaculo_c14 ;
+    aro:assessesClaim hne:correspondencia_espetaculo_c14 ;
     aro:assessesEvidence hne:evidencia_espetaculo_c14 ;
-    aro:supportsClaim hne:afirmacaoEmpirica_c14 ;
+    aro:assessesClaim hne:afirmacaoEmpirica_c14 ;
     aro:textValue "APOIO RESTRITO: documenta existência do fenômeno ou indicador contextual. NÃO APOIA: É estimativa metodológica sobre classificação da causa de morte; não prova demora de IML. A semelhança é interpretativa e revisável."@pt-BR .
 
 hne:avaliacao_espetaculo_c22 a aro:EvidenceAssessment ;
     prov:wasAttributedTo hne:analistaPesquisador ;
-    aro:assessesCorrespondence hne:correspondencia_espetaculo_c22 ;
+    aro:assessesClaim hne:correspondencia_espetaculo_c22 ;
     aro:assessesEvidence hne:evidencia_espetaculo_c22 ;
-    aro:supportsClaim hne:afirmacaoEmpirica_c22 ;
+    aro:assessesClaim hne:afirmacaoEmpirica_c22 ;
     aro:textValue "APOIO RESTRITO: documenta existência do fenômeno ou indicador contextual. NÃO APOIA: Homicídios são agregados, com causas e contextos heterogêneos. A semelhança é interpretativa e revisável."@pt-BR .
 
 hne:avaliacao_estigma-trabalho_c02 a aro:EvidenceAssessment ;
     prov:wasAttributedTo hne:analistaPesquisador ;
-    aro:assessesCorrespondence hne:correspondencia_estigma-trabalho_c02 ;
+    aro:assessesClaim hne:correspondencia_estigma-trabalho_c02 ;
     aro:assessesEvidence hne:evidencia_estigma-trabalho_c02 ;
-    aro:supportsClaim hne:afirmacaoEmpirica_c02 ;
+    aro:assessesClaim hne:afirmacaoEmpirica_c02 ;
     aro:textValue "APOIO RESTRITO: documenta existência do fenômeno ou indicador contextual. NÃO APOIA: Atendimentos administrativos não medem diretamente discriminação no recrutamento ou reintegração bem-sucedida. A semelhança é interpretativa e revisável."@pt-BR .
 
 hne:avaliacao_estigma-trabalho_c15 a aro:EvidenceAssessment ;
     prov:wasAttributedTo hne:analistaPesquisador ;
-    aro:assessesCorrespondence hne:correspondencia_estigma-trabalho_c15 ;
+    aro:assessesClaim hne:correspondencia_estigma-trabalho_c15 ;
     aro:assessesEvidence hne:evidencia_estigma-trabalho_c15 ;
-    aro:supportsClaim hne:afirmacaoEmpirica_c15 ;
+    aro:assessesClaim hne:afirmacaoEmpirica_c15 ;
     aro:textValue "APOIO RESTRITO: documenta existência do fenômeno ou indicador contextual. NÃO APOIA: Não é estimativa de desemprego específico entre egressos do sistema prisional. A semelhança é interpretativa e revisável."@pt-BR .
 
 hne:avaliacao_estigma-trabalho_c16 a aro:EvidenceAssessment ;
     prov:wasAttributedTo hne:analistaPesquisador ;
-    aro:assessesCorrespondence hne:correspondencia_estigma-trabalho_c16 ;
+    aro:assessesClaim hne:correspondencia_estigma-trabalho_c16 ;
     aro:assessesEvidence hne:evidencia_estigma-trabalho_c16 ;
-    aro:supportsClaim hne:afirmacaoEmpirica_c16 ;
+    aro:assessesClaim hne:afirmacaoEmpirica_c16 ;
     aro:textValue "APOIO RESTRITO: documenta existência do fenômeno ou indicador contextual. NÃO APOIA: Diferenças agregadas não identificam mecanismo causal na biografia de um indivíduo. A semelhança é interpretativa e revisável."@pt-BR .
 
 hne:avaliacao_filho-pobreza_c17 a aro:EvidenceAssessment ;
     prov:wasAttributedTo hne:analistaPesquisador ;
-    aro:assessesCorrespondence hne:correspondencia_filho-pobreza_c17 ;
+    aro:assessesClaim hne:correspondencia_filho-pobreza_c17 ;
     aro:assessesEvidence hne:evidencia_filho-pobreza_c17 ;
-    aro:supportsClaim hne:afirmacaoEmpirica_c17 ;
+    aro:assessesClaim hne:afirmacaoEmpirica_c17 ;
     aro:textValue "APOIO RESTRITO: documenta existência do fenômeno ou indicador contextual. NÃO APOIA: Inquérito domiciliar não verifica criança catando alimentos em feira específica. A semelhança é interpretativa e revisável."@pt-BR .
 
 hne:avaliacao_filho-pobreza_c18 a aro:EvidenceAssessment ;
     prov:wasAttributedTo hne:analistaPesquisador ;
-    aro:assessesCorrespondence hne:correspondencia_filho-pobreza_c18 ;
+    aro:assessesClaim hne:correspondencia_filho-pobreza_c18 ;
     aro:assessesEvidence hne:evidencia_filho-pobreza_c18 ;
-    aro:supportsClaim hne:afirmacaoEmpirica_c18 ;
+    aro:assessesClaim hne:afirmacaoEmpirica_c18 ;
     aro:textValue "APOIO RESTRITO: documenta existência do fenômeno ou indicador contextual. NÃO APOIA: Correlação observacional; frequentar a escola não pode ser tratado automaticamente como causa isolada. A semelhança é interpretativa e revisável."@pt-BR .
 
 hne:avaliacao_fome_c17 a aro:EvidenceAssessment ;
     prov:wasAttributedTo hne:analistaPesquisador ;
-    aro:assessesCorrespondence hne:correspondencia_fome_c17 ;
+    aro:assessesClaim hne:correspondencia_fome_c17 ;
     aro:assessesEvidence hne:evidencia_fome_c17 ;
-    aro:supportsClaim hne:afirmacaoEmpirica_c17 ;
+    aro:assessesClaim hne:afirmacaoEmpirica_c17 ;
     aro:textValue "APOIO RESTRITO: documenta existência do fenômeno ou indicador contextual. NÃO APOIA: Inquérito domiciliar não verifica criança catando alimentos em feira específica. A semelhança é interpretativa e revisável."@pt-BR .
 
 hne:avaliacao_fome_c18 a aro:EvidenceAssessment ;
     prov:wasAttributedTo hne:analistaPesquisador ;
-    aro:assessesCorrespondence hne:correspondencia_fome_c18 ;
+    aro:assessesClaim hne:correspondencia_fome_c18 ;
     aro:assessesEvidence hne:evidencia_fome_c18 ;
-    aro:supportsClaim hne:afirmacaoEmpirica_c18 ;
+    aro:assessesClaim hne:afirmacaoEmpirica_c18 ;
     aro:textValue "APOIO RESTRITO: documenta existência do fenômeno ou indicador contextual. NÃO APOIA: Correlação observacional; frequentar a escola não pode ser tratado automaticamente como causa isolada. A semelhança é interpretativa e revisável."@pt-BR .
 
 hne:avaliacao_invisibilidade_c05 a aro:EvidenceAssessment ;
     prov:wasAttributedTo hne:analistaPesquisador ;
-    aro:assessesCorrespondence hne:correspondencia_invisibilidade_c05 ;
+    aro:assessesClaim hne:correspondencia_invisibilidade_c05 ;
     aro:assessesEvidence hne:evidencia_invisibilidade_c05 ;
-    aro:supportsClaim hne:afirmacaoEmpirica_c05 ;
+    aro:assessesClaim hne:afirmacaoEmpirica_c05 ;
     aro:textValue "APOIO RESTRITO: documenta existência do fenômeno ou indicador contextual. NÃO APOIA: Censo demográfico é uma medição, não comprova negligência em um endereço. A semelhança é interpretativa e revisável."@pt-BR .
 
 hne:avaliacao_invisibilidade_c36 a aro:EvidenceAssessment ;
     prov:wasAttributedTo hne:analistaPesquisador ;
-    aro:assessesCorrespondence hne:correspondencia_invisibilidade_c36 ;
+    aro:assessesClaim hne:correspondencia_invisibilidade_c36 ;
     aro:assessesEvidence hne:evidencia_invisibilidade_c36 ;
-    aro:supportsClaim hne:afirmacaoEmpirica_c36 ;
+    aro:assessesClaim hne:afirmacaoEmpirica_c36 ;
     aro:textValue "APOIO RESTRITO: documenta existência do fenômeno ou indicador contextual. NÃO APOIA: Não comprova ausência estatal no período narrado; caso metodológico para contraste entre visibilidade estatística e assistência. A semelhança é interpretativa e revisável."@pt-BR .
 
 hne:avaliacao_juvenil_c03 a aro:EvidenceAssessment ;
     prov:wasAttributedTo hne:analistaPesquisador ;
-    aro:assessesCorrespondence hne:correspondencia_juvenil_c03 ;
+    aro:assessesClaim hne:correspondencia_juvenil_c03 ;
     aro:assessesEvidence hne:evidencia_juvenil_c03 ;
-    aro:supportsClaim hne:afirmacaoEmpirica_c03 ;
+    aro:assessesClaim hne:afirmacaoEmpirica_c03 ;
     aro:textValue "APOIO RESTRITO: documenta existência do fenômeno ou indicador contextual. NÃO APOIA: FEBEM é denominação histórica; as unidades e regras atuais são outras. Não descreve a infância do personagem. A semelhança é interpretativa e revisável."@pt-BR .
 
 hne:avaliacao_juvenil_c04 a aro:EvidenceAssessment ;
     prov:wasAttributedTo hne:analistaPesquisador ;
-    aro:assessesCorrespondence hne:correspondencia_juvenil_c04 ;
+    aro:assessesClaim hne:correspondencia_juvenil_c04 ;
     aro:assessesEvidence hne:evidencia_juvenil_c04 ;
-    aro:supportsClaim hne:afirmacaoEmpirica_c04 ;
+    aro:assessesClaim hne:afirmacaoEmpirica_c04 ;
     aro:textValue "APOIO RESTRITO: documenta existência do fenômeno ou indicador contextual. NÃO APOIA: A classificação e abrangência são as das inspeções; não se deduz causa individual. A semelhança é interpretativa e revisável."@pt-BR .
 
 hne:avaliacao_liberdade_c01 a aro:EvidenceAssessment ;
     prov:wasAttributedTo hne:analistaPesquisador ;
-    aro:assessesCorrespondence hne:correspondencia_liberdade_c01 ;
+    aro:assessesClaim hne:correspondencia_liberdade_c01 ;
     aro:assessesEvidence hne:evidencia_liberdade_c01 ;
-    aro:supportsClaim hne:afirmacaoEmpirica_c01 ;
+    aro:assessesClaim hne:afirmacaoEmpirica_c01 ;
     aro:textValue "APOIO RESTRITO: documenta existência do fenômeno ou indicador contextual. NÃO APOIA: Não mede reincidência individual nem prova que um egresso específico abandonou o crime. A semelhança é interpretativa e revisável."@pt-BR .
 
 hne:avaliacao_liberdade_c03 a aro:EvidenceAssessment ;
     prov:wasAttributedTo hne:analistaPesquisador ;
-    aro:assessesCorrespondence hne:correspondencia_liberdade_c03 ;
+    aro:assessesClaim hne:correspondencia_liberdade_c03 ;
     aro:assessesEvidence hne:evidencia_liberdade_c03 ;
-    aro:supportsClaim hne:afirmacaoEmpirica_c03 ;
+    aro:assessesClaim hne:afirmacaoEmpirica_c03 ;
     aro:textValue "APOIO RESTRITO: documenta existência do fenômeno ou indicador contextual. NÃO APOIA: FEBEM é denominação histórica; as unidades e regras atuais são outras. Não descreve a infância do personagem. A semelhança é interpretativa e revisável."@pt-BR .
 
 hne:avaliacao_linchamento_c27 a aro:EvidenceAssessment ;
     prov:wasAttributedTo hne:analistaPesquisador ;
-    aro:assessesCorrespondence hne:correspondencia_linchamento_c27 ;
+    aro:assessesClaim hne:correspondencia_linchamento_c27 ;
     aro:assessesEvidence hne:evidencia_linchamento_c27 ;
-    aro:supportsClaim hne:afirmacaoEmpirica_c27 ;
+    aro:assessesClaim hne:afirmacaoEmpirica_c27 ;
     aro:textValue "APOIO RESTRITO: documenta existência do fenômeno ou indicador contextual. NÃO APOIA: Contagem observacional parcial, não série nacional completa; classificação pode não ser equivalente à cena. A semelhança é interpretativa e revisável."@pt-BR .
 
 hne:avaliacao_linchamento_c28 a aro:EvidenceAssessment ;
     prov:wasAttributedTo hne:analistaPesquisador ;
-    aro:assessesCorrespondence hne:correspondencia_linchamento_c28 ;
+    aro:assessesClaim hne:correspondencia_linchamento_c28 ;
     aro:assessesEvidence hne:evidencia_linchamento_c28 ;
-    aro:supportsClaim hne:afirmacaoEmpirica_c28 ;
+    aro:assessesClaim hne:afirmacaoEmpirica_c28 ;
     aro:textValue "APOIO RESTRITO: documenta existência do fenômeno ou indicador contextual. NÃO APOIA: Caso jornalístico específico, com motivação distinta daquela representada na canção. A semelhança é interpretativa e revisável."@pt-BR .
 
 hne:avaliacao_moradia_c05 a aro:EvidenceAssessment ;
     prov:wasAttributedTo hne:analistaPesquisador ;
-    aro:assessesCorrespondence hne:correspondencia_moradia_c05 ;
+    aro:assessesClaim hne:correspondencia_moradia_c05 ;
     aro:assessesEvidence hne:evidencia_moradia_c05 ;
-    aro:supportsClaim hne:afirmacaoEmpirica_c05 ;
+    aro:assessesClaim hne:afirmacaoEmpirica_c05 ;
     aro:textValue "APOIO RESTRITO: documenta existência do fenômeno ou indicador contextual. NÃO APOIA: Censo demográfico é uma medição, não comprova negligência em um endereço. A semelhança é interpretativa e revisável."@pt-BR .
 
 hne:avaliacao_moradia_c39 a aro:EvidenceAssessment ;
     prov:wasAttributedTo hne:analistaPesquisador ;
-    aro:assessesCorrespondence hne:correspondencia_moradia_c39 ;
+    aro:assessesClaim hne:correspondencia_moradia_c39 ;
     aro:assessesEvidence hne:evidencia_moradia_c39 ;
-    aro:supportsClaim hne:afirmacaoEmpirica_c39 ;
+    aro:assessesClaim hne:afirmacaoEmpirica_c39 ;
     aro:textValue "APOIO RESTRITO: documenta existência do fenômeno ou indicador contextual. NÃO APOIA: Não define todas as favelas como espaços sem lei; a própria classificação é plural. A semelhança é interpretativa e revisável."@pt-BR .
 
 hne:avaliacao_morte-anonima_c14 a aro:EvidenceAssessment ;
     prov:wasAttributedTo hne:analistaPesquisador ;
-    aro:assessesCorrespondence hne:correspondencia_morte-anonima_c14 ;
+    aro:assessesClaim hne:correspondencia_morte-anonima_c14 ;
     aro:assessesEvidence hne:evidencia_morte-anonima_c14 ;
-    aro:supportsClaim hne:afirmacaoEmpirica_c14 ;
+    aro:assessesClaim hne:afirmacaoEmpirica_c14 ;
     aro:textValue "APOIO RESTRITO: documenta existência do fenômeno ou indicador contextual. NÃO APOIA: É estimativa metodológica sobre classificação da causa de morte; não prova demora de IML. A semelhança é interpretativa e revisável."@pt-BR .
 
 hne:avaliacao_morte-anonima_c26 a aro:EvidenceAssessment ;
     prov:wasAttributedTo hne:analistaPesquisador ;
-    aro:assessesCorrespondence hne:correspondencia_morte-anonima_c26 ;
+    aro:assessesClaim hne:correspondencia_morte-anonima_c26 ;
     aro:assessesEvidence hne:evidencia_morte-anonima_c26 ;
-    aro:supportsClaim hne:afirmacaoEmpirica_c26 ;
+    aro:assessesClaim hne:afirmacaoEmpirica_c26 ;
     aro:textValue "APOIO RESTRITO: documenta existência do fenômeno ou indicador contextual. NÃO APOIA: Estatística agregada nacional; não identifica pessoas ou episódios da ficção. A semelhança é interpretativa e revisável."@pt-BR .
 
 hne:avaliacao_morte-jovem_c21 a aro:EvidenceAssessment ;
     prov:wasAttributedTo hne:analistaPesquisador ;
-    aro:assessesCorrespondence hne:correspondencia_morte-jovem_c21 ;
+    aro:assessesClaim hne:correspondencia_morte-jovem_c21 ;
     aro:assessesEvidence hne:evidencia_morte-jovem_c21 ;
-    aro:supportsClaim hne:afirmacaoEmpirica_c21 ;
+    aro:assessesClaim hne:afirmacaoEmpirica_c21 ;
     aro:textValue "APOIO RESTRITO: documenta existência do fenômeno ou indicador contextual. NÃO APOIA: A faixa etária não corresponde exatamente à de todos os personagens; não atribui mortes ao tráfico. A semelhança é interpretativa e revisável."@pt-BR .
 
 hne:avaliacao_morte-jovem_c22 a aro:EvidenceAssessment ;
     prov:wasAttributedTo hne:analistaPesquisador ;
-    aro:assessesCorrespondence hne:correspondencia_morte-jovem_c22 ;
+    aro:assessesClaim hne:correspondencia_morte-jovem_c22 ;
     aro:assessesEvidence hne:evidencia_morte-jovem_c22 ;
-    aro:supportsClaim hne:afirmacaoEmpirica_c22 ;
+    aro:assessesClaim hne:afirmacaoEmpirica_c22 ;
     aro:textValue "APOIO RESTRITO: documenta existência do fenômeno ou indicador contextual. NÃO APOIA: Homicídios são agregados, com causas e contextos heterogêneos. A semelhança é interpretativa e revisável."@pt-BR .
 
 hne:avaliacao_morte-jovem_c38 a aro:EvidenceAssessment ;
     prov:wasAttributedTo hne:analistaPesquisador ;
-    aro:assessesCorrespondence hne:correspondencia_morte-jovem_c38 ;
+    aro:assessesClaim hne:correspondencia_morte-jovem_c38 ;
     aro:assessesEvidence hne:evidencia_morte-jovem_c38 ;
-    aro:supportsClaim hne:afirmacaoEmpirica_c38 ;
+    aro:assessesClaim hne:afirmacaoEmpirica_c38 ;
     aro:textValue "APOIO RESTRITO: documenta existência do fenômeno ou indicador contextual. NÃO APOIA: Período histórico e cobertura diferentes de 1993; associação somente de padrões. A semelhança é interpretativa e revisável."@pt-BR .
 
 hne:avaliacao_orfandade_c21 a aro:EvidenceAssessment ;
     prov:wasAttributedTo hne:analistaPesquisador ;
-    aro:assessesCorrespondence hne:correspondencia_orfandade_c21 ;
+    aro:assessesClaim hne:correspondencia_orfandade_c21 ;
     aro:assessesEvidence hne:evidencia_orfandade_c21 ;
-    aro:supportsClaim hne:afirmacaoEmpirica_c21 ;
+    aro:assessesClaim hne:afirmacaoEmpirica_c21 ;
     aro:textValue "APOIO RESTRITO: documenta existência do fenômeno ou indicador contextual. NÃO APOIA: A faixa etária não corresponde exatamente à de todos os personagens; não atribui mortes ao tráfico. A semelhança é interpretativa e revisável."@pt-BR .
 
 hne:avaliacao_orfandade_c22 a aro:EvidenceAssessment ;
     prov:wasAttributedTo hne:analistaPesquisador ;
-    aro:assessesCorrespondence hne:correspondencia_orfandade_c22 ;
+    aro:assessesClaim hne:correspondencia_orfandade_c22 ;
     aro:assessesEvidence hne:evidencia_orfandade_c22 ;
-    aro:supportsClaim hne:afirmacaoEmpirica_c22 ;
+    aro:assessesClaim hne:afirmacaoEmpirica_c22 ;
     aro:textValue "APOIO RESTRITO: documenta existência do fenômeno ou indicador contextual. NÃO APOIA: Homicídios são agregados, com causas e contextos heterogêneos. A semelhança é interpretativa e revisável."@pt-BR .
 
 hne:avaliacao_orixa_c34 a aro:EvidenceAssessment ;
     prov:wasAttributedTo hne:analistaPesquisador ;
-    aro:assessesCorrespondence hne:correspondencia_orixa_c34 ;
+    aro:assessesClaim hne:correspondencia_orixa_c34 ;
     aro:assessesEvidence hne:evidencia_orixa_c34 ;
-    aro:supportsClaim hne:afirmacaoEmpirica_c34 ;
+    aro:assessesClaim hne:afirmacaoEmpirica_c34 ;
     aro:textValue "APOIO RESTRITO: documenta existência do fenômeno ou indicador contextual. NÃO APOIA: Não permite inferir religiosidade real do personagem e nem associar culto a crime ou violência. A semelhança é interpretativa e revisável."@pt-BR .
 
 hne:avaliacao_orixa_c35 a aro:EvidenceAssessment ;
     prov:wasAttributedTo hne:analistaPesquisador ;
-    aro:assessesCorrespondence hne:correspondencia_orixa_c35 ;
+    aro:assessesClaim hne:correspondencia_orixa_c35 ;
     aro:assessesEvidence hne:evidencia_orixa_c35 ;
-    aro:supportsClaim hne:afirmacaoEmpirica_c35 ;
+    aro:assessesClaim hne:afirmacaoEmpirica_c35 ;
     aro:textValue "APOIO RESTRITO: documenta existência do fenômeno ou indicador contextual. NÃO APOIA: São ocorrências de intolerância reais, distintas de uma cena que apenas menciona religião; ligação estritamente contextual. A semelhança é interpretativa e revisável."@pt-BR .
 
 hne:avaliacao_ostentacao_c16 a aro:EvidenceAssessment ;
     prov:wasAttributedTo hne:analistaPesquisador ;
-    aro:assessesCorrespondence hne:correspondencia_ostentacao_c16 ;
+    aro:assessesClaim hne:correspondencia_ostentacao_c16 ;
     aro:assessesEvidence hne:evidencia_ostentacao_c16 ;
-    aro:supportsClaim hne:afirmacaoEmpirica_c16 ;
+    aro:assessesClaim hne:afirmacaoEmpirica_c16 ;
     aro:textValue "APOIO RESTRITO: documenta existência do fenômeno ou indicador contextual. NÃO APOIA: Diferenças agregadas não identificam mecanismo causal na biografia de um indivíduo. A semelhança é interpretativa e revisável."@pt-BR .
 
 hne:avaliacao_ostentacao_c22 a aro:EvidenceAssessment ;
     prov:wasAttributedTo hne:analistaPesquisador ;
-    aro:assessesCorrespondence hne:correspondencia_ostentacao_c22 ;
+    aro:assessesClaim hne:correspondencia_ostentacao_c22 ;
     aro:assessesEvidence hne:evidencia_ostentacao_c22 ;
-    aro:supportsClaim hne:afirmacaoEmpirica_c22 ;
+    aro:assessesClaim hne:afirmacaoEmpirica_c22 ;
     aro:textValue "APOIO RESTRITO: documenta existência do fenômeno ou indicador contextual. NÃO APOIA: Homicídios são agregados, com causas e contextos heterogêneos. A semelhança é interpretativa e revisável."@pt-BR .
 
 hne:avaliacao_policia_c23 a aro:EvidenceAssessment ;
     prov:wasAttributedTo hne:analistaPesquisador ;
-    aro:assessesCorrespondence hne:correspondencia_policia_c23 ;
+    aro:assessesClaim hne:correspondencia_policia_c23 ;
     aro:assessesEvidence hne:evidencia_policia_c23 ;
-    aro:supportsClaim hne:afirmacaoEmpirica_c23 ;
+    aro:assessesClaim hne:afirmacaoEmpirica_c23 ;
     aro:textValue "APOIO RESTRITO: documenta existência do fenômeno ou indicador contextual. NÃO APOIA: Razão populacional não estabelece a motivação de cada morte. A semelhança é interpretativa e revisável."@pt-BR .
 
 hne:avaliacao_policia_c24 a aro:EvidenceAssessment ;
     prov:wasAttributedTo hne:analistaPesquisador ;
-    aro:assessesCorrespondence hne:correspondencia_policia_c24 ;
+    aro:assessesClaim hne:correspondencia_policia_c24 ;
     aro:assessesEvidence hne:evidencia_policia_c24 ;
-    aro:supportsClaim hne:afirmacaoEmpirica_c24 ;
+    aro:assessesClaim hne:afirmacaoEmpirica_c24 ;
     aro:textValue "APOIO RESTRITO: documenta existência do fenômeno ou indicador contextual. NÃO APOIA: Não identifica autoria da morte narrada ou qualquer causalidade histórica com a canção. A semelhança é interpretativa e revisável."@pt-BR .
 
 hne:avaliacao_policia_c25 a aro:EvidenceAssessment ;
     prov:wasAttributedTo hne:analistaPesquisador ;
-    aro:assessesCorrespondence hne:correspondencia_policia_c25 ;
+    aro:assessesClaim hne:correspondencia_policia_c25 ;
     aro:assessesEvidence hne:evidencia_policia_c25 ;
-    aro:supportsClaim hne:afirmacaoEmpirica_c25 ;
+    aro:assessesClaim hne:afirmacaoEmpirica_c25 ;
     aro:textValue "APOIO RESTRITO: documenta existência do fenômeno ou indicador contextual. NÃO APOIA: Indicador agregado; não autoriza declarar ilegalidade de toda intervenção. A semelhança é interpretativa e revisável."@pt-BR .
 
 hne:avaliacao_protege-filho_c21 a aro:EvidenceAssessment ;
     prov:wasAttributedTo hne:analistaPesquisador ;
-    aro:assessesCorrespondence hne:correspondencia_protege-filho_c21 ;
+    aro:assessesClaim hne:correspondencia_protege-filho_c21 ;
     aro:assessesEvidence hne:evidencia_protege-filho_c21 ;
-    aro:supportsClaim hne:afirmacaoEmpirica_c21 ;
+    aro:assessesClaim hne:afirmacaoEmpirica_c21 ;
     aro:textValue "APOIO RESTRITO: documenta existência do fenômeno ou indicador contextual. NÃO APOIA: A faixa etária não corresponde exatamente à de todos os personagens; não atribui mortes ao tráfico. A semelhança é interpretativa e revisável."@pt-BR .
 
 hne:avaliacao_protege-filho_c38 a aro:EvidenceAssessment ;
     prov:wasAttributedTo hne:analistaPesquisador ;
-    aro:assessesCorrespondence hne:correspondencia_protege-filho_c38 ;
+    aro:assessesClaim hne:correspondencia_protege-filho_c38 ;
     aro:assessesEvidence hne:evidencia_protege-filho_c38 ;
-    aro:supportsClaim hne:afirmacaoEmpirica_c38 ;
+    aro:assessesClaim hne:afirmacaoEmpirica_c38 ;
     aro:textValue "APOIO RESTRITO: documenta existência do fenômeno ou indicador contextual. NÃO APOIA: Período histórico e cobertura diferentes de 1993; associação somente de padrões. A semelhança é interpretativa e revisável."@pt-BR .
 
 hne:avaliacao_reinsercao_c01 a aro:EvidenceAssessment ;
     prov:wasAttributedTo hne:analistaPesquisador ;
-    aro:assessesCorrespondence hne:correspondencia_reinsercao_c01 ;
+    aro:assessesClaim hne:correspondencia_reinsercao_c01 ;
     aro:assessesEvidence hne:evidencia_reinsercao_c01 ;
-    aro:supportsClaim hne:afirmacaoEmpirica_c01 ;
+    aro:assessesClaim hne:afirmacaoEmpirica_c01 ;
     aro:textValue "APOIO RESTRITO: documenta existência do fenômeno ou indicador contextual. NÃO APOIA: Não mede reincidência individual nem prova que um egresso específico abandonou o crime. A semelhança é interpretativa e revisável."@pt-BR .
 
 hne:avaliacao_reinsercao_c02 a aro:EvidenceAssessment ;
     prov:wasAttributedTo hne:analistaPesquisador ;
-    aro:assessesCorrespondence hne:correspondencia_reinsercao_c02 ;
+    aro:assessesClaim hne:correspondencia_reinsercao_c02 ;
     aro:assessesEvidence hne:evidencia_reinsercao_c02 ;
-    aro:supportsClaim hne:afirmacaoEmpirica_c02 ;
+    aro:assessesClaim hne:afirmacaoEmpirica_c02 ;
     aro:textValue "APOIO RESTRITO: documenta existência do fenômeno ou indicador contextual. NÃO APOIA: Atendimentos administrativos não medem diretamente discriminação no recrutamento ou reintegração bem-sucedida. A semelhança é interpretativa e revisável."@pt-BR .
 
 hne:avaliacao_resposta-publica_c07 a aro:EvidenceAssessment ;
     prov:wasAttributedTo hne:analistaPesquisador ;
-    aro:assessesCorrespondence hne:correspondencia_resposta-publica_c07 ;
+    aro:assessesClaim hne:correspondencia_resposta-publica_c07 ;
     aro:assessesEvidence hne:evidencia_resposta-publica_c07 ;
-    aro:supportsClaim hne:afirmacaoEmpirica_c07 ;
+    aro:assessesClaim hne:afirmacaoEmpirica_c07 ;
     aro:textValue "APOIO RESTRITO: documenta existência do fenômeno ou indicador contextual. NÃO APOIA: Não prova atraso de socorro nem ausência de ambulância em determinado bairro. A semelhança é interpretativa e revisável."@pt-BR .
 
 hne:avaliacao_resposta-publica_c37 a aro:EvidenceAssessment ;
     prov:wasAttributedTo hne:analistaPesquisador ;
-    aro:assessesCorrespondence hne:correspondencia_resposta-publica_c37 ;
+    aro:assessesClaim hne:correspondencia_resposta-publica_c37 ;
     aro:assessesEvidence hne:evidencia_resposta-publica_c37 ;
-    aro:supportsClaim hne:afirmacaoEmpirica_c37 ;
+    aro:assessesClaim hne:afirmacaoEmpirica_c37 ;
     aro:textValue "APOIO RESTRITO: documenta existência do fenômeno ou indicador contextual. NÃO APOIA: É uma fonte para investigação, não prova direta de qualquer recorte ficcional. A semelhança é interpretativa e revisável."@pt-BR .
 
 hne:avaliacao_risco-encosta_c05 a aro:EvidenceAssessment ;
     prov:wasAttributedTo hne:analistaPesquisador ;
-    aro:assessesCorrespondence hne:correspondencia_risco-encosta_c05 ;
+    aro:assessesClaim hne:correspondencia_risco-encosta_c05 ;
     aro:assessesEvidence hne:evidencia_risco-encosta_c05 ;
-    aro:supportsClaim hne:afirmacaoEmpirica_c05 ;
+    aro:assessesClaim hne:afirmacaoEmpirica_c05 ;
     aro:textValue "APOIO RESTRITO: documenta existência do fenômeno ou indicador contextual. NÃO APOIA: Censo demográfico é uma medição, não comprova negligência em um endereço. A semelhança é interpretativa e revisável."@pt-BR .
 
 hne:avaliacao_risco-encosta_c09 a aro:EvidenceAssessment ;
     prov:wasAttributedTo hne:analistaPesquisador ;
-    aro:assessesCorrespondence hne:correspondencia_risco-encosta_c09 ;
+    aro:assessesClaim hne:correspondencia_risco-encosta_c09 ;
     aro:assessesEvidence hne:evidencia_risco-encosta_c09 ;
-    aro:supportsClaim hne:afirmacaoEmpirica_c09 ;
+    aro:assessesClaim hne:afirmacaoEmpirica_c09 ;
     aro:textValue "APOIO RESTRITO: documenta existência do fenômeno ou indicador contextual. NÃO APOIA: Fenômeno real de risco de encostas, em geografia e época distintas da canção. A semelhança é interpretativa e revisável."@pt-BR .
 
 hne:avaliacao_saneamento_c06 a aro:EvidenceAssessment ;
     prov:wasAttributedTo hne:analistaPesquisador ;
-    aro:assessesCorrespondence hne:correspondencia_saneamento_c06 ;
+    aro:assessesClaim hne:correspondencia_saneamento_c06 ;
     aro:assessesEvidence hne:evidencia_saneamento_c06 ;
-    aro:supportsClaim hne:afirmacaoEmpirica_c06 ;
+    aro:assessesClaim hne:afirmacaoEmpirica_c06 ;
     aro:textValue "APOIO RESTRITO: documenta existência do fenômeno ou indicador contextual. NÃO APOIA: O agregado inclui modalidades distintas; não equivale a tratamento de esgoto nem informa sobre o cenário fictício. A semelhança é interpretativa e revisável."@pt-BR .
 
 hne:avaliacao_saneamento_c08 a aro:EvidenceAssessment ;
     prov:wasAttributedTo hne:analistaPesquisador ;
-    aro:assessesCorrespondence hne:correspondencia_saneamento_c08 ;
+    aro:assessesClaim hne:correspondencia_saneamento_c08 ;
     aro:assessesEvidence hne:evidencia_saneamento_c08 ;
-    aro:supportsClaim hne:afirmacaoEmpirica_c08 ;
+    aro:assessesClaim hne:afirmacaoEmpirica_c08 ;
     aro:textValue "APOIO RESTRITO: documenta existência do fenômeno ou indicador contextual. NÃO APOIA: Base de monitoramento não comprova interrupção específica de cinco dias nem ausência local de água. A semelhança é interpretativa e revisável."@pt-BR .
 
 hne:avaliacao_silencio_c24 a aro:EvidenceAssessment ;
     prov:wasAttributedTo hne:analistaPesquisador ;
-    aro:assessesCorrespondence hne:correspondencia_silencio_c24 ;
+    aro:assessesClaim hne:correspondencia_silencio_c24 ;
     aro:assessesEvidence hne:evidencia_silencio_c24 ;
-    aro:supportsClaim hne:afirmacaoEmpirica_c24 ;
+    aro:assessesClaim hne:afirmacaoEmpirica_c24 ;
     aro:textValue "APOIO RESTRITO: documenta existência do fenômeno ou indicador contextual. NÃO APOIA: Não identifica autoria da morte narrada ou qualquer causalidade histórica com a canção. A semelhança é interpretativa e revisável."@pt-BR .
 
 hne:avaliacao_silencio_c38 a aro:EvidenceAssessment ;
     prov:wasAttributedTo hne:analistaPesquisador ;
-    aro:assessesCorrespondence hne:correspondencia_silencio_c38 ;
+    aro:assessesClaim hne:correspondencia_silencio_c38 ;
     aro:assessesEvidence hne:evidencia_silencio_c38 ;
-    aro:supportsClaim hne:afirmacaoEmpirica_c38 ;
+    aro:assessesClaim hne:afirmacaoEmpirica_c38 ;
     aro:textValue "APOIO RESTRITO: documenta existência do fenômeno ou indicador contextual. NÃO APOIA: Período histórico e cobertura diferentes de 1993; associação somente de padrões. A semelhança é interpretativa e revisável."@pt-BR .
 
 hne:avaliacao_suspeicao_c23 a aro:EvidenceAssessment ;
     prov:wasAttributedTo hne:analistaPesquisador ;
-    aro:assessesCorrespondence hne:correspondencia_suspeicao_c23 ;
+    aro:assessesClaim hne:correspondencia_suspeicao_c23 ;
     aro:assessesEvidence hne:evidencia_suspeicao_c23 ;
-    aro:supportsClaim hne:afirmacaoEmpirica_c23 ;
+    aro:assessesClaim hne:afirmacaoEmpirica_c23 ;
     aro:textValue "APOIO RESTRITO: documenta existência do fenômeno ou indicador contextual. NÃO APOIA: Razão populacional não estabelece a motivação de cada morte. A semelhança é interpretativa e revisável."@pt-BR .
 
 hne:avaliacao_suspeicao_c24 a aro:EvidenceAssessment ;
     prov:wasAttributedTo hne:analistaPesquisador ;
-    aro:assessesCorrespondence hne:correspondencia_suspeicao_c24 ;
+    aro:assessesClaim hne:correspondencia_suspeicao_c24 ;
     aro:assessesEvidence hne:evidencia_suspeicao_c24 ;
-    aro:supportsClaim hne:afirmacaoEmpirica_c24 ;
+    aro:assessesClaim hne:afirmacaoEmpirica_c24 ;
     aro:textValue "APOIO RESTRITO: documenta existência do fenômeno ou indicador contextual. NÃO APOIA: Não identifica autoria da morte narrada ou qualquer causalidade histórica com a canção. A semelhança é interpretativa e revisável."@pt-BR .
 
 hne:avaliacao_suspeicao_c39 a aro:EvidenceAssessment ;
     prov:wasAttributedTo hne:analistaPesquisador ;
-    aro:assessesCorrespondence hne:correspondencia_suspeicao_c39 ;
+    aro:assessesClaim hne:correspondencia_suspeicao_c39 ;
     aro:assessesEvidence hne:evidencia_suspeicao_c39 ;
-    aro:supportsClaim hne:afirmacaoEmpirica_c39 ;
+    aro:assessesClaim hne:afirmacaoEmpirica_c39 ;
     aro:textValue "APOIO RESTRITO: documenta existência do fenômeno ou indicador contextual. NÃO APOIA: Não define todas as favelas como espaços sem lei; a própria classificação é plural. A semelhança é interpretativa e revisável."@pt-BR .
 
 hne:avaliacao_versao_c14 a aro:EvidenceAssessment ;
     prov:wasAttributedTo hne:analistaPesquisador ;
-    aro:assessesCorrespondence hne:correspondencia_versao_c14 ;
+    aro:assessesClaim hne:correspondencia_versao_c14 ;
     aro:assessesEvidence hne:evidencia_versao_c14 ;
-    aro:supportsClaim hne:afirmacaoEmpirica_c14 ;
+    aro:assessesClaim hne:afirmacaoEmpirica_c14 ;
     aro:textValue "APOIO RESTRITO: documenta existência do fenômeno ou indicador contextual. NÃO APOIA: É estimativa metodológica sobre classificação da causa de morte; não prova demora de IML. A semelhança é interpretativa e revisável."@pt-BR .
 
 hne:avaliacao_versao_c24 a aro:EvidenceAssessment ;
     prov:wasAttributedTo hne:analistaPesquisador ;
-    aro:assessesCorrespondence hne:correspondencia_versao_c24 ;
+    aro:assessesClaim hne:correspondencia_versao_c24 ;
     aro:assessesEvidence hne:evidencia_versao_c24 ;
-    aro:supportsClaim hne:afirmacaoEmpirica_c24 ;
+    aro:assessesClaim hne:afirmacaoEmpirica_c24 ;
     aro:textValue "APOIO RESTRITO: documenta existência do fenômeno ou indicador contextual. NÃO APOIA: Não identifica autoria da morte narrada ou qualquer causalidade histórica com a canção. A semelhança é interpretativa e revisável."@pt-BR .
 
 hne:avaliacao_versao_c26 a aro:EvidenceAssessment ;
     prov:wasAttributedTo hne:analistaPesquisador ;
-    aro:assessesCorrespondence hne:correspondencia_versao_c26 ;
+    aro:assessesClaim hne:correspondencia_versao_c26 ;
     aro:assessesEvidence hne:evidencia_versao_c26 ;
-    aro:supportsClaim hne:afirmacaoEmpirica_c26 ;
+    aro:assessesClaim hne:afirmacaoEmpirica_c26 ;
     aro:textValue "APOIO RESTRITO: documenta existência do fenômeno ou indicador contextual. NÃO APOIA: Estatística agregada nacional; não identifica pessoas ou episódios da ficção. A semelhança é interpretativa e revisável."@pt-BR .
 
 hne:avaliacao_violencia-familiar_c12 a aro:EvidenceAssessment ;
     prov:wasAttributedTo hne:analistaPesquisador ;
-    aro:assessesCorrespondence hne:correspondencia_violencia-familiar_c12 ;
+    aro:assessesClaim hne:correspondencia_violencia-familiar_c12 ;
     aro:assessesEvidence hne:evidencia_violencia-familiar_c12 ;
-    aro:supportsClaim hne:afirmacaoEmpirica_c12 ;
+    aro:assessesClaim hne:afirmacaoEmpirica_c12 ;
     aro:textValue "APOIO RESTRITO: documenta existência do fenômeno ou indicador contextual. NÃO APOIA: Pesquisa sobre vitimização não comprova o caso narrado na canção. A semelhança é interpretativa e revisável."@pt-BR .
 
 hne:avaliacao_violencia-familiar_c13 a aro:EvidenceAssessment ;
     prov:wasAttributedTo hne:analistaPesquisador ;
-    aro:assessesCorrespondence hne:correspondencia_violencia-familiar_c13 ;
+    aro:assessesClaim hne:correspondencia_violencia-familiar_c13 ;
     aro:assessesEvidence hne:evidencia_violencia-familiar_c13 ;
-    aro:supportsClaim hne:afirmacaoEmpirica_c13 ;
+    aro:assessesClaim hne:afirmacaoEmpirica_c13 ;
     aro:textValue "APOIO RESTRITO: documenta existência do fenômeno ou indicador contextual. NÃO APOIA: Cada denúncia pode conter múltiplas violações; não mede tempo de atendimento pericial. A semelhança é interpretativa e revisável."@pt-BR .
 
 hne:avaliacao_violencia-familiar_c29 a aro:EvidenceAssessment ;
     prov:wasAttributedTo hne:analistaPesquisador ;
-    aro:assessesCorrespondence hne:correspondencia_violencia-familiar_c29 ;
+    aro:assessesClaim hne:correspondencia_violencia-familiar_c29 ;
     aro:assessesEvidence hne:evidencia_violencia-familiar_c29 ;
-    aro:supportsClaim hne:afirmacaoEmpirica_c29 ;
+    aro:assessesClaim hne:afirmacaoEmpirica_c29 ;
     aro:textValue "APOIO RESTRITO: documenta existência do fenômeno ou indicador contextual. NÃO APOIA: Prevalência de consumo não identifica um agressor nem estabelece que álcool causou violência. A semelhança é interpretativa e revisável."@pt-BR .
 
 hne:avaliacao_violencia-mulher_c10 a aro:EvidenceAssessment ;
     prov:wasAttributedTo hne:analistaPesquisador ;
-    aro:assessesCorrespondence hne:correspondencia_violencia-mulher_c10 ;
+    aro:assessesClaim hne:correspondencia_violencia-mulher_c10 ;
     aro:assessesEvidence hne:evidencia_violencia-mulher_c10 ;
-    aro:supportsClaim hne:afirmacaoEmpirica_c10 ;
+    aro:assessesClaim hne:afirmacaoEmpirica_c10 ;
     aro:textValue "APOIO RESTRITO: documenta existência do fenômeno ou indicador contextual. NÃO APOIA: Feminicídio é categoria tipificada distinta de estupro seguido de homicídio; não pode classificar a cena sem provas. A semelhança é interpretativa e revisável."@pt-BR .
 
 hne:avaliacao_violencia-mulher_c11 a aro:EvidenceAssessment ;
     prov:wasAttributedTo hne:analistaPesquisador ;
-    aro:assessesCorrespondence hne:correspondencia_violencia-mulher_c11 ;
+    aro:assessesClaim hne:correspondencia_violencia-mulher_c11 ;
     aro:assessesEvidence hne:evidencia_violencia-mulher_c11 ;
-    aro:supportsClaim hne:afirmacaoEmpirica_c11 ;
+    aro:assessesClaim hne:afirmacaoEmpirica_c11 ;
     aro:textValue "APOIO RESTRITO: documenta existência do fenômeno ou indicador contextual. NÃO APOIA: Denúncias não equivalem a fatos judicialmente confirmados nem a homicídios. A semelhança é interpretativa e revisável."@pt-BR .
 
 hne:avaliacao_violencia-mulher_c12 a aro:EvidenceAssessment ;
     prov:wasAttributedTo hne:analistaPesquisador ;
-    aro:assessesCorrespondence hne:correspondencia_violencia-mulher_c12 ;
+    aro:assessesClaim hne:correspondencia_violencia-mulher_c12 ;
     aro:assessesEvidence hne:evidencia_violencia-mulher_c12 ;
-    aro:supportsClaim hne:afirmacaoEmpirica_c12 ;
+    aro:assessesClaim hne:afirmacaoEmpirica_c12 ;
     aro:textValue "APOIO RESTRITO: documenta existência do fenômeno ou indicador contextual. NÃO APOIA: Pesquisa sobre vitimização não comprova o caso narrado na canção. A semelhança é interpretativa e revisável."@pt-BR .
 
 hne:caso_c40 a aro:EmpiricalCase ;
     dcterms:description "Taxa nacional recente não retrata o mercado de trabalho dos anos 1990."@pt-BR ;
     prov:wasDerivedFrom hne:fonte_pnad2025 ;
     aro:caseAboutSituation hne:situacaoEmpirica_c40 ;
-    aro:caseHasReference hne:fonte_pnad2025 ;
+    aro:citesSource hne:fonte_pnad2025 ;
     aro:textValue "Evolução de indicadores nacionais de trabalho 2025"@pt-BR .
 
-hne:contestacaoInterpretacao10 a aro:InterpretationChallenge ;
+hne:contestacaoInterpretacao10 a aro:Challenge ;
     aro:challenges hne:interpretacao_10 ;
     aro:textValue "Criticar ausência de resposta estatal não autoriza responsabilizar o instituto censitário pela entrega direta de serviços públicos. O papel do IBGE é de coleta e produção de estatísticas."@pt-BR .
 
-hne:contestacaoInterpretacao45 a aro:InterpretationChallenge ;
+hne:contestacaoInterpretacao45 a aro:Challenge ;
     aro:challenges hne:interpretacao_45 ;
     aro:textValue "Uma hipótese atribuída à polícia não comprova acerto de contas; em direção inversa, o cerco prévio não demonstra por si só quem efetuou disparos letais. Evitar certeza indevida."@pt-BR .
 
@@ -1065,112 +1065,112 @@ hne:caso_c04 a aro:EmpiricalCase ;
     dcterms:description "A classificação e abrangência são as das inspeções; não se deduz causa individual."@pt-BR ;
     prov:wasDerivedFrom hne:fonte_cnj2025 ;
     aro:caseAboutSituation hne:situacaoEmpirica_c04 ;
-    aro:caseHasReference hne:fonte_cnj2025 ;
+    aro:citesSource hne:fonte_cnj2025 ;
     aro:textValue "Perfil racial da institucionalização socioeducativa"@pt-BR .
 
 hne:caso_c07 a aro:EmpiricalCase ;
     dcterms:description "Não prova atraso de socorro nem ausência de ambulância em determinado bairro."@pt-BR ;
     prov:wasDerivedFrom hne:fonte_favelaVias2025 ;
     aro:caseAboutSituation hne:situacaoEmpirica_c07 ;
-    aro:caseHasReference hne:fonte_favelaVias2025 ;
+    aro:citesSource hne:fonte_favelaVias2025 ;
     aro:textValue "Limitação de acesso viário em favelas"@pt-BR .
 
 hne:caso_c09 a aro:EmpiricalCase ;
     dcterms:description "Fenômeno real de risco de encostas, em geografia e época distintas da canção."@pt-BR ;
     prov:wasDerivedFrom hne:fonte_cemaden2025 ;
     aro:caseAboutSituation hne:situacaoEmpirica_c09 ;
-    aro:caseHasReference hne:fonte_cemaden2025 ;
+    aro:citesSource hne:fonte_cemaden2025 ;
     aro:textValue "Deslizamentos registrados pelo Cemaden"@pt-BR .
 
 hne:caso_c10 a aro:EmpiricalCase ;
     dcterms:description "Feminicídio é categoria tipificada distinta de estupro seguido de homicídio; não pode classificar a cena sem provas."@pt-BR ;
     prov:wasDerivedFrom hne:fonte_fbsp2026 ;
     aro:caseAboutSituation hne:situacaoEmpirica_c10 ;
-    aro:caseHasReference hne:fonte_fbsp2026 ;
+    aro:citesSource hne:fonte_fbsp2026 ;
     aro:textValue "Letalidade de mulheres e violência intencional"@pt-BR .
 
 hne:caso_c11 a aro:EmpiricalCase ;
     dcterms:description "Denúncias não equivalem a fatos judicialmente confirmados nem a homicídios."@pt-BR ;
     prov:wasDerivedFrom hne:fonte_ligue1802026 ;
     aro:caseAboutSituation hne:situacaoEmpirica_c11 ;
-    aro:caseHasReference hne:fonte_ligue1802026 ;
+    aro:citesSource hne:fonte_ligue1802026 ;
     aro:textValue "Denúncias de violência sexual no Ligue 180"@pt-BR .
 
 hne:caso_c13 a aro:EmpiricalCase ;
     dcterms:description "Cada denúncia pode conter múltiplas violações; não mede tempo de atendimento pericial."@pt-BR ;
     prov:wasDerivedFrom hne:fonte_ligue1802026 ;
     aro:caseAboutSituation hne:situacaoEmpirica_c13 ;
-    aro:caseHasReference hne:fonte_ligue1802026 ;
+    aro:citesSource hne:fonte_ligue1802026 ;
     aro:textValue "Atendimentos e denúncias de violência a mulheres em 2025"@pt-BR .
 
 hne:caso_c15 a aro:EmpiricalCase ;
     dcterms:description "Não é estimativa de desemprego específico entre egressos do sistema prisional."@pt-BR ;
     prov:wasDerivedFrom hne:fonte_pnad2025 ;
     aro:caseAboutSituation hne:situacaoEmpirica_c15 ;
-    aro:caseHasReference hne:fonte_pnad2025 ;
+    aro:citesSource hne:fonte_pnad2025 ;
     aro:textValue "Desocupação por cor ou raça no 4º trimestre de 2025"@pt-BR .
 
 hne:caso_c19 a aro:EmpiricalCase ;
     dcterms:description "Cobertura administrativa da política; não demonstra que estudantes vão à escola exclusivamente para comer."@pt-BR ;
     prov:wasDerivedFrom hne:fonte_pnae2026 ;
     aro:caseAboutSituation hne:situacaoEmpirica_c19 ;
-    aro:caseHasReference hne:fonte_pnae2026 ;
+    aro:citesSource hne:fonte_pnae2026 ;
     aro:textValue "Escala do Programa de Alimentação Escolar 2026"@pt-BR .
 
 hne:caso_c20 a aro:EmpiricalCase ;
     dcterms:description "Valor transferido não equivale a avaliação de efeito em aprendizado ou frequência."@pt-BR ;
     prov:wasDerivedFrom hne:fonte_pnaeRep2026 ;
     aro:caseAboutSituation hne:situacaoEmpirica_c20 ;
-    aro:caseHasReference hne:fonte_pnaeRep2026 ;
+    aro:citesSource hne:fonte_pnaeRep2026 ;
     aro:textValue "Repasses financeiros para alimentação escolar 2026"@pt-BR .
 
 hne:caso_c27 a aro:EmpiricalCase ;
     dcterms:description "Contagem observacional parcial, não série nacional completa; classificação pode não ser equivalente à cena."@pt-BR ;
     prov:wasDerivedFrom hne:fonte_linch2026 ;
     aro:caseAboutSituation hne:situacaoEmpirica_c27 ;
-    aro:caseHasReference hne:fonte_linch2026 ;
+    aro:citesSource hne:fonte_linch2026 ;
     aro:textValue "Linchamentos monitorados em 2024 e 2025"@pt-BR .
 
 hne:caso_c28 a aro:EmpiricalCase ;
     dcterms:description "Caso jornalístico específico, com motivação distinta daquela representada na canção."@pt-BR ;
     prov:wasDerivedFrom hne:fonte_linch2026 ;
     aro:caseAboutSituation hne:situacaoEmpirica_c28 ;
-    aro:caseHasReference hne:fonte_linch2026 ;
+    aro:citesSource hne:fonte_linch2026 ;
     aro:textValue "Linchamento de ciclista no Rio de Janeiro em 2026"@pt-BR .
 
 hne:caso_c30 a aro:EmpiricalCase ;
     dcterms:description "Consumo de bebida lícita não demonstra lucros dos agentes econômicos apontados no enredo."@pt-BR ;
     prov:wasDerivedFrom hne:fonte_alcool2025 ;
     aro:caseAboutSituation hne:situacaoEmpirica_c30 ;
-    aro:caseHasReference hne:fonte_alcool2025 ;
+    aro:citesSource hne:fonte_alcool2025 ;
     aro:textValue "Consumo de álcool na população brasileira"@pt-BR .
 
 hne:caso_c31 a aro:EmpiricalCase ;
     dcterms:description "Não demonstra aumento contemporâneo, pelo contrário relata estabilidade na comparação com 2012."@pt-BR ;
     prov:wasDerivedFrom hne:fonte_drogas2026 ;
     aro:caseAboutSituation hne:situacaoEmpirica_c31 ;
-    aro:caseHasReference hne:fonte_drogas2026 ;
+    aro:citesSource hne:fonte_drogas2026 ;
     aro:textValue "Uso recente de crack"@pt-BR .
 
 hne:caso_c35 a aro:EmpiricalCase ;
     dcterms:description "São ocorrências de intolerância reais, distintas de uma cena que apenas menciona religião; ligação estritamente contextual."@pt-BR ;
     prov:wasDerivedFrom hne:fonte_racismoReligioso2026 ;
     aro:caseAboutSituation hne:situacaoEmpirica_c35 ;
-    aro:caseHasReference hne:fonte_racismoReligioso2026 ;
+    aro:citesSource hne:fonte_racismoReligioso2026 ;
     aro:textValue "Proteção da liberdade religiosa: casos apurados em 2026"@pt-BR .
 
 hne:caso_c36 a aro:EmpiricalCase ;
     dcterms:description "Não comprova ausência estatal no período narrado; caso metodológico para contraste entre visibilidade estatística e assistência."@pt-BR ;
     prov:wasDerivedFrom hne:fonte_censoPerfil ;
     aro:caseAboutSituation hne:situacaoEmpirica_c36 ;
-    aro:caseHasReference hne:fonte_censoPerfil ;
+    aro:citesSource hne:fonte_censoPerfil ;
     aro:textValue "Conflito entre identidade social e dados censitários"@pt-BR .
 
 hne:caso_c37 a aro:EmpiricalCase ;
     dcterms:description "É uma fonte para investigação, não prova direta de qualquer recorte ficcional."@pt-BR ;
     prov:wasDerivedFrom hne:fonte_disque100 ;
     aro:caseAboutSituation hne:situacaoEmpirica_c37 ;
-    aro:caseHasReference hne:fonte_disque100 ;
+    aro:citesSource hne:fonte_disque100 ;
     aro:textValue "Dados abertos de violações de direitos humanos"@pt-BR .
 
 hne:condicao_agua a aro:PatternCondition ;
@@ -1317,15 +1317,15 @@ hne:condicao_violencia-mulher a aro:PatternCondition ;
     aro:isRequiredCondition true ;
     aro:textValue "Não confundir agressão sexual, homicídio e feminicídio como categorias idênticas."@pt-BR .
 
-hne:contribuicao_interprete a aro:CreativeContribution ;
+hne:contribuicao_interprete a aro:CreativeContribution ; aro:contributionTo hne:gravacao1993, hne:homemNaEstrada ;
     aro:contributionBy <http://dbpedia.org/resource/Racionais_MC's> ;
     aro:contributionRole aro:PerformerRole .
 
-hne:contribuicao_compositor a aro:CreativeContribution ;
+hne:contribuicao_compositor a aro:CreativeContribution ; aro:contributionTo hne:gravacao1993, hne:homemNaEstrada ;
     aro:contributionBy <http://dbpedia.org/resource/Mano_Brown> ;
     aro:contributionRole aro:ComposerRole .
 
-hne:contribuicao_letrista a aro:CreativeContribution ;
+hne:contribuicao_letrista a aro:CreativeContribution ; aro:contributionTo hne:gravacao1993, hne:homemNaEstrada ;
     aro:contributionBy <http://dbpedia.org/resource/Mano_Brown> ;
     aro:contributionRole aro:LyricistRole .
 
@@ -1333,581 +1333,581 @@ hne:correspondencia_agua_c06 a aro:CorrespondenceClaim ;
     prov:wasAttributedTo hne:analistaPesquisador ;
     aro:assertsCase hne:caso_c06 ;
     aro:assertsPattern hne:padrao_agua ;
-    aro:referencesSource hne:fonte_favelaSaneamento ;
+    aro:citesSource hne:fonte_favelaSaneamento ;
     aro:textValue "Correspondência proposta por similaridade temática: padrão “Abastecimento de água irregular” e caso “Infraestrutura de esgotamento nas favelas”. Não equivale a identidade, causalidade ou evidência de episódio retratado em 1993."@pt-BR .
 
 hne:correspondencia_agua_c08 a aro:CorrespondenceClaim ;
     prov:wasAttributedTo hne:analistaPesquisador ;
     aro:assertsCase hne:caso_c08 ;
     aro:assertsPattern hne:padrao_agua ;
-    aro:referencesSource hne:fonte_sinisa2025 ;
+    aro:citesSource hne:fonte_sinisa2025 ;
     aro:textValue "Correspondência proposta por similaridade temática: padrão “Abastecimento de água irregular” e caso “Gestão nacional de abastecimento e esgoto”. Não equivale a identidade, causalidade ou evidência de episódio retratado em 1993."@pt-BR .
 
 hne:correspondencia_alcool_c29 a aro:CorrespondenceClaim ;
     prov:wasAttributedTo hne:analistaPesquisador ;
     aro:assertsCase hne:caso_c29 ;
     aro:assertsPattern hne:padrao_alcool ;
-    aro:referencesSource hne:fonte_alcool2025 ;
+    aro:citesSource hne:fonte_alcool2025 ;
     aro:textValue "Correspondência proposta por similaridade temática: padrão “Assimetria discursiva entre drogas ilícitas e álcool” e caso “Consumo episódico pesado de álcool”. Não equivale a identidade, causalidade ou evidência de episódio retratado em 1993."@pt-BR .
 
 hne:correspondencia_alcool_c30 a aro:CorrespondenceClaim ;
     prov:wasAttributedTo hne:analistaPesquisador ;
     aro:assertsCase hne:caso_c30 ;
     aro:assertsPattern hne:padrao_alcool ;
-    aro:referencesSource hne:fonte_alcool2025 ;
+    aro:citesSource hne:fonte_alcool2025 ;
     aro:textValue "Correspondência proposta por similaridade temática: padrão “Assimetria discursiva entre drogas ilícitas e álcool” e caso “Consumo de álcool na população brasileira”. Não equivale a identidade, causalidade ou evidência de episódio retratado em 1993."@pt-BR .
 
 hne:correspondencia_alcool_c33 a aro:CorrespondenceClaim ;
     prov:wasAttributedTo hne:analistaPesquisador ;
     aro:assertsCase hne:caso_c33 ;
     aro:assertsPattern hne:padrao_alcool ;
-    aro:referencesSource hne:fonte_lenadPublicacoes ;
+    aro:citesSource hne:fonte_lenadPublicacoes ;
     aro:textValue "Correspondência proposta por similaridade temática: padrão “Assimetria discursiva entre drogas ilícitas e álcool” e caso “Publicação de monitoramento de cocaína e crack”. Não equivale a identidade, causalidade ou evidência de episódio retratado em 1993."@pt-BR .
 
 hne:correspondencia_antecedentes_c01 a aro:CorrespondenceClaim ;
     prov:wasAttributedTo hne:analistaPesquisador ;
     aro:assertsCase hne:caso_c01 ;
     aro:assertsPattern hne:padrao_antecedentes ;
-    aro:referencesSource hne:fonte_senappen2026 ;
+    aro:citesSource hne:fonte_senappen2026 ;
     aro:textValue "Correspondência proposta por similaridade temática: padrão “Persistência da identidade atribuída por antecedentes” e caso “Sistema penal e reinserção: relatório 2025”. Não equivale a identidade, causalidade ou evidência de episódio retratado em 1993."@pt-BR .
 
 hne:correspondencia_antecedentes_c02 a aro:CorrespondenceClaim ;
     prov:wasAttributedTo hne:analistaPesquisador ;
     aro:assertsCase hne:caso_c02 ;
     aro:assertsPattern hne:padrao_antecedentes ;
-    aro:referencesSource hne:fonte_egressos2026 ;
+    aro:citesSource hne:fonte_egressos2026 ;
     aro:textValue "Correspondência proposta por similaridade temática: padrão “Persistência da identidade atribuída por antecedentes” e caso “Atendimento a pessoas egressas em 2025”. Não equivale a identidade, causalidade ou evidência de episódio retratado em 1993."@pt-BR .
 
 hne:correspondencia_aspiracao_c16 a aro:CorrespondenceClaim ;
     prov:wasAttributedTo hne:analistaPesquisador ;
     aro:assertsCase hne:caso_c16 ;
     aro:assertsPattern hne:padrao_aspiracao ;
-    aro:referencesSource hne:fonte_renda2024 ;
+    aro:citesSource hne:fonte_renda2024 ;
     aro:textValue "Correspondência proposta por similaridade temática: padrão “Aspirações econômicas em meio à desigualdade” e caso “Rendimento do trabalho segundo cor ou raça, 2024”. Não equivale a identidade, causalidade ou evidência de episódio retratado em 1993."@pt-BR .
 
 hne:correspondencia_aspiracao_c17 a aro:CorrespondenceClaim ;
     prov:wasAttributedTo hne:analistaPesquisador ;
     aro:assertsCase hne:caso_c17 ;
     aro:assertsPattern hne:padrao_aspiracao ;
-    aro:referencesSource hne:fonte_ebia2024 ;
+    aro:citesSource hne:fonte_ebia2024 ;
     aro:textValue "Correspondência proposta por similaridade temática: padrão “Aspirações econômicas em meio à desigualdade” e caso “Insegurança alimentar nos domicílios 2024”. Não equivale a identidade, causalidade ou evidência de episódio retratado em 1993."@pt-BR .
 
 hne:correspondencia_cerco_c24 a aro:CorrespondenceClaim ;
     prov:wasAttributedTo hne:analistaPesquisador ;
     aro:assertsCase hne:caso_c24 ;
     aro:assertsPattern hne:padrao_cerco ;
-    aro:referencesSource hne:fonte_fbsp2026 ;
+    aro:citesSource hne:fonte_fbsp2026 ;
     aro:textValue "Correspondência proposta por similaridade temática: padrão “Cerco armado e vulnerabilidade diante de operações” e caso “Mortes por intervenções policiais em 2025”. Não equivale a identidade, causalidade ou evidência de episódio retratado em 1993."@pt-BR .
 
 hne:correspondencia_cerco_c25 a aro:CorrespondenceClaim ;
     prov:wasAttributedTo hne:analistaPesquisador ;
     aro:assertsCase hne:caso_c25 ;
     aro:assertsPattern hne:padrao_cerco ;
-    aro:referencesSource hne:fonte_fbsp2026 ;
+    aro:citesSource hne:fonte_fbsp2026 ;
     aro:textValue "Correspondência proposta por similaridade temática: padrão “Cerco armado e vulnerabilidade diante de operações” e caso “Participação de mortes policiais nas mortes violentas”. Não equivale a identidade, causalidade ou evidência de episódio retratado em 1993."@pt-BR .
 
 hne:correspondencia_cerco_c38 a aro:CorrespondenceClaim ;
     prov:wasAttributedTo hne:analistaPesquisador ;
     aro:assertsCase hne:caso_c38 ;
     aro:assertsPattern hne:padrao_cerco ;
-    aro:referencesSource hne:fonte_unicef2021 ;
+    aro:citesSource hne:fonte_unicef2021 ;
     aro:textValue "Correspondência proposta por similaridade temática: padrão “Cerco armado e vulnerabilidade diante de operações” e caso “Levantamento de experiências de vitimização juvenil 2016-2020”. Não equivale a identidade, causalidade ou evidência de episódio retratado em 1993."@pt-BR .
 
 hne:correspondencia_confronto_c24 a aro:CorrespondenceClaim ;
     prov:wasAttributedTo hne:analistaPesquisador ;
     aro:assertsCase hne:caso_c24 ;
     aro:assertsPattern hne:padrao_confronto ;
-    aro:referencesSource hne:fonte_fbsp2026 ;
+    aro:citesSource hne:fonte_fbsp2026 ;
     aro:textValue "Correspondência proposta por similaridade temática: padrão “Autodefesa armada em condições de ameaça” e caso “Mortes por intervenções policiais em 2025”. Não equivale a identidade, causalidade ou evidência de episódio retratado em 1993."@pt-BR .
 
 hne:correspondencia_confronto_c26 a aro:CorrespondenceClaim ;
     prov:wasAttributedTo hne:analistaPesquisador ;
     aro:assertsCase hne:caso_c26 ;
     aro:assertsPattern hne:padrao_confronto ;
-    aro:referencesSource hne:fonte_fbsp2026 ;
+    aro:citesSource hne:fonte_fbsp2026 ;
     aro:textValue "Correspondência proposta por similaridade temática: padrão “Autodefesa armada em condições de ameaça” e caso “Mortes violentas intencionais 2025”. Não equivale a identidade, causalidade ou evidência de episódio retratado em 1993."@pt-BR .
 
 hne:correspondencia_crack_c31 a aro:CorrespondenceClaim ;
     prov:wasAttributedTo hne:analistaPesquisador ;
     aro:assertsCase hne:caso_c31 ;
     aro:assertsPattern hne:padrao_crack ;
-    aro:referencesSource hne:fonte_drogas2026 ;
+    aro:citesSource hne:fonte_drogas2026 ;
     aro:textValue "Correspondência proposta por similaridade temática: padrão “Mercado e consumo de cocaína e crack” e caso “Uso recente de crack”. Não equivale a identidade, causalidade ou evidência de episódio retratado em 1993."@pt-BR .
 
 hne:correspondencia_crack_c32 a aro:CorrespondenceClaim ;
     prov:wasAttributedTo hne:analistaPesquisador ;
     aro:assertsCase hne:caso_c32 ;
     aro:assertsPattern hne:padrao_crack ;
-    aro:referencesSource hne:fonte_drogas2026 ;
+    aro:citesSource hne:fonte_drogas2026 ;
     aro:textValue "Correspondência proposta por similaridade temática: padrão “Mercado e consumo de cocaína e crack” e caso “Cocaína e outras drogas no LENAD III”. Não equivale a identidade, causalidade ou evidência de episódio retratado em 1993."@pt-BR .
 
 hne:correspondencia_crack_c33 a aro:CorrespondenceClaim ;
     prov:wasAttributedTo hne:analistaPesquisador ;
     aro:assertsCase hne:caso_c33 ;
     aro:assertsPattern hne:padrao_crack ;
-    aro:referencesSource hne:fonte_lenadPublicacoes ;
+    aro:citesSource hne:fonte_lenadPublicacoes ;
     aro:textValue "Correspondência proposta por similaridade temática: padrão “Mercado e consumo de cocaína e crack” e caso “Publicação de monitoramento de cocaína e crack”. Não equivale a identidade, causalidade ou evidência de episódio retratado em 1993."@pt-BR .
 
 hne:correspondencia_cultura_c34 a aro:CorrespondenceClaim ;
     prov:wasAttributedTo hne:analistaPesquisador ;
     aro:assertsCase hne:caso_c34 ;
     aro:assertsPattern hne:padrao_cultura ;
-    aro:referencesSource hne:fonte_religiao2025 ;
+    aro:citesSource hne:fonte_religiao2025 ;
     aro:textValue "Correspondência proposta por similaridade temática: padrão “Sociabilidade periférica e religiosidade afro-brasileira” e caso “Religiões afro-brasileiras no Censo 2022”. Não equivale a identidade, causalidade ou evidência de episódio retratado em 1993."@pt-BR .
 
 hne:correspondencia_cultura_c39 a aro:CorrespondenceClaim ;
     prov:wasAttributedTo hne:analistaPesquisador ;
     aro:assertsCase hne:caso_c39 ;
     aro:assertsPattern hne:padrao_cultura ;
-    aro:referencesSource hne:fonte_favela2026 ;
+    aro:citesSource hne:fonte_favela2026 ;
     aro:textValue "Correspondência proposta por similaridade temática: padrão “Sociabilidade periférica e religiosidade afro-brasileira” e caso “Abrangência territorial e social do espaço favela”. Não equivale a identidade, causalidade ou evidência de episódio retratado em 1993."@pt-BR .
 
 hne:correspondencia_economia-ilicita_c16 a aro:CorrespondenceClaim ;
     prov:wasAttributedTo hne:analistaPesquisador ;
     aro:assertsCase hne:caso_c16 ;
     aro:assertsPattern hne:padrao_economia-ilicita ;
-    aro:referencesSource hne:fonte_renda2024 ;
+    aro:citesSource hne:fonte_renda2024 ;
     aro:textValue "Correspondência proposta por similaridade temática: padrão “Desigualdades do mercado ilícito e demanda de consumo” e caso “Rendimento do trabalho segundo cor ou raça, 2024”. Não equivale a identidade, causalidade ou evidência de episódio retratado em 1993."@pt-BR .
 
 hne:correspondencia_economia-ilicita_c32 a aro:CorrespondenceClaim ;
     prov:wasAttributedTo hne:analistaPesquisador ;
     aro:assertsCase hne:caso_c32 ;
     aro:assertsPattern hne:padrao_economia-ilicita ;
-    aro:referencesSource hne:fonte_drogas2026 ;
+    aro:citesSource hne:fonte_drogas2026 ;
     aro:textValue "Correspondência proposta por similaridade temática: padrão “Desigualdades do mercado ilícito e demanda de consumo” e caso “Cocaína e outras drogas no LENAD III”. Não equivale a identidade, causalidade ou evidência de episódio retratado em 1993."@pt-BR .
 
 hne:correspondencia_escola-fome_c18 a aro:CorrespondenceClaim ;
     prov:wasAttributedTo hne:analistaPesquisador ;
     aro:assertsCase hne:caso_c18 ;
     aro:assertsPattern hne:padrao_escola-fome ;
-    aro:referencesSource hne:fonte_pnaeFome2026 ;
+    aro:citesSource hne:fonte_pnaeFome2026 ;
     aro:textValue "Correspondência proposta por similaridade temática: padrão “Dependência da alimentação escolar” e caso “Fome e acesso à educação, 2024”. Não equivale a identidade, causalidade ou evidência de episódio retratado em 1993."@pt-BR .
 
 hne:correspondencia_escola-fome_c19 a aro:CorrespondenceClaim ;
     prov:wasAttributedTo hne:analistaPesquisador ;
     aro:assertsCase hne:caso_c19 ;
     aro:assertsPattern hne:padrao_escola-fome ;
-    aro:referencesSource hne:fonte_pnae2026 ;
+    aro:citesSource hne:fonte_pnae2026 ;
     aro:textValue "Correspondência proposta por similaridade temática: padrão “Dependência da alimentação escolar” e caso “Escala do Programa de Alimentação Escolar 2026”. Não equivale a identidade, causalidade ou evidência de episódio retratado em 1993."@pt-BR .
 
 hne:correspondencia_escola-fome_c20 a aro:CorrespondenceClaim ;
     prov:wasAttributedTo hne:analistaPesquisador ;
     aro:assertsCase hne:caso_c20 ;
     aro:assertsPattern hne:padrao_escola-fome ;
-    aro:referencesSource hne:fonte_pnaeRep2026 ;
+    aro:citesSource hne:fonte_pnaeRep2026 ;
     aro:textValue "Correspondência proposta por similaridade temática: padrão “Dependência da alimentação escolar” e caso “Repasses financeiros para alimentação escolar 2026”. Não equivale a identidade, causalidade ou evidência de episódio retratado em 1993."@pt-BR .
 
 hne:correspondencia_escola-futuro_c16 a aro:CorrespondenceClaim ;
     prov:wasAttributedTo hne:analistaPesquisador ;
     aro:assertsCase hne:caso_c16 ;
     aro:assertsPattern hne:padrao_escola-futuro ;
-    aro:referencesSource hne:fonte_renda2024 ;
+    aro:citesSource hne:fonte_renda2024 ;
     aro:textValue "Correspondência proposta por similaridade temática: padrão “Desigualdades materiais de aprendizagem” e caso “Rendimento do trabalho segundo cor ou raça, 2024”. Não equivale a identidade, causalidade ou evidência de episódio retratado em 1993."@pt-BR .
 
 hne:correspondencia_escola-futuro_c18 a aro:CorrespondenceClaim ;
     prov:wasAttributedTo hne:analistaPesquisador ;
     aro:assertsCase hne:caso_c18 ;
     aro:assertsPattern hne:padrao_escola-futuro ;
-    aro:referencesSource hne:fonte_pnaeFome2026 ;
+    aro:citesSource hne:fonte_pnaeFome2026 ;
     aro:textValue "Correspondência proposta por similaridade temática: padrão “Desigualdades materiais de aprendizagem” e caso “Fome e acesso à educação, 2024”. Não equivale a identidade, causalidade ou evidência de episódio retratado em 1993."@pt-BR .
 
 hne:correspondencia_espetaculo_c14 a aro:CorrespondenceClaim ;
     prov:wasAttributedTo hne:analistaPesquisador ;
     aro:assertsCase hne:caso_c14 ;
     aro:assertsPattern hne:padrao_espetaculo ;
-    aro:referencesSource hne:fonte_atlas2025 ;
+    aro:citesSource hne:fonte_atlas2025 ;
     aro:textValue "Correspondência proposta por similaridade temática: padrão “Cobertura de violência e estigmatização de vítimas” e caso “Homicídios ocultos no Brasil 2013–2023”. Não equivale a identidade, causalidade ou evidência de episódio retratado em 1993."@pt-BR .
 
 hne:correspondencia_espetaculo_c22 a aro:CorrespondenceClaim ;
     prov:wasAttributedTo hne:analistaPesquisador ;
     aro:assertsCase hne:caso_c22 ;
     aro:assertsPattern hne:padrao_espetaculo ;
-    aro:referencesSource hne:fonte_atlas2025 ;
+    aro:citesSource hne:fonte_atlas2025 ;
     aro:textValue "Correspondência proposta por similaridade temática: padrão “Cobertura de violência e estigmatização de vítimas” e caso “Homicídios de jovens de 15 a 29 anos em 2023”. Não equivale a identidade, causalidade ou evidência de episódio retratado em 1993."@pt-BR .
 
 hne:correspondencia_estigma-trabalho_c02 a aro:CorrespondenceClaim ;
     prov:wasAttributedTo hne:analistaPesquisador ;
     aro:assertsCase hne:caso_c02 ;
     aro:assertsPattern hne:padrao_estigma-trabalho ;
-    aro:referencesSource hne:fonte_egressos2026 ;
+    aro:citesSource hne:fonte_egressos2026 ;
     aro:textValue "Correspondência proposta por similaridade temática: padrão “Estigma penal e desigualdade no trabalho” e caso “Atendimento a pessoas egressas em 2025”. Não equivale a identidade, causalidade ou evidência de episódio retratado em 1993."@pt-BR .
 
 hne:correspondencia_estigma-trabalho_c15 a aro:CorrespondenceClaim ;
     prov:wasAttributedTo hne:analistaPesquisador ;
     aro:assertsCase hne:caso_c15 ;
     aro:assertsPattern hne:padrao_estigma-trabalho ;
-    aro:referencesSource hne:fonte_pnad2025 ;
+    aro:citesSource hne:fonte_pnad2025 ;
     aro:textValue "Correspondência proposta por similaridade temática: padrão “Estigma penal e desigualdade no trabalho” e caso “Desocupação por cor ou raça no 4º trimestre de 2025”. Não equivale a identidade, causalidade ou evidência de episódio retratado em 1993."@pt-BR .
 
 hne:correspondencia_estigma-trabalho_c16 a aro:CorrespondenceClaim ;
     prov:wasAttributedTo hne:analistaPesquisador ;
     aro:assertsCase hne:caso_c16 ;
     aro:assertsPattern hne:padrao_estigma-trabalho ;
-    aro:referencesSource hne:fonte_renda2024 ;
+    aro:citesSource hne:fonte_renda2024 ;
     aro:textValue "Correspondência proposta por similaridade temática: padrão “Estigma penal e desigualdade no trabalho” e caso “Rendimento do trabalho segundo cor ou raça, 2024”. Não equivale a identidade, causalidade ou evidência de episódio retratado em 1993."@pt-BR .
 
 hne:correspondencia_filho-pobreza_c17 a aro:CorrespondenceClaim ;
     prov:wasAttributedTo hne:analistaPesquisador ;
     aro:assertsCase hne:caso_c17 ;
     aro:assertsPattern hne:padrao_filho-pobreza ;
-    aro:referencesSource hne:fonte_ebia2024 ;
+    aro:citesSource hne:fonte_ebia2024 ;
     aro:textValue "Correspondência proposta por similaridade temática: padrão “Parentalidade e transmissão intergeracional da pobreza” e caso “Insegurança alimentar nos domicílios 2024”. Não equivale a identidade, causalidade ou evidência de episódio retratado em 1993."@pt-BR .
 
 hne:correspondencia_filho-pobreza_c18 a aro:CorrespondenceClaim ;
     prov:wasAttributedTo hne:analistaPesquisador ;
     aro:assertsCase hne:caso_c18 ;
     aro:assertsPattern hne:padrao_filho-pobreza ;
-    aro:referencesSource hne:fonte_pnaeFome2026 ;
+    aro:citesSource hne:fonte_pnaeFome2026 ;
     aro:textValue "Correspondência proposta por similaridade temática: padrão “Parentalidade e transmissão intergeracional da pobreza” e caso “Fome e acesso à educação, 2024”. Não equivale a identidade, causalidade ou evidência de episódio retratado em 1993."@pt-BR .
 
 hne:correspondencia_fome_c17 a aro:CorrespondenceClaim ;
     prov:wasAttributedTo hne:analistaPesquisador ;
     aro:assertsCase hne:caso_c17 ;
     aro:assertsPattern hne:padrao_fome ;
-    aro:referencesSource hne:fonte_ebia2024 ;
+    aro:citesSource hne:fonte_ebia2024 ;
     aro:textValue "Correspondência proposta por similaridade temática: padrão “Insegurança alimentar e privação na infância” e caso “Insegurança alimentar nos domicílios 2024”. Não equivale a identidade, causalidade ou evidência de episódio retratado em 1993."@pt-BR .
 
 hne:correspondencia_fome_c18 a aro:CorrespondenceClaim ;
     prov:wasAttributedTo hne:analistaPesquisador ;
     aro:assertsCase hne:caso_c18 ;
     aro:assertsPattern hne:padrao_fome ;
-    aro:referencesSource hne:fonte_pnaeFome2026 ;
+    aro:citesSource hne:fonte_pnaeFome2026 ;
     aro:textValue "Correspondência proposta por similaridade temática: padrão “Insegurança alimentar e privação na infância” e caso “Fome e acesso à educação, 2024”. Não equivale a identidade, causalidade ou evidência de episódio retratado em 1993."@pt-BR .
 
 hne:correspondencia_invisibilidade_c05 a aro:CorrespondenceClaim ;
     prov:wasAttributedTo hne:analistaPesquisador ;
     aro:assertsCase hne:caso_c05 ;
     aro:assertsPattern hne:padrao_invisibilidade ;
-    aro:referencesSource hne:fonte_favela2026 ;
+    aro:citesSource hne:fonte_favela2026 ;
     aro:textValue "Correspondência proposta por similaridade temática: padrão “Visibilidade estatística e insuficiência de resposta pública” e caso “Favelas na base censitária corrigida”. Não equivale a identidade, causalidade ou evidência de episódio retratado em 1993."@pt-BR .
 
 hne:correspondencia_invisibilidade_c36 a aro:CorrespondenceClaim ;
     prov:wasAttributedTo hne:analistaPesquisador ;
     aro:assertsCase hne:caso_c36 ;
     aro:assertsPattern hne:padrao_invisibilidade ;
-    aro:referencesSource hne:fonte_censoPerfil ;
+    aro:citesSource hne:fonte_censoPerfil ;
     aro:textValue "Correspondência proposta por similaridade temática: padrão “Visibilidade estatística e insuficiência de resposta pública” e caso “Conflito entre identidade social e dados censitários”. Não equivale a identidade, causalidade ou evidência de episódio retratado em 1993."@pt-BR .
 
 hne:correspondencia_juvenil_c03 a aro:CorrespondenceClaim ;
     prov:wasAttributedTo hne:analistaPesquisador ;
     aro:assertsCase hne:caso_c03 ;
     aro:assertsPattern hne:padrao_juvenil ;
-    aro:referencesSource hne:fonte_cnj2025 ;
+    aro:citesSource hne:fonte_cnj2025 ;
     aro:textValue "Correspondência proposta por similaridade temática: padrão “Institucionalização e desigualdade juvenil” e caso “Juventude privada de liberdade: 2024”. Não equivale a identidade, causalidade ou evidência de episódio retratado em 1993."@pt-BR .
 
 hne:correspondencia_juvenil_c04 a aro:CorrespondenceClaim ;
     prov:wasAttributedTo hne:analistaPesquisador ;
     aro:assertsCase hne:caso_c04 ;
     aro:assertsPattern hne:padrao_juvenil ;
-    aro:referencesSource hne:fonte_cnj2025 ;
+    aro:citesSource hne:fonte_cnj2025 ;
     aro:textValue "Correspondência proposta por similaridade temática: padrão “Institucionalização e desigualdade juvenil” e caso “Perfil racial da institucionalização socioeducativa”. Não equivale a identidade, causalidade ou evidência de episódio retratado em 1993."@pt-BR .
 
 hne:correspondencia_liberdade_c01 a aro:CorrespondenceClaim ;
     prov:wasAttributedTo hne:analistaPesquisador ;
     aro:assertsCase hne:caso_c01 ;
     aro:assertsPattern hne:padrao_liberdade ;
-    aro:referencesSource hne:fonte_senappen2026 ;
+    aro:citesSource hne:fonte_senappen2026 ;
     aro:textValue "Correspondência proposta por similaridade temática: padrão “Liberdade e agência após privação” e caso “Sistema penal e reinserção: relatório 2025”. Não equivale a identidade, causalidade ou evidência de episódio retratado em 1993."@pt-BR .
 
 hne:correspondencia_liberdade_c03 a aro:CorrespondenceClaim ;
     prov:wasAttributedTo hne:analistaPesquisador ;
     aro:assertsCase hne:caso_c03 ;
     aro:assertsPattern hne:padrao_liberdade ;
-    aro:referencesSource hne:fonte_cnj2025 ;
+    aro:citesSource hne:fonte_cnj2025 ;
     aro:textValue "Correspondência proposta por similaridade temática: padrão “Liberdade e agência após privação” e caso “Juventude privada de liberdade: 2024”. Não equivale a identidade, causalidade ou evidência de episódio retratado em 1993."@pt-BR .
 
 hne:correspondencia_linchamento_c27 a aro:CorrespondenceClaim ;
     prov:wasAttributedTo hne:analistaPesquisador ;
     aro:assertsCase hne:caso_c27 ;
     aro:assertsPattern hne:padrao_linchamento ;
-    aro:referencesSource hne:fonte_linch2026 ;
+    aro:citesSource hne:fonte_linch2026 ;
     aro:textValue "Correspondência proposta por similaridade temática: padrão “Linchamento e punição extrajudicial” e caso “Linchamentos monitorados em 2024 e 2025”. Não equivale a identidade, causalidade ou evidência de episódio retratado em 1993."@pt-BR .
 
 hne:correspondencia_linchamento_c28 a aro:CorrespondenceClaim ;
     prov:wasAttributedTo hne:analistaPesquisador ;
     aro:assertsCase hne:caso_c28 ;
     aro:assertsPattern hne:padrao_linchamento ;
-    aro:referencesSource hne:fonte_linch2026 ;
+    aro:citesSource hne:fonte_linch2026 ;
     aro:textValue "Correspondência proposta por similaridade temática: padrão “Linchamento e punição extrajudicial” e caso “Linchamento de ciclista no Rio de Janeiro em 2026”. Não equivale a identidade, causalidade ou evidência de episódio retratado em 1993."@pt-BR .
 
 hne:correspondencia_moradia_c05 a aro:CorrespondenceClaim ;
     prov:wasAttributedTo hne:analistaPesquisador ;
     aro:assertsCase hne:caso_c05 ;
     aro:assertsPattern hne:padrao_moradia ;
-    aro:referencesSource hne:fonte_favela2026 ;
+    aro:citesSource hne:fonte_favela2026 ;
     aro:textValue "Correspondência proposta por similaridade temática: padrão “Moradia autoconstruída e exposição à precariedade” e caso “Favelas na base censitária corrigida”. Não equivale a identidade, causalidade ou evidência de episódio retratado em 1993."@pt-BR .
 
 hne:correspondencia_moradia_c39 a aro:CorrespondenceClaim ;
     prov:wasAttributedTo hne:analistaPesquisador ;
     aro:assertsCase hne:caso_c39 ;
     aro:assertsPattern hne:padrao_moradia ;
-    aro:referencesSource hne:fonte_favela2026 ;
+    aro:citesSource hne:fonte_favela2026 ;
     aro:textValue "Correspondência proposta por similaridade temática: padrão “Moradia autoconstruída e exposição à precariedade” e caso “Abrangência territorial e social do espaço favela”. Não equivale a identidade, causalidade ou evidência de episódio retratado em 1993."@pt-BR .
 
 hne:correspondencia_morte-anonima_c14 a aro:CorrespondenceClaim ;
     prov:wasAttributedTo hne:analistaPesquisador ;
     aro:assertsCase hne:caso_c14 ;
     aro:assertsPattern hne:padrao_morte-anonima ;
-    aro:referencesSource hne:fonte_atlas2025 ;
+    aro:citesSource hne:fonte_atlas2025 ;
     aro:textValue "Correspondência proposta por similaridade temática: padrão “Morte violenta, anonimato e limites classificatórios” e caso “Homicídios ocultos no Brasil 2013–2023”. Não equivale a identidade, causalidade ou evidência de episódio retratado em 1993."@pt-BR .
 
 hne:correspondencia_morte-anonima_c26 a aro:CorrespondenceClaim ;
     prov:wasAttributedTo hne:analistaPesquisador ;
     aro:assertsCase hne:caso_c26 ;
     aro:assertsPattern hne:padrao_morte-anonima ;
-    aro:referencesSource hne:fonte_fbsp2026 ;
+    aro:citesSource hne:fonte_fbsp2026 ;
     aro:textValue "Correspondência proposta por similaridade temática: padrão “Morte violenta, anonimato e limites classificatórios” e caso “Mortes violentas intencionais 2025”. Não equivale a identidade, causalidade ou evidência de episódio retratado em 1993."@pt-BR .
 
 hne:correspondencia_morte-jovem_c21 a aro:CorrespondenceClaim ;
     prov:wasAttributedTo hne:analistaPesquisador ;
     aro:assertsCase hne:caso_c21 ;
     aro:assertsPattern hne:padrao_morte-jovem ;
-    aro:referencesSource hne:fonte_unicef2026 ;
+    aro:citesSource hne:fonte_unicef2026 ;
     aro:textValue "Correspondência proposta por similaridade temática: padrão “Letalidade armada de jovens em contextos urbanos” e caso “Violência entre meninos adolescentes no Brasil em 2024”. Não equivale a identidade, causalidade ou evidência de episódio retratado em 1993."@pt-BR .
 
 hne:correspondencia_morte-jovem_c22 a aro:CorrespondenceClaim ;
     prov:wasAttributedTo hne:analistaPesquisador ;
     aro:assertsCase hne:caso_c22 ;
     aro:assertsPattern hne:padrao_morte-jovem ;
-    aro:referencesSource hne:fonte_atlas2025 ;
+    aro:citesSource hne:fonte_atlas2025 ;
     aro:textValue "Correspondência proposta por similaridade temática: padrão “Letalidade armada de jovens em contextos urbanos” e caso “Homicídios de jovens de 15 a 29 anos em 2023”. Não equivale a identidade, causalidade ou evidência de episódio retratado em 1993."@pt-BR .
 
 hne:correspondencia_morte-jovem_c38 a aro:CorrespondenceClaim ;
     prov:wasAttributedTo hne:analistaPesquisador ;
     aro:assertsCase hne:caso_c38 ;
     aro:assertsPattern hne:padrao_morte-jovem ;
-    aro:referencesSource hne:fonte_unicef2021 ;
+    aro:citesSource hne:fonte_unicef2021 ;
     aro:textValue "Correspondência proposta por similaridade temática: padrão “Letalidade armada de jovens em contextos urbanos” e caso “Levantamento de experiências de vitimização juvenil 2016-2020”. Não equivale a identidade, causalidade ou evidência de episódio retratado em 1993."@pt-BR .
 
 hne:correspondencia_orfandade_c21 a aro:CorrespondenceClaim ;
     prov:wasAttributedTo hne:analistaPesquisador ;
     aro:assertsCase hne:caso_c21 ;
     aro:assertsPattern hne:padrao_orfandade ;
-    aro:referencesSource hne:fonte_unicef2026 ;
+    aro:citesSource hne:fonte_unicef2026 ;
     aro:textValue "Correspondência proposta por similaridade temática: padrão “Risco social aos dependentes após morte violenta” e caso “Violência entre meninos adolescentes no Brasil em 2024”. Não equivale a identidade, causalidade ou evidência de episódio retratado em 1993."@pt-BR .
 
 hne:correspondencia_orfandade_c22 a aro:CorrespondenceClaim ;
     prov:wasAttributedTo hne:analistaPesquisador ;
     aro:assertsCase hne:caso_c22 ;
     aro:assertsPattern hne:padrao_orfandade ;
-    aro:referencesSource hne:fonte_atlas2025 ;
+    aro:citesSource hne:fonte_atlas2025 ;
     aro:textValue "Correspondência proposta por similaridade temática: padrão “Risco social aos dependentes após morte violenta” e caso “Homicídios de jovens de 15 a 29 anos em 2023”. Não equivale a identidade, causalidade ou evidência de episódio retratado em 1993."@pt-BR .
 
 hne:correspondencia_orixa_c34 a aro:CorrespondenceClaim ;
     prov:wasAttributedTo hne:analistaPesquisador ;
     aro:assertsCase hne:caso_c34 ;
     aro:assertsPattern hne:padrao_orixa ;
-    aro:referencesSource hne:fonte_religiao2025 ;
+    aro:citesSource hne:fonte_religiao2025 ;
     aro:textValue "Correspondência proposta por similaridade temática: padrão “Religiosidade como recurso simbólico em situação-limite” e caso “Religiões afro-brasileiras no Censo 2022”. Não equivale a identidade, causalidade ou evidência de episódio retratado em 1993."@pt-BR .
 
 hne:correspondencia_orixa_c35 a aro:CorrespondenceClaim ;
     prov:wasAttributedTo hne:analistaPesquisador ;
     aro:assertsCase hne:caso_c35 ;
     aro:assertsPattern hne:padrao_orixa ;
-    aro:referencesSource hne:fonte_racismoReligioso2026 ;
+    aro:citesSource hne:fonte_racismoReligioso2026 ;
     aro:textValue "Correspondência proposta por similaridade temática: padrão “Religiosidade como recurso simbólico em situação-limite” e caso “Proteção da liberdade religiosa: casos apurados em 2026”. Não equivale a identidade, causalidade ou evidência de episódio retratado em 1993."@pt-BR .
 
 hne:correspondencia_ostentacao_c16 a aro:CorrespondenceClaim ;
     prov:wasAttributedTo hne:analistaPesquisador ;
     aro:assertsCase hne:caso_c16 ;
     aro:assertsPattern hne:padrao_ostentacao ;
-    aro:referencesSource hne:fonte_renda2024 ;
+    aro:citesSource hne:fonte_renda2024 ;
     aro:textValue "Correspondência proposta por similaridade temática: padrão “Consumo ostentatório e mobilidade econômica vulnerável” e caso “Rendimento do trabalho segundo cor ou raça, 2024”. Não equivale a identidade, causalidade ou evidência de episódio retratado em 1993."@pt-BR .
 
 hne:correspondencia_ostentacao_c22 a aro:CorrespondenceClaim ;
     prov:wasAttributedTo hne:analistaPesquisador ;
     aro:assertsCase hne:caso_c22 ;
     aro:assertsPattern hne:padrao_ostentacao ;
-    aro:referencesSource hne:fonte_atlas2025 ;
+    aro:citesSource hne:fonte_atlas2025 ;
     aro:textValue "Correspondência proposta por similaridade temática: padrão “Consumo ostentatório e mobilidade econômica vulnerável” e caso “Homicídios de jovens de 15 a 29 anos em 2023”. Não equivale a identidade, causalidade ou evidência de episódio retratado em 1993."@pt-BR .
 
 hne:correspondencia_policia_c23 a aro:CorrespondenceClaim ;
     prov:wasAttributedTo hne:analistaPesquisador ;
     aro:assertsCase hne:caso_c23 ;
     aro:assertsPattern hne:padrao_policia ;
-    aro:referencesSource hne:fonte_atlas2025 ;
+    aro:citesSource hne:fonte_atlas2025 ;
     aro:textValue "Correspondência proposta por similaridade temática: padrão “Desconfiança policial e risco de violência estatal” e caso “Diferencial racial de vitimização letal em 2023”. Não equivale a identidade, causalidade ou evidência de episódio retratado em 1993."@pt-BR .
 
 hne:correspondencia_policia_c24 a aro:CorrespondenceClaim ;
     prov:wasAttributedTo hne:analistaPesquisador ;
     aro:assertsCase hne:caso_c24 ;
     aro:assertsPattern hne:padrao_policia ;
-    aro:referencesSource hne:fonte_fbsp2026 ;
+    aro:citesSource hne:fonte_fbsp2026 ;
     aro:textValue "Correspondência proposta por similaridade temática: padrão “Desconfiança policial e risco de violência estatal” e caso “Mortes por intervenções policiais em 2025”. Não equivale a identidade, causalidade ou evidência de episódio retratado em 1993."@pt-BR .
 
 hne:correspondencia_policia_c25 a aro:CorrespondenceClaim ;
     prov:wasAttributedTo hne:analistaPesquisador ;
     aro:assertsCase hne:caso_c25 ;
     aro:assertsPattern hne:padrao_policia ;
-    aro:referencesSource hne:fonte_fbsp2026 ;
+    aro:citesSource hne:fonte_fbsp2026 ;
     aro:textValue "Correspondência proposta por similaridade temática: padrão “Desconfiança policial e risco de violência estatal” e caso “Participação de mortes policiais nas mortes violentas”. Não equivale a identidade, causalidade ou evidência de episódio retratado em 1993."@pt-BR .
 
 hne:correspondencia_protege-filho_c21 a aro:CorrespondenceClaim ;
     prov:wasAttributedTo hne:analistaPesquisador ;
     aro:assertsCase hne:caso_c21 ;
     aro:assertsPattern hne:padrao_protege-filho ;
-    aro:referencesSource hne:fonte_unicef2026 ;
+    aro:citesSource hne:fonte_unicef2026 ;
     aro:textValue "Correspondência proposta por similaridade temática: padrão “Proteção parental diante de violência territorial” e caso “Violência entre meninos adolescentes no Brasil em 2024”. Não equivale a identidade, causalidade ou evidência de episódio retratado em 1993."@pt-BR .
 
 hne:correspondencia_protege-filho_c38 a aro:CorrespondenceClaim ;
     prov:wasAttributedTo hne:analistaPesquisador ;
     aro:assertsCase hne:caso_c38 ;
     aro:assertsPattern hne:padrao_protege-filho ;
-    aro:referencesSource hne:fonte_unicef2021 ;
+    aro:citesSource hne:fonte_unicef2021 ;
     aro:textValue "Correspondência proposta por similaridade temática: padrão “Proteção parental diante de violência territorial” e caso “Levantamento de experiências de vitimização juvenil 2016-2020”. Não equivale a identidade, causalidade ou evidência de episódio retratado em 1993."@pt-BR .
 
 hne:correspondencia_reinsercao_c01 a aro:CorrespondenceClaim ;
     prov:wasAttributedTo hne:analistaPesquisador ;
     aro:assertsCase hne:caso_c01 ;
     aro:assertsPattern hne:padrao_reinsercao ;
-    aro:referencesSource hne:fonte_senappen2026 ;
+    aro:citesSource hne:fonte_senappen2026 ;
     aro:textValue "Correspondência proposta por similaridade temática: padrão “Reinserção após encarceramento” e caso “Sistema penal e reinserção: relatório 2025”. Não equivale a identidade, causalidade ou evidência de episódio retratado em 1993."@pt-BR .
 
 hne:correspondencia_reinsercao_c02 a aro:CorrespondenceClaim ;
     prov:wasAttributedTo hne:analistaPesquisador ;
     aro:assertsCase hne:caso_c02 ;
     aro:assertsPattern hne:padrao_reinsercao ;
-    aro:referencesSource hne:fonte_egressos2026 ;
+    aro:citesSource hne:fonte_egressos2026 ;
     aro:textValue "Correspondência proposta por similaridade temática: padrão “Reinserção após encarceramento” e caso “Atendimento a pessoas egressas em 2025”. Não equivale a identidade, causalidade ou evidência de episódio retratado em 1993."@pt-BR .
 
 hne:correspondencia_resposta-publica_c07 a aro:CorrespondenceClaim ;
     prov:wasAttributedTo hne:analistaPesquisador ;
     aro:assertsCase hne:caso_c07 ;
     aro:assertsPattern hne:padrao_resposta-publica ;
-    aro:referencesSource hne:fonte_favelaVias2025 ;
+    aro:citesSource hne:fonte_favelaVias2025 ;
     aro:textValue "Correspondência proposta por similaridade temática: padrão “Limites de resposta institucional em situações de violência” e caso “Limitação de acesso viário em favelas”. Não equivale a identidade, causalidade ou evidência de episódio retratado em 1993."@pt-BR .
 
 hne:correspondencia_resposta-publica_c37 a aro:CorrespondenceClaim ;
     prov:wasAttributedTo hne:analistaPesquisador ;
     aro:assertsCase hne:caso_c37 ;
     aro:assertsPattern hne:padrao_resposta-publica ;
-    aro:referencesSource hne:fonte_disque100 ;
+    aro:citesSource hne:fonte_disque100 ;
     aro:textValue "Correspondência proposta por similaridade temática: padrão “Limites de resposta institucional em situações de violência” e caso “Dados abertos de violações de direitos humanos”. Não equivale a identidade, causalidade ou evidência de episódio retratado em 1993."@pt-BR .
 
 hne:correspondencia_risco-encosta_c05 a aro:CorrespondenceClaim ;
     prov:wasAttributedTo hne:analistaPesquisador ;
     aro:assertsCase hne:caso_c05 ;
     aro:assertsPattern hne:padrao_risco-encosta ;
-    aro:referencesSource hne:fonte_favela2026 ;
+    aro:citesSource hne:fonte_favela2026 ;
     aro:textValue "Correspondência proposta por similaridade temática: padrão “Ocupação de encostas e exposição a deslizamento” e caso “Favelas na base censitária corrigida”. Não equivale a identidade, causalidade ou evidência de episódio retratado em 1993."@pt-BR .
 
 hne:correspondencia_risco-encosta_c09 a aro:CorrespondenceClaim ;
     prov:wasAttributedTo hne:analistaPesquisador ;
     aro:assertsCase hne:caso_c09 ;
     aro:assertsPattern hne:padrao_risco-encosta ;
-    aro:referencesSource hne:fonte_cemaden2025 ;
+    aro:citesSource hne:fonte_cemaden2025 ;
     aro:textValue "Correspondência proposta por similaridade temática: padrão “Ocupação de encostas e exposição a deslizamento” e caso “Deslizamentos registrados pelo Cemaden”. Não equivale a identidade, causalidade ou evidência de episódio retratado em 1993."@pt-BR .
 
 hne:correspondencia_saneamento_c06 a aro:CorrespondenceClaim ;
     prov:wasAttributedTo hne:analistaPesquisador ;
     aro:assertsCase hne:caso_c06 ;
     aro:assertsPattern hne:padrao_saneamento ;
-    aro:referencesSource hne:fonte_favelaSaneamento ;
+    aro:citesSource hne:fonte_favelaSaneamento ;
     aro:textValue "Correspondência proposta por similaridade temática: padrão “Saneamento precário em assentamentos populares” e caso “Infraestrutura de esgotamento nas favelas”. Não equivale a identidade, causalidade ou evidência de episódio retratado em 1993."@pt-BR .
 
 hne:correspondencia_saneamento_c08 a aro:CorrespondenceClaim ;
     prov:wasAttributedTo hne:analistaPesquisador ;
     aro:assertsCase hne:caso_c08 ;
     aro:assertsPattern hne:padrao_saneamento ;
-    aro:referencesSource hne:fonte_sinisa2025 ;
+    aro:citesSource hne:fonte_sinisa2025 ;
     aro:textValue "Correspondência proposta por similaridade temática: padrão “Saneamento precário em assentamentos populares” e caso “Gestão nacional de abastecimento e esgoto”. Não equivale a identidade, causalidade ou evidência de episódio retratado em 1993."@pt-BR .
 
 hne:correspondencia_silencio_c24 a aro:CorrespondenceClaim ;
     prov:wasAttributedTo hne:analistaPesquisador ;
     aro:assertsCase hne:caso_c24 ;
     aro:assertsPattern hne:padrao_silencio ;
-    aro:referencesSource hne:fonte_fbsp2026 ;
+    aro:citesSource hne:fonte_fbsp2026 ;
     aro:textValue "Correspondência proposta por similaridade temática: padrão “Medo coletivo diante de ação armada” e caso “Mortes por intervenções policiais em 2025”. Não equivale a identidade, causalidade ou evidência de episódio retratado em 1993."@pt-BR .
 
 hne:correspondencia_silencio_c38 a aro:CorrespondenceClaim ;
     prov:wasAttributedTo hne:analistaPesquisador ;
     aro:assertsCase hne:caso_c38 ;
     aro:assertsPattern hne:padrao_silencio ;
-    aro:referencesSource hne:fonte_unicef2021 ;
+    aro:citesSource hne:fonte_unicef2021 ;
     aro:textValue "Correspondência proposta por similaridade temática: padrão “Medo coletivo diante de ação armada” e caso “Levantamento de experiências de vitimização juvenil 2016-2020”. Não equivale a identidade, causalidade ou evidência de episódio retratado em 1993."@pt-BR .
 
 hne:correspondencia_suspeicao_c23 a aro:CorrespondenceClaim ;
     prov:wasAttributedTo hne:analistaPesquisador ;
     aro:assertsCase hne:caso_c23 ;
     aro:assertsPattern hne:padrao_suspeicao ;
-    aro:referencesSource hne:fonte_atlas2025 ;
+    aro:citesSource hne:fonte_atlas2025 ;
     aro:textValue "Correspondência proposta por similaridade temática: padrão “Suspeição territorial, estigma e viés racial” e caso “Diferencial racial de vitimização letal em 2023”. Não equivale a identidade, causalidade ou evidência de episódio retratado em 1993."@pt-BR .
 
 hne:correspondencia_suspeicao_c24 a aro:CorrespondenceClaim ;
     prov:wasAttributedTo hne:analistaPesquisador ;
     aro:assertsCase hne:caso_c24 ;
     aro:assertsPattern hne:padrao_suspeicao ;
-    aro:referencesSource hne:fonte_fbsp2026 ;
+    aro:citesSource hne:fonte_fbsp2026 ;
     aro:textValue "Correspondência proposta por similaridade temática: padrão “Suspeição territorial, estigma e viés racial” e caso “Mortes por intervenções policiais em 2025”. Não equivale a identidade, causalidade ou evidência de episódio retratado em 1993."@pt-BR .
 
 hne:correspondencia_suspeicao_c39 a aro:CorrespondenceClaim ;
     prov:wasAttributedTo hne:analistaPesquisador ;
     aro:assertsCase hne:caso_c39 ;
     aro:assertsPattern hne:padrao_suspeicao ;
-    aro:referencesSource hne:fonte_favela2026 ;
+    aro:citesSource hne:fonte_favela2026 ;
     aro:textValue "Correspondência proposta por similaridade temática: padrão “Suspeição territorial, estigma e viés racial” e caso “Abrangência territorial e social do espaço favela”. Não equivale a identidade, causalidade ou evidência de episódio retratado em 1993."@pt-BR .
 
 hne:correspondencia_versao_c14 a aro:CorrespondenceClaim ;
     prov:wasAttributedTo hne:analistaPesquisador ;
     aro:assertsCase hne:caso_c14 ;
     aro:assertsPattern hne:padrao_versao ;
-    aro:referencesSource hne:fonte_atlas2025 ;
+    aro:citesSource hne:fonte_atlas2025 ;
     aro:textValue "Correspondência proposta por similaridade temática: padrão “Morte violenta e disputa sobre enquadramento oficial” e caso “Homicídios ocultos no Brasil 2013–2023”. Não equivale a identidade, causalidade ou evidência de episódio retratado em 1993."@pt-BR .
 
 hne:correspondencia_versao_c24 a aro:CorrespondenceClaim ;
     prov:wasAttributedTo hne:analistaPesquisador ;
     aro:assertsCase hne:caso_c24 ;
     aro:assertsPattern hne:padrao_versao ;
-    aro:referencesSource hne:fonte_fbsp2026 ;
+    aro:citesSource hne:fonte_fbsp2026 ;
     aro:textValue "Correspondência proposta por similaridade temática: padrão “Morte violenta e disputa sobre enquadramento oficial” e caso “Mortes por intervenções policiais em 2025”. Não equivale a identidade, causalidade ou evidência de episódio retratado em 1993."@pt-BR .
 
 hne:correspondencia_versao_c26 a aro:CorrespondenceClaim ;
     prov:wasAttributedTo hne:analistaPesquisador ;
     aro:assertsCase hne:caso_c26 ;
     aro:assertsPattern hne:padrao_versao ;
-    aro:referencesSource hne:fonte_fbsp2026 ;
+    aro:citesSource hne:fonte_fbsp2026 ;
     aro:textValue "Correspondência proposta por similaridade temática: padrão “Morte violenta e disputa sobre enquadramento oficial” e caso “Mortes violentas intencionais 2025”. Não equivale a identidade, causalidade ou evidência de episódio retratado em 1993."@pt-BR .
 
 hne:correspondencia_violencia-familiar_c12 a aro:CorrespondenceClaim ;
     prov:wasAttributedTo hne:analistaPesquisador ;
     aro:assertsCase hne:caso_c12 ;
     aro:assertsPattern hne:padrao_violencia-familiar ;
-    aro:referencesSource hne:fonte_mulheres2025 ;
+    aro:citesSource hne:fonte_mulheres2025 ;
     aro:textValue "Correspondência proposta por similaridade temática: padrão “Violência intrafamiliar e abuso de álcool” e caso “Pesquisa de vitimização de mulheres 2025”. Não equivale a identidade, causalidade ou evidência de episódio retratado em 1993."@pt-BR .
 
 hne:correspondencia_violencia-familiar_c13 a aro:CorrespondenceClaim ;
     prov:wasAttributedTo hne:analistaPesquisador ;
     aro:assertsCase hne:caso_c13 ;
     aro:assertsPattern hne:padrao_violencia-familiar ;
-    aro:referencesSource hne:fonte_ligue1802026 ;
+    aro:citesSource hne:fonte_ligue1802026 ;
     aro:textValue "Correspondência proposta por similaridade temática: padrão “Violência intrafamiliar e abuso de álcool” e caso “Atendimentos e denúncias de violência a mulheres em 2025”. Não equivale a identidade, causalidade ou evidência de episódio retratado em 1993."@pt-BR .
 
 hne:correspondencia_violencia-familiar_c29 a aro:CorrespondenceClaim ;
     prov:wasAttributedTo hne:analistaPesquisador ;
     aro:assertsCase hne:caso_c29 ;
     aro:assertsPattern hne:padrao_violencia-familiar ;
-    aro:referencesSource hne:fonte_alcool2025 ;
+    aro:citesSource hne:fonte_alcool2025 ;
     aro:textValue "Correspondência proposta por similaridade temática: padrão “Violência intrafamiliar e abuso de álcool” e caso “Consumo episódico pesado de álcool”. Não equivale a identidade, causalidade ou evidência de episódio retratado em 1993."@pt-BR .
 
 hne:correspondencia_violencia-mulher_c10 a aro:CorrespondenceClaim ;
     prov:wasAttributedTo hne:analistaPesquisador ;
     aro:assertsCase hne:caso_c10 ;
     aro:assertsPattern hne:padrao_violencia-mulher ;
-    aro:referencesSource hne:fonte_fbsp2026 ;
+    aro:citesSource hne:fonte_fbsp2026 ;
     aro:textValue "Correspondência proposta por similaridade temática: padrão “Violência letal ou sexual contra mulheres” e caso “Letalidade de mulheres e violência intencional”. Não equivale a identidade, causalidade ou evidência de episódio retratado em 1993."@pt-BR .
 
 hne:correspondencia_violencia-mulher_c11 a aro:CorrespondenceClaim ;
     prov:wasAttributedTo hne:analistaPesquisador ;
     aro:assertsCase hne:caso_c11 ;
     aro:assertsPattern hne:padrao_violencia-mulher ;
-    aro:referencesSource hne:fonte_ligue1802026 ;
+    aro:citesSource hne:fonte_ligue1802026 ;
     aro:textValue "Correspondência proposta por similaridade temática: padrão “Violência letal ou sexual contra mulheres” e caso “Denúncias de violência sexual no Ligue 180”. Não equivale a identidade, causalidade ou evidência de episódio retratado em 1993."@pt-BR .
 
 hne:correspondencia_violencia-mulher_c12 a aro:CorrespondenceClaim ;
     prov:wasAttributedTo hne:analistaPesquisador ;
     aro:assertsCase hne:caso_c12 ;
     aro:assertsPattern hne:padrao_violencia-mulher ;
-    aro:referencesSource hne:fonte_mulheres2025 ;
+    aro:citesSource hne:fonte_mulheres2025 ;
     aro:textValue "Correspondência proposta por similaridade temática: padrão “Violência letal ou sexual contra mulheres” e caso “Pesquisa de vitimização de mulheres 2025”. Não equivale a identidade, causalidade ou evidência de episódio retratado em 1993."@pt-BR .
 
 hne:evidencia_agua_c06 a aro:EvidenceItem ;
@@ -2258,142 +2258,142 @@ hne:interpretacao_45 a aro:InterpretationRecord ;
     aro:hasPrimarySelection hne:recorte_45 ;
     aro:producedByAct hne:atoInterpretativo2026 .
 
-hne:justificativa_01 a aro:InterpretiveJustification ;
+hne:justificativa_01 a aro:Justification ;
     aro:textValue "Leitura contextual e restrita ao recorte narrativo: O sujeito da narrativa procura reorientar sua trajetória após o encarceramento; a recuperação é intenção narrada, não resultado confirmado. Esta anotação não valida causalidade e distingue a voz narrativa de afirmações verificadas externamente."@pt-BR .
 
-hne:justificativa_02 a aro:InterpretiveJustification ;
+hne:justificativa_02 a aro:Justification ;
     aro:textValue "Leitura contextual e restrita ao recorte narrativo: Liberdade é apresentada como finalidade valorizada pelo personagem e como perda anterior, sem detalhamento judicial. Esta anotação não valida causalidade e distingue a voz narrativa de afirmações verificadas externamente."@pt-BR .
 
-hne:justificativa_03 a aro:InterpretiveJustification ;
+hne:justificativa_03 a aro:Justification ;
     aro:textValue "Leitura contextual e restrita ao recorte narrativo: O compromisso de abandonar o crime é autodescrição projetiva, não prova externa de ausência de delitos futuros. Esta anotação não valida causalidade e distingue a voz narrativa de afirmações verificadas externamente."@pt-BR .
 
-hne:justificativa_04 a aro:InterpretiveJustification ;
+hne:justificativa_04 a aro:Justification ;
     aro:textValue "Leitura contextual e restrita ao recorte narrativo: O texto situa uma experiência de institucionalização juvenil dolorosa na biografia ficcional. Esta anotação não valida causalidade e distingue a voz narrativa de afirmações verificadas externamente."@pt-BR .
 
-hne:justificativa_05 a aro:InterpretiveJustification ;
+hne:justificativa_05 a aro:Justification ;
     aro:textValue "Leitura contextual e restrita ao recorte narrativo: O projeto de mobilidade econômica contrasta com referências a pessoas que morrem tentando realizá-lo. Esta anotação não valida causalidade e distingue a voz narrativa de afirmações verificadas externamente."@pt-BR .
 
-hne:justificativa_06 a aro:InterpretiveJustification ;
+hne:justificativa_06 a aro:Justification ;
     aro:textValue "Leitura contextual e restrita ao recorte narrativo: A responsabilidade parental intensifica a avaliação negativa das condições de vida e do futuro possível. Esta anotação não valida causalidade e distingue a voz narrativa de afirmações verificadas externamente."@pt-BR .
 
-hne:justificativa_07 a aro:InterpretiveJustification ;
+hne:justificativa_07 a aro:Justification ;
     aro:textValue "Leitura contextual e restrita ao recorte narrativo: A presença do bar e de referências ao candomblé compõe a ambientação cultural; não há base para tratar a religião como causa da pobreza. Esta anotação não valida causalidade e distingue a voz narrativa de afirmações verificadas externamente."@pt-BR .
 
-hne:justificativa_08 a aro:InterpretiveJustification ;
+hne:justificativa_08 a aro:Justification ;
     aro:textValue "Leitura contextual e restrita ao recorte narrativo: O mesmo espaço aparece como proteção afetiva e precariedade material, evitando reduzi-lo a estigma territorial. Esta anotação não valida causalidade e distingue a voz narrativa de afirmações verificadas externamente."@pt-BR .
 
-hne:justificativa_09 a aro:InterpretiveJustification ;
+hne:justificativa_09 a aro:Justification ;
     aro:textValue "Leitura contextual e restrita ao recorte narrativo: O ambiente é narrado com infraestrutura inadequada e risco de dano quando chove. Esta anotação não valida causalidade e distingue a voz narrativa de afirmações verificadas externamente."@pt-BR .
 
-hne:justificativa_10 a aro:InterpretiveJustification ;
+hne:justificativa_10 a aro:Justification ;
     aro:textValue "Leitura contextual e restrita ao recorte narrativo: Há crítica à distância entre registro estatístico e presença concreta de serviços; não se conclui que o IBGE era responsável por prestar esses serviços. Esta anotação não valida causalidade e distingue a voz narrativa de afirmações verificadas externamente."@pt-BR .
 
-hne:justificativa_11 a aro:InterpretiveJustification ;
+hne:justificativa_11 a aro:Justification ;
     aro:textValue "Leitura contextual e restrita ao recorte narrativo: A narrativa descreve violência brutal contra mulher; não classificar automaticamente como feminicídio sem informações sobre motivação. Esta anotação não valida causalidade e distingue a voz narrativa de afirmações verificadas externamente."@pt-BR .
 
-hne:justificativa_12 a aro:InterpretiveJustification ;
+hne:justificativa_12 a aro:Justification ;
     aro:textValue "Leitura contextual e restrita ao recorte narrativo: O enredo denuncia demora de remoção e tratamento desrespeitoso ao corpo; falta evidência empírica específica comparável na fonte citada. Esta anotação não valida causalidade e distingue a voz narrativa de afirmações verificadas externamente."@pt-BR .
 
-hne:justificativa_13 a aro:InterpretiveJustification ;
+hne:justificativa_13 a aro:Justification ;
     aro:textValue "Leitura contextual e restrita ao recorte narrativo: O personagem deseja deslocar o filho para condições de maior segurança, sem negar seus vínculos de origem. Esta anotação não valida causalidade e distingue a voz narrativa de afirmações verificadas externamente."@pt-BR .
 
-hne:justificativa_14 a aro:InterpretiveJustification ;
+hne:justificativa_14 a aro:Justification ;
     aro:textValue "Leitura contextual e restrita ao recorte narrativo: A expectativa expressa é preventiva: impedir inserção do filho em um cotidiano de violência armada. Esta anotação não valida causalidade e distingue a voz narrativa de afirmações verificadas externamente."@pt-BR .
 
-hne:justificativa_15 a aro:InterpretiveJustification ;
+hne:justificativa_15 a aro:Justification ;
     aro:textValue "Leitura contextual e restrita ao recorte narrativo: A insônia e o planejamento são apresentados como efeitos da precariedade e da responsabilidade familiar; nenhuma condição clínica é diagnosticada. Esta anotação não valida causalidade e distingue a voz narrativa de afirmações verificadas externamente."@pt-BR .
 
-hne:justificativa_16 a aro:InterpretiveJustification ;
+hne:justificativa_16 a aro:Justification ;
     aro:textValue "Leitura contextual e restrita ao recorte narrativo: A passagem associa dificuldades de obtenção de trabalho ao histórico de detenção e ao estigma social. Esta anotação não valida causalidade e distingue a voz narrativa de afirmações verificadas externamente."@pt-BR .
 
-hne:justificativa_17 a aro:InterpretiveJustification ;
+hne:justificativa_17 a aro:Justification ;
     aro:textValue "Leitura contextual e restrita ao recorte narrativo: O calor e a repetição compõem a temporalidade da precariedade; não constituem por si uma medição climática. Esta anotação não valida causalidade e distingue a voz narrativa de afirmações verificadas externamente."@pt-BR .
 
-hne:justificativa_18 a aro:InterpretiveJustification ;
+hne:justificativa_18 a aro:Justification ;
     aro:textValue "Leitura contextual e restrita ao recorte narrativo: O texto indica interrupção de abastecimento prolongada na comunidade; dados agregados não confirmam o episódio exato. Esta anotação não valida causalidade e distingue a voz narrativa de afirmações verificadas externamente."@pt-BR .
 
-hne:justificativa_19 a aro:InterpretiveJustification ;
+hne:justificativa_19 a aro:Justification ;
     aro:textValue "Leitura contextual e restrita ao recorte narrativo: Uma agressão à mãe, associada pelo narrador à embriaguez, mobiliza expectativa de atendimento de urgência. Esta anotação não valida causalidade e distingue a voz narrativa de afirmações verificadas externamente."@pt-BR .
 
-hne:justificativa_20 a aro:InterpretiveJustification ;
+hne:justificativa_20 a aro:Justification ;
     aro:textValue "Leitura contextual e restrita ao recorte narrativo: Moradores punem extrajudicialmente o agressor; violência coletiva e responsabilização penal formal não se confundem. Esta anotação não valida causalidade e distingue a voz narrativa de afirmações verificadas externamente."@pt-BR .
 
-hne:justificativa_21 a aro:InterpretiveJustification ;
+hne:justificativa_21 a aro:Justification ;
     aro:textValue "Leitura contextual e restrita ao recorte narrativo: A narrativa critica a coexistência de campanha antidrogas e ganho econômico com venda de bebidas alcoólicas; trata-se de crítica sociopolítica. Esta anotação não valida causalidade e distingue a voz narrativa de afirmações verificadas externamente."@pt-BR .
 
-hne:justificativa_22 a aro:InterpretiveJustification ;
+hne:justificativa_22 a aro:Justification ;
     aro:textValue "Leitura contextual e restrita ao recorte narrativo: Uma cena de privação alimentar extrema é utilizada para denunciar desigualdade material e abandono social. Esta anotação não valida causalidade e distingue a voz narrativa de afirmações verificadas externamente."@pt-BR .
 
-hne:justificativa_23 a aro:InterpretiveJustification ;
+hne:justificativa_23 a aro:Justification ;
     aro:textValue "Leitura contextual e restrita ao recorte narrativo: A fome é narrada como motivação relevante da frequência escolar, sem implicar que todos os estudantes partilham da situação. Esta anotação não valida causalidade e distingue a voz narrativa de afirmações verificadas externamente."@pt-BR .
 
-hne:justificativa_24 a aro:InterpretiveJustification ;
+hne:justificativa_24 a aro:Justification ;
     aro:textValue "Leitura contextual e restrita ao recorte narrativo: O narrador questiona as condições sociais de aprendizagem e de desenvolvimento, sem medir desempenho escolar. Esta anotação não valida causalidade e distingue a voz narrativa de afirmações verificadas externamente."@pt-BR .
 
-hne:justificativa_25 a aro:InterpretiveJustification ;
+hne:justificativa_25 a aro:Justification ;
     aro:textValue "Leitura contextual e restrita ao recorte narrativo: A aquisição de bens por um jovem é narrada antes da morte, contrastando mobilidade econômica aparente e insegurança. Esta anotação não valida causalidade e distingue a voz narrativa de afirmações verificadas externamente."@pt-BR .
 
-hne:justificativa_26 a aro:InterpretiveJustification ;
+hne:justificativa_26 a aro:Justification ;
     aro:textValue "Leitura contextual e restrita ao recorte narrativo: O episódio descreve execução de jovem envolvido na comercialização de cocaína para consumidores de maior poder aquisitivo. Esta anotação não valida causalidade e distingue a voz narrativa de afirmações verificadas externamente."@pt-BR .
 
-hne:justificativa_27 a aro:InterpretiveJustification ;
+hne:justificativa_27 a aro:Justification ;
     aro:textValue "Leitura contextual e restrita ao recorte narrativo: A narrativa critica o lucro e o sensacionalismo jornalístico relacionados à morte violenta. Esta anotação não valida causalidade e distingue a voz narrativa de afirmações verificadas externamente."@pt-BR .
 
-hne:justificativa_28 a aro:InterpretiveJustification ;
+hne:justificativa_28 a aro:Justification ;
     aro:textValue "Leitura contextual e restrita ao recorte narrativo: A referência marca uma mudança temporal na economia local de drogas dentro da ficção; a evidência de 2023 não confirma crescimento atual. Esta anotação não valida causalidade e distingue a voz narrativa de afirmações verificadas externamente."@pt-BR .
 
-hne:justificativa_29 a aro:InterpretiveJustification ;
+hne:justificativa_29 a aro:Justification ;
     aro:textValue "Leitura contextual e restrita ao recorte narrativo: O narrador atribui comando econômico a atores privilegiados e exploração a moradores vulneráveis; a estrutura específica não é verificada por dados de consumo. Esta anotação não valida causalidade e distingue a voz narrativa de afirmações verificadas externamente."@pt-BR .
 
-hne:justificativa_30 a aro:InterpretiveJustification ;
+hne:justificativa_30 a aro:Justification ;
     aro:textValue "Leitura contextual e restrita ao recorte narrativo: O contraste entre compradores e trabalhadores é interpretação do sistema de consumo ilícito dentro da voz narrativa. Esta anotação não valida causalidade e distingue a voz narrativa de afirmações verificadas externamente."@pt-BR .
 
-hne:justificativa_31 a aro:InterpretiveJustification ;
+hne:justificativa_31 a aro:Justification ;
     aro:textValue "Leitura contextual e restrita ao recorte narrativo: A anonimização da própria morte é uma antecipação temida, não a identificação efetiva do personagem. Esta anotação não valida causalidade e distingue a voz narrativa de afirmações verificadas externamente."@pt-BR .
 
-hne:justificativa_32 a aro:InterpretiveJustification ;
+hne:justificativa_32 a aro:Justification ;
     aro:textValue "Leitura contextual e restrita ao recorte narrativo: A suspeição é socialmente distribuída sobre moradores da comunidade na narrativa; não confundir suspeita com culpa. Esta anotação não valida causalidade e distingue a voz narrativa de afirmações verificadas externamente."@pt-BR .
 
-hne:justificativa_33 a aro:InterpretiveJustification ;
+hne:justificativa_33 a aro:Justification ;
     aro:textValue "Leitura contextual e restrita ao recorte narrativo: O histórico do protagonista contribui para seu enquadramento como suspeito; a descrição é intradiegética. Esta anotação não valida causalidade e distingue a voz narrativa de afirmações verificadas externamente."@pt-BR .
 
-hne:justificativa_34 a aro:InterpretiveJustification ;
+hne:justificativa_34 a aro:Justification ;
     aro:textValue "Leitura contextual e restrita ao recorte narrativo: O texto descreve como passado judicial e marcas corporais podem tornar-se rótulos sociais duradouros. Esta anotação não valida causalidade e distingue a voz narrativa de afirmações verificadas externamente."@pt-BR .
 
-hne:justificativa_35 a aro:InterpretiveJustification ;
+hne:justificativa_35 a aro:Justification ;
     aro:textValue "Leitura contextual e restrita ao recorte narrativo: O narrador manifesta temor de agressão ou omissão policial mesmo se ferido; isso é perspectiva do personagem. Esta anotação não valida causalidade e distingue a voz narrativa de afirmações verificadas externamente."@pt-BR .
 
-hne:justificativa_36 a aro:InterpretiveJustification ;
+hne:justificativa_36 a aro:Justification ;
     aro:textValue "Leitura contextual e restrita ao recorte narrativo: O medo de não receber proteção pública contextualiza escolha de autodefesa sem a validar juridicamente. Esta anotação não valida causalidade e distingue a voz narrativa de afirmações verificadas externamente."@pt-BR .
 
-hne:justificativa_37 a aro:InterpretiveJustification ;
+hne:justificativa_37 a aro:Justification ;
     aro:textValue "Leitura contextual e restrita ao recorte narrativo: O despertar e a interpretação de ruídos constroem a percepção antecipada de um cerco; não comprovam autoria externa. Esta anotação não valida causalidade e distingue a voz narrativa de afirmações verificadas externamente."@pt-BR .
 
-hne:justificativa_38 a aro:InterpretiveJustification ;
+hne:justificativa_38 a aro:Justification ;
     aro:textValue "Leitura contextual e restrita ao recorte narrativo: O silêncio é representado como medo e impotência diante de ameaça armada, não como prova de anuência de moradores. Esta anotação não valida causalidade e distingue a voz narrativa de afirmações verificadas externamente."@pt-BR .
 
-hne:justificativa_39 a aro:InterpretiveJustification ;
+hne:justificativa_39 a aro:Justification ;
     aro:textValue "Leitura contextual e restrita ao recorte narrativo: A voz narrativa atribui a policiais intenção de executar o personagem; é a percepção narrada, sem observador independente. Esta anotação não valida causalidade e distingue a voz narrativa de afirmações verificadas externamente."@pt-BR .
 
-hne:justificativa_40 a aro:InterpretiveJustification ;
+hne:justificativa_40 a aro:Justification ;
     aro:textValue "Leitura contextual e restrita ao recorte narrativo: A passagem menciona vários agentes armados e a arma do protagonista, criando cenário de confronto potencialmente letal. Esta anotação não valida causalidade e distingue a voz narrativa de afirmações verificadas externamente."@pt-BR .
 
-hne:justificativa_41 a aro:InterpretiveJustification ;
+hne:justificativa_41 a aro:Justification ;
     aro:textValue "Leitura contextual e restrita ao recorte narrativo: A invocação religiosa é recurso simbólico e existencial; não é evidência de participação religiosa de policiais nem de relação causal com violência. Esta anotação não valida causalidade e distingue a voz narrativa de afirmações verificadas externamente."@pt-BR .
 
-hne:justificativa_42 a aro:InterpretiveJustification ;
+hne:justificativa_42 a aro:Justification ;
     aro:textValue "Leitura contextual e restrita ao recorte narrativo: O medo de orfandade e de futura institucionalização do filho é projeção do personagem, não destino confirmado. Esta anotação não valida causalidade e distingue a voz narrativa de afirmações verificadas externamente."@pt-BR .
 
-hne:justificativa_43 a aro:InterpretiveJustification ;
+hne:justificativa_43 a aro:Justification ;
     aro:textValue "Leitura contextual e restrita ao recorte narrativo: O desfecho contrapõe sonhos ao som de tiros; o áudio/texto indica violência, mas não documenta diretamente um autor identificável. Esta anotação não valida causalidade e distingue a voz narrativa de afirmações verificadas externamente."@pt-BR .
 
-hne:justificativa_44 a aro:InterpretiveJustification ;
+hne:justificativa_44 a aro:Justification ;
     aro:textValue "Leitura contextual e restrita ao recorte narrativo: A narração informativa apresenta corpo de homem encontrado morto e identidade social marcada; não estabelece automaticamente relação causal com cenas anteriores. Esta anotação não valida causalidade e distingue a voz narrativa de afirmações verificadas externamente."@pt-BR .
 
-hne:justificativa_45 a aro:InterpretiveJustification ;
+hne:justificativa_45 a aro:Justification ;
     aro:textValue "Leitura contextual e restrita ao recorte narrativo: A notícia final atribui a uma fonte policial uma hipótese sobre a morte; deve ser representada como alegação, não conclusão ontológica. Esta anotação não valida causalidade e distingue a voz narrativa de afirmações verificadas externamente."@pt-BR .
 
-hne:justificativa_46 a aro:InterpretiveJustification ;
+hne:justificativa_46 a aro:Justification ;
     aro:textValue "Leitura contextual e restrita ao recorte narrativo: A referência final ao histórico penal contextualiza uma estratégia de enquadramento, sem demonstrar verdade sobre a motivação da morte. Esta anotação não valida causalidade e distingue a voz narrativa de afirmações verificadas externamente."@pt-BR .
 
 hne:recorte_01 a aro:Selection ;
@@ -2995,73 +2995,73 @@ hne:caso_c03 a aro:EmpiricalCase ;
     dcterms:description "FEBEM é denominação histórica; as unidades e regras atuais são outras. Não descreve a infância do personagem."@pt-BR ;
     prov:wasDerivedFrom hne:fonte_cnj2025 ;
     aro:caseAboutSituation hne:situacaoEmpirica_c03 ;
-    aro:caseHasReference hne:fonte_cnj2025 ;
+    aro:citesSource hne:fonte_cnj2025 ;
     aro:textValue "Juventude privada de liberdade: 2024"@pt-BR .
 
 hne:caso_c06 a aro:EmpiricalCase ;
     dcterms:description "O agregado inclui modalidades distintas; não equivale a tratamento de esgoto nem informa sobre o cenário fictício."@pt-BR ;
     prov:wasDerivedFrom hne:fonte_favelaSaneamento ;
     aro:caseAboutSituation hne:situacaoEmpirica_c06 ;
-    aro:caseHasReference hne:fonte_favelaSaneamento ;
+    aro:citesSource hne:fonte_favelaSaneamento ;
     aro:textValue "Infraestrutura de esgotamento nas favelas"@pt-BR .
 
 hne:caso_c08 a aro:EmpiricalCase ;
     dcterms:description "Base de monitoramento não comprova interrupção específica de cinco dias nem ausência local de água."@pt-BR ;
     prov:wasDerivedFrom hne:fonte_sinisa2025 ;
     aro:caseAboutSituation hne:situacaoEmpirica_c08 ;
-    aro:caseHasReference hne:fonte_sinisa2025 ;
+    aro:citesSource hne:fonte_sinisa2025 ;
     aro:textValue "Gestão nacional de abastecimento e esgoto"@pt-BR .
 
 hne:caso_c12 a aro:EmpiricalCase ;
     dcterms:description "Pesquisa sobre vitimização não comprova o caso narrado na canção."@pt-BR ;
     prov:wasDerivedFrom hne:fonte_mulheres2025 ;
     aro:caseAboutSituation hne:situacaoEmpirica_c12 ;
-    aro:caseHasReference hne:fonte_mulheres2025 ;
+    aro:citesSource hne:fonte_mulheres2025 ;
     aro:textValue "Pesquisa de vitimização de mulheres 2025"@pt-BR .
 
 hne:caso_c23 a aro:EmpiricalCase ;
     dcterms:description "Razão populacional não estabelece a motivação de cada morte."@pt-BR ;
     prov:wasDerivedFrom hne:fonte_atlas2025 ;
     aro:caseAboutSituation hne:situacaoEmpirica_c23 ;
-    aro:caseHasReference hne:fonte_atlas2025 ;
+    aro:citesSource hne:fonte_atlas2025 ;
     aro:textValue "Diferencial racial de vitimização letal em 2023"@pt-BR .
 
 hne:caso_c25 a aro:EmpiricalCase ;
     dcterms:description "Indicador agregado; não autoriza declarar ilegalidade de toda intervenção."@pt-BR ;
     prov:wasDerivedFrom hne:fonte_fbsp2026 ;
     aro:caseAboutSituation hne:situacaoEmpirica_c25 ;
-    aro:caseHasReference hne:fonte_fbsp2026 ;
+    aro:citesSource hne:fonte_fbsp2026 ;
     aro:textValue "Participação de mortes policiais nas mortes violentas"@pt-BR .
 
 hne:caso_c29 a aro:EmpiricalCase ;
     dcterms:description "Prevalência de consumo não identifica um agressor nem estabelece que álcool causou violência."@pt-BR ;
     prov:wasDerivedFrom hne:fonte_alcool2025 ;
     aro:caseAboutSituation hne:situacaoEmpirica_c29 ;
-    aro:caseHasReference hne:fonte_alcool2025 ;
+    aro:citesSource hne:fonte_alcool2025 ;
     aro:textValue "Consumo episódico pesado de álcool"@pt-BR .
 
 hne:caso_c32 a aro:EmpiricalCase ;
     dcterms:description "Consumo agregado não indica estrutura local de mercados, renda ou vínculos com jovens ricos."@pt-BR ;
     prov:wasDerivedFrom hne:fonte_drogas2026 ;
     aro:caseAboutSituation hne:situacaoEmpirica_c32 ;
-    aro:caseHasReference hne:fonte_drogas2026 ;
+    aro:citesSource hne:fonte_drogas2026 ;
     aro:textValue "Cocaína e outras drogas no LENAD III"@pt-BR .
 
 hne:caso_c33 a aro:EmpiricalCase ;
     dcterms:description "Fonte adicional documental; dados de consumo não verificam alegações de comando de tráfico."@pt-BR ;
     prov:wasDerivedFrom hne:fonte_lenadPublicacoes ;
     aro:caseAboutSituation hne:situacaoEmpirica_c33 ;
-    aro:caseHasReference hne:fonte_lenadPublicacoes ;
+    aro:citesSource hne:fonte_lenadPublicacoes ;
     aro:textValue "Publicação de monitoramento de cocaína e crack"@pt-BR .
 
 hne:caso_c34 a aro:EmpiricalCase ;
     dcterms:description "Não permite inferir religiosidade real do personagem e nem associar culto a crime ou violência."@pt-BR ;
     prov:wasDerivedFrom hne:fonte_religiao2025 ;
     aro:caseAboutSituation hne:situacaoEmpirica_c34 ;
-    aro:caseHasReference hne:fonte_religiao2025 ;
+    aro:citesSource hne:fonte_religiao2025 ;
     aro:textValue "Religiões afro-brasileiras no Censo 2022"@pt-BR .
 
-hne:gravacao1993 a aro:Manifestation ;
+hne:gravacao1993 a aro:Expression ;
     aro:realizesArtwork hne:homemNaEstrada ;
     aro:textValue "Gravação comercial, Raio X do Brasil (1993)."@pt-BR .
 
@@ -3147,61 +3147,61 @@ hne:caso_c01 a aro:EmpiricalCase ;
     dcterms:description "Não mede reincidência individual nem prova que um egresso específico abandonou o crime."@pt-BR ;
     prov:wasDerivedFrom hne:fonte_senappen2026 ;
     aro:caseAboutSituation hne:situacaoEmpirica_c01 ;
-    aro:caseHasReference hne:fonte_senappen2026 ;
+    aro:citesSource hne:fonte_senappen2026 ;
     aro:textValue "Sistema penal e reinserção: relatório 2025"@pt-BR .
 
 hne:caso_c02 a aro:EmpiricalCase ;
     dcterms:description "Atendimentos administrativos não medem diretamente discriminação no recrutamento ou reintegração bem-sucedida."@pt-BR ;
     prov:wasDerivedFrom hne:fonte_egressos2026 ;
     aro:caseAboutSituation hne:situacaoEmpirica_c02 ;
-    aro:caseHasReference hne:fonte_egressos2026 ;
+    aro:citesSource hne:fonte_egressos2026 ;
     aro:textValue "Atendimento a pessoas egressas em 2025"@pt-BR .
 
 hne:caso_c05 a aro:EmpiricalCase ;
     dcterms:description "Censo demográfico é uma medição, não comprova negligência em um endereço."@pt-BR ;
     prov:wasDerivedFrom hne:fonte_favela2026 ;
     aro:caseAboutSituation hne:situacaoEmpirica_c05 ;
-    aro:caseHasReference hne:fonte_favela2026 ;
+    aro:citesSource hne:fonte_favela2026 ;
     aro:textValue "Favelas na base censitária corrigida"@pt-BR .
 
 hne:caso_c14 a aro:EmpiricalCase ;
     dcterms:description "É estimativa metodológica sobre classificação da causa de morte; não prova demora de IML."@pt-BR ;
     prov:wasDerivedFrom hne:fonte_atlas2025 ;
     aro:caseAboutSituation hne:situacaoEmpirica_c14 ;
-    aro:caseHasReference hne:fonte_atlas2025 ;
+    aro:citesSource hne:fonte_atlas2025 ;
     aro:textValue "Homicídios ocultos no Brasil 2013–2023"@pt-BR .
 
 hne:caso_c17 a aro:EmpiricalCase ;
     dcterms:description "Inquérito domiciliar não verifica criança catando alimentos em feira específica."@pt-BR ;
     prov:wasDerivedFrom hne:fonte_ebia2024 ;
     aro:caseAboutSituation hne:situacaoEmpirica_c17 ;
-    aro:caseHasReference hne:fonte_ebia2024 ;
+    aro:citesSource hne:fonte_ebia2024 ;
     aro:textValue "Insegurança alimentar nos domicílios 2024"@pt-BR .
 
 hne:caso_c21 a aro:EmpiricalCase ;
     dcterms:description "A faixa etária não corresponde exatamente à de todos os personagens; não atribui mortes ao tráfico."@pt-BR ;
     prov:wasDerivedFrom hne:fonte_unicef2026 ;
     aro:caseAboutSituation hne:situacaoEmpirica_c21 ;
-    aro:caseHasReference hne:fonte_unicef2026 ;
+    aro:citesSource hne:fonte_unicef2026 ;
     aro:textValue "Violência entre meninos adolescentes no Brasil em 2024"@pt-BR .
 
 hne:caso_c26 a aro:EmpiricalCase ;
     dcterms:description "Estatística agregada nacional; não identifica pessoas ou episódios da ficção."@pt-BR ;
     prov:wasDerivedFrom hne:fonte_fbsp2026 ;
     aro:caseAboutSituation hne:situacaoEmpirica_c26 ;
-    aro:caseHasReference hne:fonte_fbsp2026 ;
+    aro:citesSource hne:fonte_fbsp2026 ;
     aro:textValue "Mortes violentas intencionais 2025"@pt-BR .
 
 hne:caso_c39 a aro:EmpiricalCase ;
     dcterms:description "Não define todas as favelas como espaços sem lei; a própria classificação é plural."@pt-BR ;
     prov:wasDerivedFrom hne:fonte_favela2026 ;
     aro:caseAboutSituation hne:situacaoEmpirica_c39 ;
-    aro:caseHasReference hne:fonte_favela2026 ;
+    aro:citesSource hne:fonte_favela2026 ;
     aro:textValue "Abrangência territorial e social do espaço favela"@pt-BR .
 
 hne:homemNaEstrada a aro:Artwork ;
     aro:externalLink "https://www.cifraclub.com.br/racionais-mcs/homem-na-estrada/letra/"^^xsd:anyURI ;
-    aro:hasManifestation hne:gravacao1993,
+    aro:hasExpression hne:gravacao1993,
         hne:transcricaoCifraClub ;
     aro:textValue "Homem na Estrada — Racionais MC’s (álbum Raio X do Brasil, 1993)"@pt-BR .
 
@@ -3250,21 +3250,21 @@ hne:caso_c18 a aro:EmpiricalCase ;
     dcterms:description "Correlação observacional; frequentar a escola não pode ser tratado automaticamente como causa isolada."@pt-BR ;
     prov:wasDerivedFrom hne:fonte_pnaeFome2026 ;
     aro:caseAboutSituation hne:situacaoEmpirica_c18 ;
-    aro:caseHasReference hne:fonte_pnaeFome2026 ;
+    aro:citesSource hne:fonte_pnaeFome2026 ;
     aro:textValue "Fome e acesso à educação, 2024"@pt-BR .
 
 hne:caso_c22 a aro:EmpiricalCase ;
     dcterms:description "Homicídios são agregados, com causas e contextos heterogêneos."@pt-BR ;
     prov:wasDerivedFrom hne:fonte_atlas2025 ;
     aro:caseAboutSituation hne:situacaoEmpirica_c22 ;
-    aro:caseHasReference hne:fonte_atlas2025 ;
+    aro:citesSource hne:fonte_atlas2025 ;
     aro:textValue "Homicídios de jovens de 15 a 29 anos em 2023"@pt-BR .
 
 hne:caso_c38 a aro:EmpiricalCase ;
     dcterms:description "Período histórico e cobertura diferentes de 1993; associação somente de padrões."@pt-BR ;
     prov:wasDerivedFrom hne:fonte_unicef2021 ;
     aro:caseAboutSituation hne:situacaoEmpirica_c38 ;
-    aro:caseHasReference hne:fonte_unicef2021 ;
+    aro:citesSource hne:fonte_unicef2021 ;
     aro:textValue "Levantamento de experiências de vitimização juvenil 2016-2020"@pt-BR .
 
 hne:fonte_cemaden2025 a aro:ReferenceSource ;
@@ -3387,7 +3387,7 @@ hne:caso_c16 a aro:EmpiricalCase ;
     dcterms:description "Diferenças agregadas não identificam mecanismo causal na biografia de um indivíduo."@pt-BR ;
     prov:wasDerivedFrom hne:fonte_renda2024 ;
     aro:caseAboutSituation hne:situacaoEmpirica_c16 ;
-    aro:caseHasReference hne:fonte_renda2024 ;
+    aro:citesSource hne:fonte_renda2024 ;
     aro:textValue "Rendimento do trabalho segundo cor ou raça, 2024"@pt-BR .
 
 hne:padrao_estigma-trabalho a aro:SituationPattern ;
@@ -3413,7 +3413,7 @@ hne:caso_c24 a aro:EmpiricalCase ;
     dcterms:description "Não identifica autoria da morte narrada ou qualquer causalidade histórica com a canção."@pt-BR ;
     prov:wasDerivedFrom hne:fonte_fbsp2026 ;
     aro:caseAboutSituation hne:situacaoEmpirica_c24 ;
-    aro:caseHasReference hne:fonte_fbsp2026 ;
+    aro:citesSource hne:fonte_fbsp2026 ;
     aro:textValue "Mortes por intervenções policiais em 2025"@pt-BR .
 
 hne:fonte_favelaSaneamento a aro:ReferenceSource ;
@@ -3606,7 +3606,7 @@ hne:atoInterpretativo2026 a aro:InterpretiveAct ;
     dcterms:created "2026-10-30"^^xsd:date ;
     aro:hasParticipant hne:analistaPesquisador .
 
-hne:transcricaoCifraClub a aro:Manifestation ;
+hne:transcricaoCifraClub a aro:Expression ;
     dcterms:source <https://www.cifraclub.com.br/racionais-mcs/homem-na-estrada/letra/> ;
     rdfs:seeAlso <https://www.vagalume.com.br/racionais-mcs/homem-na-estrada.html> ;
     aro:realizesArtwork hne:homemNaEstrada ;
@@ -3629,9 +3629,9 @@ hne:derivacao_sampleElaPartiu a aro:DerivationClaim ;
     aro:hasDerivationType aro:Sampling ;
     aro:hasTransformation hne:aspecto_sampleElaPartiu ;
     aro:derivationRealizedBy hne:criacao1993 ;
-    aro:derivationJustifiedBy hne:justificativa_sampleElaPartiu ;
-    aro:derivationReferencesSource hne:fonte_raioXWiki ;
-    aro:claimProducedByAct hne:atoInterpretativo2026 ;
+    aro:hasJustification hne:justificativa_sampleElaPartiu ;
+    aro:citesSource hne:fonte_raioXWiki ;
+    aro:producedByAct hne:atoInterpretativo2026 ;
     aro:textValue "A gravação de Homem na Estrada (1993) usa um sample de Ela Partiu, de Tim Maia."@pt-BR .
 
 hne:aspecto_sampleElaPartiu a aro:TransformationAspect ;
@@ -3639,7 +3639,7 @@ hne:aspecto_sampleElaPartiu a aro:TransformationAspect ;
     aro:hasOperation aro:Recontextualized ;
     aro:textValue "O som gravado de uma canção romântica de soul passa a acompanhar uma narrativa sobre violência, encarceramento e exclusão urbana."@pt-BR .
 
-hne:justificativa_sampleElaPartiu a aro:InterpretiveJustification ;
+hne:justificativa_sampleElaPartiu a aro:Justification ;
     aro:textValue "O uso do sample é informado pela ficha do álbum Raio-X do Brasil. A leitura de que o sentido do som muda com o novo contexto é interpretativa e revisável; a anotação não avalia autorização nem licenciamento do sample."@pt-BR .
 
 hne:fonte_raioXWiki a aro:ReferenceSource ;

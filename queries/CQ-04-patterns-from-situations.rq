@@ -1,0 +1,17 @@
+# CQ-04: Which patterns are abstracted from represented situations?
+# One row per pattern with the number of situation descriptions it generalizes and the works
+# they come from (through interpretation -> selection -> expression -> artwork).
+# Language: texts in ?lang, or in the language they have when ?lang is missing.
+PREFIX aro: <https://w3id.org/aro/ontology#>
+SELECT ?pattern (COUNT(DISTINCT ?sd) AS ?situations) (GROUP_CONCAT(DISTINCT ?title; SEPARATOR=" | ") AS ?works) WHERE {
+  VALUES ?lang { "en" }
+  ?sd aro:generalizesAs ?p .
+  ?p aro:textValue ?pattern .
+  OPTIONAL { ?reading aro:describesSituation ?sd ;
+                      aro:hasPrimarySelection/aro:selectsFrom/aro:realizesArtwork ?w .
+             ?w aro:textValue ?title .
+             FILTER(langMatches(lang(?title), ?lang) || NOT EXISTS { ?w aro:textValue ?l2 FILTER(langMatches(lang(?l2), ?lang)) }) }
+  FILTER(langMatches(lang(?pattern), ?lang) || NOT EXISTS { ?p aro:textValue ?l1 FILTER(langMatches(lang(?l1), ?lang)) })
+}
+GROUP BY ?pattern
+ORDER BY DESC(?situations)

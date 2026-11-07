@@ -1,0 +1,11 @@
+# CQ-09: Who authored and evaluated a given interpretation?
+# Authorship comes from the act that produced each record (producedByAct -> hasParticipant);
+# evaluation from assessments of the interpretation and challenges to it, with their own acts.
+PREFIX aro: <https://w3id.org/aro/ontology#>
+SELECT ?interpretation ?author ?evaluation ?evaluator ?outcome WHERE {
+  ?interpretation a aro:InterpretationRecord ;
+                  aro:producedByAct/aro:hasParticipant ?author .
+  { ?evaluation aro:assessesClaim ?interpretation } UNION { ?evaluation aro:challenges ?interpretation }
+  OPTIONAL { ?evaluation aro:producedByAct/aro:hasParticipant ?evaluator }
+  OPTIONAL { ?evaluation aro:assessmentOutcome ?outcome }
+}

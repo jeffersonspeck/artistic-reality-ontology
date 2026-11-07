@@ -7,7 +7,8 @@ import { NS, parseTurtle } from "./ontology.js";
 
 const SH = NS.sh;
 const RDF_TYPE = NS.rdf + "type";
-const ANCHOR_CLASSES = [NS.aro + "Artwork", NS.aro + "Manifestation", NS.aro + "Selection"];
+const ANCHOR_CLASS = NS.aro + "ArtisticEntity";   // artwork, expression, manifestation or selection
+const DATE_TYPES = ["gYear", "gYearMonth", "date", "dateTime"].map((t) => NS.xsd + t);
 
 /** Read property shapes: [{target, targetSubjectsOf, path, min, max, cls, nodeKind, datatype, message}]. */
 export function readShapes(text) {
@@ -75,14 +76,32 @@ export function validate(data, ontology, lang) {
     const src = store.getObjects(claim, NS.aro + "hasSourceAnchor", null).map((o) => o.value);
     const der = store.getObjects(claim, NS.aro + "hasDerivedAnchor", null).map((o) => o.value);
     for (const a of [...src, ...der]) {
-      if (!ANCHOR_CLASSES.some((c) => ontology.isA(data.types(a), c)))
+      if (!ontology.isA(data.types(a), ANCHOR_CLASS))
         problems.push({ node: claim, message: lang === "pt-BR"
-          ? "As âncoras da derivação devem ser Artwork, Manifestation ou Selection."
-          : "Derivation anchors must be an Artwork, Manifestation or Selection." });
+          ? "As âncoras da derivação devem ser uma entidade artística: Artwork, Expression, Manifestation ou Selection."
+          : "Derivation anchors must be an artistic entity: Artwork, Expression, Manifestation or Selection." });
     }
     if (src.some((s) => der.includes(s)))
       problems.push({ node: claim, message: lang === "pt-BR"
         ? "As âncoras de origem e derivada devem ser diferentes." : "Source and derived anchors must differ." });
+  }
+  // CreativeAct produces artistic entities, never selections
+  for (const act of data.nodes().filter((n) => data.types(n).includes(NS.aro + "CreativeAct"))) {
+    for (const o of store.getObjects(act, NS.aro + "producesCreation", null)) {
+      if (ontology.isA(data.types(o.value), NS.aro + "Selection"))
+        problems.push({ node: act, message: lang === "pt-BR"
+          ? "Um ato criativo produz obras, expressões ou manifestações, não recortes."
+          : "A creative act produces artworks, expressions or manifestations, not selections." });
+    }
+  }
+  // Dates: a year, a year-month, a date or a date-time
+  for (const prop of [NS.aro + "startDate", NS.aro + "endDate"]) {
+    for (const q of store.getQuads(null, prop, null, null)) {
+      if (!(q.object.termType === "Literal" && DATE_TYPES.includes(q.object.datatype?.value)))
+        problems.push({ node: q.subject.value, message: lang === "pt-BR"
+          ? `${short(prop)}: use ano (1993), ano-mês (1993-05), data (1993-05-20) ou data-hora`
+          : `${short(prop)}: use a year (1993), year-month (1993-05), date (1993-05-20) or date-time` });
+    }
   }
   return problems;
 }

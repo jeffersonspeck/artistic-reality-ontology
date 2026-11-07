@@ -12,7 +12,7 @@
     "module_diagram: relations drawn in the README module diagram (model/diagrams/modules.*.svg); a union range inside one package is drawn as a single edge to that package.",
     "relations[].ontouml: OntoUML association stereotype when one applies (participation, creation, mediation, instantiation); otherwise a plain association."
   ],
-  "version": "0.2.1-beta",
+  "version": "0.3.0-beta",
   "ontology": {
     "title_en": "Artistic Reality Ontology",
     "title_pt": "Ontologia de Arte e Realidade",
@@ -25,7 +25,7 @@
     ],
     "affiliation_en": "Integral part of the doctoral research of Jefferson Rodrigo Speck in the Graduate Program in Informatics (PPGInf) of the Federal University of Paraná (UFPR), supervised by Prof. Dr. Roberto Pereira (UFPR) and co-supervised by Prof. Dr. Clodis Boscarioli (UNIOESTE), linked to the Research Group on Technology and Innovation in Education (GTIE), UNIOESTE.",
     "affiliation_pt": "Parte integrante da pesquisa de doutorado de Jefferson Rodrigo Speck no Programa de Pós-Graduação em Informática (PPGInf) da Universidade Federal do Paraná (UFPR), sob orientação do Prof. Dr. Roberto Pereira (UFPR) e coorientação do Prof. Dr. Clodis Boscarioli (UNIOESTE), com vinculação ao Grupo de Pesquisa em Tecnologia e Inovação na Educação (GTIE), UNIOESTE.",
-    "prior_version": "0.2.0-beta"
+    "prior_version": "0.2.1-beta"
   },
   "packages": [
     {
@@ -33,16 +33,24 @@
       "color": "#dbeafe",
       "label_en": "Artwork and selection",
       "label_pt": "Obra e recorte",
-      "description_en": "What is analysed: artworks, their manifestations (versions, recordings, editions) and the addressable excerpts (selections) on which every annotation is anchored.",
-      "description_pt": "O que é analisado: obras, suas manifestações (versões, gravações, edições) e os trechos endereçáveis (recortes) em que toda anotação se ancora."
+      "description_en": "What is analysed: artworks, their expressions (versions, performances, translations) and manifestations (editions, releases), as in IFLA LRM, and the addressable excerpts (selections) on which annotations are anchored.",
+      "description_pt": "O que é analisado: obras, suas expressões (versões, interpretações, traduções) e manifestações (edições, lançamentos), como no IFLA LRM, e os trechos endereçáveis (recortes) em que as anotações se ancoram."
+    },
+    {
+      "name": "claim",
+      "color": "#e0e7ff",
+      "label_en": "Claims and records",
+      "label_pt": "Alegações e registros",
+      "description_en": "The common ground of every annotation: analytical records and, among them, claims, which can be produced by an act, justified, supported by sources, assessed and challenged.",
+      "description_pt": "A base comum de toda anotação: registros analíticos e, entre eles, alegações, que podem ser produzidas por um ato, justificadas, apoiadas em fontes, avaliadas e contestadas."
     },
     {
       "name": "interpretation",
       "color": "#e9d5ff",
       "label_en": "Interpretation",
       "label_pt": "Interpretação",
-      "description_en": "Who interprets and how: interpretation records produced by interpretive acts of analysts, with their justifications, challenges and assessments.",
-      "description_pt": "Quem interpreta e como: registros de interpretação produzidos por atos interpretativos de analistas, com justificativas, contestações e avaliações."
+      "description_en": "Who interprets and how: interpretation records anchored in selections and produced by interpretive acts.",
+      "description_pt": "Quem interpreta e como: registros de interpretação ancorados em recortes e produzidos por atos interpretativos."
     },
     {
       "name": "representation",
@@ -76,21 +84,68 @@
       "show_context": true,
       "description_en": "How works derive from other works (cover, sampling, adaptation, parody...): derivation claims with types, regimes and transformation aspects, and the creative acts and contributions behind them.",
       "description_pt": "Como obras derivam de outras (cover, sampling, adaptação, paródia...): alegações de derivação com tipos, regimes e aspectos de transformação, e os atos e contribuições criativas por trás delas."
+    },
+    {
+      "name": "agent",
+      "color": "#ccfbf1",
+      "label_en": "Agents",
+      "label_pt": "Agentes",
+      "description_en": "Who acts: persons and collectives, identified by external IRIs, and the roles they play as analysts and creators.",
+      "description_pt": "Quem age: pessoas e coletivos, identificados por IRIs externos, e os papéis que desempenham como analistas e criadores."
     }
   ],
   "classes": [
+    {
+      "name": "ArtisticEntity",
+      "label_en": "artistic entity",
+      "label_pt": "entidade artística",
+      "stereotype": "category",
+      "package": "artwork",
+      "definition_en": "Anything artistic that can be the origin or result of a derivation or a creative act: an artwork, an expression, a manifestation or a selection.",
+      "definition_pt": "Tudo o que é artístico e pode ser origem ou resultado de uma derivação ou de um ato criativo: obra, expressão, manifestação ou recorte.",
+      "dependency_en": "none of its own; each instance takes the identity of its kind",
+      "dependency_pt": "nenhuma própria; cada instância tem a identidade de seu kind",
+      "grounding_en": "UFO-A rigid non-sortal (category) generalizing kinds with different identity principles",
+      "grounding_pt": "não-sortal rígido UFO-A (category) que generaliza kinds com princípios de identidade diferentes",
+      "abstract": true
+    },
     {
       "name": "Artwork",
       "label_en": "artwork",
       "label_pt": "obra",
       "stereotype": "kind",
       "package": "artwork",
-      "definition_en": "Identifiable artistic creation across media and manifestations.",
-      "definition_pt": "Criação artística identificável em diversas mídias e manifestações.",
+      "definition_en": "Identifiable artistic creation, considered independently of any particular version or copy (the LRM work level).",
+      "definition_pt": "Criação artística identificável, considerada independentemente de qualquer versão ou cópia (nível obra do LRM).",
       "dependency_en": "historically on creation; not on a single copy",
       "dependency_pt": "historicamente da criação; não de uma cópia específica",
       "grounding_en": "UFO-C social/information object (domain commitment)",
-      "grounding_pt": "objeto social/informacional UFO-C (compromisso de domínio)"
+      "grounding_pt": "objeto social/informacional UFO-C (compromisso de domínio)",
+      "specializes": "ArtisticEntity",
+      "alignments": {
+        "rdfs:seeAlso": [
+          "lrmoo:F1_Work"
+        ]
+      }
+    },
+    {
+      "name": "Expression",
+      "label_en": "expression",
+      "label_pt": "expressão",
+      "stereotype": "kind",
+      "package": "artwork",
+      "definition_en": "Specific realization of an artwork with its own content: a performance or recording, a translation, an arrangement, a text version, a film cut (the LRM expression level).",
+      "definition_pt": "Realização específica de uma obra com conteúdo próprio: uma interpretação ou gravação, uma tradução, um arranjo, uma versão do texto, uma montagem de filme (nível expressão do LRM).",
+      "dependency_en": "realizes exactly one artwork",
+      "dependency_pt": "realiza exatamente uma obra",
+      "grounding_en": "UFO-C information object (content level)",
+      "grounding_pt": "objeto informacional UFO-C (nível de conteúdo)",
+      "specializes": "ArtisticEntity",
+      "alignments": {
+        "rdfs:seeAlso": [
+          "lrmoo:F2_Expression"
+        ]
+      }
     },
     {
       "name": "Manifestation",
@@ -98,12 +153,18 @@
       "label_pt": "manifestação",
       "stereotype": "kind",
       "package": "artwork",
-      "definition_en": "Specific expression, version or realization of an artwork.",
-      "definition_pt": "Expressão, versão ou realização específica de uma obra.",
-      "dependency_en": "semantic identity relative to an artwork",
-      "dependency_pt": "identidade semântica relativa a uma obra",
-      "grounding_en": "UFO-A enduring object; UFO-C information artifact",
-      "grounding_pt": "objeto persistente UFO-A; artefato informacional UFO-C"
+      "definition_en": "Publication or carrier that embodies one or more expressions: an album edition, a book edition, a broadcast, a digital release (the LRM manifestation level). Optional: record it when the edition matters, e.g. to locate a page or a track.",
+      "definition_pt": "Publicação ou suporte que materializa uma ou mais expressões: edição de álbum, edição de livro, transmissão, lançamento digital (nível manifestação do LRM). Opcional: registre quando a edição importa, por exemplo para localizar uma página ou faixa.",
+      "dependency_en": "embodies at least one expression",
+      "dependency_pt": "materializa ao menos uma expressão",
+      "grounding_en": "UFO-C information artifact (carrier level)",
+      "grounding_pt": "artefato informacional UFO-C (nível de suporte)",
+      "specializes": "ArtisticEntity",
+      "alignments": {
+        "rdfs:seeAlso": [
+          "lrmoo:F3_Manifestation"
+        ]
+      }
     },
     {
       "name": "Selection",
@@ -111,43 +172,375 @@
       "label_pt": "recorte",
       "stereotype": "kind",
       "package": "artwork",
-      "definition_en": "Addressable selected portion of a manifestation (not its physical component).",
-      "definition_pt": "Seleção endereçável de uma parte de manifestação (não componente físico).",
-      "dependency_en": "reference to manifestation and selectors",
-      "dependency_pt": "referência a manifestação e seletores",
+      "definition_en": "Addressable portion of an expression (lines, a time span, an image region), located by selectors; not a physical component.",
+      "definition_pt": "Parte endereçável de uma expressão (linhas, trecho de tempo, região de imagem), localizada por seletores; não é componente físico.",
+      "dependency_en": "the expression it is taken from and its selectors",
+      "dependency_pt": "a expressão de onde é tirado e seus seletores",
       "grounding_en": "UFO-C information object; domain category",
       "grounding_pt": "objeto informacional UFO-C; categoria de domínio",
       "alignments": {
         "rdfs:seeAlso": [
           "oa:SpecificResource"
         ]
-      }
+      },
+      "specializes": "ArtisticEntity"
     },
     {
       "name": "AnalysisUnit",
       "label_en": "analysis unit",
       "label_pt": "unidade de análise",
-      "stereotype": "kind",
+      "stereotype": "subkind",
       "package": "artwork",
       "definition_en": "Intentional grouping of selections for analytical purposes.",
       "definition_pt": "Agrupamento intencional de recortes com finalidade analítica.",
       "dependency_en": "organizational reference to selections",
       "dependency_pt": "referência organizacional a recortes",
-      "grounding_en": "UFO-C information object",
-      "grounding_pt": "objeto informacional UFO-C"
+      "grounding_en": "UFO-C information object; subkind of AnalyticalRecord, whose identity it inherits",
+      "grounding_pt": "objeto informacional UFO-C; subkind de AnalyticalRecord, cuja identidade herda",
+      "specializes": "AnalyticalRecord"
+    },
+    {
+      "name": "AnalyticalRecord",
+      "label_en": "analytical record",
+      "label_pt": "registro analítico",
+      "stereotype": "kind",
+      "package": "claim",
+      "definition_en": "Information object recorded by an agent in the course of an analysis: the common sort of interpretations, descriptions, patterns, cases, evidence items, claims, justifications and assessments. Two records with the same text by different agents or acts are different records.",
+      "definition_pt": "Objeto informacional registrado por um agente no curso de uma análise: o tipo comum de interpretações, descrições, padrões, casos, itens de evidência, alegações, justificativas e avaliações. Dois registros com o mesmo texto feitos por agentes ou atos diferentes são registros diferentes.",
+      "dependency_en": "historically on the act or agent that recorded it",
+      "dependency_pt": "historicamente do ato ou agente que o registrou",
+      "grounding_en": "UFO-C information object; the single kind supplying the identity of every analytical record (ADR-026)",
+      "grounding_pt": "objeto informacional UFO-C; o único kind que fornece a identidade de todo registro analítico (ADR-026)",
+      "abstract": true
+    },
+    {
+      "name": "Claim",
+      "label_en": "claim",
+      "label_pt": "alegação",
+      "stereotype": "subkind",
+      "package": "claim",
+      "definition_en": "Analytical record that asserts something contestable: it can be produced by an act, justified, supported by sources, assessed and challenged. ARO represents claims, never their truth.",
+      "definition_pt": "Registro analítico que afirma algo contestável: pode ser produzido por um ato, justificado, apoiado em fontes, avaliado e contestado. A ARO representa alegações, nunca sua verdade.",
+      "dependency_en": "the act or agent that asserts it",
+      "dependency_pt": "o ato ou agente que a afirma",
+      "grounding_en": "UFO-C information object (propositional content as authored record, ADR-010)",
+      "grounding_pt": "objeto informacional UFO-C (conteúdo proposicional como registro autoral, ADR-010)",
+      "specializes": "AnalyticalRecord",
+      "abstract": true,
+      "alignments": {
+        "rdfs:seeAlso": [
+          "schema:Claim"
+        ]
+      }
+    },
+    {
+      "name": "Justification",
+      "label_en": "justification",
+      "label_pt": "justificativa",
+      "stereotype": "subkind",
+      "package": "claim",
+      "definition_en": "Recorded argument connecting premises to a claim: why an interpretation, derivation, correspondence or hypothesis is asserted.",
+      "definition_pt": "Argumento registrado que liga premissas a uma alegação: por que uma interpretação, derivação, correspondência ou hipótese é afirmada.",
+      "dependency_en": "the claim it supports and its articulated premises",
+      "dependency_pt": "a alegação que sustenta e suas premissas articuladas",
+      "grounding_en": "UFO-C information object; subkind of AnalyticalRecord, whose identity it inherits",
+      "grounding_pt": "objeto informacional UFO-C; subkind de AnalyticalRecord, cuja identidade herda",
+      "specializes": "AnalyticalRecord"
+    },
+    {
+      "name": "Challenge",
+      "label_en": "challenge",
+      "label_pt": "contestação",
+      "stereotype": "subkind",
+      "package": "claim",
+      "definition_en": "Claim that criticizes another claim or offers an alternative to it; being a claim itself, it can be justified, assessed and challenged in turn.",
+      "definition_pt": "Alegação que critica outra alegação ou propõe alternativa a ela; sendo também alegação, pode por sua vez ser justificada, avaliada e contestada.",
+      "dependency_en": "the challenged claim and its own argument",
+      "dependency_pt": "a alegação contestada e seu próprio argumento",
+      "grounding_en": "UFO-C information object; subkind of Claim (assessable, justifiable, citable, challengeable)",
+      "grounding_pt": "objeto informacional UFO-C; subkind de Claim (avaliável, justificável, citável, contestável)",
+      "specializes": "Claim"
+    },
+    {
+      "name": "Assessment",
+      "label_en": "assessment",
+      "label_pt": "avaliação",
+      "stereotype": "subkind",
+      "package": "claim",
+      "definition_en": "Analytical record judging one or more closely related claims: by explicit criteria, by evidence, or both. It records a judgment made by an agent; it does not settle the claim.",
+      "definition_pt": "Registro analítico que julga uma ou mais alegações intimamente relacionadas: por critérios explícitos, por evidência, ou ambos. Registra um julgamento feito por um agente; não resolve a alegação.",
+      "dependency_en": "the assessed claims",
+      "dependency_pt": "as alegações avaliadas",
+      "grounding_en": "UFO-C information object; subkind of AnalyticalRecord, whose identity it inherits",
+      "grounding_pt": "objeto informacional UFO-C; subkind de AnalyticalRecord, cuja identidade herda",
+      "specializes": "AnalyticalRecord",
+      "abstract": true,
+      "alignments": {
+        "rdfs:seeAlso": [
+          "schema:ClaimReview"
+        ]
+      }
+    },
+    {
+      "name": "CriteriaAssessment",
+      "label_en": "criteria assessment",
+      "label_pt": "avaliação por critérios",
+      "stereotype": "subkind",
+      "package": "claim",
+      "definition_en": "Assessment of a claim against explicit epistemic or value criteria (plausibility, coherence, fidelity...).",
+      "definition_pt": "Avaliação de uma alegação segundo critérios epistêmicos ou de valor explícitos (plausibilidade, coerência, fidelidade...).",
+      "dependency_en": "the assessed claim and its criteria",
+      "dependency_pt": "a alegação avaliada e seus critérios",
+      "grounding_en": "UFO-C information object; subkind of Assessment",
+      "grounding_pt": "objeto informacional UFO-C; subkind de Assessment",
+      "specializes": "Assessment"
+    },
+    {
+      "name": "EvidenceAssessment",
+      "label_en": "evidence assessment",
+      "label_pt": "avaliação de evidência",
+      "stereotype": "subkind",
+      "package": "evidence",
+      "definition_en": "Assessment of whether evidence items support, challenge or are irrelevant to a claim.",
+      "definition_pt": "Avaliação de se itens de evidência apoiam, contestam ou são irrelevantes para uma alegação.",
+      "dependency_en": "the assessed claim and the evidence weighed",
+      "dependency_pt": "a alegação avaliada e a evidência ponderada",
+      "grounding_en": "UFO-C information object; subkind of Assessment",
+      "grounding_pt": "objeto informacional UFO-C; subkind de Assessment",
+      "specializes": "Assessment"
+    },
+    {
+      "name": "AssessmentCriterion",
+      "label_en": "assessment criterion",
+      "label_pt": "critério de avaliação",
+      "stereotype": "subkind",
+      "package": "claim",
+      "definition_en": "Explicit rule an assessment applies to judge a claim; epistemic criteria judge whether the claim is well grounded, value criteria judge its worth.",
+      "definition_pt": "Regra explícita que uma avaliação aplica para julgar uma alegação; critérios epistêmicos julgam se a alegação é bem fundamentada, critérios de valor julgam seu mérito.",
+      "dependency_en": "specified normative meaning",
+      "dependency_pt": "significado normativo especificado",
+      "grounding_en": "UFO-C information object; subkind of AnalyticalRecord, whose identity it inherits",
+      "grounding_pt": "objeto informacional UFO-C; subkind de AnalyticalRecord, cuja identidade herda",
+      "specializes": "AnalyticalRecord"
+    },
+    {
+      "name": "EpistemicCriterion",
+      "label_en": "epistemic criterion",
+      "label_pt": "critério epistêmico",
+      "stereotype": "subkind",
+      "package": "claim",
+      "definition_en": "Criterion about knowledge: whether a claim is supported, coherent, plausible or well documented (textual evidence, source reliability, coherence with the work).",
+      "definition_pt": "Critério sobre conhecimento: se uma alegação é apoiada, coerente, plausível ou bem documentada (evidência textual, confiabilidade da fonte, coerência com a obra).",
+      "dependency_en": "inherits AssessmentCriterion identity",
+      "dependency_pt": "herda a identidade de AssessmentCriterion",
+      "grounding_en": "UFO-C normative information object (subkind of AssessmentCriterion)",
+      "grounding_pt": "objeto informacional normativo UFO-C (subkind de AssessmentCriterion)",
+      "specializes": "AssessmentCriterion"
+    },
+    {
+      "name": "ValueCriterion",
+      "label_en": "value criterion",
+      "label_pt": "critério de valor",
+      "stereotype": "subkind",
+      "package": "claim",
+      "definition_en": "Criterion about worth: whether a claim or reading is relevant, fair, original or ethically adequate, independently of being true.",
+      "definition_pt": "Critério sobre mérito: se uma alegação ou leitura é relevante, justa, original ou eticamente adequada, independentemente de ser verdadeira.",
+      "dependency_en": "inherits AssessmentCriterion identity",
+      "dependency_pt": "herda a identidade de AssessmentCriterion",
+      "grounding_en": "UFO-C normative information object (subkind of AssessmentCriterion)",
+      "grounding_pt": "objeto informacional normativo UFO-C (subkind de AssessmentCriterion)",
+      "specializes": "AssessmentCriterion"
+    },
+    {
+      "name": "Agent",
+      "label_en": "agent",
+      "label_pt": "agente",
+      "stereotype": "category",
+      "package": "agent",
+      "definition_en": "Anything that can act intentionally: a person or a collective. Agents are identified by IRIs of external vocabularies (Wikidata, ORCID, ISNI, FOAF, schema.org).",
+      "definition_pt": "Tudo o que pode agir intencionalmente: uma pessoa ou um coletivo. Agentes são identificados por IRIs de vocabulários externos (Wikidata, ORCID, ISNI, FOAF, schema.org).",
+      "dependency_en": "none of its own; identity from Person or Collective",
+      "dependency_pt": "nenhuma própria; identidade de Person ou Collective",
+      "grounding_en": "UFO-A rigid non-sortal (category) over persons and collectives; agents are identified by external IRIs; ARO declares only what OntoUML needs",
+      "grounding_pt": "não-sortal rígido UFO-A (category) sobre pessoas e coletivos; agentes são identificados por IRIs externos; a ARO declara só o que a OntoUML exige",
+      "abstract": true,
+      "alignments": {
+        "rdfs:seeAlso": [
+          "prov:Agent",
+          "foaf:Agent"
+        ]
+      }
+    },
+    {
+      "name": "Person",
+      "label_en": "person",
+      "label_pt": "pessoa",
+      "stereotype": "kind",
+      "package": "agent",
+      "definition_en": "Individual human agent (author, performer, analyst, researcher).",
+      "definition_pt": "Agente humano individual (autor, intérprete, analista, pesquisador).",
+      "dependency_en": "identity supplied by the person; ARO records only roles and contributions",
+      "dependency_pt": "identidade da própria pessoa; a ARO registra só papéis e contribuições",
+      "grounding_en": "UFO-A kind (substantial); agents are identified by external IRIs; ARO declares only what OntoUML needs",
+      "grounding_pt": "kind UFO-A (substancial); agentes são identificados por IRIs externos; a ARO declara só o que a OntoUML exige",
+      "specializes": "Agent",
+      "alignments": {
+        "rdfs:seeAlso": [
+          "foaf:Person",
+          "schema:Person"
+        ]
+      }
+    },
+    {
+      "name": "Collective",
+      "label_en": "collective",
+      "label_pt": "coletivo",
+      "stereotype": "collective",
+      "package": "agent",
+      "definition_en": "Group of agents acting as one: a band, a company, a research group, a film crew, a publisher.",
+      "definition_pt": "Grupo de agentes que age como um: banda, companhia, grupo de pesquisa, equipe de filmagem, editora.",
+      "dependency_en": "its members, under a unifying relation",
+      "dependency_pt": "seus membros, sob uma relação unificadora",
+      "grounding_en": "UFO-A collective; agents are identified by external IRIs; ARO declares only what OntoUML needs",
+      "grounding_pt": "coletivo UFO-A; agentes são identificados por IRIs externos; a ARO declara só o que a OntoUML exige",
+      "specializes": "Agent",
+      "alignments": {
+        "rdfs:seeAlso": [
+          "foaf:Group",
+          "schema:Organization",
+          "schema:MusicGroup"
+        ]
+      }
+    },
+    {
+      "name": "Analyst",
+      "label_en": "analyst",
+      "label_pt": "analista",
+      "stereotype": "roleMixin",
+      "package": "agent",
+      "definition_en": "Agent insofar as it takes part in an interpretive act (interprets, describes, assesses). Played by persons or collectives identified by external IRIs.",
+      "definition_pt": "Agente enquanto participa de um ato interpretativo (interpreta, descreve, avalia). Desempenhado por pessoas ou coletivos identificados por IRIs externos.",
+      "dependency_en": "relationally on participation in an InterpretiveAct; identity supplied by external kinds",
+      "dependency_pt": "relacionalmente da participação num InterpretiveAct; identidade fornecida por tipos externos",
+      "grounding_en": "UFO-A anti-rigid non-sortal (roleMixin) specialized by PersonAnalyst and CollectiveAnalyst",
+      "grounding_pt": "não-sortal anti-rígido UFO-A (roleMixin) especializado por PersonAnalyst e CollectiveAnalyst",
+      "alignments": {
+        "rdfs:seeAlso": [
+          "prov:Agent",
+          "foaf:Person",
+          "schema:Person"
+        ]
+      },
+      "specializes": "Agent"
+    },
+    {
+      "name": "CreativeAgent",
+      "label_en": "creative agent",
+      "label_pt": "agente criativo",
+      "stereotype": "roleMixin",
+      "package": "agent",
+      "definition_en": "Agent insofar as it contributes to a creative act (composes, performs, translates, directs...). Played by persons or collectives identified by external IRIs.",
+      "definition_pt": "Agente enquanto contribui para um ato criativo (compõe, interpreta, traduz, dirige...). Desempenhado por pessoas ou coletivos identificados por IRIs externos.",
+      "dependency_en": "relationally on a CreativeContribution; identity supplied by external kinds",
+      "dependency_pt": "relacionalmente de uma CreativeContribution; identidade fornecida por tipos externos",
+      "grounding_en": "UFO-A anti-rigid non-sortal (roleMixin) specialized by PersonCreator and CollectiveCreator",
+      "grounding_pt": "não-sortal anti-rígido UFO-A (roleMixin) especializado por PersonCreator e CollectiveCreator",
+      "alignments": {
+        "rdfs:seeAlso": [
+          "prov:Agent",
+          "foaf:Agent",
+          "schema:Person",
+          "schema:Organization"
+        ]
+      },
+      "specializes": "Agent"
+    },
+    {
+      "name": "PersonAnalyst",
+      "label_en": "person analyst",
+      "label_pt": "pessoa analista",
+      "stereotype": "role",
+      "package": "agent",
+      "definition_en": "A person while taking part in an interpretive act; defined as Person and Analyst.",
+      "definition_pt": "Pessoa enquanto participa de um ato interpretativo; definido como Person e Analyst.",
+      "dependency_en": "relationally on participation in an interpretive act",
+      "dependency_pt": "relacionalmente da participação em um ato interpretativo",
+      "grounding_en": "UFO-A anti-rigid sortal (role) of Person, specializing the roleMixin Analyst",
+      "grounding_pt": "sortal anti-rígido UFO-A (role) de Person, especializando o roleMixin Analyst",
+      "specializes": [
+        "Person",
+        "Analyst"
+      ]
+    },
+    {
+      "name": "CollectiveAnalyst",
+      "label_en": "collective analyst",
+      "label_pt": "coletivo analista",
+      "stereotype": "role",
+      "package": "agent",
+      "definition_en": "A collective while taking part in an interpretive act; defined as Collective and Analyst.",
+      "definition_pt": "Coletivo enquanto participa de um ato interpretativo; definido como Collective e Analyst.",
+      "dependency_en": "relationally on participation in an interpretive act",
+      "dependency_pt": "relacionalmente da participação em um ato interpretativo",
+      "grounding_en": "UFO-A anti-rigid sortal (role) of Collective, specializing the roleMixin Analyst",
+      "grounding_pt": "sortal anti-rígido UFO-A (role) de Collective, especializando o roleMixin Analyst",
+      "specializes": [
+        "Collective",
+        "Analyst"
+      ]
+    },
+    {
+      "name": "PersonCreator",
+      "label_en": "person creator",
+      "label_pt": "pessoa criadora",
+      "stereotype": "role",
+      "package": "agent",
+      "definition_en": "A person while taking part in a creative act; defined as Person and CreativeAgent.",
+      "definition_pt": "Pessoa enquanto participa de um ato criativo; definido como Person e CreativeAgent.",
+      "dependency_en": "relationally on participation in a creative act",
+      "dependency_pt": "relacionalmente da participação em um ato criativo",
+      "grounding_en": "UFO-A anti-rigid sortal (role) of Person, specializing the roleMixin CreativeAgent",
+      "grounding_pt": "sortal anti-rígido UFO-A (role) de Person, especializando o roleMixin CreativeAgent",
+      "specializes": [
+        "Person",
+        "CreativeAgent"
+      ]
+    },
+    {
+      "name": "CollectiveCreator",
+      "label_en": "collective creator",
+      "label_pt": "coletivo criador",
+      "stereotype": "role",
+      "package": "agent",
+      "definition_en": "A collective while taking part in a creative act; defined as Collective and CreativeAgent.",
+      "definition_pt": "Coletivo enquanto participa de um ato criativo; definido como Collective e CreativeAgent.",
+      "dependency_en": "relationally on participation in a creative act",
+      "dependency_pt": "relacionalmente da participação em um ato criativo",
+      "grounding_en": "UFO-A anti-rigid sortal (role) of Collective, specializing the roleMixin CreativeAgent",
+      "grounding_pt": "sortal anti-rígido UFO-A (role) de Collective, especializando o roleMixin CreativeAgent",
+      "specializes": [
+        "Collective",
+        "CreativeAgent"
+      ]
     },
     {
       "name": "InterpretationRecord",
       "label_en": "interpretation record",
       "label_pt": "registro de interpretação",
-      "stereotype": "kind",
+      "stereotype": "subkind",
       "package": "interpretation",
       "definition_en": "Persistent authored record of an interpretation of a selection.",
       "definition_pt": "Registro autoral persistente de uma interpretação de recorte.",
-      "dependency_en": "anchor selection; historical interpretive act",
-      "dependency_pt": "recorte de ancoragem; ato interpretativo histórico",
-      "grounding_en": "UFO-C information object; not an event",
-      "grounding_pt": "objeto informacional UFO-C; não é evento"
+      "dependency_en": "anchor selection; the interpretive act that produced it",
+      "dependency_pt": "recorte de ancoragem; o ato interpretativo que o produziu",
+      "grounding_en": "UFO-C information object; subkind of Claim (assessable, justifiable, citable, challengeable)",
+      "grounding_pt": "objeto informacional UFO-C; subkind de Claim (avaliável, justificável, citável, contestável)",
+      "specializes": "Claim",
+      "alignments": {
+        "rdfs:seeAlso": [
+          "oa:Annotation"
+        ]
+      }
     },
     {
       "name": "InterpretiveAct",
@@ -160,92 +553,26 @@
       "dependency_en": "participating agents and temporal occurrence",
       "dependency_pt": "agentes participantes e ocorrência temporal",
       "grounding_en": "UFO-B event; UFO-C intentional action",
-      "grounding_pt": "evento UFO-B; ação intencional UFO-C"
-    },
-    {
-      "name": "Analyst",
-      "label_en": "analyst",
-      "label_pt": "analista",
-      "stereotype": "roleMixin",
-      "package": "interpretation",
-      "definition_en": "Any human agent, identified in an external vocabulary, insofar as they interpret or assess. Agent identity is represented by the external vocabulary, not by ARO.",
-      "definition_pt": "Qualquer agente humano, identificado em vocabulário externo, na medida em que interpreta ou avalia. A identidade do agente é representada pelo vocabulário externo, não pela ARO.",
-      "dependency_en": "relationally on participation in an InterpretiveAct; identity supplied by external kinds",
-      "dependency_pt": "relacionalmente da participação num InterpretiveAct; identidade fornecida por tipos externos",
-      "grounding_en": "UFO-A anti-rigid non-sortal (roleMixin); agents are individuals of external ontologies",
-      "grounding_pt": "não-sortal anti-rígido UFO-A (roleMixin); agentes são indivíduos de ontologias externas",
+      "grounding_pt": "evento UFO-B; ação intencional UFO-C",
       "alignments": {
         "rdfs:seeAlso": [
-          "prov:Agent",
-          "foaf:Person",
-          "schema:Person"
+          "prov:Activity"
         ]
       }
-    },
-    {
-      "name": "InterpretiveJustification",
-      "label_en": "interpretive justification",
-      "label_pt": "justificativa interpretativa",
-      "stereotype": "kind",
-      "package": "interpretation",
-      "definition_en": "Recorded argument connecting premises to an interpretation or to a derivation claim.",
-      "definition_pt": "Argumento registrado que liga premissas a uma interpretação ou a uma alegação de derivação.",
-      "dependency_en": "target interpretation, articulated premises",
-      "dependency_pt": "interpretação ou alegação-alvo, premissas articuladas",
-      "grounding_en": "UFO-C information object",
-      "grounding_pt": "objeto informacional UFO-C"
-    },
-    {
-      "name": "InterpretationChallenge",
-      "label_en": "interpretation challenge",
-      "label_pt": "contestação de interpretação",
-      "stereotype": "kind",
-      "package": "interpretation",
-      "definition_en": "Recorded criticism or alternative reasoning about an interpretation.",
-      "definition_pt": "Crítica ou raciocínio alternativo registrado sobre interpretação.",
-      "dependency_en": "challenged interpretation and argument",
-      "dependency_pt": "interpretação contestada e argumento",
-      "grounding_en": "UFO-C information object",
-      "grounding_pt": "objeto informacional UFO-C"
-    },
-    {
-      "name": "InterpretationAssessment",
-      "label_en": "interpretation assessment",
-      "label_pt": "avaliação de interpretação",
-      "stereotype": "kind",
-      "package": "interpretation",
-      "definition_en": "Explicit epistemic or axiological judgment of an interpretation.",
-      "definition_pt": "Julgamento epistêmico ou axiológico explícito de interpretação.",
-      "dependency_en": "target and criteria",
-      "dependency_pt": "alvo e critérios",
-      "grounding_en": "UFO-C information object",
-      "grounding_pt": "objeto informacional UFO-C"
-    },
-    {
-      "name": "AssessmentCriterion",
-      "label_en": "assessment criterion",
-      "label_pt": "critério de avaliação",
-      "stereotype": "kind",
-      "package": "interpretation",
-      "definition_en": "Specified epistemic or value-based assessment rule.",
-      "definition_pt": "Regra especificada de avaliação epistêmica ou de valores.",
-      "dependency_en": "specified normative meaning",
-      "dependency_pt": "significado normativo especificado",
-      "grounding_en": "UFO-C normative/social information object",
-      "grounding_pt": "objeto informacional normativo/social UFO-C"
     },
     {
       "name": "DepictedElement",
       "label_en": "depicted element",
       "label_pt": "elemento representado",
-      "stereotype": "kind",
+      "stereotype": "subkind",
       "package": "representation",
       "definition_en": "Information-level representation of a referent in an artwork.",
       "definition_pt": "Representação informacional de um referente na obra.",
       "dependency_en": "representational context",
       "dependency_pt": "contexto representacional",
-      "grounding_en": "UFO-C representation; not a real-world entity",
-      "grounding_pt": "representação UFO-C; não é entidade do mundo real"
+      "grounding_en": "UFO-C representation (subkind of AnalyticalRecord); not a real-world entity",
+      "grounding_pt": "representação UFO-C (subkind de AnalyticalRecord); não é entidade do mundo real",
+      "specializes": "AnalyticalRecord"
     },
     {
       "name": "DepictedAgent",
@@ -265,14 +592,15 @@
       "name": "SituationDescription",
       "label_en": "situation description",
       "label_pt": "descrição de situação",
-      "stereotype": "kind",
+      "stereotype": "subkind",
       "package": "representation",
       "definition_en": "Recorded description of a represented situation.",
       "definition_pt": "Descrição registrada de situação representada.",
       "dependency_en": "interpretive support and conceptual content",
       "dependency_pt": "suporte interpretativo e conteúdo conceitual",
-      "grounding_en": "UFO-C information object, not gufo:Situation",
-      "grounding_pt": "objeto informacional UFO-C, não gufo:Situation"
+      "grounding_en": "UFO-C information object (subkind of AnalyticalRecord), not gufo:Situation",
+      "grounding_pt": "objeto informacional UFO-C (subkind de AnalyticalRecord), não gufo:Situation",
+      "specializes": "AnalyticalRecord"
     },
     {
       "name": "IntentionalStateDescription",
@@ -292,53 +620,57 @@
       "name": "SituationPattern",
       "label_en": "situation pattern",
       "label_pt": "padrão situacional",
-      "stereotype": "kind",
+      "stereotype": "subkind",
       "package": "pattern",
       "definition_en": "Reusable informational specification of situation conditions.",
       "definition_pt": "Especificação informacional reutilizável de condições situacionais.",
       "dependency_en": "defining conditions; not identical to universal",
       "dependency_pt": "condições definidoras; não idêntico a universal",
-      "grounding_en": "UFO-C information object",
-      "grounding_pt": "objeto informacional UFO-C"
+      "grounding_en": "UFO-C information object; subkind of AnalyticalRecord, whose identity it inherits",
+      "grounding_pt": "objeto informacional UFO-C; subkind de AnalyticalRecord, cuja identidade herda",
+      "specializes": "AnalyticalRecord"
     },
     {
       "name": "PatternCondition",
       "label_en": "pattern condition",
       "label_pt": "condição de padrão",
-      "stereotype": "kind",
+      "stereotype": "subkind",
       "package": "pattern",
       "definition_en": "Individuated mandatory or optional condition within a pattern.",
       "definition_pt": "Condição individualizada obrigatória ou opcional de um padrão.",
       "dependency_en": "host pattern and logical specification",
       "dependency_pt": "padrão hospedeiro e especificação lógica",
-      "grounding_en": "UFO-C information object",
-      "grounding_pt": "objeto informacional UFO-C"
+      "grounding_en": "UFO-C information object; subkind of AnalyticalRecord, whose identity it inherits",
+      "grounding_pt": "objeto informacional UFO-C; subkind de AnalyticalRecord, cuja identidade herda",
+      "specializes": "AnalyticalRecord"
     },
     {
       "name": "EmpiricalCase",
       "label_en": "empirical case",
       "label_pt": "caso empírico",
-      "stereotype": "kind",
+      "stereotype": "subkind",
       "package": "evidence",
       "definition_en": "Documented dossier about one real-world situation or occurrence.",
       "definition_pt": "Dossiê documentado sobre uma situação ou ocorrência real.",
       "dependency_en": "case description and empirical referent",
       "dependency_pt": "descrição do caso e referente empírico",
-      "grounding_en": "UFO-C information object",
-      "grounding_pt": "objeto informacional UFO-C"
+      "grounding_en": "UFO-C information object; subkind of AnalyticalRecord, whose identity it inherits",
+      "grounding_pt": "objeto informacional UFO-C; subkind de AnalyticalRecord, cuja identidade herda",
+      "specializes": "AnalyticalRecord"
     },
     {
       "name": "EmpiricalClaim",
       "label_en": "empirical claim",
       "label_pt": "afirmação empírica",
-      "stereotype": "kind",
+      "stereotype": "subkind",
       "package": "evidence",
       "definition_en": "Recorded testable claim about the empirical world.",
       "definition_pt": "Afirmação registrada e verificável acerca do mundo empírico.",
       "dependency_en": "claim content and intended empirical reference",
       "dependency_pt": "conteúdo da afirmação e referência empírica pretendida",
-      "grounding_en": "UFO-C information object",
-      "grounding_pt": "objeto informacional UFO-C"
+      "grounding_en": "UFO-C information object; subkind of Claim (assessable, justifiable, citable, challengeable)",
+      "grounding_pt": "objeto informacional UFO-C; subkind de Claim (avaliável, justificável, citável, contestável)",
+      "specializes": "Claim"
     },
     {
       "name": "ReferenceSource",
@@ -351,59 +683,55 @@
       "dependency_en": "source provenance; not tied to one interpretation",
       "dependency_pt": "proveniência da fonte; não vinculada a uma interpretação",
       "grounding_en": "UFO-C information object",
-      "grounding_pt": "objeto informacional UFO-C"
+      "grounding_pt": "objeto informacional UFO-C",
+      "alignments": {
+        "rdfs:seeAlso": [
+          "dcterms:BibliographicResource",
+          "schema:CreativeWork"
+        ]
+      }
     },
     {
       "name": "EvidenceItem",
       "label_en": "evidence item",
       "label_pt": "item de evidência",
-      "stereotype": "kind",
+      "stereotype": "subkind",
       "package": "evidence",
       "definition_en": "Extracted contextual assertion or observation from a reference source.",
       "definition_pt": "Afirmação ou observação contextualizada extraída de uma fonte.",
       "dependency_en": "reference source and observation content",
       "dependency_pt": "fonte de referência e conteúdo observado",
-      "grounding_en": "UFO-C information object",
-      "grounding_pt": "objeto informacional UFO-C"
+      "grounding_en": "UFO-C information object; subkind of AnalyticalRecord, whose identity it inherits",
+      "grounding_pt": "objeto informacional UFO-C; subkind de AnalyticalRecord, cuja identidade herda",
+      "specializes": "AnalyticalRecord"
     },
     {
       "name": "CorrespondenceClaim",
       "label_en": "correspondence claim",
       "label_pt": "alegação de correspondência",
-      "stereotype": "kind",
+      "stereotype": "subkind",
       "package": "evidence",
       "definition_en": "Contestable assertion of similarity, instantiation or explanatory relevance between pattern and empirical case.",
       "definition_pt": "Alegação contestável de similaridade, instanciação ou relevância explicativa entre padrão e caso empírico.",
       "dependency_en": "compared pattern/case and dimensions",
       "dependency_pt": "padrão/caso comparados e dimensões",
-      "grounding_en": "UFO-C information object; not UFO relator",
-      "grounding_pt": "objeto informacional UFO-C; não é relator UFO"
-    },
-    {
-      "name": "EvidenceAssessment",
-      "label_en": "evidence assessment",
-      "label_pt": "avaliação de evidência",
-      "stereotype": "kind",
-      "package": "evidence",
-      "definition_en": "Judgment whether evidence supports, challenges or is irrelevant to a specified claim.",
-      "definition_pt": "Julgamento de apoio, contestação ou irrelevância de evidência para afirmação específica.",
-      "dependency_en": "claim and evidence and criteria",
-      "dependency_pt": "afirmação, evidência e critérios",
-      "grounding_en": "UFO-C information object",
-      "grounding_pt": "objeto informacional UFO-C"
+      "grounding_en": "UFO-C information object; subkind of Claim; not a UFO relator",
+      "grounding_pt": "objeto informacional UFO-C; subkind de Claim; não é relator UFO",
+      "specializes": "Claim"
     },
     {
       "name": "ExplanationHypothesis",
       "label_en": "explanation hypothesis",
       "label_pt": "hipótese explicativa",
-      "stereotype": "kind",
+      "stereotype": "subkind",
       "package": "evidence",
       "definition_en": "Proposed mechanism or factors explaining a represented or observed phenomenon.",
       "definition_pt": "Mecanismo ou fatores propostos para explicar fenômeno representado ou observado.",
       "dependency_en": "explicit explanandum and explanatory content",
       "dependency_pt": "explanandum explícito e conteúdo explicativo",
-      "grounding_en": "UFO-C information object",
-      "grounding_pt": "objeto informacional UFO-C"
+      "grounding_en": "UFO-C information object; subkind of Claim (assessable, justifiable, citable, challengeable)",
+      "grounding_pt": "objeto informacional UFO-C; subkind de Claim (avaliável, justificável, citável, contestável)",
+      "specializes": "Claim"
     },
     {
       "name": "EmpiricalSituation",
@@ -435,34 +763,36 @@
       "name": "DerivationClaim",
       "label_en": "derivation claim",
       "label_pt": "alegação de derivação",
-      "stereotype": "kind",
+      "stereotype": "subkind",
       "package": "derivation",
-      "definition_en": "Contestable assertion, made by an agent, that one artistic entity (artwork, manifestation or selection) derives from another in specified ways. The derived entity is represented as a creation in its own right; legality and originality are outside the scope of the ontology.",
-      "definition_pt": "Alegação contestável, feita por um agente, de que uma entidade artística (obra, manifestação ou recorte) deriva de outra de modos especificados. A entidade derivada é representada como criação por direito próprio; legalidade e originalidade estão fora do escopo da ontologia.",
+      "definition_en": "Contestable assertion, made by an agent, that one artistic entity (artwork, expression, manifestation or selection) derives from another in specified ways. The derived entity is represented as a creation in its own right; legality and originality are outside the scope of the ontology.",
+      "definition_pt": "Alegação contestável, feita por um agente, de que uma entidade artística (obra, expressão, manifestação ou recorte) deriva de outra de modos especificados. A entidade derivada é representada como criação por direito próprio; legalidade e originalidade estão fora do escopo da ontologia.",
       "dependency_en": "exactly one source anchor and one derived anchor; typed by at least one derivation type",
       "dependency_pt": "exatamente uma âncora de origem e uma derivada; tipificada por ao menos um tipo de derivação",
-      "grounding_en": "UFO-C information object; not a UFO relator nor an asserted fact",
-      "grounding_pt": "objeto informacional UFO-C; nem relator UFO nem fato afirmado",
+      "grounding_en": "UFO-C information object; subkind of Claim; neither a UFO relator nor an asserted fact",
+      "grounding_pt": "objeto informacional UFO-C; subkind de Claim; nem relator UFO nem fato afirmado",
       "alignments": {
         "rdfs:seeAlso": [
           "prov:wasDerivedFrom",
           "schema:isBasedOn",
           "wdt:P144"
         ]
-      }
+      },
+      "specializes": "Claim"
     },
     {
       "name": "TransformationAspect",
       "label_en": "transformation aspect",
       "label_pt": "aspecto de transformação",
-      "stereotype": "kind",
+      "stereotype": "subkind",
       "package": "derivation",
       "definition_en": "Recorded statement of what happened to one artistic dimension in a derivation (retained, modified, added, removed or recontextualized).",
       "definition_pt": "Registro do que ocorreu com uma dimensão artística numa derivação (mantida, modificada, acrescentada, removida ou recontextualizada).",
       "dependency_en": "host derivation claim; one dimension and one operation",
       "dependency_pt": "alegação de derivação hospedeira; uma dimensão e uma operação",
-      "grounding_en": "UFO-C information object",
-      "grounding_pt": "objeto informacional UFO-C"
+      "grounding_en": "UFO-C information object; subkind of AnalyticalRecord, whose identity it inherits",
+      "grounding_pt": "objeto informacional UFO-C; subkind de AnalyticalRecord, cuja identidade herda",
+      "specializes": "AnalyticalRecord"
     },
     {
       "name": "CreativeAct",
@@ -470,31 +800,16 @@
       "label_pt": "ato criativo",
       "stereotype": "event",
       "package": "derivation",
-      "definition_en": "Intentional temporal activity that brings an artwork or manifestation into existence, including derivative ones.",
-      "definition_pt": "Atividade intencional temporal que dá origem a uma obra ou manifestação, inclusive derivadas.",
+      "definition_en": "Intentional temporal activity that brings an artistic entity (artwork, expression or manifestation) into existence, including derivative ones.",
+      "definition_pt": "Atividade intencional no tempo que faz existir uma entidade artística (obra, expressão ou manifestação), inclusive as derivadas.",
       "dependency_en": "participating agents and temporal occurrence",
       "dependency_pt": "agentes participantes e ocorrência temporal",
       "grounding_en": "UFO-B event; UFO-C intentional action",
-      "grounding_pt": "evento UFO-B; ação intencional UFO-C"
-    },
-    {
-      "name": "CreativeAgent",
-      "label_en": "creative agent",
-      "label_pt": "agente criativo",
-      "stereotype": "roleMixin",
-      "package": "derivation",
-      "definition_en": "Any agent, identified and described in an external vocabulary (PROV-O, FOAF, schema.org, Wikidata...), insofar as it contributes to a creative act. Agent identity is represented by the external vocabulary, not by ARO.",
-      "definition_pt": "Qualquer agente, identificado e descrito em vocabulário externo (PROV-O, FOAF, schema.org, Wikidata...), na medida em que contribui para um ato criativo. A identidade do agente é representada pelo vocabulário externo, não pela ARO.",
-      "dependency_en": "relationally on a CreativeContribution; identity supplied by external kinds",
-      "dependency_pt": "relacionalmente de uma CreativeContribution; identidade fornecida por tipos externos",
-      "grounding_en": "UFO-A anti-rigid non-sortal (roleMixin); agents are individuals of external ontologies",
-      "grounding_pt": "não-sortal anti-rígido UFO-A (roleMixin); agentes são indivíduos de ontologias externas",
+      "grounding_pt": "evento UFO-B; ação intencional UFO-C",
       "alignments": {
         "rdfs:seeAlso": [
-          "prov:Agent",
-          "foaf:Agent",
-          "schema:Person",
-          "schema:Organization"
+          "prov:Activity",
+          "lrmoo:F28_Expression_Creation"
         ]
       }
     },
@@ -506,10 +821,10 @@
       "package": "derivation",
       "definition_en": "Participation of one creative agent in one creative act under one or more roles.",
       "definition_pt": "Participação de um agente criativo num ato criativo sob um ou mais papéis.",
-      "dependency_en": "existentially on the act and the agent",
-      "dependency_pt": "existencialmente do ato e do agente",
-      "grounding_en": "UFO-A relator; role qualification via CreativeRole",
-      "grounding_pt": "relator UFO-A; papel qualificado via CreativeRole"
+      "dependency_en": "existentially on the contributing agent and on the artistic entity contributed to; founded by the creative act",
+      "dependency_pt": "existencialmente do agente que contribui e da entidade artística para a qual contribui; fundada pelo ato criativo",
+      "grounding_en": "UFO-A relator mediating an agent and an artistic entity; role qualification via CreativeRole",
+      "grounding_pt": "relator UFO-A que media um agente e uma entidade artística; papel qualificado via CreativeRole"
     },
     {
       "name": "DerivationType",
@@ -579,39 +894,102 @@
   ],
   "relations": [
     {
-      "name": "hasManifestation",
+      "name": "hasExpression",
       "source": "Artwork",
-      "target": "Manifestation",
+      "target": "Expression",
       "target_cardinality": "1..*",
       "source_cardinality": "1",
-      "description_en": "artwork realizes through manifestation",
-      "description_pt": "obra se realiza por manifestação",
-      "definition_en": "Links an artwork to a concrete expression, version or realization of it (a recording, an edition, a performance, a film cut). Use it to say through which manifestations the work exists.",
-      "definition_pt": "Liga uma obra a uma expressão, versão ou realização concreta dela (gravação, edição, apresentação, montagem de filme). Use para dizer por quais manifestações a obra existe."
+      "description_en": "artwork is realized through expression",
+      "description_pt": "obra se realiza por expressão",
+      "definition_en": "Links an artwork to a realization of it with its own content (a performance, a recording, a translation, an arrangement, a text version). Use it to say through which expressions the work exists.",
+      "definition_pt": "Liga uma obra a uma realização dela com conteúdo próprio (interpretação, gravação, tradução, arranjo, versão do texto). Use para dizer por quais expressões a obra existe.",
+      "inverse_of": "realizesArtwork",
+      "alignments": {
+        "rdfs:seeAlso": [
+          "lrmoo:R3_is_realised_in"
+        ]
+      }
     },
     {
       "name": "realizesArtwork",
-      "source": "Manifestation",
+      "source": "Expression",
       "target": "Artwork",
       "target_cardinality": "1",
       "source_cardinality": "1..*",
-      "description_en": "manifestation realizes artwork",
-      "description_pt": "manifestação realiza obra",
-      "definition_en": "Links a manifestation to the artwork it realizes; read from the manifestation's side, it states which work this recording, edition or performance is a version of.",
-      "definition_pt": "Liga uma manifestação à obra que ela realiza; lida do lado da manifestação, diz de qual obra esta gravação, edição ou apresentação é versão."
+      "description_en": "expression realizes artwork",
+      "description_pt": "expressão realiza obra",
+      "definition_en": "Links an expression to the artwork it realizes; read from the expression's side, it states which work this performance, recording, translation or version belongs to.",
+      "definition_pt": "Liga uma expressão à obra que ela realiza; lida do lado da expressão, diz a qual obra pertence esta interpretação, gravação, tradução ou versão.",
+      "inverse_of": "hasExpression",
+      "shacl": {
+        "minCount": 1,
+        "maxCount": 1
+      }
+    },
+    {
+      "name": "hasManifestation",
+      "source": "Expression",
+      "target": "Manifestation",
+      "target_cardinality": "0..*",
+      "source_cardinality": "1..*",
+      "description_en": "expression is embodied in manifestation",
+      "description_pt": "expressão se materializa em manifestação",
+      "definition_en": "Links an expression to a publication or carrier that embodies it (an album edition, a book edition, a broadcast, a digital release). Optional: record it when the edition matters.",
+      "definition_pt": "Liga uma expressão a uma publicação ou suporte que a materializa (edição de álbum, edição de livro, transmissão, lançamento digital). Opcional: registre quando a edição importa.",
+      "inverse_of": "embodiesExpression",
+      "alignments": {
+        "rdfs:seeAlso": [
+          "lrmoo:R4_embodies"
+        ]
+      }
+    },
+    {
+      "name": "embodiesExpression",
+      "source": "Manifestation",
+      "target": "Expression",
+      "target_cardinality": "1..*",
+      "source_cardinality": "0..*",
+      "description_en": "manifestation embodies expression",
+      "description_pt": "manifestação materializa expressão",
+      "definition_en": "Links a manifestation to the expressions it embodies; an album edition embodies the recordings on it, a book edition the text version it prints.",
+      "definition_pt": "Liga uma manifestação às expressões que ela materializa; uma edição de álbum materializa as gravações que contém, uma edição de livro a versão do texto que imprime.",
+      "inverse_of": "hasManifestation",
+      "shacl": {
+        "minCount": 1
+      },
+      "alignments": {
+        "rdfs:seeAlso": [
+          "lrmoo:R4_embodies"
+        ]
+      }
     },
     {
       "name": "selectsFrom",
       "source": "Selection",
-      "target": "Manifestation",
+      "target": "Expression",
       "target_cardinality": "1",
       "source_cardinality": "0..*",
-      "description_en": "selection references manifestation",
-      "description_pt": "recorte referencia manifestação",
-      "definition_en": "Links a selection to the manifestation it is taken from. Every selection is cut from exactly one manifestation, so that its location (lines, seconds, region) is meaningful.",
-      "definition_pt": "Liga um recorte à manifestação de onde ele é tirado. Todo recorte vem de exatamente uma manifestação, para que sua localização (linhas, segundos, região) tenha sentido.",
+      "description_en": "selection references expression",
+      "description_pt": "recorte referencia expressão",
+      "definition_en": "Links a selection to the expression it is taken from. Every selection is cut from exactly one expression, so that its location (lines, seconds, region) is meaningful.",
+      "definition_pt": "Liga um recorte à expressão de onde ele é tirado. Todo recorte vem de exatamente uma expressão, para que sua localização (linhas, segundos, região) tenha sentido.",
       "shacl": {
-        "minCount": 1
+        "minCount": 1,
+        "maxCount": 1
+      }
+    },
+    {
+      "name": "locatedInManifestation",
+      "source": "Selection",
+      "target": "Manifestation",
+      "target_cardinality": "0..1",
+      "source_cardinality": "0..*",
+      "description_en": "selection located in manifestation",
+      "description_pt": "recorte localizado em manifestação",
+      "definition_en": "Links a selection to the specific manifestation its selectors refer to, when the location depends on the edition (a page of a given book edition, a timestamp in a given release).",
+      "definition_pt": "Liga um recorte à manifestação específica a que seus seletores se referem, quando a localização depende da edição (página de uma edição do livro, minutagem de um lançamento).",
+      "shacl": {
+        "maxCount": 1
       }
     },
     {
@@ -637,6 +1015,115 @@
       "definition_pt": "Liga uma unidade de análise aos recortes que ela agrupa, para que vários trechos sejam analisados juntos como uma unidade (uma cena, um refrão, um motivo)."
     },
     {
+      "name": "producedByAct",
+      "source": "AnalyticalRecord",
+      "target": "InterpretiveAct",
+      "target_cardinality": "0..1",
+      "source_cardinality": "0..*",
+      "description_en": "act produces record",
+      "description_pt": "ato produz registro",
+      "definition_en": "Links an analytical record (a claim, an assessment, a description...) to the analytical act that produced it, recording who made it, and when, as a historical fact distinct from its content. Required for interpretation records.",
+      "definition_pt": "Liga um registro analítico (alegação, avaliação, descrição...) ao ato analítico que o produziu, registrando quem o fez, e quando, como fato histórico distinto de seu conteúdo. Obrigatória para registros de interpretação.",
+      "shacl": {
+        "maxCount": 1
+      },
+      "ontouml": "creation",
+      "shacl_by_class": {
+        "InterpretationRecord": {
+          "minCount": 1
+        }
+      },
+      "alignments": {
+        "rdfs:seeAlso": [
+          "prov:wasGeneratedBy"
+        ]
+      }
+    },
+    {
+      "name": "hasJustification",
+      "source": "Claim",
+      "target": "Justification",
+      "target_cardinality": "0..*",
+      "source_cardinality": "1",
+      "description_en": "claim supported by justification",
+      "description_pt": "alegação sustentada por justificativa",
+      "definition_en": "Links a claim to the argument that supports it: the premises and reasoning that lead to an interpretation, a derivation, a correspondence or a hypothesis.",
+      "definition_pt": "Liga uma alegação ao argumento que a sustenta: as premissas e o raciocínio que levam a uma interpretação, derivação, correspondência ou hipótese."
+    },
+    {
+      "name": "citesSource",
+      "source": "AnalyticalRecord",
+      "target": "ReferenceSource",
+      "target_cardinality": "0..*",
+      "source_cardinality": "0..*",
+      "description_en": "record cites source",
+      "description_pt": "registro cita fonte",
+      "definition_en": "Links any analytical record (a claim, a case, a description, a pattern) to a reference source it relies on or that documents it (criticism, interview, news, study, credits).",
+      "definition_pt": "Liga qualquer registro analítico (alegação, caso, descrição, padrão) a uma fonte de referência em que se apoia ou que o documenta (crítica, entrevista, notícia, estudo, créditos).",
+      "alignments": {
+        "rdfs:seeAlso": [
+          "dcterms:references"
+        ]
+      }
+    },
+    {
+      "name": "challenges",
+      "source": "Challenge",
+      "target": "Claim",
+      "target_cardinality": "1",
+      "source_cardinality": "0..*",
+      "description_en": "challenge targets claim",
+      "description_pt": "contestação visa alegação",
+      "definition_en": "Links a challenge to the claim it criticizes or offers an alternative to, so that disagreement is recorded rather than erased.",
+      "definition_pt": "Liga uma contestação à alegação que ela critica ou para a qual propõe alternativa, de modo que a divergência fique registrada, e não apagada.",
+      "shacl": {
+        "minCount": 1,
+        "maxCount": 1
+      }
+    },
+    {
+      "name": "assessesClaim",
+      "source": "Assessment",
+      "target": "Claim",
+      "target_cardinality": "1..*",
+      "source_cardinality": "0..*",
+      "description_en": "assessment judges claims",
+      "description_pt": "avaliação julga alegações",
+      "definition_en": "Links an assessment to the claims it judges: an interpretation, a derivation, a correspondence, an empirical claim, a hypothesis or a challenge. Usually one; several when the same evidence bears on closely related claims (e.g. an empirical claim and the correspondence that relies on it).",
+      "definition_pt": "Liga uma avaliação às alegações que ela julga: interpretação, derivação, correspondência, afirmação empírica, hipótese ou contestação. Em geral uma; várias quando a mesma evidência incide sobre alegações intimamente relacionadas (ex.: uma afirmação empírica e a correspondência que nela se apoia).",
+      "shacl": {
+        "minCount": 1
+      }
+    },
+    {
+      "name": "usesCriterion",
+      "source": "CriteriaAssessment",
+      "target": "AssessmentCriterion",
+      "target_cardinality": "1..*",
+      "source_cardinality": "0..*",
+      "description_en": "assessment follows criteria",
+      "description_pt": "avaliação usa critérios",
+      "definition_en": "Links a criteria assessment to the explicit criteria it applies, so that the basis of the judgment can be inspected and compared.",
+      "definition_pt": "Liga uma avaliação por critérios aos critérios explícitos que ela aplica, para que a base do julgamento possa ser examinada e comparada.",
+      "shacl": {
+        "minCount": 1
+      }
+    },
+    {
+      "name": "assessesEvidence",
+      "source": "EvidenceAssessment",
+      "target": "EvidenceItem",
+      "target_cardinality": "1..*",
+      "source_cardinality": "0..*",
+      "description_en": "assessment considers evidence",
+      "description_pt": "avaliação considera evidência",
+      "definition_en": "Links an evidence assessment to the evidence items it weighs; every assessment considers at least one item.",
+      "definition_pt": "Liga uma avaliação de evidência aos itens de evidência que ela pondera; toda avaliação considera pelo menos um item.",
+      "shacl": {
+        "minCount": 1
+      }
+    },
+    {
       "name": "hasPrimarySelection",
       "source": "InterpretationRecord",
       "target": "Selection",
@@ -649,6 +1136,11 @@
       "shacl": {
         "minCount": 1,
         "maxCount": 1
+      },
+      "alignments": {
+        "rdfs:seeAlso": [
+          "oa:hasTarget"
+        ]
       }
     },
     {
@@ -661,22 +1153,6 @@
       "description_pt": "interpretação usa recorte de apoio",
       "definition_en": "Links an interpretation record to further selections cited in its support, besides the primary one (other excerpts of the same or other works).",
       "definition_pt": "Liga um registro de interpretação a outros recortes citados em seu apoio, além do principal (outros trechos da mesma obra ou de outras)."
-    },
-    {
-      "name": "producedByAct",
-      "source": "InterpretationRecord",
-      "target": "InterpretiveAct",
-      "target_cardinality": "1",
-      "source_cardinality": "0..*",
-      "description_en": "interpretive act historically produces record",
-      "description_pt": "ato produz registro",
-      "definition_en": "Links an interpretation record to the interpretive act that produced it, recording who interpreted, and when, as a historical fact distinct from the content of the interpretation.",
-      "definition_pt": "Liga um registro de interpretação ao ato interpretativo que o produziu, registrando quem interpretou, e quando, como fato histórico distinto do conteúdo da interpretação.",
-      "shacl": {
-        "minCount": 1,
-        "maxCount": 1
-      },
-      "ontouml": "creation"
     },
     {
       "name": "hasParticipant",
@@ -692,51 +1168,12 @@
         "minCount": 1,
         "nodeKind": "IRI"
       },
-      "ontouml": "participation"
-    },
-    {
-      "name": "hasJustification",
-      "source": "InterpretationRecord",
-      "target": "InterpretiveJustification",
-      "target_cardinality": "0..*",
-      "source_cardinality": "1",
-      "description_en": "interpretation supported by argument",
-      "description_pt": "interpretação tem fundamentação",
-      "definition_en": "Links an interpretation record to the argument that supports it: the premises and reasoning that lead from the excerpt to the interpretation.",
-      "definition_pt": "Liga um registro de interpretação ao argumento que o sustenta: as premissas e o raciocínio que levam do trecho à interpretação."
-    },
-    {
-      "name": "challenges",
-      "source": "InterpretationChallenge",
-      "target": "InterpretationRecord",
-      "target_cardinality": "1",
-      "source_cardinality": "0..*",
-      "description_en": "challenge targets interpretation",
-      "description_pt": "contestação questiona interpretação",
-      "definition_en": "Links a challenge to the interpretation record it criticizes or offers an alternative to, so that disagreement is recorded rather than erased.",
-      "definition_pt": "Liga uma contestação ao registro de interpretação que ela critica ou para o qual propõe alternativa, de modo que a divergência fique registrada, e não apagada."
-    },
-    {
-      "name": "assessesInterpretation",
-      "source": "InterpretationAssessment",
-      "target": "InterpretationRecord",
-      "target_cardinality": "1",
-      "source_cardinality": "0..*",
-      "description_en": "assessment targets interpretation",
-      "description_pt": "avaliação incide sobre interpretação",
-      "definition_en": "Links an interpretation assessment to the interpretation record it judges (plausibility, coherence, relevance...).",
-      "definition_pt": "Liga uma avaliação de interpretação ao registro de interpretação que ela julga (plausibilidade, coerência, relevância...)."
-    },
-    {
-      "name": "usesCriterion",
-      "source": "InterpretationAssessment",
-      "target": "AssessmentCriterion",
-      "target_cardinality": "1..*",
-      "source_cardinality": "0..*",
-      "description_en": "assessment follows criteria",
-      "description_pt": "avaliação usa critérios",
-      "definition_en": "Links an interpretation assessment to the explicit criteria it applies, so that the basis of the judgment can be inspected and compared.",
-      "definition_pt": "Liga uma avaliação de interpretação aos critérios explícitos que ela aplica, para que a base do julgamento possa ser examinada e comparada."
+      "ontouml": "participation",
+      "alignments": {
+        "rdfs:seeAlso": [
+          "prov:wasAssociatedWith"
+        ]
+      }
     },
     {
       "name": "describesSituation",
@@ -748,6 +1185,17 @@
       "description_pt": "interpretação descreve situação",
       "definition_en": "Links an interpretation record to the descriptions of represented situations it yields: what, according to the interpretation, happens in the excerpt.",
       "definition_pt": "Liga um registro de interpretação às descrições de situações representadas que ele produz: o que, segundo a interpretação, acontece no trecho."
+    },
+    {
+      "name": "supportsInterpretation",
+      "source": "InterpretationRecord",
+      "target": "InterpretationRecord",
+      "target_cardinality": "0..*",
+      "source_cardinality": "0..*",
+      "description_en": "interpretation supports another",
+      "description_pt": "interpretação apoia outra",
+      "definition_en": "Links an interpretation record to another interpretation that it supports, building chains of interpretations.",
+      "definition_pt": "Liga um registro de interpretação a outra interpretação que ele apoia, formando cadeias de interpretações."
     },
     {
       "name": "mentionsDepictedElement",
@@ -853,75 +1301,6 @@
       }
     },
     {
-      "name": "supportsClaim",
-      "source": "EvidenceAssessment",
-      "target": "EmpiricalClaim",
-      "target_cardinality": "0..1",
-      "source_cardinality": "0..*",
-      "description_en": "assessment evaluates claim",
-      "description_pt": "avaliação examina afirmação",
-      "definition_en": "Links an evidence assessment to the empirical claim whose support it evaluates.",
-      "definition_pt": "Liga uma avaliação de evidência à afirmação empírica cujo apoio ela avalia."
-    },
-    {
-      "name": "assessesCorrespondence",
-      "source": "EvidenceAssessment",
-      "target": "CorrespondenceClaim",
-      "target_cardinality": "0..1",
-      "source_cardinality": "0..*",
-      "description_en": "assessment evaluates correspondence",
-      "description_pt": "avaliação examina correspondência",
-      "definition_en": "Links an evidence assessment to the correspondence claim (pattern ↔ case) whose support it evaluates.",
-      "definition_pt": "Liga uma avaliação de evidência à alegação de correspondência (padrão ↔ caso) cujo apoio ela avalia."
-    },
-    {
-      "name": "assessesEvidence",
-      "source": "EvidenceAssessment",
-      "target": "EvidenceItem",
-      "target_cardinality": "1..*",
-      "source_cardinality": "0..*",
-      "description_en": "assessment considers evidence",
-      "description_pt": "avaliação considera evidência",
-      "definition_en": "Links an evidence assessment to the evidence items it weighs; every assessment considers at least one item.",
-      "definition_pt": "Liga uma avaliação de evidência aos itens de evidência que ela pondera; toda avaliação considera pelo menos um item.",
-      "shacl": {
-        "minCount": 1
-      }
-    },
-    {
-      "name": "citesSource",
-      "source": "InterpretationRecord",
-      "target": "ReferenceSource",
-      "target_cardinality": "0..*",
-      "source_cardinality": "0..*",
-      "description_en": "interpretation directly cites source (optional)",
-      "description_pt": "interpretação cita fonte",
-      "definition_en": "Links an interpretation record directly to a reference source it relies on (criticism, interview, study), when no separate evidence item is recorded.",
-      "definition_pt": "Liga um registro de interpretação diretamente a uma fonte de referência em que se apoia (crítica, entrevista, estudo), quando não se registra um item de evidência separado."
-    },
-    {
-      "name": "referencesSource",
-      "source": "CorrespondenceClaim",
-      "target": "ReferenceSource",
-      "target_cardinality": "0..*",
-      "source_cardinality": "0..*",
-      "description_en": "correspondence directly cites source",
-      "description_pt": "correspondência cita fonte",
-      "definition_en": "Links a correspondence claim directly to a reference source it relies on.",
-      "definition_pt": "Liga uma alegação de correspondência diretamente a uma fonte de referência em que se apoia."
-    },
-    {
-      "name": "caseHasReference",
-      "source": "EmpiricalCase",
-      "target": "ReferenceSource",
-      "target_cardinality": "0..*",
-      "source_cardinality": "0..*",
-      "description_en": "case cites sources",
-      "description_pt": "caso cita fontes",
-      "definition_en": "Links an empirical case to the reference sources that document it (news, reports, studies, testimonies).",
-      "definition_pt": "Liga um caso empírico às fontes de referência que o documentam (notícias, relatórios, estudos, depoimentos)."
-    },
-    {
       "name": "explainsPattern",
       "source": "ExplanationHypothesis",
       "target": "SituationPattern",
@@ -933,30 +1312,15 @@
       "definition_pt": "Liga uma hipótese explicativa ao padrão situacional que ela se propõe explicar (mecanismos ou fatores por trás da configuração recorrente)."
     },
     {
-      "name": "supportsInterpretation",
-      "source": "InterpretationRecord",
-      "target": "InterpretationRecord",
-      "target_cardinality": "0..*",
-      "source_cardinality": "0..*",
-      "description_en": "interpretation supports another",
-      "description_pt": "interpretação apoia outra",
-      "definition_en": "Links an interpretation record to another interpretation that it supports, building chains of interpretations.",
-      "definition_pt": "Liga um registro de interpretação a outra interpretação que ele apoia, formando cadeias de interpretações."
-    },
-    {
       "name": "hasSourceAnchor",
       "source": "DerivationClaim",
-      "target": [
-        "Artwork",
-        "Manifestation",
-        "Selection"
-      ],
+      "target": "ArtisticEntity",
       "target_cardinality": "1",
       "source_cardinality": "0..*",
       "description_en": "claim names the source entity",
       "description_pt": "alegação indica entidade de origem",
-      "definition_en": "Links a derivation claim to the entity the derivation starts from (artwork, manifestation or selection): the source side of the claim.",
-      "definition_pt": "Liga uma alegação de derivação à entidade de onde a derivação parte (obra, manifestação ou recorte): o lado de origem da alegação.",
+      "definition_en": "Links a derivation claim to the entity the derivation starts from (any artistic entity: artwork, expression, manifestation or selection): the source side of the claim.",
+      "definition_pt": "Liga uma alegação de derivação à entidade de onde a derivação parte (qualquer entidade artística: obra, expressão, manifestação ou recorte): o lado de origem da alegação.",
       "shacl": {
         "minCount": 1,
         "maxCount": 1
@@ -965,17 +1329,13 @@
     {
       "name": "hasDerivedAnchor",
       "source": "DerivationClaim",
-      "target": [
-        "Artwork",
-        "Manifestation",
-        "Selection"
-      ],
+      "target": "ArtisticEntity",
       "target_cardinality": "1",
       "source_cardinality": "0..*",
       "description_en": "claim names the derived entity",
       "description_pt": "alegação indica entidade derivada",
-      "definition_en": "Links a derivation claim to the entity said to derive from the source (artwork, manifestation or selection): the derived side of the claim. It must differ from the source anchor.",
-      "definition_pt": "Liga uma alegação de derivação à entidade que se diz derivar da origem (obra, manifestação ou recorte): o lado derivado da alegação. Deve ser diferente da âncora de origem.",
+      "definition_en": "Links a derivation claim to the entity said to derive from the source (any artistic entity): the derived side of the claim. It must differ from the source anchor.",
+      "definition_pt": "Liga uma alegação de derivação à entidade que se diz derivar da origem (qualquer entidade artística): o lado derivado da alegação. Deve ser diferente da âncora de origem.",
       "shacl": {
         "minCount": 1,
         "maxCount": 1
@@ -1091,17 +1451,6 @@
       "definition_pt": "Liga um aspecto de transformação a um padrão situacional que ele afeta, quando a derivação mantém, altera ou desloca uma situação representada."
     },
     {
-      "name": "derivationJustifiedBy",
-      "source": "DerivationClaim",
-      "target": "InterpretiveJustification",
-      "target_cardinality": "0..*",
-      "source_cardinality": "0..*",
-      "description_en": "derivation claim explained by argument",
-      "description_pt": "alegação de derivação explicada por argumento",
-      "definition_en": "Links a derivation claim to the argument that explains why the derivation is asserted (similarities found, documented intent, credits).",
-      "definition_pt": "Liga uma alegação de derivação ao argumento que explica por que a derivação é afirmada (semelhanças encontradas, intenção documentada, créditos)."
-    },
-    {
       "name": "derivationRealizedBy",
       "source": "DerivationClaim",
       "target": "CreativeAct",
@@ -1113,52 +1462,15 @@
       "definition_pt": "Liga uma alegação de derivação ao ato criativo que realizou a derivação (a gravação, escrita ou adaptação que produziu a entidade derivada)."
     },
     {
-      "name": "claimProducedByAct",
-      "source": "DerivationClaim",
-      "target": "InterpretiveAct",
-      "target_cardinality": "0..1",
-      "source_cardinality": "0..*",
-      "description_en": "analytical act that recorded the claim",
-      "description_pt": "ato analítico que registrou a alegação",
-      "definition_en": "Links a derivation claim to the analytical act that recorded it, so that the claim has an author and a date like any interpretation.",
-      "definition_pt": "Liga uma alegação de derivação ao ato analítico que a registrou, para que a alegação tenha autor e data como qualquer interpretação.",
-      "ontouml": "creation"
-    },
-    {
-      "name": "derivationReferencesSource",
-      "source": "DerivationClaim",
-      "target": "ReferenceSource",
-      "target_cardinality": "0..*",
-      "source_cardinality": "0..*",
-      "description_en": "derivation claim cites source",
-      "description_pt": "alegação de derivação cita fonte",
-      "definition_en": "Links a derivation claim to the reference sources that document the derivation (credits, interviews, liner notes, studies).",
-      "definition_pt": "Liga uma alegação de derivação às fontes de referência que documentam a derivação (créditos, entrevistas, encartes, estudos)."
-    },
-    {
-      "name": "assessesDerivation",
-      "source": "EvidenceAssessment",
-      "target": "DerivationClaim",
-      "target_cardinality": "0..1",
-      "source_cardinality": "0..*",
-      "description_en": "assessment evaluates derivation claim",
-      "description_pt": "avaliação examina alegação de derivação",
-      "definition_en": "Links an evidence assessment to the derivation claim whose support it evaluates.",
-      "definition_pt": "Liga uma avaliação de evidência à alegação de derivação cujo apoio ela avalia."
-    },
-    {
       "name": "producesCreation",
       "source": "CreativeAct",
-      "target": [
-        "Artwork",
-        "Manifestation"
-      ],
+      "target": "ArtisticEntity",
       "target_cardinality": "1..*",
       "source_cardinality": "0..*",
-      "description_en": "act brings about artwork or manifestation",
-      "description_pt": "ato origina obra ou manifestação",
-      "definition_en": "Links a creative act to the artworks or manifestations it brings into existence, including derivative ones.",
-      "definition_pt": "Liga um ato criativo às obras ou manifestações que ele faz existir, inclusive as derivadas.",
+      "description_en": "act brings about artistic entity",
+      "description_pt": "ato faz surgir entidade artística",
+      "definition_en": "Links a creative act to the artistic entities it brings into existence (artworks, expressions, manifestations), including derivative ones.",
+      "definition_pt": "Liga um ato criativo às entidades artísticas que ele faz existir (obras, expressões, manifestações), inclusive as derivadas.",
       "shacl": {
         "minCount": 1
       },
@@ -1192,6 +1504,21 @@
         "nodeKind": "IRI"
       },
       "ontouml": "mediation"
+    },
+    {
+      "name": "contributionTo",
+      "source": "CreativeContribution",
+      "target": "ArtisticEntity",
+      "target_cardinality": "1..*",
+      "source_cardinality": "0..*",
+      "description_en": "contribution is to artistic entity",
+      "description_pt": "contribuição é para entidade artística",
+      "definition_en": "Links a creative contribution to the artistic entities the agent contributed to (the work, the recording, the edition). With contributionBy, it gives the relator its two mediated ends.",
+      "definition_pt": "Liga uma contribuição criativa às entidades artísticas para as quais o agente contribuiu (a obra, a gravação, a edição). Com contributionBy, dá ao relator suas duas pontas mediadas.",
+      "ontouml": "mediation",
+      "shacl": {
+        "minCount": 1
+      }
     },
     {
       "name": "contributionRole",
@@ -1315,6 +1642,69 @@
       "comment_pt": "Extensão livre do reaproveitamento (ex. \"loop de 4 segundos\", \"enredo inteiro\"); marcada por idioma.",
       "shacl": {
         "datatype": "rdf:langString"
+      }
+    },
+    {
+      "name": "startDate",
+      "label_en": "start date",
+      "label_pt": "data de início",
+      "range": "rdfs:Literal",
+      "domain": [
+        "InterpretiveAct",
+        "CreativeAct",
+        "EmpiricalEvent",
+        "EmpiricalSituation"
+      ],
+      "comment_en": "When an act, event or situation began (or happened, if it has no duration). Year, year-month, date or date-time.",
+      "comment_pt": "Quando um ato, evento ou situação começou (ou aconteceu, se não tem duração). Ano, ano-mês, data ou data-hora.",
+      "shacl": {
+        "datatypes": [
+          "xsd:gYear",
+          "xsd:gYearMonth",
+          "xsd:date",
+          "xsd:dateTime"
+        ]
+      }
+    },
+    {
+      "name": "endDate",
+      "label_en": "end date",
+      "label_pt": "data de término",
+      "range": "rdfs:Literal",
+      "domain": [
+        "InterpretiveAct",
+        "CreativeAct",
+        "EmpiricalEvent",
+        "EmpiricalSituation"
+      ],
+      "comment_en": "When an act, event or situation ended. Year, year-month, date or date-time.",
+      "comment_pt": "Quando um ato, evento ou situação terminou. Ano, ano-mês, data ou data-hora.",
+      "shacl": {
+        "datatypes": [
+          "xsd:gYear",
+          "xsd:gYearMonth",
+          "xsd:date",
+          "xsd:dateTime"
+        ]
+      }
+    },
+    {
+      "name": "assessmentOutcome",
+      "label_en": "assessment outcome",
+      "label_pt": "resultado da avaliação",
+      "range": "string",
+      "domain": "Assessment",
+      "comment_en": "What the assessment concludes about the claim: supports, partiallySupports, challenges, inconclusive or irrelevant. It records the assessor's judgment, not the truth of the claim.",
+      "comment_pt": "O que a avaliação conclui sobre a alegação: supports (apoia), partiallySupports (apoia em parte), challenges (contesta), inconclusive (inconclusiva) ou irrelevant (irrelevante). Registra o julgamento de quem avalia, não a verdade da alegação.",
+      "shacl": {
+        "in": [
+          "supports",
+          "partiallySupports",
+          "challenges",
+          "inconclusive",
+          "irrelevant"
+        ],
+        "maxCount": 1
       }
     }
   ],
@@ -2339,9 +2729,9 @@
     {
       "name": "DerivationAnchorKindConstraint",
       "target": "DerivationClaim",
-      "select": "SELECT $this ?value WHERE { $this aro:hasSourceAnchor|aro:hasDerivedAnchor ?value . FILTER NOT EXISTS { ?value a ?t . FILTER(?t IN (aro:Artwork, aro:Manifestation, aro:Selection)) } }",
-      "message_en": "Derivation anchors must be an Artwork, Manifestation or Selection.",
-      "message_pt": "As âncoras da derivação devem ser Artwork, Manifestation ou Selection."
+      "select": "SELECT $this ?value WHERE { $this aro:hasSourceAnchor|aro:hasDerivedAnchor ?value . FILTER NOT EXISTS { ?value a ?t . FILTER(?t IN (aro:Artwork, aro:Expression, aro:Manifestation, aro:Selection)) } }",
+      "message_en": "Derivation anchors must be an artistic entity: Artwork, Expression, Manifestation or Selection.",
+      "message_pt": "As âncoras da derivação devem ser uma entidade artística: Artwork, Expression, Manifestation ou Selection."
     },
     {
       "name": "DerivationDistinctAnchorsConstraint",
@@ -2349,16 +2739,32 @@
       "select": "SELECT $this ?value WHERE { $this aro:hasSourceAnchor ?value ; aro:hasDerivedAnchor ?value . }",
       "message_en": "Source and derived anchors must differ.",
       "message_pt": "As âncoras de origem e derivada devem ser diferentes."
+    },
+    {
+      "name": "CreationNotSelectionConstraint",
+      "target": "CreativeAct",
+      "select": "SELECT $this ?value WHERE { $this aro:producesCreation ?value . ?value a aro:Selection . }",
+      "message_en": "A creative act produces artworks, expressions or manifestations, not selections.",
+      "message_pt": "Um ato criativo produz obras, expressões ou manifestações, não recortes."
+    },
+    {
+      "name": "AssessmentGroundsConstraint",
+      "target": "EvidenceAssessment",
+      "select": "SELECT $this WHERE { FILTER NOT EXISTS { $this aro:assessesEvidence ?e } }",
+      "message_en": "An evidence assessment must weigh at least one evidence item.",
+      "message_pt": "Uma avaliação de evidência deve ponderar ao menos um item de evidência."
     }
   ],
   "module_diagram": {
     "relations": [
-      "realizesArtwork",
+      "hasExpression",
       "selectsFrom",
       "hasPrimarySelection",
       "producedByAct",
       "hasParticipant",
       "hasJustification",
+      "citesSource",
+      "assessesClaim",
       "describesSituation",
       "mentionsDepictedElement",
       "generalizesAs",
@@ -2366,21 +2772,17 @@
       "assertsPattern",
       "assertsCase",
       "caseAboutSituation",
-      "caseHasReference",
       "derivedFromSource",
       "assessesEvidence",
-      "assessesCorrespondence",
       "explainsPattern",
       "hasSourceAnchor",
-      "hasDerivedAnchor",
       "hasTransformation",
       "aspectConcernsPattern",
-      "derivationJustifiedBy",
       "derivationRealizedBy",
       "producesCreation",
       "hasContribution",
       "contributionBy",
-      "assessesDerivation"
+      "contributionTo"
     ]
   }
 }

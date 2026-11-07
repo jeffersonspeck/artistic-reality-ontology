@@ -26,18 +26,20 @@ aro:isRequiredCondition a owl:DatatypeProperty ;
 aro:SituationPattern a owl:Class ;
     rdfs:label "situation pattern"@en,
         "padrão situacional"@pt-BR ;
-    rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-C information object; dependency: defining conditions; not identical to universal"@en,
-        "Estereótipo OntoUML (provisório): kind; fundamentação: objeto informacional UFO-C; dependência: condições definidoras; não idêntico a universal"@pt-BR ;
+    rdfs:comment "OntoUML stereotype (provisional): subkind; foundation: UFO-C information object; subkind of AnalyticalRecord, whose identity it inherits; dependency: defining conditions; not identical to universal"@en,
+        "Estereótipo OntoUML (provisório): subkind; fundamentação: objeto informacional UFO-C; subkind de AnalyticalRecord, cuja identidade herda; dependência: condições definidoras; não idêntico a universal"@pt-BR ;
     rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/pattern> ;
+    rdfs:subClassOf aro:AnalyticalRecord ;
     skos:definition "Reusable informational specification of situation conditions."@en,
         "Especificação informacional reutilizável de condições situacionais."@pt-BR .
 
 aro:PatternCondition a owl:Class ;
     rdfs:label "pattern condition"@en,
         "condição de padrão"@pt-BR ;
-    rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-C information object; dependency: host pattern and logical specification"@en,
-        "Estereótipo OntoUML (provisório): kind; fundamentação: objeto informacional UFO-C; dependência: padrão hospedeiro e especificação lógica"@pt-BR ;
+    rdfs:comment "OntoUML stereotype (provisional): subkind; foundation: UFO-C information object; subkind of AnalyticalRecord, whose identity it inherits; dependency: host pattern and logical specification"@en,
+        "Estereótipo OntoUML (provisório): subkind; fundamentação: objeto informacional UFO-C; subkind de AnalyticalRecord, cuja identidade herda; dependência: padrão hospedeiro e especificação lógica"@pt-BR ;
     rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/pattern> ;
+    rdfs:subClassOf aro:AnalyticalRecord ;
     skos:definition "Individuated mandatory or optional condition within a pattern."@en,
         "Condição individualizada obrigatória ou opcional de um padrão."@pt-BR .
 
@@ -47,5 +49,5 @@ aro:PatternCondition a owl:Class ;
     dcterms:isPartOf <https://w3id.org/aro/ontology> ;
     dcterms:title "ARO module: Situation pattern"@en,
         "Módulo ARO: Padrão situacional"@pt-BR ;
-    owl:versionInfo "0.2.1-beta" .
+    owl:versionInfo "0.3.0-beta" .
 

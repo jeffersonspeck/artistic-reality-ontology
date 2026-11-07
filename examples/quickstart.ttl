@@ -6,9 +6,9 @@
 # Validate:  python scripts/validate.py examples/quickstart.ttl
 # Query:     python scripts/query.py examples/quickstart.ttl --query queries/CQ-13-derivations-of-work.rq
 
-# 1. An artwork, one manifestation (a recording) and a selection located by a W3C selector
+# 1. An artwork, one expression (a recording) and a selection located by a W3C selector
 ex:song a aro:Artwork ; aro:textValue "Song A"@en, "Canção A"@pt-BR .
-ex:song-rec a aro:Manifestation ; aro:realizesArtwork ex:song .
+ex:song-rec a aro:Expression ; aro:realizesArtwork ex:song .
 ex:riff a aro:Selection ; aro:selectsFrom ex:song-rec ; aro:hasSelector ex:riff-sel .
 ex:riff-sel a oa:FragmentSelector ; oa:value "t=12,16" .          # seconds 12 to 16
 
@@ -25,7 +25,7 @@ ex:scene a aro:SituationDescription ;
 
 # 3. A derivation: a new track samples the riff (selection-level claim)
 ex:track a aro:Artwork .
-ex:track-rec a aro:Manifestation ; aro:realizesArtwork ex:track .
+ex:track-rec a aro:Expression ; aro:realizesArtwork ex:track .
 ex:loop a aro:Selection ; aro:selectsFrom ex:track-rec ; aro:hasSelector ex:loop-sel .
 ex:loop-sel a oa:FragmentSelector ; oa:value "t=0,4" .
 ex:claim a aro:DerivationClaim ;
@@ -34,10 +34,10 @@ ex:claim a aro:DerivationClaim ;
   aro:hasDerivationType aro:Sampling ;          # from DerivationTypeScheme
   aro:hasRegime aro:PlayfulRegime ;             # from DerivationRegimeScheme
   aro:hasTransformation ex:aspect ;
-  aro:derivationJustifiedBy ex:why .
+  aro:hasJustification ex:why .
 ex:aspect a aro:TransformationAspect ;
   aro:hasDimension aro:RecordedSoundDimension ;  # from ArtisticDimensionScheme
   aro:hasOperation aro:Recontextualized .        # from TransformationOperationScheme
-ex:why a aro:InterpretiveJustification ;
+ex:why a aro:Justification ;
   aro:textValue "Same 4-second guitar riff, pitched up."@en,
                 "Mesmo riff de guitarra de 4 segundos, mais agudo."@pt-BR .

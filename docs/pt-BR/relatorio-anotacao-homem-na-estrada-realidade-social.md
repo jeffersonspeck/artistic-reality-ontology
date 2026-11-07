@@ -1,5 +1,7 @@
 # Relatório da anotação *Homem na Estrada — realidade social sustentada por evidências*
 
+> **Nota (ARO 0.3):** este relatório descreve uma anotação feita na versão 0.2 e usa os termos dela. Na 0.3, `Manifestation` passou a `Expression`, `InterpretiveJustification` a `Justification`, `InterpretationChallenge` a `Challenge`, e as avaliações usam `assessesClaim`; o arquivo `examples/aro_homem_na_estrada_realidade_social.ttl` já foi migrado com `scripts/migrate.py`.
+
 ## 1. Entrega e procedência
 
 A nova anotação está em [`examples/aro_homem_na_estrada_realidade_social.ttl`](../../examples/aro_homem_na_estrada_realidade_social.ttl). Ela foi iniciada a partir de [`examples/aro_homem_na_estrada_refeita.ttl`](../../examples/aro_homem_na_estrada_refeita.ttl), que permaneceu inalterado.

@@ -1,0 +1,17 @@
+# CQ-02: Which competing interpretations arise from one selection?
+# A selection has competing readings when two or more interpretation records are anchored in it,
+# or when an interpretation of it is challenged. Interpretations may conflict (ADR-002): the
+# query lists them side by side; it does not choose one.
+# Language: texts in ?lang, or in the language they have when ?lang is missing.
+PREFIX aro: <https://w3id.org/aro/ontology#>
+SELECT DISTINCT ?selection ?interpretation ?reading ?challengedBy WHERE {
+  VALUES ?lang { "en" }
+  ?interpretation aro:hasPrimarySelection ?selection .
+  FILTER(EXISTS { ?other aro:hasPrimarySelection ?selection FILTER(?other != ?interpretation) }
+         || EXISTS { ?anyChallenge aro:challenges ?interpretation })
+  OPTIONAL { ?interpretation aro:describesSituation ?sd .
+             ?sd aro:textValue ?reading .
+             FILTER(langMatches(lang(?reading), ?lang) || NOT EXISTS { ?sd aro:textValue ?l1 FILTER(langMatches(lang(?l1), ?lang)) }) }
+  OPTIONAL { ?challengedBy aro:challenges ?interpretation }
+}
+ORDER BY ?selection ?interpretation

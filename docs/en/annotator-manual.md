@@ -74,8 +74,8 @@ Node colours indicate the ontology module. Vocabulary concepts appear as dashed 
 Example: record that a passage of a song represents a situation, generalize it as a pattern and link that pattern to a real case.
 
 1. **The work.** In the left panel, choose the *artwork* class (`Artwork`), type the title and click **Create**.
-2. **The version.** With the work selected, go to *Add relation* and choose `hasManifestation`. Under *new node*, create the *manifestation*, e.g. "1993 recording" or "Lyric text".
-3. **The passage.** Select the manifestation and follow the incoming relations under *Referenced by*. Then create a *selection* (`Selection`) from the left panel and, on the selection, add `selectsFrom` → the manifestation.
+2. **The version.** With the work selected, open the **Children** tab and choose *expression* under `hasExpression`, e.g. "1993 recording" or "Lyric text" (IFLA LRM: an expression is a realization with its own content). If the edition matters (an album, a book edition), add a *manifestation* to the expression with `hasManifestation`.
+3. **The passage.** Select the expression, open the **Parents** tab and create a *selection* under `selectsFrom`: the new selection is already linked to the expression.
 4. **Where the passage is.** On the selection, add `hasSelector` and choose the selector type:
    - **FragmentSelector** with `line=27,30` for lines 28–30 of a text;
    - **FragmentSelector** with `t=12,16` for seconds 12–16 of audio or video;
@@ -86,19 +86,19 @@ Example: record that a passage of a song represents a situation, generalize it a
 6. **The situation.** On the record, add `describesSituation` → a new *situation description* and write its text under *Texts*, in one or more languages.
 7. **The pattern.** On the situation, add `generalizesAs` → a new *situation pattern*. On the pattern, add `hasCondition` → *conditions*.
 8. **The real case.** Create an *empirical case* and a *reference source* (with a link under *Links* → `sourceURL`). Then create an *evidence item* with `derivedFromSource` → the source.
-9. **The claim.** Create a *correspondence claim* with `assertsPattern` → the pattern and `assertsCase` → the case. Finally, create an *evidence assessment* with `assessesCorrespondence` and `assessesEvidence`, and write what it supports and what it does not.
+9. **The claim.** Create a *correspondence claim* with `assertsPattern` → the pattern and `assertsCase` → the case. Finally, create an *evidence assessment* with `assessesClaim` → the correspondence claim and `assessesEvidence` → the evidence item, and write what it supports and what it does not.
 10. **Save.** Click **Validate**, then **Save .ttl**.
 
 For **derivations** (cover, sample, adaptation…), create a *derivation claim* and add:
-- `hasSourceAnchor` and `hasDerivedAnchor`, each pointing to an artwork, manifestation or selection;
+- `hasSourceAnchor` and `hasDerivedAnchor`, each pointing to an artistic entity (artwork, expression, manifestation or selection);
 - `hasDerivationType`, chosen from a tree list with definitions;
 - `hasTransformation`, with a dimension and an operation;
-- `derivationJustifiedBy`, with the explanation.
+- `hasJustification`, with the explanation (the same property used by every kind of claim; so are `citesSource`, `producedByAct` and, from an assessment, `assessesClaim`).
 
 **Adding children and parents from a node**
 - Select a node (click it, or right-click → **Add child…** / **Add parent…**). The left panel shows two tabs computed from the node's type:
-  - **Children**: new nodes this node points to (this → relation → new), e.g. from an artwork, a manifestation by `hasManifestation`;
-  - **Parents**: new nodes that point to it (new → relation → this), e.g. from a manifestation, a selection by `selectsFrom`.
+  - **Children**: new nodes this node points to (this → relation → new), e.g. from an artwork, an expression by `hasExpression`;
+  - **Parents**: new nodes that point to it (new → relation → this), e.g. from an expression, a selection by `selectsFrom`.
 - Each allowed relation is a card with its classes as chips; **required** relations come first, relations already at their **maximum** are greyed. Click a chip, type the name, press Enter: the node is created, linked and selected.
 - *Existing node, concept, other options…* in a card links an existing node, a vocabulary concept, a selector or an external IRI instead.
 - With no node selected, the panel lists every class by module, to start a standalone node (also under *Standalone node* while a node is selected).
@@ -110,11 +110,13 @@ For **derivations** (cover, sample, adaptation…), create a *derivation claim* 
 
 **How the forms follow the ontology**
 - *Add relation* shows only properties whose domain fits the node. **Required** ones (SHACL `minCount`) are marked `*`, and missing ones are listed in a yellow notice. Those already at their **maximum** (`maxCount`) are no longer offered.
-- The **Parents** tab creates a relation that **arrives** at the node, from a new node or (under *other options*) an existing one. For example, on a manifestation: a new selection with `selectsFrom` pointing to it.
+- The **Parents** tab creates a relation that **arrives** at the node, from a new node or (under *other options*) an existing one. For example, on an expression: a new selection with `selectsFrom` pointing to it.
 - When creating a new node in a relation, you can choose the range class or **any subclass** (e.g. *intentional state description*).
 - Under *Data*, class-specific properties are shown directly; general ones (identifier, language tag…) are under *More properties*.
 
-> The ontology **represents** claims made by agents; it does not decide whether they are true. Use evidence assessments and challenges (`InterpretationChallenge`) to record support and disagreement.
+> The ontology **represents** claims made by agents; it does not decide whether they are true. Use assessments and challenges (`Challenge`, which can target any claim) to record support and disagreement. *Abstract* classes (`Claim`, `AnalyticalRecord`, `Assessment`, `ArtisticEntity`) are not offered for creation: choose one of their subclasses.
+
+> **Files from ARO 0.2** are converted when opened (e.g. the old *manifestation* becomes an *expression*); the status bar says so. Save to keep the converted file, or run `python scripts/migrate.py file.ttl`.
 
 ## 5. Navigating the graph
 
@@ -140,7 +142,7 @@ For **derivations** (cover, sample, adaptation…), create a *derivation claim* 
 
 To see the exact passage of each selection (for example, the lines of song lyrics):
 
-1. Select the **manifestation** representing the text (e.g. "Lyric text").
+1. Select the **expression** representing the text (e.g. "Lyric text").
 2. Click **Attach .txt** and choose **your own copy** of the text.
 3. Select a selection that has a `line=a,b` selector: the panel shows the numbered lines. Blank lines are not counted.
 4. Optionally, use **Store as quotation** to copy the lines into a `TextQuoteSelector` in your data.
@@ -242,7 +244,7 @@ The annotator (JavaScript) has no automated tests yet; it was checked manually i
 | "Address already in use" | the port is busy. Use `--port 9000` |
 | Double-click does not open neighbours | use the **Open / close neighbours** button in the right panel |
 | I want to start from scratch | **New**; or clear the site data of `localhost` in the browser |
-| The text excerpt does not appear | attach the `.txt` to the **manifestation** linked to the selection (`selectsFrom`) and check that the selection has a `line=a,b` selector |
+| The text excerpt does not appear | attach the `.txt` to the **expression** linked to the selection (`selectsFrom`) and check that the selection has a `line=a,b` selector |
 | Language tags look lower-case in the browser | that is how the N3.js library works. The saved file uses `pt-BR` |
 
 ---

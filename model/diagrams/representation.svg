@@ -13,7 +13,7 @@
 <g id="node1" class="node">
 <title>DepictedElement</title>
 <path fill="#fef3c7" stroke="#64748b" d="M539.5,-67C539.5,-67 472.5,-67 472.5,-67 466.5,-67 460.5,-61 460.5,-55 460.5,-55 460.5,-43 460.5,-43 460.5,-37 466.5,-31 472.5,-31 472.5,-31 539.5,-31 539.5,-31 545.5,-31 551.5,-37 551.5,-43 551.5,-43 551.5,-55 551.5,-55 551.5,-61 545.5,-67 539.5,-67"/>
-<text xml:space="preserve" text-anchor="middle" x="506" y="-51.5" font-family="Arial" font-size="10.00">«kind»</text>
+<text xml:space="preserve" text-anchor="middle" x="506" y="-51.5" font-family="Arial" font-size="10.00">«subkind»</text>
 <text xml:space="preserve" text-anchor="middle" x="506" y="-39.5" font-family="Arial" font-size="10.00">DepictedElement</text>
 </g>
 <!-- DepictedAgent -->
@@ -33,7 +33,7 @@
 <g id="node3" class="node">
 <title>SituationDescription</title>
 <path fill="#fef3c7" stroke="#64748b" d="M280.5,-36C280.5,-36 200.75,-36 200.75,-36 194.75,-36 188.75,-30 188.75,-24 188.75,-24 188.75,-12 188.75,-12 188.75,-6 194.75,0 200.75,0 200.75,0 280.5,0 280.5,0 286.5,0 292.5,-6 292.5,-12 292.5,-12 292.5,-24 292.5,-24 292.5,-30 286.5,-36 280.5,-36"/>
-<text xml:space="preserve" text-anchor="middle" x="240.62" y="-20.5" font-family="Arial" font-size="10.00">«kind»</text>
+<text xml:space="preserve" text-anchor="middle" x="240.62" y="-20.5" font-family="Arial" font-size="10.00">«subkind»</text>
 <text xml:space="preserve" text-anchor="middle" x="240.62" y="-8.5" font-family="Arial" font-size="10.00">SituationDescription</text>
 </g>
 <!-- SituationDescription&#45;&gt;DepictedElement -->

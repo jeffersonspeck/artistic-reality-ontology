@@ -10,8 +10,11 @@
 
 | Stereotype | Classes | UFO | OWL/TTL | Not expressible in OWL |
 |---|---|---|---|---|
-| «kind» | `Artwork`, `Manifestation`, `Selection`, `AnalysisUnit`, `InterpretationRecord`, `InterpretiveJustification`, `InterpretationChallenge`, `InterpretationAssessment`, `AssessmentCriterion`, `DepictedElement`, `SituationDescription`, `SituationPattern`, `PatternCondition`, `EmpiricalCase`, `EmpiricalClaim`, `ReferenceSource`, `EvidenceItem`, `CorrespondenceClaim`, `EvidenceAssessment`, `ExplanationHypothesis`, `DerivationClaim`, `TransformationAspect` | Rigid sortal: supplies the identity principle of its instances, which cannot stop instantiating it while they exist. | Declared as `owl:Class`. | Rigidity and the identity principle are not expressible in OWL; disjointness between kinds is not declared. |
-| «subkind» | `DepictedAgent`, `IntentionalStateDescription` | Rigid sortal that specializes a kind and inherits its identity principle. | `owl:Class` with `rdfs:subClassOf` the specialized class. | Rigidity is not expressible; the subclass axiom is the only commitment represented. |
+| «category» | `ArtisticEntity`, `Agent` | Rigid non-sortal: generalizes kinds with different identity principles that share essential properties; it supplies no identity and has no direct instances. | `owl:Class` declared as the `owl:disjointUnionOf` of the kinds it generalizes; used as domain or range instead of an `owl:unionOf`. | Rigidity is not expressible; the covering axiom is the only commitment represented. |
+| «kind» | `Artwork`, `Expression`, `Manifestation`, `Selection`, `AnalyticalRecord`, `Person`, `ReferenceSource` | Rigid sortal: supplies the identity principle of its instances, which cannot stop instantiating it while they exist. | Declared as `owl:Class`. | Rigidity and the identity principle are not expressible in OWL; disjointness between kinds is not declared. |
+| «subkind» | `AnalysisUnit`, `Claim`, `Justification`, `Challenge`, `Assessment`, `CriteriaAssessment`, `EvidenceAssessment`, `AssessmentCriterion`, `EpistemicCriterion`, `ValueCriterion`, `InterpretationRecord`, `DepictedElement`, `DepictedAgent`, `SituationDescription`, `IntentionalStateDescription`, `SituationPattern`, `PatternCondition`, `EmpiricalCase`, `EmpiricalClaim`, `EvidenceItem`, `CorrespondenceClaim`, `ExplanationHypothesis`, `DerivationClaim`, `TransformationAspect` | Rigid sortal that specializes a kind and inherits its identity principle. | `owl:Class` with `rdfs:subClassOf` the specialized class. | Rigidity is not expressible; the subclass axiom is the only commitment represented. |
+| «collective» | `Collective` | Rigid sortal whose instances are collections of members unified by a common relation (a band, a company); supplies their identity. | Declared as `owl:Class`; members are not modelled (agents are external IRIs). | Rigidity, the unifying relation and membership are not represented. |
+| «role» | `PersonAnalyst`, `CollectiveAnalyst`, `PersonCreator`, `CollectiveCreator` | Anti-rigid sortal: instances of one kind play it while they stand in a relation (taking part in an act); it inherits the kind's identity. | `owl:Class` with `rdfs:subClassOf` its kind and its roleMixin, and `owl:equivalentClass` their intersection. | Anti-rigidity (an agent may stop playing the role) is not expressible in OWL. |
 | «event» | `InterpretiveAct`, `EmpiricalEvent`, `CreativeAct` | Perdurant (UFO-B): an occurrence that unfolds in time and has participants; it is not an object. | `owl:Class`; participation is represented by object properties. | Temporal extent and ordering of events are not represented in this version (no time properties). |
 | «situation» | `EmpiricalSituation` | Situation (UFO-B): a configuration of entities that obtains at a point in time and may trigger or result from events. | `owl:Class`. | The time point at which the situation obtains and its constituents are not represented. |
 | «relator» | `CreativeContribution` | Relator (UFO-A): an endurant existentially dependent on the entities it connects; the truthmaker of a material relation. | `owl:Class` with object properties to its relata; SHACL enforces the mediation cardinalities. | Existential dependence and the derived material relation are not expressible in OWL. |
@@ -20,19 +23,52 @@
 
 ## Classes
 
+### `ArtisticEntity` — artistic entity
+
+**Definition:** Anything artistic that can be the origin or result of a derivation or a creative act: an artwork, an expression, a manifestation or a selection.
+
+| | |
+|---|---|
+| **UFO / OntoUML** | «category» — Rigid non-sortal: generalizes kinds with different identity principles that share essential properties; it supplies no identity and has no direct instances. |
+| **Grounding** | UFO-A rigid non-sortal (category) generalizing kinds with different identity principles |
+| **Dependency** | none of its own; each instance takes the identity of its kind |
+| **In OWL/TTL** | `aro:ArtisticEntity a owl:Class`; abstract (no direct instances): `owl:disjointUnionOf` (`aro:Artwork`, `aro:Expression`, `aro:Manifestation`, `aro:Selection`); range of: `hasSourceAnchor`, `hasDerivedAnchor`, `producesCreation`, `contributionTo` |
+| **SHACL** | — |
+| **Not expressible in OWL** | Rigidity is not expressible; the covering axiom is the only commitment represented. |
+| **gUFO pattern (not imported)** | `rdf:type gufo:Category` |
+| **Package** | `artwork` |
+
+<details>
+<summary>Turtle in `ontology/src/aro.ttl`</summary>
+
+```turtle
+aro:ArtisticEntity a owl:Class ;
+    rdfs:label "artistic entity"@en,
+        "entidade artística"@pt-BR ;
+    rdfs:comment "OntoUML stereotype (provisional): category; foundation: UFO-A rigid non-sortal (category) generalizing kinds with different identity principles; dependency: none of its own; each instance takes the identity of its kind"@en,
+        "Estereótipo OntoUML (provisório): category; fundamentação: não-sortal rígido UFO-A (category) que generaliza kinds com princípios de identidade diferentes; dependência: nenhuma própria; cada instância tem a identidade de seu kind"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/artwork> ;
+    owl:disjointUnionOf [ ] ;
+    skos:definition "Anything artistic that can be the origin or result of a derivation or a creative act: an artwork, an expression, a manifestation or a selection."@en,
+        "Tudo o que é artístico e pode ser origem ou resultado de uma derivação ou de um ato criativo: obra, expressão, manifestação ou recorte."@pt-BR .
+```
+
+</details>
+
 ### `Artwork` — artwork
 
-**Definition:** Identifiable artistic creation across media and manifestations.
+**Definition:** Identifiable artistic creation, considered independently of any particular version or copy (the LRM work level).
 
 | | |
 |---|---|
 | **UFO / OntoUML** | «kind» — Rigid sortal: supplies the identity principle of its instances, which cannot stop instantiating it while they exist. |
 | **Grounding** | UFO-C social/information object (domain commitment) |
 | **Dependency** | historically on creation; not on a single copy |
-| **In OWL/TTL** | `aro:Artwork a owl:Class`; domain of: `hasManifestation`; range of: `realizesArtwork`, `hasSourceAnchor`, `hasDerivedAnchor`, `producesCreation` |
+| **In OWL/TTL** | `aro:Artwork a owl:Class`; `rdfs:subClassOf aro:ArtisticEntity`; disjoint from every other ultimate sortal (`owl:AllDisjointClasses`); domain of: `hasExpression`; range of: `realizesArtwork` |
 | **SHACL** | — |
 | **Not expressible in OWL** | Rigidity and the identity principle are not expressible in OWL; disjointness between kinds is not declared. |
 | **gUFO pattern (not imported)** | `rdf:type gufo:Kind` — As a UFO-C information object it has no specific gUFO counterpart. |
+| **Alignments** | `rdfs:seeAlso` `lrmoo:F1_Work` |
 | **Package** | `artwork` |
 
 <details>
@@ -45,25 +81,62 @@ aro:Artwork a owl:Class ;
     rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-C social/information object (domain commitment); dependency: historically on creation; not on a single copy"@en,
         "Estereótipo OntoUML (provisório): kind; fundamentação: objeto social/informacional UFO-C (compromisso de domínio); dependência: historicamente da criação; não de uma cópia específica"@pt-BR ;
     rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/artwork> ;
-    skos:definition "Identifiable artistic creation across media and manifestations."@en,
-        "Criação artística identificável em diversas mídias e manifestações."@pt-BR .
+    rdfs:seeAlso lrmoo:F1_Work ;
+    rdfs:subClassOf aro:ArtisticEntity ;
+    skos:definition "Identifiable artistic creation, considered independently of any particular version or copy (the LRM work level)."@en,
+        "Criação artística identificável, considerada independentemente de qualquer versão ou cópia (nível obra do LRM)."@pt-BR .
+```
+
+</details>
+
+### `Expression` — expression
+
+**Definition:** Specific realization of an artwork with its own content: a performance or recording, a translation, an arrangement, a text version, a film cut (the LRM expression level).
+
+| | |
+|---|---|
+| **UFO / OntoUML** | «kind» — Rigid sortal: supplies the identity principle of its instances, which cannot stop instantiating it while they exist. |
+| **Grounding** | UFO-C information object (content level) |
+| **Dependency** | realizes exactly one artwork |
+| **In OWL/TTL** | `aro:Expression a owl:Class`; `rdfs:subClassOf aro:ArtisticEntity`; disjoint from every other ultimate sortal (`owl:AllDisjointClasses`); domain of: `realizesArtwork`, `hasManifestation`; range of: `hasExpression`, `embodiesExpression`, `selectsFrom` |
+| **SHACL** | `realizesArtwork` (min 1, max 1) |
+| **Not expressible in OWL** | Rigidity and the identity principle are not expressible in OWL; disjointness between kinds is not declared. |
+| **gUFO pattern (not imported)** | `rdf:type gufo:Kind` — As a UFO-C information object it has no specific gUFO counterpart. |
+| **Alignments** | `rdfs:seeAlso` `lrmoo:F2_Expression` |
+| **Package** | `artwork` |
+
+<details>
+<summary>Turtle in `ontology/src/aro.ttl`</summary>
+
+```turtle
+aro:Expression a owl:Class ;
+    rdfs:label "expression"@en,
+        "expressão"@pt-BR ;
+    rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-C information object (content level); dependency: realizes exactly one artwork"@en,
+        "Estereótipo OntoUML (provisório): kind; fundamentação: objeto informacional UFO-C (nível de conteúdo); dependência: realiza exatamente uma obra"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/artwork> ;
+    rdfs:seeAlso lrmoo:F2_Expression ;
+    rdfs:subClassOf aro:ArtisticEntity ;
+    skos:definition "Specific realization of an artwork with its own content: a performance or recording, a translation, an arrangement, a text version, a film cut (the LRM expression level)."@en,
+        "Realização específica de uma obra com conteúdo próprio: uma interpretação ou gravação, uma tradução, um arranjo, uma versão do texto, uma montagem de filme (nível expressão do LRM)."@pt-BR .
 ```
 
 </details>
 
 ### `Manifestation` — manifestation
 
-**Definition:** Specific expression, version or realization of an artwork.
+**Definition:** Publication or carrier that embodies one or more expressions: an album edition, a book edition, a broadcast, a digital release (the LRM manifestation level). Optional: record it when the edition matters, e.g. to locate a page or a track.
 
 | | |
 |---|---|
 | **UFO / OntoUML** | «kind» — Rigid sortal: supplies the identity principle of its instances, which cannot stop instantiating it while they exist. |
-| **Grounding** | UFO-A enduring object; UFO-C information artifact |
-| **Dependency** | semantic identity relative to an artwork |
-| **In OWL/TTL** | `aro:Manifestation a owl:Class`; domain of: `realizesArtwork`; range of: `hasManifestation`, `selectsFrom`, `hasSourceAnchor`, `hasDerivedAnchor`, `producesCreation` |
-| **SHACL** | — |
+| **Grounding** | UFO-C information artifact (carrier level) |
+| **Dependency** | embodies at least one expression |
+| **In OWL/TTL** | `aro:Manifestation a owl:Class`; `rdfs:subClassOf aro:ArtisticEntity`; disjoint from every other ultimate sortal (`owl:AllDisjointClasses`); domain of: `embodiesExpression`; range of: `hasManifestation`, `locatedInManifestation` |
+| **SHACL** | `embodiesExpression` (min 1) |
 | **Not expressible in OWL** | Rigidity and the identity principle are not expressible in OWL; disjointness between kinds is not declared. |
 | **gUFO pattern (not imported)** | `rdf:type gufo:Kind` — As a UFO-C information object it has no specific gUFO counterpart. |
+| **Alignments** | `rdfs:seeAlso` `lrmoo:F3_Manifestation` |
 | **Package** | `artwork` |
 
 <details>
@@ -73,26 +146,28 @@ aro:Artwork a owl:Class ;
 aro:Manifestation a owl:Class ;
     rdfs:label "manifestation"@en,
         "manifestação"@pt-BR ;
-    rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-A enduring object; UFO-C information artifact; dependency: semantic identity relative to an artwork"@en,
-        "Estereótipo OntoUML (provisório): kind; fundamentação: objeto persistente UFO-A; artefato informacional UFO-C; dependência: identidade semântica relativa a uma obra"@pt-BR ;
+    rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-C information artifact (carrier level); dependency: embodies at least one expression"@en,
+        "Estereótipo OntoUML (provisório): kind; fundamentação: artefato informacional UFO-C (nível de suporte); dependência: materializa ao menos uma expressão"@pt-BR ;
     rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/artwork> ;
-    skos:definition "Specific expression, version or realization of an artwork."@en,
-        "Expressão, versão ou realização específica de uma obra."@pt-BR .
+    rdfs:seeAlso lrmoo:F3_Manifestation ;
+    rdfs:subClassOf aro:ArtisticEntity ;
+    skos:definition "Publication or carrier that embodies one or more expressions: an album edition, a book edition, a broadcast, a digital release (the LRM manifestation level). Optional: record it when the edition matters, e.g. to locate a page or a track."@en,
+        "Publicação ou suporte que materializa uma ou mais expressões: edição de álbum, edição de livro, transmissão, lançamento digital (nível manifestação do LRM). Opcional: registre quando a edição importa, por exemplo para localizar uma página ou faixa."@pt-BR .
 ```
 
 </details>
 
 ### `Selection` — selection
 
-**Definition:** Addressable selected portion of a manifestation (not its physical component).
+**Definition:** Addressable portion of an expression (lines, a time span, an image region), located by selectors; not a physical component.
 
 | | |
 |---|---|
 | **UFO / OntoUML** | «kind» — Rigid sortal: supplies the identity principle of its instances, which cannot stop instantiating it while they exist. |
 | **Grounding** | UFO-C information object; domain category |
-| **Dependency** | reference to manifestation and selectors |
-| **In OWL/TTL** | `aro:Selection a owl:Class`; domain of: `selectsFrom`, `hasSelector`, `selectorExpression`; range of: `groupsSelection`, `hasPrimarySelection`, `hasSupportingSelection`, `hasSourceAnchor`, `hasDerivedAnchor`, `aspectSourceSelection`, `aspectDerivedSelection` |
-| **SHACL** | `selectsFrom` (min 1) |
+| **Dependency** | the expression it is taken from and its selectors |
+| **In OWL/TTL** | `aro:Selection a owl:Class`; `rdfs:subClassOf aro:ArtisticEntity`; disjoint from every other ultimate sortal (`owl:AllDisjointClasses`); domain of: `selectsFrom`, `locatedInManifestation`, `hasSelector`, `selectorExpression`; range of: `groupsSelection`, `hasPrimarySelection`, `hasSupportingSelection`, `aspectSourceSelection`, `aspectDerivedSelection` |
+| **SHACL** | `selectsFrom` (min 1, max 1); `locatedInManifestation` (max 1) |
 | **Not expressible in OWL** | Rigidity and the identity principle are not expressible in OWL; disjointness between kinds is not declared. |
 | **gUFO pattern (not imported)** | `rdf:type gufo:Kind` — As a UFO-C information object it has no specific gUFO counterpart. |
 | **Alignments** | `rdfs:seeAlso` `oa:SpecificResource` |
@@ -105,12 +180,13 @@ aro:Manifestation a owl:Class ;
 aro:Selection a owl:Class ;
     rdfs:label "selection"@en,
         "recorte"@pt-BR ;
-    rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-C information object; domain category; dependency: reference to manifestation and selectors"@en,
-        "Estereótipo OntoUML (provisório): kind; fundamentação: objeto informacional UFO-C; categoria de domínio; dependência: referência a manifestação e seletores"@pt-BR ;
+    rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-C information object; domain category; dependency: the expression it is taken from and its selectors"@en,
+        "Estereótipo OntoUML (provisório): kind; fundamentação: objeto informacional UFO-C; categoria de domínio; dependência: a expressão de onde é tirado e seus seletores"@pt-BR ;
     rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/artwork> ;
     rdfs:seeAlso oa:SpecificResource ;
-    skos:definition "Addressable selected portion of a manifestation (not its physical component)."@en,
-        "Seleção endereçável de uma parte de manifestação (não componente físico)."@pt-BR .
+    rdfs:subClassOf aro:ArtisticEntity ;
+    skos:definition "Addressable portion of an expression (lines, a time span, an image region), located by selectors; not a physical component."@en,
+        "Parte endereçável de uma expressão (linhas, trecho de tempo, região de imagem), localizada por seletores; não é componente físico."@pt-BR .
 ```
 
 </details>
@@ -121,13 +197,13 @@ aro:Selection a owl:Class ;
 
 | | |
 |---|---|
-| **UFO / OntoUML** | «kind» — Rigid sortal: supplies the identity principle of its instances, which cannot stop instantiating it while they exist. |
-| **Grounding** | UFO-C information object |
+| **UFO / OntoUML** | «subkind» — Rigid sortal that specializes a kind and inherits its identity principle. |
+| **Grounding** | UFO-C information object; subkind of AnalyticalRecord, whose identity it inherits |
 | **Dependency** | organizational reference to selections |
-| **In OWL/TTL** | `aro:AnalysisUnit a owl:Class`; domain of: `groupsSelection` |
+| **In OWL/TTL** | `aro:AnalysisUnit a owl:Class`; `rdfs:subClassOf aro:AnalyticalRecord`; domain of: `groupsSelection` |
 | **SHACL** | — |
-| **Not expressible in OWL** | Rigidity and the identity principle are not expressible in OWL; disjointness between kinds is not declared. |
-| **gUFO pattern (not imported)** | `rdf:type gufo:Kind` — As a UFO-C information object it has no specific gUFO counterpart. |
+| **Not expressible in OWL** | Rigidity is not expressible; the subclass axiom is the only commitment represented. |
+| **gUFO pattern (not imported)** | `rdf:type gufo:SubKind` |
 | **Package** | `artwork` |
 
 <details>
@@ -137,11 +213,653 @@ aro:Selection a owl:Class ;
 aro:AnalysisUnit a owl:Class ;
     rdfs:label "analysis unit"@en,
         "unidade de análise"@pt-BR ;
-    rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-C information object; dependency: organizational reference to selections"@en,
-        "Estereótipo OntoUML (provisório): kind; fundamentação: objeto informacional UFO-C; dependência: referência organizacional a recortes"@pt-BR ;
+    rdfs:comment "OntoUML stereotype (provisional): subkind; foundation: UFO-C information object; subkind of AnalyticalRecord, whose identity it inherits; dependency: organizational reference to selections"@en,
+        "Estereótipo OntoUML (provisório): subkind; fundamentação: objeto informacional UFO-C; subkind de AnalyticalRecord, cuja identidade herda; dependência: referência organizacional a recortes"@pt-BR ;
     rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/artwork> ;
+    rdfs:subClassOf aro:AnalyticalRecord ;
     skos:definition "Intentional grouping of selections for analytical purposes."@en,
         "Agrupamento intencional de recortes com finalidade analítica."@pt-BR .
+```
+
+</details>
+
+### `AnalyticalRecord` — analytical record
+
+**Definition:** Information object recorded by an agent in the course of an analysis: the common sort of interpretations, descriptions, patterns, cases, evidence items, claims, justifications and assessments. Two records with the same text by different agents or acts are different records.
+
+| | |
+|---|---|
+| **UFO / OntoUML** | «kind» — Rigid sortal: supplies the identity principle of its instances, which cannot stop instantiating it while they exist. |
+| **Grounding** | UFO-C information object; the single kind supplying the identity of every analytical record (ADR-026) |
+| **Dependency** | historically on the act or agent that recorded it |
+| **In OWL/TTL** | `aro:AnalyticalRecord a owl:Class`; abstract (no direct instances): `owl:disjointUnionOf` (`aro:AnalysisUnit`, `aro:Claim`, `aro:Justification`, `aro:Assessment`, `aro:AssessmentCriterion`, `aro:DepictedElement`, `aro:SituationDescription`, `aro:SituationPattern`, `aro:PatternCondition`, `aro:EmpiricalCase`, `aro:EvidenceItem`, `aro:TransformationAspect`); disjoint from every other ultimate sortal (`owl:AllDisjointClasses`); domain of: `producedByAct`, `citesSource` |
+| **SHACL** | `producedByAct` (max 1) |
+| **Not expressible in OWL** | Rigidity and the identity principle are not expressible in OWL; disjointness between kinds is not declared. |
+| **gUFO pattern (not imported)** | `rdf:type gufo:Kind` — As a UFO-C information object it has no specific gUFO counterpart. |
+| **Package** | `claim` |
+
+<details>
+<summary>Turtle in `ontology/src/aro.ttl`</summary>
+
+```turtle
+aro:AnalyticalRecord a owl:Class ;
+    rdfs:label "analytical record"@en,
+        "registro analítico"@pt-BR ;
+    rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-C information object; the single kind supplying the identity of every analytical record (ADR-026); dependency: historically on the act or agent that recorded it"@en,
+        "Estereótipo OntoUML (provisório): kind; fundamentação: objeto informacional UFO-C; o único kind que fornece a identidade de todo registro analítico (ADR-026); dependência: historicamente do ato ou agente que o registrou"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/claim> ;
+    owl:disjointUnionOf [ ] ;
+    skos:definition "Information object recorded by an agent in the course of an analysis: the common sort of interpretations, descriptions, patterns, cases, evidence items, claims, justifications and assessments. Two records with the same text by different agents or acts are different records."@en,
+        "Objeto informacional registrado por um agente no curso de uma análise: o tipo comum de interpretações, descrições, padrões, casos, itens de evidência, alegações, justificativas e avaliações. Dois registros com o mesmo texto feitos por agentes ou atos diferentes são registros diferentes."@pt-BR .
+```
+
+</details>
+
+### `Claim` — claim
+
+**Definition:** Analytical record that asserts something contestable: it can be produced by an act, justified, supported by sources, assessed and challenged. ARO represents claims, never their truth.
+
+| | |
+|---|---|
+| **UFO / OntoUML** | «subkind» — Rigid sortal that specializes a kind and inherits its identity principle. |
+| **Grounding** | UFO-C information object (propositional content as authored record, ADR-010) |
+| **Dependency** | the act or agent that asserts it |
+| **In OWL/TTL** | `aro:Claim a owl:Class`; `rdfs:subClassOf aro:AnalyticalRecord`; abstract (no direct instances): `owl:disjointUnionOf` (`aro:Challenge`, `aro:InterpretationRecord`, `aro:EmpiricalClaim`, `aro:CorrespondenceClaim`, `aro:ExplanationHypothesis`, `aro:DerivationClaim`); domain of: `hasJustification`; range of: `challenges`, `assessesClaim` |
+| **SHACL** | — |
+| **Not expressible in OWL** | Rigidity is not expressible; the subclass axiom is the only commitment represented. |
+| **gUFO pattern (not imported)** | `rdf:type gufo:SubKind` |
+| **Alignments** | `rdfs:seeAlso` `schema:Claim` |
+| **Package** | `claim` |
+
+<details>
+<summary>Turtle in `ontology/src/aro.ttl`</summary>
+
+```turtle
+aro:Claim a owl:Class ;
+    rdfs:label "claim"@en,
+        "alegação"@pt-BR ;
+    rdfs:comment "OntoUML stereotype (provisional): subkind; foundation: UFO-C information object (propositional content as authored record, ADR-010); dependency: the act or agent that asserts it"@en,
+        "Estereótipo OntoUML (provisório): subkind; fundamentação: objeto informacional UFO-C (conteúdo proposicional como registro autoral, ADR-010); dependência: o ato ou agente que a afirma"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/claim> ;
+    rdfs:seeAlso schema:Claim ;
+    rdfs:subClassOf aro:AnalyticalRecord ;
+    owl:disjointUnionOf [ ] ;
+    skos:definition "Analytical record that asserts something contestable: it can be produced by an act, justified, supported by sources, assessed and challenged. ARO represents claims, never their truth."@en,
+        "Registro analítico que afirma algo contestável: pode ser produzido por um ato, justificado, apoiado em fontes, avaliado e contestado. A ARO representa alegações, nunca sua verdade."@pt-BR .
+```
+
+</details>
+
+### `Justification` — justification
+
+**Definition:** Recorded argument connecting premises to a claim: why an interpretation, derivation, correspondence or hypothesis is asserted.
+
+| | |
+|---|---|
+| **UFO / OntoUML** | «subkind» — Rigid sortal that specializes a kind and inherits its identity principle. |
+| **Grounding** | UFO-C information object; subkind of AnalyticalRecord, whose identity it inherits |
+| **Dependency** | the claim it supports and its articulated premises |
+| **In OWL/TTL** | `aro:Justification a owl:Class`; `rdfs:subClassOf aro:AnalyticalRecord`; range of: `hasJustification` |
+| **SHACL** | — |
+| **Not expressible in OWL** | Rigidity is not expressible; the subclass axiom is the only commitment represented. |
+| **gUFO pattern (not imported)** | `rdf:type gufo:SubKind` |
+| **Package** | `claim` |
+
+<details>
+<summary>Turtle in `ontology/src/aro.ttl`</summary>
+
+```turtle
+aro:Justification a owl:Class ;
+    rdfs:label "justification"@en,
+        "justificativa"@pt-BR ;
+    rdfs:comment "OntoUML stereotype (provisional): subkind; foundation: UFO-C information object; subkind of AnalyticalRecord, whose identity it inherits; dependency: the claim it supports and its articulated premises"@en,
+        "Estereótipo OntoUML (provisório): subkind; fundamentação: objeto informacional UFO-C; subkind de AnalyticalRecord, cuja identidade herda; dependência: a alegação que sustenta e suas premissas articuladas"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/claim> ;
+    rdfs:subClassOf aro:AnalyticalRecord ;
+    skos:definition "Recorded argument connecting premises to a claim: why an interpretation, derivation, correspondence or hypothesis is asserted."@en,
+        "Argumento registrado que liga premissas a uma alegação: por que uma interpretação, derivação, correspondência ou hipótese é afirmada."@pt-BR .
+```
+
+</details>
+
+### `Challenge` — challenge
+
+**Definition:** Claim that criticizes another claim or offers an alternative to it; being a claim itself, it can be justified, assessed and challenged in turn.
+
+| | |
+|---|---|
+| **UFO / OntoUML** | «subkind» — Rigid sortal that specializes a kind and inherits its identity principle. |
+| **Grounding** | UFO-C information object; subkind of Claim (assessable, justifiable, citable, challengeable) |
+| **Dependency** | the challenged claim and its own argument |
+| **In OWL/TTL** | `aro:Challenge a owl:Class`; `rdfs:subClassOf aro:Claim`; domain of: `challenges` |
+| **SHACL** | `challenges` (min 1, max 1) |
+| **Not expressible in OWL** | Rigidity is not expressible; the subclass axiom is the only commitment represented. |
+| **gUFO pattern (not imported)** | `rdf:type gufo:SubKind` |
+| **Package** | `claim` |
+
+<details>
+<summary>Turtle in `ontology/src/aro.ttl`</summary>
+
+```turtle
+aro:Challenge a owl:Class ;
+    rdfs:label "challenge"@en,
+        "contestação"@pt-BR ;
+    rdfs:comment "OntoUML stereotype (provisional): subkind; foundation: UFO-C information object; subkind of Claim (assessable, justifiable, citable, challengeable); dependency: the challenged claim and its own argument"@en,
+        "Estereótipo OntoUML (provisório): subkind; fundamentação: objeto informacional UFO-C; subkind de Claim (avaliável, justificável, citável, contestável); dependência: a alegação contestada e seu próprio argumento"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/claim> ;
+    rdfs:subClassOf aro:Claim ;
+    skos:definition "Claim that criticizes another claim or offers an alternative to it; being a claim itself, it can be justified, assessed and challenged in turn."@en,
+        "Alegação que critica outra alegação ou propõe alternativa a ela; sendo também alegação, pode por sua vez ser justificada, avaliada e contestada."@pt-BR .
+```
+
+</details>
+
+### `Assessment` — assessment
+
+**Definition:** Analytical record judging one or more closely related claims: by explicit criteria, by evidence, or both. It records a judgment made by an agent; it does not settle the claim.
+
+| | |
+|---|---|
+| **UFO / OntoUML** | «subkind» — Rigid sortal that specializes a kind and inherits its identity principle. |
+| **Grounding** | UFO-C information object; subkind of AnalyticalRecord, whose identity it inherits |
+| **Dependency** | the assessed claims |
+| **In OWL/TTL** | `aro:Assessment a owl:Class`; `rdfs:subClassOf aro:AnalyticalRecord`; abstract (no direct instances): `owl:disjointUnionOf` (`aro:CriteriaAssessment`, `aro:EvidenceAssessment`); domain of: `assessesClaim`, `assessmentOutcome` |
+| **SHACL** | `assessesClaim` (min 1) |
+| **Not expressible in OWL** | Rigidity is not expressible; the subclass axiom is the only commitment represented. |
+| **gUFO pattern (not imported)** | `rdf:type gufo:SubKind` |
+| **Alignments** | `rdfs:seeAlso` `schema:ClaimReview` |
+| **Package** | `claim` |
+
+<details>
+<summary>Turtle in `ontology/src/aro.ttl`</summary>
+
+```turtle
+aro:Assessment a owl:Class ;
+    rdfs:label "assessment"@en,
+        "avaliação"@pt-BR ;
+    rdfs:comment "OntoUML stereotype (provisional): subkind; foundation: UFO-C information object; subkind of AnalyticalRecord, whose identity it inherits; dependency: the assessed claims"@en,
+        "Estereótipo OntoUML (provisório): subkind; fundamentação: objeto informacional UFO-C; subkind de AnalyticalRecord, cuja identidade herda; dependência: as alegações avaliadas"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/claim> ;
+    rdfs:seeAlso schema:ClaimReview ;
+    rdfs:subClassOf aro:AnalyticalRecord ;
+    owl:disjointUnionOf [ ] ;
+    skos:definition "Analytical record judging one or more closely related claims: by explicit criteria, by evidence, or both. It records a judgment made by an agent; it does not settle the claim."@en,
+        "Registro analítico que julga uma ou mais alegações intimamente relacionadas: por critérios explícitos, por evidência, ou ambos. Registra um julgamento feito por um agente; não resolve a alegação."@pt-BR .
+```
+
+</details>
+
+### `CriteriaAssessment` — criteria assessment
+
+**Definition:** Assessment of a claim against explicit epistemic or value criteria (plausibility, coherence, fidelity...).
+
+| | |
+|---|---|
+| **UFO / OntoUML** | «subkind» — Rigid sortal that specializes a kind and inherits its identity principle. |
+| **Grounding** | UFO-C information object; subkind of Assessment |
+| **Dependency** | the assessed claim and its criteria |
+| **In OWL/TTL** | `aro:CriteriaAssessment a owl:Class`; `rdfs:subClassOf aro:Assessment`; domain of: `usesCriterion` |
+| **SHACL** | `usesCriterion` (min 1) |
+| **Not expressible in OWL** | Rigidity is not expressible; the subclass axiom is the only commitment represented. |
+| **gUFO pattern (not imported)** | `rdf:type gufo:SubKind` |
+| **Package** | `claim` |
+
+<details>
+<summary>Turtle in `ontology/src/aro.ttl`</summary>
+
+```turtle
+aro:CriteriaAssessment a owl:Class ;
+    rdfs:label "criteria assessment"@en,
+        "avaliação por critérios"@pt-BR ;
+    rdfs:comment "OntoUML stereotype (provisional): subkind; foundation: UFO-C information object; subkind of Assessment; dependency: the assessed claim and its criteria"@en,
+        "Estereótipo OntoUML (provisório): subkind; fundamentação: objeto informacional UFO-C; subkind de Assessment; dependência: a alegação avaliada e seus critérios"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/claim> ;
+    rdfs:subClassOf aro:Assessment ;
+    skos:definition "Assessment of a claim against explicit epistemic or value criteria (plausibility, coherence, fidelity...)."@en,
+        "Avaliação de uma alegação segundo critérios epistêmicos ou de valor explícitos (plausibilidade, coerência, fidelidade...)."@pt-BR .
+```
+
+</details>
+
+### `EvidenceAssessment` — evidence assessment
+
+**Definition:** Assessment of whether evidence items support, challenge or are irrelevant to a claim.
+
+| | |
+|---|---|
+| **UFO / OntoUML** | «subkind» — Rigid sortal that specializes a kind and inherits its identity principle. |
+| **Grounding** | UFO-C information object; subkind of Assessment |
+| **Dependency** | the assessed claim and the evidence weighed |
+| **In OWL/TTL** | `aro:EvidenceAssessment a owl:Class`; `rdfs:subClassOf aro:Assessment`; domain of: `assessesEvidence` |
+| **SHACL** | `assessesEvidence` (min 1); SPARQL: An evidence assessment must weigh at least one evidence item. |
+| **Not expressible in OWL** | Rigidity is not expressible; the subclass axiom is the only commitment represented. |
+| **gUFO pattern (not imported)** | `rdf:type gufo:SubKind` |
+| **Package** | `evidence` |
+
+<details>
+<summary>Turtle in `ontology/src/aro.ttl`</summary>
+
+```turtle
+aro:EvidenceAssessment a owl:Class ;
+    rdfs:label "evidence assessment"@en,
+        "avaliação de evidência"@pt-BR ;
+    rdfs:comment "OntoUML stereotype (provisional): subkind; foundation: UFO-C information object; subkind of Assessment; dependency: the assessed claim and the evidence weighed"@en,
+        "Estereótipo OntoUML (provisório): subkind; fundamentação: objeto informacional UFO-C; subkind de Assessment; dependência: a alegação avaliada e a evidência ponderada"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/evidence> ;
+    rdfs:subClassOf aro:Assessment ;
+    skos:definition "Assessment of whether evidence items support, challenge or are irrelevant to a claim."@en,
+        "Avaliação de se itens de evidência apoiam, contestam ou são irrelevantes para uma alegação."@pt-BR .
+```
+
+</details>
+
+### `AssessmentCriterion` — assessment criterion
+
+**Definition:** Explicit rule an assessment applies to judge a claim; epistemic criteria judge whether the claim is well grounded, value criteria judge its worth.
+
+| | |
+|---|---|
+| **UFO / OntoUML** | «subkind» — Rigid sortal that specializes a kind and inherits its identity principle. |
+| **Grounding** | UFO-C information object; subkind of AnalyticalRecord, whose identity it inherits |
+| **Dependency** | specified normative meaning |
+| **In OWL/TTL** | `aro:AssessmentCriterion a owl:Class`; `rdfs:subClassOf aro:AnalyticalRecord`; range of: `usesCriterion` |
+| **SHACL** | — |
+| **Not expressible in OWL** | Rigidity is not expressible; the subclass axiom is the only commitment represented. |
+| **gUFO pattern (not imported)** | `rdf:type gufo:SubKind` |
+| **Package** | `claim` |
+
+<details>
+<summary>Turtle in `ontology/src/aro.ttl`</summary>
+
+```turtle
+aro:AssessmentCriterion a owl:Class ;
+    rdfs:label "assessment criterion"@en,
+        "critério de avaliação"@pt-BR ;
+    rdfs:comment "OntoUML stereotype (provisional): subkind; foundation: UFO-C information object; subkind of AnalyticalRecord, whose identity it inherits; dependency: specified normative meaning"@en,
+        "Estereótipo OntoUML (provisório): subkind; fundamentação: objeto informacional UFO-C; subkind de AnalyticalRecord, cuja identidade herda; dependência: significado normativo especificado"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/claim> ;
+    rdfs:subClassOf aro:AnalyticalRecord ;
+    skos:definition "Explicit rule an assessment applies to judge a claim; epistemic criteria judge whether the claim is well grounded, value criteria judge its worth."@en,
+        "Regra explícita que uma avaliação aplica para julgar uma alegação; critérios epistêmicos julgam se a alegação é bem fundamentada, critérios de valor julgam seu mérito."@pt-BR .
+```
+
+</details>
+
+### `EpistemicCriterion` — epistemic criterion
+
+**Definition:** Criterion about knowledge: whether a claim is supported, coherent, plausible or well documented (textual evidence, source reliability, coherence with the work).
+
+| | |
+|---|---|
+| **UFO / OntoUML** | «subkind» — Rigid sortal that specializes a kind and inherits its identity principle. |
+| **Grounding** | UFO-C normative information object (subkind of AssessmentCriterion) |
+| **Dependency** | inherits AssessmentCriterion identity |
+| **In OWL/TTL** | `aro:EpistemicCriterion a owl:Class`; `rdfs:subClassOf aro:AssessmentCriterion` |
+| **SHACL** | — |
+| **Not expressible in OWL** | Rigidity is not expressible; the subclass axiom is the only commitment represented. |
+| **gUFO pattern (not imported)** | `rdf:type gufo:SubKind` |
+| **Package** | `claim` |
+
+<details>
+<summary>Turtle in `ontology/src/aro.ttl`</summary>
+
+```turtle
+aro:EpistemicCriterion a owl:Class ;
+    rdfs:label "epistemic criterion"@en,
+        "critério epistêmico"@pt-BR ;
+    rdfs:comment "OntoUML stereotype (provisional): subkind; foundation: UFO-C normative information object (subkind of AssessmentCriterion); dependency: inherits AssessmentCriterion identity"@en,
+        "Estereótipo OntoUML (provisório): subkind; fundamentação: objeto informacional normativo UFO-C (subkind de AssessmentCriterion); dependência: herda a identidade de AssessmentCriterion"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/claim> ;
+    rdfs:subClassOf aro:AssessmentCriterion ;
+    skos:definition "Criterion about knowledge: whether a claim is supported, coherent, plausible or well documented (textual evidence, source reliability, coherence with the work)."@en,
+        "Critério sobre conhecimento: se uma alegação é apoiada, coerente, plausível ou bem documentada (evidência textual, confiabilidade da fonte, coerência com a obra)."@pt-BR .
+```
+
+</details>
+
+### `ValueCriterion` — value criterion
+
+**Definition:** Criterion about worth: whether a claim or reading is relevant, fair, original or ethically adequate, independently of being true.
+
+| | |
+|---|---|
+| **UFO / OntoUML** | «subkind» — Rigid sortal that specializes a kind and inherits its identity principle. |
+| **Grounding** | UFO-C normative information object (subkind of AssessmentCriterion) |
+| **Dependency** | inherits AssessmentCriterion identity |
+| **In OWL/TTL** | `aro:ValueCriterion a owl:Class`; `rdfs:subClassOf aro:AssessmentCriterion` |
+| **SHACL** | — |
+| **Not expressible in OWL** | Rigidity is not expressible; the subclass axiom is the only commitment represented. |
+| **gUFO pattern (not imported)** | `rdf:type gufo:SubKind` |
+| **Package** | `claim` |
+
+<details>
+<summary>Turtle in `ontology/src/aro.ttl`</summary>
+
+```turtle
+aro:ValueCriterion a owl:Class ;
+    rdfs:label "value criterion"@en,
+        "critério de valor"@pt-BR ;
+    rdfs:comment "OntoUML stereotype (provisional): subkind; foundation: UFO-C normative information object (subkind of AssessmentCriterion); dependency: inherits AssessmentCriterion identity"@en,
+        "Estereótipo OntoUML (provisório): subkind; fundamentação: objeto informacional normativo UFO-C (subkind de AssessmentCriterion); dependência: herda a identidade de AssessmentCriterion"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/claim> ;
+    rdfs:subClassOf aro:AssessmentCriterion ;
+    skos:definition "Criterion about worth: whether a claim or reading is relevant, fair, original or ethically adequate, independently of being true."@en,
+        "Critério sobre mérito: se uma alegação ou leitura é relevante, justa, original ou eticamente adequada, independentemente de ser verdadeira."@pt-BR .
+```
+
+</details>
+
+### `Agent` — agent
+
+**Definition:** Anything that can act intentionally: a person or a collective. Agents are identified by IRIs of external vocabularies (Wikidata, ORCID, ISNI, FOAF, schema.org).
+
+| | |
+|---|---|
+| **UFO / OntoUML** | «category» — Rigid non-sortal: generalizes kinds with different identity principles that share essential properties; it supplies no identity and has no direct instances. |
+| **Grounding** | UFO-A rigid non-sortal (category) over persons and collectives; agents are identified by external IRIs; ARO declares only what OntoUML needs |
+| **Dependency** | none of its own; identity from Person or Collective |
+| **In OWL/TTL** | `aro:Agent a owl:Class`; abstract (no direct instances): `owl:disjointUnionOf` (`aro:Person`, `aro:Collective`) |
+| **SHACL** | — |
+| **Not expressible in OWL** | Rigidity is not expressible; the covering axiom is the only commitment represented. |
+| **gUFO pattern (not imported)** | `rdf:type gufo:Category` |
+| **Alignments** | `rdfs:seeAlso` `prov:Agent`, `rdfs:seeAlso` `foaf:Agent` |
+| **Package** | `agent` |
+
+<details>
+<summary>Turtle in `ontology/src/aro.ttl`</summary>
+
+```turtle
+aro:Agent a owl:Class ;
+    rdfs:label "agent"@en,
+        "agente"@pt-BR ;
+    rdfs:comment "OntoUML stereotype (provisional): category; foundation: UFO-A rigid non-sortal (category) over persons and collectives; agents are identified by external IRIs; ARO declares only what OntoUML needs; dependency: none of its own; identity from Person or Collective"@en,
+        "Estereótipo OntoUML (provisório): category; fundamentação: não-sortal rígido UFO-A (category) sobre pessoas e coletivos; agentes são identificados por IRIs externos; a ARO declara só o que a OntoUML exige; dependência: nenhuma própria; identidade de Person ou Collective"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/agent> ;
+    rdfs:seeAlso prov:Agent,
+        foaf:Agent ;
+    owl:disjointUnionOf [ ] ;
+    skos:definition "Anything that can act intentionally: a person or a collective. Agents are identified by IRIs of external vocabularies (Wikidata, ORCID, ISNI, FOAF, schema.org)."@en,
+        "Tudo o que pode agir intencionalmente: uma pessoa ou um coletivo. Agentes são identificados por IRIs de vocabulários externos (Wikidata, ORCID, ISNI, FOAF, schema.org)."@pt-BR .
+```
+
+</details>
+
+### `Person` — person
+
+**Definition:** Individual human agent (author, performer, analyst, researcher).
+
+| | |
+|---|---|
+| **UFO / OntoUML** | «kind» — Rigid sortal: supplies the identity principle of its instances, which cannot stop instantiating it while they exist. |
+| **Grounding** | UFO-A kind (substantial); agents are identified by external IRIs; ARO declares only what OntoUML needs |
+| **Dependency** | identity supplied by the person; ARO records only roles and contributions |
+| **In OWL/TTL** | `aro:Person a owl:Class`; `rdfs:subClassOf aro:Agent`; disjoint from every other ultimate sortal (`owl:AllDisjointClasses`) |
+| **SHACL** | — |
+| **Not expressible in OWL** | Rigidity and the identity principle are not expressible in OWL; disjointness between kinds is not declared. |
+| **gUFO pattern (not imported)** | `rdf:type gufo:Kind` |
+| **Alignments** | `rdfs:seeAlso` `foaf:Person`, `rdfs:seeAlso` `schema:Person` |
+| **Package** | `agent` |
+
+<details>
+<summary>Turtle in `ontology/src/aro.ttl`</summary>
+
+```turtle
+aro:Person a owl:Class ;
+    rdfs:label "person"@en,
+        "pessoa"@pt-BR ;
+    rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-A kind (substantial); agents are identified by external IRIs; ARO declares only what OntoUML needs; dependency: identity supplied by the person; ARO records only roles and contributions"@en,
+        "Estereótipo OntoUML (provisório): kind; fundamentação: kind UFO-A (substancial); agentes são identificados por IRIs externos; a ARO declara só o que a OntoUML exige; dependência: identidade da própria pessoa; a ARO registra só papéis e contribuições"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/agent> ;
+    rdfs:seeAlso foaf:Person,
+        schema:Person ;
+    rdfs:subClassOf aro:Agent ;
+    skos:definition "Individual human agent (author, performer, analyst, researcher)."@en,
+        "Agente humano individual (autor, intérprete, analista, pesquisador)."@pt-BR .
+```
+
+</details>
+
+### `Collective` — collective
+
+**Definition:** Group of agents acting as one: a band, a company, a research group, a film crew, a publisher.
+
+| | |
+|---|---|
+| **UFO / OntoUML** | «collective» — Rigid sortal whose instances are collections of members unified by a common relation (a band, a company); supplies their identity. |
+| **Grounding** | UFO-A collective; agents are identified by external IRIs; ARO declares only what OntoUML needs |
+| **Dependency** | its members, under a unifying relation |
+| **In OWL/TTL** | `aro:Collective a owl:Class`; `rdfs:subClassOf aro:Agent`; disjoint from every other ultimate sortal (`owl:AllDisjointClasses`) |
+| **SHACL** | — |
+| **Not expressible in OWL** | Rigidity, the unifying relation and membership are not represented. |
+| **gUFO pattern (not imported)** | `rdf:type gufo:Kind` + `rdfs:subClassOf gufo:Collection` |
+| **Alignments** | `rdfs:seeAlso` `foaf:Group`, `rdfs:seeAlso` `schema:Organization`, `rdfs:seeAlso` `schema:MusicGroup` |
+| **Package** | `agent` |
+
+<details>
+<summary>Turtle in `ontology/src/aro.ttl`</summary>
+
+```turtle
+aro:Collective a owl:Class ;
+    rdfs:label "collective"@en,
+        "coletivo"@pt-BR ;
+    rdfs:comment "OntoUML stereotype (provisional): collective; foundation: UFO-A collective; agents are identified by external IRIs; ARO declares only what OntoUML needs; dependency: its members, under a unifying relation"@en,
+        "Estereótipo OntoUML (provisório): collective; fundamentação: coletivo UFO-A; agentes são identificados por IRIs externos; a ARO declara só o que a OntoUML exige; dependência: seus membros, sob uma relação unificadora"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/agent> ;
+    rdfs:seeAlso foaf:Group,
+        schema:MusicGroup,
+        schema:Organization ;
+    rdfs:subClassOf aro:Agent ;
+    skos:definition "Group of agents acting as one: a band, a company, a research group, a film crew, a publisher."@en,
+        "Grupo de agentes que age como um: banda, companhia, grupo de pesquisa, equipe de filmagem, editora."@pt-BR .
+```
+
+</details>
+
+### `Analyst` — analyst
+
+**Definition:** Agent insofar as it takes part in an interpretive act (interprets, describes, assesses). Played by persons or collectives identified by external IRIs.
+
+| | |
+|---|---|
+| **UFO / OntoUML** | «roleMixin» — Anti-rigid non-sortal: classifies entities of different kinds by a relational property (taking part in an act); supplies no identity. |
+| **Grounding** | UFO-A anti-rigid non-sortal (roleMixin) specialized by PersonAnalyst and CollectiveAnalyst |
+| **Dependency** | relationally on participation in an InterpretiveAct; identity supplied by external kinds |
+| **In OWL/TTL** | `aro:Analyst a owl:Class`; `rdfs:subClassOf aro:Agent`; external individuals are classified into it by an RDFS reasoner through the `rdfs:range` of the connecting relation; range of: `hasParticipant` |
+| **SHACL** | — |
+| **Not expressible in OWL** | Anti-rigidity (an entity may stop playing the role) is not expressible; any IRI used with the relation is classified. |
+| **gUFO pattern (not imported)** | `rdf:type gufo:RoleMixin` |
+| **Alignments** | `rdfs:seeAlso` `prov:Agent`, `rdfs:seeAlso` `foaf:Person`, `rdfs:seeAlso` `schema:Person` |
+| **Package** | `agent` |
+
+<details>
+<summary>Turtle in `ontology/src/aro.ttl`</summary>
+
+```turtle
+aro:Analyst a owl:Class ;
+    rdfs:label "analyst"@en,
+        "analista"@pt-BR ;
+    rdfs:comment "OntoUML stereotype (provisional): roleMixin; foundation: UFO-A anti-rigid non-sortal (roleMixin) specialized by PersonAnalyst and CollectiveAnalyst; dependency: relationally on participation in an InterpretiveAct; identity supplied by external kinds"@en,
+        "Estereótipo OntoUML (provisório): roleMixin; fundamentação: não-sortal anti-rígido UFO-A (roleMixin) especializado por PersonAnalyst e CollectiveAnalyst; dependência: relacionalmente da participação num InterpretiveAct; identidade fornecida por tipos externos"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/agent> ;
+    rdfs:seeAlso prov:Agent,
+        foaf:Person,
+        schema:Person ;
+    rdfs:subClassOf aro:Agent ;
+    skos:definition "Agent insofar as it takes part in an interpretive act (interprets, describes, assesses). Played by persons or collectives identified by external IRIs."@en,
+        "Agente enquanto participa de um ato interpretativo (interpreta, descreve, avalia). Desempenhado por pessoas ou coletivos identificados por IRIs externos."@pt-BR .
+```
+
+</details>
+
+### `CreativeAgent` — creative agent
+
+**Definition:** Agent insofar as it contributes to a creative act (composes, performs, translates, directs...). Played by persons or collectives identified by external IRIs.
+
+| | |
+|---|---|
+| **UFO / OntoUML** | «roleMixin» — Anti-rigid non-sortal: classifies entities of different kinds by a relational property (taking part in an act); supplies no identity. |
+| **Grounding** | UFO-A anti-rigid non-sortal (roleMixin) specialized by PersonCreator and CollectiveCreator |
+| **Dependency** | relationally on a CreativeContribution; identity supplied by external kinds |
+| **In OWL/TTL** | `aro:CreativeAgent a owl:Class`; `rdfs:subClassOf aro:Agent`; external individuals are classified into it by an RDFS reasoner through the `rdfs:range` of the connecting relation; range of: `contributionBy` |
+| **SHACL** | — |
+| **Not expressible in OWL** | Anti-rigidity (an entity may stop playing the role) is not expressible; any IRI used with the relation is classified. |
+| **gUFO pattern (not imported)** | `rdf:type gufo:RoleMixin` |
+| **Alignments** | `rdfs:seeAlso` `prov:Agent`, `rdfs:seeAlso` `foaf:Agent`, `rdfs:seeAlso` `schema:Person`, `rdfs:seeAlso` `schema:Organization` |
+| **Package** | `agent` |
+
+<details>
+<summary>Turtle in `ontology/src/aro.ttl`</summary>
+
+```turtle
+aro:CreativeAgent a owl:Class ;
+    rdfs:label "creative agent"@en,
+        "agente criativo"@pt-BR ;
+    rdfs:comment "OntoUML stereotype (provisional): roleMixin; foundation: UFO-A anti-rigid non-sortal (roleMixin) specialized by PersonCreator and CollectiveCreator; dependency: relationally on a CreativeContribution; identity supplied by external kinds"@en,
+        "Estereótipo OntoUML (provisório): roleMixin; fundamentação: não-sortal anti-rígido UFO-A (roleMixin) especializado por PersonCreator e CollectiveCreator; dependência: relacionalmente de uma CreativeContribution; identidade fornecida por tipos externos"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/agent> ;
+    rdfs:seeAlso prov:Agent,
+        foaf:Agent,
+        schema:Organization,
+        schema:Person ;
+    rdfs:subClassOf aro:Agent ;
+    skos:definition "Agent insofar as it contributes to a creative act (composes, performs, translates, directs...). Played by persons or collectives identified by external IRIs."@en,
+        "Agente enquanto contribui para um ato criativo (compõe, interpreta, traduz, dirige...). Desempenhado por pessoas ou coletivos identificados por IRIs externos."@pt-BR .
+```
+
+</details>
+
+### `PersonAnalyst` — person analyst
+
+**Definition:** A person while taking part in an interpretive act; defined as Person and Analyst.
+
+| | |
+|---|---|
+| **UFO / OntoUML** | «role» — Anti-rigid sortal: instances of one kind play it while they stand in a relation (taking part in an act); it inherits the kind's identity. |
+| **Grounding** | UFO-A anti-rigid sortal (role) of Person, specializing the roleMixin Analyst |
+| **Dependency** | relationally on participation in an interpretive act |
+| **In OWL/TTL** | `aro:PersonAnalyst a owl:Class`; `rdfs:subClassOf aro:Person`; `rdfs:subClassOf aro:Analyst`; `owl:equivalentClass` `aro:Person` ⊓ `aro:Analyst`; defined as the intersection of its kind and its roleMixin, so a reasoner classifies agents into it |
+| **SHACL** | — |
+| **Not expressible in OWL** | Anti-rigidity (an agent may stop playing the role) is not expressible in OWL. |
+| **gUFO pattern (not imported)** | `rdf:type gufo:Role` |
+| **Package** | `agent` |
+
+<details>
+<summary>Turtle in `ontology/src/aro.ttl`</summary>
+
+```turtle
+aro:PersonAnalyst a owl:Class ;
+    rdfs:label "person analyst"@en,
+        "pessoa analista"@pt-BR ;
+    rdfs:comment "OntoUML stereotype (provisional): role; foundation: UFO-A anti-rigid sortal (role) of Person, specializing the roleMixin Analyst; dependency: relationally on participation in an interpretive act"@en,
+        "Estereótipo OntoUML (provisório): role; fundamentação: sortal anti-rígido UFO-A (role) de Person, especializando o roleMixin Analyst; dependência: relacionalmente da participação em um ato interpretativo"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/agent> ;
+    rdfs:subClassOf aro:Analyst,
+        aro:Person ;
+    owl:equivalentClass [ ] ;
+    skos:definition "A person while taking part in an interpretive act; defined as Person and Analyst."@en,
+        "Pessoa enquanto participa de um ato interpretativo; definido como Person e Analyst."@pt-BR .
+```
+
+</details>
+
+### `CollectiveAnalyst` — collective analyst
+
+**Definition:** A collective while taking part in an interpretive act; defined as Collective and Analyst.
+
+| | |
+|---|---|
+| **UFO / OntoUML** | «role» — Anti-rigid sortal: instances of one kind play it while they stand in a relation (taking part in an act); it inherits the kind's identity. |
+| **Grounding** | UFO-A anti-rigid sortal (role) of Collective, specializing the roleMixin Analyst |
+| **Dependency** | relationally on participation in an interpretive act |
+| **In OWL/TTL** | `aro:CollectiveAnalyst a owl:Class`; `rdfs:subClassOf aro:Collective`; `rdfs:subClassOf aro:Analyst`; `owl:equivalentClass` `aro:Collective` ⊓ `aro:Analyst`; defined as the intersection of its kind and its roleMixin, so a reasoner classifies agents into it |
+| **SHACL** | — |
+| **Not expressible in OWL** | Anti-rigidity (an agent may stop playing the role) is not expressible in OWL. |
+| **gUFO pattern (not imported)** | `rdf:type gufo:Role` |
+| **Package** | `agent` |
+
+<details>
+<summary>Turtle in `ontology/src/aro.ttl`</summary>
+
+```turtle
+aro:CollectiveAnalyst a owl:Class ;
+    rdfs:label "collective analyst"@en,
+        "coletivo analista"@pt-BR ;
+    rdfs:comment "OntoUML stereotype (provisional): role; foundation: UFO-A anti-rigid sortal (role) of Collective, specializing the roleMixin Analyst; dependency: relationally on participation in an interpretive act"@en,
+        "Estereótipo OntoUML (provisório): role; fundamentação: sortal anti-rígido UFO-A (role) de Collective, especializando o roleMixin Analyst; dependência: relacionalmente da participação em um ato interpretativo"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/agent> ;
+    rdfs:subClassOf aro:Analyst,
+        aro:Collective ;
+    owl:equivalentClass [ ] ;
+    skos:definition "A collective while taking part in an interpretive act; defined as Collective and Analyst."@en,
+        "Coletivo enquanto participa de um ato interpretativo; definido como Collective e Analyst."@pt-BR .
+```
+
+</details>
+
+### `PersonCreator` — person creator
+
+**Definition:** A person while taking part in a creative act; defined as Person and CreativeAgent.
+
+| | |
+|---|---|
+| **UFO / OntoUML** | «role» — Anti-rigid sortal: instances of one kind play it while they stand in a relation (taking part in an act); it inherits the kind's identity. |
+| **Grounding** | UFO-A anti-rigid sortal (role) of Person, specializing the roleMixin CreativeAgent |
+| **Dependency** | relationally on participation in a creative act |
+| **In OWL/TTL** | `aro:PersonCreator a owl:Class`; `rdfs:subClassOf aro:Person`; `rdfs:subClassOf aro:CreativeAgent`; `owl:equivalentClass` `aro:Person` ⊓ `aro:CreativeAgent`; defined as the intersection of its kind and its roleMixin, so a reasoner classifies agents into it |
+| **SHACL** | — |
+| **Not expressible in OWL** | Anti-rigidity (an agent may stop playing the role) is not expressible in OWL. |
+| **gUFO pattern (not imported)** | `rdf:type gufo:Role` |
+| **Package** | `agent` |
+
+<details>
+<summary>Turtle in `ontology/src/aro.ttl`</summary>
+
+```turtle
+aro:PersonCreator a owl:Class ;
+    rdfs:label "person creator"@en,
+        "pessoa criadora"@pt-BR ;
+    rdfs:comment "OntoUML stereotype (provisional): role; foundation: UFO-A anti-rigid sortal (role) of Person, specializing the roleMixin CreativeAgent; dependency: relationally on participation in a creative act"@en,
+        "Estereótipo OntoUML (provisório): role; fundamentação: sortal anti-rígido UFO-A (role) de Person, especializando o roleMixin CreativeAgent; dependência: relacionalmente da participação em um ato criativo"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/agent> ;
+    rdfs:subClassOf aro:CreativeAgent,
+        aro:Person ;
+    owl:equivalentClass [ ] ;
+    skos:definition "A person while taking part in a creative act; defined as Person and CreativeAgent."@en,
+        "Pessoa enquanto participa de um ato criativo; definido como Person e CreativeAgent."@pt-BR .
+```
+
+</details>
+
+### `CollectiveCreator` — collective creator
+
+**Definition:** A collective while taking part in a creative act; defined as Collective and CreativeAgent.
+
+| | |
+|---|---|
+| **UFO / OntoUML** | «role» — Anti-rigid sortal: instances of one kind play it while they stand in a relation (taking part in an act); it inherits the kind's identity. |
+| **Grounding** | UFO-A anti-rigid sortal (role) of Collective, specializing the roleMixin CreativeAgent |
+| **Dependency** | relationally on participation in a creative act |
+| **In OWL/TTL** | `aro:CollectiveCreator a owl:Class`; `rdfs:subClassOf aro:Collective`; `rdfs:subClassOf aro:CreativeAgent`; `owl:equivalentClass` `aro:Collective` ⊓ `aro:CreativeAgent`; defined as the intersection of its kind and its roleMixin, so a reasoner classifies agents into it |
+| **SHACL** | — |
+| **Not expressible in OWL** | Anti-rigidity (an agent may stop playing the role) is not expressible in OWL. |
+| **gUFO pattern (not imported)** | `rdf:type gufo:Role` |
+| **Package** | `agent` |
+
+<details>
+<summary>Turtle in `ontology/src/aro.ttl`</summary>
+
+```turtle
+aro:CollectiveCreator a owl:Class ;
+    rdfs:label "collective creator"@en,
+        "coletivo criador"@pt-BR ;
+    rdfs:comment "OntoUML stereotype (provisional): role; foundation: UFO-A anti-rigid sortal (role) of Collective, specializing the roleMixin CreativeAgent; dependency: relationally on participation in a creative act"@en,
+        "Estereótipo OntoUML (provisório): role; fundamentação: sortal anti-rígido UFO-A (role) de Collective, especializando o roleMixin CreativeAgent; dependência: relacionalmente da participação em um ato criativo"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/agent> ;
+    rdfs:subClassOf aro:Collective,
+        aro:CreativeAgent ;
+    owl:equivalentClass [ ] ;
+    skos:definition "A collective while taking part in a creative act; defined as Collective and CreativeAgent."@en,
+        "Coletivo enquanto participa de um ato criativo; definido como Collective e CreativeAgent."@pt-BR .
 ```
 
 </details>
@@ -152,13 +870,14 @@ aro:AnalysisUnit a owl:Class ;
 
 | | |
 |---|---|
-| **UFO / OntoUML** | «kind» — Rigid sortal: supplies the identity principle of its instances, which cannot stop instantiating it while they exist. |
-| **Grounding** | UFO-C information object; not an event |
-| **Dependency** | anchor selection; historical interpretive act |
-| **In OWL/TTL** | `aro:InterpretationRecord a owl:Class`; domain of: `hasPrimarySelection`, `hasSupportingSelection`, `producedByAct`, `hasJustification`, `describesSituation`, `citesSource`, `supportsInterpretation`; range of: `challenges`, `assessesInterpretation`, `supportsInterpretation` |
-| **SHACL** | `hasPrimarySelection` (min 1, max 1); `producedByAct` (min 1, max 1) |
-| **Not expressible in OWL** | Rigidity and the identity principle are not expressible in OWL; disjointness between kinds is not declared. |
-| **gUFO pattern (not imported)** | `rdf:type gufo:Kind` — As a UFO-C information object it has no specific gUFO counterpart. |
+| **UFO / OntoUML** | «subkind» — Rigid sortal that specializes a kind and inherits its identity principle. |
+| **Grounding** | UFO-C information object; subkind of Claim (assessable, justifiable, citable, challengeable) |
+| **Dependency** | anchor selection; the interpretive act that produced it |
+| **In OWL/TTL** | `aro:InterpretationRecord a owl:Class`; `rdfs:subClassOf aro:Claim`; domain of: `hasPrimarySelection`, `hasSupportingSelection`, `describesSituation`, `supportsInterpretation`; range of: `supportsInterpretation` |
+| **SHACL** | `hasPrimarySelection` (min 1, max 1); `producedByAct` (min 1) |
+| **Not expressible in OWL** | Rigidity is not expressible; the subclass axiom is the only commitment represented. |
+| **gUFO pattern (not imported)** | `rdf:type gufo:SubKind` |
+| **Alignments** | `rdfs:seeAlso` `oa:Annotation` |
 | **Package** | `interpretation` |
 
 <details>
@@ -168,9 +887,11 @@ aro:AnalysisUnit a owl:Class ;
 aro:InterpretationRecord a owl:Class ;
     rdfs:label "interpretation record"@en,
         "registro de interpretação"@pt-BR ;
-    rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-C information object; not an event; dependency: anchor selection; historical interpretive act"@en,
-        "Estereótipo OntoUML (provisório): kind; fundamentação: objeto informacional UFO-C; não é evento; dependência: recorte de ancoragem; ato interpretativo histórico"@pt-BR ;
+    rdfs:comment "OntoUML stereotype (provisional): subkind; foundation: UFO-C information object; subkind of Claim (assessable, justifiable, citable, challengeable); dependency: anchor selection; the interpretive act that produced it"@en,
+        "Estereótipo OntoUML (provisório): subkind; fundamentação: objeto informacional UFO-C; subkind de Claim (avaliável, justificável, citável, contestável); dependência: recorte de ancoragem; o ato interpretativo que o produziu"@pt-BR ;
     rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/interpretation> ;
+    rdfs:seeAlso oa:Annotation ;
+    rdfs:subClassOf aro:Claim ;
     skos:definition "Persistent authored record of an interpretation of a selection."@en,
         "Registro autoral persistente de uma interpretação de recorte."@pt-BR .
 ```
@@ -186,10 +907,11 @@ aro:InterpretationRecord a owl:Class ;
 | **UFO / OntoUML** | «event» — Perdurant (UFO-B): an occurrence that unfolds in time and has participants; it is not an object. |
 | **Grounding** | UFO-B event; UFO-C intentional action |
 | **Dependency** | participating agents and temporal occurrence |
-| **In OWL/TTL** | `aro:InterpretiveAct a owl:Class`; domain of: `hasParticipant`; range of: `producedByAct`, `claimProducedByAct` |
+| **In OWL/TTL** | `aro:InterpretiveAct a owl:Class`; disjoint from every other ultimate sortal (`owl:AllDisjointClasses`); domain of: `hasParticipant`, `startDate`, `endDate`; range of: `producedByAct` |
 | **SHACL** | `hasParticipant` (min 1, IRI) |
 | **Not expressible in OWL** | Temporal extent and ordering of events are not represented in this version (no time properties). |
 | **gUFO pattern (not imported)** | `rdfs:subClassOf gufo:Event` |
+| **Alignments** | `rdfs:seeAlso` `prov:Activity` |
 | **Package** | `interpretation` |
 
 <details>
@@ -202,167 +924,9 @@ aro:InterpretiveAct a owl:Class ;
     rdfs:comment "OntoUML stereotype (provisional): event; foundation: UFO-B event; UFO-C intentional action; dependency: participating agents and temporal occurrence"@en,
         "Estereótipo OntoUML (provisório): event; fundamentação: evento UFO-B; ação intencional UFO-C; dependência: agentes participantes e ocorrência temporal"@pt-BR ;
     rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/interpretation> ;
+    rdfs:seeAlso prov:Activity ;
     skos:definition "Temporal intentional activity yielding interpretation records."@en,
         "Atividade intencional temporal que produz interpretações registradas."@pt-BR .
-```
-
-</details>
-
-### `Analyst` — analyst
-
-**Definition:** Any human agent, identified in an external vocabulary, insofar as they interpret or assess. Agent identity is represented by the external vocabulary, not by ARO.
-
-| | |
-|---|---|
-| **UFO / OntoUML** | «roleMixin» — Anti-rigid non-sortal: classifies entities of different kinds by a relational property (taking part in an act); supplies no identity. |
-| **Grounding** | UFO-A anti-rigid non-sortal (roleMixin); agents are individuals of external ontologies |
-| **Dependency** | relationally on participation in an InterpretiveAct; identity supplied by external kinds |
-| **In OWL/TTL** | `aro:Analyst a owl:Class`; external individuals are classified into it by an RDFS reasoner through the `rdfs:range` of the connecting relation; range of: `hasParticipant` |
-| **SHACL** | — |
-| **Not expressible in OWL** | Anti-rigidity (an entity may stop playing the role) is not expressible; any IRI used with the relation is classified. |
-| **gUFO pattern (not imported)** | `rdf:type gufo:RoleMixin` |
-| **Alignments** | `rdfs:seeAlso` `prov:Agent`, `rdfs:seeAlso` `foaf:Person`, `rdfs:seeAlso` `schema:Person` |
-| **Package** | `interpretation` |
-
-<details>
-<summary>Turtle in `ontology/src/aro.ttl`</summary>
-
-```turtle
-aro:Analyst a owl:Class ;
-    rdfs:label "analyst"@en,
-        "analista"@pt-BR ;
-    rdfs:comment "OntoUML stereotype (provisional): roleMixin; foundation: UFO-A anti-rigid non-sortal (roleMixin); agents are individuals of external ontologies; dependency: relationally on participation in an InterpretiveAct; identity supplied by external kinds"@en,
-        "Estereótipo OntoUML (provisório): roleMixin; fundamentação: não-sortal anti-rígido UFO-A (roleMixin); agentes são indivíduos de ontologias externas; dependência: relacionalmente da participação num InterpretiveAct; identidade fornecida por tipos externos"@pt-BR ;
-    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/interpretation> ;
-    rdfs:seeAlso prov:Agent,
-        foaf:Person,
-        schema:Person ;
-    skos:definition "Any human agent, identified in an external vocabulary, insofar as they interpret or assess. Agent identity is represented by the external vocabulary, not by ARO."@en,
-        "Qualquer agente humano, identificado em vocabulário externo, na medida em que interpreta ou avalia. A identidade do agente é representada pelo vocabulário externo, não pela ARO."@pt-BR .
-```
-
-</details>
-
-### `InterpretiveJustification` — interpretive justification
-
-**Definition:** Recorded argument connecting premises to an interpretation or to a derivation claim.
-
-| | |
-|---|---|
-| **UFO / OntoUML** | «kind» — Rigid sortal: supplies the identity principle of its instances, which cannot stop instantiating it while they exist. |
-| **Grounding** | UFO-C information object |
-| **Dependency** | target interpretation, articulated premises |
-| **In OWL/TTL** | `aro:InterpretiveJustification a owl:Class`; range of: `hasJustification`, `derivationJustifiedBy` |
-| **SHACL** | — |
-| **Not expressible in OWL** | Rigidity and the identity principle are not expressible in OWL; disjointness between kinds is not declared. |
-| **gUFO pattern (not imported)** | `rdf:type gufo:Kind` — As a UFO-C information object it has no specific gUFO counterpart. |
-| **Package** | `interpretation` |
-
-<details>
-<summary>Turtle in `ontology/src/aro.ttl`</summary>
-
-```turtle
-aro:InterpretiveJustification a owl:Class ;
-    rdfs:label "interpretive justification"@en,
-        "justificativa interpretativa"@pt-BR ;
-    rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-C information object; dependency: target interpretation, articulated premises"@en,
-        "Estereótipo OntoUML (provisório): kind; fundamentação: objeto informacional UFO-C; dependência: interpretação ou alegação-alvo, premissas articuladas"@pt-BR ;
-    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/interpretation> ;
-    skos:definition "Recorded argument connecting premises to an interpretation or to a derivation claim."@en,
-        "Argumento registrado que liga premissas a uma interpretação ou a uma alegação de derivação."@pt-BR .
-```
-
-</details>
-
-### `InterpretationChallenge` — interpretation challenge
-
-**Definition:** Recorded criticism or alternative reasoning about an interpretation.
-
-| | |
-|---|---|
-| **UFO / OntoUML** | «kind» — Rigid sortal: supplies the identity principle of its instances, which cannot stop instantiating it while they exist. |
-| **Grounding** | UFO-C information object |
-| **Dependency** | challenged interpretation and argument |
-| **In OWL/TTL** | `aro:InterpretationChallenge a owl:Class`; domain of: `challenges` |
-| **SHACL** | — |
-| **Not expressible in OWL** | Rigidity and the identity principle are not expressible in OWL; disjointness between kinds is not declared. |
-| **gUFO pattern (not imported)** | `rdf:type gufo:Kind` — As a UFO-C information object it has no specific gUFO counterpart. |
-| **Package** | `interpretation` |
-
-<details>
-<summary>Turtle in `ontology/src/aro.ttl`</summary>
-
-```turtle
-aro:InterpretationChallenge a owl:Class ;
-    rdfs:label "interpretation challenge"@en,
-        "contestação de interpretação"@pt-BR ;
-    rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-C information object; dependency: challenged interpretation and argument"@en,
-        "Estereótipo OntoUML (provisório): kind; fundamentação: objeto informacional UFO-C; dependência: interpretação contestada e argumento"@pt-BR ;
-    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/interpretation> ;
-    skos:definition "Recorded criticism or alternative reasoning about an interpretation."@en,
-        "Crítica ou raciocínio alternativo registrado sobre interpretação."@pt-BR .
-```
-
-</details>
-
-### `InterpretationAssessment` — interpretation assessment
-
-**Definition:** Explicit epistemic or axiological judgment of an interpretation.
-
-| | |
-|---|---|
-| **UFO / OntoUML** | «kind» — Rigid sortal: supplies the identity principle of its instances, which cannot stop instantiating it while they exist. |
-| **Grounding** | UFO-C information object |
-| **Dependency** | target and criteria |
-| **In OWL/TTL** | `aro:InterpretationAssessment a owl:Class`; domain of: `assessesInterpretation`, `usesCriterion` |
-| **SHACL** | — |
-| **Not expressible in OWL** | Rigidity and the identity principle are not expressible in OWL; disjointness between kinds is not declared. |
-| **gUFO pattern (not imported)** | `rdf:type gufo:Kind` — As a UFO-C information object it has no specific gUFO counterpart. |
-| **Package** | `interpretation` |
-
-<details>
-<summary>Turtle in `ontology/src/aro.ttl`</summary>
-
-```turtle
-aro:InterpretationAssessment a owl:Class ;
-    rdfs:label "interpretation assessment"@en,
-        "avaliação de interpretação"@pt-BR ;
-    rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-C information object; dependency: target and criteria"@en,
-        "Estereótipo OntoUML (provisório): kind; fundamentação: objeto informacional UFO-C; dependência: alvo e critérios"@pt-BR ;
-    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/interpretation> ;
-    skos:definition "Explicit epistemic or axiological judgment of an interpretation."@en,
-        "Julgamento epistêmico ou axiológico explícito de interpretação."@pt-BR .
-```
-
-</details>
-
-### `AssessmentCriterion` — assessment criterion
-
-**Definition:** Specified epistemic or value-based assessment rule.
-
-| | |
-|---|---|
-| **UFO / OntoUML** | «kind» — Rigid sortal: supplies the identity principle of its instances, which cannot stop instantiating it while they exist. |
-| **Grounding** | UFO-C normative/social information object |
-| **Dependency** | specified normative meaning |
-| **In OWL/TTL** | `aro:AssessmentCriterion a owl:Class`; range of: `usesCriterion` |
-| **SHACL** | — |
-| **Not expressible in OWL** | Rigidity and the identity principle are not expressible in OWL; disjointness between kinds is not declared. |
-| **gUFO pattern (not imported)** | `rdf:type gufo:Kind` — As a UFO-C information object it has no specific gUFO counterpart. |
-| **Package** | `interpretation` |
-
-<details>
-<summary>Turtle in `ontology/src/aro.ttl`</summary>
-
-```turtle
-aro:AssessmentCriterion a owl:Class ;
-    rdfs:label "assessment criterion"@en,
-        "critério de avaliação"@pt-BR ;
-    rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-C normative/social information object; dependency: specified normative meaning"@en,
-        "Estereótipo OntoUML (provisório): kind; fundamentação: objeto informacional normativo/social UFO-C; dependência: significado normativo especificado"@pt-BR ;
-    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/interpretation> ;
-    skos:definition "Specified epistemic or value-based assessment rule."@en,
-        "Regra especificada de avaliação epistêmica ou de valores."@pt-BR .
 ```
 
 </details>
@@ -373,13 +937,13 @@ aro:AssessmentCriterion a owl:Class ;
 
 | | |
 |---|---|
-| **UFO / OntoUML** | «kind» — Rigid sortal: supplies the identity principle of its instances, which cannot stop instantiating it while they exist. |
-| **Grounding** | UFO-C representation; not a real-world entity |
+| **UFO / OntoUML** | «subkind» — Rigid sortal that specializes a kind and inherits its identity principle. |
+| **Grounding** | UFO-C representation (subkind of AnalyticalRecord); not a real-world entity |
 | **Dependency** | representational context |
-| **In OWL/TTL** | `aro:DepictedElement a owl:Class`; range of: `mentionsDepictedElement` |
+| **In OWL/TTL** | `aro:DepictedElement a owl:Class`; `rdfs:subClassOf aro:AnalyticalRecord`; range of: `mentionsDepictedElement` |
 | **SHACL** | — |
-| **Not expressible in OWL** | Rigidity and the identity principle are not expressible in OWL; disjointness between kinds is not declared. |
-| **gUFO pattern (not imported)** | `rdf:type gufo:Kind` |
+| **Not expressible in OWL** | Rigidity is not expressible; the subclass axiom is the only commitment represented. |
+| **gUFO pattern (not imported)** | `rdf:type gufo:SubKind` |
 | **Package** | `representation` |
 
 <details>
@@ -389,9 +953,10 @@ aro:AssessmentCriterion a owl:Class ;
 aro:DepictedElement a owl:Class ;
     rdfs:label "depicted element"@en,
         "elemento representado"@pt-BR ;
-    rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-C representation; not a real-world entity; dependency: representational context"@en,
-        "Estereótipo OntoUML (provisório): kind; fundamentação: representação UFO-C; não é entidade do mundo real; dependência: contexto representacional"@pt-BR ;
+    rdfs:comment "OntoUML stereotype (provisional): subkind; foundation: UFO-C representation (subkind of AnalyticalRecord); not a real-world entity; dependency: representational context"@en,
+        "Estereótipo OntoUML (provisório): subkind; fundamentação: representação UFO-C (subkind de AnalyticalRecord); não é entidade do mundo real; dependência: contexto representacional"@pt-BR ;
     rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/representation> ;
+    rdfs:subClassOf aro:AnalyticalRecord ;
     skos:definition "Information-level representation of a referent in an artwork."@en,
         "Representação informacional de um referente na obra."@pt-BR .
 ```
@@ -436,13 +1001,13 @@ aro:DepictedAgent a owl:Class ;
 
 | | |
 |---|---|
-| **UFO / OntoUML** | «kind» — Rigid sortal: supplies the identity principle of its instances, which cannot stop instantiating it while they exist. |
-| **Grounding** | UFO-C information object, not gufo:Situation |
+| **UFO / OntoUML** | «subkind» — Rigid sortal that specializes a kind and inherits its identity principle. |
+| **Grounding** | UFO-C information object (subkind of AnalyticalRecord), not gufo:Situation |
 | **Dependency** | interpretive support and conceptual content |
-| **In OWL/TTL** | `aro:SituationDescription a owl:Class`; domain of: `mentionsDepictedElement`, `generalizesAs`; range of: `describesSituation` |
+| **In OWL/TTL** | `aro:SituationDescription a owl:Class`; `rdfs:subClassOf aro:AnalyticalRecord`; domain of: `mentionsDepictedElement`, `generalizesAs`; range of: `describesSituation` |
 | **SHACL** | — |
-| **Not expressible in OWL** | Rigidity and the identity principle are not expressible in OWL; disjointness between kinds is not declared. |
-| **gUFO pattern (not imported)** | `rdf:type gufo:Kind` — As a UFO-C information object it has no specific gUFO counterpart. |
+| **Not expressible in OWL** | Rigidity is not expressible; the subclass axiom is the only commitment represented. |
+| **gUFO pattern (not imported)** | `rdf:type gufo:SubKind` |
 | **Package** | `representation` |
 
 <details>
@@ -452,9 +1017,10 @@ aro:DepictedAgent a owl:Class ;
 aro:SituationDescription a owl:Class ;
     rdfs:label "situation description"@en,
         "descrição de situação"@pt-BR ;
-    rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-C information object, not gufo:Situation; dependency: interpretive support and conceptual content"@en,
-        "Estereótipo OntoUML (provisório): kind; fundamentação: objeto informacional UFO-C, não gufo:Situation; dependência: suporte interpretativo e conteúdo conceitual"@pt-BR ;
+    rdfs:comment "OntoUML stereotype (provisional): subkind; foundation: UFO-C information object (subkind of AnalyticalRecord), not gufo:Situation; dependency: interpretive support and conceptual content"@en,
+        "Estereótipo OntoUML (provisório): subkind; fundamentação: objeto informacional UFO-C (subkind de AnalyticalRecord), não gufo:Situation; dependência: suporte interpretativo e conteúdo conceitual"@pt-BR ;
     rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/representation> ;
+    rdfs:subClassOf aro:AnalyticalRecord ;
     skos:definition "Recorded description of a represented situation."@en,
         "Descrição registrada de situação representada."@pt-BR .
 ```
@@ -499,13 +1065,13 @@ aro:IntentionalStateDescription a owl:Class ;
 
 | | |
 |---|---|
-| **UFO / OntoUML** | «kind» — Rigid sortal: supplies the identity principle of its instances, which cannot stop instantiating it while they exist. |
-| **Grounding** | UFO-C information object |
+| **UFO / OntoUML** | «subkind» — Rigid sortal that specializes a kind and inherits its identity principle. |
+| **Grounding** | UFO-C information object; subkind of AnalyticalRecord, whose identity it inherits |
 | **Dependency** | defining conditions; not identical to universal |
-| **In OWL/TTL** | `aro:SituationPattern a owl:Class`; domain of: `hasCondition`; range of: `generalizesAs`, `assertsPattern`, `explainsPattern`, `aspectConcernsPattern` |
+| **In OWL/TTL** | `aro:SituationPattern a owl:Class`; `rdfs:subClassOf aro:AnalyticalRecord`; domain of: `hasCondition`; range of: `generalizesAs`, `assertsPattern`, `explainsPattern`, `aspectConcernsPattern` |
 | **SHACL** | `hasCondition` (min 1) |
-| **Not expressible in OWL** | Rigidity and the identity principle are not expressible in OWL; disjointness between kinds is not declared. |
-| **gUFO pattern (not imported)** | `rdf:type gufo:Kind` — As a UFO-C information object it has no specific gUFO counterpart. |
+| **Not expressible in OWL** | Rigidity is not expressible; the subclass axiom is the only commitment represented. |
+| **gUFO pattern (not imported)** | `rdf:type gufo:SubKind` |
 | **Package** | `pattern` |
 
 <details>
@@ -515,9 +1081,10 @@ aro:IntentionalStateDescription a owl:Class ;
 aro:SituationPattern a owl:Class ;
     rdfs:label "situation pattern"@en,
         "padrão situacional"@pt-BR ;
-    rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-C information object; dependency: defining conditions; not identical to universal"@en,
-        "Estereótipo OntoUML (provisório): kind; fundamentação: objeto informacional UFO-C; dependência: condições definidoras; não idêntico a universal"@pt-BR ;
+    rdfs:comment "OntoUML stereotype (provisional): subkind; foundation: UFO-C information object; subkind of AnalyticalRecord, whose identity it inherits; dependency: defining conditions; not identical to universal"@en,
+        "Estereótipo OntoUML (provisório): subkind; fundamentação: objeto informacional UFO-C; subkind de AnalyticalRecord, cuja identidade herda; dependência: condições definidoras; não idêntico a universal"@pt-BR ;
     rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/pattern> ;
+    rdfs:subClassOf aro:AnalyticalRecord ;
     skos:definition "Reusable informational specification of situation conditions."@en,
         "Especificação informacional reutilizável de condições situacionais."@pt-BR .
 ```
@@ -530,13 +1097,13 @@ aro:SituationPattern a owl:Class ;
 
 | | |
 |---|---|
-| **UFO / OntoUML** | «kind» — Rigid sortal: supplies the identity principle of its instances, which cannot stop instantiating it while they exist. |
-| **Grounding** | UFO-C information object |
+| **UFO / OntoUML** | «subkind» — Rigid sortal that specializes a kind and inherits its identity principle. |
+| **Grounding** | UFO-C information object; subkind of AnalyticalRecord, whose identity it inherits |
 | **Dependency** | host pattern and logical specification |
-| **In OWL/TTL** | `aro:PatternCondition a owl:Class`; domain of: `isRequiredCondition`; range of: `hasCondition` |
+| **In OWL/TTL** | `aro:PatternCondition a owl:Class`; `rdfs:subClassOf aro:AnalyticalRecord`; domain of: `isRequiredCondition`; range of: `hasCondition` |
 | **SHACL** | — |
-| **Not expressible in OWL** | Rigidity and the identity principle are not expressible in OWL; disjointness between kinds is not declared. |
-| **gUFO pattern (not imported)** | `rdf:type gufo:Kind` — As a UFO-C information object it has no specific gUFO counterpart. |
+| **Not expressible in OWL** | Rigidity is not expressible; the subclass axiom is the only commitment represented. |
+| **gUFO pattern (not imported)** | `rdf:type gufo:SubKind` |
 | **Package** | `pattern` |
 
 <details>
@@ -546,9 +1113,10 @@ aro:SituationPattern a owl:Class ;
 aro:PatternCondition a owl:Class ;
     rdfs:label "pattern condition"@en,
         "condição de padrão"@pt-BR ;
-    rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-C information object; dependency: host pattern and logical specification"@en,
-        "Estereótipo OntoUML (provisório): kind; fundamentação: objeto informacional UFO-C; dependência: padrão hospedeiro e especificação lógica"@pt-BR ;
+    rdfs:comment "OntoUML stereotype (provisional): subkind; foundation: UFO-C information object; subkind of AnalyticalRecord, whose identity it inherits; dependency: host pattern and logical specification"@en,
+        "Estereótipo OntoUML (provisório): subkind; fundamentação: objeto informacional UFO-C; subkind de AnalyticalRecord, cuja identidade herda; dependência: padrão hospedeiro e especificação lógica"@pt-BR ;
     rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/pattern> ;
+    rdfs:subClassOf aro:AnalyticalRecord ;
     skos:definition "Individuated mandatory or optional condition within a pattern."@en,
         "Condição individualizada obrigatória ou opcional de um padrão."@pt-BR .
 ```
@@ -561,13 +1129,13 @@ aro:PatternCondition a owl:Class ;
 
 | | |
 |---|---|
-| **UFO / OntoUML** | «kind» — Rigid sortal: supplies the identity principle of its instances, which cannot stop instantiating it while they exist. |
-| **Grounding** | UFO-C information object |
+| **UFO / OntoUML** | «subkind» — Rigid sortal that specializes a kind and inherits its identity principle. |
+| **Grounding** | UFO-C information object; subkind of AnalyticalRecord, whose identity it inherits |
 | **Dependency** | case description and empirical referent |
-| **In OWL/TTL** | `aro:EmpiricalCase a owl:Class`; domain of: `caseAboutSituation`, `caseAboutEvent`, `caseHasReference`; range of: `assertsCase` |
+| **In OWL/TTL** | `aro:EmpiricalCase a owl:Class`; `rdfs:subClassOf aro:AnalyticalRecord`; domain of: `caseAboutSituation`, `caseAboutEvent`; range of: `assertsCase` |
 | **SHACL** | — |
-| **Not expressible in OWL** | Rigidity and the identity principle are not expressible in OWL; disjointness between kinds is not declared. |
-| **gUFO pattern (not imported)** | `rdf:type gufo:Kind` — As a UFO-C information object it has no specific gUFO counterpart. |
+| **Not expressible in OWL** | Rigidity is not expressible; the subclass axiom is the only commitment represented. |
+| **gUFO pattern (not imported)** | `rdf:type gufo:SubKind` |
 | **Package** | `evidence` |
 
 <details>
@@ -577,9 +1145,10 @@ aro:PatternCondition a owl:Class ;
 aro:EmpiricalCase a owl:Class ;
     rdfs:label "empirical case"@en,
         "caso empírico"@pt-BR ;
-    rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-C information object; dependency: case description and empirical referent"@en,
-        "Estereótipo OntoUML (provisório): kind; fundamentação: objeto informacional UFO-C; dependência: descrição do caso e referente empírico"@pt-BR ;
+    rdfs:comment "OntoUML stereotype (provisional): subkind; foundation: UFO-C information object; subkind of AnalyticalRecord, whose identity it inherits; dependency: case description and empirical referent"@en,
+        "Estereótipo OntoUML (provisório): subkind; fundamentação: objeto informacional UFO-C; subkind de AnalyticalRecord, cuja identidade herda; dependência: descrição do caso e referente empírico"@pt-BR ;
     rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/evidence> ;
+    rdfs:subClassOf aro:AnalyticalRecord ;
     skos:definition "Documented dossier about one real-world situation or occurrence."@en,
         "Dossiê documentado sobre uma situação ou ocorrência real."@pt-BR .
 ```
@@ -592,13 +1161,13 @@ aro:EmpiricalCase a owl:Class ;
 
 | | |
 |---|---|
-| **UFO / OntoUML** | «kind» — Rigid sortal: supplies the identity principle of its instances, which cannot stop instantiating it while they exist. |
-| **Grounding** | UFO-C information object |
+| **UFO / OntoUML** | «subkind» — Rigid sortal that specializes a kind and inherits its identity principle. |
+| **Grounding** | UFO-C information object; subkind of Claim (assessable, justifiable, citable, challengeable) |
 | **Dependency** | claim content and intended empirical reference |
-| **In OWL/TTL** | `aro:EmpiricalClaim a owl:Class`; range of: `supportsClaim` |
+| **In OWL/TTL** | `aro:EmpiricalClaim a owl:Class`; `rdfs:subClassOf aro:Claim` |
 | **SHACL** | — |
-| **Not expressible in OWL** | Rigidity and the identity principle are not expressible in OWL; disjointness between kinds is not declared. |
-| **gUFO pattern (not imported)** | `rdf:type gufo:Kind` — As a UFO-C information object it has no specific gUFO counterpart. |
+| **Not expressible in OWL** | Rigidity is not expressible; the subclass axiom is the only commitment represented. |
+| **gUFO pattern (not imported)** | `rdf:type gufo:SubKind` |
 | **Package** | `evidence` |
 
 <details>
@@ -608,9 +1177,10 @@ aro:EmpiricalCase a owl:Class ;
 aro:EmpiricalClaim a owl:Class ;
     rdfs:label "empirical claim"@en,
         "afirmação empírica"@pt-BR ;
-    rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-C information object; dependency: claim content and intended empirical reference"@en,
-        "Estereótipo OntoUML (provisório): kind; fundamentação: objeto informacional UFO-C; dependência: conteúdo da afirmação e referência empírica pretendida"@pt-BR ;
+    rdfs:comment "OntoUML stereotype (provisional): subkind; foundation: UFO-C information object; subkind of Claim (assessable, justifiable, citable, challengeable); dependency: claim content and intended empirical reference"@en,
+        "Estereótipo OntoUML (provisório): subkind; fundamentação: objeto informacional UFO-C; subkind de Claim (avaliável, justificável, citável, contestável); dependência: conteúdo da afirmação e referência empírica pretendida"@pt-BR ;
     rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/evidence> ;
+    rdfs:subClassOf aro:Claim ;
     skos:definition "Recorded testable claim about the empirical world."@en,
         "Afirmação registrada e verificável acerca do mundo empírico."@pt-BR .
 ```
@@ -626,10 +1196,11 @@ aro:EmpiricalClaim a owl:Class ;
 | **UFO / OntoUML** | «kind» — Rigid sortal: supplies the identity principle of its instances, which cannot stop instantiating it while they exist. |
 | **Grounding** | UFO-C information object |
 | **Dependency** | source provenance; not tied to one interpretation |
-| **In OWL/TTL** | `aro:ReferenceSource a owl:Class`; domain of: `sourceURL`; range of: `derivedFromSource`, `citesSource`, `referencesSource`, `caseHasReference`, `derivationReferencesSource` |
+| **In OWL/TTL** | `aro:ReferenceSource a owl:Class`; disjoint from every other ultimate sortal (`owl:AllDisjointClasses`); domain of: `sourceURL`; range of: `citesSource`, `derivedFromSource` |
 | **SHACL** | — |
 | **Not expressible in OWL** | Rigidity and the identity principle are not expressible in OWL; disjointness between kinds is not declared. |
 | **gUFO pattern (not imported)** | `rdf:type gufo:Kind` — As a UFO-C information object it has no specific gUFO counterpart. |
+| **Alignments** | `rdfs:seeAlso` `dcterms:BibliographicResource`, `rdfs:seeAlso` `schema:CreativeWork` |
 | **Package** | `evidence` |
 
 <details>
@@ -642,6 +1213,8 @@ aro:ReferenceSource a owl:Class ;
     rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-C information object; dependency: source provenance; not tied to one interpretation"@en,
         "Estereótipo OntoUML (provisório): kind; fundamentação: objeto informacional UFO-C; dependência: proveniência da fonte; não vinculada a uma interpretação"@pt-BR ;
     rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/evidence> ;
+    rdfs:seeAlso dcterms:BibliographicResource,
+        schema:CreativeWork ;
     skos:definition "Citable external resource: news, study, report, legal document, testimony, dataset, etc."@en,
         "Recurso externo citável: notícia, estudo, relatório, documento legal, relato, conjunto de dados etc."@pt-BR .
 ```
@@ -654,13 +1227,13 @@ aro:ReferenceSource a owl:Class ;
 
 | | |
 |---|---|
-| **UFO / OntoUML** | «kind» — Rigid sortal: supplies the identity principle of its instances, which cannot stop instantiating it while they exist. |
-| **Grounding** | UFO-C information object |
+| **UFO / OntoUML** | «subkind» — Rigid sortal that specializes a kind and inherits its identity principle. |
+| **Grounding** | UFO-C information object; subkind of AnalyticalRecord, whose identity it inherits |
 | **Dependency** | reference source and observation content |
-| **In OWL/TTL** | `aro:EvidenceItem a owl:Class`; domain of: `derivedFromSource`; range of: `assessesEvidence` |
+| **In OWL/TTL** | `aro:EvidenceItem a owl:Class`; `rdfs:subClassOf aro:AnalyticalRecord`; domain of: `derivedFromSource`; range of: `assessesEvidence` |
 | **SHACL** | `derivedFromSource` (min 1, max 1) |
-| **Not expressible in OWL** | Rigidity and the identity principle are not expressible in OWL; disjointness between kinds is not declared. |
-| **gUFO pattern (not imported)** | `rdf:type gufo:Kind` — As a UFO-C information object it has no specific gUFO counterpart. |
+| **Not expressible in OWL** | Rigidity is not expressible; the subclass axiom is the only commitment represented. |
+| **gUFO pattern (not imported)** | `rdf:type gufo:SubKind` |
 | **Package** | `evidence` |
 
 <details>
@@ -670,9 +1243,10 @@ aro:ReferenceSource a owl:Class ;
 aro:EvidenceItem a owl:Class ;
     rdfs:label "evidence item"@en,
         "item de evidência"@pt-BR ;
-    rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-C information object; dependency: reference source and observation content"@en,
-        "Estereótipo OntoUML (provisório): kind; fundamentação: objeto informacional UFO-C; dependência: fonte de referência e conteúdo observado"@pt-BR ;
+    rdfs:comment "OntoUML stereotype (provisional): subkind; foundation: UFO-C information object; subkind of AnalyticalRecord, whose identity it inherits; dependency: reference source and observation content"@en,
+        "Estereótipo OntoUML (provisório): subkind; fundamentação: objeto informacional UFO-C; subkind de AnalyticalRecord, cuja identidade herda; dependência: fonte de referência e conteúdo observado"@pt-BR ;
     rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/evidence> ;
+    rdfs:subClassOf aro:AnalyticalRecord ;
     skos:definition "Extracted contextual assertion or observation from a reference source."@en,
         "Afirmação ou observação contextualizada extraída de uma fonte."@pt-BR .
 ```
@@ -685,13 +1259,13 @@ aro:EvidenceItem a owl:Class ;
 
 | | |
 |---|---|
-| **UFO / OntoUML** | «kind» — Rigid sortal: supplies the identity principle of its instances, which cannot stop instantiating it while they exist. |
-| **Grounding** | UFO-C information object; not UFO relator |
+| **UFO / OntoUML** | «subkind» — Rigid sortal that specializes a kind and inherits its identity principle. |
+| **Grounding** | UFO-C information object; subkind of Claim; not a UFO relator |
 | **Dependency** | compared pattern/case and dimensions |
-| **In OWL/TTL** | `aro:CorrespondenceClaim a owl:Class`; domain of: `assertsPattern`, `assertsCase`, `referencesSource`; range of: `assessesCorrespondence` |
+| **In OWL/TTL** | `aro:CorrespondenceClaim a owl:Class`; `rdfs:subClassOf aro:Claim`; domain of: `assertsPattern`, `assertsCase` |
 | **SHACL** | `assertsPattern` (min 1, max 1); `assertsCase` (min 1, max 1) |
-| **Not expressible in OWL** | Rigidity and the identity principle are not expressible in OWL; disjointness between kinds is not declared. |
-| **gUFO pattern (not imported)** | `rdf:type gufo:Kind` — As a UFO-C information object it has no specific gUFO counterpart. |
+| **Not expressible in OWL** | Rigidity is not expressible; the subclass axiom is the only commitment represented. |
+| **gUFO pattern (not imported)** | `rdf:type gufo:SubKind` |
 | **Package** | `evidence` |
 
 <details>
@@ -701,42 +1275,12 @@ aro:EvidenceItem a owl:Class ;
 aro:CorrespondenceClaim a owl:Class ;
     rdfs:label "correspondence claim"@en,
         "alegação de correspondência"@pt-BR ;
-    rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-C information object; not UFO relator; dependency: compared pattern/case and dimensions"@en,
-        "Estereótipo OntoUML (provisório): kind; fundamentação: objeto informacional UFO-C; não é relator UFO; dependência: padrão/caso comparados e dimensões"@pt-BR ;
+    rdfs:comment "OntoUML stereotype (provisional): subkind; foundation: UFO-C information object; subkind of Claim; not a UFO relator; dependency: compared pattern/case and dimensions"@en,
+        "Estereótipo OntoUML (provisório): subkind; fundamentação: objeto informacional UFO-C; subkind de Claim; não é relator UFO; dependência: padrão/caso comparados e dimensões"@pt-BR ;
     rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/evidence> ;
+    rdfs:subClassOf aro:Claim ;
     skos:definition "Contestable assertion of similarity, instantiation or explanatory relevance between pattern and empirical case."@en,
         "Alegação contestável de similaridade, instanciação ou relevância explicativa entre padrão e caso empírico."@pt-BR .
-```
-
-</details>
-
-### `EvidenceAssessment` — evidence assessment
-
-**Definition:** Judgment whether evidence supports, challenges or is irrelevant to a specified claim.
-
-| | |
-|---|---|
-| **UFO / OntoUML** | «kind» — Rigid sortal: supplies the identity principle of its instances, which cannot stop instantiating it while they exist. |
-| **Grounding** | UFO-C information object |
-| **Dependency** | claim and evidence and criteria |
-| **In OWL/TTL** | `aro:EvidenceAssessment a owl:Class`; domain of: `supportsClaim`, `assessesCorrespondence`, `assessesEvidence`, `assessesDerivation` |
-| **SHACL** | `assessesEvidence` (min 1) |
-| **Not expressible in OWL** | Rigidity and the identity principle are not expressible in OWL; disjointness between kinds is not declared. |
-| **gUFO pattern (not imported)** | `rdf:type gufo:Kind` — As a UFO-C information object it has no specific gUFO counterpart. |
-| **Package** | `evidence` |
-
-<details>
-<summary>Turtle in `ontology/src/aro.ttl`</summary>
-
-```turtle
-aro:EvidenceAssessment a owl:Class ;
-    rdfs:label "evidence assessment"@en,
-        "avaliação de evidência"@pt-BR ;
-    rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-C information object; dependency: claim and evidence and criteria"@en,
-        "Estereótipo OntoUML (provisório): kind; fundamentação: objeto informacional UFO-C; dependência: afirmação, evidência e critérios"@pt-BR ;
-    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/evidence> ;
-    skos:definition "Judgment whether evidence supports, challenges or is irrelevant to a specified claim."@en,
-        "Julgamento de apoio, contestação ou irrelevância de evidência para afirmação específica."@pt-BR .
 ```
 
 </details>
@@ -747,13 +1291,13 @@ aro:EvidenceAssessment a owl:Class ;
 
 | | |
 |---|---|
-| **UFO / OntoUML** | «kind» — Rigid sortal: supplies the identity principle of its instances, which cannot stop instantiating it while they exist. |
-| **Grounding** | UFO-C information object |
+| **UFO / OntoUML** | «subkind» — Rigid sortal that specializes a kind and inherits its identity principle. |
+| **Grounding** | UFO-C information object; subkind of Claim (assessable, justifiable, citable, challengeable) |
 | **Dependency** | explicit explanandum and explanatory content |
-| **In OWL/TTL** | `aro:ExplanationHypothesis a owl:Class`; domain of: `explainsPattern` |
+| **In OWL/TTL** | `aro:ExplanationHypothesis a owl:Class`; `rdfs:subClassOf aro:Claim`; domain of: `explainsPattern` |
 | **SHACL** | — |
-| **Not expressible in OWL** | Rigidity and the identity principle are not expressible in OWL; disjointness between kinds is not declared. |
-| **gUFO pattern (not imported)** | `rdf:type gufo:Kind` — As a UFO-C information object it has no specific gUFO counterpart. |
+| **Not expressible in OWL** | Rigidity is not expressible; the subclass axiom is the only commitment represented. |
+| **gUFO pattern (not imported)** | `rdf:type gufo:SubKind` |
 | **Package** | `evidence` |
 
 <details>
@@ -763,9 +1307,10 @@ aro:EvidenceAssessment a owl:Class ;
 aro:ExplanationHypothesis a owl:Class ;
     rdfs:label "explanation hypothesis"@en,
         "hipótese explicativa"@pt-BR ;
-    rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-C information object; dependency: explicit explanandum and explanatory content"@en,
-        "Estereótipo OntoUML (provisório): kind; fundamentação: objeto informacional UFO-C; dependência: explanandum explícito e conteúdo explicativo"@pt-BR ;
+    rdfs:comment "OntoUML stereotype (provisional): subkind; foundation: UFO-C information object; subkind of Claim (assessable, justifiable, citable, challengeable); dependency: explicit explanandum and explanatory content"@en,
+        "Estereótipo OntoUML (provisório): subkind; fundamentação: objeto informacional UFO-C; subkind de Claim (avaliável, justificável, citável, contestável); dependência: explanandum explícito e conteúdo explicativo"@pt-BR ;
     rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/evidence> ;
+    rdfs:subClassOf aro:Claim ;
     skos:definition "Proposed mechanism or factors explaining a represented or observed phenomenon."@en,
         "Mecanismo ou fatores propostos para explicar fenômeno representado ou observado."@pt-BR .
 ```
@@ -781,7 +1326,7 @@ aro:ExplanationHypothesis a owl:Class ;
 | **UFO / OntoUML** | «situation» — Situation (UFO-B): a configuration of entities that obtains at a point in time and may trigger or result from events. |
 | **Grounding** | UFO-B situation; separate from descriptions |
 | **Dependency** | real-world constituents |
-| **In OWL/TTL** | `aro:EmpiricalSituation a owl:Class`; range of: `caseAboutSituation` |
+| **In OWL/TTL** | `aro:EmpiricalSituation a owl:Class`; disjoint from every other ultimate sortal (`owl:AllDisjointClasses`); domain of: `startDate`, `endDate`; range of: `caseAboutSituation` |
 | **SHACL** | — |
 | **Not expressible in OWL** | The time point at which the situation obtains and its constituents are not represented. |
 | **gUFO pattern (not imported)** | `rdfs:subClassOf gufo:Situation` |
@@ -812,7 +1357,7 @@ aro:EmpiricalSituation a owl:Class ;
 | **UFO / OntoUML** | «event» — Perdurant (UFO-B): an occurrence that unfolds in time and has participants; it is not an object. |
 | **Grounding** | UFO-B event |
 | **Dependency** | real occurrence and participants |
-| **In OWL/TTL** | `aro:EmpiricalEvent a owl:Class`; range of: `caseAboutEvent` |
+| **In OWL/TTL** | `aro:EmpiricalEvent a owl:Class`; disjoint from every other ultimate sortal (`owl:AllDisjointClasses`); domain of: `startDate`, `endDate`; range of: `caseAboutEvent` |
 | **SHACL** | — |
 | **Not expressible in OWL** | Temporal extent and ordering of events are not represented in this version (no time properties). |
 | **gUFO pattern (not imported)** | `rdfs:subClassOf gufo:Event` |
@@ -836,17 +1381,17 @@ aro:EmpiricalEvent a owl:Class ;
 
 ### `DerivationClaim` — derivation claim
 
-**Definition:** Contestable assertion, made by an agent, that one artistic entity (artwork, manifestation or selection) derives from another in specified ways. The derived entity is represented as a creation in its own right; legality and originality are outside the scope of the ontology.
+**Definition:** Contestable assertion, made by an agent, that one artistic entity (artwork, expression, manifestation or selection) derives from another in specified ways. The derived entity is represented as a creation in its own right; legality and originality are outside the scope of the ontology.
 
 | | |
 |---|---|
-| **UFO / OntoUML** | «kind» — Rigid sortal: supplies the identity principle of its instances, which cannot stop instantiating it while they exist. |
-| **Grounding** | UFO-C information object; not a UFO relator nor an asserted fact |
+| **UFO / OntoUML** | «subkind» — Rigid sortal that specializes a kind and inherits its identity principle. |
+| **Grounding** | UFO-C information object; subkind of Claim; neither a UFO relator nor an asserted fact |
 | **Dependency** | exactly one source anchor and one derived anchor; typed by at least one derivation type |
-| **In OWL/TTL** | `aro:DerivationClaim a owl:Class`; domain of: `hasSourceAnchor`, `hasDerivedAnchor`, `hasDerivationType`, `hasRegime`, `hasTransformation`, `derivationJustifiedBy`, `derivationRealizedBy`, `claimProducedByAct`, `derivationReferencesSource`, `derivationExtent`; range of: `assessesDerivation` |
-| **SHACL** | `hasSourceAnchor` (min 1, max 1); `hasDerivedAnchor` (min 1, max 1); `hasDerivationType` (min 1, class `DerivationType`); `hasRegime` (class `DerivationRegime`); SPARQL: Derivation anchors must be an Artwork, Manifestation or Selection.; SPARQL: Source and derived anchors must differ. |
-| **Not expressible in OWL** | Rigidity and the identity principle are not expressible in OWL; disjointness between kinds is not declared. |
-| **gUFO pattern (not imported)** | `rdf:type gufo:Kind` — As a UFO-C information object it has no specific gUFO counterpart. |
+| **In OWL/TTL** | `aro:DerivationClaim a owl:Class`; `rdfs:subClassOf aro:Claim`; domain of: `hasSourceAnchor`, `hasDerivedAnchor`, `hasDerivationType`, `hasRegime`, `hasTransformation`, `derivationRealizedBy`, `derivationExtent` |
+| **SHACL** | `hasSourceAnchor` (min 1, max 1); `hasDerivedAnchor` (min 1, max 1); `hasDerivationType` (min 1, class `DerivationType`); `hasRegime` (class `DerivationRegime`); SPARQL: Derivation anchors must be an artistic entity: Artwork, Expression, Manifestation or Selection.; SPARQL: Source and derived anchors must differ. |
+| **Not expressible in OWL** | Rigidity is not expressible; the subclass axiom is the only commitment represented. |
+| **gUFO pattern (not imported)** | `rdf:type gufo:SubKind` |
 | **Alignments** | `rdfs:seeAlso` `prov:wasDerivedFrom`, `rdfs:seeAlso` `schema:isBasedOn`, `rdfs:seeAlso` `wdt:P144` |
 | **Package** | `derivation` |
 
@@ -857,14 +1402,15 @@ aro:EmpiricalEvent a owl:Class ;
 aro:DerivationClaim a owl:Class ;
     rdfs:label "derivation claim"@en,
         "alegação de derivação"@pt-BR ;
-    rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-C information object; not a UFO relator nor an asserted fact; dependency: exactly one source anchor and one derived anchor; typed by at least one derivation type"@en,
-        "Estereótipo OntoUML (provisório): kind; fundamentação: objeto informacional UFO-C; nem relator UFO nem fato afirmado; dependência: exatamente uma âncora de origem e uma derivada; tipificada por ao menos um tipo de derivação"@pt-BR ;
+    rdfs:comment "OntoUML stereotype (provisional): subkind; foundation: UFO-C information object; subkind of Claim; neither a UFO relator nor an asserted fact; dependency: exactly one source anchor and one derived anchor; typed by at least one derivation type"@en,
+        "Estereótipo OntoUML (provisório): subkind; fundamentação: objeto informacional UFO-C; subkind de Claim; nem relator UFO nem fato afirmado; dependência: exatamente uma âncora de origem e uma derivada; tipificada por ao menos um tipo de derivação"@pt-BR ;
     rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/derivation> ;
     rdfs:seeAlso prov:wasDerivedFrom,
         wdt:P144,
         schema:isBasedOn ;
-    skos:definition "Contestable assertion, made by an agent, that one artistic entity (artwork, manifestation or selection) derives from another in specified ways. The derived entity is represented as a creation in its own right; legality and originality are outside the scope of the ontology."@en,
-        "Alegação contestável, feita por um agente, de que uma entidade artística (obra, manifestação ou recorte) deriva de outra de modos especificados. A entidade derivada é representada como criação por direito próprio; legalidade e originalidade estão fora do escopo da ontologia."@pt-BR .
+    rdfs:subClassOf aro:Claim ;
+    skos:definition "Contestable assertion, made by an agent, that one artistic entity (artwork, expression, manifestation or selection) derives from another in specified ways. The derived entity is represented as a creation in its own right; legality and originality are outside the scope of the ontology."@en,
+        "Alegação contestável, feita por um agente, de que uma entidade artística (obra, expressão, manifestação ou recorte) deriva de outra de modos especificados. A entidade derivada é representada como criação por direito próprio; legalidade e originalidade estão fora do escopo da ontologia."@pt-BR .
 ```
 
 </details>
@@ -875,13 +1421,13 @@ aro:DerivationClaim a owl:Class ;
 
 | | |
 |---|---|
-| **UFO / OntoUML** | «kind» — Rigid sortal: supplies the identity principle of its instances, which cannot stop instantiating it while they exist. |
-| **Grounding** | UFO-C information object |
+| **UFO / OntoUML** | «subkind» — Rigid sortal that specializes a kind and inherits its identity principle. |
+| **Grounding** | UFO-C information object; subkind of AnalyticalRecord, whose identity it inherits |
 | **Dependency** | host derivation claim; one dimension and one operation |
-| **In OWL/TTL** | `aro:TransformationAspect a owl:Class`; domain of: `hasDimension`, `hasOperation`, `aspectSourceSelection`, `aspectDerivedSelection`, `aspectConcernsPattern`; range of: `hasTransformation` |
+| **In OWL/TTL** | `aro:TransformationAspect a owl:Class`; `rdfs:subClassOf aro:AnalyticalRecord`; domain of: `hasDimension`, `hasOperation`, `aspectSourceSelection`, `aspectDerivedSelection`, `aspectConcernsPattern`; range of: `hasTransformation` |
 | **SHACL** | `hasDimension` (min 1, max 1, class `ArtisticDimension`); `hasOperation` (min 1, max 1, class `TransformationOperation`) |
-| **Not expressible in OWL** | Rigidity and the identity principle are not expressible in OWL; disjointness between kinds is not declared. |
-| **gUFO pattern (not imported)** | `rdf:type gufo:Kind` — As a UFO-C information object it has no specific gUFO counterpart. |
+| **Not expressible in OWL** | Rigidity is not expressible; the subclass axiom is the only commitment represented. |
+| **gUFO pattern (not imported)** | `rdf:type gufo:SubKind` |
 | **Package** | `derivation` |
 
 <details>
@@ -891,9 +1437,10 @@ aro:DerivationClaim a owl:Class ;
 aro:TransformationAspect a owl:Class ;
     rdfs:label "transformation aspect"@en,
         "aspecto de transformação"@pt-BR ;
-    rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-C information object; dependency: host derivation claim; one dimension and one operation"@en,
-        "Estereótipo OntoUML (provisório): kind; fundamentação: objeto informacional UFO-C; dependência: alegação de derivação hospedeira; uma dimensão e uma operação"@pt-BR ;
+    rdfs:comment "OntoUML stereotype (provisional): subkind; foundation: UFO-C information object; subkind of AnalyticalRecord, whose identity it inherits; dependency: host derivation claim; one dimension and one operation"@en,
+        "Estereótipo OntoUML (provisório): subkind; fundamentação: objeto informacional UFO-C; subkind de AnalyticalRecord, cuja identidade herda; dependência: alegação de derivação hospedeira; uma dimensão e uma operação"@pt-BR ;
     rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/derivation> ;
+    rdfs:subClassOf aro:AnalyticalRecord ;
     skos:definition "Recorded statement of what happened to one artistic dimension in a derivation (retained, modified, added, removed or recontextualized)."@en,
         "Registro do que ocorreu com uma dimensão artística numa derivação (mantida, modificada, acrescentada, removida ou recontextualizada)."@pt-BR .
 ```
@@ -902,17 +1449,18 @@ aro:TransformationAspect a owl:Class ;
 
 ### `CreativeAct` — creative act
 
-**Definition:** Intentional temporal activity that brings an artwork or manifestation into existence, including derivative ones.
+**Definition:** Intentional temporal activity that brings an artistic entity (artwork, expression or manifestation) into existence, including derivative ones.
 
 | | |
 |---|---|
 | **UFO / OntoUML** | «event» — Perdurant (UFO-B): an occurrence that unfolds in time and has participants; it is not an object. |
 | **Grounding** | UFO-B event; UFO-C intentional action |
 | **Dependency** | participating agents and temporal occurrence |
-| **In OWL/TTL** | `aro:CreativeAct a owl:Class`; domain of: `producesCreation`, `hasContribution`; range of: `derivationRealizedBy` |
-| **SHACL** | `producesCreation` (min 1) |
+| **In OWL/TTL** | `aro:CreativeAct a owl:Class`; disjoint from every other ultimate sortal (`owl:AllDisjointClasses`); domain of: `producesCreation`, `hasContribution`, `startDate`, `endDate`; range of: `derivationRealizedBy` |
+| **SHACL** | `producesCreation` (min 1); SPARQL: A creative act produces artworks, expressions or manifestations, not selections. |
 | **Not expressible in OWL** | Temporal extent and ordering of events are not represented in this version (no time properties). |
 | **gUFO pattern (not imported)** | `rdfs:subClassOf gufo:Event` |
+| **Alignments** | `rdfs:seeAlso` `prov:Activity`, `rdfs:seeAlso` `lrmoo:F28_Expression_Creation` |
 | **Package** | `derivation` |
 
 <details>
@@ -925,44 +1473,10 @@ aro:CreativeAct a owl:Class ;
     rdfs:comment "OntoUML stereotype (provisional): event; foundation: UFO-B event; UFO-C intentional action; dependency: participating agents and temporal occurrence"@en,
         "Estereótipo OntoUML (provisório): event; fundamentação: evento UFO-B; ação intencional UFO-C; dependência: agentes participantes e ocorrência temporal"@pt-BR ;
     rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/derivation> ;
-    skos:definition "Intentional temporal activity that brings an artwork or manifestation into existence, including derivative ones."@en,
-        "Atividade intencional temporal que dá origem a uma obra ou manifestação, inclusive derivadas."@pt-BR .
-```
-
-</details>
-
-### `CreativeAgent` — creative agent
-
-**Definition:** Any agent, identified and described in an external vocabulary (PROV-O, FOAF, schema.org, Wikidata...), insofar as it contributes to a creative act. Agent identity is represented by the external vocabulary, not by ARO.
-
-| | |
-|---|---|
-| **UFO / OntoUML** | «roleMixin» — Anti-rigid non-sortal: classifies entities of different kinds by a relational property (taking part in an act); supplies no identity. |
-| **Grounding** | UFO-A anti-rigid non-sortal (roleMixin); agents are individuals of external ontologies |
-| **Dependency** | relationally on a CreativeContribution; identity supplied by external kinds |
-| **In OWL/TTL** | `aro:CreativeAgent a owl:Class`; external individuals are classified into it by an RDFS reasoner through the `rdfs:range` of the connecting relation; range of: `contributionBy` |
-| **SHACL** | — |
-| **Not expressible in OWL** | Anti-rigidity (an entity may stop playing the role) is not expressible; any IRI used with the relation is classified. |
-| **gUFO pattern (not imported)** | `rdf:type gufo:RoleMixin` |
-| **Alignments** | `rdfs:seeAlso` `prov:Agent`, `rdfs:seeAlso` `foaf:Agent`, `rdfs:seeAlso` `schema:Person`, `rdfs:seeAlso` `schema:Organization` |
-| **Package** | `derivation` |
-
-<details>
-<summary>Turtle in `ontology/src/aro.ttl`</summary>
-
-```turtle
-aro:CreativeAgent a owl:Class ;
-    rdfs:label "creative agent"@en,
-        "agente criativo"@pt-BR ;
-    rdfs:comment "OntoUML stereotype (provisional): roleMixin; foundation: UFO-A anti-rigid non-sortal (roleMixin); agents are individuals of external ontologies; dependency: relationally on a CreativeContribution; identity supplied by external kinds"@en,
-        "Estereótipo OntoUML (provisório): roleMixin; fundamentação: não-sortal anti-rígido UFO-A (roleMixin); agentes são indivíduos de ontologias externas; dependência: relacionalmente de uma CreativeContribution; identidade fornecida por tipos externos"@pt-BR ;
-    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/derivation> ;
-    rdfs:seeAlso prov:Agent,
-        foaf:Agent,
-        schema:Organization,
-        schema:Person ;
-    skos:definition "Any agent, identified and described in an external vocabulary (PROV-O, FOAF, schema.org, Wikidata...), insofar as it contributes to a creative act. Agent identity is represented by the external vocabulary, not by ARO."@en,
-        "Qualquer agente, identificado e descrito em vocabulário externo (PROV-O, FOAF, schema.org, Wikidata...), na medida em que contribui para um ato criativo. A identidade do agente é representada pelo vocabulário externo, não pela ARO."@pt-BR .
+    rdfs:seeAlso lrmoo:F28_Expression_Creation,
+        prov:Activity ;
+    skos:definition "Intentional temporal activity that brings an artistic entity (artwork, expression or manifestation) into existence, including derivative ones."@en,
+        "Atividade intencional no tempo que faz existir uma entidade artística (obra, expressão ou manifestação), inclusive as derivadas."@pt-BR .
 ```
 
 </details>
@@ -974,10 +1488,10 @@ aro:CreativeAgent a owl:Class ;
 | | |
 |---|---|
 | **UFO / OntoUML** | «relator» — Relator (UFO-A): an endurant existentially dependent on the entities it connects; the truthmaker of a material relation. |
-| **Grounding** | UFO-A relator; role qualification via CreativeRole |
-| **Dependency** | existentially on the act and the agent |
-| **In OWL/TTL** | `aro:CreativeContribution a owl:Class`; relata linked by object properties; mediation cardinalities enforced by SHACL; domain of: `contributionBy`, `contributionRole`; range of: `hasContribution` |
-| **SHACL** | `contributionBy` (min 1, max 1, IRI); `contributionRole` (min 1, class `CreativeRole`) |
+| **Grounding** | UFO-A relator mediating an agent and an artistic entity; role qualification via CreativeRole |
+| **Dependency** | existentially on the contributing agent and on the artistic entity contributed to; founded by the creative act |
+| **In OWL/TTL** | `aro:CreativeContribution a owl:Class`; disjoint from every other ultimate sortal (`owl:AllDisjointClasses`); relata linked by object properties; mediation cardinalities enforced by SHACL; domain of: `contributionBy`, `contributionTo`, `contributionRole`; range of: `hasContribution` |
+| **SHACL** | `contributionBy` (min 1, max 1, IRI); `contributionTo` (min 1); `contributionRole` (min 1, class `CreativeRole`) |
 | **Not expressible in OWL** | Existential dependence and the derived material relation are not expressible in OWL. |
 | **gUFO pattern (not imported)** | `rdf:type gufo:Kind` + `rdfs:subClassOf gufo:Relator` (relata via `gufo:mediates`) |
 | **Package** | `derivation` |
@@ -989,8 +1503,8 @@ aro:CreativeAgent a owl:Class ;
 aro:CreativeContribution a owl:Class ;
     rdfs:label "creative contribution"@en,
         "contribuição criativa"@pt-BR ;
-    rdfs:comment "OntoUML stereotype (provisional): relator; foundation: UFO-A relator; role qualification via CreativeRole; dependency: existentially on the act and the agent"@en,
-        "Estereótipo OntoUML (provisório): relator; fundamentação: relator UFO-A; papel qualificado via CreativeRole; dependência: existencialmente do ato e do agente"@pt-BR ;
+    rdfs:comment "OntoUML stereotype (provisional): relator; foundation: UFO-A relator mediating an agent and an artistic entity; role qualification via CreativeRole; dependency: existentially on the contributing agent and on the artistic entity contributed to; founded by the creative act"@en,
+        "Estereótipo OntoUML (provisório): relator; fundamentação: relator UFO-A que media um agente e uma entidade artística; papel qualificado via CreativeRole; dependência: existencialmente do agente que contribui e da entidade artística para a qual contribui; fundada pelo ato criativo"@pt-BR ;
     rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/derivation> ;
     skos:definition "Participation of one creative agent in one creative act under one or more roles."@en,
         "Participação de um agente criativo num ato criativo sob um ou mais papéis."@pt-BR .
@@ -1007,7 +1521,7 @@ aro:CreativeContribution a owl:Class ;
 | **UFO / OntoUML** | «type» — High-order type: its instances are themselves types (kinds of derivation, dimensions, roles…). |
 | **Grounding** | UFO high-order type (provisional); operationalized as skos:Concept |
 | **Dependency** | controlled vocabulary membership |
-| **In OWL/TTL** | `aro:DerivationType a owl:Class`; instances are SKOS concepts typed both `skos:Concept` and this class; range of: `hasDerivationType` |
+| **In OWL/TTL** | `aro:DerivationType a owl:Class`; disjoint from every other ultimate sortal (`owl:AllDisjointClasses`); instances are SKOS concepts typed both `skos:Concept` and this class; range of: `hasDerivationType` |
 | **SHACL** | — |
 | **Not expressible in OWL** | In OWL 2 DL the concepts are individuals, not classes, so multi-level instantiation is approximated, not represented. |
 | **gUFO pattern (not imported)** | — |
@@ -1038,7 +1552,7 @@ aro:DerivationType a owl:Class ;
 | **UFO / OntoUML** | «type» — High-order type: its instances are themselves types (kinds of derivation, dimensions, roles…). |
 | **Grounding** | UFO high-order type (provisional); operationalized as skos:Concept |
 | **Dependency** | controlled vocabulary membership |
-| **In OWL/TTL** | `aro:DerivationRegime a owl:Class`; instances are SKOS concepts typed both `skos:Concept` and this class; range of: `hasRegime` |
+| **In OWL/TTL** | `aro:DerivationRegime a owl:Class`; disjoint from every other ultimate sortal (`owl:AllDisjointClasses`); instances are SKOS concepts typed both `skos:Concept` and this class; range of: `hasRegime` |
 | **SHACL** | — |
 | **Not expressible in OWL** | In OWL 2 DL the concepts are individuals, not classes, so multi-level instantiation is approximated, not represented. |
 | **gUFO pattern (not imported)** | — |
@@ -1069,7 +1583,7 @@ aro:DerivationRegime a owl:Class ;
 | **UFO / OntoUML** | «type» — High-order type: its instances are themselves types (kinds of derivation, dimensions, roles…). |
 | **Grounding** | UFO high-order type (provisional); operationalized as skos:Concept |
 | **Dependency** | controlled vocabulary membership |
-| **In OWL/TTL** | `aro:ArtisticDimension a owl:Class`; instances are SKOS concepts typed both `skos:Concept` and this class; range of: `hasDimension` |
+| **In OWL/TTL** | `aro:ArtisticDimension a owl:Class`; disjoint from every other ultimate sortal (`owl:AllDisjointClasses`); instances are SKOS concepts typed both `skos:Concept` and this class; range of: `hasDimension` |
 | **SHACL** | — |
 | **Not expressible in OWL** | In OWL 2 DL the concepts are individuals, not classes, so multi-level instantiation is approximated, not represented. |
 | **gUFO pattern (not imported)** | — |
@@ -1100,7 +1614,7 @@ aro:ArtisticDimension a owl:Class ;
 | **UFO / OntoUML** | «type» — High-order type: its instances are themselves types (kinds of derivation, dimensions, roles…). |
 | **Grounding** | UFO high-order type (provisional); operationalized as skos:Concept |
 | **Dependency** | controlled vocabulary membership |
-| **In OWL/TTL** | `aro:TransformationOperation a owl:Class`; instances are SKOS concepts typed both `skos:Concept` and this class; range of: `hasOperation` |
+| **In OWL/TTL** | `aro:TransformationOperation a owl:Class`; disjoint from every other ultimate sortal (`owl:AllDisjointClasses`); instances are SKOS concepts typed both `skos:Concept` and this class; range of: `hasOperation` |
 | **SHACL** | — |
 | **Not expressible in OWL** | In OWL 2 DL the concepts are individuals, not classes, so multi-level instantiation is approximated, not represented. |
 | **gUFO pattern (not imported)** | — |
@@ -1131,7 +1645,7 @@ aro:TransformationOperation a owl:Class ;
 | **UFO / OntoUML** | «type» — High-order type: its instances are themselves types (kinds of derivation, dimensions, roles…). |
 | **Grounding** | UFO role type (provisional); operationalized as skos:Concept |
 | **Dependency** | controlled vocabulary membership |
-| **In OWL/TTL** | `aro:CreativeRole a owl:Class`; instances are SKOS concepts typed both `skos:Concept` and this class; range of: `contributionRole` |
+| **In OWL/TTL** | `aro:CreativeRole a owl:Class`; disjoint from every other ultimate sortal (`owl:AllDisjointClasses`); instances are SKOS concepts typed both `skos:Concept` and this class; range of: `contributionRole` |
 | **SHACL** | — |
 | **Not expressible in OWL** | In OWL 2 DL the concepts are individuals, not classes, so multi-level instantiation is approximated, not represented. |
 | **gUFO pattern (not imported)** | — |
@@ -1157,20 +1671,26 @@ aro:CreativeRole a owl:Class ;
 
 | Relation | Source → target | Multiplicity at target | Meaning |
 |---|---|---|---|
-| `hasManifestation` | `Artwork` → `Manifestation` | `1..*` | **artwork realizes through manifestation.** Links an artwork to a concrete expression, version or realization of it (a recording, an edition, a performance, a film cut). Use it to say through which manifestations the work exists. |
-| `realizesArtwork` | `Manifestation` → `Artwork` | `1` | **manifestation realizes artwork.** Links a manifestation to the artwork it realizes; read from the manifestation's side, it states which work this recording, edition or performance is a version of. |
-| `selectsFrom` | `Selection` → `Manifestation` | `1` | **selection references manifestation.** Links a selection to the manifestation it is taken from. Every selection is cut from exactly one manifestation, so that its location (lines, seconds, region) is meaningful. |
+| `hasExpression` | `Artwork` → `Expression` | `1..*` | **artwork is realized through expression.** Links an artwork to a realization of it with its own content (a performance, a recording, a translation, an arrangement, a text version). Use it to say through which expressions the work exists. |
+| `realizesArtwork` | `Expression` → `Artwork` | `1` | **expression realizes artwork.** Links an expression to the artwork it realizes; read from the expression's side, it states which work this performance, recording, translation or version belongs to. |
+| `hasManifestation` | `Expression` → `Manifestation` | `0..*` | **expression is embodied in manifestation.** Links an expression to a publication or carrier that embodies it (an album edition, a book edition, a broadcast, a digital release). Optional: record it when the edition matters. |
+| `embodiesExpression` | `Manifestation` → `Expression` | `1..*` | **manifestation embodies expression.** Links a manifestation to the expressions it embodies; an album edition embodies the recordings on it, a book edition the text version it prints. |
+| `selectsFrom` | `Selection` → `Expression` | `1` | **selection references expression.** Links a selection to the expression it is taken from. Every selection is cut from exactly one expression, so that its location (lines, seconds, region) is meaningful. |
+| `locatedInManifestation` | `Selection` → `Manifestation` | `0..1` | **selection located in manifestation.** Links a selection to the specific manifestation its selectors refer to, when the location depends on the edition (a page of a given book edition, a timestamp in a given release). |
 | `hasSelector` | `Selection` → `oa:Selector` | `0..*` | **selection located by W3C Web Annotation selector.** Links a selection to a W3C Web Annotation selector that locates it inside the manifestation (time fragment, text quote or position, image region, SVG shape). |
 | `groupsSelection` | `AnalysisUnit` → `Selection` | `1..*` | **unit groups selections.** Links an analysis unit to the selections it groups, so that several excerpts can be analysed together as one unit (a scene, a refrain, a motif). |
+| `producedByAct` | `AnalyticalRecord` → `InterpretiveAct` | `0..1` | **act produces record.** Links an analytical record (a claim, an assessment, a description...) to the analytical act that produced it, recording who made it, and when, as a historical fact distinct from its content. Required for interpretation records. |
+| `hasJustification` | `Claim` → `Justification` | `0..*` | **claim supported by justification.** Links a claim to the argument that supports it: the premises and reasoning that lead to an interpretation, a derivation, a correspondence or a hypothesis. |
+| `citesSource` | `AnalyticalRecord` → `ReferenceSource` | `0..*` | **record cites source.** Links any analytical record (a claim, a case, a description, a pattern) to a reference source it relies on or that documents it (criticism, interview, news, study, credits). |
+| `challenges` | `Challenge` → `Claim` | `1` | **challenge targets claim.** Links a challenge to the claim it criticizes or offers an alternative to, so that disagreement is recorded rather than erased. |
+| `assessesClaim` | `Assessment` → `Claim` | `1..*` | **assessment judges claims.** Links an assessment to the claims it judges: an interpretation, a derivation, a correspondence, an empirical claim, a hypothesis or a challenge. Usually one; several when the same evidence bears on closely related claims (e.g. an empirical claim and the correspondence that relies on it). |
+| `usesCriterion` | `CriteriaAssessment` → `AssessmentCriterion` | `1..*` | **assessment follows criteria.** Links a criteria assessment to the explicit criteria it applies, so that the basis of the judgment can be inspected and compared. |
+| `assessesEvidence` | `EvidenceAssessment` → `EvidenceItem` | `1..*` | **assessment considers evidence.** Links an evidence assessment to the evidence items it weighs; every assessment considers at least one item. |
 | `hasPrimarySelection` | `InterpretationRecord` → `Selection` | `1` | **record is anchored in selection.** Links an interpretation record to the one selection it is about: the excerpt of the work in which the interpretation is anchored. |
 | `hasSupportingSelection` | `InterpretationRecord` → `Selection` | `0..*` | **record has supporting selection.** Links an interpretation record to further selections cited in its support, besides the primary one (other excerpts of the same or other works). |
-| `producedByAct` | `InterpretationRecord` → `InterpretiveAct` | `1` | **interpretive act historically produces record.** Links an interpretation record to the interpretive act that produced it, recording who interpreted, and when, as a historical fact distinct from the content of the interpretation. |
 | `hasParticipant` | `InterpretiveAct` → `Analyst` | `1..*` | **agent participates in act.** Links an interpretive act to the agents (analysts) who took part in it. Agents are identified by external IRIs (Wikidata, ORCID, FOAF, schema.org). |
-| `hasJustification` | `InterpretationRecord` → `InterpretiveJustification` | `0..*` | **interpretation supported by argument.** Links an interpretation record to the argument that supports it: the premises and reasoning that lead from the excerpt to the interpretation. |
-| `challenges` | `InterpretationChallenge` → `InterpretationRecord` | `1` | **challenge targets interpretation.** Links a challenge to the interpretation record it criticizes or offers an alternative to, so that disagreement is recorded rather than erased. |
-| `assessesInterpretation` | `InterpretationAssessment` → `InterpretationRecord` | `1` | **assessment targets interpretation.** Links an interpretation assessment to the interpretation record it judges (plausibility, coherence, relevance...). |
-| `usesCriterion` | `InterpretationAssessment` → `AssessmentCriterion` | `1..*` | **assessment follows criteria.** Links an interpretation assessment to the explicit criteria it applies, so that the basis of the judgment can be inspected and compared. |
 | `describesSituation` | `InterpretationRecord` → `SituationDescription` | `0..*` | **interpretation yields descriptions.** Links an interpretation record to the descriptions of represented situations it yields: what, according to the interpretation, happens in the excerpt. |
+| `supportsInterpretation` | `InterpretationRecord` → `InterpretationRecord` | `0..*` | **interpretation supports another.** Links an interpretation record to another interpretation that it supports, building chains of interpretations. |
 | `mentionsDepictedElement` | `SituationDescription` → `DepictedElement` | `0..*` | **description mentions depicted element.** Links a situation description to the depicted elements it involves (characters, places, objects, groups represented in the work). |
 | `generalizesAs` | `SituationDescription` → `SituationPattern` | `0..*` | **description motivates pattern abstraction.** Links a situation description to a situation pattern abstracted from it: the reusable configuration that the represented situation is taken to exemplify. |
 | `hasCondition` | `SituationPattern` → `PatternCondition` | `1..*` | **pattern specifies conditions.** Links a situation pattern to the conditions that define it, each one individuated so that it can be marked as required or optional and compared with real cases. |
@@ -1179,16 +1699,9 @@ aro:CreativeRole a owl:Class ;
 | `assertsPattern` | `CorrespondenceClaim` → `SituationPattern` | `1` | **correspondence references pattern.** Links a correspondence claim to the situation pattern it compares with a real case: the side of art in the claim that art and reality correspond. |
 | `assertsCase` | `CorrespondenceClaim` → `EmpiricalCase` | `1` | **correspondence references case.** Links a correspondence claim to the empirical case it compares with a pattern: the side of reality in the claim that art and reality correspond. |
 | `derivedFromSource` | `EvidenceItem` → `ReferenceSource` | `1` | **evidence obtained from source.** Links an evidence item to the reference source it was extracted from, so that every piece of evidence can be traced back to a citable source. |
-| `supportsClaim` | `EvidenceAssessment` → `EmpiricalClaim` | `0..1` | **assessment evaluates claim.** Links an evidence assessment to the empirical claim whose support it evaluates. |
-| `assessesCorrespondence` | `EvidenceAssessment` → `CorrespondenceClaim` | `0..1` | **assessment evaluates correspondence.** Links an evidence assessment to the correspondence claim (pattern ↔ case) whose support it evaluates. |
-| `assessesEvidence` | `EvidenceAssessment` → `EvidenceItem` | `1..*` | **assessment considers evidence.** Links an evidence assessment to the evidence items it weighs; every assessment considers at least one item. |
-| `citesSource` | `InterpretationRecord` → `ReferenceSource` | `0..*` | **interpretation directly cites source (optional).** Links an interpretation record directly to a reference source it relies on (criticism, interview, study), when no separate evidence item is recorded. |
-| `referencesSource` | `CorrespondenceClaim` → `ReferenceSource` | `0..*` | **correspondence directly cites source.** Links a correspondence claim directly to a reference source it relies on. |
-| `caseHasReference` | `EmpiricalCase` → `ReferenceSource` | `0..*` | **case cites sources.** Links an empirical case to the reference sources that document it (news, reports, studies, testimonies). |
 | `explainsPattern` | `ExplanationHypothesis` → `SituationPattern` | `0..*` | **explanation addresses pattern.** Links an explanation hypothesis to the situation pattern it proposes to explain (mechanisms or factors behind the recurring configuration). |
-| `supportsInterpretation` | `InterpretationRecord` → `InterpretationRecord` | `0..*` | **interpretation supports another.** Links an interpretation record to another interpretation that it supports, building chains of interpretations. |
-| `hasSourceAnchor` | `DerivationClaim` → `Artwork` ∪ `Manifestation` ∪ `Selection` | `1` | **claim names the source entity.** Links a derivation claim to the entity the derivation starts from (artwork, manifestation or selection): the source side of the claim. |
-| `hasDerivedAnchor` | `DerivationClaim` → `Artwork` ∪ `Manifestation` ∪ `Selection` | `1` | **claim names the derived entity.** Links a derivation claim to the entity said to derive from the source (artwork, manifestation or selection): the derived side of the claim. It must differ from the source anchor. |
+| `hasSourceAnchor` | `DerivationClaim` → `ArtisticEntity` | `1` | **claim names the source entity.** Links a derivation claim to the entity the derivation starts from (any artistic entity: artwork, expression, manifestation or selection): the source side of the claim. |
+| `hasDerivedAnchor` | `DerivationClaim` → `ArtisticEntity` | `1` | **claim names the derived entity.** Links a derivation claim to the entity said to derive from the source (any artistic entity): the derived side of the claim. It must differ from the source anchor. |
 | `hasDerivationType` | `DerivationClaim` → `DerivationType` | `1..*` | **claim is typed by derivation kind.** Classifies a derivation claim with one or more concepts of the derivation-type vocabulary (cover, sampling, translation, parody...). |
 | `hasRegime` | `DerivationClaim` → `DerivationRegime` | `0..*` | **claim records derivation regime.** Qualifies a derivation claim with its regime: the stance taken toward the source (playful, satirical, serious, reverential). |
 | `hasTransformation` | `DerivationClaim` → `TransformationAspect` | `0..*` | **claim details a transformation aspect.** Links a derivation claim to the transformation aspects that detail it, one per artistic dimension that was retained, modified, added, removed or recontextualized. |
@@ -1197,14 +1710,11 @@ aro:CreativeRole a owl:Class ;
 | `aspectSourceSelection` | `TransformationAspect` → `Selection` | `0..1` | **aspect points to source selection.** Points a transformation aspect to the excerpt of the source where the dimension can be observed. |
 | `aspectDerivedSelection` | `TransformationAspect` → `Selection` | `0..1` | **aspect points to derived selection.** Points a transformation aspect to the excerpt of the derived entity where the transformed dimension can be observed. |
 | `aspectConcernsPattern` | `TransformationAspect` → `SituationPattern` | `0..*` | **aspect concerns a situation pattern.** Links a transformation aspect to a situation pattern it affects, when a derivation keeps, changes or relocates a represented situation. |
-| `derivationJustifiedBy` | `DerivationClaim` → `InterpretiveJustification` | `0..*` | **derivation claim explained by argument.** Links a derivation claim to the argument that explains why the derivation is asserted (similarities found, documented intent, credits). |
 | `derivationRealizedBy` | `DerivationClaim` → `CreativeAct` | `0..1` | **derivation carried out by creative act.** Links a derivation claim to the creative act that carried out the derivation (the recording, writing or adaptation that produced the derived entity). |
-| `claimProducedByAct` | `DerivationClaim` → `InterpretiveAct` | `0..1` | **analytical act that recorded the claim.** Links a derivation claim to the analytical act that recorded it, so that the claim has an author and a date like any interpretation. |
-| `derivationReferencesSource` | `DerivationClaim` → `ReferenceSource` | `0..*` | **derivation claim cites source.** Links a derivation claim to the reference sources that document the derivation (credits, interviews, liner notes, studies). |
-| `assessesDerivation` | `EvidenceAssessment` → `DerivationClaim` | `0..1` | **assessment evaluates derivation claim.** Links an evidence assessment to the derivation claim whose support it evaluates. |
-| `producesCreation` | `CreativeAct` → `Artwork` ∪ `Manifestation` | `1..*` | **act brings about artwork or manifestation.** Links a creative act to the artworks or manifestations it brings into existence, including derivative ones. |
+| `producesCreation` | `CreativeAct` → `ArtisticEntity` | `1..*` | **act brings about artistic entity.** Links a creative act to the artistic entities it brings into existence (artworks, expressions, manifestations), including derivative ones. |
 | `hasContribution` | `CreativeAct` → `CreativeContribution` | `0..*` | **act includes contribution.** Links a creative act to the contributions that make it up, one per agent taking part. |
 | `contributionBy` | `CreativeContribution` → `CreativeAgent` | `1` | **contribution made by agent.** Links a creative contribution to the agent who made it, identified by an external IRI (Wikidata, ISNI, MusicBrainz, schema.org). |
+| `contributionTo` | `CreativeContribution` → `ArtisticEntity` | `1..*` | **contribution is to artistic entity.** Links a creative contribution to the artistic entities the agent contributed to (the work, the recording, the edition). With contributionBy, it gives the relator its two mediated ends. |
 | `contributionRole` | `CreativeContribution` → `CreativeRole` | `1..*` | **contribution qualified by role.** Qualifies a creative contribution with one or more roles of the creative-role vocabulary (composer, performer, translator, remixer...). |
 
 ## Datatype properties
@@ -1223,6 +1733,9 @@ aro:CreativeRole a owl:Class ;
 | `languageTag` | language tag | — | `string` | BCP 47 tag of the main language of a resource, e.g. en, pt-BR, es. |
 | `versionLabel` | version label | — | `string` | Application version label. |
 | `derivationExtent` | derivation extent | `DerivationClaim` | `rdf:langString` | Free-text extent of reuse (e.g. "4-second loop", "whole plot"); language-tagged. |
+| `startDate` | start date | `InterpretiveAct` ∪ `CreativeAct` ∪ `EmpiricalEvent` ∪ `EmpiricalSituation` | `rdfs:Literal` | When an act, event or situation began (or happened, if it has no duration). Year, year-month, date or date-time. |
+| `endDate` | end date | `InterpretiveAct` ∪ `CreativeAct` ∪ `EmpiricalEvent` ∪ `EmpiricalSituation` | `rdfs:Literal` | When an act, event or situation ended. Year, year-month, date or date-time. |
+| `assessmentOutcome` | assessment outcome | `Assessment` | `string` | What the assessment concludes about the claim: supports, partiallySupports, challenges, inconclusive or irrelevant. It records the assessor's judgment, not the truth of the claim. |
 
 ## Controlled vocabularies (SKOS)
 

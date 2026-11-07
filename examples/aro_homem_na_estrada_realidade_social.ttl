@@ -35,16 +35,16 @@ hnr:analistaPesquisador a schema:Person ;
 # -----------------------------------------------------------------------------
 
 hnr:homemNaEstrada a aro:Artwork ;
-    aro:hasManifestation hnr:gravacao1993,
+    aro:hasExpression hnr:gravacao1993,
         hnr:transcricaoReferencia ;
     aro:textValue "Homem na Estrada — Racionais MC's"@pt-BR ;
     aro:externalLink "https://www.cifraclub.com.br/racionais-mcs/homem-na-estrada/letra/"^^xsd:anyURI .
 
-hnr:gravacao1993 a aro:Manifestation ;
+hnr:gravacao1993 a aro:Expression ;
     aro:realizesArtwork hnr:homemNaEstrada ;
     aro:textValue "Gravação publicada no álbum Raio X do Brasil"@pt-BR .
 
-hnr:transcricaoReferencia a aro:Manifestation ;
+hnr:transcricaoReferencia a aro:Expression ;
     dcterms:source <https://www.cifraclub.com.br/racionais-mcs/homem-na-estrada/letra/> ;
     aro:realizesArtwork hnr:homemNaEstrada ;
     aro:textValue "Transcrição pública usada apenas para localizar recortes; nenhum verso é reproduzido nesta anotação."@pt-BR .
@@ -55,12 +55,12 @@ hnr:criacao1993 a aro:CreativeAct ;
     aro:producesCreation hnr:homemNaEstrada,
         hnr:gravacao1993 .
 
-hnr:contribuicaoAutoria a aro:CreativeContribution ;
+hnr:contribuicaoAutoria a aro:CreativeContribution ; aro:contributionTo hnr:gravacao1993, hnr:homemNaEstrada ;
     aro:contributionBy <http://dbpedia.org/resource/Mano_Brown> ;
     aro:contributionRole aro:AuthorRole,
         aro:LyricistRole .
 
-hnr:contribuicaoInterpretacao a aro:CreativeContribution ;
+hnr:contribuicaoInterpretacao a aro:CreativeContribution ; aro:contributionTo hnr:gravacao1993, hnr:homemNaEstrada ;
     aro:contributionBy <http://dbpedia.org/resource/Racionais_MC's> ;
     aro:contributionRole aro:PerformerRole .
 
@@ -311,56 +311,56 @@ hnr:interpretacao15 a aro:InterpretationRecord ;
     aro:hasJustification hnr:justificativa15 ;
     aro:confidenceScore 0.86 .
 
-hnr:justificativa01 a aro:InterpretiveJustification ;
+hnr:justificativa01 a aro:Justification ;
     aro:textValue "A passagem apresenta liberdade, mudança de vida e reinício como projeto do personagem; não como resultado já alcançado."@pt-BR .
 
-hnr:justificativa02 a aro:InterpretiveJustification ;
+hnr:justificativa02 a aro:Justification ;
     aro:textValue "A referência institucional é lida como memória de privação e sofrimento juvenil, sem transpor automaticamente categorias jurídicas atuais ao passado narrado."@pt-BR .
 
-hnr:justificativa03 a aro:InterpretiveJustification ;
+hnr:justificativa03 a aro:Justification ;
     aro:textValue "Moradia, esgoto, encosta e chuva formam uma configuração única de precariedade urbana e risco."@pt-BR .
 
-hnr:justificativa04 a aro:InterpretiveJustification ;
+hnr:justificativa04 a aro:Justification ;
     aro:textValue "A crítica contrapõe conhecimento estatístico e ausência percebida de melhoria. Ela não atribui ao instituto de estatística a competência de executar saneamento, habitação ou assistência."@pt-BR .
 
-hnr:justificativa05 a aro:InterpretiveJustification ;
+hnr:justificativa05 a aro:Justification ;
     aro:textValue "A cena articula violência contra uma mulher e resposta pública tardia. A motivação jurídica da morte não é especificada."@pt-BR .
 
-hnr:justificativa06 a aro:InterpretiveJustification ;
+hnr:justificativa06 a aro:Justification ;
     aro:textValue "A dificuldade laboral é associada pelo narrador ao antecedente penal e à desconfiança social."@pt-BR .
 
-hnr:justificativa07 a aro:InterpretiveJustification ;
+hnr:justificativa07 a aro:Justification ;
     aro:textValue "A interrupção prolongada é narrada como recorrente, portanto funciona como sinal de serviço básico instável."@pt-BR .
 
-hnr:justificativa08 a aro:InterpretiveJustification ;
+hnr:justificativa08 a aro:Justification ;
     aro:textValue "A ação de moradores é punição coletiva fora do processo legal; a anotação não a legitima nem presume culpa da vítima."@pt-BR .
 
-hnr:justificativa09 a aro:InterpretiveJustification ;
+hnr:justificativa09 a aro:Justification ;
     aro:textValue "A passagem usa fome infantil extrema para denunciar privação; a relação exclusiva entre frequência escolar e alimentação permanece uma interpretação contextual."@pt-BR .
 
-hnr:justificativa10 a aro:InterpretiveJustification ;
+hnr:justificativa10 a aro:Justification ;
     aro:textValue "A narrativa reúne mercado ilícito, desigualdade entre vendedores e consumidores, morte jovem e exploração midiática; esses componentes não são tratados como uma única relação causal comprovada."@pt-BR .
 
-hnr:justificativa11 a aro:InterpretiveJustification ;
+hnr:justificativa11 a aro:Justification ;
     aro:textValue "A suspeição recai sobre território e moradores; uma suspeita narrada não equivale a culpa comprovada."@pt-BR .
 
-hnr:justificativa12 a aro:InterpretiveJustification ;
+hnr:justificativa12 a aro:Justification ;
     aro:textValue "O antecedente penal aparece como identidade social duradoura que ultrapassa o término da pena."@pt-BR .
 
-hnr:justificativa13 a aro:InterpretiveJustification ;
+hnr:justificativa13 a aro:Justification ;
     aro:textValue "O medo de agressão ou omissão policial fundamenta a percepção de desproteção; não valida juridicamente a autodefesa armada."@pt-BR .
 
-hnr:justificativa14 a aro:InterpretiveJustification ;
+hnr:justificativa14 a aro:Justification ;
     aro:textValue "O cerco é percebido pelo personagem como ação policial letal. A autoria e a intenção permanecem internas à perspectiva narrativa."@pt-BR .
 
-hnr:justificativa15 a aro:InterpretiveJustification ;
+hnr:justificativa15 a aro:Justification ;
     aro:textValue "A notícia final associa a morte a uma versão atribuída à polícia e ao antecedente da vítima. A sequência permite crítica ao enquadramento, mas não encerra a disputa sobre autoria."@pt-BR .
 
-hnr:contestacaoIBGE a aro:InterpretationChallenge ;
+hnr:contestacaoIBGE a aro:Challenge ;
     aro:challenges hnr:interpretacao04 ;
     aro:textValue "A distância entre medir e transformar uma realidade pode ser criticada, mas o IBGE não é o órgão executor das políticas de saneamento, moradia, segurança ou assistência."@pt-BR .
 
-hnr:contestacaoAutoriaMorte a aro:InterpretationChallenge ;
+hnr:contestacaoAutoriaMorte a aro:Challenge ;
     aro:challenges hnr:interpretacao15 ;
     aro:textValue "A sequência narrativa sustenta desconfiança em relação à versão oficial, porém não fornece atribuição pericial independente da autoria da morte."@pt-BR .
 
@@ -626,7 +626,7 @@ hnr:situacaoEmpiricaPrecariedade a aro:EmpiricalSituation ;
 
 hnr:casoPrecariedadeConhecida a aro:EmpiricalCase ;
     aro:caseAboutSituation hnr:situacaoEmpiricaPrecariedade ;
-    aro:caseHasReference hnr:fonteIBGEFavelas,
+    aro:citesSource hnr:fonteIBGEFavelas,
         hnr:fonteIBGECensoFavelas ;
     prov:wasDerivedFrom hnr:fonteIBGEFavelas,
         hnr:fonteIBGECensoFavelas ;
@@ -646,7 +646,7 @@ hnr:evidenciaCensoFavelas a aro:EvidenceItem ;
 hnr:correspondenciaPrecariedadeConhecida a aro:CorrespondenceClaim ;
     aro:assertsPattern hnr:padraoPrecariedadeConhecida ;
     aro:assertsCase hnr:casoPrecariedadeConhecida ;
-    aro:referencesSource hnr:fonteIBGEFavelas,
+    aro:citesSource hnr:fonteIBGEFavelas,
         hnr:fonteIBGECensoFavelas ;
     aro:textValue "O padrão representado corresponde a uma realidade social documentada: conhecimento estatístico e déficits urbanos podem coexistir, pois medir não é o mesmo que executar ou completar políticas públicas."@pt-BR .
 
@@ -654,8 +654,8 @@ hnr:avaliacaoPrecariedadeConhecida a aro:EvidenceAssessment ;
     prov:wasAttributedTo hnr:analistaPesquisador ;
     aro:assessesEvidence hnr:evidenciaDefinicaoIBGE,
         hnr:evidenciaCensoFavelas ;
-    aro:supportsClaim hnr:afirmacaoPrecariedadeConhecida ;
-    aro:assessesCorrespondence hnr:correspondenciaPrecariedadeConhecida ;
+    aro:assessesClaim hnr:afirmacaoPrecariedadeConhecida ;
+    aro:assessesClaim hnr:correspondenciaPrecariedadeConhecida ;
     aro:textValue "APOIA FORTEMENTE a existência do padrão social e, em particular, a coexistência entre mensuração e precariedade persistente. A diferença de época não reduz esse apoio, porque a alegação é sobre o tipo de situação. NÃO APOIA culpar o IBGE pela execução de serviços, identificar a comunidade ficcional ou afirmar que todo território popular possui o mesmo déficit."@pt-BR .
 
 # 2. Reinserção, trabalho e estigma penal
@@ -665,7 +665,7 @@ hnr:situacaoEmpiricaReinsercao a aro:EmpiricalSituation ;
 
 hnr:casoReinsercao a aro:EmpiricalCase ;
     aro:caseAboutSituation hnr:situacaoEmpiricaReinsercao ;
-    aro:caseHasReference hnr:fonteCNJTrabalhoEgressos ;
+    aro:citesSource hnr:fonteCNJTrabalhoEgressos ;
     prov:wasDerivedFrom hnr:fonteCNJTrabalhoEgressos ;
     aro:textValue "Barreiras sociolaborais enfrentadas por pessoas egressas do sistema prisional"@pt-BR .
 
@@ -679,14 +679,14 @@ hnr:evidenciaReinsercao a aro:EvidenceItem ;
 hnr:correspondenciaReinsercao a aro:CorrespondenceClaim ;
     aro:assertsPattern hnr:padraoReinsercao ;
     aro:assertsCase hnr:casoReinsercao ;
-    aro:referencesSource hnr:fonteCNJTrabalhoEgressos ;
+    aro:citesSource hnr:fonteCNJTrabalhoEgressos ;
     aro:textValue "As barreiras narradas ao recomeço e ao emprego instanciam um tipo de dificuldade sociolaboral documentado pela pesquisa do CNJ."@pt-BR .
 
 hnr:avaliacaoReinsercao a aro:EvidenceAssessment ;
     prov:wasAttributedTo hnr:analistaPesquisador ;
     aro:assessesEvidence hnr:evidenciaReinsercao ;
-    aro:supportsClaim hnr:afirmacaoReinsercao ;
-    aro:assessesCorrespondence hnr:correspondenciaReinsercao ;
+    aro:assessesClaim hnr:afirmacaoReinsercao ;
+    aro:assessesClaim hnr:correspondenciaReinsercao ;
     aro:textValue "APOIA DIRETAMENTE a realidade do estigma e das barreiras sociolaborais após a prisão. NÃO APOIA uma taxa nacional de recusa de emprego, nem prova a biografia ou a inocência do personagem. O apoio independe do ano da canção porque recai sobre a recorrência do padrão."@pt-BR .
 
 # 3. Institucionalização juvenil e direitos incompletos
@@ -696,7 +696,7 @@ hnr:situacaoEmpiricaSocioeducacao a aro:EmpiricalSituation ;
 
 hnr:casoSocioeducacao a aro:EmpiricalCase ;
     aro:caseAboutSituation hnr:situacaoEmpiricaSocioeducacao ;
-    aro:caseHasReference hnr:fonteSINASE2024 ;
+    aro:citesSource hnr:fonteSINASE2024 ;
     prov:wasDerivedFrom hnr:fonteSINASE2024 ;
     aro:textValue "Acesso incompleto a educação e profissionalização no sistema socioeducativo"@pt-BR .
 
@@ -710,14 +710,14 @@ hnr:evidenciaSocioeducacao a aro:EvidenceItem ;
 hnr:correspondenciaSocioeducacao a aro:CorrespondenceClaim ;
     aro:assertsPattern hnr:padraoSocioeducacaoDesigual ;
     aro:assertsCase hnr:casoSocioeducacao ;
-    aro:referencesSource hnr:fonteSINASE2024 ;
+    aro:citesSource hnr:fonteSINASE2024 ;
     aro:textValue "A memória de institucionalização juvenil encontra correspondência estrutural em um sistema contemporâneo que ainda apresenta lacunas no acesso a direitos."@pt-BR .
 
 hnr:avaliacaoSocioeducacao a aro:EvidenceAssessment ;
     prov:wasAttributedTo hnr:analistaPesquisador ;
     aro:assessesEvidence hnr:evidenciaSocioeducacao ;
-    aro:supportsClaim hnr:afirmacaoSocioeducacao ;
-    aro:assessesCorrespondence hnr:correspondenciaSocioeducacao ;
+    aro:assessesClaim hnr:afirmacaoSocioeducacao ;
+    aro:assessesClaim hnr:correspondenciaSocioeducacao ;
     aro:textValue "APOIA a existência contemporânea do padrão de institucionalização juvenil com direitos incompletos. NÃO APOIA equiparar juridicamente FEBEM e SINASE, nem comprova abuso sofrido pelo personagem. A fonte posterior é pertinente para mostrar que o tipo de situação não é apenas ficcional ou historicamente encerrado."@pt-BR .
 
 # 4. Violência contra mulheres
@@ -727,7 +727,7 @@ hnr:situacaoEmpiricaViolenciaMulher a aro:EmpiricalSituation ;
 
 hnr:casoViolenciaMulher a aro:EmpiricalCase ;
     aro:caseAboutSituation hnr:situacaoEmpiricaViolenciaMulher ;
-    aro:caseHasReference hnr:fonteFBSPMulheres2025 ;
+    aro:citesSource hnr:fonteFBSPMulheres2025 ;
     prov:wasDerivedFrom hnr:fonteFBSPMulheres2025 ;
     aro:textValue "Persistência e elevada prevalência da violência contra mulheres no Brasil"@pt-BR .
 
@@ -741,14 +741,14 @@ hnr:evidenciaViolenciaMulher a aro:EvidenceItem ;
 hnr:correspondenciaViolenciaMulher a aro:CorrespondenceClaim ;
     aro:assertsPattern hnr:padraoViolenciaMulher ;
     aro:assertsCase hnr:casoViolenciaMulher ;
-    aro:referencesSource hnr:fonteFBSPMulheres2025 ;
+    aro:citesSource hnr:fonteFBSPMulheres2025 ;
     aro:textValue "A violência extrema narrada participa de um padrão social de vitimização de mulheres cuja persistência é documentada em pesquisa nacional."@pt-BR .
 
 hnr:avaliacaoViolenciaMulher a aro:EvidenceAssessment ;
     prov:wasAttributedTo hnr:analistaPesquisador ;
     aro:assessesEvidence hnr:evidenciaViolenciaMulher ;
-    aro:supportsClaim hnr:afirmacaoViolenciaMulher ;
-    aro:assessesCorrespondence hnr:correspondenciaViolenciaMulher ;
+    aro:assessesClaim hnr:afirmacaoViolenciaMulher ;
+    aro:assessesClaim hnr:correspondenciaViolenciaMulher ;
     aro:textValue "APOIA FORTEMENTE a existência e a persistência da violência contra mulheres. NÃO APOIA classificar juridicamente a morte ficcional como feminicídio, provar violência sexual no episódio ou comprovar atraso do IML; a condição de resposta tardia permanece contextual."@pt-BR .
 
 # 5. Insegurança alimentar grave e fome infantil
@@ -758,7 +758,7 @@ hnr:situacaoEmpiricaFome a aro:EmpiricalSituation ;
 
 hnr:casoFome a aro:EmpiricalCase ;
     aro:caseAboutSituation hnr:situacaoEmpiricaFome ;
-    aro:caseHasReference hnr:fonteIBGESegurancaAlimentar2024 ;
+    aro:citesSource hnr:fonteIBGESegurancaAlimentar2024 ;
     prov:wasDerivedFrom hnr:fonteIBGESegurancaAlimentar2024 ;
     aro:textValue "Fome e insegurança alimentar grave em domicílios com crianças e adolescentes"@pt-BR .
 
@@ -772,14 +772,14 @@ hnr:evidenciaFome a aro:EvidenceItem ;
 hnr:correspondenciaFome a aro:CorrespondenceClaim ;
     aro:assertsPattern hnr:padraoFomeInfantil ;
     aro:assertsCase hnr:casoFome ;
-    aro:referencesSource hnr:fonteIBGESegurancaAlimentar2024 ;
+    aro:citesSource hnr:fonteIBGESegurancaAlimentar2024 ;
     aro:textValue "A cena de crianças em privação alimentar representa um tipo de situação cuja existência é diretamente documentada pela escala oficial de insegurança alimentar."@pt-BR .
 
 hnr:avaliacaoFome a aro:EvidenceAssessment ;
     prov:wasAttributedTo hnr:analistaPesquisador ;
     aro:assessesEvidence hnr:evidenciaFome ;
-    aro:supportsClaim hnr:afirmacaoFome ;
-    aro:assessesCorrespondence hnr:correspondenciaFome ;
+    aro:assessesClaim hnr:afirmacaoFome ;
+    aro:assessesClaim hnr:correspondenciaFome ;
     aro:textValue "APOIA DIRETAMENTE a realidade da fome infantil e familiar. NÃO APOIA o episódio literal da feira nem afirma que uma criança frequente a escola exclusivamente para comer. A alimentação escolar é mantida como condição contextual de proteção, não como inferência produzida pela PNAD."@pt-BR .
 
 # 6. Letalidade juvenil e desigualdade racial
@@ -789,7 +789,7 @@ hnr:situacaoEmpiricaMorteJovem a aro:EmpiricalSituation ;
 
 hnr:casoMorteJovem a aro:EmpiricalCase ;
     aro:caseAboutSituation hnr:situacaoEmpiricaMorteJovem ;
-    aro:caseHasReference hnr:fonteAtlasViolencia2025 ;
+    aro:citesSource hnr:fonteAtlasViolencia2025 ;
     prov:wasDerivedFrom hnr:fonteAtlasViolencia2025 ;
     aro:textValue "Concentração da violência letal sobre jovens e pessoas negras"@pt-BR .
 
@@ -803,14 +803,14 @@ hnr:evidenciaMorteJovem a aro:EvidenceItem ;
 hnr:correspondenciaMorteJovem a aro:CorrespondenceClaim ;
     aro:assertsPattern hnr:padraoMorteJovem ;
     aro:assertsCase hnr:casoMorteJovem ;
-    aro:referencesSource hnr:fonteAtlasViolencia2025 ;
+    aro:citesSource hnr:fonteAtlasViolencia2025 ;
     aro:textValue "A morte de um jovem em contexto de desigualdade representa um padrão de vitimização letal juvenil e racialmente desigual documentado em escala nacional."@pt-BR .
 
 hnr:avaliacaoMorteJovem a aro:EvidenceAssessment ;
     prov:wasAttributedTo hnr:analistaPesquisador ;
     aro:assessesEvidence hnr:evidenciaMorteJovem ;
-    aro:supportsClaim hnr:afirmacaoMorteJovem ;
-    aro:assessesCorrespondence hnr:correspondenciaMorteJovem ;
+    aro:assessesClaim hnr:afirmacaoMorteJovem ;
+    aro:assessesClaim hnr:correspondenciaMorteJovem ;
     aro:textValue "APOIA FORTEMENTE a recorrência e a desigualdade do padrão de morte jovem. NÃO APOIA identificar a vítima ficcional, atribuir sua morte ao varejo de drogas ou demonstrar sensacionalismo midiático. Esses últimos componentes exigiriam evidências próprias e não foram artificialmente derivados das estatísticas de homicídio."@pt-BR .
 
 # 7. Letalidade policial seletiva
@@ -820,7 +820,7 @@ hnr:situacaoEmpiricaViolenciaEstado a aro:EmpiricalSituation ;
 
 hnr:casoViolenciaEstado a aro:EmpiricalCase ;
     aro:caseAboutSituation hnr:situacaoEmpiricaViolenciaEstado ;
-    aro:caseHasReference hnr:fonteAnuarioSeguranca2025 ;
+    aro:citesSource hnr:fonteAnuarioSeguranca2025 ;
     prov:wasDerivedFrom hnr:fonteAnuarioSeguranca2025 ;
     aro:textValue "Persistência e seletividade da letalidade policial no Brasil"@pt-BR .
 
@@ -834,14 +834,14 @@ hnr:evidenciaViolenciaEstado a aro:EvidenceItem ;
 hnr:correspondenciaViolenciaEstado a aro:CorrespondenceClaim ;
     aro:assertsPattern hnr:padraoSuspeicaoViolenciaEstado ;
     aro:assertsCase hnr:casoViolenciaEstado ;
-    aro:referencesSource hnr:fonteAnuarioSeguranca2025 ;
+    aro:citesSource hnr:fonteAnuarioSeguranca2025 ;
     aro:textValue "O cerco, a desproteção e a morte sob suspeição encontram correspondência estrutural num padrão real e seletivo de uso letal da força estatal."@pt-BR .
 
 hnr:avaliacaoViolenciaEstado a aro:EvidenceAssessment ;
     prov:wasAttributedTo hnr:analistaPesquisador ;
     aro:assessesEvidence hnr:evidenciaViolenciaEstado ;
-    aro:supportsClaim hnr:afirmacaoViolenciaEstado ;
-    aro:assessesCorrespondence hnr:correspondenciaViolenciaEstado ;
+    aro:assessesClaim hnr:afirmacaoViolenciaEstado ;
+    aro:assessesClaim hnr:correspondenciaViolenciaEstado ;
     aro:textValue "APOIA FORTEMENTE a existência, recorrência e seletividade racial e etária da letalidade policial. NÃO APOIA concluir que policiais mataram o personagem, que a intervenção ficcional foi juridicamente ilegal ou que a versão final é falsa. A fonte sustenta o padrão social, não a autoria do episódio."@pt-BR .
 
 # 8. Linchamentos
@@ -851,7 +851,7 @@ hnr:situacaoEmpiricaLinchamento a aro:EmpiricalSituation ;
 
 hnr:casoLinchamento a aro:EmpiricalCase ;
     aro:caseAboutSituation hnr:situacaoEmpiricaLinchamento ;
-    aro:caseHasReference hnr:fonteLinchamentos2024 ;
+    aro:citesSource hnr:fonteLinchamentos2024 ;
     prov:wasDerivedFrom hnr:fonteLinchamentos2024 ;
     aro:textValue "Linchamentos documentados em três metrópoles brasileiras"@pt-BR .
 
@@ -865,14 +865,14 @@ hnr:evidenciaLinchamento a aro:EvidenceItem ;
 hnr:correspondenciaLinchamento a aro:CorrespondenceClaim ;
     aro:assertsPattern hnr:padraoLinchamento ;
     aro:assertsCase hnr:casoLinchamento ;
-    aro:referencesSource hnr:fonteLinchamentos2024 ;
+    aro:citesSource hnr:fonteLinchamentos2024 ;
     aro:textValue "A punição coletiva representada corresponde a uma prática extrajudicial documentada em contextos urbanos brasileiros."@pt-BR .
 
 hnr:avaliacaoLinchamento a aro:EvidenceAssessment ;
     prov:wasAttributedTo hnr:analistaPesquisador ;
     aro:assessesEvidence hnr:evidenciaLinchamento ;
-    aro:supportsClaim hnr:afirmacaoLinchamento ;
-    aro:assessesCorrespondence hnr:correspondenciaLinchamento ;
+    aro:assessesClaim hnr:afirmacaoLinchamento ;
+    aro:assessesClaim hnr:correspondenciaLinchamento ;
     aro:textValue "APOIA DIRETAMENTE a existência do tipo de situação. NÃO APOIA identificar um caso real como origem do episódio, comprovar a acusação feita contra a vítima ficcional ou reduzir todo linchamento a uma única causa."@pt-BR .
 
 # -----------------------------------------------------------------------------

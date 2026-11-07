@@ -8,7 +8,7 @@
 
 **Para quê:** Pesquisa, catalogação, análise comparativa multimídia, interpretação fundamentada por evidências e grafos de conhecimento.
 
-**Inclui:** Música, vídeo, imagens, artes visuais, textos e outras mídias; recortes; argumentos interpretativos; referências reutilizáveis (notícias, artigos científicos, relatos, documentos e bases de dados); corroboração, discordância e critérios; alegações de derivação em nível de obra, manifestação ou recorte, o que cada derivação mantém ou transforma, agentes e papéis criativos e a explicação (justificativa, fontes, evidências) de cada alegação. Obras derivadas são tratadas como criações por direito próprio.
+**Inclui:** Música, vídeo, imagens, artes visuais, textos e outras mídias; recortes; argumentos interpretativos; referências reutilizáveis (notícias, artigos científicos, relatos, documentos e bases de dados); corroboração, discordância e critérios; alegações de derivação em nível de obra, expressão, manifestação ou recorte, o que cada derivação mantém ou transforma, agentes e papéis criativos e a explicação (justificativa, fontes, evidências) de cada alegação. Obras derivadas são tratadas como criações por direito próprio.
 
 **Exclui (v0.2):** Extração automática, checagem automática de notícias, interpretações definitivas, inferência causal automática, a totalidade da semântica da UFO-C qualquer caso artístico específico, detecção automática de similaridade, representação de legalidade, originalidade ou violação e cadeias de derivação inferidas (transitivas).
 

@@ -40,7 +40,7 @@ Os números de linha seguem a transcrição LyricFind da letra (151 linhas, cont
 
 **Leituras plurais.** O evento 15 tem uma justificativa e uma contestação registradas:
 - **Justificativa:** a sequência invasão policial → morte contrasta com a versão da polícia, e a leitura toma essa versão como criminalização da vítima.
-- **Contestação** (`InterpretationChallenge`): a letra deixa os autores implícitos, então a versão do relato não pode ser excluída dentro da própria narrativa.
+- **Contestação** (`Challenge`): a letra deixa os autores implícitos, então a versão do relato não pode ser excluída dentro da própria narrativa.
 
 Instituições e lugares reais que aparecem na letra são representados como `DepictedElement`: FEBEM, IBGE, IML e a Estrada do M'Boi Mirim.
 
@@ -104,9 +104,9 @@ python scripts/annotator.py
 ```
 
 Carregue `examples/case-studies.ttl` em **Carregar .ttl**. Depois:
-- na manifestação "Texto da letra", use **Anexar .txt** com a sua cópia da letra: cada evento passa a mostrar as linhas correspondentes;
+- na expressão "Texto da letra", use **Anexar .txt** com a sua cópia da letra: cada evento passa a mostrar as linhas correspondentes;
 - acrescente eventos ou ajuste as faixas de linha;
-- revise ou conteste as leituras com uma `InterpretationChallenge`;
+- revise ou conteste as leituras com uma `Challenge`;
 - acrescente casos e fontes, sobretudo para os padrões que ainda não têm caso;
 - salve um novo arquivo.
 

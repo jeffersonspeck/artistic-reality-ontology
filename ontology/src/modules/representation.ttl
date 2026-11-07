@@ -46,18 +46,20 @@ aro:mentionsDepictedElement a owl:ObjectProperty ;
 aro:DepictedElement a owl:Class ;
     rdfs:label "depicted element"@en,
         "elemento representado"@pt-BR ;
-    rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-C representation; not a real-world entity; dependency: representational context"@en,
-        "Estereótipo OntoUML (provisório): kind; fundamentação: representação UFO-C; não é entidade do mundo real; dependência: contexto representacional"@pt-BR ;
+    rdfs:comment "OntoUML stereotype (provisional): subkind; foundation: UFO-C representation (subkind of AnalyticalRecord); not a real-world entity; dependency: representational context"@en,
+        "Estereótipo OntoUML (provisório): subkind; fundamentação: representação UFO-C (subkind de AnalyticalRecord); não é entidade do mundo real; dependência: contexto representacional"@pt-BR ;
     rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/representation> ;
+    rdfs:subClassOf aro:AnalyticalRecord ;
     skos:definition "Information-level representation of a referent in an artwork."@en,
         "Representação informacional de um referente na obra."@pt-BR .
 
 aro:SituationDescription a owl:Class ;
     rdfs:label "situation description"@en,
         "descrição de situação"@pt-BR ;
-    rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-C information object, not gufo:Situation; dependency: interpretive support and conceptual content"@en,
-        "Estereótipo OntoUML (provisório): kind; fundamentação: objeto informacional UFO-C, não gufo:Situation; dependência: suporte interpretativo e conteúdo conceitual"@pt-BR ;
+    rdfs:comment "OntoUML stereotype (provisional): subkind; foundation: UFO-C information object (subkind of AnalyticalRecord), not gufo:Situation; dependency: interpretive support and conceptual content"@en,
+        "Estereótipo OntoUML (provisório): subkind; fundamentação: objeto informacional UFO-C (subkind de AnalyticalRecord), não gufo:Situation; dependência: suporte interpretativo e conteúdo conceitual"@pt-BR ;
     rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/representation> ;
+    rdfs:subClassOf aro:AnalyticalRecord ;
     skos:definition "Recorded description of a represented situation."@en,
         "Descrição registrada de situação representada."@pt-BR .
 
@@ -67,5 +69,5 @@ aro:SituationDescription a owl:Class ;
     dcterms:isPartOf <https://w3id.org/aro/ontology> ;
     dcterms:title "ARO module: Representation"@en,
         "Módulo ARO: Representação"@pt-BR ;
-    owl:versionInfo "0.2.1-beta" .
+    owl:versionInfo "0.3.0-beta" .
 

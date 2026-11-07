@@ -3,12 +3,21 @@ digraph ontology {
 graph [rankdir=LR, bgcolor="white", pad="0.4", nodesep="0.35", ranksep="0.75", fontname="Arial"];
 node [shape=box, style="rounded,filled", color="#64748b", fontname="Arial", fontsize=10];
 edge [color="#64748b", fontname="Arial", fontsize=8];
+"ArtisticEntity" [label="«category»\nArtisticEntity",fillcolor="#dbeafe"];
 "Artwork" [label="«kind»\nArtwork",fillcolor="#dbeafe"];
+"Expression" [label="«kind»\nExpression",fillcolor="#dbeafe"];
 "Manifestation" [label="«kind»\nManifestation",fillcolor="#dbeafe"];
 "Selection" [label="«kind»\nSelection",fillcolor="#dbeafe"];
-"AnalysisUnit" [label="«kind»\nAnalysisUnit",fillcolor="#dbeafe"];
-"Artwork" -> "Manifestation" [label="hasManifestation  [1..*]",arrowsize=.65];
-"Manifestation" -> "Artwork" [label="realizesArtwork  [1]",arrowsize=.65];
-"Selection" -> "Manifestation" [label="selectsFrom  [1]",arrowsize=.65];
+"AnalysisUnit" [label="«subkind»\nAnalysisUnit",fillcolor="#dbeafe"];
+"Artwork" -> "Expression" [label="hasExpression  [1..*]",arrowsize=.65];
+"Expression" -> "Artwork" [label="realizesArtwork  [1]",arrowsize=.65];
+"Expression" -> "Manifestation" [label="hasManifestation  [0..*]",arrowsize=.65];
+"Manifestation" -> "Expression" [label="embodiesExpression  [1..*]",arrowsize=.65];
+"Selection" -> "Expression" [label="selectsFrom  [1]",arrowsize=.65];
+"Selection" -> "Manifestation" [label="locatedInManifestation  [0..1]",arrowsize=.65];
 "AnalysisUnit" -> "Selection" [label="groupsSelection  [1..*]",arrowsize=.65];
+"Artwork" -> "ArtisticEntity" [arrowhead=empty,style=dashed];
+"Expression" -> "ArtisticEntity" [arrowhead=empty,style=dashed];
+"Manifestation" -> "ArtisticEntity" [arrowhead=empty,style=dashed];
+"Selection" -> "ArtisticEntity" [arrowhead=empty,style=dashed];
 }

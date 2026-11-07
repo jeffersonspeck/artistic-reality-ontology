@@ -17,14 +17,21 @@
 # - Situation descriptions are paraphrases representing ONE analyst's reading
 #   (InterpretationRecord), not the content of the work itself; confidenceScore marks
 #   how sure the reading is.
+# - Works follow the IFLA LRM levels (ARO 0.3): the artwork, its expressions (the
+#   recording, the lyric text, the novel's text) and, where the edition matters, the
+#   manifestation that embodies them (the album, the first edition).
 # - Empirical cases cite real, public sources (URLs checked when the example was written).
 #   Correspondence claims state similarity or possibility, never that the work narrates
 #   a specific real event, and never causation.
 # =====================================================================================
 
 # ------------------------------------------------------------------ analyst and act
-ex:analyst a schema:Person ; schema:name "Example analyst" .
-ex:reading-act a aro:InterpretiveAct ; aro:hasParticipant ex:analyst .
+ex:analyst a schema:Person, aro:Person ; schema:name "Example analyst" .
+ex:reading-act a aro:InterpretiveAct ; aro:hasParticipant ex:analyst ; aro:startDate "2026-10"^^xsd:gYearMonth .
+# A second analyst reviews the first one's readings: a competing interpretation, a challenge,
+# assessments by explicit criteria and of the evidence for a causal hypothesis
+ex:reviewer a schema:Person, aro:Person ; schema:name "Example reviewer" .
+ex:review-act a aro:InterpretiveAct ; aro:hasParticipant ex:reviewer ; aro:startDate "2026-11"^^xsd:gYearMonth .
 
 # =====================================================================================
 # 1. HOMEM NA ESTRADA — Racionais MC's
@@ -36,24 +43,31 @@ ex:reading-act a aro:InterpretiveAct ; aro:hasParticipant ex:analyst .
 ex:homem-na-estrada a aro:Artwork ;
   aro:textValue "Homem na Estrada"@pt-BR, "Homem na Estrada (Man on the Road)"@en ;
   aro:externalLink "https://en.wikipedia.org/wiki/Raio-X_do_Brasil"^^xsd:anyURI .
-ex:homem-na-estrada-1993 a aro:Manifestation ;
+ex:homem-na-estrada-1993 a aro:Expression ;
   aro:realizesArtwork ex:homem-na-estrada ;
   aro:textValue "Recording on the album Raio X do Brasil (1993)"@en, "Gravação no álbum Raio X do Brasil (1993)"@pt-BR .
-ex:homem-na-estrada-lyrics a aro:Manifestation ;
+ex:homem-na-estrada-lyrics a aro:Expression ;
   aro:realizesArtwork ex:homem-na-estrada ;
   aro:textValue "Lyric text (LyricFind transcription, 151 lines; composer Pedro Paulo Soares Pereira)"@en,
                 "Texto da letra (transcrição LyricFind, 151 linhas; compositor Pedro Paulo Soares Pereira)"@pt-BR .
+# The album is the manifestation (LRM) that embodies the 1993 recording
+ex:raio-x-do-brasil a aro:Manifestation ;
+  aro:embodiesExpression ex:homem-na-estrada-1993 ;
+  aro:textValue "Album Raio X do Brasil (1993)"@en, "Álbum Raio X do Brasil (1993)"@pt-BR ;
+  aro:externalLink "https://en.wikipedia.org/wiki/Raio-X_do_Brasil"^^xsd:anyURI .
+ex:homem-na-estrada-1993 aro:hasManifestation ex:raio-x-do-brasil .
 
 # Creation: written by Mano Brown (Pedro Paulo Soares Pereira), performed by Racionais MC's
-ex:homem-na-estrada-creation a aro:CreativeAct ;
-  aro:producesCreation ex:homem-na-estrada, ex:homem-na-estrada-1993 ;
+ex:homem-na-estrada-creation a aro:CreativeAct ; aro:startDate "1993"^^xsd:gYear ;
+  aro:producesCreation ex:homem-na-estrada, ex:homem-na-estrada-lyrics, ex:homem-na-estrada-1993 ;
   aro:hasContribution ex:hne-author, ex:hne-performer .
-ex:hne-author a aro:CreativeContribution ; aro:contributionBy dbr:Mano_Brown ;
+ex:hne-author a aro:CreativeContribution ; aro:contributionTo ex:homem-na-estrada, ex:homem-na-estrada-lyrics ; aro:contributionBy dbr:Mano_Brown ;
   aro:contributionRole aro:AuthorRole, aro:LyricistRole .
-ex:hne-performer a aro:CreativeContribution ; aro:contributionBy <http://dbpedia.org/resource/Racionais_MC's> ;
+ex:hne-performer a aro:CreativeContribution ; aro:contributionTo ex:homem-na-estrada-1993 ; aro:contributionBy <http://dbpedia.org/resource/Racionais_MC's> ;
   aro:contributionRole aro:PerformerRole .
-dbr:Mano_Brown a schema:Person ; schema:name "Mano Brown" .
-<http://dbpedia.org/resource/Racionais_MC's> a schema:MusicGroup ; schema:name "Racionais MC's" .
+# Agents are external IRIs; aro:Person / aro:Collective place them in the OntoUML role pattern
+dbr:Mano_Brown a schema:Person, aro:Person ; schema:name "Mano Brown" .
+<http://dbpedia.org/resource/Racionais_MC's> a schema:MusicGroup, aro:Collective ; schema:name "Racionais MC's" .
 
 # --- event 1: lines 1-7
 ex:hne-e01 a aro:Selection ; aro:selectsFrom ex:homem-na-estrada-lyrics ;
@@ -259,12 +273,31 @@ ex:hne-mboi a aro:DepictedElement ; aro:textValue "Estrada do M'Boi Mirim (road 
 
 # Plural readings: the analyst's justification for event 15, and a recorded challenge
 ex:hne-r15 aro:hasJustification ex:hne-just15 .
-ex:hne-just15 a aro:InterpretiveJustification ;
+ex:hne-just15 a aro:Justification ;
   aro:textValue "The narrative sequence (police raid at dawn, then the man's death) contrasts with the closing report attributing the death to rival gangs; the reading takes the report as the official version that criminalizes the victim."@en,
                 "A sequência narrativa (invasão policial de madrugada e depois a morte do homem) contrasta com o relato final que atribui a morte a quadrilhas rivais; a leitura toma o relato como versão oficial que criminaliza a vítima."@pt-BR .
-ex:hne-challenge15 a aro:InterpretationChallenge ; aro:challenges ex:hne-r15 ;
+ex:hne-challenge15 a aro:Challenge ; aro:challenges ex:hne-r15 ; aro:producedByAct ex:review-act ;
   aro:textValue "Alternative reading: the lyrics leave the killers implicit, so the report's version cannot be excluded within the narrative itself."@en,
                 "Leitura alternativa: a letra deixa os autores implícitos, então a versão do relato não pode ser excluída dentro da própria narrativa."@pt-BR .
+
+# Competing interpretation of the same passage, by the reviewer (ADR-002: both coexist)
+ex:hne-r15b a aro:InterpretationRecord ; aro:hasPrimarySelection ex:hne-e15 ;
+  aro:producedByAct ex:review-act ; aro:describesSituation ex:hne-s15b ; aro:confidenceScore 0.6 .
+ex:hne-s15b a aro:SituationDescription ; aro:mentionsDepictedElement ex:hne-man ;
+  aro:textValue "The closing report leaves the death unexplained: the song shows how the man is remembered by the press, not who killed him."@en,
+                "O relato final deixa a morte sem explicação: a canção mostra como o homem é lembrado pela imprensa, não quem o matou."@pt-BR .
+# The reviewer assesses the first reading by explicit criteria, one epistemic and one of value
+ex:crit-textual-support a aro:EpistemicCriterion ;
+  aro:textValue "Textual support: the reading follows from the passage and its context in the lyrics."@en,
+                "Apoio textual: a leitura decorre do trecho e de seu contexto na letra."@pt-BR .
+ex:crit-social-relevance a aro:ValueCriterion ;
+  aro:textValue "Social relevance: the reading helps discuss a documented social problem."@en,
+                "Relevância social: a leitura ajuda a discutir um problema social documentado."@pt-BR .
+ex:assess-hne-r15 a aro:CriteriaAssessment ; aro:assessesClaim ex:hne-r15 ;
+  aro:usesCriterion ex:crit-textual-support, ex:crit-social-relevance ;
+  aro:producedByAct ex:review-act ; aro:assessmentOutcome "partiallySupports" ;
+  aro:textValue "Socially relevant and supported by the sequence of events, but the lyrics do not name the killers, so the official version is not excluded."@en,
+                "Socialmente relevante e apoiada pela sequência de eventos, mas a letra não nomeia os autores, então a versão oficial não é excluída."@pt-BR .
 
 # --- Derivation: the track samples Tim Maia's "Ela Partiu" ------------------------
 ex:ela-partiu a aro:Artwork ; aro:textValue "Ela Partiu (Tim Maia)"@pt-BR, "Ela Partiu (Tim Maia)"@en .
@@ -272,7 +305,7 @@ ex:deriv-hne-sample a aro:DerivationClaim ;
   aro:hasSourceAnchor ex:ela-partiu ; aro:hasDerivedAnchor ex:homem-na-estrada ;
   aro:hasDerivationType aro:Sampling ;
   aro:hasTransformation ex:deriv-hne-sound ;
-  aro:derivationReferencesSource ex:src-raio-x-wiki ;
+  aro:citesSource ex:src-raio-x-wiki ;
   aro:derivationRealizedBy ex:homem-na-estrada-creation .
 ex:deriv-hne-sound a aro:TransformationAspect ;
   aro:hasDimension aro:RecordedSoundDimension ; aro:hasOperation aro:Recontextualized .
@@ -283,11 +316,15 @@ ex:deriv-hne-sound a aro:TransformationAspect ;
 ex:vidas-secas a aro:Artwork ;
   aro:textValue "Vidas Secas"@pt-BR, "Vidas Secas (Barren Lives)"@en ;
   aro:externalLink "https://pt.wikipedia.org/wiki/Vidas_Secas"^^xsd:anyURI .
-ex:vidas-secas-1938 a aro:Manifestation ; aro:realizesArtwork ex:vidas-secas ;
+ex:vidas-secas-1938 a aro:Expression ; aro:realizesArtwork ex:vidas-secas ;
+  aro:textValue "Original Portuguese text of the novel (1938)"@en, "Texto original do romance em português (1938)"@pt-BR ;
+  aro:hasManifestation ex:vidas-secas-first-edition .
+ex:vidas-secas-first-edition a aro:Manifestation ; aro:embodiesExpression ex:vidas-secas-1938 ;
   aro:textValue "First edition of the novel (1938)"@en, "Primeira edição do romance (1938)"@pt-BR .
-ex:vidas-secas-creation a aro:CreativeAct ; aro:producesCreation ex:vidas-secas ; aro:hasContribution ex:vs-author .
-ex:vs-author a aro:CreativeContribution ; aro:contributionBy dbr:Graciliano_Ramos ; aro:contributionRole aro:AuthorRole .
-dbr:Graciliano_Ramos a schema:Person ; schema:name "Graciliano Ramos" .
+ex:vidas-secas-creation a aro:CreativeAct ; aro:startDate "1938"^^xsd:gYear ;
+  aro:producesCreation ex:vidas-secas, ex:vidas-secas-1938 ; aro:hasContribution ex:vs-author .
+ex:vs-author a aro:CreativeContribution ; aro:contributionTo ex:vidas-secas, ex:vidas-secas-1938 ; aro:contributionBy dbr:Graciliano_Ramos ; aro:contributionRole aro:AuthorRole .
+dbr:Graciliano_Ramos a schema:Person, aro:Person ; schema:name "Graciliano Ramos" .
 
 # --- Events: one chapter each ------------------------------------------------------
 ex:vs-mudanca a aro:Selection ; aro:selectsFrom ex:vidas-secas-1938 ; aro:selectorExpression "chapter 1 «Mudança»" .
@@ -330,16 +367,16 @@ ex:vs-soldier a aro:DepictedAgent ; aro:textValue "the yellow soldier"@en, "o so
 ex:vidas-secas-film a aro:Artwork ;
   aro:textValue "Vidas Secas (film, 1963)"@pt-BR, "Barren Lives (film, 1963)"@en ;
   aro:externalLink "https://en.wikipedia.org/wiki/Barren_Lives_(film)"^^xsd:anyURI .
-ex:vidas-secas-film-production a aro:CreativeAct ; aro:producesCreation ex:vidas-secas-film ;
+ex:vidas-secas-film-production a aro:CreativeAct ; aro:startDate "1963"^^xsd:gYear ; aro:producesCreation ex:vidas-secas-film ;
   aro:hasContribution ex:vsf-director .
-ex:vsf-director a aro:CreativeContribution ; aro:contributionBy dbr:Nelson_Pereira_dos_Santos ;
+ex:vsf-director a aro:CreativeContribution ; aro:contributionTo ex:vidas-secas-film ; aro:contributionBy dbr:Nelson_Pereira_dos_Santos ;
   aro:contributionRole aro:DirectorRole, aro:AdapterRole .
-dbr:Nelson_Pereira_dos_Santos a schema:Person ; schema:name "Nelson Pereira dos Santos" .
+dbr:Nelson_Pereira_dos_Santos a schema:Person, aro:Person ; schema:name "Nelson Pereira dos Santos" .
 ex:deriv-vs-film a aro:DerivationClaim ;
   aro:hasSourceAnchor ex:vidas-secas ; aro:hasDerivedAnchor ex:vidas-secas-film ;
   aro:hasDerivationType aro:IntermedialAdaptation ; aro:hasRegime aro:SeriousRegime ;
   aro:derivationRealizedBy ex:vidas-secas-film-production ;
-  aro:derivationReferencesSource ex:src-barren-lives-wiki ;
+  aro:citesSource ex:src-barren-lives-wiki ;
   aro:hasTransformation ex:deriv-vs-medium, ex:deriv-vs-situation .
 ex:deriv-vs-medium a aro:TransformationAspect ; aro:hasDimension aro:MediumDimension ; aro:hasOperation aro:Modified .
 ex:deriv-vs-situation a aro:TransformationAspect ; aro:hasDimension aro:SituationDimension ; aro:hasOperation aro:Retained ;
@@ -429,6 +466,11 @@ ex:c-dt a aro:PatternCondition ; aro:isRequiredCondition true ;
 ex:hyp-selective-policing a aro:ExplanationHypothesis ; aro:explainsPattern ex:pattern-state-violence ;
   aro:textValue "Hypothesis: selective policing of poor and Black populations increases their exposure to state violence."@en,
                 "Hipótese: o policiamento seletivo de populações pobres e negras aumenta sua exposição à violência do Estado."@pt-BR .
+# The same evidence that supports the correspondence is not enough for the causal hypothesis
+ex:assess-hyp-policing a aro:EvidenceAssessment ; aro:assessmentOutcome "inconclusive" ;
+  aro:assessesClaim ex:hyp-selective-policing ; aro:assessesEvidence ex:ev-fbsp ; aro:producedByAct ex:review-act ;
+  aro:textValue "The report shows who the victims are (a correlation), not why: insufficient to infer selective policing as the cause."@en,
+                "O relatório mostra quem são as vítimas (uma correlação), não por quê: insuficiente para inferir o policiamento seletivo como causa."@pt-BR .
 
 # =====================================================================================
 # 4. REFERENCE SOURCES (real, public)
@@ -476,7 +518,7 @@ ex:src-barren-lives-wiki a aro:ReferenceSource ;
 ex:case-police-lethality a aro:EmpiricalCase ;
   aro:textValue "Deaths resulting from police interventions in Brazil (national statistics)"@en,
                 "Mortes decorrentes de intervenção policial no Brasil (estatísticas nacionais)"@pt-BR ;
-  aro:caseAboutSituation ex:sit-police-lethality ; aro:caseHasReference ex:src-fbsp-2020 .
+  aro:caseAboutSituation ex:sit-police-lethality ; aro:citesSource ex:src-fbsp-2020 .
 ex:sit-police-lethality a aro:EmpiricalSituation .
 ex:ev-fbsp a aro:EvidenceItem ; aro:derivedFromSource ex:src-fbsp-2020 ;
   aro:externalLink "https://forumseguranca.org.br/wp-content/uploads/2021/07/4-as-mortes-decorrentes-de-intervencao-policial-no-brasil-em-2020.pdf"^^xsd:anyURI ;
@@ -484,26 +526,26 @@ ex:ev-fbsp a aro:EvidenceItem ; aro:derivedFromSource ex:src-fbsp-2020 ;
                 "O relatório apresenta contagens nacionais e estaduais de mortes decorrentes de intervenção policial e o perfil das vítimas."@pt-BR .
 ex:corr-hne-police a aro:CorrespondenceClaim ;
   aro:assertsPattern ex:pattern-state-violence ; aro:assertsCase ex:case-police-lethality ;
-  aro:referencesSource ex:src-fbsp-2020 ;
+  aro:citesSource ex:src-fbsp-2020 ;
   aro:textValue "The pattern represented in the song is similar to documented, recurrent police lethality in Brazil."@en,
                 "O padrão representado na canção é semelhante à letalidade policial documentada e recorrente no Brasil."@pt-BR .
-ex:assess-hne-police a aro:EvidenceAssessment ; aro:assessesCorrespondence ex:corr-hne-police ; aro:assessesEvidence ex:ev-fbsp ;
+ex:assess-hne-police a aro:EvidenceAssessment ; aro:assessmentOutcome "supports" ; aro:assessesClaim ex:corr-hne-police ; aro:assessesEvidence ex:ev-fbsp ;
   aro:textValue "Supports that the represented situation is possible and recurrent; does not show that the song narrates a specific real event, nor any cause."@en,
                 "Apoia que a situação representada é possível e recorrente; não mostra que a canção narra um evento real específico, nem causa alguma."@pt-BR .
 
 # --- Carandiru massacre (1992), contemporary to the song -------------------------
 ex:case-carandiru a aro:EmpiricalCase ;
   aro:textValue "Carandiru massacre, São Paulo, 2 October 1992"@en, "Massacre do Carandiru, São Paulo, 2 de outubro de 1992"@pt-BR ;
-  aro:caseAboutEvent ex:event-carandiru ; aro:caseHasReference ex:src-carandiru .
+  aro:caseAboutEvent ex:event-carandiru ; aro:citesSource ex:src-carandiru .
 ex:event-carandiru a aro:EmpiricalEvent .
 ex:ev-carandiru a aro:EvidenceItem ; aro:derivedFromSource ex:src-carandiru ;
   aro:textValue "Military Police intervention in the Carandiru prison that left 111 prisoners dead."@en,
                 "Intervenção da Polícia Militar no presídio do Carandiru que deixou 111 presos mortos."@pt-BR .
 ex:corr-carandiru a aro:CorrespondenceClaim ;
-  aro:assertsPattern ex:pattern-state-violence ; aro:assertsCase ex:case-carandiru ; aro:referencesSource ex:src-carandiru ;
+  aro:assertsPattern ex:pattern-state-violence ; aro:assertsCase ex:case-carandiru ; aro:citesSource ex:src-carandiru ;
   aro:textValue "A documented, large-scale instance of lethal state violence against marginalized men, one year before the song."@en,
                 "Instância documentada e de grande escala de violência letal do Estado contra homens marginalizados, um ano antes da canção."@pt-BR .
-ex:assess-carandiru a aro:EvidenceAssessment ; aro:assessesCorrespondence ex:corr-carandiru ; aro:assessesEvidence ex:ev-carandiru ;
+ex:assess-carandiru a aro:EvidenceAssessment ; aro:assessmentOutcome "supports" ; aro:assessesClaim ex:corr-carandiru ; aro:assessesEvidence ex:ev-carandiru ;
   aro:textValue "Supports the pattern as a real possibility in the song's historical context; the song is not claimed to describe this event."@en,
                 "Apoia o padrão como possibilidade real no contexto histórico da canção; não se alega que a canção descreva este evento."@pt-BR .
 
@@ -511,32 +553,32 @@ ex:assess-carandiru a aro:EvidenceAssessment ; aro:assessesCorrespondence ex:cor
 ex:case-reintegration a aro:EmpiricalCase ;
   aro:textValue "Criminal recidivism and reintegration of former prisoners in Brazil"@en,
                 "Reincidência criminal e reintegração de egressos do sistema prisional no Brasil"@pt-BR ;
-  aro:caseAboutSituation ex:sit-reintegration ; aro:caseHasReference ex:src-ipea-2015 .
+  aro:caseAboutSituation ex:sit-reintegration ; aro:citesSource ex:src-ipea-2015 .
 ex:sit-reintegration a aro:EmpiricalSituation .
 ex:ev-ipea a aro:EvidenceItem ; aro:derivedFromSource ex:src-ipea-2015 ;
   aro:textValue "The report estimates recidivism from data of several states, describes the profile of recidivists and warns against the widely repeated but unsupported 70% figure."@en,
                 "O relatório estima a reincidência a partir de dados de vários estados, descreve o perfil dos reincidentes e alerta contra o número de 70%, repetido sem fundamento."@pt-BR .
 ex:corr-reintegration a aro:CorrespondenceClaim ;
-  aro:assertsPattern ex:pattern-reintegration ; aro:assertsCase ex:case-reintegration ; aro:referencesSource ex:src-ipea-2015 ;
+  aro:assertsPattern ex:pattern-reintegration ; aro:assertsCase ex:case-reintegration ; aro:citesSource ex:src-ipea-2015 ;
   aro:textValue "The difficulties represented in the song correspond to a documented field of research on reintegration and recidivism."@en,
                 "As dificuldades representadas na canção correspondem a um campo documentado de pesquisa sobre reintegração e reincidência."@pt-BR .
-ex:assess-reintegration a aro:EvidenceAssessment ; aro:assessesCorrespondence ex:corr-reintegration ; aro:assessesEvidence ex:ev-ipea ;
+ex:assess-reintegration a aro:EvidenceAssessment ; aro:assessmentOutcome "partiallySupports" ; aro:assessesClaim ex:corr-reintegration ; aro:assessesEvidence ex:ev-ipea ;
   aro:textValue "Partial support: documents recidivism and the profile of former prisoners, but does not by itself measure job refusal due to a criminal record."@en,
                 "Apoio parcial: documenta a reincidência e o perfil dos egressos, mas não mede por si a recusa de emprego por antecedentes."@pt-BR .
 
 # --- Sanitation -----------------------------------------------------------------------
 ex:case-sanitation a aro:EmpiricalCase ;
   aro:textValue "Lack of household sewage collection in Brazil"@en, "Falta de coleta de esgoto domiciliar no Brasil"@pt-BR ;
-  aro:caseAboutSituation ex:sit-sanitation ; aro:caseHasReference ex:src-sanitation .
+  aro:caseAboutSituation ex:sit-sanitation ; aro:citesSource ex:src-sanitation .
 ex:sit-sanitation a aro:EmpiricalSituation .
 ex:ev-sanitation a aro:EvidenceItem ; aro:derivedFromSource ex:src-sanitation ;
   aro:textValue "About 100 million Brazilians (47.6% of the population) had no household sewage collection in 2017, according to SNIS data."@en,
                 "Cerca de 100 milhões de brasileiros (47,6% da população) não tinham coleta de esgoto em casa em 2017, segundo dados do SNIS."@pt-BR .
 ex:corr-sanitation a aro:CorrespondenceClaim ;
-  aro:assertsPattern ex:pattern-precarious-housing ; aro:assertsCase ex:case-sanitation ; aro:referencesSource ex:src-sanitation ;
+  aro:assertsPattern ex:pattern-precarious-housing ; aro:assertsCase ex:case-sanitation ; aro:citesSource ex:src-sanitation ;
   aro:textValue "The precarious housing represented in the song is similar to a widespread, measured lack of sanitation."@en,
                 "A moradia precária representada na canção é semelhante a uma falta de saneamento ampla e medida."@pt-BR .
-ex:assess-sanitation a aro:EvidenceAssessment ; aro:assessesCorrespondence ex:corr-sanitation ; aro:assessesEvidence ex:ev-sanitation ;
+ex:assess-sanitation a aro:EvidenceAssessment ; aro:assessmentOutcome "supports" ; aro:assessesClaim ex:corr-sanitation ; aro:assessesEvidence ex:ev-sanitation ;
   aro:textValue "Supports the pattern at national scale, decades after the song; does not describe the specific neighbourhood."@en,
                 "Apoia o padrão em escala nacional, décadas depois da canção; não descreve o bairro específico."@pt-BR .
 
@@ -544,7 +586,7 @@ ex:assess-sanitation a aro:EvidenceAssessment ; aro:assessesCorrespondence ex:co
 ex:case-ceara-1932 a aro:EmpiricalCase ;
   aro:textValue "Concentration camps for drought refugees in Ceará, 1932"@en,
                 "Campos de concentração para retirantes da seca no Ceará, 1932"@pt-BR ;
-  aro:caseAboutEvent ex:event-ceara-1932 ; aro:caseHasReference ex:src-fapesp-seca, ex:src-patu .
+  aro:caseAboutEvent ex:event-ceara-1932 ; aro:citesSource ex:src-fapesp-seca, ex:src-patu .
 ex:event-ceara-1932 a aro:EmpiricalEvent .
 ex:ev-ceara-camps a aro:EvidenceItem ; aro:derivedFromSource ex:src-fapesp-seca ;
   aro:textValue "During the 1932 drought the Ceará government set up camps along the railways to keep migrants from reaching Fortaleza."@en,
@@ -554,9 +596,9 @@ ex:ev-patu a aro:EvidenceItem ; aro:derivedFromSource ex:src-patu ;
   aro:textValue "The Patu camp in Senador Pompeu, whose remains are being preserved as heritage."@en,
                 "O campo do Patu, em Senador Pompeu, cujas ruínas estão sendo tombadas como patrimônio."@pt-BR .
 ex:corr-drought a aro:CorrespondenceClaim ;
-  aro:assertsPattern ex:pattern-drought-migration ; aro:assertsCase ex:case-ceara-1932 ; aro:referencesSource ex:src-fapesp-seca ;
+  aro:assertsPattern ex:pattern-drought-migration ; aro:assertsCase ex:case-ceara-1932 ; aro:citesSource ex:src-fapesp-seca ;
   aro:textValue "The forced migration represented in the novel corresponds to documented drought migrations, contemporary with its writing."@en,
                 "A migração forçada representada no romance corresponde a migrações documentadas por seca, contemporâneas à sua escrita."@pt-BR .
-ex:assess-drought a aro:EvidenceAssessment ; aro:assessesCorrespondence ex:corr-drought ; aro:assessesEvidence ex:ev-ceara-camps, ex:ev-patu ;
+ex:assess-drought a aro:EvidenceAssessment ; aro:assessmentOutcome "supports" ; aro:assessesClaim ex:corr-drought ; aro:assessesEvidence ex:ev-ceara-camps, ex:ev-patu ;
   aro:textValue "Supports the pattern as historically documented; the novel's family is fictional and is not claimed to have been in these camps."@en,
                 "Apoia o padrão como historicamente documentado; a família do romance é ficcional e não se alega que tenha estado nesses campos."@pt-BR .

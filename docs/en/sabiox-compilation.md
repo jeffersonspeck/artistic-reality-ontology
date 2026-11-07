@@ -29,6 +29,7 @@ This document puts in one place **everything in the project that was shaped by S
 |---|---|---|---|
 | 1 | 0.1.0 | Artwork, selection, plural interpretation, represented situation, situation pattern, evidence and correspondence with reality | 26 classes, 29 relations, FR-01–FR-12, CQ-01–CQ-12 |
 | 2 | 0.2.0 | **Derivation between works** (translation, cover, sampling, adaptation, parody, fan work…), explanation of derivations, annotator readiness, single source of truth | 36 classes, 49 relations, 5 SKOS vocabularies, FR-13–FR-18, NFR-10, CQ-13–CQ-18 |
+| 3 | 0.3.0 | **Claims and UFO top level**: one `Claim` abstraction, one «kind» for analytical records, categories instead of unions, IFLA LRM levels, OntoUML role pattern for agents, time on events, alignments | 50 classes, 45 relations, CQ-01–CQ-04 and CQ-07–CQ-21 queries, ADR-026–ADR-033, OntoUML JSON export validated and verified, migration script, evaluation protocol |
 
 Cycle record: [sabiox-plan.md](sabiox-plan.md) · change history: [CHANGELOG.md](../../CHANGELOG.md).
 
@@ -96,8 +97,10 @@ Builds the reference conceptual model: classes, stereotypes, bilingual definitio
 
 | Package | Classes | Cycle | Diagram |
 |---|---|---|---|
-| `artwork` | Artwork, Manifestation, Selection, AnalysisUnit | 1 (Selection gains `hasSelector` in cycle 2) | [artwork.svg](../../model/diagrams/artwork.svg) |
-| `interpretation` | InterpretationRecord, InterpretiveAct, Analyst, InterpretiveJustification, InterpretationChallenge, InterpretationAssessment, AssessmentCriterion | 1 (Analyst becomes «roleMixin» in cycle 2) | [interpretation.svg](../../model/diagrams/interpretation.svg) |
+| `artwork` | ArtisticEntity, Artwork, Expression, Manifestation, Selection, AnalysisUnit | 1 (cycle 2: `hasSelector`; cycle 3: LRM levels, the 0.2 Manifestation became Expression) | [artwork.svg](../../model/diagrams/artwork.svg) |
+| `claim` | AnalyticalRecord, Claim, Justification, Challenge, Assessment, CriteriaAssessment, EvidenceAssessment*, AssessmentCriterion | 3 (from classes of cycle 1; *EvidenceAssessment stays in `evidence`) |
+| `interpretation` | InterpretationRecord, InterpretiveAct | 1 |
+| `agent` | Agent, Person, Collective, Analyst, CreativeAgent, PersonAnalyst, CollectiveAnalyst, PersonCreator, CollectiveCreator | 3 (Analyst and CreativeAgent from cycles 1–2) | [interpretation.svg](../../model/diagrams/interpretation.svg) |
 | `representation` | DepictedElement, DepictedAgent, SituationDescription, IntentionalStateDescription | 1 | [representation.svg](../../model/diagrams/representation.svg) |
 | `pattern` | SituationPattern, PatternCondition | 1 | [pattern.svg](../../model/diagrams/pattern.svg) |
 | `evidence` | EmpiricalCase, EmpiricalClaim, ReferenceSource, EvidenceItem, CorrespondenceClaim, EvidenceAssessment, ExplanationHypothesis, EmpiricalSituation, EmpiricalEvent | 1 | [evidence.svg](../../model/diagrams/evidence.svg) |
@@ -109,8 +112,11 @@ Full view: [overview.svg](../../model/diagrams/overview.svg). Definitions, depen
 
 | Stereotype | Classes | Cycle |
 |---|---|---|
-| «kind» | most information classes (Artwork, InterpretationRecord, DerivationClaim, TransformationAspect…) | 1 and 2 |
-| «subkind» | DepictedAgent, IntentionalStateDescription | 1 |
+| «kind» | Artwork, Expression, Manifestation, Selection, AnalyticalRecord, ReferenceSource, Person (until cycle 2, every information class was a «kind») | 1–3 |
+| «subkind» | every analytical record: Claim and its six kinds, Justification, Assessment and its two kinds, descriptions, patterns, cases, evidence items, transformation aspects… | 3 (DepictedAgent, IntentionalStateDescription since 1) |
+| «category» | ArtisticEntity, Agent | 3 |
+| «collective» | Collective | 3 |
+| «role» | PersonAnalyst, CollectiveAnalyst, PersonCreator, CollectiveCreator | 3 |
 | «event» | InterpretiveAct, EmpiricalEvent, CreativeAct | 1 and 2 |
 | «situation» | EmpiricalSituation | 1 |
 | «relator» | CreativeContribution | 2 |
@@ -143,13 +149,13 @@ Turns the conceptual model into operational decisions: IRIs, RDF/OWL projection,
 | Design element | Content | Where |
 |---|---|---|
 | IRI policy | Namespace `https://w3id.org/aro/ontology#`; neutral IDs with EN/PT labels (NFR-06) | [aro.ttl](../../ontology/src/aro.ttl) |
-| OWL projection | Classes, properties, subclasses, unions (anchors Artwork ∪ Manifestation ∪ Selection), SKOS concepts typed by «type» classes | [build.py](../../scripts/build.py) (`build_ontology`) |
+| OWL projection | Classes, properties, subclasses, categories as disjoint unions (cycle 3; unions in cycle 2), disjoint ultimate sortals, roles as intersections, SKOS concepts typed by «type» classes | [build.py](../../scripts/build.py) (`build_ontology`) |
 | SHACL cardinality and class constraints | Cycle 1: 8 constraints; cycle 2: + anchors 1..1, mandatory type, dimension/operation 1..1, roles, agents as IRIs | [aro-shapes.ttl](../../validation/aro-shapes.ttl) |
-| SHACL-SPARQL constraints (cycle 2) | Anchors must be Artwork/Manifestation/Selection; source ≠ derived | `sparql_constraints` in [conceptual-model.json](../../model/conceptual-model.json) |
+| SHACL-SPARQL constraints (cycles 2–3) | Anchors must be artistic entities; source ≠ derived; creative acts do not produce selections; evidence assessments weigh evidence | `sparql_constraints` in [conceptual-model.json](../../model/conceptual-model.json) |
 | Datatypes | XSD per property; W3C Web Annotation selectors | [datatypes-and-validation.md](datatypes-and-validation.md) |
 | Exchange formats | `reference-source` (cycle 1), `record` (generic), **`derivation-annotation`** for the annotator (cycle 2, generated from the vocabularies) | [schemas/](../../schemas/) |
 | External alignments | `rdfs:seeAlso` (not equivalence) to `prov:wasDerivedFrom`, `schema:isBasedOn`, Wikidata P144, `prov:Agent`, `foaf:Agent`, `oa:SpecificResource` | [foundation-and-mappings.md](foundation-and-mappings.md) |
-| Recorded decisions | ADR-001–ADR-010 (cycle 1), ADR-011–ADR-025 (cycle 2) | [design-decisions.md](design-decisions.md) |
+| Recorded decisions | ADR-001–ADR-010 (cycle 1), ADR-011–ADR-025 (cycle 2), ADR-026–ADR-031 (cycle 3) | [design-decisions.md](design-decisions.md) |
 
 ### Design decisions by theme
 
@@ -174,7 +180,7 @@ Encodes the ontology, example data and checks.
 
 | Artifact | Content | Cycle | Where |
 |---|---|---|---|
-| OWL ontology | 36 classes, 49 object properties, datatype properties, 5 SKOS schemes | 1 → 2 | [aro.ttl](../../ontology/src/aro.ttl), [aro.owl](../../ontology/src/aro.owl), [aro.jsonld](../../ontology/src/aro.jsonld) |
+| OWL ontology | 50 classes, 45 object properties, datatype properties, 5 SKOS schemes | 1 → 3 | [aro.ttl](../../ontology/src/aro.ttl), [aro.owl](../../ontology/src/aro.owl), [aro.jsonld](../../ontology/src/aro.jsonld) |
 | Constraints | Generated SHACL | 1 → 2 | [aro-shapes.ttl](../../validation/aro-shapes.ttl) |
 | Generator | Catalog → all artifacts; `--check` detects drift; renders SVG | 2 | [build.py](../../scripts/build.py) |
 | Generic synthetic example | artwork → selection → interpretation → pattern → case → evidence | 1 | [synthetic-data.ttl](../../examples/synthetic-data.ttl), [synthetic-reference-source.json](../../examples/synthetic-reference-source.json) |
@@ -265,17 +271,17 @@ From requirement to verification. Official matrix: [traceability.md](traceabilit
 
 | Requirement | CQ | Main classes | Query / check |
 |---|---|---|---|
-| FR-01–FR-02 | CQ-01 | Artwork, Manifestation, Selection | inspection |
-| FR-03–FR-04 | CQ-02–CQ-03 | InterpretationRecord, InterpretiveJustification | inspection |
+| FR-01–FR-02 | CQ-01, CQ-20 | Artwork, Expression, Manifestation, Selection | inspection; [CQ-20](../../queries/CQ-20-work-levels.rq) |
+| FR-03–FR-04 | CQ-02–CQ-03, CQ-19 | InterpretationRecord, Justification, Claim | inspection; [CQ-19](../../queries/CQ-19-ungrounded-claims.rq) |
 | FR-05–FR-06 | CQ-04 | SituationDescription, SituationPattern | inspection |
 | FR-07–FR-09 | CQ-05–CQ-08 | ReferenceSource, EvidenceItem, CorrespondenceClaim | [CQ-05](../../queries/CQ-05-cases-by-pattern.rq), [CQ-06](../../queries/CQ-06-reference-sources.rq) |
 | FR-10 | CQ-10, CQ-12 | ExplanationHypothesis, EvidenceAssessment | future |
-| FR-11 | CQ-11 | AssessmentCriterion, InterpretationAssessment | future |
+| FR-11 | CQ-11 | AssessmentCriterion, CriteriaAssessment | future |
 | FR-12 | CQ-01–CQ-18 | whole model | documentation review |
 | FR-13–FR-14 | CQ-13–CQ-14 | DerivationClaim, DerivationType | [CQ-13](../../queries/CQ-13-derivations-of-work.rq), [CQ-14](../../queries/CQ-14-derivation-chains.rq), anchor SHACL |
 | FR-15 | CQ-15–CQ-16 | TransformationAspect, ArtisticDimension, TransformationOperation | [CQ-15](../../queries/CQ-15-transformation-aspects.rq), [CQ-16](../../queries/CQ-16-patterns-retained.rq) |
 | FR-16 | CQ-18 | CreativeAct, CreativeContribution, CreativeAgent, CreativeRole | [CQ-18](../../queries/CQ-18-creative-contributions.rq) |
-| FR-17 | CQ-17 | InterpretiveJustification, ReferenceSource, EvidenceAssessment | [CQ-17](../../queries/CQ-17-derivation-explanations.rq) |
+| FR-17 | CQ-17 | Justification, ReferenceSource, Assessment | [CQ-17](../../queries/CQ-17-derivation-explanations.rq) |
 | FR-18 | — | Selection, oa:Selector, annotator schema | JSON Schema validation in tests |
 | NFR-10 | — | conceptual catalog | `build.py --check` in tests |
 
@@ -285,12 +291,12 @@ From requirement to verification. Official matrix: [traceability.md](traceabilit
 
 | Phase / activity | Open item |
 |---|---|
-| Requirements | Executable queries for CQ-01–CQ-04 and CQ-07–CQ-12 |
+| Requirements | Vocabulary distinguishing similarity, possibility and divergence in correspondence claims (FR-10) |
 | Capture | Expert review of stereotypes («roleMixin», «type», «relator», «kind» for information objects) |
-| Design | ADR-009 (native OntoUML export) and ADR-010 (identity of propositions vs records) still open; formal alignment with LRMoo |
+| Design | Layout and verification of the OntoUML export in an OntoUML editor (ADR-009: export generated, schema-valid and well formed in cycle 3) |
 | Implementation | JSON-LD context for the annotator; annotation JSON → RDF converter |
 | Knowledge acquisition | Check against the originals the data marked † (Tillett 1991) and Smiraglia's categories (amplifications, extractions) |
-| Evaluation | Expert validation; evaluation with real cases; tests for CQ-10–CQ-12 |
+| Evaluation | Run the [evaluation protocol](evaluation-protocol.md) (expert review, real-case annotation study); relation stereotypes for the 33 plain associations if experts propose fitting ones (ADR-032) |
 | Publication | w3id registration, DOI, public repository |
 
 ---

@@ -23,7 +23,7 @@ Families organize navigation; they are not disjoint classes. One claim may carry
 - Added `Performance` (with `CoverVersion` beneath it), `Revision`, `Abridgment`, `Amplification`, `Remake`, `Travesty`, `Caricature`, `SeriousImitation` (*forgerie*, not fraud), `Variation`, `Sequel`, `Prequel`, `SpinOff`, `Crossover`.
 - `FanWork` is kept, but annotators should also type its mechanism (Jenkins: fan work is defined by production context).
 
-Resolved points: `Remix` is split after Navas (2012) into `ExtendedRemix` (re-realization) and `Remix` (selective/reflexive, incorporation); "plagiarism" is named `UnacknowledgedBorrowing`. Legality and originality are outside the scope of the ontology (ADR-014): remixers, cover artists, translators and adapters are represented as creators in their own right, and each derivation is represented with its explanation (`derivationJustifiedBy`, sources, evidence assessments).
+Resolved points: `Remix` is split after Navas (2012) into `ExtendedRemix` (re-realization) and `Remix` (selective/reflexive, incorporation); "plagiarism" is named `UnacknowledgedBorrowing`. Legality and originality are outside the scope of the ontology (ADR-014): remixers, cover artists, translators and adapters are represented as creators in their own right, and each derivation is represented with its explanation (`hasJustification`, `citesSource`, assessments via `assessesClaim`).
 
 ## Dimensions for the annotator
 

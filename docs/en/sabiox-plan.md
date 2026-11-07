@@ -28,6 +28,19 @@ Reference: https://nemo.inf.ufes.br/projetos/sabiox/
 
 Backlog: expert review of «roleMixin»/«type»/«relator» stereotypes, LRMoo alignment, evaluation with real cases.
 
+# SABiOx development cycle 3 — v0.3.0 (claims, UFO top level, IFLA LRM)
+
+| Phase | This repository's artifacts | Completion |
+|---|---|---|
+| Requirements | CQ-19–CQ-21 (ungrounded claims, work levels, dated acts); executable queries for every CQ (CQ-01–CQ-04 and CQ-07–CQ-12 added); FR-01, FR-02, FR-04, FR-08, FR-13 and FR-17 restated with the new terms | Draft captured |
+| Setup | Generator extended: categories, roles with two parents (OWL intersections), disjointness and coverings, per-class SHACL, date datatypes; `scripts/migrate.py` for 0.2 data | Implemented |
+| Capture | New packages `claim` and `agent`; `Claim` and `AnalyticalRecord`; «category» `ArtisticEntity` and `Agent`; `Expression` and LRM `Manifestation`; «role» pattern for agents; `contributionTo`; `startDate`/`endDate` — 50 classes, 45 relations | Draft; expert validation pending |
+| Design | ADR-026–ADR-033 (ADR-009 adopted with the OntoUML export, ADR-010 closed, ADR-012/019/022 revised); `EpistemicCriterion`/`ValueCriterion`, `assessmentOutcome`; alignments with W3C Web Annotation, PROV-O, LRMoo, schema.org, Dublin Core as `rdfs:seeAlso` | Initial design |
+| Implementation | Regenerated artifacts and diagrams (SVG and 200 dpi PNG); examples migrated and enriched (album and first edition as manifestations, dated acts, typed agents); three new SPARQL probes; annotator updated and converting 0.2 files | Prototype tested (build check, SHACL, OWL RL consistency, migration, SPARQL) |
+| Evaluation | [Evaluation protocol](evaluation-protocol.md): expert review and real-case annotation study | Planned |
+
+Verification added in this cycle: OntoUML JSON export valid against the official schema and well formed (`scripts/verify_ontouml.py`, cross-checked with ontouml-js). Backlog: layout and checks in an OntoUML editor, execution of the evaluation protocol, a vocabulary for similarity/possibility/divergence in correspondence claims (FR-10).
+
 ---
 
 [← Back to README](../../README.md) · [Português](../pt-BR/sabiox-plan.md)

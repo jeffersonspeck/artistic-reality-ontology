@@ -1,0 +1,14 @@
+# CQ-08: Does evidence support or challenge a specific claim?
+# Each row is an agent's assessment: the claim, the evidence weighed and the outcome
+# (supports, partiallySupports, challenges, inconclusive, irrelevant). It records a judgment,
+# not the truth of the claim (ADR-005).
+# Language: texts in ?lang, or in the language they have when ?lang is missing.
+PREFIX aro: <https://w3id.org/aro/ontology#>
+SELECT ?claim ?evidence ?outcome ?assessment WHERE {
+  VALUES ?lang { "en" }
+  ?a aro:assessesClaim ?claim ;
+     aro:assessesEvidence ?evidence ;
+     aro:assessmentOutcome ?outcome .
+  OPTIONAL { ?a aro:textValue ?assessment . FILTER(langMatches(lang(?assessment), ?lang) || NOT EXISTS { ?a aro:textValue ?l1 FILTER(langMatches(lang(?l1), ?lang)) }) }
+}
+ORDER BY ?claim

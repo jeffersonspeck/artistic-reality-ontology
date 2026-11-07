@@ -1,10 +1,10 @@
 # Ontologia de Arte e Realidade (ARO)
 
-![ARO](https://img.shields.io/badge/ARO-0.2.0--beta-orange) ![Beta](https://img.shields.io/badge/status-beta%20%C2%B7%20em%20desenvolvimento-orange) ![OWL](https://img.shields.io/badge/RDF%2FOWL-2-orange) ![SHACL](https://img.shields.io/badge/SHACL-validação-green) ![Idiomas](https://img.shields.io/badge/termos-EN%20%2B%20PT--BR-blue) ![Doutorado](https://img.shields.io/badge/doutorado-PPGInf%2FUFPR-informational)
+![ARO](https://img.shields.io/badge/ARO-0.3.0--beta-orange) ![Beta](https://img.shields.io/badge/status-beta%20%C2%B7%20em%20desenvolvimento-orange) ![OWL](https://img.shields.io/badge/RDF%2FOWL-2-orange) ![SHACL](https://img.shields.io/badge/SHACL-validação-green) ![Idiomas](https://img.shields.io/badge/termos-EN%20%2B%20PT--BR-blue) ![Doutorado](https://img.shields.io/badge/doutorado-PPGInf%2FUFPR-informational)
 
 > 🇺🇸 **[Read this documentation in English](README.md)** · 🇧🇷 Português (esta página)
 
-> ⚠️ **Beta — em desenvolvimento.** A versão 0.2.0 é um rascunho de pesquisa de um projeto de doutorado (PPGInf/UFPR, ver [vinculação](#vinculação-acadêmica-e-institucional)); termos e arquivos ainda podem mudar.
+> ⚠️ **Beta — em desenvolvimento.** A versão 0.3.0 é um rascunho de pesquisa de um projeto de doutorado (PPGInf/UFPR, ver [vinculação](#vinculação-acadêmica-e-institucional)); termos e arquivos ainda podem mudar.
 
 A **ARO** é uma ontologia OWL para descrever **obras de arte em qualquer mídia** (música, texto, imagem, vídeo…) e o que se diz sobre elas, de forma rastreável e contestável:
 
@@ -50,11 +50,12 @@ A documentação completa está disponível nos dois idiomas:
 | Modelo de referência (todas as classes, relações, vocabulários) | [Português](docs/pt-BR/reference-model.md) | [English](docs/en/reference-model.md) |
 | Tipologia de derivação e bibliografia | [Português](docs/pt-BR/derivation-typology.md) | [English](docs/en/derivation-typology.md) |
 | Fundamentação, mapeamentos e limitações | [Português](docs/pt-BR/foundation-and-mappings.md) | [English](docs/en/foundation-and-mappings.md) |
-| Decisões de projeto (ADR-001 a ADR-024) | [Português](docs/pt-BR/design-decisions.md) | [English](docs/en/design-decisions.md) |
+| Decisões de projeto (ADR-001 a ADR-033) | [Português](docs/pt-BR/design-decisions.md) | [English](docs/en/design-decisions.md) |
 | Tipos de dados e validação | [Português](docs/pt-BR/datatypes-and-validation.md) | [English](docs/en/datatypes-and-validation.md) |
 | Estudos de caso (Homem na Estrada, Vidas Secas) | [Português](docs/pt-BR/case-studies.md) | [English](docs/en/case-studies.md) |
 | Diagramas OntoUML | [Português](docs/pt-BR/ontouml.md) | [English](docs/en/ontouml.md) |
 | Rastreabilidade | [Português](docs/pt-BR/traceability.md) | [English](docs/en/traceability.md) |
+| Protocolo de avaliação (especialistas e casos reais) | [Português](docs/pt-BR/evaluation-protocol.md) | [English](docs/en/evaluation-protocol.md) |
 | Plano SABiOx | [Português](docs/pt-BR/sabiox-plan.md) | [English](docs/en/sabiox-plan.md) |
 | Compilado SABiOx (tudo por fase) | [Português](docs/pt-BR/sabiox-compilado.md) | [English](docs/en/sabiox-compilation.md) |
 | Manual do anotador (passo a passo) | [Português](docs/pt-BR/manual-anotador.md) | [English](docs/en/annotator-manual.md) |
@@ -67,18 +68,20 @@ A documentação completa está disponível nos dois idiomas:
 
 ## Como a ontologia está organizada
 
-São seis módulos (caixas coloridas). Cada seta é uma relação da ontologia; setas que terminam na borda de uma caixa apontam para qualquer classe daquele módulo (por exemplo, a âncora de uma derivação pode ser obra, manifestação ou recorte). O [diagrama completo](model/diagrams/overview.svg) mostra todas as classes e relações.
+São oito módulos (caixas coloridas). Cada seta é uma relação da ontologia (por exemplo, a âncora de uma derivação é qualquer entidade artística: obra, expressão, manifestação ou recorte). O [diagrama completo](model/diagrams/overview.svg) mostra todas as classes e relações.
 
 ![Mapa dos módulos da ARO](model/diagrams/modules.pt-BR.svg)
 
 | Módulo | Para quê | Diagrama |
 |---|---|---|
-| **Obra e recorte** | Identificar a obra, suas versões (gravação, edição, montagem) e trechos endereçáveis | [artwork](model/diagrams/artwork.svg) |
-| **Interpretação** | Registrar interpretações de recortes, quem as fez, com que argumentos, contestações e avaliações | [interpretation](model/diagrams/interpretation.svg) |
+| **Obra e recorte** | Identificar a obra, suas expressões (gravação, versão do texto, tradução) e manifestações (álbum, edição), como no IFLA LRM, e trechos endereçáveis | [artwork](model/diagrams/artwork.svg) |
+| **Alegações e registros** | O que toda anotação tem em comum: registros analíticos e alegações, que são produzidas por um ato, justificadas, apoiadas em fontes, avaliadas e contestadas da mesma forma | [claim](model/diagrams/claim.svg) |
+| **Interpretação** | Registrar interpretações de recortes e os atos que as produziram | [interpretation](model/diagrams/interpretation.svg) |
 | **Representação** | Descrever situações, personagens e estados intencionais representados | [representation](model/diagrams/representation.svg) |
 | **Padrão** | Generalizar situações em padrões reutilizáveis entre obras | [pattern](model/diagrams/pattern.svg) |
 | **Evidência** | Ligar padrões a casos reais por alegações apoiadas em fontes e avaliações | [evidence](model/diagrams/evidence.svg) |
 | **Derivação** | Dizer que uma obra/versão/trecho deriva de outro, como, o que mudou, quem fez e por quê | [derivation](model/diagrams/derivation.svg) |
+| **Agentes** | Pessoas e coletivos (IRIs externos) e os papéis que desempenham como analistas e criadores | [agent](model/diagrams/agent.svg) |
 
 ## Princípios
 
@@ -90,7 +93,8 @@ São seis módulos (caixas coloridas). Cada seta é uma relação da ontologia; 
 6. **Uma alegação de correspondência representa semelhança**, não identidade nem causalidade.
 7. **Derivação é representada como alegação**, não como fato; cada elo de uma cadeia de derivação é uma alegação separada, e nenhum axioma de transitividade é declarado.
 8. **Obras derivadas são representadas como criações por direito próprio**; legalidade e originalidade estão fora do escopo da ontologia.
-9. **Agentes vêm de fora**: pessoas, bandas e analistas são IRIs de outras ontologias (schema.org, FOAF, Wikidata, PROV-O).
+9. **Agentes vêm de fora**: pessoas, bandas e analistas são IRIs de outras ontologias (schema.org, FOAF, Wikidata, PROV-O); tipá-los como `aro:Person` ou `aro:Collective` os coloca no padrão de papéis da OntoUML.
+10. **Toda alegação funciona do mesmo jeito.** Interpretações, derivações, correspondências, afirmações empíricas, hipóteses e contestações são todas `aro:Claim`: as mesmas propriedades registram quem as afirmou (`producedByAct`), por quê (`hasJustification`), com que fontes (`citesSource`), como foram julgadas (`assessesClaim`) e quem discorda (`challenges`).
 
 ## Instalação
 
@@ -103,15 +107,18 @@ python -m pip install -r requirements.txt
 python tests/test_project.py
 ```
 
-O último comando deve terminar com `PASS: ...`. As dependências são `rdflib`, `jsonschema` e `pyshacl`.
+O último comando deve terminar com `PASS: ...`. As dependências são `rdflib`, `jsonschema`, `pyshacl` e `owlrl`.
+
+**Dados da versão 0.2?** Rode `python scripts/migrate.py meus-dados.ttl` (renomeações da 0.3, comentários preservados); o anotador converte arquivos antigos automaticamente ao abri-los.
 
 ## Usar a ontologia
 
 | Arquivo | Uso |
 |---|---|
 | [`ontology/src/aro.ttl`](ontology/src/aro.ttl) | Versão em desenvolvimento em Turtle (também [`aro.owl`](ontology/src/aro.owl) em RDF/XML e [`aro.jsonld`](ontology/src/aro.jsonld)); um arquivo por pacote em [`ontology/src/modules/`](ontology/src/modules/) |
-| [`releases/v0.2.1-beta/`](releases/v0.2.1-beta/) | **Versão congelada para citar** (IRI de versão `https://w3id.org/aro/ontology/0.2.1-beta`); todas as versões em [`releases/`](releases/README.md) |
+| [`releases/v0.3.0-beta/`](releases/v0.3.0-beta/) | **Versão congelada para citar** (IRI de versão `https://w3id.org/aro/ontology/0.3.0-beta`); todas as versões em [`releases/`](releases/README.md) |
 | [`validation/aro-shapes.ttl`](validation/aro-shapes.ttl) | Restrições SHACL para validar dados |
+| [`model/ontouml/aro.ontouml.json`](model/ontouml/aro.ontouml.json) | O modelo como **projeto OntoUML** (JSON Schema oficial da OntoUML 1.0.2), verificado por `python scripts/verify_ontouml.py` |
 | [`schemas/derivation-annotation.schema.json`](schemas/derivation-annotation.schema.json) | Formato JSON para ferramentas de anotação |
 
 - **Namespace:** `https://w3id.org/aro/ontology#` (prefixo `aro:`).
@@ -128,16 +135,17 @@ g.parse("meus-dados.ttl")
 
 O exemplo completo está em [`examples/quickstart.ttl`](examples/quickstart.ttl).
 
-**1. Obra, manifestação e recorte.** A obra é abstrata; a manifestação é uma versão concreta; o recorte aponta um trecho com um seletor W3C Web Annotation (`t=` tempo, `xywh=` região, citação de texto ou SVG).
+**1. Obra, expressão e recorte.** A obra é abstrata; a expressão é uma versão concreta com conteúdo próprio (gravação, texto, tradução); o recorte aponta um trecho dela com um seletor W3C Web Annotation (`t=` tempo, `xywh=` região, citação de texto ou SVG). Quando a edição importa (um álbum, uma edição de livro), acrescente uma `Manifestation` que `embodiesExpression`.
 
 ```turtle
 @prefix aro:    <https://w3id.org/aro/ontology#> .
 @prefix oa:     <http://www.w3.org/ns/oa#> .
 @prefix schema: <https://schema.org/> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
 @prefix ex:     <https://example.org/my-project/> .
 
 ex:song a aro:Artwork ; aro:textValue "Song A"@en, "Canção A"@pt-BR .
-ex:song-rec a aro:Manifestation ; aro:realizesArtwork ex:song .
+ex:song-rec a aro:Expression ; aro:realizesArtwork ex:song .
 ex:riff a aro:Selection ; aro:selectsFrom ex:song-rec ; aro:hasSelector ex:riff-sel .
 ex:riff-sel a oa:FragmentSelector ; oa:value "t=12,16" .
 ```
@@ -145,8 +153,8 @@ ex:riff-sel a oa:FragmentSelector ; oa:value "t=12,16" .
 **2. Interpretação.** Ancorada num recorte e produzida por um ato com um participante. O analista é qualquer IRI externo.
 
 ```turtle
-ex:me a schema:Person .
-ex:act a aro:InterpretiveAct ; aro:hasParticipant ex:me .
+ex:me a schema:Person, aro:Person .
+ex:act a aro:InterpretiveAct ; aro:hasParticipant ex:me ; aro:startDate "2026-11-06"^^xsd:date .
 ex:reading a aro:InterpretationRecord ;
   aro:hasPrimarySelection ex:riff ;
   aro:producedByAct ex:act ;
@@ -156,11 +164,11 @@ ex:scene a aro:SituationDescription ;
                 "Uma personagem sai de casa após um conflito."@pt-BR .
 ```
 
-**3. Derivação.** Uma faixa nova usa o riff como sample. O nível (obra, manifestação ou recorte) é escolhido pelas âncoras; tipo, regime, dimensão e operação são conceitos dos vocabulários; a justificativa explica a alegação.
+**3. Derivação.** Uma faixa nova usa o riff como sample. O nível (obra, expressão, manifestação ou recorte) é escolhido pelas âncoras; tipo, regime, dimensão e operação são conceitos dos vocabulários; a justificativa explica a alegação.
 
 ```turtle
 ex:track a aro:Artwork .
-ex:track-rec a aro:Manifestation ; aro:realizesArtwork ex:track .
+ex:track-rec a aro:Expression ; aro:realizesArtwork ex:track .
 ex:loop a aro:Selection ; aro:selectsFrom ex:track-rec ; aro:hasSelector ex:loop-sel .
 ex:loop-sel a oa:FragmentSelector ; oa:value "t=0,4" .
 
@@ -170,11 +178,11 @@ ex:claim a aro:DerivationClaim ;
   aro:hasDerivationType aro:Sampling ;
   aro:hasRegime aro:PlayfulRegime ;
   aro:hasTransformation ex:aspect ;
-  aro:derivationJustifiedBy ex:why .
+  aro:hasJustification ex:why .
 ex:aspect a aro:TransformationAspect ;
   aro:hasDimension aro:RecordedSoundDimension ;
   aro:hasOperation aro:Recontextualized .
-ex:why a aro:InterpretiveJustification ;
+ex:why a aro:Justification ;
   aro:textValue "Same 4-second guitar riff, pitched up."@en,
                 "Mesmo riff de guitarra de 4 segundos, mais agudo."@pt-BR .
 ```
@@ -193,7 +201,7 @@ ex:why a aro:InterpretiveJustification ;
 python scripts/validate.py meus-dados.ttl --lang pt-BR
 ```
 
-Mostra `OK` ou uma linha por violação (recurso, propriedade e mensagem em português). Exemplos de erros apontados: derivação sem tipo, origem igual à derivada, âncora que não é obra/manifestação/recorte, texto sem marcação de idioma.
+Mostra `OK` ou uma linha por violação (recurso, propriedade e mensagem em português). Exemplos de erros apontados: derivação sem tipo, origem igual à derivada, âncora que não é entidade artística, interpretação sem seu ato, data que não é data, texto sem marcação de idioma.
 
 ```bash
 python scripts/query.py meus-dados.ttl --query queries/CQ-13-derivations-of-work.rq
@@ -203,14 +211,27 @@ Executa uma consulta SPARQL sobre seus dados mais a ontologia. Textos e rótulos
 
 | Consulta | Pergunta |
 |---|---|
+| CQ-01 | Que obras, expressões e manifestações contêm um trecho? |
+| CQ-02 | Que interpretações concorrentes surgem de um recorte? |
+| CQ-03 | Que premissas justificam uma interpretação? |
+| CQ-04 | Que padrões são abstraídos de situações representadas, e de que obras? |
 | CQ-05 | Que casos reais foram alegados semelhantes a um padrão? |
 | CQ-06 | Que fontes uma alegação de correspondência cita? |
+| CQ-07 | Que fontes são reutilizadas entre casos, alegações e interpretações? |
+| CQ-08 | A evidência apoia ou contesta uma alegação específica? |
+| CQ-09 | Quem fez uma interpretação, e quem a avaliou ou contestou? |
+| CQ-10 | Que explicações são hipotetizadas para um padrão? |
+| CQ-11 | Que critérios são epistêmicos e quais são de valor? |
+| CQ-12 | Que evidências são insuficientes para inferir uma explicação causal? |
 | CQ-13 | O que deriva de uma obra, em que nível e de que tipo? |
 | CQ-14 | Que obras estão ligadas por cadeias de derivação? |
 | CQ-15 | O que cada derivação mantém, modifica, acrescenta, remove ou recontextualiza? |
 | CQ-16 | Que derivações mantêm um padrão situacional da origem? |
 | CQ-17 | Como cada derivação é explicada (justificativas, fontes, avaliações)? |
 | CQ-18 | Quem contribuiu para a criação derivada e com que papel? |
+| CQ-19 | Que alegações ainda não têm fundamento (justificativa, fonte ou avaliação)? |
+| CQ-20 | Por quais expressões e manifestações uma obra existe? |
+| CQ-21 | Quando ocorreram os atos criativos de uma derivação, e em que ordem? |
 | RQ-01 | Que trechos representam situações alegadas correspondentes a casos reais documentados, e onde está a fonte? |
 | RQ-02 | Que padrões situacionais se repetem em obras independentes? |
 | RQ-03 | Como cada correspondência é sustentada (evidência, fonte, avaliação)? |
@@ -236,6 +257,9 @@ A saída deve terminar com `PASS: ...`. Os testes conferem:
 - que os arquivos gerados batem com o catálogo;
 - que as três serializações OWL coincidem;
 - que todo termo tem rótulo em inglês e português;
+- que os compromissos da UFO projetados em OWL valem (kinds disjuntos, coberturas, papéis, relatores) e que os exemplos são logicamente consistentes;
+- que os exemplos estão na versão atual do vocabulário (migração 0.2 → 0.3);
+- que a exportação OntoUML é válida no schema oficial e bem formada;
 - os JSON Schemas e as restrições SHACL, com dados válidos e dados errados de propósito;
 - cada consulta SPARQL;
 - as respostas esperadas dos estudos de caso.
@@ -255,50 +279,61 @@ Visão geral gerada a partir do catálogo; a coluna UFO traz o estereótipo Onto
 
 | Classe | Rótulo | UFO | Definição |
 |---|---|---|---|
-| `Artwork` | obra | «kind» | Criação artística identificável em diversas mídias e manifestações. |
-| `Manifestation` | manifestação | «kind» | Expressão, versão ou realização específica de uma obra. |
-| `Selection` | recorte | «kind» | Seleção endereçável de uma parte de manifestação (não componente físico). |
-| `AnalysisUnit` | unidade de análise | «kind» | Agrupamento intencional de recortes com finalidade analítica. |
+| `ArtisticEntity` | entidade artística | «category» | Tudo o que é artístico e pode ser origem ou resultado de uma derivação ou de um ato criativo: obra, expressão, manifestação ou recorte. |
+| `Artwork` | obra | «kind» | Criação artística identificável, considerada independentemente de qualquer versão ou cópia (nível obra do LRM). |
+| `Expression` | expressão | «kind» | Realização específica de uma obra com conteúdo próprio: uma interpretação ou gravação, uma tradução, um arranjo, uma versão do texto, uma montagem de filme (nível expressão do LRM). |
+| `Manifestation` | manifestação | «kind» | Publicação ou suporte que materializa uma ou mais expressões: edição de álbum, edição de livro, transmissão, lançamento digital (nível manifestação do LRM). Opcional: registre quando a edição importa, por exemplo para localizar uma página ou faixa. |
+| `Selection` | recorte | «kind» | Parte endereçável de uma expressão (linhas, trecho de tempo, região de imagem), localizada por seletores; não é componente físico. |
+| `AnalysisUnit` | unidade de análise | «subkind» | Agrupamento intencional de recortes com finalidade analítica. |
+
+#### `claim` — Alegações e registros
+
+| Classe | Rótulo | UFO | Definição |
+|---|---|---|---|
+| `AnalyticalRecord` | registro analítico | «kind» | Objeto informacional registrado por um agente no curso de uma análise: o tipo comum de interpretações, descrições, padrões, casos, itens de evidência, alegações, justificativas e avaliações. Dois registros com o mesmo texto feitos por agentes ou atos diferentes são registros diferentes. |
+| `Claim` | alegação | «subkind» | Registro analítico que afirma algo contestável: pode ser produzido por um ato, justificado, apoiado em fontes, avaliado e contestado. A ARO representa alegações, nunca sua verdade. |
+| `Justification` | justificativa | «subkind» | Argumento registrado que liga premissas a uma alegação: por que uma interpretação, derivação, correspondência ou hipótese é afirmada. |
+| `Challenge` | contestação | «subkind» | Alegação que critica outra alegação ou propõe alternativa a ela; sendo também alegação, pode por sua vez ser justificada, avaliada e contestada. |
+| `Assessment` | avaliação | «subkind» | Registro analítico que julga uma ou mais alegações intimamente relacionadas: por critérios explícitos, por evidência, ou ambos. Registra um julgamento feito por um agente; não resolve a alegação. |
+| `CriteriaAssessment` | avaliação por critérios | «subkind» | Avaliação de uma alegação segundo critérios epistêmicos ou de valor explícitos (plausibilidade, coerência, fidelidade...). |
+| `AssessmentCriterion` | critério de avaliação | «subkind» | Regra explícita que uma avaliação aplica para julgar uma alegação; critérios epistêmicos julgam se a alegação é bem fundamentada, critérios de valor julgam seu mérito. |
+| `EpistemicCriterion` | critério epistêmico | «subkind» | Critério sobre conhecimento: se uma alegação é apoiada, coerente, plausível ou bem documentada (evidência textual, confiabilidade da fonte, coerência com a obra). |
+| `ValueCriterion` | critério de valor | «subkind» | Critério sobre mérito: se uma alegação ou leitura é relevante, justa, original ou eticamente adequada, independentemente de ser verdadeira. |
 
 #### `interpretation` — Interpretação
 
 | Classe | Rótulo | UFO | Definição |
 |---|---|---|---|
-| `InterpretationRecord` | registro de interpretação | «kind» | Registro autoral persistente de uma interpretação de recorte. |
+| `InterpretationRecord` | registro de interpretação | «subkind» | Registro autoral persistente de uma interpretação de recorte. |
 | `InterpretiveAct` | ato interpretativo | «event» | Atividade intencional temporal que produz interpretações registradas. |
-| `Analyst` | analista | «roleMixin» | Qualquer agente humano, identificado em vocabulário externo, na medida em que interpreta ou avalia. A identidade do agente é representada pelo vocabulário externo, não pela ARO. |
-| `InterpretiveJustification` | justificativa interpretativa | «kind» | Argumento registrado que liga premissas a uma interpretação ou a uma alegação de derivação. |
-| `InterpretationChallenge` | contestação de interpretação | «kind» | Crítica ou raciocínio alternativo registrado sobre interpretação. |
-| `InterpretationAssessment` | avaliação de interpretação | «kind» | Julgamento epistêmico ou axiológico explícito de interpretação. |
-| `AssessmentCriterion` | critério de avaliação | «kind» | Regra especificada de avaliação epistêmica ou de valores. |
 
 #### `representation` — Representação
 
 | Classe | Rótulo | UFO | Definição |
 |---|---|---|---|
-| `DepictedElement` | elemento representado | «kind» | Representação informacional de um referente na obra. |
+| `DepictedElement` | elemento representado | «subkind» | Representação informacional de um referente na obra. |
 | `DepictedAgent` | agente representado | «subkind» | Elemento representado que se refere a agente ou personagem. |
-| `SituationDescription` | descrição de situação | «kind» | Descrição registrada de situação representada. |
+| `SituationDescription` | descrição de situação | «subkind» | Descrição registrada de situação representada. |
 | `IntentionalStateDescription` | descrição de estado intencional | «subkind» | Descrição de situação que atribui desejo, crença ou intenção a agente representado. |
 
 #### `pattern` — Padrão situacional
 
 | Classe | Rótulo | UFO | Definição |
 |---|---|---|---|
-| `SituationPattern` | padrão situacional | «kind» | Especificação informacional reutilizável de condições situacionais. |
-| `PatternCondition` | condição de padrão | «kind» | Condição individualizada obrigatória ou opcional de um padrão. |
+| `SituationPattern` | padrão situacional | «subkind» | Especificação informacional reutilizável de condições situacionais. |
+| `PatternCondition` | condição de padrão | «subkind» | Condição individualizada obrigatória ou opcional de um padrão. |
 
 #### `evidence` — Evidência e mundo empírico
 
 | Classe | Rótulo | UFO | Definição |
 |---|---|---|---|
-| `EmpiricalCase` | caso empírico | «kind» | Dossiê documentado sobre uma situação ou ocorrência real. |
-| `EmpiricalClaim` | afirmação empírica | «kind» | Afirmação registrada e verificável acerca do mundo empírico. |
+| `EvidenceAssessment` | avaliação de evidência | «subkind» | Avaliação de se itens de evidência apoiam, contestam ou são irrelevantes para uma alegação. |
+| `EmpiricalCase` | caso empírico | «subkind» | Dossiê documentado sobre uma situação ou ocorrência real. |
+| `EmpiricalClaim` | afirmação empírica | «subkind» | Afirmação registrada e verificável acerca do mundo empírico. |
 | `ReferenceSource` | fonte de referência | «kind» | Recurso externo citável: notícia, estudo, relatório, documento legal, relato, conjunto de dados etc. |
-| `EvidenceItem` | item de evidência | «kind» | Afirmação ou observação contextualizada extraída de uma fonte. |
-| `CorrespondenceClaim` | alegação de correspondência | «kind» | Alegação contestável de similaridade, instanciação ou relevância explicativa entre padrão e caso empírico. |
-| `EvidenceAssessment` | avaliação de evidência | «kind» | Julgamento de apoio, contestação ou irrelevância de evidência para afirmação específica. |
-| `ExplanationHypothesis` | hipótese explicativa | «kind» | Mecanismo ou fatores propostos para explicar fenômeno representado ou observado. |
+| `EvidenceItem` | item de evidência | «subkind» | Afirmação ou observação contextualizada extraída de uma fonte. |
+| `CorrespondenceClaim` | alegação de correspondência | «subkind» | Alegação contestável de similaridade, instanciação ou relevância explicativa entre padrão e caso empírico. |
+| `ExplanationHypothesis` | hipótese explicativa | «subkind» | Mecanismo ou fatores propostos para explicar fenômeno representado ou observado. |
 | `EmpiricalSituation` | situação empírica | «situation» | Configuração de entidades e condições no mundo real. |
 | `EmpiricalEvent` | evento empírico | «event» | Ocorrência do mundo real delimitada temporalmente. |
 
@@ -306,16 +341,29 @@ Visão geral gerada a partir do catálogo; a coluna UFO traz o estereótipo Onto
 
 | Classe | Rótulo | UFO | Definição |
 |---|---|---|---|
-| `DerivationClaim` | alegação de derivação | «kind» | Alegação contestável, feita por um agente, de que uma entidade artística (obra, manifestação ou recorte) deriva de outra de modos especificados. A entidade derivada é representada como criação por direito próprio; legalidade e originalidade estão fora do escopo da ontologia. |
-| `TransformationAspect` | aspecto de transformação | «kind» | Registro do que ocorreu com uma dimensão artística numa derivação (mantida, modificada, acrescentada, removida ou recontextualizada). |
-| `CreativeAct` | ato criativo | «event» | Atividade intencional temporal que dá origem a uma obra ou manifestação, inclusive derivadas. |
-| `CreativeAgent` | agente criativo | «roleMixin» | Qualquer agente, identificado e descrito em vocabulário externo (PROV-O, FOAF, schema.org, Wikidata...), na medida em que contribui para um ato criativo. A identidade do agente é representada pelo vocabulário externo, não pela ARO. |
+| `DerivationClaim` | alegação de derivação | «subkind» | Alegação contestável, feita por um agente, de que uma entidade artística (obra, expressão, manifestação ou recorte) deriva de outra de modos especificados. A entidade derivada é representada como criação por direito próprio; legalidade e originalidade estão fora do escopo da ontologia. |
+| `TransformationAspect` | aspecto de transformação | «subkind» | Registro do que ocorreu com uma dimensão artística numa derivação (mantida, modificada, acrescentada, removida ou recontextualizada). |
+| `CreativeAct` | ato criativo | «event» | Atividade intencional no tempo que faz existir uma entidade artística (obra, expressão ou manifestação), inclusive as derivadas. |
 | `CreativeContribution` | contribuição criativa | «relator» | Participação de um agente criativo num ato criativo sob um ou mais papéis. |
 | `DerivationType` | tipo de derivação | «type» | Tipo de derivação (tradução, cover, sample, paródia...); suas instâncias são conceitos SKOS. |
 | `DerivationRegime` | regime de derivação | «type» | Postura da derivação em relação à origem (lúdica, satírica, séria, reverencial); suas instâncias são conceitos SKOS. |
 | `ArtisticDimension` | dimensão artística | «type» | Aspecto da obra segundo o qual a derivação pode ser comparada (melodia, letra, enredo, personagem, mídia...). |
 | `TransformationOperation` | operação de transformação | «type» | O que a derivação faz com uma dimensão: manter, modificar, acrescentar, remover ou recontextualizar. |
 | `CreativeRole` | papel criativo | «type» | Papel que qualifica uma contribuição criativa (compositor, intérprete, tradutor, remixador...). |
+
+#### `agent` — Agentes
+
+| Classe | Rótulo | UFO | Definição |
+|---|---|---|---|
+| `Agent` | agente | «category» | Tudo o que pode agir intencionalmente: uma pessoa ou um coletivo. Agentes são identificados por IRIs de vocabulários externos (Wikidata, ORCID, ISNI, FOAF, schema.org). |
+| `Person` | pessoa | «kind» | Agente humano individual (autor, intérprete, analista, pesquisador). |
+| `Collective` | coletivo | «collective» | Grupo de agentes que age como um: banda, companhia, grupo de pesquisa, equipe de filmagem, editora. |
+| `Analyst` | analista | «roleMixin» | Agente enquanto participa de um ato interpretativo (interpreta, descreve, avalia). Desempenhado por pessoas ou coletivos identificados por IRIs externos. |
+| `CreativeAgent` | agente criativo | «roleMixin» | Agente enquanto contribui para um ato criativo (compõe, interpreta, traduz, dirige...). Desempenhado por pessoas ou coletivos identificados por IRIs externos. |
+| `PersonAnalyst` | pessoa analista | «role» | Pessoa enquanto participa de um ato interpretativo; definido como Person e Analyst. |
+| `CollectiveAnalyst` | coletivo analista | «role» | Coletivo enquanto participa de um ato interpretativo; definido como Collective e Analyst. |
+| `PersonCreator` | pessoa criadora | «role» | Pessoa enquanto participa de um ato criativo; definido como Person e CreativeAgent. |
+| `CollectiveCreator` | coletivo criador | «role» | Coletivo enquanto participa de um ato criativo; definido como Collective e CreativeAgent. |
 
 #### Vocabulários controlados (SKOS)
 
@@ -339,13 +387,13 @@ Visão geral gerada a partir do catálogo; a coluna UFO traz o estereótipo Onto
 | Pasta / arquivo | Conteúdo |
 |---|---|
 | `ontology/src/` | versão em desenvolvimento da ontologia (Turtle, RDF/XML, JSON-LD) e `modules/` por pacote — gerada |
-| `releases/` | versões congeladas (`v0.1.0/`, `v0.2.0-beta/`, `v0.2.1-beta/`…), cada uma com ontologia, módulos, SHACL e notas de versão |
+| `releases/` | versões congeladas (`v0.1.0/`, `v0.2.0-beta/`, `v0.2.1-beta/`, `v0.3.0-beta/`…), cada uma com ontologia, módulos, SHACL e notas de versão |
 | `validation/` | restrições SHACL — gerada |
 | `schemas/` | JSON Schemas (fonte de referência, registro genérico, anotação de derivação) |
 | `examples/` | dados sintéticos de exemplo, todos fictícios |
 | `queries/` | consultas SPARQL das questões de competência |
 | `annotator/` | anotador web (grafo, salvar/carregar Turtle) |
-| `scripts/` | `build.py` (gera os artefatos), `validate.py`, `query.py`, `annotator.py`, `split_examples.py` |
+| `scripts/` | `build.py` (gera os artefatos), `validate.py`, `query.py`, `migrate.py` (dados 0.2 → 0.3), `compare_annotations.py` (concordância entre anotadores), `verify_ontouml.py` (validação OntoUML), `annotator.py`, `split_examples.py` |
 | `model/` | catálogo conceitual (fonte única) e diagramas |
 | `docs/` | documentação completa em `en/` e `pt-BR/` |
 | `tests/` | verificação automatizada |
@@ -368,8 +416,8 @@ A pesquisa de doutorado investiga a modelagem computacional da ética e da moral
 
 ## Status, licença e citação
 
-- **Status:** **beta, em desenvolvimento** (v0.2.0) — rascunho de pesquisa, desenvolvido com a metodologia SABiOx e fundamentado na UFO. Os estereótipos OntoUML são provisórios; ainda não houve validação por especialistas nem avaliação com casos reais. Ver [limitações](docs/pt-BR/foundation-and-mappings.md#limitações-conhecidas).
+- **Status:** **beta, em desenvolvimento** (v0.3.0) — rascunho de pesquisa, desenvolvido com a metodologia SABiOx e fundamentado na UFO. Os estereótipos OntoUML foram revistos (um único kind para registros analíticos, categorias, padrão de papéis), e a exportação OntoUML é validada no schema oficial e verificada quanto à boa formação (0 erros); falta diagramar num editor OntoUML; a avaliação por especialistas e com casos reais segue o [protocolo de avaliação](docs/pt-BR/evaluation-protocol.md). Ver [limitações](docs/pt-BR/foundation-and-mappings.md#limitações-conhecidas).
 - **Licença:** MIT ([LICENSE](LICENSE)). Ontologias de terceiros não são redistribuídas.
 - **Citação** ([CITATION.cff](CITATION.cff), ainda sem DOI):
-  > SPECK, Jefferson Rodrigo. *Artistic Reality Ontology (ARO)*, versão 0.2.1-beta. Curitiba: Universidade Federal do Paraná, Programa de Pós-Graduação em Informática, 2026. Ontologia e software. Projeto de doutorado; orientação: Roberto Pereira; coorientação: Clodis Boscarioli.
+  > SPECK, Jefferson Rodrigo. *Artistic Reality Ontology (ARO)*, versão 0.3.0-beta. Curitiba: Universidade Federal do Paraná, Programa de Pós-Graduação em Informática, 2026. Ontologia e software. Projeto de doutorado; orientação: Roberto Pereira; coorientação: Clodis Boscarioli.
 - **Exemplos:** os exemplos sintéticos são fictícios. Os estudos de caso usam obras e fontes reais, mas as leituras são interpretações de um analista, e as correspondências são alegações, não fatos.

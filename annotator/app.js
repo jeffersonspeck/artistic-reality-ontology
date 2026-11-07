@@ -28,7 +28,9 @@ const SELECTORS = {
 };
 
 // External agent types offered when a relation points to a «roleMixin» (Analyst, CreativeAgent)
-const AGENT_TYPES = [NS.schema + "Person", NS.schema + "MusicGroup", NS.schema + "Organization", NS.foaf + "Person", NS.prov + "Agent"];
+// aro:Person / aro:Collective place the agent in the OntoUML role pattern (ADR-029); the others are external
+const AGENT_TYPES = [NS.aro + "Person", NS.aro + "Collective", NS.schema + "Person", NS.schema + "MusicGroup",
+  NS.schema + "Organization", NS.foaf + "Person", NS.prov + "Agent"];
 
 const state = { ontology: null, data: new Data(), graph: null, selected: null, contentLang: "en" };
 const $ = (sel) => document.querySelector(sel);
@@ -310,7 +312,7 @@ function standaloneCreator(withHelp) {
   if (withHelp) out.push(h("p", { class: "muted small" }, t("standaloneHelp")));
   const open = addUi.open?.key === "standalone" ? addUi.open.cls : null;
   for (const p of o.packages) {
-    const classes = Object.values(o.classes).filter((c) => c.package === p.name && !o.isVocabularyClass(c.iri) && !o.isAgentClass(c.iri));
+    const classes = Object.values(o.classes).filter((c) => c.package === p.name && o.isCreatable(c.iri));
     if (!classes.length) continue;
     out.push(h("div", { class: "pkg" },
       tip(h("div", { class: "pkg-name", style: `color:${o.packageAccent(p.name)}` }, o.packageLabel(p.name, lang)),
@@ -515,9 +517,9 @@ function textLines(text) {
   return text.split(/\r?\n/).map((l) => l.trim()).filter(Boolean);
 }
 
-/** On a Manifestation: attach / remove the local text. */
+/** On an Expression (the lyric text, the novel's text...): attach / remove the local text. */
 function sourceTextSection(id, types) {
-  if (!state.ontology.isA(types, NS.aro + "Manifestation")) return null;
+  if (!state.ontology.isA(types, NS.aro + "Expression")) return null;
   const text = localTexts()[id];
   const input = h("input", { type: "file", accept: ".txt,text/plain", hidden: true });
   input.addEventListener("change", async () => {
@@ -635,19 +637,39 @@ function otherDataSection(id, types) {
   const form = (list) => {
     const prop = h("select", {}, list.map((p) => h("option", { value: p.iri, title: o.definition(p.iri, lang) },
       `${o.label(p.iri, lang)} (${shortIri(p.range || "")})`)));
-    const value = h("input", { type: "text", placeholder: t("value") });
+    // closed lists from the catalog (e.g. assessmentOutcome) become a choice; other values are typed
+    const allowedValues = (iri) => o.catalog.datatype_properties.find((d) => NS.aro + d.name === iri)?.shacl?.in;
+    let value;
+    const slot = h("span", { class: "grow" });
+    const drawValue = () => {
+      const allowed = allowedValues(prop.value);
+      value = allowed ? h("select", {}, allowed.map((v) => h("option", { value: v }, v)))
+                      : h("input", { type: "text", placeholder: t("value") });
+      slot.replaceChildren(value);
+    };
+    prop.addEventListener("change", drawValue); drawValue();
     const add = h("button", { class: "primary", onclick: () => {
       if (!value.value.trim()) return;
       const p = o.dataProps[prop.value];
-      state.data.addTyped(id, p.iri, value.value.trim(), p.range); changed();
+      state.data.addTyped(id, p.iri, value.value.trim(), datatypeFor(p, value.value.trim())); changed();
     } }, t("add"));
-    return h("div", { class: "form" }, prop, h("div", { class: "row" }, value, add));
+    return h("div", { class: "form" }, prop, h("div", { class: "row" }, slot, add));
   };
   const specific = props.filter((p) => p.domain);
   const general = props.filter((p) => !p.domain);
   return section(t("data"), { count: shown.length, open: shown.length > 0 }, items,
     specific.length ? addForm(t("addData"), form(specific)) : null,
     general.length ? addForm(t("moreProperties"), form(general)) : null);
+}
+
+/** Datatype of a typed value; dates (rdfs:Literal range) take the most precise XSD date type that fits. */
+function datatypeFor(prop, value) {
+  if (prop.range !== NS.rdfs + "Literal") return prop.range;
+  if (/^-?\d{4}$/.test(value)) return NS.xsd + "gYear";
+  if (/^-?\d{4}-\d{2}$/.test(value)) return NS.xsd + "gYearMonth";
+  if (/^-?\d{4}-\d{2}-\d{2}$/.test(value)) return NS.xsd + "date";
+  if (/^-?\d{4}-\d{2}-\d{2}T/.test(value)) return NS.xsd + "dateTime";
+  return null;   // validation will report it
 }
 
 // ------------------------------------------------------------------ schema constraints
@@ -679,7 +701,7 @@ function creatableClasses(classes) {
   const o = state.ontology;
   const all = new Set();
   classes.filter((c) => o.classes[c]).forEach((c) => o.withSubclasses(c).forEach((k) => all.add(k)));
-  return [...all].filter((c) => !o.isVocabularyClass(c) && !o.isAgentClass(c));
+  return [...all].filter((c) => o.isCreatable(c));
 }
 
 /** For W3C selector nodes: show and edit oa:value / oa:exact / oa:start ... */
@@ -965,7 +987,7 @@ function loadText(text, label) {
     state.graph.showRoots();
     state.selected = null;
     changed({ relayout: true });
-    status(`${t("loaded")}: ${label} (${n} ${t("triples")})`);
+    status(`${t("loaded")}: ${label} (${n} ${t("triples")})` + (state.data.migrated ? ` · ${t("migratedNote")}` : ""));
     savePrefs();
   } catch (err) {
     alert(`${t("loadError")}\n${err.message}`);

@@ -11,39 +11,61 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 ex:assess-carandiru a aro:EvidenceAssessment ;
-    aro:assessesCorrespondence ex:corr-carandiru ;
+    aro:assessesClaim ex:corr-carandiru ;
     aro:assessesEvidence ex:ev-carandiru ;
+    aro:assessmentOutcome "supports" ;
     aro:textValue "Supports the pattern as a real possibility in the song's historical context; the song is not claimed to describe this event."@en,
         "Apoia o padrão como possibilidade real no contexto histórico da canção; não se alega que a canção descreva este evento."@pt-BR .
 
 ex:assess-hne-police a aro:EvidenceAssessment ;
-    aro:assessesCorrespondence ex:corr-hne-police ;
+    aro:assessesClaim ex:corr-hne-police ;
     aro:assessesEvidence ex:ev-fbsp ;
+    aro:assessmentOutcome "supports" ;
     aro:textValue "Supports that the represented situation is possible and recurrent; does not show that the song narrates a specific real event, nor any cause."@en,
         "Apoia que a situação representada é possível e recorrente; não mostra que a canção narra um evento real específico, nem causa alguma."@pt-BR .
 
+ex:assess-hne-r15 a aro:CriteriaAssessment ;
+    aro:assessesClaim ex:hne-r15 ;
+    aro:assessmentOutcome "partiallySupports" ;
+    aro:producedByAct ex:review-act ;
+    aro:textValue "Socially relevant and supported by the sequence of events, but the lyrics do not name the killers, so the official version is not excluded."@en,
+        "Socialmente relevante e apoiada pela sequência de eventos, mas a letra não nomeia os autores, então a versão oficial não é excluída."@pt-BR ;
+    aro:usesCriterion ex:crit-social-relevance,
+        ex:crit-textual-support .
+
+ex:assess-hyp-policing a aro:EvidenceAssessment ;
+    aro:assessesClaim ex:hyp-selective-policing ;
+    aro:assessesEvidence ex:ev-fbsp ;
+    aro:assessmentOutcome "inconclusive" ;
+    aro:producedByAct ex:review-act ;
+    aro:textValue "The report shows who the victims are (a correlation), not why: insufficient to infer selective policing as the cause."@en,
+        "O relatório mostra quem são as vítimas (uma correlação), não por quê: insuficiente para inferir o policiamento seletivo como causa."@pt-BR .
+
 ex:assess-reintegration a aro:EvidenceAssessment ;
-    aro:assessesCorrespondence ex:corr-reintegration ;
+    aro:assessesClaim ex:corr-reintegration ;
     aro:assessesEvidence ex:ev-ipea ;
+    aro:assessmentOutcome "partiallySupports" ;
     aro:textValue "Partial support: documents recidivism and the profile of former prisoners, but does not by itself measure job refusal due to a criminal record."@en,
         "Apoio parcial: documenta a reincidência e o perfil dos egressos, mas não mede por si a recusa de emprego por antecedentes."@pt-BR .
 
 ex:assess-sanitation a aro:EvidenceAssessment ;
-    aro:assessesCorrespondence ex:corr-sanitation ;
+    aro:assessesClaim ex:corr-sanitation ;
     aro:assessesEvidence ex:ev-sanitation ;
+    aro:assessmentOutcome "supports" ;
     aro:textValue "Supports the pattern at national scale, decades after the song; does not describe the specific neighbourhood."@en,
         "Apoia o padrão em escala nacional, décadas depois da canção; não descreve o bairro específico."@pt-BR .
 
 ex:deriv-hne-sample a aro:DerivationClaim ;
+    aro:citesSource ex:src-raio-x-wiki ;
     aro:derivationRealizedBy ex:homem-na-estrada-creation ;
-    aro:derivationReferencesSource ex:src-raio-x-wiki ;
     aro:hasDerivationType aro:Sampling ;
     aro:hasDerivedAnchor ex:homem-na-estrada ;
     aro:hasSourceAnchor ex:ela-partiu ;
     aro:hasTransformation ex:deriv-hne-sound .
 
-ex:hne-challenge15 a aro:InterpretationChallenge ;
+ex:hne-challenge15 a aro:Challenge ;
     aro:challenges ex:hne-r15 ;
+    aro:producedByAct ex:review-act ;
     aro:textValue "Alternative reading: the lyrics leave the killers implicit, so the report's version cannot be excluded within the narrative itself."@en,
         "Leitura alternativa: a letra deixa os autores implícitos, então a versão do relato não pode ser excluída dentro da própria narrativa."@pt-BR .
 
@@ -135,18 +157,22 @@ ex:hne-r14 a aro:InterpretationRecord ;
     aro:hasPrimarySelection ex:hne-e14 ;
     aro:producedByAct ex:reading-act .
 
-ex:hyp-selective-policing a aro:ExplanationHypothesis ;
-    aro:explainsPattern ex:pattern-state-violence ;
-    aro:textValue "Hypothesis: selective policing of poor and Black populations increases their exposure to state violence."@en,
-        "Hipótese: o policiamento seletivo de populações pobres e negras aumenta sua exposição à violência do Estado."@pt-BR .
+ex:hne-r15b a aro:InterpretationRecord ;
+    aro:confidenceScore 0.6 ;
+    aro:describesSituation ex:hne-s15b ;
+    aro:hasPrimarySelection ex:hne-e15 ;
+    aro:producedByAct ex:review-act .
 
-dbr:Mano_Brown a schema:Person ;
+dbr:Mano_Brown a schema:Person,
+        aro:Person ;
     schema:name "Mano Brown" .
 
-<http://dbpedia.org/resource/Racionais_MC's> a schema:MusicGroup ;
+<http://dbpedia.org/resource/Racionais_MC's> a schema:MusicGroup,
+        aro:Collective ;
     schema:name "Racionais MC's" .
 
-ex:analyst a schema:Person ;
+ex:analyst a schema:Person,
+        aro:Person ;
     schema:name "Example analyst" .
 
 ex:c-dt a aro:PatternCondition ;
@@ -211,55 +237,63 @@ ex:c-yd a aro:PatternCondition ;
 
 ex:case-carandiru a aro:EmpiricalCase ;
     aro:caseAboutEvent ex:event-carandiru ;
-    aro:caseHasReference ex:src-carandiru ;
+    aro:citesSource ex:src-carandiru ;
     aro:textValue "Carandiru massacre, São Paulo, 2 October 1992"@en,
         "Massacre do Carandiru, São Paulo, 2 de outubro de 1992"@pt-BR .
 
 ex:case-police-lethality a aro:EmpiricalCase ;
     aro:caseAboutSituation ex:sit-police-lethality ;
-    aro:caseHasReference ex:src-fbsp-2020 ;
+    aro:citesSource ex:src-fbsp-2020 ;
     aro:textValue "Deaths resulting from police interventions in Brazil (national statistics)"@en,
         "Mortes decorrentes de intervenção policial no Brasil (estatísticas nacionais)"@pt-BR .
 
 ex:case-reintegration a aro:EmpiricalCase ;
     aro:caseAboutSituation ex:sit-reintegration ;
-    aro:caseHasReference ex:src-ipea-2015 ;
+    aro:citesSource ex:src-ipea-2015 ;
     aro:textValue "Criminal recidivism and reintegration of former prisoners in Brazil"@en,
         "Reincidência criminal e reintegração de egressos do sistema prisional no Brasil"@pt-BR .
 
 ex:case-sanitation a aro:EmpiricalCase ;
     aro:caseAboutSituation ex:sit-sanitation ;
-    aro:caseHasReference ex:src-sanitation ;
+    aro:citesSource ex:src-sanitation ;
     aro:textValue "Lack of household sewage collection in Brazil"@en,
         "Falta de coleta de esgoto domiciliar no Brasil"@pt-BR .
 
 ex:corr-carandiru a aro:CorrespondenceClaim ;
     aro:assertsCase ex:case-carandiru ;
     aro:assertsPattern ex:pattern-state-violence ;
-    aro:referencesSource ex:src-carandiru ;
+    aro:citesSource ex:src-carandiru ;
     aro:textValue "A documented, large-scale instance of lethal state violence against marginalized men, one year before the song."@en,
         "Instância documentada e de grande escala de violência letal do Estado contra homens marginalizados, um ano antes da canção."@pt-BR .
 
 ex:corr-hne-police a aro:CorrespondenceClaim ;
     aro:assertsCase ex:case-police-lethality ;
     aro:assertsPattern ex:pattern-state-violence ;
-    aro:referencesSource ex:src-fbsp-2020 ;
+    aro:citesSource ex:src-fbsp-2020 ;
     aro:textValue "The pattern represented in the song is similar to documented, recurrent police lethality in Brazil."@en,
         "O padrão representado na canção é semelhante à letalidade policial documentada e recorrente no Brasil."@pt-BR .
 
 ex:corr-reintegration a aro:CorrespondenceClaim ;
     aro:assertsCase ex:case-reintegration ;
     aro:assertsPattern ex:pattern-reintegration ;
-    aro:referencesSource ex:src-ipea-2015 ;
+    aro:citesSource ex:src-ipea-2015 ;
     aro:textValue "The difficulties represented in the song correspond to a documented field of research on reintegration and recidivism."@en,
         "As dificuldades representadas na canção correspondem a um campo documentado de pesquisa sobre reintegração e reincidência."@pt-BR .
 
 ex:corr-sanitation a aro:CorrespondenceClaim ;
     aro:assertsCase ex:case-sanitation ;
     aro:assertsPattern ex:pattern-precarious-housing ;
-    aro:referencesSource ex:src-sanitation ;
+    aro:citesSource ex:src-sanitation ;
     aro:textValue "The precarious housing represented in the song is similar to a widespread, measured lack of sanitation."@en,
         "A moradia precária representada na canção é semelhante a uma falta de saneamento ampla e medida."@pt-BR .
+
+ex:crit-social-relevance a aro:ValueCriterion ;
+    aro:textValue "Social relevance: the reading helps discuss a documented social problem."@en,
+        "Relevância social: a leitura ajuda a discutir um problema social documentado."@pt-BR .
+
+ex:crit-textual-support a aro:EpistemicCriterion ;
+    aro:textValue "Textual support: the reading follows from the passage and its context in the lyrics."@en,
+        "Apoio textual: a leitura decorre do trecho e de seu contexto na letra."@pt-BR .
 
 ex:deriv-hne-sound a aro:TransformationAspect ;
     aro:hasDimension aro:RecordedSoundDimension ;
@@ -273,12 +307,6 @@ ex:ev-carandiru a aro:EvidenceItem ;
     aro:derivedFromSource ex:src-carandiru ;
     aro:textValue "Military Police intervention in the Carandiru prison that left 111 prisoners dead."@en,
         "Intervenção da Polícia Militar no presídio do Carandiru que deixou 111 presos mortos."@pt-BR .
-
-ex:ev-fbsp a aro:EvidenceItem ;
-    aro:derivedFromSource ex:src-fbsp-2020 ;
-    aro:externalLink "https://forumseguranca.org.br/wp-content/uploads/2021/07/4-as-mortes-decorrentes-de-intervencao-policial-no-brasil-em-2020.pdf"^^xsd:anyURI ;
-    aro:textValue "The report presents national and state counts of deaths resulting from police interventions and the profile of the victims."@en,
-        "O relatório apresenta contagens nacionais e estaduais de mortes decorrentes de intervenção policial e o perfil das vítimas."@pt-BR .
 
 ex:ev-ipea a aro:EvidenceItem ;
     aro:derivedFromSource ex:src-ipea-2015 ;
@@ -295,7 +323,9 @@ ex:event-carandiru a aro:EmpiricalEvent .
 ex:hne-author a aro:CreativeContribution ;
     aro:contributionBy dbr:Mano_Brown ;
     aro:contributionRole aro:AuthorRole,
-        aro:LyricistRole .
+        aro:LyricistRole ;
+    aro:contributionTo ex:homem-na-estrada,
+        ex:homem-na-estrada-lyrics .
 
 ex:hne-e01 a aro:Selection ;
     aro:hasSelector ex:hne-e01-sel ;
@@ -423,11 +453,6 @@ ex:hne-e14-sel a oa:FragmentSelector ;
     dcterms:conformsTo <http://tools.ietf.org/rfc/rfc5147> ;
     oa:value "line=131,137" .
 
-ex:hne-e15 a aro:Selection ;
-    aro:hasSelector ex:hne-e15-sel ;
-    aro:selectorExpression "lines 148-151 (event 15 of 15)" ;
-    aro:selectsFrom ex:homem-na-estrada-lyrics .
-
 ex:hne-e15-sel a oa:FragmentSelector ;
     dcterms:conformsTo <http://tools.ietf.org/rfc/rfc5147> ;
     oa:value "line=147,151" .
@@ -444,7 +469,7 @@ ex:hne-iml a aro:DepictedElement ;
     aro:textValue "IML (forensic medical institute)"@en,
         "IML (Instituto Médico Legal)"@pt-BR .
 
-ex:hne-just15 a aro:InterpretiveJustification ;
+ex:hne-just15 a aro:Justification ;
     aro:textValue "The narrative sequence (police raid at dawn, then the man's death) contrasts with the closing report attributing the death to rival gangs; the reading takes the report as the official version that criminalizes the victim."@en,
         "A sequência narrativa (invasão policial de madrugada e depois a morte do homem) contrasta com o relato final que atribui a morte a quadrilhas rivais; a leitura toma o relato como versão oficial que criminaliza a vítima."@pt-BR .
 
@@ -454,15 +479,8 @@ ex:hne-mboi a aro:DepictedElement ;
 
 ex:hne-performer a aro:CreativeContribution ;
     aro:contributionBy <http://dbpedia.org/resource/Racionais_MC's> ;
-    aro:contributionRole aro:PerformerRole .
-
-ex:hne-r15 a aro:InterpretationRecord ;
-    aro:citesSource ex:src-ufpb ;
-    aro:confidenceScore 0.85 ;
-    aro:describesSituation ex:hne-s15 ;
-    aro:hasJustification ex:hne-just15 ;
-    aro:hasPrimarySelection ex:hne-e15 ;
-    aro:producedByAct ex:reading-act .
+    aro:contributionRole aro:PerformerRole ;
+    aro:contributionTo ex:homem-na-estrada-1993 .
 
 ex:hne-s01 a aro:SituationDescription ;
     aro:generalizesAs ex:pattern-reintegration ;
@@ -556,16 +574,23 @@ ex:hne-s15 a aro:SituationDescription ;
     aro:textValue "A news-style report: a mixed-race man is found dead on the M'Boi Mirim road; the police attribute it to rival gangs and cite his long criminal record."@en,
         "Um relato em tom de notícia: um homem mulato é encontrado morto na estrada do M'Boi Mirim; a polícia atribui a morte a quadrilhas rivais e destaca seus antecedentes criminais."@pt-BR .
 
-ex:homem-na-estrada-1993 a aro:Manifestation ;
-    aro:realizesArtwork ex:homem-na-estrada ;
-    aro:textValue "Recording on the album Raio X do Brasil (1993)"@en,
-        "Gravação no álbum Raio X do Brasil (1993)"@pt-BR .
+ex:hne-s15b a aro:SituationDescription ;
+    aro:mentionsDepictedElement ex:hne-man ;
+    aro:textValue "The closing report leaves the death unexplained: the song shows how the man is remembered by the press, not who killed him."@en,
+        "O relato final deixa a morte sem explicação: a canção mostra como o homem é lembrado pela imprensa, não quem o matou."@pt-BR .
 
 ex:homem-na-estrada-creation a aro:CreativeAct ;
     aro:hasContribution ex:hne-author,
         ex:hne-performer ;
     aro:producesCreation ex:homem-na-estrada,
-        ex:homem-na-estrada-1993 .
+        ex:homem-na-estrada-1993,
+        ex:homem-na-estrada-lyrics ;
+    aro:startDate "1993"^^xsd:gYear .
+
+ex:hyp-selective-policing a aro:ExplanationHypothesis ;
+    aro:explainsPattern ex:pattern-state-violence ;
+    aro:textValue "Hypothesis: selective policing of poor and Black populations increases their exposure to state violence."@en,
+        "Hipótese: o policiamento seletivo de populações pobres e negras aumenta sua exposição à violência do Estado."@pt-BR .
 
 ex:pattern-drug-trade-violence a aro:SituationPattern ;
     aro:hasCondition ex:c-dt ;
@@ -587,6 +612,16 @@ ex:pattern-youth-detention a aro:SituationPattern ;
     aro:textValue "Institutionalization of poor youth in juvenile detention"@en,
         "Institucionalização de jovens pobres em internação de menores"@pt-BR .
 
+ex:raio-x-do-brasil a aro:Manifestation ;
+    aro:embodiesExpression ex:homem-na-estrada-1993 ;
+    aro:externalLink "https://en.wikipedia.org/wiki/Raio-X_do_Brasil"^^xsd:anyURI ;
+    aro:textValue "Album Raio X do Brasil (1993)"@en,
+        "Álbum Raio X do Brasil (1993)"@pt-BR .
+
+ex:reviewer a schema:Person,
+        aro:Person ;
+    schema:name "Example reviewer" .
+
 ex:sit-police-lethality a aro:EmpiricalSituation .
 
 ex:sit-reintegration a aro:EmpiricalSituation .
@@ -597,6 +632,25 @@ ex:src-raio-x-wiki a aro:ReferenceSource ;
     aro:languageTag "en" ;
     aro:sourceURL "https://en.wikipedia.org/wiki/Raio-X_do_Brasil"^^xsd:anyURI ;
     aro:textValue "Raio-X do Brasil (album article; lists the sample of Tim Maia's Ela Partiu)"@en .
+
+ex:ev-fbsp a aro:EvidenceItem ;
+    aro:derivedFromSource ex:src-fbsp-2020 ;
+    aro:externalLink "https://forumseguranca.org.br/wp-content/uploads/2021/07/4-as-mortes-decorrentes-de-intervencao-policial-no-brasil-em-2020.pdf"^^xsd:anyURI ;
+    aro:textValue "The report presents national and state counts of deaths resulting from police interventions and the profile of the victims."@en,
+        "O relatório apresenta contagens nacionais e estaduais de mortes decorrentes de intervenção policial e o perfil das vítimas."@pt-BR .
+
+ex:hne-e15 a aro:Selection ;
+    aro:hasSelector ex:hne-e15-sel ;
+    aro:selectorExpression "lines 148-151 (event 15 of 15)" ;
+    aro:selectsFrom ex:homem-na-estrada-lyrics .
+
+ex:hne-r15 a aro:InterpretationRecord ;
+    aro:citesSource ex:src-ufpb ;
+    aro:confidenceScore 0.85 ;
+    aro:describesSituation ex:hne-s15 ;
+    aro:hasJustification ex:hne-just15 ;
+    aro:hasPrimarySelection ex:hne-e15 ;
+    aro:producedByAct ex:reading-act .
 
 ex:pattern-state-absence a aro:SituationPattern ;
     aro:hasCondition ex:c-sa ;
@@ -611,6 +665,12 @@ ex:src-intexto a aro:ReferenceSource ;
 ex:hne-police a aro:DepictedAgent ;
     aro:textValue "the police"@en,
         "a polícia"@pt-BR .
+
+ex:homem-na-estrada-1993 a aro:Expression ;
+    aro:hasManifestation ex:raio-x-do-brasil ;
+    aro:realizesArtwork ex:homem-na-estrada ;
+    aro:textValue "Recording on the album Raio X do Brasil (1993)"@en,
+        "Gravação no álbum Raio X do Brasil (1993)"@pt-BR .
 
 ex:pattern-precarious-housing a aro:SituationPattern ;
     aro:hasCondition ex:c-ph ;
@@ -642,6 +702,10 @@ ex:src-ufpb a aro:ReferenceSource ;
     aro:sourceURL "https://repositorio.ufpb.br/jspui/handle/123456789/31862"^^xsd:anyURI ;
     aro:textValue "UFPB repository — undergraduate thesis on police violence and the absence of the State in Homem na Estrada"@en .
 
+ex:review-act a aro:InterpretiveAct ;
+    aro:hasParticipant ex:reviewer ;
+    aro:startDate "2026-11"^^xsd:gYearMonth .
+
 ex:homem-na-estrada a aro:Artwork ;
     aro:externalLink "https://en.wikipedia.org/wiki/Raio-X_do_Brasil"^^xsd:anyURI ;
     aro:textValue "Homem na Estrada (Man on the Road)"@en,
@@ -665,11 +729,12 @@ ex:hne-man a aro:DepictedAgent ;
     aro:textValue "the man on the road (protagonist)"@en,
         "o homem na estrada (protagonista)"@pt-BR .
 
-ex:homem-na-estrada-lyrics a aro:Manifestation ;
+ex:reading-act a aro:InterpretiveAct ;
+    aro:hasParticipant ex:analyst ;
+    aro:startDate "2026-10"^^xsd:gYearMonth .
+
+ex:homem-na-estrada-lyrics a aro:Expression ;
     aro:realizesArtwork ex:homem-na-estrada ;
     aro:textValue "Lyric text (LyricFind transcription, 151 lines; composer Pedro Paulo Soares Pereira)"@en,
         "Texto da letra (transcrição LyricFind, 151 linhas; compositor Pedro Paulo Soares Pereira)"@pt-BR .
-
-ex:reading-act a aro:InterpretiveAct ;
-    aro:hasParticipant ex:analyst .
 

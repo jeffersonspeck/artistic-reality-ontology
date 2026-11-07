@@ -1,8 +1,9 @@
 # CQ-06: Which reference sources are cited by a given correspondence claim?
 # Sources are independent and reusable (ADR-004): the same source may appear for many
 # claims. Citation is not support; support is recorded by an EvidenceAssessment.
+# Since 0.3 every analytical record cites sources with the same property, aro:citesSource.
 PREFIX aro: <https://w3id.org/aro/ontology#>
 SELECT DISTINCT ?claim ?source WHERE {
   ?claim a aro:CorrespondenceClaim ;
-         aro:referencesSource ?source .
+         aro:citesSource ?source .
 }

@@ -22,7 +22,7 @@ const RDF_TYPE = NS.rdf + "type";
 // Accent colours of the packages (darker companions of the catalog's pastel colours)
 const PACKAGE_ACCENTS = {
   artwork: "#2563eb", interpretation: "#7c3aed", representation: "#b45309",
-  pattern: "#db2777", evidence: "#059669", derivation: "#ea580c",
+  pattern: "#db2777", evidence: "#059669", derivation: "#ea580c", claim: "#4f46e5", agent: "#0d9488",
 };
 
 /** Parse a Turtle string into an N3.Store. */
@@ -74,7 +74,7 @@ export class Ontology {
 
     for (const c of catalog.classes) {
       const iri = NS.aro + c.name;
-      this.classes[iri] = { iri, name: c.name, package: c.package, stereotype: c.stereotype };
+      this.classes[iri] = { iri, name: c.name, package: c.package, stereotype: c.stereotype, abstract: !!c.abstract };
       this.parents[iri] = store.getObjects(iri, NS.rdfs + "subClassOf", null).map((o) => o.value);
     }
     for (const q of store.getQuads(null, RDF_TYPE, NS.owl + "ObjectProperty", null)) {
@@ -157,8 +157,19 @@ export class Ontology {
     return this.classes[iri]?.stereotype === "type";
   }
 
+  /** Agents (persons, collectives and the roles they play) come from external vocabularies. */
   isAgentClass(iri) {
-    return this.classes[iri]?.stereotype === "roleMixin";
+    return this.classes[iri]?.package === "agent";
+  }
+
+  /** Abstract classes (categories, Claim, AnalyticalRecord, Assessment) have no direct instances. */
+  isAbstract(iri) {
+    return !!this.classes[iri]?.abstract;
+  }
+
+  /** Classes the user may instantiate directly: not abstract, not a vocabulary type, not an agent. */
+  isCreatable(iri) {
+    return !!this.classes[iri] && !this.isAbstract(iri) && !this.isVocabularyClass(iri) && !this.isAgentClass(iri);
   }
 
   isConcept(iri) {

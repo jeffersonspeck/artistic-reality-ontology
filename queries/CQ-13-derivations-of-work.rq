@@ -1,7 +1,7 @@
 # CQ-13: Which entities are claimed to derive from a given artwork, at which level
-# (artwork, manifestation or selection) and by which derivation type?
-# Source anchors at manifestation/selection level are normalized up to their artwork,
-# so a sample taken from one recording is still listed under the song it realizes.
+# (artwork, expression, manifestation or selection) and by which derivation type?
+# Source anchors below the artwork level are normalized up to their artwork, so a sample
+# taken from one recording is still listed under the song it realizes.
 # Language: ?lang is the preferred language of labels (scripts/query.py --lang and the
 # annotator replace it); when a label is missing in that language, another one is used.
 PREFIX aro: <https://w3id.org/aro/ontology#>
@@ -12,13 +12,14 @@ SELECT ?sourceWork ?derived ?derivedLevel ?typeLabel WHERE {
          aro:hasSourceAnchor ?src ;
          aro:hasDerivedAnchor ?derived ;
          aro:hasDerivationType ?type .
-  # Optional steps: Selection -selectsFrom-> Manifestation -realizesArtwork-> Artwork.
-  # For an artwork anchor both steps match zero times and ?sourceWork = ?src.
-  ?src aro:selectsFrom?/aro:realizesArtwork? ?sourceWork .
+  # Optional steps (IFLA LRM levels): Selection -selectsFrom-> Expression -realizesArtwork-> Artwork,
+  # Manifestation -embodiesExpression-> Expression. For an artwork anchor every step matches
+  # zero times and ?sourceWork = ?src.
+  ?src aro:selectsFrom?/aro:embodiesExpression?/aro:realizesArtwork? ?sourceWork .
   ?sourceWork a aro:Artwork .
   # Level of the derived entity
   ?derived a ?derivedLevel .
-  VALUES ?derivedLevel { aro:Artwork aro:Manifestation aro:Selection }
+  VALUES ?derivedLevel { aro:Artwork aro:Expression aro:Manifestation aro:Selection }
   # Type label in the preferred language (or in another one if that one is missing)
   ?type skos:prefLabel ?typeLabel .
   FILTER(langMatches(lang(?typeLabel), ?lang)

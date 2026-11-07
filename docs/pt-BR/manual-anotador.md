@@ -74,8 +74,8 @@ As cores dos nós indicam o módulo da ontologia. Conceitos de vocabulário apar
 Exemplo: registrar que um trecho de uma canção representa uma situação, generalizá-la num padrão e ligar esse padrão a um caso real.
 
 1. **A obra.** No painel esquerdo, escolha a classe *obra* (`Artwork`), digite o título e clique em **Criar**.
-2. **A versão.** Com a obra selecionada, vá a *Adicionar relação* e escolha `hasManifestation`. Em *novo nó*, crie a *manifestação*, por exemplo "Gravação de 1993" ou "Texto da letra".
-3. **O trecho.** Selecione a manifestação e acompanhe as relações de chegada em *Referenciado por*. Depois, pelo painel esquerdo, crie um *recorte* (`Selection`) e, no recorte, adicione `selectsFrom` → a manifestação.
+2. **A versão.** Com a obra selecionada, abra a aba **Filhos** e escolha *expressão* em `hasExpression`, por exemplo "Gravação de 1993" ou "Texto da letra" (IFLA LRM: expressão é uma realização com conteúdo próprio). Se a edição importa (um álbum, uma edição de livro), acrescente à expressão uma *manifestação* com `hasManifestation`.
+3. **O trecho.** Selecione a expressão, abra a aba **Pais** e crie um *recorte* em `selectsFrom`: o novo recorte já fica ligado à expressão.
 4. **Onde está o trecho.** No recorte, adicione `hasSelector` e escolha o tipo de seletor:
    - **FragmentSelector** com `line=27,30` para as linhas 28–30 de um texto;
    - **FragmentSelector** com `t=12,16` para os segundos 12–16 de um áudio ou vídeo;
@@ -86,19 +86,19 @@ Exemplo: registrar que um trecho de uma canção representa uma situação, gene
 6. **A situação.** No registro, adicione `describesSituation` → nova *descrição de situação* e escreva o texto em *Textos*, em um ou mais idiomas.
 7. **O padrão.** Na situação, adicione `generalizesAs` → novo *padrão situacional*. No padrão, adicione `hasCondition` → *condições*.
 8. **O caso real.** Crie um *caso empírico* e uma *fonte de referência* (com link em *Links* → `sourceURL`). Depois crie um *item de evidência* com `derivedFromSource` → a fonte.
-9. **A alegação.** Crie uma *alegação de correspondência* com `assertsPattern` → o padrão e `assertsCase` → o caso. Por fim, crie uma *avaliação de evidência* com `assessesCorrespondence` e `assessesEvidence`, e escreva o que ela apoia e o que não apoia.
+9. **A alegação.** Crie uma *alegação de correspondência* com `assertsPattern` → o padrão e `assertsCase` → o caso. Por fim, crie uma *avaliação de evidência* com `assessesClaim` → a alegação de correspondência e `assessesEvidence` → o item de evidência, e escreva o que ela apoia e o que não apoia.
 10. **Salvar.** Clique em **Validar** e depois em **Salvar .ttl**.
 
 Para **derivações** (cover, sample, adaptação…), crie uma *alegação de derivação* e adicione:
-- `hasSourceAnchor` e `hasDerivedAnchor`, cada um apontando para uma obra, manifestação ou recorte;
+- `hasSourceAnchor` e `hasDerivedAnchor`, cada um apontando para uma entidade artística (obra, expressão, manifestação ou recorte);
 - `hasDerivationType`, escolhido numa lista em árvore, com definições;
 - `hasTransformation`, com dimensão e operação;
-- `derivationJustifiedBy`, com a explicação.
+- `hasJustification`, com a explicação (a mesma propriedade usada por todo tipo de alegação; assim também `citesSource`, `producedByAct` e, a partir de uma avaliação, `assessesClaim`).
 
 **Adicionar filhos e pais a partir de um nó**
 - Selecione um nó (clique nele, ou botão direito → **Adicionar filho…** / **Adicionar pai…**). O painel esquerdo mostra duas abas calculadas a partir do tipo do nó:
-  - **Filhos**: novos nós para os quais este nó aponta (este → relação → novo), ex.: de uma obra, uma manifestação por `hasManifestation`;
-  - **Pais**: novos nós que apontam para ele (novo → relação → este), ex.: de uma manifestação, um recorte por `selectsFrom`.
+  - **Filhos**: novos nós para os quais este nó aponta (este → relação → novo), ex.: de uma obra, uma expressão por `hasExpression`;
+  - **Pais**: novos nós que apontam para ele (novo → relação → este), ex.: de uma expressão, um recorte por `selectsFrom`.
 - Cada relação permitida é um cartão com as classes como etiquetas; as **obrigatórias** vêm primeiro e as que já atingiram o **máximo** ficam esmaecidas. Clique numa etiqueta, digite o nome e tecle Enter: o nó é criado, ligado e selecionado.
 - *Nó existente, conceito, outras opções…* num cartão liga, em vez disso, um nó existente, um conceito de vocabulário, um seletor ou um IRI externo.
 - Sem nó selecionado, o painel lista todas as classes por módulo, para começar um nó solto (também em *Nó solto* quando há um nó selecionado).
@@ -110,11 +110,13 @@ Para **derivações** (cover, sample, adaptação…), crie uma *alegação de d
 
 **Como os formulários seguem a ontologia**
 - *Adicionar relação* mostra só as propriedades cujo domínio aceita o nó. As **obrigatórias** (SHACL `minCount`) aparecem com `*`, e as que faltam ficam listadas num aviso amarelo. As que já atingiram o **máximo** (`maxCount`) deixam de aparecer.
-- A aba **Pais** cria uma relação que **chega** ao nó, a partir de um nó novo ou (em *outras opções*) de um existente. Por exemplo, numa manifestação: um novo recorte com `selectsFrom` para ela.
+- A aba **Pais** cria uma relação que **chega** ao nó, a partir de um nó novo ou (em *outras opções*) de um existente. Por exemplo, numa expressão: um novo recorte com `selectsFrom` para ela.
 - Ao criar um nó novo numa relação, você pode escolher a classe da imagem ou **qualquer subclasse** (ex.: *descrição de estado intencional*).
 - Em *Dados*, as propriedades específicas da classe aparecem direto; as gerais (identificador, etiqueta de idioma…) ficam em *Mais propriedades*.
 
-> A ontologia **representa** alegações feitas por agentes; ela não decide se são verdadeiras. Use as avaliações de evidência e as contestações (`InterpretationChallenge`) para registrar apoio e divergência.
+> A ontologia **representa** alegações feitas por agentes; ela não decide se são verdadeiras. Use as avaliações e as contestações (`Challenge`, que pode visar qualquer alegação) para registrar apoio e divergência. Classes *abstratas* (`Claim`, `AnalyticalRecord`, `Assessment`, `ArtisticEntity`) não são oferecidas para criação: escolha uma de suas subclasses.
+
+> **Arquivos da ARO 0.2** são convertidos ao abrir (ex.: a antiga *manifestação* vira *expressão*); a barra de status avisa. Salve para manter o arquivo convertido, ou rode `python scripts/migrate.py arquivo.ttl`.
 
 ## 5. Navegar no grafo
 
@@ -140,7 +142,7 @@ Para **derivações** (cover, sample, adaptação…), crie uma *alegação de d
 
 Para ver o trecho exato de cada recorte (por exemplo, as linhas de uma letra):
 
-1. Selecione a **manifestação** que representa o texto (ex.: "Texto da letra").
+1. Selecione a **expressão** que representa o texto (ex.: "Texto da letra").
 2. Clique em **Anexar .txt** e escolha a **sua cópia** do texto.
 3. Selecione um recorte que tenha seletor `line=a,b`: o painel mostra as linhas numeradas. Linhas em branco não contam.
 4. Se quiser, use **Gravar como citação** para copiar as linhas para um `TextQuoteSelector` nos seus dados.
@@ -242,7 +244,7 @@ O anotador (JavaScript) ainda não tem testes automatizados; ele foi verificado 
 | "Address already in use" | a porta está ocupada. Use `--port 9000` |
 | O duplo clique não abre os vizinhos | use o botão **Abrir / fechar vizinhos** no painel direito |
 | Quero começar do zero | **Novo**; ou limpe os dados do site `localhost` no navegador |
-| O trecho do texto não aparece | anexe o `.txt` na **manifestação** ligada ao recorte (`selectsFrom`) e confira se o recorte tem seletor `line=a,b` |
+| O trecho do texto não aparece | anexe o `.txt` na **expressão** ligada ao recorte (`selectsFrom`) e confira se o recorte tem seletor `line=a,b` |
 | As etiquetas de idioma aparecem em minúsculas no navegador | é comportamento da biblioteca N3.js. O arquivo salvo usa `pt-BR` |
 
 ---

@@ -5,3 +5,4 @@ __pycache__/
 .DS_Store
 # Researcher-owned texts (lyrics, novels) used locally by the annotator; never committed
 private/
+.ontouml/

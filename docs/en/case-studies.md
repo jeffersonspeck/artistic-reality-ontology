@@ -40,7 +40,7 @@ Line numbers follow the LyricFind transcription of the lyrics (151 lines, counti
 
 **Plural readings.** Event 15 has a recorded justification and a recorded challenge:
 - **Justification:** the sequence police raid → death contrasts with the police version, and the reading takes that version as criminalizing the victim.
-- **Challenge** (`InterpretationChallenge`): the lyrics leave the killers implicit, so the report's version cannot be excluded within the narrative itself.
+- **Challenge** (`Challenge`): the lyrics leave the killers implicit, so the report's version cannot be excluded within the narrative itself.
 
 Real institutions and places that appear in the lyrics are represented as `DepictedElement`: FEBEM, IBGE, IML and the M'Boi Mirim road.
 
@@ -104,9 +104,9 @@ python scripts/annotator.py
 ```
 
 Load `examples/case-studies.ttl` with **Load .ttl**. Then:
-- on the "Lyric text" manifestation, use **Attach .txt** with your copy of the lyrics: each event then shows its lines;
+- on the "Lyric text" expression, use **Attach .txt** with your copy of the lyrics: each event then shows its lines;
 - add events or adjust line ranges;
-- review or challenge the readings with an `InterpretationChallenge`;
+- review or challenge the readings with a `Challenge`;
 - add cases and sources, especially for the patterns that have none yet;
 - save a new file.
 

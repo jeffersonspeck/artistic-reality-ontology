@@ -1,6 +1,6 @@
 # RQ-01: Which passages of a work represent situations that have been claimed to correspond
 # to documented real cases, and where can the supporting source be consulted?
-# Chain: work <- manifestation <- selection <- interpretation -> situation -> pattern
+# Chain: work <- expression <- selection <- interpretation -> situation -> pattern
 #        <- correspondence claim -> empirical case -> source URL.
 # Language: texts are shown in ?lang (scripts/query.py --lang and the annotator replace it);
 # a text that does not exist in that language is shown in the language it has.
@@ -20,7 +20,7 @@ SELECT ?work ?passage ?situation ?pattern ?case ?sourceURL WHERE {
          aro:assertsPattern ?p ;
          aro:assertsCase ?c .
   ?c aro:textValue ?case .
-  OPTIONAL { ?claim aro:referencesSource/aro:sourceURL ?sourceURL }
+  OPTIONAL { ?claim aro:citesSource/aro:sourceURL ?sourceURL }
   # Narrative position: first number in the selector expression ("lines 22-26", "chapter 3")
   BIND(xsd:integer(REPLACE(?passage, "^[^0-9]*([0-9]+).*$", "$1")) AS ?position)
   # each text in the preferred language, or in any language when that one is missing

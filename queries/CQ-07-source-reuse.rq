@@ -1,0 +1,13 @@
+# CQ-07: Can one source be reused across cases and interpretations?
+# Sources are independent and reusable (ADR-004). Lists every source cited by two or more
+# records (through citesSource, or as the origin of evidence items) and the kinds of those records.
+PREFIX aro: <https://w3id.org/aro/ontology#>
+SELECT ?source (COUNT(DISTINCT ?record) AS ?records) (GROUP_CONCAT(DISTINCT ?kindName; SEPARATOR=", ") AS ?kinds) WHERE {
+  { ?record aro:citesSource ?source } UNION { ?record aro:derivedFromSource ?source }
+  ?record a ?kind .
+  FILTER(STRSTARTS(STR(?kind), STR(aro:)))
+  BIND(STRAFTER(STR(?kind), "#") AS ?kindName)
+}
+GROUP BY ?source
+HAVING (COUNT(DISTINCT ?record) >= 2)
+ORDER BY DESC(?records)

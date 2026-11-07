@@ -3,18 +3,7 @@ digraph ontology {
 graph [rankdir=LR, bgcolor="white", pad="0.4", nodesep="0.35", ranksep="0.75", fontname="Arial"];
 node [shape=box, style="rounded,filled", color="#64748b", fontname="Arial", fontsize=10];
 edge [color="#64748b", fontname="Arial", fontsize=8];
-"InterpretationRecord" [label="«kind»\nInterpretationRecord",fillcolor="#e9d5ff"];
+"InterpretationRecord" [label="«subkind»\nInterpretationRecord",fillcolor="#e9d5ff"];
 "InterpretiveAct" [label="«event»\nInterpretiveAct",fillcolor="#e9d5ff"];
-"Analyst" [label="«roleMixin»\nAnalyst",fillcolor="#e9d5ff"];
-"InterpretiveJustification" [label="«kind»\nInterpretiveJustification",fillcolor="#e9d5ff"];
-"InterpretationChallenge" [label="«kind»\nInterpretationChallenge",fillcolor="#e9d5ff"];
-"InterpretationAssessment" [label="«kind»\nInterpretationAssessment",fillcolor="#e9d5ff"];
-"AssessmentCriterion" [label="«kind»\nAssessmentCriterion",fillcolor="#e9d5ff"];
-"InterpretationRecord" -> "InterpretiveAct" [label="producedByAct  [1]",arrowsize=.65];
-"InterpretiveAct" -> "Analyst" [label="hasParticipant  [1..*]",arrowsize=.65];
-"InterpretationRecord" -> "InterpretiveJustification" [label="hasJustification  [0..*]",arrowsize=.65];
-"InterpretationChallenge" -> "InterpretationRecord" [label="challenges  [1]",arrowsize=.65];
-"InterpretationAssessment" -> "InterpretationRecord" [label="assessesInterpretation  [1]",arrowsize=.65];
-"InterpretationAssessment" -> "AssessmentCriterion" [label="usesCriterion  [1..*]",arrowsize=.65];
 "InterpretationRecord" -> "InterpretationRecord" [label="supportsInterpretation  [0..*]",arrowsize=.65];
 }

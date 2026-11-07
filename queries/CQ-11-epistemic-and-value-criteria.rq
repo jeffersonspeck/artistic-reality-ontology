@@ -1,0 +1,15 @@
+# CQ-11: Which criteria govern epistemic versus value judgments?
+# Criteria are EpistemicCriterion (is the claim well grounded?) or ValueCriterion (is it relevant,
+# fair, adequate?); one assessment may apply both kinds.
+# Language: texts in ?lang, or in the language they have when ?lang is missing.
+PREFIX aro: <https://w3id.org/aro/ontology#>
+SELECT ?assessment ?claim ?criterionKind ?criterion WHERE {
+  VALUES ?lang { "en" }
+  ?assessment aro:usesCriterion ?c ;
+              aro:assessesClaim ?claim .
+  ?c a ?k ;
+     aro:textValue ?criterion .
+  VALUES (?k ?criterionKind) { (aro:EpistemicCriterion "epistemic") (aro:ValueCriterion "value") }
+  FILTER(langMatches(lang(?criterion), ?lang) || NOT EXISTS { ?c aro:textValue ?l1 FILTER(langMatches(lang(?l1), ?lang)) })
+}
+ORDER BY ?assessment ?criterionKind

@@ -3,15 +3,18 @@ digraph ontouml {
 graph [rankdir=BT, bgcolor="white", pad="0.4", nodesep="0.5", ranksep="0.8", fontname="Arial", fontsize=14, labeljust="l", newrank=true, splines=true];
 node [fontname="Arial", fontsize=10];
 edge [fontname="Arial", fontsize=8, color="#475569", arrowsize=0.7];
-"DepictedElement" [shape=plain, label=<<TABLE BORDER="1" COLOR="#334155" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4"><TR><TD BGCOLOR="#fef3c7"><FONT POINT-SIZE="9">«kind»</FONT><BR/><B>DepictedElement</B></TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT" BGCOLOR="white"><FONT POINT-SIZE="9"> </FONT></TD></TR></TABLE>>];
+"DepictedElement" [shape=plain, label=<<TABLE BORDER="1" COLOR="#334155" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4"><TR><TD BGCOLOR="#fef3c7"><FONT POINT-SIZE="9">«subkind»</FONT><BR/><B>DepictedElement</B></TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT" BGCOLOR="white"><FONT POINT-SIZE="9"> </FONT></TD></TR></TABLE>>];
 "DepictedAgent" [shape=plain, label=<<TABLE BORDER="1" COLOR="#334155" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4"><TR><TD BGCOLOR="#fef3c7"><FONT POINT-SIZE="9">«subkind»</FONT><BR/><B>DepictedAgent</B></TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT" BGCOLOR="white"><FONT POINT-SIZE="9"> </FONT></TD></TR></TABLE>>];
-"SituationDescription" [shape=plain, label=<<TABLE BORDER="1" COLOR="#334155" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4"><TR><TD BGCOLOR="#fef3c7"><FONT POINT-SIZE="9">«kind»</FONT><BR/><B>SituationDescription</B></TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT" BGCOLOR="white"><FONT POINT-SIZE="9"> </FONT></TD></TR></TABLE>>];
+"SituationDescription" [shape=plain, label=<<TABLE BORDER="1" COLOR="#334155" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4"><TR><TD BGCOLOR="#fef3c7"><FONT POINT-SIZE="9">«subkind»</FONT><BR/><B>SituationDescription</B></TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT" BGCOLOR="white"><FONT POINT-SIZE="9"> </FONT></TD></TR></TABLE>>];
 "IntentionalStateDescription" [shape=plain, label=<<TABLE BORDER="1" COLOR="#334155" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4"><TR><TD BGCOLOR="#fef3c7"><FONT POINT-SIZE="9">«subkind»</FONT><BR/><B>IntentionalStateDescription</B></TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT" BGCOLOR="white"><FONT POINT-SIZE="9"> </FONT></TD></TR></TABLE>>];
-"InterpretationRecord" [shape=plain, label=<<TABLE BORDER="1" COLOR="#94a3b8" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4"><TR><TD BGCOLOR="#f8fafc"><FONT POINT-SIZE="9">«kind»</FONT><BR/><B>InterpretationRecord</B></TD></TR></TABLE>>];
-"SituationPattern" [shape=plain, label=<<TABLE BORDER="1" COLOR="#94a3b8" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4"><TR><TD BGCOLOR="#f8fafc"><FONT POINT-SIZE="9">«kind»</FONT><BR/><B>SituationPattern</B></TD></TR></TABLE>>];
+"AnalyticalRecord" [shape=plain, label=<<TABLE BORDER="1" COLOR="#94a3b8" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4"><TR><TD BGCOLOR="#f8fafc"><FONT POINT-SIZE="9">«kind»</FONT><BR/><B><I>AnalyticalRecord</I></B><BR/><FONT POINT-SIZE="8">{abstract}</FONT></TD></TR></TABLE>>];
+"InterpretationRecord" [shape=plain, label=<<TABLE BORDER="1" COLOR="#94a3b8" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4"><TR><TD BGCOLOR="#f8fafc"><FONT POINT-SIZE="9">«subkind»</FONT><BR/><B>InterpretationRecord</B></TD></TR></TABLE>>];
+"SituationPattern" [shape=plain, label=<<TABLE BORDER="1" COLOR="#94a3b8" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4"><TR><TD BGCOLOR="#f8fafc"><FONT POINT-SIZE="9">«subkind»</FONT><BR/><B>SituationPattern</B></TD></TR></TABLE>>];
 "InterpretationRecord" -> "SituationDescription" [label="describesSituation", taillabel="1..*", headlabel="0..*", arrowhead=open, labelfontsize=8];
 "SituationDescription" -> "DepictedElement" [label="mentionsDepictedElement", taillabel="0..*", headlabel="0..*", arrowhead=open, labelfontsize=8];
 "SituationDescription" -> "SituationPattern" [label="generalizesAs", taillabel="0..*", headlabel="0..*", arrowhead=open, labelfontsize=8];
+"DepictedElement" -> "AnalyticalRecord" [arrowhead=empty, arrowsize=1.1, color="#0f172a"];
 "DepictedAgent" -> "DepictedElement" [arrowhead=empty, arrowsize=1.1, color="#0f172a"];
+"SituationDescription" -> "AnalyticalRecord" [arrowhead=empty, arrowsize=1.1, color="#0f172a"];
 "IntentionalStateDescription" -> "SituationDescription" [arrowhead=empty, arrowsize=1.1, color="#0f172a"];
 }

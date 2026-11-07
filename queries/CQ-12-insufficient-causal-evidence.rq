@@ -1,0 +1,16 @@
+# CQ-12: Which evidence is insufficient to infer a causal explanation?
+# Assessments of explanation hypotheses whose outcome is not "supports": the evidence was judged
+# inconclusive, partial or contrary for the proposed cause, even if it supports other claims.
+# Language: texts in ?lang, or in the language they have when ?lang is missing.
+PREFIX aro: <https://w3id.org/aro/ontology#>
+SELECT ?hypothesis ?evidence ?outcome ?reason WHERE {
+  VALUES ?lang { "en" }
+  ?h a aro:ExplanationHypothesis ;
+     aro:textValue ?hypothesis .
+  ?a aro:assessesClaim ?h ;
+     aro:assessesEvidence ?evidence ;
+     aro:assessmentOutcome ?outcome .
+  FILTER(?outcome != "supports")
+  OPTIONAL { ?a aro:textValue ?reason . FILTER(langMatches(lang(?reason), ?lang) || NOT EXISTS { ?a aro:textValue ?l2 FILTER(langMatches(lang(?l2), ?lang)) }) }
+  FILTER(langMatches(lang(?hypothesis), ?lang) || NOT EXISTS { ?h aro:textValue ?l1 FILTER(langMatches(lang(?l1), ?lang)) })
+}

@@ -159,6 +159,8 @@ button.link.danger { color: var(--danger); }
 .row { display: flex; gap: 6px; align-items: center; margin-top: 6px; }
 .row input, .row select { flex: 1; min-width: 0; }
 .row button { flex: none; }
+.row .grow { flex: 1; min-width: 0; display: flex; }
+.row .grow > * { flex: 1; min-width: 0; }
 .muted { color: var(--muted); }
 .small { font-size: 12px; }
 .iri { font-family: ui-monospace, Consolas, monospace; font-size: 11px; color: var(--faint); word-break: break-all; margin: 4px 0 0; }

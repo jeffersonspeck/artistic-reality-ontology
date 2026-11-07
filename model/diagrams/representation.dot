@@ -3,9 +3,9 @@ digraph ontology {
 graph [rankdir=LR, bgcolor="white", pad="0.4", nodesep="0.35", ranksep="0.75", fontname="Arial"];
 node [shape=box, style="rounded,filled", color="#64748b", fontname="Arial", fontsize=10];
 edge [color="#64748b", fontname="Arial", fontsize=8];
-"DepictedElement" [label="«kind»\nDepictedElement",fillcolor="#fef3c7"];
+"DepictedElement" [label="«subkind»\nDepictedElement",fillcolor="#fef3c7"];
 "DepictedAgent" [label="«subkind»\nDepictedAgent",fillcolor="#fef3c7"];
-"SituationDescription" [label="«kind»\nSituationDescription",fillcolor="#fef3c7"];
+"SituationDescription" [label="«subkind»\nSituationDescription",fillcolor="#fef3c7"];
 "IntentionalStateDescription" [label="«subkind»\nIntentionalStateDescription",fillcolor="#fef3c7"];
 "SituationDescription" -> "DepictedElement" [label="mentionsDepictedElement  [0..*]",arrowsize=.65];
 "DepictedAgent" -> "DepictedElement" [arrowhead=empty,style=dashed];

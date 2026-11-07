@@ -1,0 +1,14 @@
+# CQ-19: Which claims have no grounds yet: no justification, no cited source and no assessment?
+# Works for every kind of claim (interpretation, derivation, correspondence, empirical claim,
+# hypothesis, challenge) because all of them are aro:Claim (ADR-026). The class hierarchy comes
+# from the ontology, so run it over your data plus the ontology (as scripts/query.py does).
+PREFIX aro: <https://w3id.org/aro/ontology#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+SELECT ?claim ?kind WHERE {
+  ?claim a ?kind .
+  ?kind rdfs:subClassOf* aro:Claim .
+  FILTER NOT EXISTS { ?claim aro:hasJustification ?j }
+  FILTER NOT EXISTS { ?claim aro:citesSource ?s }
+  FILTER NOT EXISTS { ?assessment aro:assessesClaim ?claim }
+}
+ORDER BY ?kind ?claim

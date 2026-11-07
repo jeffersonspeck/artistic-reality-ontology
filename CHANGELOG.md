@@ -2,11 +2,38 @@
 
 All notable changes to ARO. Versions follow the SABiOx development cycles (see `docs/*/sabiox-plan.md`).
 
-## [Unreleased]
+## [0.3.0-beta] - 2026-11-06
+
+Frozen files: [releases/v0.3.0-beta](releases/v0.3.0-beta/RELEASE-NOTES.md). SABiOx cycle 3: claims, UFO top level and IFLA LRM. **Breaking changes** for 0.2 data: run `python scripts/migrate.py file.ttl` (the annotator converts older files when it opens them).
+
+### Added
+
+- **`Claim`** (abstract «subkind», ADR-026) generalizing InterpretationRecord, DerivationClaim, CorrespondenceClaim, EmpiricalClaim, ExplanationHypothesis and Challenge; **`AnalyticalRecord`** (the single «kind» of every analytical record, ADR-027); new packages `claim` (Claims and records) and `agent` (Agents).
+- **Categories instead of unions** (ADR-027): `ArtisticEntity` (artwork, expression, manifestation, selection) is the range of derivation anchors, `producesCreation` and `contributionTo`; `Agent` generalizes persons and collectives. No relation has a union range any more.
+- **IFLA LRM levels** (ADR-028): `Expression` (realization with its own content) and `Manifestation` in the LRM sense (publication or carrier, optional), with `hasExpression`/`realizesArtwork`, `hasManifestation`/`embodiesExpression` (declared inverses) and `locatedInManifestation`.
+- **OntoUML role pattern for agents** (ADR-029): `Person` («kind»), `Collective` («collective»), and the «role»s `PersonAnalyst`, `CollectiveAnalyst`, `PersonCreator`, `CollectiveCreator`, each defined in OWL as the intersection of its kind and its roleMixin.
+- **Relator with two relata and time** (ADR-030): `contributionTo` («mediation», min 1); `startDate`/`endDate` on acts, empirical events and situations (year, year-month, date or date-time, checked by SHACL `sh:or`).
+- **OWL axioms for the UFO commitments**: `owl:AllDisjointClasses` for ultimate sortals, `owl:disjointUnionOf` for abstract classes; the tests check the examples' consistency with an OWL 2 RL reasoner (`owlrl`).
+- **Alignments** (ADR-031, `rdfs:seeAlso`): W3C Web Annotation (`oa:Annotation`, `oa:hasTarget`), PROV-O (`prov:Activity`, `prov:wasGeneratedBy`, `prov:wasAssociatedWith`, `prov:Agent`), IFLA LRMoo (F1/F2/F3, R3/R4, F28), schema.org (`Claim`, `ClaimReview`, `CreativeWork`), FOAF, Dublin Core.
+- **Queries** CQ-19 (claims without grounds), CQ-20 (expressions and manifestations of a work), CQ-21 (dates of the creative acts behind a derivation).
+- **SHACL**: per-class constraints (`shacl_by_class`, e.g. `producedByAct` required on InterpretationRecord), creative acts do not produce selections, evidence assessments weigh evidence, date datatypes.
+- **Scripts**: `scripts/migrate.py` (0.2 → 0.3, textual, keeps comments, idempotent) and `scripts/compare_annotations.py` (Krippendorff's alpha between annotators on derivation vocabularies).
+- **OntoUML exchange file** (ADR-009): `model/ontouml/aro.ontouml.json`, generated from the catalog in the official OntoUML JSON format, valid against the OntoUML JSON Schema 1.0.2 (copied in `model/ontouml/`, Apache-2.0) and well formed: `scripts/verify_ontouml.py` checks sortality, rigidity, identity providers, abstract non-sortals, role dependencies, relator mediations and relation stereotypes (0 errors; 33 plain associations as warnings, ADR-032); `scripts/verify_ontouml.mjs` runs the same rules with the official ontouml-js 1.0.0 library.
+- **Every competency question has a query**: CQ-01–CQ-04 and CQ-07–CQ-12 added (selection in works, competing interpretations, premises, patterns, source reuse, evidence outcomes, authors and assessors, explanations, epistemic vs value criteria, evidence insufficient for causes); the tests check their expected answers on the case studies; all run in the annotator.
+- **Assessments and criteria** (ADR-033): `assessmentOutcome` (supports, partiallySupports, challenges, inconclusive, irrelevant; SHACL `sh:in`), `EpistemicCriterion` and `ValueCriterion` (FR-11 now met); `producedByAct` applies to every analytical record, so assessments and challenges have authors. The case studies gain a reviewer with a competing reading, a criteria assessment and an inconclusive assessment of the causal hypothesis.
+- **Evaluation protocol** (`docs/*/evaluation-protocol.md`): ontological review (OntoUML tool, anti-patterns, experts), domain review and a real-case annotation study with agreement and usability measures.
+- **Examples**: the album *Raio X do Brasil* and the first edition of *Vidas Secas* as manifestations, dated creative and interpretive acts, agents typed `aro:Person`/`aro:Collective`.
 
 ### Changed
 
+- **Renamed**: `Manifestation` (0.2, a version) → `Expression`; `InterpretiveJustification` → `Justification`; `InterpretationChallenge` → `Challenge` (targets any claim); `InterpretationAssessment` → `CriteriaAssessment`; `EvidenceAssessment` and `CriteriaAssessment` specialize the abstract `Assessment`.
+- **Merged relations** (one per role of a claim): `claimProducedByAct` → `producedByAct`; `derivationJustifiedBy` → `hasJustification`; `referencesSource`, `caseHasReference`, `derivationReferencesSource` → `citesSource` (any analytical record); `supportsClaim`, `assessesCorrespondence`, `assessesInterpretation`, `assessesDerivation` → `assessesClaim` (1..*).
+- **Stereotypes**: 22 informational «kind»s became «subkind»s of `AnalyticalRecord` (7 kinds in total); `Analyst` and `CreativeAgent` specialize the «category» `Agent`.
+- **ADRs**: ADR-010 closed (a claim is an authored record); ADR-012, ADR-019 and ADR-022 revised.
+- **Generator**: categories, roles with two parents, disjointness and coverings, abstract classes in italics with `{abstract}` in the OntoUML diagrams, per-class SHACL, date datatypes; overview generalizations into another package drawn lighter.
 - **OntoUML diagrams**: also rendered as PNG at 200 dpi (`model/diagrams/ontouml/*.png`); the overview and the artwork, evidence and derivation packages are laid out left to right so they fit a page; relations between packages are drawn lighter than those inside a package.
+- **Annotator**: abstract classes and agents are not offered for direct creation; module colours for the new packages; dates typed automatically (`gYear`, `gYearMonth`, `date`, `dateTime`); local texts attach to expressions; the in-browser validation knows the new anchors, creations and dates; 0.2 files and drafts are converted on load.
+- **Documentation**: README/LEIA-ME, OntoUML page, foundations and mappings (alignment table), requirements, traceability, competency questions, case studies, SABiOx plan and compilation (cycle 3), annotator manual and guide.
 
 ## [0.2.1-beta] - 2026-11-06
 

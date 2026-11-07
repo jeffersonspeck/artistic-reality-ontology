@@ -9,21 +9,21 @@
 
 # Source song, its recording and a riff selection located by a W3C Web Annotation selector
 ex:songA a aro:Artwork ; aro:textValue "Fictional Song A"@en, "Canção Fictícia A"@pt-BR .
-ex:songA-rec a aro:Manifestation ; aro:realizesArtwork ex:songA .
+ex:songA-rec a aro:Expression ; aro:realizesArtwork ex:songA .
 ex:songA-riff a aro:Selection ; aro:selectsFrom ex:songA-rec ; aro:hasSelector ex:songA-riff-sel .
 ex:songA-riff-sel a oa:FragmentSelector ; oa:value "t=12,16" ;
   <http://purl.org/dc/terms/conformsTo> <http://www.w3.org/TR/media-frags/> .
 
-# 1. Cover: a new manifestation of the same artwork, by artists in their own right
-ex:songA-cover a aro:Manifestation ; aro:realizesArtwork ex:songA .
+# 1. Cover: a new expression of the same artwork, by artists in their own right
+ex:songA-cover a aro:Expression ; aro:realizesArtwork ex:songA .
 # Agents are individuals of external vocabularies; ARO represents only their contribution
 # (an RDFS reasoner classifies them as aro:CreativeAgent from the range of aro:contributionBy)
 ex:bandX a schema:MusicGroup ; schema:name "Fictional Band X" .
 ex:arrangerY a foaf:Person .
 ex:coverAct a aro:CreativeAct ; aro:producesCreation ex:songA-cover ;
   aro:hasContribution ex:coverPerf, ex:coverArr .
-ex:coverPerf a aro:CreativeContribution ; aro:contributionBy ex:bandX ; aro:contributionRole aro:PerformerRole .
-ex:coverArr a aro:CreativeContribution ; aro:contributionBy ex:arrangerY ; aro:contributionRole aro:ArrangerRole .
+ex:coverPerf a aro:CreativeContribution ; aro:contributionTo ex:songA-cover ; aro:contributionBy ex:bandX ; aro:contributionRole aro:PerformerRole .
+ex:coverArr a aro:CreativeContribution ; aro:contributionTo ex:songA-cover ; aro:contributionBy ex:arrangerY ; aro:contributionRole aro:ArrangerRole .
 ex:deriv-cover a aro:DerivationClaim ;
   aro:hasSourceAnchor ex:songA-rec ; aro:hasDerivedAnchor ex:songA-cover ;
   aro:hasDerivationType aro:CoverVersion, aro:Arrangement ; aro:hasRegime aro:ReverentialRegime ;
@@ -35,18 +35,18 @@ ex:cover-vocal a aro:TransformationAspect ; aro:hasDimension aro:VocalDeliveryDi
 
 # 2. Sampling: a new artwork reusing a selection of the source recording (selection level), explained by an interview
 ex:trackC a aro:Artwork .
-ex:trackC-rec a aro:Manifestation ; aro:realizesArtwork ex:trackC .
+ex:trackC-rec a aro:Expression ; aro:realizesArtwork ex:trackC .
 ex:trackC-loop a aro:Selection ; aro:selectsFrom ex:trackC-rec ; aro:hasSelector ex:trackC-loop-sel .
 ex:trackC-loop-sel a oa:FragmentSelector ; oa:value "t=0,4" .
 ex:deriv-sample a aro:DerivationClaim ;
   aro:hasSourceAnchor ex:songA-riff ; aro:hasDerivedAnchor ex:trackC-loop ;
   aro:hasDerivationType aro:Sampling ;
   aro:derivationExtent "4-second loop"@en, "loop de 4 segundos"@pt-BR ;
-  aro:derivationJustifiedBy ex:sample-why ;
-  aro:derivationReferencesSource ex:interview ;
-  aro:claimProducedByAct ex:act ;
+  aro:hasJustification ex:sample-why ;
+  aro:citesSource ex:interview ;
+  aro:producedByAct ex:act ;
   aro:hasTransformation ex:sample-sound .
-ex:sample-why a aro:InterpretiveJustification ;
+ex:sample-why a aro:Justification ;
   aro:textValue "The producer states in an interview that the loop was cut from Song A; spectral comparison of both selections agrees."@en,
     "O produtor afirma em entrevista que o loop foi recortado da Canção A; a comparação espectral dos dois recortes concorda."@pt-BR,
     "El productor afirma en una entrevista que el loop se cortó de la Canción A; la comparación espectral de ambos recortes coincide."@es .
@@ -54,7 +54,7 @@ ex:sample-sound a aro:TransformationAspect ; aro:hasDimension aro:RecordedSoundD
   aro:aspectSourceSelection ex:songA-riff ; aro:aspectDerivedSelection ex:trackC-loop .
 ex:interview a aro:ReferenceSource ; aro:textValue "Fictional producer interview (synthetic)"@en ; aro:languageTag "pt-BR" .
 ex:interviewExcerpt a aro:EvidenceItem ; aro:derivedFromSource ex:interview .
-ex:sampleAssessment a aro:EvidenceAssessment ; aro:assessesDerivation ex:deriv-sample ; aro:assessesEvidence ex:interviewExcerpt .
+ex:sampleAssessment a aro:EvidenceAssessment ; aro:assessesClaim ex:deriv-sample ; aro:assessesEvidence ex:interviewExcerpt .
 
 # 3. Intermedial adaptation (artwork level) that retains a situation pattern from synthetic-data.ttl
 ex:novel a aro:Artwork .

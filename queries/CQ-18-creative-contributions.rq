@@ -2,10 +2,11 @@
 # Agents are IRIs from external vocabularies (schema.org, FOAF, Wikidata...); ARO only
 # records their contribution through the CreativeContribution relator (ADR-019).
 PREFIX aro: <https://w3id.org/aro/ontology#>
-SELECT ?claim ?creation ?agent ?role WHERE {
+SELECT ?claim ?creation ?agent ?role ?contributedTo WHERE {
   ?claim aro:derivationRealizedBy ?act .
-  ?act aro:producesCreation ?creation ;     # the derived artwork or manifestation
+  ?act aro:producesCreation ?creation ;     # the derived artwork, expression or manifestation
        aro:hasContribution ?c .
-  ?c aro:contributionBy ?agent ;
+  ?c aro:contributionBy ?agent ;           # the relator mediates the agent...
+     aro:contributionTo ?contributedTo ;    # ...and the artistic entity it contributed to
      aro:contributionRole ?role .           # a concept from CreativeRoleScheme
 }

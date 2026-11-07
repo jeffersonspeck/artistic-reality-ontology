@@ -2,9 +2,21 @@
 @prefix aro: <https://w3id.org/aro/ontology#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <https://schema.org/> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+aro:EmpiricalClaim a owl:Class ;
+    rdfs:label "empirical claim"@en,
+        "afirmação empírica"@pt-BR ;
+    rdfs:comment "OntoUML stereotype (provisional): subkind; foundation: UFO-C information object; subkind of Claim (assessable, justifiable, citable, challengeable); dependency: claim content and intended empirical reference"@en,
+        "Estereótipo OntoUML (provisório): subkind; fundamentação: objeto informacional UFO-C; subkind de Claim (avaliável, justificável, citável, contestável); dependência: conteúdo da afirmação e referência empírica pretendida"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/evidence> ;
+    rdfs:subClassOf aro:Claim ;
+    skos:definition "Recorded testable claim about the empirical world."@en,
+        "Afirmação registrada e verificável acerca do mundo empírico."@pt-BR .
 
 aro:assertsCase a owl:ObjectProperty ;
     rdfs:label "correspondence references case"@en,
@@ -23,24 +35,6 @@ aro:assertsPattern a owl:ObjectProperty ;
     rdfs:range aro:SituationPattern ;
     skos:definition "Links a correspondence claim to the situation pattern it compares with a real case: the side of art in the claim that art and reality correspond."@en,
         "Liga uma alegação de correspondência ao padrão situacional que ela compara com um caso real: o lado da arte na alegação de que arte e realidade se correspondem."@pt-BR .
-
-aro:assessesCorrespondence a owl:ObjectProperty ;
-    rdfs:label "assessment evaluates correspondence"@en,
-        "avaliação examina correspondência"@pt-BR ;
-    rdfs:domain aro:EvidenceAssessment ;
-    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/evidence> ;
-    rdfs:range aro:CorrespondenceClaim ;
-    skos:definition "Links an evidence assessment to the correspondence claim (pattern ↔ case) whose support it evaluates."@en,
-        "Liga uma avaliação de evidência à alegação de correspondência (padrão ↔ caso) cujo apoio ela avalia."@pt-BR .
-
-aro:assessesDerivation a owl:ObjectProperty ;
-    rdfs:label "assessment evaluates derivation claim"@en,
-        "avaliação examina alegação de derivação"@pt-BR ;
-    rdfs:domain aro:EvidenceAssessment ;
-    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/evidence> ;
-    rdfs:range aro:DerivationClaim ;
-    skos:definition "Links an evidence assessment to the derivation claim whose support it evaluates."@en,
-        "Liga uma avaliação de evidência à alegação de derivação cujo apoio ela avalia."@pt-BR .
 
 aro:assessesEvidence a owl:ObjectProperty ;
     rdfs:label "assessment considers evidence"@en,
@@ -69,15 +63,6 @@ aro:caseAboutSituation a owl:ObjectProperty ;
     skos:definition "Links an empirical case (a documented dossier) to the real-world situations it documents."@en,
         "Liga um caso empírico (dossiê documentado) às situações do mundo real que ele documenta."@pt-BR .
 
-aro:caseHasReference a owl:ObjectProperty ;
-    rdfs:label "case cites sources"@en,
-        "caso cita fontes"@pt-BR ;
-    rdfs:domain aro:EmpiricalCase ;
-    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/evidence> ;
-    rdfs:range aro:ReferenceSource ;
-    skos:definition "Links an empirical case to the reference sources that document it (news, reports, studies, testimonies)."@en,
-        "Liga um caso empírico às fontes de referência que o documentam (notícias, relatórios, estudos, depoimentos)."@pt-BR .
-
 aro:derivedFromSource a owl:ObjectProperty ;
     rdfs:label "evidence obtained from source"@en,
         "evidência obtida de fonte"@pt-BR ;
@@ -86,6 +71,15 @@ aro:derivedFromSource a owl:ObjectProperty ;
     rdfs:range aro:ReferenceSource ;
     skos:definition "Links an evidence item to the reference source it was extracted from, so that every piece of evidence can be traced back to a citable source."@en,
         "Liga um item de evidência à fonte de referência de onde foi extraído, para que toda evidência possa ser rastreada até uma fonte citável."@pt-BR .
+
+aro:endDate a owl:DatatypeProperty ;
+    rdfs:label "end date"@en,
+        "data de término"@pt-BR ;
+    rdfs:comment "When an act, event or situation ended. Year, year-month, date or date-time."@en,
+        "Quando um ato, evento ou situação terminou. Ano, ano-mês, data ou data-hora."@pt-BR ;
+    rdfs:domain [ a owl:Class ;
+            owl:unionOf ( aro:InterpretiveAct aro:CreativeAct aro:EmpiricalEvent aro:EmpiricalSituation ) ] ;
+    rdfs:range rdfs:Literal .
 
 aro:explainsPattern a owl:ObjectProperty ;
     rdfs:label "explanation addresses pattern"@en,
@@ -96,15 +90,6 @@ aro:explainsPattern a owl:ObjectProperty ;
     skos:definition "Links an explanation hypothesis to the situation pattern it proposes to explain (mechanisms or factors behind the recurring configuration)."@en,
         "Liga uma hipótese explicativa ao padrão situacional que ela se propõe explicar (mecanismos ou fatores por trás da configuração recorrente)."@pt-BR .
 
-aro:referencesSource a owl:ObjectProperty ;
-    rdfs:label "correspondence directly cites source"@en,
-        "correspondência cita fonte"@pt-BR ;
-    rdfs:domain aro:CorrespondenceClaim ;
-    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/evidence> ;
-    rdfs:range aro:ReferenceSource ;
-    skos:definition "Links a correspondence claim directly to a reference source it relies on."@en,
-        "Liga uma alegação de correspondência diretamente a uma fonte de referência em que se apoia."@pt-BR .
-
 aro:sourceURL a owl:DatatypeProperty ;
     rdfs:label "source URL"@en,
         "URL da fonte"@pt-BR ;
@@ -113,23 +98,75 @@ aro:sourceURL a owl:DatatypeProperty ;
     rdfs:domain aro:ReferenceSource ;
     rdfs:range xsd:anyURI .
 
-aro:supportsClaim a owl:ObjectProperty ;
-    rdfs:label "assessment evaluates claim"@en,
-        "avaliação examina afirmação"@pt-BR ;
-    rdfs:domain aro:EvidenceAssessment ;
-    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/evidence> ;
-    rdfs:range aro:EmpiricalClaim ;
-    skos:definition "Links an evidence assessment to the empirical claim whose support it evaluates."@en,
-        "Liga uma avaliação de evidência à afirmação empírica cujo apoio ela avalia."@pt-BR .
+aro:startDate a owl:DatatypeProperty ;
+    rdfs:label "start date"@en,
+        "data de início"@pt-BR ;
+    rdfs:comment "When an act, event or situation began (or happened, if it has no duration). Year, year-month, date or date-time."@en,
+        "Quando um ato, evento ou situação começou (ou aconteceu, se não tem duração). Ano, ano-mês, data ou data-hora."@pt-BR ;
+    rdfs:domain [ a owl:Class ;
+            owl:unionOf ( aro:InterpretiveAct aro:CreativeAct aro:EmpiricalEvent aro:EmpiricalSituation ) ] ;
+    rdfs:range rdfs:Literal .
 
-aro:EmpiricalClaim a owl:Class ;
-    rdfs:label "empirical claim"@en,
-        "afirmação empírica"@pt-BR ;
-    rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-C information object; dependency: claim content and intended empirical reference"@en,
-        "Estereótipo OntoUML (provisório): kind; fundamentação: objeto informacional UFO-C; dependência: conteúdo da afirmação e referência empírica pretendida"@pt-BR ;
+aro:EvidenceAssessment a owl:Class ;
+    rdfs:label "evidence assessment"@en,
+        "avaliação de evidência"@pt-BR ;
+    rdfs:comment "OntoUML stereotype (provisional): subkind; foundation: UFO-C information object; subkind of Assessment; dependency: the assessed claim and the evidence weighed"@en,
+        "Estereótipo OntoUML (provisório): subkind; fundamentação: objeto informacional UFO-C; subkind de Assessment; dependência: a alegação avaliada e a evidência ponderada"@pt-BR ;
     rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/evidence> ;
-    skos:definition "Recorded testable claim about the empirical world."@en,
-        "Afirmação registrada e verificável acerca do mundo empírico."@pt-BR .
+    rdfs:subClassOf aro:Assessment ;
+    skos:definition "Assessment of whether evidence items support, challenge or are irrelevant to a claim."@en,
+        "Avaliação de se itens de evidência apoiam, contestam ou são irrelevantes para uma alegação."@pt-BR .
+
+aro:ExplanationHypothesis a owl:Class ;
+    rdfs:label "explanation hypothesis"@en,
+        "hipótese explicativa"@pt-BR ;
+    rdfs:comment "OntoUML stereotype (provisional): subkind; foundation: UFO-C information object; subkind of Claim (assessable, justifiable, citable, challengeable); dependency: explicit explanandum and explanatory content"@en,
+        "Estereótipo OntoUML (provisório): subkind; fundamentação: objeto informacional UFO-C; subkind de Claim (avaliável, justificável, citável, contestável); dependência: explanandum explícito e conteúdo explicativo"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/evidence> ;
+    rdfs:subClassOf aro:Claim ;
+    skos:definition "Proposed mechanism or factors explaining a represented or observed phenomenon."@en,
+        "Mecanismo ou fatores propostos para explicar fenômeno representado ou observado."@pt-BR .
+
+aro:CorrespondenceClaim a owl:Class ;
+    rdfs:label "correspondence claim"@en,
+        "alegação de correspondência"@pt-BR ;
+    rdfs:comment "OntoUML stereotype (provisional): subkind; foundation: UFO-C information object; subkind of Claim; not a UFO relator; dependency: compared pattern/case and dimensions"@en,
+        "Estereótipo OntoUML (provisório): subkind; fundamentação: objeto informacional UFO-C; subkind de Claim; não é relator UFO; dependência: padrão/caso comparados e dimensões"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/evidence> ;
+    rdfs:subClassOf aro:Claim ;
+    skos:definition "Contestable assertion of similarity, instantiation or explanatory relevance between pattern and empirical case."@en,
+        "Alegação contestável de similaridade, instanciação ou relevância explicativa entre padrão e caso empírico."@pt-BR .
+
+aro:EvidenceItem a owl:Class ;
+    rdfs:label "evidence item"@en,
+        "item de evidência"@pt-BR ;
+    rdfs:comment "OntoUML stereotype (provisional): subkind; foundation: UFO-C information object; subkind of AnalyticalRecord, whose identity it inherits; dependency: reference source and observation content"@en,
+        "Estereótipo OntoUML (provisório): subkind; fundamentação: objeto informacional UFO-C; subkind de AnalyticalRecord, cuja identidade herda; dependência: fonte de referência e conteúdo observado"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/evidence> ;
+    rdfs:subClassOf aro:AnalyticalRecord ;
+    skos:definition "Extracted contextual assertion or observation from a reference source."@en,
+        "Afirmação ou observação contextualizada extraída de uma fonte."@pt-BR .
+
+aro:ReferenceSource a owl:Class ;
+    rdfs:label "reference source"@en,
+        "fonte de referência"@pt-BR ;
+    rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-C information object; dependency: source provenance; not tied to one interpretation"@en,
+        "Estereótipo OntoUML (provisório): kind; fundamentação: objeto informacional UFO-C; dependência: proveniência da fonte; não vinculada a uma interpretação"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/evidence> ;
+    rdfs:seeAlso dcterms:BibliographicResource,
+        schema:CreativeWork ;
+    skos:definition "Citable external resource: news, study, report, legal document, testimony, dataset, etc."@en,
+        "Recurso externo citável: notícia, estudo, relatório, documento legal, relato, conjunto de dados etc."@pt-BR .
+
+aro:EmpiricalCase a owl:Class ;
+    rdfs:label "empirical case"@en,
+        "caso empírico"@pt-BR ;
+    rdfs:comment "OntoUML stereotype (provisional): subkind; foundation: UFO-C information object; subkind of AnalyticalRecord, whose identity it inherits; dependency: case description and empirical referent"@en,
+        "Estereótipo OntoUML (provisório): subkind; fundamentação: objeto informacional UFO-C; subkind de AnalyticalRecord, cuja identidade herda; dependência: descrição do caso e referente empírico"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/evidence> ;
+    rdfs:subClassOf aro:AnalyticalRecord ;
+    skos:definition "Documented dossier about one real-world situation or occurrence."@en,
+        "Dossiê documentado sobre uma situação ou ocorrência real."@pt-BR .
 
 aro:EmpiricalEvent a owl:Class ;
     rdfs:label "empirical event"@en,
@@ -149,65 +186,11 @@ aro:EmpiricalSituation a owl:Class ;
     skos:definition "Configuration of entities and conditions in the real world."@en,
         "Configuração de entidades e condições no mundo real."@pt-BR .
 
-aro:ExplanationHypothesis a owl:Class ;
-    rdfs:label "explanation hypothesis"@en,
-        "hipótese explicativa"@pt-BR ;
-    rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-C information object; dependency: explicit explanandum and explanatory content"@en,
-        "Estereótipo OntoUML (provisório): kind; fundamentação: objeto informacional UFO-C; dependência: explanandum explícito e conteúdo explicativo"@pt-BR ;
-    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/evidence> ;
-    skos:definition "Proposed mechanism or factors explaining a represented or observed phenomenon."@en,
-        "Mecanismo ou fatores propostos para explicar fenômeno representado ou observado."@pt-BR .
-
-aro:EvidenceItem a owl:Class ;
-    rdfs:label "evidence item"@en,
-        "item de evidência"@pt-BR ;
-    rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-C information object; dependency: reference source and observation content"@en,
-        "Estereótipo OntoUML (provisório): kind; fundamentação: objeto informacional UFO-C; dependência: fonte de referência e conteúdo observado"@pt-BR ;
-    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/evidence> ;
-    skos:definition "Extracted contextual assertion or observation from a reference source."@en,
-        "Afirmação ou observação contextualizada extraída de uma fonte."@pt-BR .
-
-aro:CorrespondenceClaim a owl:Class ;
-    rdfs:label "correspondence claim"@en,
-        "alegação de correspondência"@pt-BR ;
-    rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-C information object; not UFO relator; dependency: compared pattern/case and dimensions"@en,
-        "Estereótipo OntoUML (provisório): kind; fundamentação: objeto informacional UFO-C; não é relator UFO; dependência: padrão/caso comparados e dimensões"@pt-BR ;
-    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/evidence> ;
-    skos:definition "Contestable assertion of similarity, instantiation or explanatory relevance between pattern and empirical case."@en,
-        "Alegação contestável de similaridade, instanciação ou relevância explicativa entre padrão e caso empírico."@pt-BR .
-
-aro:EmpiricalCase a owl:Class ;
-    rdfs:label "empirical case"@en,
-        "caso empírico"@pt-BR ;
-    rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-C information object; dependency: case description and empirical referent"@en,
-        "Estereótipo OntoUML (provisório): kind; fundamentação: objeto informacional UFO-C; dependência: descrição do caso e referente empírico"@pt-BR ;
-    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/evidence> ;
-    skos:definition "Documented dossier about one real-world situation or occurrence."@en,
-        "Dossiê documentado sobre uma situação ou ocorrência real."@pt-BR .
-
-aro:EvidenceAssessment a owl:Class ;
-    rdfs:label "evidence assessment"@en,
-        "avaliação de evidência"@pt-BR ;
-    rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-C information object; dependency: claim and evidence and criteria"@en,
-        "Estereótipo OntoUML (provisório): kind; fundamentação: objeto informacional UFO-C; dependência: afirmação, evidência e critérios"@pt-BR ;
-    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/evidence> ;
-    skos:definition "Judgment whether evidence supports, challenges or is irrelevant to a specified claim."@en,
-        "Julgamento de apoio, contestação ou irrelevância de evidência para afirmação específica."@pt-BR .
-
-aro:ReferenceSource a owl:Class ;
-    rdfs:label "reference source"@en,
-        "fonte de referência"@pt-BR ;
-    rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-C information object; dependency: source provenance; not tied to one interpretation"@en,
-        "Estereótipo OntoUML (provisório): kind; fundamentação: objeto informacional UFO-C; dependência: proveniência da fonte; não vinculada a uma interpretação"@pt-BR ;
-    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/evidence> ;
-    skos:definition "Citable external resource: news, study, report, legal document, testimony, dataset, etc."@en,
-        "Recurso externo citável: notícia, estudo, relatório, documento legal, relato, conjunto de dados etc."@pt-BR .
-
 <https://w3id.org/aro/ontology/module/evidence> a owl:Ontology ;
     dcterms:description "The empirical world and its grounds: real cases, situations and events, reference sources, evidence items, correspondence claims between art and reality, and their assessment."@en,
         "O mundo empírico e seus fundamentos: casos, situações e eventos reais, fontes de referência, itens de evidência, alegações de correspondência entre arte e realidade e sua avaliação."@pt-BR ;
     dcterms:isPartOf <https://w3id.org/aro/ontology> ;
     dcterms:title "ARO module: Evidence and empirical world"@en,
         "Módulo ARO: Evidência e mundo empírico"@pt-BR ;
-    owl:versionInfo "0.2.1-beta" .
+    owl:versionInfo "0.3.0-beta" .
 

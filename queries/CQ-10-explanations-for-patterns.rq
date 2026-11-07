@@ -1,0 +1,14 @@
+# CQ-10: What explanations are hypothesized for a pattern?
+# Explanation hypotheses are claims (ADR-026), not established causes; the outcome of their
+# assessments, when there is one, shows how they were judged.
+# Language: texts in ?lang, or in the language they have when ?lang is missing.
+PREFIX aro: <https://w3id.org/aro/ontology#>
+SELECT ?pattern ?hypothesis ?outcome WHERE {
+  VALUES ?lang { "en" }
+  ?h aro:explainsPattern ?p ;
+     aro:textValue ?hypothesis .
+  ?p aro:textValue ?pattern .
+  OPTIONAL { ?a aro:assessesClaim ?h ; aro:assessmentOutcome ?outcome }
+  FILTER(langMatches(lang(?hypothesis), ?lang) || NOT EXISTS { ?h aro:textValue ?l1 FILTER(langMatches(lang(?l1), ?lang)) })
+  FILTER(langMatches(lang(?pattern), ?lang) || NOT EXISTS { ?p aro:textValue ?l2 FILTER(langMatches(lang(?l2), ?lang)) })
+}

@@ -18,81 +18,81 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 ex:assess-carandiru a aro:EvidenceAssessment ;
-    aro:assessesCorrespondence ex:corr-carandiru ;
+    aro:assessesClaim ex:corr-carandiru ;
     aro:assessesEvidence ex:ev-carandiru ;
     aro:textValue "Limited historical correspondence with state lethality: Carandiru occurred inside a prison in 1992, whereas the song depicts a raid at a peripheral home. The song is not claimed to document the massacre or any individual case."@en,
         "Correspondência histórica restrita ao fenômeno de letalidade estatal: o Carandiru ocorreu dentro de estabelecimento prisional em 1992, enquanto a invasão na canção se passa numa moradia da periferia. Não se afirma que a canção documenta o massacre ou um caso individual."@pt-BR .
 
 ex:assess-cnj-pena-justa a aro:EvidenceAssessment ;
-    aro:assessesCorrespondence ex:corr-cnj-pena-justa ;
+    aro:assessesClaim ex:corr-cnj-pena-justa ;
     aro:assessesEvidence ex:ev-cnj-pena-justa ;
     aro:textValue "It is evidence of institutional recognition and policy design, NOT a rate of employer refusal or proof of policy effectiveness."@en,
         "É evidência de reconhecimento institucional e resposta de política pública; NÃO é estatística de rejeição por empregadores nem demonstra efetividade do plano."@pt-BR .
 
 ex:assess-fbsp-2025 a aro:EvidenceAssessment ;
-    aro:assessesCorrespondence ex:corr-fbsp-2025 ;
+    aro:assessesClaim ex:corr-fbsp-2025 ;
     aro:assessesEvidence ex:ev-fbsp-2025 ;
     aro:textValue "Supports the current existence of lethal police intervention, but NOT that police killed the fictional protagonist or that any measured case is the song’s event."@en,
         "Apoia a existência contemporânea do fenômeno de letalidade policial, mas NÃO demonstra que a morte do personagem foi causada pela polícia, nem identidade entre ficção e casos."@pt-BR .
 
 ex:assess-fbsp-race-2025 a aro:EvidenceAssessment ;
-    aro:assessesCorrespondence ex:corr-fbsp-race-2025 ;
+    aro:assessesClaim ex:corr-fbsp-race-2025 ;
     aro:assessesEvidence ex:ev-fbsp-race-2025 ;
     aro:textValue "Supports the empirical relevance of racial inequality; does NOT establish the fictional character’s self-identification or who killed him."@en,
         "Apoia a relevância empírica das desigualdades raciais; NÃO permite inferir raça autodeclarada do personagem, nem identificar o autor de sua morte."@pt-BR .
 
 ex:assess-fbsp-women-2025 a aro:EvidenceAssessment ;
-    aro:assessesCorrespondence ex:corr-fbsp-women-2025 ;
+    aro:assessesClaim ex:corr-fbsp-women-2025 ;
     aro:assessesEvidence ex:ev-fbsp-women-2025 ;
     aro:textValue "Indirect thematic support for continuing lethal violence against women; it does not classify the fictional death as femicide or prove sexual violence and forensic delay."@en,
         "Apoio temático indireto para persistência de violência letal contra mulheres; não caracteriza como feminicídio a morte da mulher da canção, nem comprova estupro ou atraso do IML."@pt-BR .
 
 ex:assess-hne-police a aro:EvidenceAssessment ;
-    aro:assessesCorrespondence ex:corr-hne-police ;
+    aro:assessesClaim ex:corr-hne-police ;
     aro:assessesEvidence ex:ev-fbsp ;
     aro:textValue "Supports that the represented situation is possible and recurrent; does not show that the song narrates a specific real event, nor any cause."@en,
         "Apoia que a situação representada é possível e recorrente; não mostra que a canção narra um evento real específico, nem causa alguma."@pt-BR .
 
 ex:assess-ibge-food-2024 a aro:EvidenceAssessment ;
-    aro:assessesCorrespondence ex:corr-ibge-food-2024 ;
+    aro:assessesClaim ex:corr-ibge-food-2024 ;
     aro:assessesEvidence ex:ev-ibge-food-2024 ;
     aro:textValue "Supports contemporary food insecurity, but household prevalence does not count children scavenging near markets or establish why any child attends school."@en,
         "Apoia a persistência contemporânea do problema alimentar; o percentual de domicílios não mede diretamente crianças em feiras nem a razão de comparecimento à escola."@pt-BR .
 
 ex:assess-reintegration a aro:EvidenceAssessment ;
-    aro:assessesCorrespondence ex:corr-reintegration ;
+    aro:assessesClaim ex:corr-reintegration ;
     aro:assessesEvidence ex:ev-ipea ;
     aro:textValue "Partial support: documents recidivism and the profile of former prisoners, but does not by itself measure job refusal due to a criminal record."@en,
         "Apoio parcial: documenta a reincidência e o perfil dos egressos, mas não mede por si a recusa de emprego por antecedentes."@pt-BR .
 
 ex:assess-sanitation a aro:EvidenceAssessment ;
-    aro:assessesCorrespondence ex:corr-sanitation ;
+    aro:assessesClaim ex:corr-sanitation ;
     aro:assessesEvidence ex:ev-sanitation ;
     aro:textValue "Supports the pattern at national scale, decades after the song; does not describe the specific neighbourhood."@en,
         "Apoia o padrão em escala nacional, décadas depois da canção; não descreve o bairro específico."@pt-BR .
 
 ex:assess-sinase-2025 a aro:EvidenceAssessment ;
-    aro:assessesCorrespondence ex:corr-sinase-2025 ;
+    aro:assessesClaim ex:corr-sinase-2025 ;
     aro:assessesEvidence ex:ev-sinase-2025 ;
     aro:textValue "Supports the continued existence of youth institutions, but FEBEM and SINASE differ historically and legally; it does not document the protagonist’s childhood."@en,
         "Apoia a persistência de sistemas institucionalizados para adolescentes, mas FEBEM e SINASE são arranjos históricos e normativos distintos; não prova abuso na infância do protagonista."@pt-BR .
 
 ex:assess-sinase-market-2024 a aro:EvidenceAssessment ;
-    aro:assessesCorrespondence ex:corr-sinase-market-2024 ;
+    aro:assessesClaim ex:corr-sinase-market-2024 ;
     aro:assessesEvidence ex:ev-sinase-market-2024 ;
     aro:textValue "Supports the contemporary relevance of youth involvement in illegal markets; it does NOT prove the song’s proposed economic hierarchy or equate surveyed youths with the adult character."@en,
         "Apoia que o tema de participação juvenil em mercados ilegais continua relevante; NÃO demonstra a cadeia econômica específica descrita na música, nem que adolescentes sejam equivalentes ao jovem adulto da história."@pt-BR .
 
 ex:assess-sinisa-2024 a aro:EvidenceAssessment ;
-    aro:assessesCorrespondence ex:corr-sinisa-2024 ;
+    aro:assessesClaim ex:corr-sinisa-2024 ;
     aro:assessesEvidence ex:ev-sinisa-2024 ;
     aro:textValue "Illustrates currently measurable sanitation inequality, not data about the fictional shack, a landslide or its five-day water outage."@en,
         "Exemplifica a mensurabilidade atual de desigualdades de saneamento. Não fornece, por si, dados do barraco ficcional, desabamento ou interrupção particular de cinco dias."@pt-BR .
 
 ex:deriv-hne-sample a aro:DerivationClaim ;
-    aro:derivationJustifiedBy ex:deriv-hne-why ;
+    aro:hasJustification ex:deriv-hne-why ;
     aro:derivationRealizedBy ex:homem-na-estrada-creation ;
-    aro:derivationReferencesSource ex:src-praxis-2024,
+    aro:citesSource ex:src-praxis-2024,
         ex:src-raio-x-wiki ;
     aro:hasDerivationType aro:Sampling ;
     aro:hasDerivedAnchor ex:homem-na-estrada-1993 ;
@@ -100,23 +100,23 @@ ex:deriv-hne-sample a aro:DerivationClaim ;
     aro:hasTransformation ex:deriv-hne-sound,
         ex:deriv-hne-voice .
 
-ex:hne-assess-r15 a aro:InterpretationAssessment ;
-    aro:assessesInterpretation ex:hne-r15 ;
+ex:hne-assess-r15 a aro:CriteriaAssessment ;
+    aro:assessesClaim ex:hne-r15 ;
     aro:textValue "A plausible critical reading of the sequence, insufficient to establish factual authorship of the death."@en,
         "Leitura crítica plausível da sequência, porém insuficiente para comprovar a autoria factual da morte."@pt-BR ;
     aro:usesCriterion ex:hne-criterion-separate-voices .
 
-ex:hne-challenge08 a aro:InterpretationChallenge ;
+ex:hne-challenge08 a aro:Challenge ;
     aro:challenges ex:hne-r08 ;
     aro:textValue "The wording does not firmly establish whether the mother survived or the precise means of assault; the reading records violence and lynching but avoids invented details."@en,
         "A redação não permite afirmar com segurança se a mãe sobreviveu nem o meio exato da agressão; o recorte afirma violência e linchamento, mas evita pormenores não demonstrados."@pt-BR .
 
-ex:hne-challenge11 a aro:InterpretationChallenge ;
+ex:hne-challenge11 a aro:Challenge ;
     aro:challenges ex:hne-r11 ;
     aro:textValue "The list is presented as rumor on a bar wall, not as a confirmed police procedure."@en,
         "A lista mencionada na canção é apresentada como boato numa parede de bar; não é legítimo classificá-la como procedimento policial confirmado."@pt-BR .
 
-ex:hne-challenge15 a aro:InterpretationChallenge ;
+ex:hne-challenge15 a aro:Challenge ;
     aro:challenges ex:hne-r15 ;
     aro:textValue "The death after the raid is not followed by forensic attribution; the police-attributed hypothesis remains a competing account, although the siege supports critical suspicion."@en,
         "A morte após a invasão não é acompanhada de atribuição pericial de autoria; a hipótese atribuída à polícia deve permanecer uma versão concorrente, embora o cerco sustente suspeita crítica."@pt-BR .
@@ -493,94 +493,94 @@ ex:c-youth-illicit-market a aro:PatternCondition ;
 
 ex:case-carandiru a aro:EmpiricalCase ;
     aro:caseAboutEvent ex:event-carandiru ;
-    aro:caseHasReference ex:src-carandiru ;
+    aro:citesSource ex:src-carandiru ;
     aro:textValue "Carandiru massacre, São Paulo, 2 October 1992"@en,
         "Massacre do Carandiru, São Paulo, 2 de outubro de 1992"@pt-BR .
 
 ex:case-cnj-pena-justa a aro:EmpiricalCase ;
     aro:caseAboutSituation ex:sit-cnj-pena-justa ;
-    aro:caseHasReference ex:src-pena-justa ;
+    aro:citesSource ex:src-pena-justa ;
     aro:textValue "Current Brazilian public policy on ex-prisoner reintegration: Pena Justa plan, axis 3."@en,
         "Política pública brasileira atual para reinserção de egressos: eixo 3 do plano Pena Justa."@pt-BR .
 
 ex:case-fbsp-2025 a aro:EmpiricalCase ;
     aro:caseAboutSituation ex:sit-fbsp-2025 ;
-    aro:caseHasReference ex:src-fbsp-2026 ;
+    aro:citesSource ex:src-fbsp-2026 ;
     aro:textValue "Police lethality recorded in Brazil in 2025 (national aggregate)."@en,
         "Letalidade policial documentada no Brasil em 2025 (agregado nacional)."@pt-BR .
 
 ex:case-fbsp-race-2025 a aro:EmpiricalCase ;
     aro:caseAboutSituation ex:sit-fbsp-race-2025 ;
-    aro:caseHasReference ex:src-fbsp-2026 ;
+    aro:citesSource ex:src-fbsp-2026 ;
     aro:textValue "Racial inequality among victims of police intervention, Brazilian 2025 data."@en,
         "Desigualdade racial entre vítimas de intervenção policial, dados brasileiros de 2025."@pt-BR .
 
 ex:case-fbsp-women-2025 a aro:EmpiricalCase ;
     aro:caseAboutSituation ex:sit-fbsp-women-2025 ;
-    aro:caseHasReference ex:src-agencia-brasil-2026 ;
+    aro:citesSource ex:src-agencia-brasil-2026 ;
     aro:textValue "Lethal violence against women recorded in Brazil in 2025 (public security aggregate)."@en,
         "Violência letal contra mulheres registrada no Brasil em 2025 (agregado de segurança pública)."@pt-BR .
 
 ex:case-ibge-food-2024 a aro:EmpiricalCase ;
     aro:caseAboutSituation ex:sit-ibge-food-2024 ;
-    aro:caseHasReference ex:src-ebia-2024 ;
+    aro:citesSource ex:src-ebia-2024 ;
     aro:textValue "Food insecurity in 24.2% of Brazilian households in 2024, according to PNAD/EBIA."@en,
         "Insegurança alimentar em 24,2% dos domicílios brasileiros em 2024, segundo PNAD Contínua/EBIA."@pt-BR .
 
 ex:case-police-lethality a aro:EmpiricalCase ;
     aro:caseAboutSituation ex:sit-police-lethality ;
-    aro:caseHasReference ex:src-fbsp-2020 ;
+    aro:citesSource ex:src-fbsp-2020 ;
     aro:textValue "Deaths resulting from police interventions in Brazil (national statistics)"@en,
         "Mortes decorrentes de intervenção policial no Brasil (estatísticas nacionais)"@pt-BR .
 
 ex:case-reintegration a aro:EmpiricalCase ;
     aro:caseAboutSituation ex:sit-reintegration ;
-    aro:caseHasReference ex:src-ipea-2015 ;
+    aro:citesSource ex:src-ipea-2015 ;
     aro:textValue "Criminal recidivism and reintegration of former prisoners in Brazil"@en,
         "Reincidência criminal e reintegração de egressos do sistema prisional no Brasil"@pt-BR .
 
 ex:case-sanitation a aro:EmpiricalCase ;
     aro:caseAboutSituation ex:sit-sanitation ;
-    aro:caseHasReference ex:src-sanitation ;
+    aro:citesSource ex:src-sanitation ;
     aro:textValue "Lack of household sewage collection in Brazil"@en,
         "Falta de coleta de esgoto domiciliar no Brasil"@pt-BR .
 
 ex:case-sinase-2025 a aro:EmpiricalCase ;
     aro:caseAboutSituation ex:sit-sinase-2025 ;
-    aro:caseHasReference ex:src-sinase-2025 ;
+    aro:citesSource ex:src-sinase-2025 ;
     aro:textValue "Official juvenile socioeducational-system survey, SINASE 2025 edition."@en,
         "Levantamento oficial de atendimento socioeducativo, sistema SINASE, edição 2025."@pt-BR .
 
 ex:case-sinase-market-2024 a aro:EmpiricalCase ;
     aro:caseAboutSituation ex:sit-sinase-market-2024 ;
-    aro:caseHasReference ex:src-mjsp-2026 ;
+    aro:citesSource ex:src-mjsp-2026 ;
     aro:textValue "Drug-trafficking-related juvenile offence records in SINASE 2024, publicized by the Justice Ministry in 2026."@en,
         "Atos infracionais ligados ao tráfico no levantamento SINASE 2024, divulgados pelo MJSP em 2026."@pt-BR .
 
 ex:case-sinisa-2024 a aro:EmpiricalCase ;
     aro:caseAboutSituation ex:sit-sinisa-2024 ;
-    aro:caseHasReference ex:src-sinisa-2025 ;
+    aro:citesSource ex:src-sinisa-2025 ;
     aro:textValue "Brazilian water and sewerage service coverage, 2024 reference year (SINISA 2025)."@en,
         "Cobertura de abastecimento de água e esgotamento sanitário no Brasil, ano-base 2024 (SINISA 2025)."@pt-BR .
 
 ex:corr-carandiru a aro:CorrespondenceClaim ;
     aro:assertsCase ex:case-carandiru ;
     aro:assertsPattern ex:pattern-state-violence ;
-    aro:referencesSource ex:src-carandiru ;
+    aro:citesSource ex:src-carandiru ;
     aro:textValue "A documented, large-scale instance of lethal state violence against marginalized men, one year before the song."@en,
         "Instância documentada e de grande escala de violência letal do Estado contra homens marginalizados, um ano antes da canção."@pt-BR .
 
 ex:corr-cnj-pena-justa a aro:CorrespondenceClaim ;
     aro:assertsCase ex:case-cnj-pena-justa ;
     aro:assertsPattern ex:pattern-reintegration ;
-    aro:referencesSource ex:src-pena-justa ;
+    aro:citesSource ex:src-pena-justa ;
     aro:textValue "The narrated reintegration challenge has a counterpart in a current policy agenda, not an identical empirical event."@en,
         "O projeto de reinserção social narrado encontra paralelo em uma agenda institucional vigente, não em um evento empírico idêntico."@pt-BR .
 
 ex:corr-fbsp-2025 a aro:CorrespondenceClaim ;
     aro:assertsCase ex:case-fbsp-2025 ;
     aro:assertsPattern ex:pattern-state-violence ;
-    aro:referencesSource ex:src-cnn-fbsp-2026,
+    aro:citesSource ex:src-cnn-fbsp-2026,
         ex:src-fbsp-2026 ;
     aro:textValue "The police-raid scene corresponds structurally to a nationally recorded 2025 phenomenon, not to the same incident or a causal explanation."@en,
         "A crítica de violência policial na cena de cerco tem correspondência estrutural com um fenômeno nacional registrado em 2025, sem implicar mesma ocorrência ou causalidade."@pt-BR .
@@ -588,63 +588,63 @@ ex:corr-fbsp-2025 a aro:CorrespondenceClaim ;
 ex:corr-fbsp-race-2025 a aro:CorrespondenceClaim ;
     aro:assertsCase ex:case-fbsp-race-2025 ;
     aro:assertsPattern ex:pattern-racialized-vulnerability ;
-    aro:referencesSource ex:src-fbsp-2026 ;
+    aro:citesSource ex:src-fbsp-2026 ;
     aro:textValue "The fictional bulletin’s racial description can be compared to today’s racially disaggregated police lethality analyses without naturalizing dated terminology."@en,
         "O destaque racial do noticiário ficcional pode ser comparado a debates atuais de letalidade com recorte racial, evitando naturalização da terminologia datada."@pt-BR .
 
 ex:corr-fbsp-women-2025 a aro:CorrespondenceClaim ;
     aro:assertsCase ex:case-fbsp-women-2025 ;
     aro:assertsPattern ex:pattern-gender-violence ;
-    aro:referencesSource ex:src-agencia-brasil-2026 ;
+    aro:citesSource ex:src-agencia-brasil-2026 ;
     aro:textValue "The murdered-woman scene has a broad thematic correspondence with lethal violence against women, not an identical legal category or occurrence."@en,
         "A cena da mulher assassinada encontra uma correspondência temática geral com violência letal contra mulheres, sem correspondência de tipificação ou ocorrência."@pt-BR .
 
 ex:corr-hne-police a aro:CorrespondenceClaim ;
     aro:assertsCase ex:case-police-lethality ;
     aro:assertsPattern ex:pattern-state-violence ;
-    aro:referencesSource ex:src-fbsp-2020 ;
+    aro:citesSource ex:src-fbsp-2020 ;
     aro:textValue "The pattern represented in the song is similar to documented, recurrent police lethality in Brazil."@en,
         "O padrão representado na canção é semelhante à letalidade policial documentada e recorrente no Brasil."@pt-BR .
 
 ex:corr-ibge-food-2024 a aro:CorrespondenceClaim ;
     aro:assertsCase ex:case-ibge-food-2024 ;
     aro:assertsPattern ex:pattern-hunger ;
-    aro:referencesSource ex:src-ebia-2024 ;
+    aro:citesSource ex:src-ebia-2024 ;
     aro:textValue "The narrated food hardship resembles a nationally measured contemporary issue, without equivalence of indicators or time periods."@en,
         "A precariedade alimentar narrada é análoga a um problema social quantificado nacionalmente, sem equivalência de indicadores ou períodos."@pt-BR .
 
 ex:corr-reintegration a aro:CorrespondenceClaim ;
     aro:assertsCase ex:case-reintegration ;
     aro:assertsPattern ex:pattern-reintegration ;
-    aro:referencesSource ex:src-ipea-2015 ;
+    aro:citesSource ex:src-ipea-2015 ;
     aro:textValue "The difficulties represented in the song correspond to a documented field of research on reintegration and recidivism."@en,
         "As dificuldades representadas na canção correspondem a um campo documentado de pesquisa sobre reintegração e reincidência."@pt-BR .
 
 ex:corr-sanitation a aro:CorrespondenceClaim ;
     aro:assertsCase ex:case-sanitation ;
     aro:assertsPattern ex:pattern-precarious-housing ;
-    aro:referencesSource ex:src-sanitation ;
+    aro:citesSource ex:src-sanitation ;
     aro:textValue "The precarious housing represented in the song is similar to a widespread, measured lack of sanitation."@en,
         "A moradia precária representada na canção é semelhante a uma falta de saneamento ampla e medida."@pt-BR .
 
 ex:corr-sinase-2025 a aro:CorrespondenceClaim ;
     aro:assertsCase ex:case-sinase-2025 ;
     aro:assertsPattern ex:pattern-youth-detention ;
-    aro:referencesSource ex:src-sinase-2025 ;
+    aro:citesSource ex:src-sinase-2025 ;
     aro:textValue "Historical FEBEM references can be compared with present institutions while respecting legal and institutional changes."@en,
         "A passagem pela FEBEM pode ser contrastada historicamente com instituições atuais, respeitadas as mudanças legais e institucionais."@pt-BR .
 
 ex:corr-sinase-market-2024 a aro:CorrespondenceClaim ;
     aro:assertsCase ex:case-sinase-market-2024 ;
     aro:assertsPattern ex:pattern-youth-illicit-market ;
-    aro:referencesSource ex:src-mjsp-2026 ;
+    aro:citesSource ex:src-mjsp-2026 ;
     aro:textValue "The song’s proposed economic exploitation motivates thematic comparison, while SINASE data concern a distinct population and indicator."@en,
         "A exploração econômica alegada na canção motiva uma comparação temática, mas os dados do SINASE têm população e indicadores distintos."@pt-BR .
 
 ex:corr-sinisa-2024 a aro:CorrespondenceClaim ;
     aro:assertsCase ex:case-sinisa-2024 ;
     aro:assertsPattern ex:pattern-precarious-housing ;
-    aro:referencesSource ex:src-sinisa-2025 ;
+    aro:citesSource ex:src-sinisa-2025 ;
     aro:textValue "Precarious infrastructure maps to a currently monitored empirical domain; coverage and local service outages must be distinguished."@en,
         "O tema de infraestrutura precária aproxima-se de um domínio empírico atualmente monitorado; a comparação exige distinguir cobertura estrutural de interrupções locais."@pt-BR .
 
@@ -656,12 +656,12 @@ ex:deriv-hne-voice a aro:TransformationAspect ;
     aro:hasDimension aro:RecordedSoundDimension ;
     aro:hasOperation aro:Recontextualized .
 
-ex:deriv-hne-why a aro:InterpretiveJustification ;
+ex:deriv-hne-why a aro:Justification ;
     aro:textValue "A 2024 musicological comparison identifies sampled guitar and vocal passages from Ela Partiu. The new recording embeds these sounds in a socially critical rap; the derivation claim concerns recorded material, not identity of artworks or legal permission."@en,
         "A comparação musicológica publicada em 2024 identifica na faixa um sample da guitarra e passagens vocais de Ela Partiu. A nova gravação insere os sons em um rap de denúncia social; a alegação de derivação é sobre o material gravado, e não sobre identidade de obras ou autorização jurídica."@pt-BR .
 
 ex:ela-partiu a aro:Artwork ;
-    aro:hasManifestation ex:ela-partiu-recording ;
+    aro:hasExpression ex:ela-partiu-recording ;
     aro:textValue "Ela Partiu (Tim Maia)"@en,
         "Ela Partiu (Tim Maia)"@pt-BR .
 
@@ -728,7 +728,7 @@ ex:ev-sinisa-2024 a aro:EvidenceItem ;
 
 ex:event-carandiru a aro:EmpiricalEvent .
 
-ex:hne-author a aro:CreativeContribution ;
+ex:hne-author a aro:CreativeContribution ; aro:contributionTo ex:homem-na-estrada, ex:homem-na-estrada-1993 ;
     aro:contributionBy dbr:Mano_Brown ;
     aro:contributionRole aro:AuthorRole,
         aro:LyricistRole .
@@ -813,111 +813,111 @@ ex:hne-iml a aro:DepictedElement ;
     aro:textValue "IML (forensic medical institute)"@en,
         "IML (Instituto Médico Legal)"@pt-BR .
 
-ex:hne-j16 a aro:InterpretiveJustification ;
+ex:hne-j16 a aro:Justification ;
     aro:textValue "Paternity is explicit; connecting material aspiration to parental care is interpretive."@en,
         "A relação paterna é literal; a relação entre desejo de riqueza e cuidado é interpretativa."@pt-BR .
 
-ex:hne-j17 a aro:InterpretiveJustification ;
+ex:hne-j17 a aro:Justification ;
     aro:textValue "Candomblé is an Afro-Brazilian religious tradition, not to be equated with crime, alcohol use or a lack of alternatives."@en,
         "Candomblé é prática religiosa afro-brasileira; não equipará-lo a crime, álcool ou ausência de alternativas sociais."@pt-BR .
 
-ex:hne-j18 a aro:InterpretiveJustification ;
+ex:hne-j18 a aro:Justification ;
     aro:textValue "The passage is represented as a scene in the narrative, without claiming an actual occurrence."@en,
         "A cena é descrita de forma direta na narrativa, sem atribuir veracidade empírica ao acontecimento."@pt-BR .
 
-ex:hne-j19 a aro:InterpretiveJustification ;
+ex:hne-j19 a aro:Justification ;
     aro:textValue "This is narrator-level social criticism, not a factual census of alcohol producers and retailers."@en,
         "É uma crítica social articulada pelo narrador, não levantamento empírico sobre a identidade de produtores ou vendedores."@pt-BR .
 
-ex:hne-j20 a aro:InterpretiveJustification ;
+ex:hne-j20 a aro:Justification ;
     aro:textValue "The one-week interval is part of the plot; participation by wealthy actors is a narrative claim, not independently identified individuals."@en,
         "O intervalo de uma semana pertence ao enredo; a participação de atores ricos é uma alegação narrativa, não identificação verificável de indivíduos."@pt-BR .
 
-ex:hne-j21 a aro:InterpretiveJustification ;
+ex:hne-j21 a aro:Justification ;
     aro:textValue "The fear precedes the ending and can function as foreshadowing, not as a factual prediction."@en,
         "O temor é expresso antes do desfecho, podendo funcionar como antecipação literária, sem configurar previsão factual."@pt-BR .
 
-ex:hne-j22 a aro:InterpretiveJustification ;
+ex:hne-j22 a aro:Justification ;
     aro:textValue "A description of perception and atmosphere; the text provides no individual neighbor testimonies."@en,
         "Uma descrição de percepção e atmosfera; o texto não oferece depoimentos individuais da vizinhança."@pt-BR .
 
-ex:hne-j23 a aro:InterpretiveJustification ;
+ex:hne-j23 a aro:Justification ;
     aro:textValue "The stated intention to shoot does not prove that he actually fired; the shooter and exact gunfire sequence are unestablished."@en,
         "A declaração de intenção de atirar não prova que ele efetivamente disparou antes de morrer; os agentes e a sequência de tiros permanecem não demonstrados."@pt-BR .
 
-ex:hne-j24 a aro:InterpretiveJustification ;
+ex:hne-j24 a aro:Justification ;
     aro:textValue "Contrast the protagonist’s voice and the news framing; neither should be mistaken for a forensic report or real-world evidence."@en,
         "Confrontar a voz do protagonista e a formulação jornalística; nenhuma delas deve ser confundida com laudo pericial ou dado real."@pt-BR .
 
-ex:hne-j25 a aro:InterpretiveJustification ;
+ex:hne-j25 a aro:Justification ;
     aro:textValue "A reading of the refrain’s poetic function, not a discrete event or measurable social fact."@en,
         "Leitura de função poética do refrão, não evento discreto nem fato social mensurável."@pt-BR .
 
-ex:hne-j26 a aro:InterpretiveJustification ;
+ex:hne-j26 a aro:Justification ;
     aro:textValue "The newspaper reference belongs to the narrative; no particular archival story is claimed to have been verified."@en,
         "O nome do jornal integra a narrativa; não se identifica uma matéria jornalística específica comprovável."@pt-BR .
 
-ex:hne-just01 a aro:InterpretiveJustification ;
+ex:hne-just01 a aro:Justification ;
     aro:textValue "The opening does not date or describe a recent release; later verses establish his history as a former prisoner."@en,
         "A saída recente da prisão não é datada nem explicitamente narrada na abertura; a condição de ex-detento é confirmada depois."@pt-BR .
 
-ex:hne-just02 a aro:InterpretiveJustification ;
+ex:hne-just02 a aro:Justification ;
     aro:textValue "Current SINASE institutions must not be projected backwards onto the historical FEBEM."@en,
         "Não se deve projetar a estrutura atual do SINASE retroativamente sobre a FEBEM de 1993."@pt-BR .
 
-ex:hne-just03 a aro:InterpretiveJustification ;
+ex:hne-just03 a aro:Justification ;
     aro:textValue "The song portrays a rain-related threat, not a documented landslide at that location."@en,
         "A letra descreve ameaça relacionada à chuva, mas não documenta um deslizamento real nesse lugar."@pt-BR .
 
-ex:hne-just04 a aro:InterpretiveJustification ;
+ex:hne-just04 a aro:Justification ;
     aro:textValue "This criticizes the perceived gap between enumeration and tangible improvements, not evidence that the statistical agency failed in its mission."@en,
         "A crítica é à distância percebida entre levantamento estatístico e melhoria concreta, e não prova que o IBGE deixou de executar sua missão."@pt-BR .
 
-ex:hne-just05 a aro:InterpretiveJustification ;
+ex:hne-just05 a aro:Justification ;
     aro:textValue "Sexual violence, physical assault and forensic delay are distinct elements; no identity with a contemporary statistical event is asserted."@en,
         "Violência sexual, agressão e demora pericial são elementos distintos; não há identidade factual com estatísticas contemporâneas."@pt-BR .
 
-ex:hne-just06 a aro:InterpretiveJustification ;
+ex:hne-just06 a aro:Justification ;
     aro:textValue "Social mistrust is explicit, but no specific hiring interview or employment rejection is narrated."@en,
         "Há desconfiança social expressa, mas nenhum episódio específico de entrevista ou recusa de contratação é descrito."@pt-BR .
 
-ex:hne-just07 a aro:InterpretiveJustification ;
+ex:hne-just07 a aro:Justification ;
     aro:textValue "This is a fictional local outage, not a measurement of the national utility system."@en,
         "Trata-se de uma falta de água local na ficção, não de uma medição do serviço nacional."@pt-BR .
 
-ex:hne-just08 a aro:InterpretiveJustification ;
+ex:hne-just08 a aro:Justification ;
     aro:textValue "The song does not clearly establish the outcome for the mother; do not invent a death or a formal criminal classification."@en,
         "A letra não explicita com segurança o resultado da violência contra a mãe; não atribuir morte nem tipificação penal sem evidência."@pt-BR .
 
-ex:hne-just09 a aro:InterpretiveJustification ;
+ex:hne-just09 a aro:Justification ;
     aro:textValue "The food deprivation is narrated, while the claim about motivation for school attendance is the narrator’s assessment, not a child survey."@en,
         "A condição alimentar é narrada; a motivação escolar é avaliação do narrador, não pesquisa com as crianças."@pt-BR .
 
-ex:hne-just10 a aro:InterpretiveJustification ;
+ex:hne-just10 a aro:Justification ;
     aro:textValue "This is a narrative episode; the young man and school are not linked to a verified police case."@en,
         "O episódio é narrativo; nem o jovem nem a escola são identificados como ocorrência policial comprovada."@pt-BR .
 
-ex:hne-just11 a aro:InterpretiveJustification ;
+ex:hne-just11 a aro:Justification ;
     aro:textValue "The list is part of a rumor within the story; it is not identified as an official police list."@en,
         "A lista integra o boato do enredo. Não se afirma que ela seja uma lista policial oficial."@pt-BR .
 
-ex:hne-just12 a aro:InterpretiveJustification ;
+ex:hne-just12 a aro:Justification ;
     aro:textValue "The song associates 157 with a past criminal record; no interpretation of the tattoo letters or further offences is invented."@en,
         "A letra associa o número 157 à passagem penal; não se deduz o significado da sigla tatuada nem novos delitos."@pt-BR .
 
-ex:hne-just13 a aro:InterpretiveJustification ;
+ex:hne-just13 a aro:Justification ;
     aro:textValue "This is an intentional state and hypothetical expectation, not a witnessed assault in the passage."@en,
         "É estado intencional e expectativa futura, não uma agressão policial testemunhada nesse recorte."@pt-BR .
 
-ex:hne-just14 a aro:InterpretiveJustification ;
+ex:hne-just14 a aro:Justification ;
     aro:textValue "Police actions and intentions are framed through the protagonist’s focalization. The lyrics are not a forensic record of an actual raid."@en,
         "A ação e a intenção dos policiais são apresentadas pela focalização do protagonista. A letra não é um registro pericial da operação."@pt-BR .
 
-ex:hne-just15 a aro:InterpretiveJustification ;
+ex:hne-just15 a aro:Justification ;
     aro:textValue "The police siege immediately preceding the death suggests possible police involvement, while the coda attributes the death to rival groups. The text provides no forensic identification of the shooter; this is a critical reading of the narrative juxtaposition."@en,
         "O cerco policial imediatamente anterior à morte sugere possível responsabilidade policial, enquanto a coda atribui a morte a quadrilhas. O texto não identifica pericialmente o autor dos disparos; a leitura é uma interpretação crítica da justaposição narrativa."@pt-BR .
 
-ex:hne-just15-alternative a aro:InterpretiveJustification ;
+ex:hne-just15-alternative a aro:Justification ;
     aro:textValue "The bulletin is inferential and does not show who fired the fatal shots. This alternative does not cancel the prior narrative critique of police violence."@en,
         "A expressão do noticiário é indiciária e a narração final não exibe a autoria material dos disparos. Essa alternativa não invalida a crítica de violência policial nos eventos anteriores."@pt-BR .
 
@@ -929,7 +929,7 @@ ex:hne-mboi a aro:DepictedElement ;
     aro:textValue "Estrada do M'Boi Mirim (road in the south of São Paulo)"@en,
         "Estrada do M'Boi Mirim (zona sul de São Paulo)"@pt-BR .
 
-ex:hne-performer a aro:CreativeContribution ;
+ex:hne-performer a aro:CreativeContribution ; aro:contributionTo ex:homem-na-estrada, ex:homem-na-estrada-1993 ;
     aro:contributionBy <http://dbpedia.org/resource/Racionais_MC's> ;
     aro:contributionRole aro:PerformerRole .
 
@@ -1213,7 +1213,7 @@ ex:src-raio-x-wiki a aro:ReferenceSource ;
     aro:sourceURL "https://en.wikipedia.org/wiki/Raio-X_do_Brasil"^^xsd:anyURI ;
     aro:textValue "Raio-X do Brasil (album article; lists the sample of Tim Maia's Ela Partiu)"@en .
 
-ex:ela-partiu-recording a aro:Manifestation ;
+ex:ela-partiu-recording a aro:Expression ;
     aro:realizesArtwork ex:ela-partiu ;
     aro:textValue "Performance recording of Ela Partiu by Tim Maia (the audio source of the sample)."@en,
         "Gravação de Ela Partiu, interpretada por Tim Maia (fonte sonora do sample)."@pt-BR .
@@ -1404,12 +1404,12 @@ ex:hne-e15 a aro:Selection ;
 
 ex:homem-na-estrada a aro:Artwork ;
     aro:externalLink "https://en.wikipedia.org/wiki/Raio-X_do_Brasil"^^xsd:anyURI ;
-    aro:hasManifestation ex:homem-na-estrada-1993,
+    aro:hasExpression ex:homem-na-estrada-1993,
         ex:homem-na-estrada-lyrics ;
     aro:textValue "Homem na Estrada (Man on the Road)"@en,
         "Homem na Estrada"@pt-BR .
 
-ex:homem-na-estrada-1993 a aro:Manifestation ;
+ex:homem-na-estrada-1993 a aro:Expression ;
     aro:realizesArtwork ex:homem-na-estrada ;
     aro:textValue "Recording on the album Raio X do Brasil (1993)"@en,
         "Gravação no álbum Raio X do Brasil (1993)"@pt-BR .
@@ -1538,7 +1538,7 @@ ex:hne-man a aro:DepictedAgent ;
 ex:reading-act a aro:InterpretiveAct ;
     aro:hasParticipant ex:analyst .
 
-ex:homem-na-estrada-lyrics a aro:Manifestation ;
+ex:homem-na-estrada-lyrics a aro:Expression ;
     aro:externalLink "https://www.cifraclub.com.br/racionais-mcs/homem-na-estrada/letra/"^^xsd:anyURI ;
     aro:realizesArtwork ex:homem-na-estrada ;
     aro:textValue "Lyric transcription for checking episodes. The 15 inherited selections retain offsets originally attributed to the 151-line LyricFind transcription; new selections are thematic and have no unverified line offsets. No lyric text is embedded in the graph."@en,

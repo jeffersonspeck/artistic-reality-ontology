@@ -6,9 +6,10 @@
 PREFIX aro: <https://w3id.org/aro/ontology#>
 SELECT ?claim ?justification ?source ?assessment WHERE {
   ?claim a aro:DerivationClaim .
-  OPTIONAL { ?claim aro:derivationJustifiedBy/aro:textValue ?justification }
-  OPTIONAL { ?claim aro:derivationReferencesSource ?source }
-  OPTIONAL { ?assessment aro:assessesDerivation ?claim }
+  # the same three properties explain any claim (aro:Claim, ADR-026)
+  OPTIONAL { ?claim aro:hasJustification/aro:textValue ?justification }
+  OPTIONAL { ?claim aro:citesSource ?source }
+  OPTIONAL { ?assessment aro:assessesClaim ?claim }
   # Keep only claims that have at least one element of explanation
   FILTER(BOUND(?justification) || BOUND(?source) || BOUND(?assessment))
 }

@@ -10,7 +10,7 @@ SELECT ?pattern ?case ?evidence ?sourceURL ?assessment WHERE {
          aro:assertsCase ?c .
   ?p aro:textValue ?pattern .
   ?c aro:textValue ?case .
-  ?a aro:assessesCorrespondence ?claim ;
+  ?a aro:assessesClaim ?claim ;
      aro:assessesEvidence ?ev ;
      aro:textValue ?assessment .
   ?ev aro:textValue ?evidence ;

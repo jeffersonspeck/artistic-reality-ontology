@@ -16,6 +16,33 @@ const PREFIXES = {
 // (selections usually have no name, so their selector expression - e.g. "lines 28-30" - is used)
 const NAME_PROPERTIES = [NS.schema + "name", NS.foaf + "name", NS.rdfs + "label", NS.aro + "textValue", NS.aro + "selectorExpression"];
 
+// ------------------------------------------------------------------ migration from ARO 0.2
+// Same rules as scripts/migrate.py: renames of 0.3 (Claim, IFLA LRM levels) applied to the
+// text before parsing, then each CreativeContribution gets the entities its act produced.
+const RENAMES = [
+  ["hasManifestation", "hasExpression"], ["Manifestation", "Expression"],
+  ["InterpretiveJustification", "Justification"], ["InterpretationChallenge", "Challenge"],
+  ["InterpretationAssessment", "CriteriaAssessment"], ["claimProducedByAct", "producedByAct"],
+  ["derivationJustifiedBy", "hasJustification"], ["derivationReferencesSource", "citesSource"],
+  ["referencesSource", "citesSource"], ["caseHasReference", "citesSource"],
+  ["assessesCorrespondence", "assessesClaim"], ["assessesInterpretation", "assessesClaim"],
+  ["assessesDerivation", "assessesClaim"], ["supportsClaim", "assessesClaim"],
+];
+const NEW_TERMS = ["Expression", "hasExpression", "embodiesExpression", "contributionTo", "assessesClaim", "Claim", "Challenge"];
+const LRM_RENAMES = new Set(["hasManifestation", "Manifestation"]);
+const term = (name) => new RegExp(String.raw`(aro:|<https://w3id\.org/aro/ontology#)` + name + String.raw`(?=[\s;,.>)\]]|$)`, "gm");
+
+/** Rewrite 0.2 terms as 0.3 ones; returns {text, changed}. */
+export function migrateText(text) {
+  const current = NEW_TERMS.some((t) => term(t).test(text));
+  let out = text;
+  for (const [oldName, newName] of RENAMES) {
+    if (current && LRM_RENAMES.has(oldName)) continue;   // already 0.3: these are the LRM terms
+    out = out.replace(term(oldName), (_, prefix) => prefix + newName);
+  }
+  return { text: out, changed: out !== text };
+}
+
 export class Data {
   constructor(base = "https://example.org/my-project/") {
     this.base = base;
@@ -134,8 +161,11 @@ export class Data {
 
   /** Replace the current data with the content of a Turtle file. */
   loadTurtle(text) {
-    const store = parseTurtle(text, this.base);
+    const migrated = migrateText(text);
+    const store = parseTurtle(migrated.text, this.base);
     this.store = store;
+    const completed = this.addContributionTargets();
+    this.migrated = migrated.changed || completed;
     // Reuse the dominant namespace of the loaded subjects as the base for new nodes
     const first = store.getSubjects(namedNode(RDF_TYPE), null, null).find((s) => s.termType === "NamedNode");
     if (first) {
@@ -143,6 +173,22 @@ export class Data {
       this.base = iri.slice(0, Math.max(iri.lastIndexOf("/"), iri.lastIndexOf("#")) + 1) || this.base;
     }
     return store.size;
+  }
+
+  /** Relator's second end (0.3): each contribution is to what its creative act produced. */
+  addContributionTargets() {
+    const A = NS.aro;
+    let added = false;
+    for (const c of this.store.getSubjects(namedNode(RDF_TYPE), namedNode(A + "CreativeContribution"), null)) {
+      if (this.store.countQuads(c, namedNode(A + "contributionTo"), null, null)) continue;
+      for (const act of this.store.getSubjects(namedNode(A + "hasContribution"), c, null)) {
+        for (const t of this.store.getObjects(act, namedNode(A + "producesCreation"), null)) {
+          this.store.addQuad(quad(c, namedNode(A + "contributionTo"), t));
+          added = true;
+        }
+      }
+    }
+    return added;
   }
 
   clear() {

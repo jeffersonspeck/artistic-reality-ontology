@@ -1,0 +1,15 @@
+# CQ-21: When did the creative acts behind a derivation happen, and does the derived entity
+# come after its source? Uses the start dates of creative acts (aro:startDate, ADR-030).
+# Dates may be a year, a year-month, a date or a date-time; the year is compared.
+PREFIX aro: <https://w3id.org/aro/ontology#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+SELECT ?claim ?sourceYear ?derivedYear ?inOrder WHERE {
+  ?claim a aro:DerivationClaim ;
+         aro:hasSourceAnchor ?s ;
+         aro:hasDerivedAnchor ?d .
+  ?sourceAct aro:producesCreation ?s ; aro:startDate ?sd .
+  ?derivedAct aro:producesCreation ?d ; aro:startDate ?dd .
+  BIND(xsd:integer(SUBSTR(STR(?sd), 1, 4)) AS ?sourceYear)
+  BIND(xsd:integer(SUBSTR(STR(?dd), 1, 4)) AS ?derivedYear)
+  BIND(?sourceYear <= ?derivedYear AS ?inOrder)
+}

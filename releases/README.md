@@ -8,7 +8,8 @@
 
 | Version / Versão | Date / Data | Status | Version IRI | Notes / Notas |
 |---|---|---|---|---|
-| [v0.2.1-beta](v0.2.1-beta/) | 2026-11-06 | beta · in development / em desenvolvimento | `https://w3id.org/aro/ontology/0.2.1-beta` | [RELEASE-NOTES](v0.2.1-beta/RELEASE-NOTES.md) |
+| [v0.3.0-beta](v0.3.0-beta/) | 2026-11-06 | beta · in development / em desenvolvimento | `https://w3id.org/aro/ontology/0.3.0-beta` | [RELEASE-NOTES](v0.3.0-beta/RELEASE-NOTES.md) |
+| [v0.2.1-beta](v0.2.1-beta/) | 2026-11-06 | beta · superseded / substituída | `https://w3id.org/aro/ontology/0.2.1-beta` | [RELEASE-NOTES](v0.2.1-beta/RELEASE-NOTES.md) |
 | [v0.2.0-beta](v0.2.0-beta/) | 2026-10-30 | beta · superseded / substituída | `https://w3id.org/aro/ontology/0.2.0-beta` | [RELEASE-NOTES](v0.2.0-beta/RELEASE-NOTES.md) |
 | [v0.1.0](v0.1.0/) | 2026-10-30 | baseline / linha de base | `https://w3id.org/aro/ontology/0.1.0` | [RELEASE-NOTES](v0.1.0/RELEASE-NOTES.md) |
 

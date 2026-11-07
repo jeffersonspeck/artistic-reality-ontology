@@ -32,7 +32,7 @@ As famílias são **organização para navegação**, não classes disjuntas: um
 
 - **Remix** foi dividido segundo Navas (2012): `ExtendedRemix` (versão estendida/reeditada da mesma gravação) em *Re-realização*; `Remix` (seletivo ou reflexivo, recombina elementos num novo todo) em *Incorporação*.
 - **Plágio** virou `UnacknowledgedBorrowing` (empréstimo não declarado): é a relação textual descrita por Genette, sem julgamento jurídico ou moral.
-- **Legalidade fora do escopo** (ADR-014): licitude, autorização e originalidade das derivações não são representadas. Remixadores, artistas de cover, tradutores e adaptadores são criadores por direito próprio; cada derivação é **representada com a explicação dada pelos agentes** (`derivationJustifiedBy` → `InterpretiveJustification`, fontes e avaliações de evidência).
+- **Legalidade fora do escopo** (ADR-014): licitude, autorização e originalidade das derivações não são representadas. Remixadores, artistas de cover, tradutores e adaptadores são criadores por direito próprio; cada derivação é **representada com a explicação dada pelos agentes** (`hasJustification` → `Justification`, fontes e avaliações de evidência).
 
 ## Dimensões para o anotador
 
