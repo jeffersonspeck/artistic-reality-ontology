@@ -3,16 +3,16 @@
     "Single source of truth of ARO (ADR-017). Edit this file, then run: python scripts/build.py",
     "version: release number, also written to owl:versionInfo.",
     "ontology: bilingual title/description of the ontology document.",
-    "packages: modules with diagram colour; show_context draws neighbouring classes in the package diagram.",
+    "packages: modules with diagram colour and bilingual label/description (written to the ontology as module IRIs, linked from each term by rdfs:isDefinedBy); show_context draws neighbouring classes in the package diagram.",
     "classes: name (English IRI local name), label_en/label_pt, provisional OntoUML stereotype, package, definition_*, dependency_*, grounding_* (UFO), optional specializes and alignments.",
-    "relations: object properties; source/target are class names, lists (owl:unionOf) or prefixed external classes; target_cardinality is documentation; shacl holds the constraints actually enforced.",
+    "relations: object properties; description_* is the short label, definition_* (skos:definition) says what the relation is for; source/target are class names, lists (owl:unionOf) or prefixed external classes; target_cardinality is documentation; shacl holds the constraints actually enforced.",
     "datatype_properties: range is an XSD local name or a prefixed datatype (rdf:langString = multilingual text); label_* and comment_* in both languages.",
     "concept_schemes: SKOS vocabularies; member_class is the high-order class typing each concept; broader builds the hierarchy; source cites the literature.",
     "sparql_constraints: SHACL-SPARQL rules with bilingual messages.",
     "module_diagram: relations drawn in the README module diagram (model/diagrams/modules.*.svg); a union range inside one package is drawn as a single edge to that package.",
     "relations[].ontouml: OntoUML association stereotype when one applies (participation, creation, mediation, instantiation); otherwise a plain association."
   ],
-  "version": "0.2.0-beta",
+  "version": "0.2.1-beta",
   "ontology": {
     "title_en": "Artistic Reality Ontology",
     "title_pt": "Ontologia de Arte e Realidade",
@@ -25,45 +25,57 @@
     ],
     "affiliation_en": "Integral part of the doctoral research of Jefferson Rodrigo Speck in the Graduate Program in Informatics (PPGInf) of the Federal University of Paraná (UFPR), supervised by Prof. Dr. Roberto Pereira (UFPR) and co-supervised by Prof. Dr. Clodis Boscarioli (UNIOESTE), linked to the Research Group on Technology and Innovation in Education (GTIE), UNIOESTE.",
     "affiliation_pt": "Parte integrante da pesquisa de doutorado de Jefferson Rodrigo Speck no Programa de Pós-Graduação em Informática (PPGInf) da Universidade Federal do Paraná (UFPR), sob orientação do Prof. Dr. Roberto Pereira (UFPR) e coorientação do Prof. Dr. Clodis Boscarioli (UNIOESTE), com vinculação ao Grupo de Pesquisa em Tecnologia e Inovação na Educação (GTIE), UNIOESTE.",
-    "prior_version": "0.1.0"
+    "prior_version": "0.2.0-beta"
   },
   "packages": [
     {
       "name": "artwork",
       "color": "#dbeafe",
       "label_en": "Artwork and selection",
-      "label_pt": "Obra e recorte"
+      "label_pt": "Obra e recorte",
+      "description_en": "What is analysed: artworks, their manifestations (versions, recordings, editions) and the addressable excerpts (selections) on which every annotation is anchored.",
+      "description_pt": "O que é analisado: obras, suas manifestações (versões, gravações, edições) e os trechos endereçáveis (recortes) em que toda anotação se ancora."
     },
     {
       "name": "interpretation",
       "color": "#e9d5ff",
       "label_en": "Interpretation",
-      "label_pt": "Interpretação"
+      "label_pt": "Interpretação",
+      "description_en": "Who interprets and how: interpretation records produced by interpretive acts of analysts, with their justifications, challenges and assessments.",
+      "description_pt": "Quem interpreta e como: registros de interpretação produzidos por atos interpretativos de analistas, com justificativas, contestações e avaliações."
     },
     {
       "name": "representation",
       "color": "#fef3c7",
       "label_en": "Representation",
-      "label_pt": "Representação"
+      "label_pt": "Representação",
+      "description_en": "What the work represents according to an interpretation: descriptions of situations, intentional states and depicted elements (characters, places, objects).",
+      "description_pt": "O que a obra representa segundo uma interpretação: descrições de situações, estados intencionais e elementos representados (personagens, lugares, objetos)."
     },
     {
       "name": "pattern",
       "color": "#fce7f3",
       "label_en": "Situation pattern",
-      "label_pt": "Padrão situacional"
+      "label_pt": "Padrão situacional",
+      "description_en": "Reusable abstractions of represented situations, defined by conditions, that can be compared with real-world cases.",
+      "description_pt": "Abstrações reutilizáveis de situações representadas, definidas por condições, que podem ser comparadas com casos do mundo real."
     },
     {
       "name": "evidence",
       "color": "#d1fae5",
       "label_en": "Evidence and empirical world",
-      "label_pt": "Evidência e mundo empírico"
+      "label_pt": "Evidência e mundo empírico",
+      "description_en": "The empirical world and its grounds: real cases, situations and events, reference sources, evidence items, correspondence claims between art and reality, and their assessment.",
+      "description_pt": "O mundo empírico e seus fundamentos: casos, situações e eventos reais, fontes de referência, itens de evidência, alegações de correspondência entre arte e realidade e sua avaliação."
     },
     {
       "name": "derivation",
       "color": "#ffedd5",
       "label_en": "Derivation and creation",
       "label_pt": "Derivação e criação",
-      "show_context": true
+      "show_context": true,
+      "description_en": "How works derive from other works (cover, sampling, adaptation, parody...): derivation claims with types, regimes and transformation aspects, and the creative acts and contributions behind them.",
+      "description_pt": "Como obras derivam de outras (cover, sampling, adaptação, paródia...): alegações de derivação com tipos, regimes e aspectos de transformação, e os atos e contribuições criativas por trás delas."
     }
   ],
   "classes": [
@@ -573,7 +585,9 @@
       "target_cardinality": "1..*",
       "source_cardinality": "1",
       "description_en": "artwork realizes through manifestation",
-      "description_pt": "obra se realiza por manifestação"
+      "description_pt": "obra se realiza por manifestação",
+      "definition_en": "Links an artwork to a concrete expression, version or realization of it (a recording, an edition, a performance, a film cut). Use it to say through which manifestations the work exists.",
+      "definition_pt": "Liga uma obra a uma expressão, versão ou realização concreta dela (gravação, edição, apresentação, montagem de filme). Use para dizer por quais manifestações a obra existe."
     },
     {
       "name": "realizesArtwork",
@@ -582,7 +596,9 @@
       "target_cardinality": "1",
       "source_cardinality": "1..*",
       "description_en": "manifestation realizes artwork",
-      "description_pt": "manifestação realiza obra"
+      "description_pt": "manifestação realiza obra",
+      "definition_en": "Links a manifestation to the artwork it realizes; read from the manifestation's side, it states which work this recording, edition or performance is a version of.",
+      "definition_pt": "Liga uma manifestação à obra que ela realiza; lida do lado da manifestação, diz de qual obra esta gravação, edição ou apresentação é versão."
     },
     {
       "name": "selectsFrom",
@@ -592,6 +608,8 @@
       "source_cardinality": "0..*",
       "description_en": "selection references manifestation",
       "description_pt": "recorte referencia manifestação",
+      "definition_en": "Links a selection to the manifestation it is taken from. Every selection is cut from exactly one manifestation, so that its location (lines, seconds, region) is meaningful.",
+      "definition_pt": "Liga um recorte à manifestação de onde ele é tirado. Todo recorte vem de exatamente uma manifestação, para que sua localização (linhas, segundos, região) tenha sentido.",
       "shacl": {
         "minCount": 1
       }
@@ -603,7 +621,9 @@
       "target_cardinality": "0..*",
       "source_cardinality": "1",
       "description_en": "selection located by W3C Web Annotation selector",
-      "description_pt": "recorte localizado por seletor W3C Web Annotation"
+      "description_pt": "recorte localizado por seletor W3C Web Annotation",
+      "definition_en": "Links a selection to a W3C Web Annotation selector that locates it inside the manifestation (time fragment, text quote or position, image region, SVG shape).",
+      "definition_pt": "Liga um recorte a um seletor W3C Web Annotation que o localiza dentro da manifestação (fragmento de tempo, citação ou posição de texto, região de imagem, forma SVG)."
     },
     {
       "name": "groupsSelection",
@@ -612,7 +632,9 @@
       "target_cardinality": "1..*",
       "source_cardinality": "0..*",
       "description_en": "unit groups selections",
-      "description_pt": "unidade agrupa recortes"
+      "description_pt": "unidade agrupa recortes",
+      "definition_en": "Links an analysis unit to the selections it groups, so that several excerpts can be analysed together as one unit (a scene, a refrain, a motif).",
+      "definition_pt": "Liga uma unidade de análise aos recortes que ela agrupa, para que vários trechos sejam analisados juntos como uma unidade (uma cena, um refrão, um motivo)."
     },
     {
       "name": "hasPrimarySelection",
@@ -622,6 +644,8 @@
       "source_cardinality": "0..*",
       "description_en": "record is anchored in selection",
       "description_pt": "interpretação se ancora em recorte",
+      "definition_en": "Links an interpretation record to the one selection it is about: the excerpt of the work in which the interpretation is anchored.",
+      "definition_pt": "Liga um registro de interpretação ao único recorte de que ele trata: o trecho da obra em que a interpretação se ancora.",
       "shacl": {
         "minCount": 1,
         "maxCount": 1
@@ -634,7 +658,9 @@
       "target_cardinality": "0..*",
       "source_cardinality": "0..*",
       "description_en": "record has supporting selection",
-      "description_pt": "interpretação usa recorte de apoio"
+      "description_pt": "interpretação usa recorte de apoio",
+      "definition_en": "Links an interpretation record to further selections cited in its support, besides the primary one (other excerpts of the same or other works).",
+      "definition_pt": "Liga um registro de interpretação a outros recortes citados em seu apoio, além do principal (outros trechos da mesma obra ou de outras)."
     },
     {
       "name": "producedByAct",
@@ -644,6 +670,8 @@
       "source_cardinality": "0..*",
       "description_en": "interpretive act historically produces record",
       "description_pt": "ato produz registro",
+      "definition_en": "Links an interpretation record to the interpretive act that produced it, recording who interpreted, and when, as a historical fact distinct from the content of the interpretation.",
+      "definition_pt": "Liga um registro de interpretação ao ato interpretativo que o produziu, registrando quem interpretou, e quando, como fato histórico distinto do conteúdo da interpretação.",
       "shacl": {
         "minCount": 1,
         "maxCount": 1
@@ -658,6 +686,8 @@
       "source_cardinality": "0..*",
       "description_en": "agent participates in act",
       "description_pt": "agente participa de ato",
+      "definition_en": "Links an interpretive act to the agents (analysts) who took part in it. Agents are identified by external IRIs (Wikidata, ORCID, FOAF, schema.org).",
+      "definition_pt": "Liga um ato interpretativo aos agentes (analistas) que participaram dele. Os agentes são identificados por IRIs externos (Wikidata, ORCID, FOAF, schema.org).",
       "shacl": {
         "minCount": 1,
         "nodeKind": "IRI"
@@ -671,7 +701,9 @@
       "target_cardinality": "0..*",
       "source_cardinality": "1",
       "description_en": "interpretation supported by argument",
-      "description_pt": "interpretação tem fundamentação"
+      "description_pt": "interpretação tem fundamentação",
+      "definition_en": "Links an interpretation record to the argument that supports it: the premises and reasoning that lead from the excerpt to the interpretation.",
+      "definition_pt": "Liga um registro de interpretação ao argumento que o sustenta: as premissas e o raciocínio que levam do trecho à interpretação."
     },
     {
       "name": "challenges",
@@ -680,7 +712,9 @@
       "target_cardinality": "1",
       "source_cardinality": "0..*",
       "description_en": "challenge targets interpretation",
-      "description_pt": "contestação questiona interpretação"
+      "description_pt": "contestação questiona interpretação",
+      "definition_en": "Links a challenge to the interpretation record it criticizes or offers an alternative to, so that disagreement is recorded rather than erased.",
+      "definition_pt": "Liga uma contestação ao registro de interpretação que ela critica ou para o qual propõe alternativa, de modo que a divergência fique registrada, e não apagada."
     },
     {
       "name": "assessesInterpretation",
@@ -689,7 +723,9 @@
       "target_cardinality": "1",
       "source_cardinality": "0..*",
       "description_en": "assessment targets interpretation",
-      "description_pt": "avaliação incide sobre interpretação"
+      "description_pt": "avaliação incide sobre interpretação",
+      "definition_en": "Links an interpretation assessment to the interpretation record it judges (plausibility, coherence, relevance...).",
+      "definition_pt": "Liga uma avaliação de interpretação ao registro de interpretação que ela julga (plausibilidade, coerência, relevância...)."
     },
     {
       "name": "usesCriterion",
@@ -698,7 +734,9 @@
       "target_cardinality": "1..*",
       "source_cardinality": "0..*",
       "description_en": "assessment follows criteria",
-      "description_pt": "avaliação usa critérios"
+      "description_pt": "avaliação usa critérios",
+      "definition_en": "Links an interpretation assessment to the explicit criteria it applies, so that the basis of the judgment can be inspected and compared.",
+      "definition_pt": "Liga uma avaliação de interpretação aos critérios explícitos que ela aplica, para que a base do julgamento possa ser examinada e comparada."
     },
     {
       "name": "describesSituation",
@@ -707,7 +745,9 @@
       "target_cardinality": "0..*",
       "source_cardinality": "1..*",
       "description_en": "interpretation yields descriptions",
-      "description_pt": "interpretação descreve situação"
+      "description_pt": "interpretação descreve situação",
+      "definition_en": "Links an interpretation record to the descriptions of represented situations it yields: what, according to the interpretation, happens in the excerpt.",
+      "definition_pt": "Liga um registro de interpretação às descrições de situações representadas que ele produz: o que, segundo a interpretação, acontece no trecho."
     },
     {
       "name": "mentionsDepictedElement",
@@ -716,7 +756,9 @@
       "target_cardinality": "0..*",
       "source_cardinality": "0..*",
       "description_en": "description mentions depicted element",
-      "description_pt": "descrição menciona elemento"
+      "description_pt": "descrição menciona elemento",
+      "definition_en": "Links a situation description to the depicted elements it involves (characters, places, objects, groups represented in the work).",
+      "definition_pt": "Liga uma descrição de situação aos elementos representados que ela envolve (personagens, lugares, objetos, grupos representados na obra)."
     },
     {
       "name": "generalizesAs",
@@ -725,7 +767,9 @@
       "target_cardinality": "0..*",
       "source_cardinality": "0..*",
       "description_en": "description motivates pattern abstraction",
-      "description_pt": "descrição motiva abstração"
+      "description_pt": "descrição motiva abstração",
+      "definition_en": "Links a situation description to a situation pattern abstracted from it: the reusable configuration that the represented situation is taken to exemplify.",
+      "definition_pt": "Liga uma descrição de situação a um padrão situacional abstraído dela: a configuração reutilizável que a situação representada é tomada como exemplo."
     },
     {
       "name": "hasCondition",
@@ -735,6 +779,8 @@
       "source_cardinality": "1",
       "description_en": "pattern specifies conditions",
       "description_pt": "padrão especifica condições",
+      "definition_en": "Links a situation pattern to the conditions that define it, each one individuated so that it can be marked as required or optional and compared with real cases.",
+      "definition_pt": "Liga um padrão situacional às condições que o definem, cada uma individualizada para poder ser marcada como obrigatória ou opcional e comparada com casos reais.",
       "shacl": {
         "minCount": 1
       }
@@ -746,7 +792,9 @@
       "target_cardinality": "0..*",
       "source_cardinality": "0..*",
       "description_en": "dossier describes real situations",
-      "description_pt": "dossiê descreve situação real"
+      "description_pt": "dossiê descreve situação real",
+      "definition_en": "Links an empirical case (a documented dossier) to the real-world situations it documents.",
+      "definition_pt": "Liga um caso empírico (dossiê documentado) às situações do mundo real que ele documenta."
     },
     {
       "name": "caseAboutEvent",
@@ -755,7 +803,9 @@
       "target_cardinality": "0..*",
       "source_cardinality": "0..*",
       "description_en": "dossier describes real events",
-      "description_pt": "dossiê descreve evento"
+      "description_pt": "dossiê descreve evento",
+      "definition_en": "Links an empirical case (a documented dossier) to the real-world events it documents.",
+      "definition_pt": "Liga um caso empírico (dossiê documentado) aos eventos do mundo real que ele documenta."
     },
     {
       "name": "assertsPattern",
@@ -765,6 +815,8 @@
       "source_cardinality": "0..*",
       "description_en": "correspondence references pattern",
       "description_pt": "alegação referencia padrão",
+      "definition_en": "Links a correspondence claim to the situation pattern it compares with a real case: the side of art in the claim that art and reality correspond.",
+      "definition_pt": "Liga uma alegação de correspondência ao padrão situacional que ela compara com um caso real: o lado da arte na alegação de que arte e realidade se correspondem.",
       "shacl": {
         "minCount": 1,
         "maxCount": 1
@@ -778,6 +830,8 @@
       "source_cardinality": "0..*",
       "description_en": "correspondence references case",
       "description_pt": "alegação referencia caso",
+      "definition_en": "Links a correspondence claim to the empirical case it compares with a pattern: the side of reality in the claim that art and reality correspond.",
+      "definition_pt": "Liga uma alegação de correspondência ao caso empírico que ela compara com um padrão: o lado da realidade na alegação de que arte e realidade se correspondem.",
       "shacl": {
         "minCount": 1,
         "maxCount": 1
@@ -791,6 +845,8 @@
       "source_cardinality": "0..*",
       "description_en": "evidence obtained from source",
       "description_pt": "evidência obtida de fonte",
+      "definition_en": "Links an evidence item to the reference source it was extracted from, so that every piece of evidence can be traced back to a citable source.",
+      "definition_pt": "Liga um item de evidência à fonte de referência de onde foi extraído, para que toda evidência possa ser rastreada até uma fonte citável.",
       "shacl": {
         "minCount": 1,
         "maxCount": 1
@@ -803,7 +859,9 @@
       "target_cardinality": "0..1",
       "source_cardinality": "0..*",
       "description_en": "assessment evaluates claim",
-      "description_pt": "avaliação examina afirmação"
+      "description_pt": "avaliação examina afirmação",
+      "definition_en": "Links an evidence assessment to the empirical claim whose support it evaluates.",
+      "definition_pt": "Liga uma avaliação de evidência à afirmação empírica cujo apoio ela avalia."
     },
     {
       "name": "assessesCorrespondence",
@@ -812,7 +870,9 @@
       "target_cardinality": "0..1",
       "source_cardinality": "0..*",
       "description_en": "assessment evaluates correspondence",
-      "description_pt": "avaliação examina correspondência"
+      "description_pt": "avaliação examina correspondência",
+      "definition_en": "Links an evidence assessment to the correspondence claim (pattern ↔ case) whose support it evaluates.",
+      "definition_pt": "Liga uma avaliação de evidência à alegação de correspondência (padrão ↔ caso) cujo apoio ela avalia."
     },
     {
       "name": "assessesEvidence",
@@ -822,6 +882,8 @@
       "source_cardinality": "0..*",
       "description_en": "assessment considers evidence",
       "description_pt": "avaliação considera evidência",
+      "definition_en": "Links an evidence assessment to the evidence items it weighs; every assessment considers at least one item.",
+      "definition_pt": "Liga uma avaliação de evidência aos itens de evidência que ela pondera; toda avaliação considera pelo menos um item.",
       "shacl": {
         "minCount": 1
       }
@@ -833,7 +895,9 @@
       "target_cardinality": "0..*",
       "source_cardinality": "0..*",
       "description_en": "interpretation directly cites source (optional)",
-      "description_pt": "interpretação cita fonte"
+      "description_pt": "interpretação cita fonte",
+      "definition_en": "Links an interpretation record directly to a reference source it relies on (criticism, interview, study), when no separate evidence item is recorded.",
+      "definition_pt": "Liga um registro de interpretação diretamente a uma fonte de referência em que se apoia (crítica, entrevista, estudo), quando não se registra um item de evidência separado."
     },
     {
       "name": "referencesSource",
@@ -842,7 +906,9 @@
       "target_cardinality": "0..*",
       "source_cardinality": "0..*",
       "description_en": "correspondence directly cites source",
-      "description_pt": "correspondência cita fonte"
+      "description_pt": "correspondência cita fonte",
+      "definition_en": "Links a correspondence claim directly to a reference source it relies on.",
+      "definition_pt": "Liga uma alegação de correspondência diretamente a uma fonte de referência em que se apoia."
     },
     {
       "name": "caseHasReference",
@@ -851,7 +917,9 @@
       "target_cardinality": "0..*",
       "source_cardinality": "0..*",
       "description_en": "case cites sources",
-      "description_pt": "caso cita fontes"
+      "description_pt": "caso cita fontes",
+      "definition_en": "Links an empirical case to the reference sources that document it (news, reports, studies, testimonies).",
+      "definition_pt": "Liga um caso empírico às fontes de referência que o documentam (notícias, relatórios, estudos, depoimentos)."
     },
     {
       "name": "explainsPattern",
@@ -860,7 +928,9 @@
       "target_cardinality": "0..*",
       "source_cardinality": "0..*",
       "description_en": "explanation addresses pattern",
-      "description_pt": "hipótese explica padrão"
+      "description_pt": "hipótese explica padrão",
+      "definition_en": "Links an explanation hypothesis to the situation pattern it proposes to explain (mechanisms or factors behind the recurring configuration).",
+      "definition_pt": "Liga uma hipótese explicativa ao padrão situacional que ela se propõe explicar (mecanismos ou fatores por trás da configuração recorrente)."
     },
     {
       "name": "supportsInterpretation",
@@ -869,7 +939,9 @@
       "target_cardinality": "0..*",
       "source_cardinality": "0..*",
       "description_en": "interpretation supports another",
-      "description_pt": "interpretação apoia outra"
+      "description_pt": "interpretação apoia outra",
+      "definition_en": "Links an interpretation record to another interpretation that it supports, building chains of interpretations.",
+      "definition_pt": "Liga um registro de interpretação a outra interpretação que ele apoia, formando cadeias de interpretações."
     },
     {
       "name": "hasSourceAnchor",
@@ -883,6 +955,8 @@
       "source_cardinality": "0..*",
       "description_en": "claim names the source entity",
       "description_pt": "alegação indica entidade de origem",
+      "definition_en": "Links a derivation claim to the entity the derivation starts from (artwork, manifestation or selection): the source side of the claim.",
+      "definition_pt": "Liga uma alegação de derivação à entidade de onde a derivação parte (obra, manifestação ou recorte): o lado de origem da alegação.",
       "shacl": {
         "minCount": 1,
         "maxCount": 1
@@ -900,6 +974,8 @@
       "source_cardinality": "0..*",
       "description_en": "claim names the derived entity",
       "description_pt": "alegação indica entidade derivada",
+      "definition_en": "Links a derivation claim to the entity said to derive from the source (artwork, manifestation or selection): the derived side of the claim. It must differ from the source anchor.",
+      "definition_pt": "Liga uma alegação de derivação à entidade que se diz derivar da origem (obra, manifestação ou recorte): o lado derivado da alegação. Deve ser diferente da âncora de origem.",
       "shacl": {
         "minCount": 1,
         "maxCount": 1
@@ -913,6 +989,8 @@
       "source_cardinality": "0..*",
       "description_en": "claim is typed by derivation kind",
       "description_pt": "alegação tipificada por tipo de derivação",
+      "definition_en": "Classifies a derivation claim with one or more concepts of the derivation-type vocabulary (cover, sampling, translation, parody...).",
+      "definition_pt": "Classifica uma alegação de derivação com um ou mais conceitos do vocabulário de tipos de derivação (cover, sampling, tradução, paródia...).",
       "shacl": {
         "minCount": 1,
         "class": "DerivationType"
@@ -927,6 +1005,8 @@
       "source_cardinality": "0..*",
       "description_en": "claim records derivation regime",
       "description_pt": "alegação registra regime de derivação",
+      "definition_en": "Qualifies a derivation claim with its regime: the stance taken toward the source (playful, satirical, serious, reverential).",
+      "definition_pt": "Qualifica uma alegação de derivação com seu regime: a postura tomada diante da origem (lúdica, satírica, séria, reverente).",
       "shacl": {
         "class": "DerivationRegime"
       },
@@ -939,7 +1019,9 @@
       "target_cardinality": "0..*",
       "source_cardinality": "1",
       "description_en": "claim details a transformation aspect",
-      "description_pt": "alegação detalha aspecto de transformação"
+      "description_pt": "alegação detalha aspecto de transformação",
+      "definition_en": "Links a derivation claim to the transformation aspects that detail it, one per artistic dimension that was retained, modified, added, removed or recontextualized.",
+      "definition_pt": "Liga uma alegação de derivação aos aspectos de transformação que a detalham, um por dimensão artística mantida, modificada, adicionada, removida ou recontextualizada."
     },
     {
       "name": "hasDimension",
@@ -949,6 +1031,8 @@
       "source_cardinality": "0..*",
       "description_en": "aspect concerns a dimension",
       "description_pt": "aspecto incide sobre dimensão",
+      "definition_en": "States which artistic dimension (melody, lyrics, plot, character, medium...) a transformation aspect is about.",
+      "definition_pt": "Diz de qual dimensão artística (melodia, letra, enredo, personagem, meio...) trata um aspecto de transformação.",
       "shacl": {
         "minCount": 1,
         "maxCount": 1,
@@ -964,6 +1048,8 @@
       "source_cardinality": "0..*",
       "description_en": "aspect applies an operation",
       "description_pt": "aspecto aplica operação",
+      "definition_en": "States what was done to the dimension in a transformation aspect: retain, modify, add, remove or recontextualize.",
+      "definition_pt": "Diz o que foi feito com a dimensão num aspecto de transformação: manter, modificar, adicionar, remover ou recontextualizar.",
       "shacl": {
         "minCount": 1,
         "maxCount": 1,
@@ -978,7 +1064,9 @@
       "target_cardinality": "0..1",
       "source_cardinality": "0..*",
       "description_en": "aspect points to source selection",
-      "description_pt": "aspecto aponta recorte de origem"
+      "description_pt": "aspecto aponta recorte de origem",
+      "definition_en": "Points a transformation aspect to the excerpt of the source where the dimension can be observed.",
+      "definition_pt": "Aponta um aspecto de transformação para o trecho da origem em que a dimensão pode ser observada."
     },
     {
       "name": "aspectDerivedSelection",
@@ -987,7 +1075,9 @@
       "target_cardinality": "0..1",
       "source_cardinality": "0..*",
       "description_en": "aspect points to derived selection",
-      "description_pt": "aspecto aponta recorte derivado"
+      "description_pt": "aspecto aponta recorte derivado",
+      "definition_en": "Points a transformation aspect to the excerpt of the derived entity where the transformed dimension can be observed.",
+      "definition_pt": "Aponta um aspecto de transformação para o trecho da entidade derivada em que a dimensão transformada pode ser observada."
     },
     {
       "name": "aspectConcernsPattern",
@@ -996,7 +1086,9 @@
       "target_cardinality": "0..*",
       "source_cardinality": "0..*",
       "description_en": "aspect concerns a situation pattern",
-      "description_pt": "aspecto envolve padrão situacional"
+      "description_pt": "aspecto envolve padrão situacional",
+      "definition_en": "Links a transformation aspect to a situation pattern it affects, when a derivation keeps, changes or relocates a represented situation.",
+      "definition_pt": "Liga um aspecto de transformação a um padrão situacional que ele afeta, quando a derivação mantém, altera ou desloca uma situação representada."
     },
     {
       "name": "derivationJustifiedBy",
@@ -1005,7 +1097,9 @@
       "target_cardinality": "0..*",
       "source_cardinality": "0..*",
       "description_en": "derivation claim explained by argument",
-      "description_pt": "alegação de derivação explicada por argumento"
+      "description_pt": "alegação de derivação explicada por argumento",
+      "definition_en": "Links a derivation claim to the argument that explains why the derivation is asserted (similarities found, documented intent, credits).",
+      "definition_pt": "Liga uma alegação de derivação ao argumento que explica por que a derivação é afirmada (semelhanças encontradas, intenção documentada, créditos)."
     },
     {
       "name": "derivationRealizedBy",
@@ -1014,7 +1108,9 @@
       "target_cardinality": "0..1",
       "source_cardinality": "0..*",
       "description_en": "derivation carried out by creative act",
-      "description_pt": "derivação realizada por ato criativo"
+      "description_pt": "derivação realizada por ato criativo",
+      "definition_en": "Links a derivation claim to the creative act that carried out the derivation (the recording, writing or adaptation that produced the derived entity).",
+      "definition_pt": "Liga uma alegação de derivação ao ato criativo que realizou a derivação (a gravação, escrita ou adaptação que produziu a entidade derivada)."
     },
     {
       "name": "claimProducedByAct",
@@ -1024,6 +1120,8 @@
       "source_cardinality": "0..*",
       "description_en": "analytical act that recorded the claim",
       "description_pt": "ato analítico que registrou a alegação",
+      "definition_en": "Links a derivation claim to the analytical act that recorded it, so that the claim has an author and a date like any interpretation.",
+      "definition_pt": "Liga uma alegação de derivação ao ato analítico que a registrou, para que a alegação tenha autor e data como qualquer interpretação.",
       "ontouml": "creation"
     },
     {
@@ -1033,7 +1131,9 @@
       "target_cardinality": "0..*",
       "source_cardinality": "0..*",
       "description_en": "derivation claim cites source",
-      "description_pt": "alegação de derivação cita fonte"
+      "description_pt": "alegação de derivação cita fonte",
+      "definition_en": "Links a derivation claim to the reference sources that document the derivation (credits, interviews, liner notes, studies).",
+      "definition_pt": "Liga uma alegação de derivação às fontes de referência que documentam a derivação (créditos, entrevistas, encartes, estudos)."
     },
     {
       "name": "assessesDerivation",
@@ -1042,7 +1142,9 @@
       "target_cardinality": "0..1",
       "source_cardinality": "0..*",
       "description_en": "assessment evaluates derivation claim",
-      "description_pt": "avaliação examina alegação de derivação"
+      "description_pt": "avaliação examina alegação de derivação",
+      "definition_en": "Links an evidence assessment to the derivation claim whose support it evaluates.",
+      "definition_pt": "Liga uma avaliação de evidência à alegação de derivação cujo apoio ela avalia."
     },
     {
       "name": "producesCreation",
@@ -1055,6 +1157,8 @@
       "source_cardinality": "0..*",
       "description_en": "act brings about artwork or manifestation",
       "description_pt": "ato origina obra ou manifestação",
+      "definition_en": "Links a creative act to the artworks or manifestations it brings into existence, including derivative ones.",
+      "definition_pt": "Liga um ato criativo às obras ou manifestações que ele faz existir, inclusive as derivadas.",
       "shacl": {
         "minCount": 1
       },
@@ -1068,6 +1172,8 @@
       "source_cardinality": "1",
       "description_en": "act includes contribution",
       "description_pt": "ato inclui contribuição",
+      "definition_en": "Links a creative act to the contributions that make it up, one per agent taking part.",
+      "definition_pt": "Liga um ato criativo às contribuições que o compõem, uma por agente participante.",
       "ontouml": "creation"
     },
     {
@@ -1078,6 +1184,8 @@
       "source_cardinality": "0..*",
       "description_en": "contribution made by agent",
       "description_pt": "contribuição feita por agente",
+      "definition_en": "Links a creative contribution to the agent who made it, identified by an external IRI (Wikidata, ISNI, MusicBrainz, schema.org).",
+      "definition_pt": "Liga uma contribuição criativa ao agente que a fez, identificado por um IRI externo (Wikidata, ISNI, MusicBrainz, schema.org).",
       "shacl": {
         "minCount": 1,
         "maxCount": 1,
@@ -1093,6 +1201,8 @@
       "source_cardinality": "0..*",
       "description_en": "contribution qualified by role",
       "description_pt": "contribuição qualificada por papel",
+      "definition_en": "Qualifies a creative contribution with one or more roles of the creative-role vocabulary (composer, performer, translator, remixer...).",
+      "definition_pt": "Qualifica uma contribuição criativa com um ou mais papéis do vocabulário de papéis criativos (compositor, intérprete, tradutor, remixador...).",
       "shacl": {
         "minCount": 1,
         "class": "CreativeRole"

@@ -19,6 +19,12 @@ export const NS = {
 
 const RDF_TYPE = NS.rdf + "type";
 
+// Accent colours of the packages (darker companions of the catalog's pastel colours)
+const PACKAGE_ACCENTS = {
+  artwork: "#2563eb", interpretation: "#7c3aed", representation: "#b45309",
+  pattern: "#db2777", evidence: "#059669", derivation: "#ea580c",
+};
+
 /** Parse a Turtle string into an N3.Store. */
 export function parseTurtle(text, baseIRI) {
   const store = new N3.Store();
@@ -170,6 +176,44 @@ export class Ontology {
 
   packageColor(pkg) {
     return this.packages.find((p) => p.name === pkg)?.color || "#e2e8f0";
+  }
+
+  /** Strong colour of a package, for text and accents on cards (the catalog colour is a pastel tint). */
+  packageAccent(pkg) {
+    return PACKAGE_ACCENTS[pkg] || "#475569";
+  }
+
+  /** IRI of a package's module (declared in the ontology with label and description). */
+  moduleIri(pkg) {
+    return `https://w3id.org/aro/ontology/module/${pkg}`;
+  }
+
+  /** Label of a package (module) in the interface language, read from the ontology. */
+  packageLabel(pkg, lang) {
+    return pkg ? this.label(this.moduleIri(pkg), lang) : "";
+  }
+
+  /** What a package (module) covers, read from the ontology (dcterms:description). */
+  packageDescription(pkg, lang) {
+    if (!pkg) return "";
+    const d = byLanguage(this.store, this.moduleIri(pkg), NS.dcterms + "description");
+    return d[lang.toLowerCase()] || d.en || "";
+  }
+
+  /** rdfs:comment of a term (for classes: OntoUML stereotype, UFO foundation, dependency). */
+  comment(iri, lang) {
+    const c = byLanguage(this.store, iri, NS.rdfs + "comment");
+    return c[lang.toLowerCase()] || c.en || "";
+  }
+
+  /** Catalog entry of a class (stereotype), or null. */
+  classInfo(iri) {
+    return this.catalog.classes.find((c) => NS.aro + c.name === iri) || null;
+  }
+
+  /** What a relation is for: its skos:definition in the ontology. */
+  relationDescription(iri, lang) {
+    return this.definition(iri, lang);
   }
 }
 

@@ -80,18 +80,11 @@
     <aside id="left">
       <div class="panel-head"><h2 data-i18n="panelCreate"></h2>
         <button class="icon" data-hide-panel="left" data-i18n-title="hidePanel">«</button></div>
+      <!-- Add nodes from the selected one: its type decides which children (this → new)
+           and parents (new → this) the ontology allows; without a selection, standalone nodes -->
       <details class="section" open>
         <summary data-i18n="addNode"></summary>
-        <label data-i18n="chooseClass"></label>
-        <select id="class-select"></select>
-        <p id="class-help" class="muted small"></p>
-        <label data-i18n="nodeName"></label>
-        <input id="node-name" type="text">
-        <!-- Optional link to an existing node; only links allowed by the ontology are offered -->
-        <label data-i18n="linkTo"></label>
-        <select id="link-to"></select>
-        <p class="muted small" data-i18n="linkHelp"></p>
-        <button id="create" class="primary" data-i18n="create"></button>
+        <div id="add-panel"></div>
       </details>
       <!-- Works list (tick to show/hide each work) and nodes hidden one by one -->
       <details class="section" open>

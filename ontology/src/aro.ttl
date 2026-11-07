@@ -18,13 +18,19 @@
     dcterms:creator "Jefferson Rodrigo Speck (UFPR, PPGInf)" ;
     dcterms:description "Operational OWL vocabulary inspired by UFO; not a complete translation of the OntoUML reference model. It represents claims made by agents and their grounds; it asserts no claim as true. Terms are identified in English and fully labelled and defined in English and Brazilian Portuguese; textual content may be recorded in any language using language-tagged literals."@en,
         "Vocabulário OWL operacional inspirado na UFO; não é tradução completa do modelo de referência OntoUML. Representa alegações feitas por agentes e seus fundamentos; não afirma nenhuma alegação como verdadeira. Os termos são identificados em inglês e integralmente rotulados e definidos em inglês e português do Brasil; o conteúdo textual pode ser registrado em qualquer idioma com literais marcados por idioma."@pt-BR ;
+    dcterms:hasPart <https://w3id.org/aro/ontology/module/artwork>,
+        <https://w3id.org/aro/ontology/module/derivation>,
+        <https://w3id.org/aro/ontology/module/evidence>,
+        <https://w3id.org/aro/ontology/module/interpretation>,
+        <https://w3id.org/aro/ontology/module/pattern>,
+        <https://w3id.org/aro/ontology/module/representation> ;
     dcterms:title "Artistic Reality Ontology"@en,
         "Ontologia de Arte e Realidade"@pt-BR ;
     rdfs:comment "Integral part of the doctoral research of Jefferson Rodrigo Speck in the Graduate Program in Informatics (PPGInf) of the Federal University of Paraná (UFPR), supervised by Prof. Dr. Roberto Pereira (UFPR) and co-supervised by Prof. Dr. Clodis Boscarioli (UNIOESTE), linked to the Research Group on Technology and Innovation in Education (GTIE), UNIOESTE."@en,
         "Parte integrante da pesquisa de doutorado de Jefferson Rodrigo Speck no Programa de Pós-Graduação em Informática (PPGInf) da Universidade Federal do Paraná (UFPR), sob orientação do Prof. Dr. Roberto Pereira (UFPR) e coorientação do Prof. Dr. Clodis Boscarioli (UNIOESTE), com vinculação ao Grupo de Pesquisa em Tecnologia e Inovação na Educação (GTIE), UNIOESTE."@pt-BR ;
-    owl:priorVersion <https://w3id.org/aro/ontology/0.1.0> ;
-    owl:versionIRI <https://w3id.org/aro/ontology/0.2.0-beta> ;
-    owl:versionInfo "0.2.0-beta" .
+    owl:priorVersion <https://w3id.org/aro/ontology/0.2.0-beta> ;
+    owl:versionIRI <https://w3id.org/aro/ontology/0.2.1-beta> ;
+    owl:versionInfo "0.2.1-beta" .
 
 aro:Abridgment a skos:Concept,
         aro:DerivationType ;
@@ -190,6 +196,7 @@ aro:DepictedAgent a owl:Class ;
         "agente representado"@pt-BR ;
     rdfs:comment "OntoUML stereotype (provisional): subkind; foundation: UFO-C representation; dependency: inherits DepictedElement identity"@en,
         "Estereótipo OntoUML (provisório): subkind; fundamentação: representação UFO-C; dependência: herda a identidade de DepictedElement"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/representation> ;
     rdfs:subClassOf aro:DepictedElement ;
     skos:definition "Depicted element referring to an agent or character."@en,
         "Elemento representado que se refere a agente ou personagem."@pt-BR .
@@ -326,6 +333,7 @@ aro:IntentionalStateDescription a owl:Class ;
         "descrição de estado intencional"@pt-BR ;
     rdfs:comment "OntoUML stereotype (provisional): subkind; foundation: UFO-C intentional content attribution; dependency: inherits SituationDescription identity"@en,
         "Estereótipo OntoUML (provisório): subkind; fundamentação: atribuição de conteúdo intencional UFO-C; dependência: herda a identidade de SituationDescription"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/representation> ;
     rdfs:subClassOf aro:SituationDescription ;
     skos:definition "Situation description attributing desire, belief or intention to a depicted agent."@en,
         "Descrição de situação que atribui desejo, crença ou intenção a agente representado."@pt-BR .
@@ -816,91 +824,136 @@ aro:aspectConcernsPattern a owl:ObjectProperty ;
     rdfs:label "aspect concerns a situation pattern"@en,
         "aspecto envolve padrão situacional"@pt-BR ;
     rdfs:domain aro:TransformationAspect ;
-    rdfs:range aro:SituationPattern .
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/derivation> ;
+    rdfs:range aro:SituationPattern ;
+    skos:definition "Links a transformation aspect to a situation pattern it affects, when a derivation keeps, changes or relocates a represented situation."@en,
+        "Liga um aspecto de transformação a um padrão situacional que ele afeta, quando a derivação mantém, altera ou desloca uma situação representada."@pt-BR .
 
 aro:aspectDerivedSelection a owl:ObjectProperty ;
     rdfs:label "aspect points to derived selection"@en,
         "aspecto aponta recorte derivado"@pt-BR ;
     rdfs:domain aro:TransformationAspect ;
-    rdfs:range aro:Selection .
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/derivation> ;
+    rdfs:range aro:Selection ;
+    skos:definition "Points a transformation aspect to the excerpt of the derived entity where the transformed dimension can be observed."@en,
+        "Aponta um aspecto de transformação para o trecho da entidade derivada em que a dimensão transformada pode ser observada."@pt-BR .
 
 aro:aspectSourceSelection a owl:ObjectProperty ;
     rdfs:label "aspect points to source selection"@en,
         "aspecto aponta recorte de origem"@pt-BR ;
     rdfs:domain aro:TransformationAspect ;
-    rdfs:range aro:Selection .
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/derivation> ;
+    rdfs:range aro:Selection ;
+    skos:definition "Points a transformation aspect to the excerpt of the source where the dimension can be observed."@en,
+        "Aponta um aspecto de transformação para o trecho da origem em que a dimensão pode ser observada."@pt-BR .
 
 aro:assertsCase a owl:ObjectProperty ;
     rdfs:label "correspondence references case"@en,
         "alegação referencia caso"@pt-BR ;
     rdfs:domain aro:CorrespondenceClaim ;
-    rdfs:range aro:EmpiricalCase .
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/evidence> ;
+    rdfs:range aro:EmpiricalCase ;
+    skos:definition "Links a correspondence claim to the empirical case it compares with a pattern: the side of reality in the claim that art and reality correspond."@en,
+        "Liga uma alegação de correspondência ao caso empírico que ela compara com um padrão: o lado da realidade na alegação de que arte e realidade se correspondem."@pt-BR .
 
 aro:assertsPattern a owl:ObjectProperty ;
     rdfs:label "correspondence references pattern"@en,
         "alegação referencia padrão"@pt-BR ;
     rdfs:domain aro:CorrespondenceClaim ;
-    rdfs:range aro:SituationPattern .
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/evidence> ;
+    rdfs:range aro:SituationPattern ;
+    skos:definition "Links a correspondence claim to the situation pattern it compares with a real case: the side of art in the claim that art and reality correspond."@en,
+        "Liga uma alegação de correspondência ao padrão situacional que ela compara com um caso real: o lado da arte na alegação de que arte e realidade se correspondem."@pt-BR .
 
 aro:assessesCorrespondence a owl:ObjectProperty ;
     rdfs:label "assessment evaluates correspondence"@en,
         "avaliação examina correspondência"@pt-BR ;
     rdfs:domain aro:EvidenceAssessment ;
-    rdfs:range aro:CorrespondenceClaim .
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/evidence> ;
+    rdfs:range aro:CorrespondenceClaim ;
+    skos:definition "Links an evidence assessment to the correspondence claim (pattern ↔ case) whose support it evaluates."@en,
+        "Liga uma avaliação de evidência à alegação de correspondência (padrão ↔ caso) cujo apoio ela avalia."@pt-BR .
 
 aro:assessesDerivation a owl:ObjectProperty ;
     rdfs:label "assessment evaluates derivation claim"@en,
         "avaliação examina alegação de derivação"@pt-BR ;
     rdfs:domain aro:EvidenceAssessment ;
-    rdfs:range aro:DerivationClaim .
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/evidence> ;
+    rdfs:range aro:DerivationClaim ;
+    skos:definition "Links an evidence assessment to the derivation claim whose support it evaluates."@en,
+        "Liga uma avaliação de evidência à alegação de derivação cujo apoio ela avalia."@pt-BR .
 
 aro:assessesEvidence a owl:ObjectProperty ;
     rdfs:label "assessment considers evidence"@en,
         "avaliação considera evidência"@pt-BR ;
     rdfs:domain aro:EvidenceAssessment ;
-    rdfs:range aro:EvidenceItem .
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/evidence> ;
+    rdfs:range aro:EvidenceItem ;
+    skos:definition "Links an evidence assessment to the evidence items it weighs; every assessment considers at least one item."@en,
+        "Liga uma avaliação de evidência aos itens de evidência que ela pondera; toda avaliação considera pelo menos um item."@pt-BR .
 
 aro:assessesInterpretation a owl:ObjectProperty ;
     rdfs:label "assessment targets interpretation"@en,
         "avaliação incide sobre interpretação"@pt-BR ;
     rdfs:domain aro:InterpretationAssessment ;
-    rdfs:range aro:InterpretationRecord .
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/interpretation> ;
+    rdfs:range aro:InterpretationRecord ;
+    skos:definition "Links an interpretation assessment to the interpretation record it judges (plausibility, coherence, relevance...)."@en,
+        "Liga uma avaliação de interpretação ao registro de interpretação que ela julga (plausibilidade, coerência, relevância...)."@pt-BR .
 
 aro:caseAboutEvent a owl:ObjectProperty ;
     rdfs:label "dossier describes real events"@en,
         "dossiê descreve evento"@pt-BR ;
     rdfs:domain aro:EmpiricalCase ;
-    rdfs:range aro:EmpiricalEvent .
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/evidence> ;
+    rdfs:range aro:EmpiricalEvent ;
+    skos:definition "Links an empirical case (a documented dossier) to the real-world events it documents."@en,
+        "Liga um caso empírico (dossiê documentado) aos eventos do mundo real que ele documenta."@pt-BR .
 
 aro:caseAboutSituation a owl:ObjectProperty ;
     rdfs:label "dossier describes real situations"@en,
         "dossiê descreve situação real"@pt-BR ;
     rdfs:domain aro:EmpiricalCase ;
-    rdfs:range aro:EmpiricalSituation .
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/evidence> ;
+    rdfs:range aro:EmpiricalSituation ;
+    skos:definition "Links an empirical case (a documented dossier) to the real-world situations it documents."@en,
+        "Liga um caso empírico (dossiê documentado) às situações do mundo real que ele documenta."@pt-BR .
 
 aro:caseHasReference a owl:ObjectProperty ;
     rdfs:label "case cites sources"@en,
         "caso cita fontes"@pt-BR ;
     rdfs:domain aro:EmpiricalCase ;
-    rdfs:range aro:ReferenceSource .
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/evidence> ;
+    rdfs:range aro:ReferenceSource ;
+    skos:definition "Links an empirical case to the reference sources that document it (news, reports, studies, testimonies)."@en,
+        "Liga um caso empírico às fontes de referência que o documentam (notícias, relatórios, estudos, depoimentos)."@pt-BR .
 
 aro:challenges a owl:ObjectProperty ;
     rdfs:label "challenge targets interpretation"@en,
         "contestação questiona interpretação"@pt-BR ;
     rdfs:domain aro:InterpretationChallenge ;
-    rdfs:range aro:InterpretationRecord .
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/interpretation> ;
+    rdfs:range aro:InterpretationRecord ;
+    skos:definition "Links a challenge to the interpretation record it criticizes or offers an alternative to, so that disagreement is recorded rather than erased."@en,
+        "Liga uma contestação ao registro de interpretação que ela critica ou para o qual propõe alternativa, de modo que a divergência fique registrada, e não apagada."@pt-BR .
 
 aro:citesSource a owl:ObjectProperty ;
     rdfs:label "interpretation directly cites source (optional)"@en,
         "interpretação cita fonte"@pt-BR ;
     rdfs:domain aro:InterpretationRecord ;
-    rdfs:range aro:ReferenceSource .
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/interpretation> ;
+    rdfs:range aro:ReferenceSource ;
+    skos:definition "Links an interpretation record directly to a reference source it relies on (criticism, interview, study), when no separate evidence item is recorded."@en,
+        "Liga um registro de interpretação diretamente a uma fonte de referência em que se apoia (crítica, entrevista, estudo), quando não se registra um item de evidência separado."@pt-BR .
 
 aro:claimProducedByAct a owl:ObjectProperty ;
     rdfs:label "analytical act that recorded the claim"@en,
         "ato analítico que registrou a alegação"@pt-BR ;
     rdfs:domain aro:DerivationClaim ;
-    rdfs:range aro:InterpretiveAct .
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/derivation> ;
+    rdfs:range aro:InterpretiveAct ;
+    skos:definition "Links a derivation claim to the analytical act that recorded it, so that the claim has an author and a date like any interpretation."@en,
+        "Liga uma alegação de derivação ao ato analítico que a registrou, para que a alegação tenha autor e data como qualquer interpretação."@pt-BR .
 
 aro:confidenceScore a owl:DatatypeProperty ;
     rdfs:label "confidence score"@en,
@@ -913,13 +966,19 @@ aro:contributionBy a owl:ObjectProperty ;
     rdfs:label "contribution made by agent"@en,
         "contribuição feita por agente"@pt-BR ;
     rdfs:domain aro:CreativeContribution ;
-    rdfs:range aro:CreativeAgent .
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/derivation> ;
+    rdfs:range aro:CreativeAgent ;
+    skos:definition "Links a creative contribution to the agent who made it, identified by an external IRI (Wikidata, ISNI, MusicBrainz, schema.org)."@en,
+        "Liga uma contribuição criativa ao agente que a fez, identificado por um IRI externo (Wikidata, ISNI, MusicBrainz, schema.org)."@pt-BR .
 
 aro:contributionRole a owl:ObjectProperty ;
     rdfs:label "contribution qualified by role"@en,
         "contribuição qualificada por papel"@pt-BR ;
     rdfs:domain aro:CreativeContribution ;
-    rdfs:range aro:CreativeRole .
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/derivation> ;
+    rdfs:range aro:CreativeRole ;
+    skos:definition "Qualifies a creative contribution with one or more roles of the creative-role vocabulary (composer, performer, translator, remixer...)."@en,
+        "Qualifica uma contribuição criativa com um ou mais papéis do vocabulário de papéis criativos (compositor, intérprete, tradutor, remixador...)."@pt-BR .
 
 aro:derivationExtent a owl:DatatypeProperty ;
     rdfs:label "derivation extent"@en,
@@ -933,37 +992,55 @@ aro:derivationJustifiedBy a owl:ObjectProperty ;
     rdfs:label "derivation claim explained by argument"@en,
         "alegação de derivação explicada por argumento"@pt-BR ;
     rdfs:domain aro:DerivationClaim ;
-    rdfs:range aro:InterpretiveJustification .
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/derivation> ;
+    rdfs:range aro:InterpretiveJustification ;
+    skos:definition "Links a derivation claim to the argument that explains why the derivation is asserted (similarities found, documented intent, credits)."@en,
+        "Liga uma alegação de derivação ao argumento que explica por que a derivação é afirmada (semelhanças encontradas, intenção documentada, créditos)."@pt-BR .
 
 aro:derivationRealizedBy a owl:ObjectProperty ;
     rdfs:label "derivation carried out by creative act"@en,
         "derivação realizada por ato criativo"@pt-BR ;
     rdfs:domain aro:DerivationClaim ;
-    rdfs:range aro:CreativeAct .
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/derivation> ;
+    rdfs:range aro:CreativeAct ;
+    skos:definition "Links a derivation claim to the creative act that carried out the derivation (the recording, writing or adaptation that produced the derived entity)."@en,
+        "Liga uma alegação de derivação ao ato criativo que realizou a derivação (a gravação, escrita ou adaptação que produziu a entidade derivada)."@pt-BR .
 
 aro:derivationReferencesSource a owl:ObjectProperty ;
     rdfs:label "derivation claim cites source"@en,
         "alegação de derivação cita fonte"@pt-BR ;
     rdfs:domain aro:DerivationClaim ;
-    rdfs:range aro:ReferenceSource .
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/derivation> ;
+    rdfs:range aro:ReferenceSource ;
+    skos:definition "Links a derivation claim to the reference sources that document the derivation (credits, interviews, liner notes, studies)."@en,
+        "Liga uma alegação de derivação às fontes de referência que documentam a derivação (créditos, entrevistas, encartes, estudos)."@pt-BR .
 
 aro:derivedFromSource a owl:ObjectProperty ;
     rdfs:label "evidence obtained from source"@en,
         "evidência obtida de fonte"@pt-BR ;
     rdfs:domain aro:EvidenceItem ;
-    rdfs:range aro:ReferenceSource .
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/evidence> ;
+    rdfs:range aro:ReferenceSource ;
+    skos:definition "Links an evidence item to the reference source it was extracted from, so that every piece of evidence can be traced back to a citable source."@en,
+        "Liga um item de evidência à fonte de referência de onde foi extraído, para que toda evidência possa ser rastreada até uma fonte citável."@pt-BR .
 
 aro:describesSituation a owl:ObjectProperty ;
     rdfs:label "interpretation yields descriptions"@en,
         "interpretação descreve situação"@pt-BR ;
     rdfs:domain aro:InterpretationRecord ;
-    rdfs:range aro:SituationDescription .
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/interpretation> ;
+    rdfs:range aro:SituationDescription ;
+    skos:definition "Links an interpretation record to the descriptions of represented situations it yields: what, according to the interpretation, happens in the excerpt."@en,
+        "Liga um registro de interpretação às descrições de situações representadas que ele produz: o que, segundo a interpretação, acontece no trecho."@pt-BR .
 
 aro:explainsPattern a owl:ObjectProperty ;
     rdfs:label "explanation addresses pattern"@en,
         "hipótese explica padrão"@pt-BR ;
     rdfs:domain aro:ExplanationHypothesis ;
-    rdfs:range aro:SituationPattern .
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/evidence> ;
+    rdfs:range aro:SituationPattern ;
+    skos:definition "Links an explanation hypothesis to the situation pattern it proposes to explain (mechanisms or factors behind the recurring configuration)."@en,
+        "Liga uma hipótese explicativa ao padrão situacional que ela se propõe explicar (mecanismos ou fatores por trás da configuração recorrente)."@pt-BR .
 
 aro:externalLink a owl:DatatypeProperty ;
     rdfs:label "external link"@en,
@@ -976,105 +1053,156 @@ aro:generalizesAs a owl:ObjectProperty ;
     rdfs:label "description motivates pattern abstraction"@en,
         "descrição motiva abstração"@pt-BR ;
     rdfs:domain aro:SituationDescription ;
-    rdfs:range aro:SituationPattern .
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/representation> ;
+    rdfs:range aro:SituationPattern ;
+    skos:definition "Links a situation description to a situation pattern abstracted from it: the reusable configuration that the represented situation is taken to exemplify."@en,
+        "Liga uma descrição de situação a um padrão situacional abstraído dela: a configuração reutilizável que a situação representada é tomada como exemplo."@pt-BR .
 
 aro:groupsSelection a owl:ObjectProperty ;
     rdfs:label "unit groups selections"@en,
         "unidade agrupa recortes"@pt-BR ;
     rdfs:domain aro:AnalysisUnit ;
-    rdfs:range aro:Selection .
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/artwork> ;
+    rdfs:range aro:Selection ;
+    skos:definition "Links an analysis unit to the selections it groups, so that several excerpts can be analysed together as one unit (a scene, a refrain, a motif)."@en,
+        "Liga uma unidade de análise aos recortes que ela agrupa, para que vários trechos sejam analisados juntos como uma unidade (uma cena, um refrão, um motivo)."@pt-BR .
 
 aro:hasCondition a owl:ObjectProperty ;
     rdfs:label "pattern specifies conditions"@en,
         "padrão especifica condições"@pt-BR ;
     rdfs:domain aro:SituationPattern ;
-    rdfs:range aro:PatternCondition .
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/pattern> ;
+    rdfs:range aro:PatternCondition ;
+    skos:definition "Links a situation pattern to the conditions that define it, each one individuated so that it can be marked as required or optional and compared with real cases."@en,
+        "Liga um padrão situacional às condições que o definem, cada uma individualizada para poder ser marcada como obrigatória ou opcional e comparada com casos reais."@pt-BR .
 
 aro:hasContribution a owl:ObjectProperty ;
     rdfs:label "act includes contribution"@en,
         "ato inclui contribuição"@pt-BR ;
     rdfs:domain aro:CreativeAct ;
-    rdfs:range aro:CreativeContribution .
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/derivation> ;
+    rdfs:range aro:CreativeContribution ;
+    skos:definition "Links a creative act to the contributions that make it up, one per agent taking part."@en,
+        "Liga um ato criativo às contribuições que o compõem, uma por agente participante."@pt-BR .
 
 aro:hasDerivationType a owl:ObjectProperty ;
     rdfs:label "claim is typed by derivation kind"@en,
         "alegação tipificada por tipo de derivação"@pt-BR ;
     rdfs:domain aro:DerivationClaim ;
-    rdfs:range aro:DerivationType .
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/derivation> ;
+    rdfs:range aro:DerivationType ;
+    skos:definition "Classifies a derivation claim with one or more concepts of the derivation-type vocabulary (cover, sampling, translation, parody...)."@en,
+        "Classifica uma alegação de derivação com um ou mais conceitos do vocabulário de tipos de derivação (cover, sampling, tradução, paródia...)."@pt-BR .
 
 aro:hasDerivedAnchor a owl:ObjectProperty ;
     rdfs:label "claim names the derived entity"@en,
         "alegação indica entidade derivada"@pt-BR ;
     rdfs:domain aro:DerivationClaim ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/derivation> ;
     rdfs:range [ a owl:Class ;
-            owl:unionOf ( aro:Artwork aro:Manifestation aro:Selection ) ] .
+            owl:unionOf ( aro:Artwork aro:Manifestation aro:Selection ) ] ;
+    skos:definition "Links a derivation claim to the entity said to derive from the source (artwork, manifestation or selection): the derived side of the claim. It must differ from the source anchor."@en,
+        "Liga uma alegação de derivação à entidade que se diz derivar da origem (obra, manifestação ou recorte): o lado derivado da alegação. Deve ser diferente da âncora de origem."@pt-BR .
 
 aro:hasDimension a owl:ObjectProperty ;
     rdfs:label "aspect concerns a dimension"@en,
         "aspecto incide sobre dimensão"@pt-BR ;
     rdfs:domain aro:TransformationAspect ;
-    rdfs:range aro:ArtisticDimension .
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/derivation> ;
+    rdfs:range aro:ArtisticDimension ;
+    skos:definition "States which artistic dimension (melody, lyrics, plot, character, medium...) a transformation aspect is about."@en,
+        "Diz de qual dimensão artística (melodia, letra, enredo, personagem, meio...) trata um aspecto de transformação."@pt-BR .
 
 aro:hasJustification a owl:ObjectProperty ;
     rdfs:label "interpretation supported by argument"@en,
         "interpretação tem fundamentação"@pt-BR ;
     rdfs:domain aro:InterpretationRecord ;
-    rdfs:range aro:InterpretiveJustification .
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/interpretation> ;
+    rdfs:range aro:InterpretiveJustification ;
+    skos:definition "Links an interpretation record to the argument that supports it: the premises and reasoning that lead from the excerpt to the interpretation."@en,
+        "Liga um registro de interpretação ao argumento que o sustenta: as premissas e o raciocínio que levam do trecho à interpretação."@pt-BR .
 
 aro:hasManifestation a owl:ObjectProperty ;
     rdfs:label "artwork realizes through manifestation"@en,
         "obra se realiza por manifestação"@pt-BR ;
     rdfs:domain aro:Artwork ;
-    rdfs:range aro:Manifestation .
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/artwork> ;
+    rdfs:range aro:Manifestation ;
+    skos:definition "Links an artwork to a concrete expression, version or realization of it (a recording, an edition, a performance, a film cut). Use it to say through which manifestations the work exists."@en,
+        "Liga uma obra a uma expressão, versão ou realização concreta dela (gravação, edição, apresentação, montagem de filme). Use para dizer por quais manifestações a obra existe."@pt-BR .
 
 aro:hasOperation a owl:ObjectProperty ;
     rdfs:label "aspect applies an operation"@en,
         "aspecto aplica operação"@pt-BR ;
     rdfs:domain aro:TransformationAspect ;
-    rdfs:range aro:TransformationOperation .
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/derivation> ;
+    rdfs:range aro:TransformationOperation ;
+    skos:definition "States what was done to the dimension in a transformation aspect: retain, modify, add, remove or recontextualize."@en,
+        "Diz o que foi feito com a dimensão num aspecto de transformação: manter, modificar, adicionar, remover ou recontextualizar."@pt-BR .
 
 aro:hasParticipant a owl:ObjectProperty ;
     rdfs:label "agent participates in act"@en,
         "agente participa de ato"@pt-BR ;
     rdfs:domain aro:InterpretiveAct ;
-    rdfs:range aro:Analyst .
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/interpretation> ;
+    rdfs:range aro:Analyst ;
+    skos:definition "Links an interpretive act to the agents (analysts) who took part in it. Agents are identified by external IRIs (Wikidata, ORCID, FOAF, schema.org)."@en,
+        "Liga um ato interpretativo aos agentes (analistas) que participaram dele. Os agentes são identificados por IRIs externos (Wikidata, ORCID, FOAF, schema.org)."@pt-BR .
 
 aro:hasPrimarySelection a owl:ObjectProperty ;
     rdfs:label "record is anchored in selection"@en,
         "interpretação se ancora em recorte"@pt-BR ;
     rdfs:domain aro:InterpretationRecord ;
-    rdfs:range aro:Selection .
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/interpretation> ;
+    rdfs:range aro:Selection ;
+    skos:definition "Links an interpretation record to the one selection it is about: the excerpt of the work in which the interpretation is anchored."@en,
+        "Liga um registro de interpretação ao único recorte de que ele trata: o trecho da obra em que a interpretação se ancora."@pt-BR .
 
 aro:hasRegime a owl:ObjectProperty ;
     rdfs:label "claim records derivation regime"@en,
         "alegação registra regime de derivação"@pt-BR ;
     rdfs:domain aro:DerivationClaim ;
-    rdfs:range aro:DerivationRegime .
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/derivation> ;
+    rdfs:range aro:DerivationRegime ;
+    skos:definition "Qualifies a derivation claim with its regime: the stance taken toward the source (playful, satirical, serious, reverential)."@en,
+        "Qualifica uma alegação de derivação com seu regime: a postura tomada diante da origem (lúdica, satírica, séria, reverente)."@pt-BR .
 
 aro:hasSelector a owl:ObjectProperty ;
     rdfs:label "selection located by W3C Web Annotation selector"@en,
         "recorte localizado por seletor W3C Web Annotation"@pt-BR ;
     rdfs:domain aro:Selection ;
-    rdfs:range oa:Selector .
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/artwork> ;
+    rdfs:range oa:Selector ;
+    skos:definition "Links a selection to a W3C Web Annotation selector that locates it inside the manifestation (time fragment, text quote or position, image region, SVG shape)."@en,
+        "Liga um recorte a um seletor W3C Web Annotation que o localiza dentro da manifestação (fragmento de tempo, citação ou posição de texto, região de imagem, forma SVG)."@pt-BR .
 
 aro:hasSourceAnchor a owl:ObjectProperty ;
     rdfs:label "claim names the source entity"@en,
         "alegação indica entidade de origem"@pt-BR ;
     rdfs:domain aro:DerivationClaim ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/derivation> ;
     rdfs:range [ a owl:Class ;
-            owl:unionOf ( aro:Artwork aro:Manifestation aro:Selection ) ] .
+            owl:unionOf ( aro:Artwork aro:Manifestation aro:Selection ) ] ;
+    skos:definition "Links a derivation claim to the entity the derivation starts from (artwork, manifestation or selection): the source side of the claim."@en,
+        "Liga uma alegação de derivação à entidade de onde a derivação parte (obra, manifestação ou recorte): o lado de origem da alegação."@pt-BR .
 
 aro:hasSupportingSelection a owl:ObjectProperty ;
     rdfs:label "record has supporting selection"@en,
         "interpretação usa recorte de apoio"@pt-BR ;
     rdfs:domain aro:InterpretationRecord ;
-    rdfs:range aro:Selection .
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/interpretation> ;
+    rdfs:range aro:Selection ;
+    skos:definition "Links an interpretation record to further selections cited in its support, besides the primary one (other excerpts of the same or other works)."@en,
+        "Liga um registro de interpretação a outros recortes citados em seu apoio, além do principal (outros trechos da mesma obra ou de outras)."@pt-BR .
 
 aro:hasTransformation a owl:ObjectProperty ;
     rdfs:label "claim details a transformation aspect"@en,
         "alegação detalha aspecto de transformação"@pt-BR ;
     rdfs:domain aro:DerivationClaim ;
-    rdfs:range aro:TransformationAspect .
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/derivation> ;
+    rdfs:range aro:TransformationAspect ;
+    skos:definition "Links a derivation claim to the transformation aspects that detail it, one per artistic dimension that was retained, modified, added, removed or recontextualized."@en,
+        "Liga uma alegação de derivação aos aspectos de transformação que a detalham, um por dimensão artística mantida, modificada, adicionada, removida ou recontextualizada."@pt-BR .
 
 aro:identifier a owl:DatatypeProperty ;
     rdfs:label "identifier"@en,
@@ -1109,32 +1237,47 @@ aro:mentionsDepictedElement a owl:ObjectProperty ;
     rdfs:label "description mentions depicted element"@en,
         "descrição menciona elemento"@pt-BR ;
     rdfs:domain aro:SituationDescription ;
-    rdfs:range aro:DepictedElement .
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/representation> ;
+    rdfs:range aro:DepictedElement ;
+    skos:definition "Links a situation description to the depicted elements it involves (characters, places, objects, groups represented in the work)."@en,
+        "Liga uma descrição de situação aos elementos representados que ela envolve (personagens, lugares, objetos, grupos representados na obra)."@pt-BR .
 
 aro:producedByAct a owl:ObjectProperty ;
     rdfs:label "interpretive act historically produces record"@en,
         "ato produz registro"@pt-BR ;
     rdfs:domain aro:InterpretationRecord ;
-    rdfs:range aro:InterpretiveAct .
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/interpretation> ;
+    rdfs:range aro:InterpretiveAct ;
+    skos:definition "Links an interpretation record to the interpretive act that produced it, recording who interpreted, and when, as a historical fact distinct from the content of the interpretation."@en,
+        "Liga um registro de interpretação ao ato interpretativo que o produziu, registrando quem interpretou, e quando, como fato histórico distinto do conteúdo da interpretação."@pt-BR .
 
 aro:producesCreation a owl:ObjectProperty ;
     rdfs:label "act brings about artwork or manifestation"@en,
         "ato origina obra ou manifestação"@pt-BR ;
     rdfs:domain aro:CreativeAct ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/derivation> ;
     rdfs:range [ a owl:Class ;
-            owl:unionOf ( aro:Artwork aro:Manifestation ) ] .
+            owl:unionOf ( aro:Artwork aro:Manifestation ) ] ;
+    skos:definition "Links a creative act to the artworks or manifestations it brings into existence, including derivative ones."@en,
+        "Liga um ato criativo às obras ou manifestações que ele faz existir, inclusive as derivadas."@pt-BR .
 
 aro:realizesArtwork a owl:ObjectProperty ;
     rdfs:label "manifestation realizes artwork"@en,
         "manifestação realiza obra"@pt-BR ;
     rdfs:domain aro:Manifestation ;
-    rdfs:range aro:Artwork .
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/artwork> ;
+    rdfs:range aro:Artwork ;
+    skos:definition "Links a manifestation to the artwork it realizes; read from the manifestation's side, it states which work this recording, edition or performance is a version of."@en,
+        "Liga uma manifestação à obra que ela realiza; lida do lado da manifestação, diz de qual obra esta gravação, edição ou apresentação é versão."@pt-BR .
 
 aro:referencesSource a owl:ObjectProperty ;
     rdfs:label "correspondence directly cites source"@en,
         "correspondência cita fonte"@pt-BR ;
     rdfs:domain aro:CorrespondenceClaim ;
-    rdfs:range aro:ReferenceSource .
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/evidence> ;
+    rdfs:range aro:ReferenceSource ;
+    skos:definition "Links a correspondence claim directly to a reference source it relies on."@en,
+        "Liga uma alegação de correspondência diretamente a uma fonte de referência em que se apoia."@pt-BR .
 
 aro:retrievedAt a owl:DatatypeProperty ;
     rdfs:label "retrieved at"@en,
@@ -1155,7 +1298,10 @@ aro:selectsFrom a owl:ObjectProperty ;
     rdfs:label "selection references manifestation"@en,
         "recorte referencia manifestação"@pt-BR ;
     rdfs:domain aro:Selection ;
-    rdfs:range aro:Manifestation .
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/artwork> ;
+    rdfs:range aro:Manifestation ;
+    skos:definition "Links a selection to the manifestation it is taken from. Every selection is cut from exactly one manifestation, so that its location (lines, seconds, region) is meaningful."@en,
+        "Liga um recorte à manifestação de onde ele é tirado. Todo recorte vem de exatamente uma manifestação, para que sua localização (linhas, segundos, região) tenha sentido."@pt-BR .
 
 aro:sourceURL a owl:DatatypeProperty ;
     rdfs:label "source URL"@en,
@@ -1169,13 +1315,19 @@ aro:supportsClaim a owl:ObjectProperty ;
     rdfs:label "assessment evaluates claim"@en,
         "avaliação examina afirmação"@pt-BR ;
     rdfs:domain aro:EvidenceAssessment ;
-    rdfs:range aro:EmpiricalClaim .
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/evidence> ;
+    rdfs:range aro:EmpiricalClaim ;
+    skos:definition "Links an evidence assessment to the empirical claim whose support it evaluates."@en,
+        "Liga uma avaliação de evidência à afirmação empírica cujo apoio ela avalia."@pt-BR .
 
 aro:supportsInterpretation a owl:ObjectProperty ;
     rdfs:label "interpretation supports another"@en,
         "interpretação apoia outra"@pt-BR ;
     rdfs:domain aro:InterpretationRecord ;
-    rdfs:range aro:InterpretationRecord .
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/interpretation> ;
+    rdfs:range aro:InterpretationRecord ;
+    skos:definition "Links an interpretation record to another interpretation that it supports, building chains of interpretations."@en,
+        "Liga um registro de interpretação a outra interpretação que ele apoia, formando cadeias de interpretações."@pt-BR .
 
 aro:textValue a owl:DatatypeProperty ;
     rdfs:label "text value"@en,
@@ -1188,7 +1340,10 @@ aro:usesCriterion a owl:ObjectProperty ;
     rdfs:label "assessment follows criteria"@en,
         "avaliação usa critérios"@pt-BR ;
     rdfs:domain aro:InterpretationAssessment ;
-    rdfs:range aro:AssessmentCriterion .
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/interpretation> ;
+    rdfs:range aro:AssessmentCriterion ;
+    skos:definition "Links an interpretation assessment to the explicit criteria it applies, so that the basis of the judgment can be inspected and compared."@en,
+        "Liga uma avaliação de interpretação aos critérios explícitos que ela aplica, para que a base do julgamento possa ser examinada e comparada."@pt-BR .
 
 aro:versionLabel a owl:DatatypeProperty ;
     rdfs:label "version label"@en,
@@ -1230,6 +1385,7 @@ aro:AnalysisUnit a owl:Class ;
         "unidade de análise"@pt-BR ;
     rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-C information object; dependency: organizational reference to selections"@en,
         "Estereótipo OntoUML (provisório): kind; fundamentação: objeto informacional UFO-C; dependência: referência organizacional a recortes"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/artwork> ;
     skos:definition "Intentional grouping of selections for analytical purposes."@en,
         "Agrupamento intencional de recortes com finalidade analítica."@pt-BR .
 
@@ -1238,6 +1394,7 @@ aro:Analyst a owl:Class ;
         "analista"@pt-BR ;
     rdfs:comment "OntoUML stereotype (provisional): roleMixin; foundation: UFO-A anti-rigid non-sortal (roleMixin); agents are individuals of external ontologies; dependency: relationally on participation in an InterpretiveAct; identity supplied by external kinds"@en,
         "Estereótipo OntoUML (provisório): roleMixin; fundamentação: não-sortal anti-rígido UFO-A (roleMixin); agentes são indivíduos de ontologias externas; dependência: relacionalmente da participação num InterpretiveAct; identidade fornecida por tipos externos"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/interpretation> ;
     rdfs:seeAlso prov:Agent,
         foaf:Person,
         schema:Person ;
@@ -1258,6 +1415,7 @@ aro:AssessmentCriterion a owl:Class ;
         "critério de avaliação"@pt-BR ;
     rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-C normative/social information object; dependency: specified normative meaning"@en,
         "Estereótipo OntoUML (provisório): kind; fundamentação: objeto informacional normativo/social UFO-C; dependência: significado normativo especificado"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/interpretation> ;
     skos:definition "Specified epistemic or value-based assessment rule."@en,
         "Regra especificada de avaliação epistêmica ou de valores."@pt-BR .
 
@@ -1284,6 +1442,7 @@ aro:CreativeAgent a owl:Class ;
         "agente criativo"@pt-BR ;
     rdfs:comment "OntoUML stereotype (provisional): roleMixin; foundation: UFO-A anti-rigid non-sortal (roleMixin); agents are individuals of external ontologies; dependency: relationally on a CreativeContribution; identity supplied by external kinds"@en,
         "Estereótipo OntoUML (provisório): roleMixin; fundamentação: não-sortal anti-rígido UFO-A (roleMixin); agentes são indivíduos de ontologias externas; dependência: relacionalmente de uma CreativeContribution; identidade fornecida por tipos externos"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/derivation> ;
     rdfs:seeAlso prov:Agent,
         foaf:Agent,
         schema:Organization,
@@ -1305,6 +1464,7 @@ aro:EmpiricalClaim a owl:Class ;
         "afirmação empírica"@pt-BR ;
     rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-C information object; dependency: claim content and intended empirical reference"@en,
         "Estereótipo OntoUML (provisório): kind; fundamentação: objeto informacional UFO-C; dependência: conteúdo da afirmação e referência empírica pretendida"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/evidence> ;
     skos:definition "Recorded testable claim about the empirical world."@en,
         "Afirmação registrada e verificável acerca do mundo empírico."@pt-BR .
 
@@ -1313,6 +1473,7 @@ aro:EmpiricalEvent a owl:Class ;
         "evento empírico"@pt-BR ;
     rdfs:comment "OntoUML stereotype (provisional): event; foundation: UFO-B event; dependency: real occurrence and participants"@en,
         "Estereótipo OntoUML (provisório): event; fundamentação: evento UFO-B; dependência: ocorrência real e participantes"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/evidence> ;
     skos:definition "Real-world temporally bounded occurrence."@en,
         "Ocorrência do mundo real delimitada temporalmente."@pt-BR .
 
@@ -1321,6 +1482,7 @@ aro:EmpiricalSituation a owl:Class ;
         "situação empírica"@pt-BR ;
     rdfs:comment "OntoUML stereotype (provisional): situation; foundation: UFO-B situation; separate from descriptions; dependency: real-world constituents"@en,
         "Estereótipo OntoUML (provisório): situation; fundamentação: situação UFO-B; separada de descrições; dependência: constituintes do mundo real"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/evidence> ;
     skos:definition "Configuration of entities and conditions in the real world."@en,
         "Configuração de entidades e condições no mundo real."@pt-BR .
 
@@ -1329,6 +1491,7 @@ aro:ExplanationHypothesis a owl:Class ;
         "hipótese explicativa"@pt-BR ;
     rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-C information object; dependency: explicit explanandum and explanatory content"@en,
         "Estereótipo OntoUML (provisório): kind; fundamentação: objeto informacional UFO-C; dependência: explanandum explícito e conteúdo explicativo"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/evidence> ;
     skos:definition "Proposed mechanism or factors explaining a represented or observed phenomenon."@en,
         "Mecanismo ou fatores propostos para explicar fenômeno representado ou observado."@pt-BR .
 
@@ -1337,6 +1500,7 @@ aro:InterpretationChallenge a owl:Class ;
         "contestação de interpretação"@pt-BR ;
     rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-C information object; dependency: challenged interpretation and argument"@en,
         "Estereótipo OntoUML (provisório): kind; fundamentação: objeto informacional UFO-C; dependência: interpretação contestada e argumento"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/interpretation> ;
     skos:definition "Recorded criticism or alternative reasoning about an interpretation."@en,
         "Crítica ou raciocínio alternativo registrado sobre interpretação."@pt-BR .
 
@@ -1496,6 +1660,7 @@ aro:DepictedElement a owl:Class ;
         "elemento representado"@pt-BR ;
     rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-C representation; not a real-world entity; dependency: representational context"@en,
         "Estereótipo OntoUML (provisório): kind; fundamentação: representação UFO-C; não é entidade do mundo real; dependência: contexto representacional"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/representation> ;
     skos:definition "Information-level representation of a referent in an artwork."@en,
         "Representação informacional de um referente na obra."@pt-BR .
 
@@ -1504,6 +1669,7 @@ aro:EvidenceItem a owl:Class ;
         "item de evidência"@pt-BR ;
     rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-C information object; dependency: reference source and observation content"@en,
         "Estereótipo OntoUML (provisório): kind; fundamentação: objeto informacional UFO-C; dependência: fonte de referência e conteúdo observado"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/evidence> ;
     skos:definition "Extracted contextual assertion or observation from a reference source."@en,
         "Afirmação ou observação contextualizada extraída de uma fonte."@pt-BR .
 
@@ -1512,6 +1678,7 @@ aro:InterpretationAssessment a owl:Class ;
         "avaliação de interpretação"@pt-BR ;
     rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-C information object; dependency: target and criteria"@en,
         "Estereótipo OntoUML (provisório): kind; fundamentação: objeto informacional UFO-C; dependência: alvo e critérios"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/interpretation> ;
     skos:definition "Explicit epistemic or axiological judgment of an interpretation."@en,
         "Julgamento epistêmico ou axiológico explícito de interpretação."@pt-BR .
 
@@ -1520,6 +1687,7 @@ aro:InterpretiveJustification a owl:Class ;
         "justificativa interpretativa"@pt-BR ;
     rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-C information object; dependency: target interpretation, articulated premises"@en,
         "Estereótipo OntoUML (provisório): kind; fundamentação: objeto informacional UFO-C; dependência: interpretação ou alegação-alvo, premissas articuladas"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/interpretation> ;
     skos:definition "Recorded argument connecting premises to an interpretation or to a derivation claim."@en,
         "Argumento registrado que liga premissas a uma interpretação ou a uma alegação de derivação."@pt-BR .
 
@@ -1528,6 +1696,7 @@ aro:PatternCondition a owl:Class ;
         "condição de padrão"@pt-BR ;
     rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-C information object; dependency: host pattern and logical specification"@en,
         "Estereótipo OntoUML (provisório): kind; fundamentação: objeto informacional UFO-C; dependência: padrão hospedeiro e especificação lógica"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/pattern> ;
     skos:definition "Individuated mandatory or optional condition within a pattern."@en,
         "Condição individualizada obrigatória ou opcional de um padrão."@pt-BR .
 
@@ -1536,6 +1705,7 @@ aro:CreativeAct a owl:Class ;
         "ato criativo"@pt-BR ;
     rdfs:comment "OntoUML stereotype (provisional): event; foundation: UFO-B event; UFO-C intentional action; dependency: participating agents and temporal occurrence"@en,
         "Estereótipo OntoUML (provisório): event; fundamentação: evento UFO-B; ação intencional UFO-C; dependência: agentes participantes e ocorrência temporal"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/derivation> ;
     skos:definition "Intentional temporal activity that brings an artwork or manifestation into existence, including derivative ones."@en,
         "Atividade intencional temporal que dá origem a uma obra ou manifestação, inclusive derivadas."@pt-BR .
 
@@ -1544,6 +1714,7 @@ aro:CreativeContribution a owl:Class ;
         "contribuição criativa"@pt-BR ;
     rdfs:comment "OntoUML stereotype (provisional): relator; foundation: UFO-A relator; role qualification via CreativeRole; dependency: existentially on the act and the agent"@en,
         "Estereótipo OntoUML (provisório): relator; fundamentação: relator UFO-A; papel qualificado via CreativeRole; dependência: existencialmente do ato e do agente"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/derivation> ;
     skos:definition "Participation of one creative agent in one creative act under one or more roles."@en,
         "Participação de um agente criativo num ato criativo sob um ou mais papéis."@pt-BR .
 
@@ -1552,6 +1723,7 @@ aro:InterpretiveAct a owl:Class ;
         "ato interpretativo"@pt-BR ;
     rdfs:comment "OntoUML stereotype (provisional): event; foundation: UFO-B event; UFO-C intentional action; dependency: participating agents and temporal occurrence"@en,
         "Estereótipo OntoUML (provisório): event; fundamentação: evento UFO-B; ação intencional UFO-C; dependência: agentes participantes e ocorrência temporal"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/interpretation> ;
     skos:definition "Temporal intentional activity yielding interpretation records."@en,
         "Atividade intencional temporal que produz interpretações registradas."@pt-BR .
 
@@ -1560,6 +1732,7 @@ aro:CorrespondenceClaim a owl:Class ;
         "alegação de correspondência"@pt-BR ;
     rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-C information object; not UFO relator; dependency: compared pattern/case and dimensions"@en,
         "Estereótipo OntoUML (provisório): kind; fundamentação: objeto informacional UFO-C; não é relator UFO; dependência: padrão/caso comparados e dimensões"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/evidence> ;
     skos:definition "Contestable assertion of similarity, instantiation or explanatory relevance between pattern and empirical case."@en,
         "Alegação contestável de similaridade, instanciação ou relevância explicativa entre padrão e caso empírico."@pt-BR .
 
@@ -1568,6 +1741,7 @@ aro:EmpiricalCase a owl:Class ;
         "caso empírico"@pt-BR ;
     rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-C information object; dependency: case description and empirical referent"@en,
         "Estereótipo OntoUML (provisório): kind; fundamentação: objeto informacional UFO-C; dependência: descrição do caso e referente empírico"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/evidence> ;
     skos:definition "Documented dossier about one real-world situation or occurrence."@en,
         "Dossiê documentado sobre uma situação ou ocorrência real."@pt-BR .
 
@@ -1576,6 +1750,7 @@ aro:EvidenceAssessment a owl:Class ;
         "avaliação de evidência"@pt-BR ;
     rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-C information object; dependency: claim and evidence and criteria"@en,
         "Estereótipo OntoUML (provisório): kind; fundamentação: objeto informacional UFO-C; dependência: afirmação, evidência e critérios"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/evidence> ;
     skos:definition "Judgment whether evidence supports, challenges or is irrelevant to a specified claim."@en,
         "Julgamento de apoio, contestação ou irrelevância de evidência para afirmação específica."@pt-BR .
 
@@ -1614,14 +1789,21 @@ aro:SituationDescription a owl:Class ;
         "descrição de situação"@pt-BR ;
     rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-C information object, not gufo:Situation; dependency: interpretive support and conceptual content"@en,
         "Estereótipo OntoUML (provisório): kind; fundamentação: objeto informacional UFO-C, não gufo:Situation; dependência: suporte interpretativo e conteúdo conceitual"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/representation> ;
     skos:definition "Recorded description of a represented situation."@en,
         "Descrição registrada de situação representada."@pt-BR .
+
+<https://w3id.org/aro/ontology/module/pattern> rdfs:label "Situation pattern"@en,
+        "Padrão situacional"@pt-BR ;
+    dcterms:description "Reusable abstractions of represented situations, defined by conditions, that can be compared with real-world cases."@en,
+        "Abstrações reutilizáveis de situações representadas, definidas por condições, que podem ser comparadas com casos do mundo real."@pt-BR .
 
 aro:Artwork a owl:Class ;
     rdfs:label "artwork"@en,
         "obra"@pt-BR ;
     rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-C social/information object (domain commitment); dependency: historically on creation; not on a single copy"@en,
         "Estereótipo OntoUML (provisório): kind; fundamentação: objeto social/informacional UFO-C (compromisso de domínio); dependência: historicamente da criação; não de uma cópia específica"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/artwork> ;
     skos:definition "Identifiable artistic creation across media and manifestations."@en,
         "Criação artística identificável em diversas mídias e manifestações."@pt-BR .
 
@@ -1640,6 +1822,7 @@ aro:DerivationRegime a owl:Class ;
         "regime de derivação"@pt-BR ;
     rdfs:comment "OntoUML stereotype (provisional): type; foundation: UFO high-order type (provisional); operationalized as skos:Concept; dependency: controlled vocabulary membership"@en,
         "Estereótipo OntoUML (provisório): type; fundamentação: tipo de alta ordem UFO (provisório); operacionalizado como skos:Concept; dependência: pertencimento a vocabulário controlado"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/derivation> ;
     skos:definition "Stance of a derivation toward its source (playful, satirical, serious, reverential); its instances are SKOS concepts."@en,
         "Postura da derivação em relação à origem (lúdica, satírica, séria, reverencial); suas instâncias são conceitos SKOS."@pt-BR .
 
@@ -1658,6 +1841,7 @@ aro:SituationPattern a owl:Class ;
         "padrão situacional"@pt-BR ;
     rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-C information object; dependency: defining conditions; not identical to universal"@en,
         "Estereótipo OntoUML (provisório): kind; fundamentação: objeto informacional UFO-C; dependência: condições definidoras; não idêntico a universal"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/pattern> ;
     skos:definition "Reusable informational specification of situation conditions."@en,
         "Especificação informacional reutilizável de condições situacionais."@pt-BR .
 
@@ -1685,6 +1869,7 @@ aro:Manifestation a owl:Class ;
         "manifestação"@pt-BR ;
     rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-A enduring object; UFO-C information artifact; dependency: semantic identity relative to an artwork"@en,
         "Estereótipo OntoUML (provisório): kind; fundamentação: objeto persistente UFO-A; artefato informacional UFO-C; dependência: identidade semântica relativa a uma obra"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/artwork> ;
     skos:definition "Specific expression, version or realization of an artwork."@en,
         "Expressão, versão ou realização específica de uma obra."@pt-BR .
 
@@ -1693,6 +1878,7 @@ aro:ReferenceSource a owl:Class ;
         "fonte de referência"@pt-BR ;
     rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-C information object; dependency: source provenance; not tied to one interpretation"@en,
         "Estereótipo OntoUML (provisório): kind; fundamentação: objeto informacional UFO-C; dependência: proveniência da fonte; não vinculada a uma interpretação"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/evidence> ;
     skos:definition "Citable external resource: news, study, report, legal document, testimony, dataset, etc."@en,
         "Recurso externo citável: notícia, estudo, relatório, documento legal, relato, conjunto de dados etc."@pt-BR .
 
@@ -1710,6 +1896,7 @@ aro:TransformationAspect a owl:Class ;
         "aspecto de transformação"@pt-BR ;
     rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-C information object; dependency: host derivation claim; one dimension and one operation"@en,
         "Estereótipo OntoUML (provisório): kind; fundamentação: objeto informacional UFO-C; dependência: alegação de derivação hospedeira; uma dimensão e uma operação"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/derivation> ;
     skos:definition "Recorded statement of what happened to one artistic dimension in a derivation (retained, modified, added, removed or recontextualized)."@en,
         "Registro do que ocorreu com uma dimensão artística numa derivação (mantida, modificada, acrescentada, removida ou recontextualizada)."@pt-BR .
 
@@ -1718,8 +1905,14 @@ aro:TransformationOperation a owl:Class ;
         "operação de transformação"@pt-BR ;
     rdfs:comment "OntoUML stereotype (provisional): type; foundation: UFO high-order type (provisional); operationalized as skos:Concept; dependency: controlled vocabulary membership"@en,
         "Estereótipo OntoUML (provisório): type; fundamentação: tipo de alta ordem UFO (provisório); operacionalizado como skos:Concept; dependência: pertencimento a vocabulário controlado"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/derivation> ;
     skos:definition "What a derivation does to a dimension: retain, modify, add, remove or recontextualize."@en,
         "O que a derivação faz com uma dimensão: manter, modificar, acrescentar, remover ou recontextualizar."@pt-BR .
+
+<https://w3id.org/aro/ontology/module/representation> rdfs:label "Representation"@en,
+        "Representação"@pt-BR ;
+    dcterms:description "What the work represents according to an interpretation: descriptions of situations, intentional states and depicted elements (characters, places, objects)."@en,
+        "O que a obra representa segundo uma interpretação: descrições de situações, estados intencionais e elementos representados (personagens, lugares, objetos)."@pt-BR .
 
 aro:DerivationRegimeScheme a skos:ConceptScheme ;
     skos:definition "Stance of a derivation toward its source, orthogonal to its type (after Genette's regimes)."@en,
@@ -1756,6 +1949,7 @@ aro:InterpretationRecord a owl:Class ;
         "registro de interpretação"@pt-BR ;
     rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-C information object; not an event; dependency: anchor selection; historical interpretive act"@en,
         "Estereótipo OntoUML (provisório): kind; fundamentação: objeto informacional UFO-C; não é evento; dependência: recorte de ancoragem; ato interpretativo histórico"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/interpretation> ;
     skos:definition "Persistent authored record of an interpretation of a selection."@en,
         "Registro autoral persistente de uma interpretação de recorte."@pt-BR .
 
@@ -1774,6 +1968,7 @@ aro:Selection a owl:Class ;
         "recorte"@pt-BR ;
     rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-C information object; domain category; dependency: reference to manifestation and selectors"@en,
         "Estereótipo OntoUML (provisório): kind; fundamentação: objeto informacional UFO-C; categoria de domínio; dependência: referência a manifestação e seletores"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/artwork> ;
     rdfs:seeAlso oa:SpecificResource ;
     skos:definition "Addressable selected portion of a manifestation (not its physical component)."@en,
         "Seleção endereçável de uma parte de manifestação (não componente físico)."@pt-BR .
@@ -1789,11 +1984,17 @@ aro:TransformationOperationScheme a skos:ConceptScheme ;
     skos:prefLabel "Transformation operations"@en,
         "Operações de transformação"@pt-BR .
 
+<https://w3id.org/aro/ontology/module/artwork> rdfs:label "Artwork and selection"@en,
+        "Obra e recorte"@pt-BR ;
+    dcterms:description "What is analysed: artworks, their manifestations (versions, recordings, editions) and the addressable excerpts (selections) on which every annotation is anchored."@en,
+        "O que é analisado: obras, suas manifestações (versões, gravações, edições) e os trechos endereçáveis (recortes) em que toda anotação se ancora."@pt-BR .
+
 aro:CreativeRole a owl:Class ;
     rdfs:label "creative role"@en,
         "papel criativo"@pt-BR ;
     rdfs:comment "OntoUML stereotype (provisional): type; foundation: UFO role type (provisional); operationalized as skos:Concept; dependency: controlled vocabulary membership"@en,
         "Estereótipo OntoUML (provisório): type; fundamentação: tipo de papel UFO (provisório); operacionalizado como skos:Concept; dependência: pertencimento a vocabulário controlado"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/derivation> ;
     skos:definition "Role qualifying a creative contribution (composer, performer, translator, remixer...)."@en,
         "Papel que qualifica uma contribuição criativa (compositor, intérprete, tradutor, remixador...)."@pt-BR .
 
@@ -1802,6 +2003,7 @@ aro:DerivationClaim a owl:Class ;
         "alegação de derivação"@pt-BR ;
     rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-C information object; not a UFO relator nor an asserted fact; dependency: exactly one source anchor and one derived anchor; typed by at least one derivation type"@en,
         "Estereótipo OntoUML (provisório): kind; fundamentação: objeto informacional UFO-C; nem relator UFO nem fato afirmado; dependência: exatamente uma âncora de origem e uma derivada; tipificada por ao menos um tipo de derivação"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/derivation> ;
     rdfs:seeAlso prov:wasDerivedFrom,
         wdt:P144,
         schema:isBasedOn ;
@@ -1828,6 +2030,11 @@ aro:MusicDimension a skos:Concept,
         "música e som"@pt-BR ;
     skos:topConceptOf aro:ArtisticDimensionScheme .
 
+<https://w3id.org/aro/ontology/module/interpretation> rdfs:label "Interpretation"@en,
+        "Interpretação"@pt-BR ;
+    dcterms:description "Who interprets and how: interpretation records produced by interpretive acts of analysts, with their justifications, challenges and assessments."@en,
+        "Quem interpreta e como: registros de interpretação produzidos por atos interpretativos de analistas, com justificativas, contestações e avaliações."@pt-BR .
+
 aro:CreativeRoleScheme a skos:ConceptScheme ;
     skos:definition "Roles qualifying a creative contribution; extensible."@en,
         "Papéis que qualificam uma contribuição criativa; extensível."@pt-BR ;
@@ -1844,11 +2051,22 @@ aro:CreativeRoleScheme a skos:ConceptScheme ;
     skos:prefLabel "Creative roles"@en,
         "Papéis criativos"@pt-BR .
 
+<https://w3id.org/aro/ontology/module/evidence> rdfs:label "Evidence and empirical world"@en,
+        "Evidência e mundo empírico"@pt-BR ;
+    dcterms:description "The empirical world and its grounds: real cases, situations and events, reference sources, evidence items, correspondence claims between art and reality, and their assessment."@en,
+        "O mundo empírico e seus fundamentos: casos, situações e eventos reais, fontes de referência, itens de evidência, alegações de correspondência entre arte e realidade e sua avaliação."@pt-BR .
+
+<https://w3id.org/aro/ontology/module/derivation> rdfs:label "Derivation and creation"@en,
+        "Derivação e criação"@pt-BR ;
+    dcterms:description "How works derive from other works (cover, sampling, adaptation, parody...): derivation claims with types, regimes and transformation aspects, and the creative acts and contributions behind them."@en,
+        "Como obras derivam de outras (cover, sampling, adaptação, paródia...): alegações de derivação com tipos, regimes e aspectos de transformação, e os atos e contribuições criativas por trás delas."@pt-BR .
+
 aro:DerivationType a owl:Class ;
     rdfs:label "derivation type"@en,
         "tipo de derivação"@pt-BR ;
     rdfs:comment "OntoUML stereotype (provisional): type; foundation: UFO high-order type (provisional); operationalized as skos:Concept; dependency: controlled vocabulary membership"@en,
         "Estereótipo OntoUML (provisório): type; fundamentação: tipo de alta ordem UFO (provisório); operacionalizado como skos:Concept; dependência: pertencimento a vocabulário controlado"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/derivation> ;
     skos:definition "Kind of derivation (translation, cover, sampling, parody...); its instances are SKOS concepts."@en,
         "Tipo de derivação (tradução, cover, sample, paródia...); suas instâncias são conceitos SKOS."@pt-BR .
 
@@ -1868,6 +2086,7 @@ aro:ArtisticDimension a owl:Class ;
         "dimensão artística"@pt-BR ;
     rdfs:comment "OntoUML stereotype (provisional): type; foundation: UFO high-order type (provisional); operationalized as skos:Concept; dependency: controlled vocabulary membership"@en,
         "Estereótipo OntoUML (provisório): type; fundamentação: tipo de alta ordem UFO (provisório); operacionalizado como skos:Concept; dependência: pertencimento a vocabulário controlado"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/derivation> ;
     skos:definition "Aspect of a work along which derivation can be compared (melody, lyrics, plot, character, medium...)."@en,
         "Aspecto da obra segundo o qual a derivação pode ser comparada (melodia, letra, enredo, personagem, mídia...)."@pt-BR .
 

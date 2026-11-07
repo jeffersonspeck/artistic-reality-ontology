@@ -6,7 +6,7 @@ import { t } from "./i18n.js";
 
 const LAYOUT_KEY = "aro-annotator-layout";
 const MIN_SIDE = 180;                       // narrowest width of a side panel, in pixels
-const DEFAULTS = { left: 260, right: 380, leftHidden: false, rightHidden: false, compact: false, float: {} };
+const DEFAULTS = { left: 300, right: 400, leftHidden: false, rightHidden: false, compact: false, float: {} };
 
 let layout = { ...DEFAULTS };
 let topZ = 4;                               // stacking order of the floating panels

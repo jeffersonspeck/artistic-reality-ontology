@@ -95,15 +95,22 @@ Para **derivações** (cover, sample, adaptação…), crie uma *alegação de d
 - `hasTransformation`, com dimensão e operação;
 - `derivationJustifiedBy`, com a explicação.
 
-**Atalhos para criar nós já ligados**
-- No painel esquerdo, depois de escolher a classe, use **Ligar a**: aparecem só os nós existentes e as relações que a ontologia permite para aquela classe, nos dois sentidos (ex.: "novo nó → recorte referencia manifestação → Gravação X").
-- No grafo, clique com o **botão direito** num nó e escolha **Novo nó ligado aqui…**: primeiro a relação (só as permitidas e ainda abaixo do máximo), depois a classe do novo nó e o nome.
+**Adicionar filhos e pais a partir de um nó**
+- Selecione um nó (clique nele, ou botão direito → **Adicionar filho…** / **Adicionar pai…**). O painel esquerdo mostra duas abas calculadas a partir do tipo do nó:
+  - **Filhos**: novos nós para os quais este nó aponta (este → relação → novo), ex.: de uma obra, uma manifestação por `hasManifestation`;
+  - **Pais**: novos nós que apontam para ele (novo → relação → este), ex.: de uma manifestação, um recorte por `selectsFrom`.
+- Cada relação permitida é um cartão com as classes como etiquetas; as **obrigatórias** vêm primeiro e as que já atingiram o **máximo** ficam esmaecidas. Clique numa etiqueta, digite o nome e tecle Enter: o nó é criado, ligado e selecionado.
+- *Nó existente, conceito, outras opções…* num cartão liga, em vez disso, um nó existente, um conceito de vocabulário, um seletor ou um IRI externo.
+- Sem nó selecionado, o painel lista todas as classes por módulo, para começar um nó solto (também em *Nó solto* quando há um nó selecionado).
+- Passe o mouse sobre uma etiqueta para ler o que é a classe (módulo, natureza OntoUML, definição).
 
-**Textos longos:** o painel direito mostra o texto inteiro no cartão **Conteúdo**. No grafo, use **Mostrar texto completo no grafo** (no painel ou no botão direito) para um nó, ou marque **Textos completos** no menu **Exibir** para todos; textos longos viram cartões mais largos.
+**Cartões dos nós:** cada nó mostra a classe ontológica no topo (na cor do módulo) e o texto embaixo; um selo conta os vizinhos ocultos. Passe o mouse sobre um nó ou uma relação para ver que tipo de elemento é e para que serve.
+
+**Textos longos:** o inspetor é uma coluna de cartões recolhíveis; o cartão **Conteúdo** mostra o texto inteiro (textos longos aparecem cortados com **ver mais**). No grafo, use **Mostrar texto completo no grafo** (no painel ou no botão direito) para um nó, ou marque **Textos completos** no menu **Exibir** para todos; textos longos viram cartões mais largos.
 
 **Como os formulários seguem a ontologia**
 - *Adicionar relação* mostra só as propriedades cujo domínio aceita o nó. As **obrigatórias** (SHACL `minCount`) aparecem com `*`, e as que faltam ficam listadas num aviso amarelo. As que já atingiram o **máximo** (`maxCount`) deixam de aparecer.
-- *Adicionar como destino* cria uma relação que **chega** ao nó, a partir de um nó existente ou novo. Por exemplo, numa manifestação: um novo recorte com `selectsFrom` para ela.
+- A aba **Pais** cria uma relação que **chega** ao nó, a partir de um nó novo ou (em *outras opções*) de um existente. Por exemplo, numa manifestação: um novo recorte com `selectsFrom` para ela.
 - Ao criar um nó novo numa relação, você pode escolher a classe da imagem ou **qualquer subclasse** (ex.: *descrição de estado intencional*).
 - Em *Dados*, as propriedades específicas da classe aparecem direto; as gerais (identificador, etiqueta de idioma…) ficam em *Mais propriedades*.
 

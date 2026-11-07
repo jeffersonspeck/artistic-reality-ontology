@@ -110,7 +110,7 @@ The last command should end with `PASS: ...`. Dependencies are `rdflib`, `jsonsc
 | File | Use |
 |---|---|
 | [`ontology/src/aro.ttl`](ontology/src/aro.ttl) | Development version in Turtle (also [`aro.owl`](ontology/src/aro.owl) in RDF/XML and [`aro.jsonld`](ontology/src/aro.jsonld)); one file per package in [`ontology/src/modules/`](ontology/src/modules/) |
-| [`releases/v0.2.0-beta/`](releases/v0.2.0-beta/) | **Frozen version to cite** (version IRI `https://w3id.org/aro/ontology/0.2.0-beta`); all versions in [`releases/`](releases/README.md) |
+| [`releases/v0.2.1-beta/`](releases/v0.2.1-beta/) | **Frozen version to cite** (version IRI `https://w3id.org/aro/ontology/0.2.1-beta`); all versions in [`releases/`](releases/README.md) |
 | [`validation/aro-shapes.ttl`](validation/aro-shapes.ttl) | SHACL constraints for validating data |
 | [`schemas/derivation-annotation.schema.json`](schemas/derivation-annotation.schema.json) | JSON format for annotation tools |
 
@@ -331,7 +331,7 @@ Overview generated from the catalog; the UFO column gives the OntoUML stereotype
 | Folder / file | Contents |
 |---|---|
 | `ontology/src/` | development version of the ontology (Turtle, RDF/XML, JSON-LD) and `modules/` per package — generated |
-| `releases/` | frozen versions (`v0.1.0/`, `v0.2.0-beta/`…), each with ontology, modules, SHACL and release notes |
+| `releases/` | frozen versions (`v0.1.0/`, `v0.2.0-beta/`, `v0.2.1-beta/`…), each with ontology, modules, SHACL and release notes |
 | `validation/` | SHACL constraints — generated |
 | `schemas/` | JSON Schemas (reference source, generic record, derivation annotation) |
 | `examples/` | synthetic example data, all fictional |
@@ -363,5 +363,5 @@ The doctoral research investigates the computational modelling of ethics and mor
 - **Status:** **beta, under development** (v0.2.0) — research draft, developed with the SABiOx methodology and grounded in UFO. OntoUML stereotypes are provisional; there has been no expert validation or real-case evaluation yet. See [limitations](docs/en/foundation-and-mappings.md#known-limitations).
 - **License:** MIT ([LICENSE](LICENSE)). Third-party ontologies are not redistributed.
 - **Citation** ([CITATION.cff](CITATION.cff), no DOI yet):
-  > Speck, J. R. (2026). *Artistic Reality Ontology (ARO)* (Version 0.2.0-beta) [Ontology and software]. Doctoral project, Graduate Program in Informatics, Federal University of Paraná (UFPR). Supervisor: R. Pereira; co-supervisor: C. Boscarioli.
+  > Speck, J. R. (2026). *Artistic Reality Ontology (ARO)* (Version 0.2.1-beta) [Ontology and software]. Doctoral project, Graduate Program in Informatics, Federal University of Paraná (UFPR). Supervisor: R. Pereira; co-supervisor: C. Boscarioli.
 - **Examples:** synthetic examples are fictional. The case studies use real works and sources, but the readings are an analyst's interpretations, and the correspondences are claims, not facts.

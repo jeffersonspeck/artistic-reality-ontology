@@ -44,6 +44,11 @@ SRC = ROOT / "ontology" / "src"          # development version of the ontology
 RELEASES = ROOT / "releases"             # frozen versions, one folder per version
 
 
+def module_iri(package: str) -> URIRef:
+    """IRI of one module (package) of the ontology, e.g. https://w3id.org/aro/ontology/module/artwork."""
+    return URIRef(f"{ONTOLOGY_IRI}/module/{package}")
+
+
 def version_iri(version: str) -> URIRef:
     """IRI of one version of the ontology (owl:versionIRI), e.g. https://w3id.org/aro/ontology/0.2.0-beta."""
     return URIRef(f"{ONTOLOGY_IRI}/{version}")
@@ -120,6 +125,17 @@ def build_ontology(cat: dict) -> Graph:
         g.add((ONTOLOGY_IRI, RDFS.comment, Literal(meta["affiliation_en"], lang="en")))
         g.add((ONTOLOGY_IRI, RDFS.comment, Literal(meta["affiliation_pt"], lang="pt-BR")))
 
+    # Modules: each package is a module with a label and a description of what it covers;
+    # every class and relation states its module with rdfs:isDefinedBy
+    for pkg in cat["packages"]:
+        m = module_iri(pkg["name"])
+        g.add((ONTOLOGY_IRI, DCTERMS.hasPart, m))
+        g.add((m, RDFS.label, Literal(pkg["label_en"], lang="en")))
+        g.add((m, RDFS.label, Literal(pkg["label_pt"], lang="pt-BR")))
+        g.add((m, DCTERMS.description, Literal(pkg["description_en"], lang="en")))
+        g.add((m, DCTERMS.description, Literal(pkg["description_pt"], lang="pt-BR")))
+    package_of = {c["name"]: c["package"] for c in cat["classes"]}
+
     # Classes: label, definition and a comment recording the provisional OntoUML
     # stereotype, UFO grounding and existential dependency, in both languages
     for c in cat["classes"]:
@@ -135,6 +151,7 @@ def build_ontology(cat: dict) -> Graph:
             f"dependência: {c['dependency_pt']}", lang="pt-BR")))
         g.add((s, SKOS.definition, Literal(c["definition_en"], lang="en")))
         g.add((s, SKOS.definition, Literal(c["definition_pt"], lang="pt-BR")))
+        g.add((s, RDFS.isDefinedBy, module_iri(c["package"])))
         if c.get("specializes"):
             g.add((s, RDFS.subClassOf, ARO[c["specializes"]]))
         # Alignments are non-committal links (e.g. rdfs:seeAlso), never equivalences
@@ -149,6 +166,12 @@ def build_ontology(cat: dict) -> Graph:
         g.add((p, RDF.type, OWL.ObjectProperty))
         g.add((p, RDFS.label, Literal(r["description_en"], lang="en")))
         g.add((p, RDFS.label, Literal(r["description_pt"], lang="pt-BR")))
+        # what the relation is for, in both languages
+        g.add((p, SKOS.definition, Literal(r["definition_en"], lang="en")))
+        g.add((p, SKOS.definition, Literal(r["definition_pt"], lang="pt-BR")))
+        source = r["source"] if isinstance(r["source"], str) else r["source"][0]
+        if source in package_of:
+            g.add((p, RDFS.isDefinedBy, module_iri(package_of[source])))
         g.add((p, RDFS.domain, class_expr(g, r["source"])))
         g.add((p, RDFS.range, class_expr(g, r["target"])))
         if r.get("inverse_of"):
@@ -649,7 +672,7 @@ def build_reference_doc(cat: dict, lang: str) -> str:
             "|---|---|---|---|"]
     for r in cat["relations"]:
         out.append(f"| `{r['name']}` | {fmt_ref(r['source'])} → {fmt_ref(r['target'])} | "
-                   f"`{r['target_cardinality']}` | {r[t['desc_key']]} |")
+                   f"`{r['target_cardinality']}` | **{r[t['desc_key']]}.** {r['definition_' + suffix]} |")
     dps = cat.get("datatype_properties", [])
     if dps:
         out += ["", t["datatypes"], "", "| Property | Label | Domain | Datatype | Meaning |", "|---|---|---|---|---|"]
@@ -849,6 +872,9 @@ def build_query_index() -> str:
 # stereotype (when one applies) and multiplicities at both ends, generalizations as hollow
 # triangles. They are views of the catalog, not an OntoUML exchange file (see ADR-009).
 ONTOUML_DIR = "model/diagrams/ontouml"
+# Layout direction per diagram, chosen so each fits a page: the overview and the larger
+# packages read left to right (portrait), the small ones bottom-up (landscape)
+ONTOUML_RANKDIR = {None: "LR", "artwork": "LR", "evidence": "LR", "derivation": "LR"}
 
 
 def html_escape(text: str) -> str:
@@ -889,14 +915,15 @@ def build_ontouml_dot(cat: dict, package: str | None) -> str:
                 f'CELLSPACING="0" CELLPADDING="4">{"".join(rows)}</TABLE>>];')
 
     lines = [f"// {GENERATED_NOTE}", "digraph ontouml {",
-             'graph [rankdir=BT, bgcolor="white", pad="0.4", nodesep="0.5", ranksep="0.8", fontname="Arial", '
-             'fontsize=12, labeljust="l", newrank=true, splines=true];',
+             f'graph [rankdir={ONTOUML_RANKDIR.get(package, "BT")}, bgcolor="white", pad="0.4", nodesep="0.5", ranksep="0.8", '
+             'fontname="Arial", fontsize=14, labeljust="l", newrank=true, splines=true];',
              'node [fontname="Arial", fontsize=10];',
              'edge [fontname="Arial", fontsize=8, color="#475569", arrowsize=0.7];']
     if package is None:
         for p in cat["packages"]:
             members = [c for c in shown if c["package"] == p["name"]]
-            lines.append(f'subgraph "cluster_{p["name"]}" {{ label="{p["label_en"]}"; style="rounded,dashed"; color="#94a3b8";')
+            lines.append(f'subgraph "cluster_{p["name"]}" {{ label=<<B>{p["label_en"]}</B>>; style="rounded,dashed,filled"; '
+                         f'fillcolor="#fcfcfd"; color="#94a3b8";')
             lines += [box(c) for c in members]
             lines.append("}")
     else:
@@ -921,8 +948,11 @@ def build_ontouml_dot(cat: dict, package: str | None) -> str:
                     continue
                 stereo = f'«{r["ontouml"]}»\\n' if r.get("ontouml") else ""
                 note = " {union}" if union else ""
+                # in the overview, relations between packages are lighter than those inside one
+                across = package is None and t in by_name and by_name[s]["package"] != by_name[t]["package"]
+                colour = ', color="#94a3b8", fontcolor="#64748b"' if across else ""
                 lines.append(f'"{s}" -> "{t}" [label="{stereo}{r["name"]}{note}", taillabel="{r["source_cardinality"]}", '
-                             f'headlabel="{r["target_cardinality"]}", arrowhead=open, labelfontsize=8];')
+                             f'headlabel="{r["target_cardinality"]}", arrowhead=open, labelfontsize=8{colour}];')
     for e in sorted(externals):
         lines.append(f'"{e}" [shape=box, style="rounded,dashed", color="#94a3b8", fontcolor="#475569", label="{e}\\n(external)"];')
     for c in shown:
@@ -953,12 +983,14 @@ def build_package_module(onto: Graph, cat: dict, package: dict) -> Graph:
             subjects.add(ARO[scheme["name"]])
             subjects |= {ARO[c["name"]] for c in scheme["concepts"]}
     g = bind(Graph())
-    module = URIRef(f"{ONTOLOGY_IRI}/module/{package['name']}")
+    module = module_iri(package["name"])
     g.add((module, RDF.type, OWL.Ontology))
     g.add((module, DCTERMS.isPartOf, ONTOLOGY_IRI))
     g.add((module, OWL.versionInfo, Literal(cat["version"])))
     g.add((module, DCTERMS.title, Literal(f"ARO module: {package['label_en']}", lang="en")))
     g.add((module, DCTERMS.title, Literal(f"Módulo ARO: {package['label_pt']}", lang="pt-BR")))
+    g.add((module, DCTERMS.description, Literal(package["description_en"], lang="en")))
+    g.add((module, DCTERMS.description, Literal(package["description_pt"], lang="pt-BR")))
     # copy the subjects' triples, following blank nodes (owl:unionOf lists) recursively
     stack = list(subjects)
     seen = set()
@@ -1124,6 +1156,15 @@ def main() -> int:
             print(f"Rendered {len(dots)} SVG diagram(s).")
         else:
             print("WARNING: Graphviz `dot` not found; SVG diagrams were NOT regenerated and may be stale.")
+
+    # OntoUML diagrams also as high-resolution PNG, for slides, documents and the thesis
+    pngs = [p for p in diagram_paths(cat) if p.parent == ROOT / ONTOUML_DIR and (
+        p in stale or not p.with_suffix(".png").exists()
+        or p.with_suffix(".png").stat().st_mtime < p.stat().st_mtime)]
+    if pngs and find_dot():
+        for p in pngs:
+            subprocess.run([find_dot(), "-Tpng", "-Gdpi=200", str(p), "-o", str(p.with_suffix(".png"))], check=True)
+        print(f"Rendered {len(pngs)} OntoUML PNG diagram(s).")
     return 0
 
 

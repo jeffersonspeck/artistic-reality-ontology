@@ -2,6 +2,28 @@
 
 All notable changes to ARO. Versions follow the SABiOx development cycles (see `docs/*/sabiox-plan.md`).
 
+## [Unreleased]
+
+### Changed
+
+- **OntoUML diagrams**: also rendered as PNG at 200 dpi (`model/diagrams/ontouml/*.png`); the overview and the artwork, evidence and derivation packages are laid out left to right so they fit a page; relations between packages are drawn lighter than those inside a package.
+
+## [0.2.1-beta] - 2026-11-06
+
+Frozen files: [releases/v0.2.1-beta](releases/v0.2.1-beta/RELEASE-NOTES.md). Documentation release: no class, relation, domain, range or constraint changed.
+
+### Added
+
+- **Relation definitions**: every object property has a `skos:definition` in English and Portuguese (catalog fields `definition_en`/`definition_pt`) saying what it links and why; shown in the reference model's relation tables.
+- **Modules in the ontology**: the six module IRIs are declared in `aro.ttl` with bilingual label and `dcterms:description` (catalog `packages[].description_*`) and linked by `dcterms:hasPart`; classes and relations point to their module with `rdfs:isDefinedBy`; module files carry the description.
+
+### Changed
+
+- **Annotator, adding nodes from a node**: the creation panel starts from the selected node and lists, by its type, the **Children** (this → relation → new) and **Parents** (new → relation → this) the ontology allows, one card per relation with its classes as chips (required first, full ones greyed, filterable); other options link an existing node, concept, selector or external IRI. Replaces the class picker with "Link to" and the "New node linked here…" menu form; the right-click menu now opens the panel on the node.
+- **Annotator, node cards and hover descriptions**: graph nodes are HTML cards with the ontology class on top (module colour) and the text below, with a hidden-neighbours badge; hovering a node, relation, class chip or node pill explains the element (class, module, OntoUML nature, definition, relation description). PNG export and printing still draw the nodes.
+- **Annotator, descriptions from the ontology**: relation cards and hover descriptions show the relation's `skos:definition`; class descriptions add the class's `rdfs:comment` (OntoUML stereotype, UFO foundation, dependency) and its module's description; module names come from the ontology.
+- **Annotator, inspector**: header with class, module and expandable definition; a bar of actions; foldable cards for content, texts, references and links, data, relations and incoming relations; long texts clamped with "show more".
+
 ## [0.2.0-beta] - 2026-10-30
 
 Frozen files: [releases/v0.2.0-beta](releases/v0.2.0-beta/RELEASE-NOTES.md).

@@ -12,79 +12,107 @@ aro:assessesInterpretation a owl:ObjectProperty ;
     rdfs:label "assessment targets interpretation"@en,
         "avaliação incide sobre interpretação"@pt-BR ;
     rdfs:domain aro:InterpretationAssessment ;
-    rdfs:range aro:InterpretationRecord .
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/interpretation> ;
+    rdfs:range aro:InterpretationRecord ;
+    skos:definition "Links an interpretation assessment to the interpretation record it judges (plausibility, coherence, relevance...)."@en,
+        "Liga uma avaliação de interpretação ao registro de interpretação que ela julga (plausibilidade, coerência, relevância...)."@pt-BR .
 
 aro:challenges a owl:ObjectProperty ;
     rdfs:label "challenge targets interpretation"@en,
         "contestação questiona interpretação"@pt-BR ;
     rdfs:domain aro:InterpretationChallenge ;
-    rdfs:range aro:InterpretationRecord .
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/interpretation> ;
+    rdfs:range aro:InterpretationRecord ;
+    skos:definition "Links a challenge to the interpretation record it criticizes or offers an alternative to, so that disagreement is recorded rather than erased."@en,
+        "Liga uma contestação ao registro de interpretação que ela critica ou para o qual propõe alternativa, de modo que a divergência fique registrada, e não apagada."@pt-BR .
 
 aro:citesSource a owl:ObjectProperty ;
     rdfs:label "interpretation directly cites source (optional)"@en,
         "interpretação cita fonte"@pt-BR ;
     rdfs:domain aro:InterpretationRecord ;
-    rdfs:range aro:ReferenceSource .
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/interpretation> ;
+    rdfs:range aro:ReferenceSource ;
+    skos:definition "Links an interpretation record directly to a reference source it relies on (criticism, interview, study), when no separate evidence item is recorded."@en,
+        "Liga um registro de interpretação diretamente a uma fonte de referência em que se apoia (crítica, entrevista, estudo), quando não se registra um item de evidência separado."@pt-BR .
 
 aro:describesSituation a owl:ObjectProperty ;
     rdfs:label "interpretation yields descriptions"@en,
         "interpretação descreve situação"@pt-BR ;
     rdfs:domain aro:InterpretationRecord ;
-    rdfs:range aro:SituationDescription .
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/interpretation> ;
+    rdfs:range aro:SituationDescription ;
+    skos:definition "Links an interpretation record to the descriptions of represented situations it yields: what, according to the interpretation, happens in the excerpt."@en,
+        "Liga um registro de interpretação às descrições de situações representadas que ele produz: o que, segundo a interpretação, acontece no trecho."@pt-BR .
 
 aro:hasJustification a owl:ObjectProperty ;
     rdfs:label "interpretation supported by argument"@en,
         "interpretação tem fundamentação"@pt-BR ;
     rdfs:domain aro:InterpretationRecord ;
-    rdfs:range aro:InterpretiveJustification .
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/interpretation> ;
+    rdfs:range aro:InterpretiveJustification ;
+    skos:definition "Links an interpretation record to the argument that supports it: the premises and reasoning that lead from the excerpt to the interpretation."@en,
+        "Liga um registro de interpretação ao argumento que o sustenta: as premissas e o raciocínio que levam do trecho à interpretação."@pt-BR .
 
 aro:hasParticipant a owl:ObjectProperty ;
     rdfs:label "agent participates in act"@en,
         "agente participa de ato"@pt-BR ;
     rdfs:domain aro:InterpretiveAct ;
-    rdfs:range aro:Analyst .
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/interpretation> ;
+    rdfs:range aro:Analyst ;
+    skos:definition "Links an interpretive act to the agents (analysts) who took part in it. Agents are identified by external IRIs (Wikidata, ORCID, FOAF, schema.org)."@en,
+        "Liga um ato interpretativo aos agentes (analistas) que participaram dele. Os agentes são identificados por IRIs externos (Wikidata, ORCID, FOAF, schema.org)."@pt-BR .
 
 aro:hasPrimarySelection a owl:ObjectProperty ;
     rdfs:label "record is anchored in selection"@en,
         "interpretação se ancora em recorte"@pt-BR ;
     rdfs:domain aro:InterpretationRecord ;
-    rdfs:range aro:Selection .
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/interpretation> ;
+    rdfs:range aro:Selection ;
+    skos:definition "Links an interpretation record to the one selection it is about: the excerpt of the work in which the interpretation is anchored."@en,
+        "Liga um registro de interpretação ao único recorte de que ele trata: o trecho da obra em que a interpretação se ancora."@pt-BR .
 
 aro:hasSupportingSelection a owl:ObjectProperty ;
     rdfs:label "record has supporting selection"@en,
         "interpretação usa recorte de apoio"@pt-BR ;
     rdfs:domain aro:InterpretationRecord ;
-    rdfs:range aro:Selection .
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/interpretation> ;
+    rdfs:range aro:Selection ;
+    skos:definition "Links an interpretation record to further selections cited in its support, besides the primary one (other excerpts of the same or other works)."@en,
+        "Liga um registro de interpretação a outros recortes citados em seu apoio, além do principal (outros trechos da mesma obra ou de outras)."@pt-BR .
 
 aro:producedByAct a owl:ObjectProperty ;
     rdfs:label "interpretive act historically produces record"@en,
         "ato produz registro"@pt-BR ;
     rdfs:domain aro:InterpretationRecord ;
-    rdfs:range aro:InterpretiveAct .
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/interpretation> ;
+    rdfs:range aro:InterpretiveAct ;
+    skos:definition "Links an interpretation record to the interpretive act that produced it, recording who interpreted, and when, as a historical fact distinct from the content of the interpretation."@en,
+        "Liga um registro de interpretação ao ato interpretativo que o produziu, registrando quem interpretou, e quando, como fato histórico distinto do conteúdo da interpretação."@pt-BR .
 
 aro:supportsInterpretation a owl:ObjectProperty ;
     rdfs:label "interpretation supports another"@en,
         "interpretação apoia outra"@pt-BR ;
     rdfs:domain aro:InterpretationRecord ;
-    rdfs:range aro:InterpretationRecord .
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/interpretation> ;
+    rdfs:range aro:InterpretationRecord ;
+    skos:definition "Links an interpretation record to another interpretation that it supports, building chains of interpretations."@en,
+        "Liga um registro de interpretação a outra interpretação que ele apoia, formando cadeias de interpretações."@pt-BR .
 
 aro:usesCriterion a owl:ObjectProperty ;
     rdfs:label "assessment follows criteria"@en,
         "avaliação usa critérios"@pt-BR ;
     rdfs:domain aro:InterpretationAssessment ;
-    rdfs:range aro:AssessmentCriterion .
-
-<https://w3id.org/aro/ontology/module/interpretation> a owl:Ontology ;
-    dcterms:isPartOf <https://w3id.org/aro/ontology> ;
-    dcterms:title "ARO module: Interpretation"@en,
-        "Módulo ARO: Interpretação"@pt-BR ;
-    owl:versionInfo "0.2.0-beta" .
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/interpretation> ;
+    rdfs:range aro:AssessmentCriterion ;
+    skos:definition "Links an interpretation assessment to the explicit criteria it applies, so that the basis of the judgment can be inspected and compared."@en,
+        "Liga uma avaliação de interpretação aos critérios explícitos que ela aplica, para que a base do julgamento possa ser examinada e comparada."@pt-BR .
 
 aro:Analyst a owl:Class ;
     rdfs:label "analyst"@en,
         "analista"@pt-BR ;
     rdfs:comment "OntoUML stereotype (provisional): roleMixin; foundation: UFO-A anti-rigid non-sortal (roleMixin); agents are individuals of external ontologies; dependency: relationally on participation in an InterpretiveAct; identity supplied by external kinds"@en,
         "Estereótipo OntoUML (provisório): roleMixin; fundamentação: não-sortal anti-rígido UFO-A (roleMixin); agentes são indivíduos de ontologias externas; dependência: relacionalmente da participação num InterpretiveAct; identidade fornecida por tipos externos"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/interpretation> ;
     rdfs:seeAlso prov:Agent,
         foaf:Person,
         schema:Person ;
@@ -96,6 +124,7 @@ aro:AssessmentCriterion a owl:Class ;
         "critério de avaliação"@pt-BR ;
     rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-C normative/social information object; dependency: specified normative meaning"@en,
         "Estereótipo OntoUML (provisório): kind; fundamentação: objeto informacional normativo/social UFO-C; dependência: significado normativo especificado"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/interpretation> ;
     skos:definition "Specified epistemic or value-based assessment rule."@en,
         "Regra especificada de avaliação epistêmica ou de valores."@pt-BR .
 
@@ -104,6 +133,7 @@ aro:InterpretationChallenge a owl:Class ;
         "contestação de interpretação"@pt-BR ;
     rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-C information object; dependency: challenged interpretation and argument"@en,
         "Estereótipo OntoUML (provisório): kind; fundamentação: objeto informacional UFO-C; dependência: interpretação contestada e argumento"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/interpretation> ;
     skos:definition "Recorded criticism or alternative reasoning about an interpretation."@en,
         "Crítica ou raciocínio alternativo registrado sobre interpretação."@pt-BR .
 
@@ -112,6 +142,7 @@ aro:InterpretiveJustification a owl:Class ;
         "justificativa interpretativa"@pt-BR ;
     rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-C information object; dependency: target interpretation, articulated premises"@en,
         "Estereótipo OntoUML (provisório): kind; fundamentação: objeto informacional UFO-C; dependência: interpretação ou alegação-alvo, premissas articuladas"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/interpretation> ;
     skos:definition "Recorded argument connecting premises to an interpretation or to a derivation claim."@en,
         "Argumento registrado que liga premissas a uma interpretação ou a uma alegação de derivação."@pt-BR .
 
@@ -120,6 +151,7 @@ aro:InterpretationAssessment a owl:Class ;
         "avaliação de interpretação"@pt-BR ;
     rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-C information object; dependency: target and criteria"@en,
         "Estereótipo OntoUML (provisório): kind; fundamentação: objeto informacional UFO-C; dependência: alvo e critérios"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/interpretation> ;
     skos:definition "Explicit epistemic or axiological judgment of an interpretation."@en,
         "Julgamento epistêmico ou axiológico explícito de interpretação."@pt-BR .
 
@@ -128,6 +160,7 @@ aro:InterpretiveAct a owl:Class ;
         "ato interpretativo"@pt-BR ;
     rdfs:comment "OntoUML stereotype (provisional): event; foundation: UFO-B event; UFO-C intentional action; dependency: participating agents and temporal occurrence"@en,
         "Estereótipo OntoUML (provisório): event; fundamentação: evento UFO-B; ação intencional UFO-C; dependência: agentes participantes e ocorrência temporal"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/interpretation> ;
     skos:definition "Temporal intentional activity yielding interpretation records."@en,
         "Atividade intencional temporal que produz interpretações registradas."@pt-BR .
 
@@ -136,6 +169,15 @@ aro:InterpretationRecord a owl:Class ;
         "registro de interpretação"@pt-BR ;
     rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-C information object; not an event; dependency: anchor selection; historical interpretive act"@en,
         "Estereótipo OntoUML (provisório): kind; fundamentação: objeto informacional UFO-C; não é evento; dependência: recorte de ancoragem; ato interpretativo histórico"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/interpretation> ;
     skos:definition "Persistent authored record of an interpretation of a selection."@en,
         "Registro autoral persistente de uma interpretação de recorte."@pt-BR .
+
+<https://w3id.org/aro/ontology/module/interpretation> a owl:Ontology ;
+    dcterms:description "Who interprets and how: interpretation records produced by interpretive acts of analysts, with their justifications, challenges and assessments."@en,
+        "Quem interpreta e como: registros de interpretação produzidos por atos interpretativos de analistas, com justificativas, contestações e avaliações."@pt-BR ;
+    dcterms:isPartOf <https://w3id.org/aro/ontology> ;
+    dcterms:title "ARO module: Interpretation"@en,
+        "Módulo ARO: Interpretação"@pt-BR ;
+    owl:versionInfo "0.2.1-beta" .
 

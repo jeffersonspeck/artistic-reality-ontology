@@ -95,15 +95,22 @@ For **derivations** (cover, sample, adaptation…), create a *derivation claim* 
 - `hasTransformation`, with a dimension and an operation;
 - `derivationJustifiedBy`, with the explanation.
 
-**Shortcuts to create already-linked nodes**
-- In the left panel, after choosing the class, use **Link to**: only existing nodes and relations that the ontology allows for that class are listed, in both directions (e.g. "new node → selection references manifestation → Recording X").
-- In the graph, **right-click** a node and choose **New node linked here…**: first the relation (only allowed ones still below their maximum), then the class of the new node and its name.
+**Adding children and parents from a node**
+- Select a node (click it, or right-click → **Add child…** / **Add parent…**). The left panel shows two tabs computed from the node's type:
+  - **Children**: new nodes this node points to (this → relation → new), e.g. from an artwork, a manifestation by `hasManifestation`;
+  - **Parents**: new nodes that point to it (new → relation → this), e.g. from a manifestation, a selection by `selectsFrom`.
+- Each allowed relation is a card with its classes as chips; **required** relations come first, relations already at their **maximum** are greyed. Click a chip, type the name, press Enter: the node is created, linked and selected.
+- *Existing node, concept, other options…* in a card links an existing node, a vocabulary concept, a selector or an external IRI instead.
+- With no node selected, the panel lists every class by module, to start a standalone node (also under *Standalone node* while a node is selected).
+- Hover a chip to read what the class is (module, OntoUML nature, definition).
 
-**Long texts:** the right panel shows the full text in the **Content** card. In the graph, use **Show full text in the graph** (panel or right-click) for one node, or tick **Full texts** in the **View** menu for all; long texts become wider cards.
+**Node cards:** each node shows its ontology class on top (in the module's colour) and its text below; a badge counts hidden neighbours. Hover a node or a relation to see what kind of element it is and what it is for.
+
+**Long texts:** the inspector is a column of foldable cards; the **Content** card shows the full text (long texts are clamped with **show more**). In the graph, use **Show full text in the graph** (panel or right-click) for one node, or tick **Full texts** in the **View** menu for all; long texts become wider cards.
 
 **How the forms follow the ontology**
 - *Add relation* shows only properties whose domain fits the node. **Required** ones (SHACL `minCount`) are marked `*`, and missing ones are listed in a yellow notice. Those already at their **maximum** (`maxCount`) are no longer offered.
-- *Add as target* creates a relation that **arrives** at the node, from an existing or new node. For example, on a manifestation: a new selection with `selectsFrom` pointing to it.
+- The **Parents** tab creates a relation that **arrives** at the node, from a new node or (under *other options*) an existing one. For example, on a manifestation: a new selection with `selectsFrom` pointing to it.
 - When creating a new node in a relation, you can choose the range class or **any subclass** (e.g. *intentional state description*).
 - Under *Data*, class-specific properties are shown directly; general ones (identifier, language tag…) are under *More properties*.
 

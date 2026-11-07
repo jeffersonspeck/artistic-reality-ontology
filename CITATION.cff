@@ -6,8 +6,8 @@ message: >-
   Prof. Dr. Roberto Pereira (UFPR) and co-supervised by Prof. Dr. Clodis Boscarioli
   (UNIOESTE). No DOI has been assigned yet.
 title: "Artistic Reality Ontology (ARO)"
-version: 0.2.0-beta
-date-released: 2026-10-30
+version: 0.2.1-beta
+date-released: 2026-11-06
 type: software
 license: MIT
 authors:

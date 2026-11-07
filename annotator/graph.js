@@ -2,37 +2,43 @@
 // places its hidden neighbours in a ring around it (grouped by relation), so the rest of
 // the drawing does not move; "Layout" rearranges everything as a tree (works at the top)
 // or as a force-directed network. A focus mode shows only the neighbourhood of one node.
+//
+// Nodes are drawn as HTML cards on a layer above the canvas (class name on top, text below,
+// expandable); Cytoscape keeps the geometry, edges and events, with each node sized to its card.
+// Hovering a node or an edge shows what kind of ontology element it is and what it is for.
 // `cytoscape` is the global from the Cytoscape.js bundle (see index.html).
 
 import { NS, localName } from "./ontology.js";
 
 const STYLE = [
+  // the node itself is invisible: its card (HTML layer) is what the user sees
   { selector: "node", style: {
-      "label": "data(label)", "font-size": 10, "font-family": "system-ui, sans-serif",
-      "text-wrap": "wrap", "text-max-width": 130, "text-valign": "center", "text-halign": "center",
-      "shape": "round-rectangle", "width": "label", "height": "label", "padding": 9,
-      "background-color": "data(color)", "border-width": 1, "border-color": "#475569", "color": "#0f172a" } },
-  // Nodes with hidden neighbours get a double border as an "open me" cue
-  { selector: "node[?closed]", style: { "border-width": 3, "border-style": "double" } },
-  // Vocabulary concepts and external resources are visually secondary
-  { selector: "node[kind = 'concept']", style: { "shape": "tag", "background-color": "#f1f5f9", "border-style": "dashed" } },
-  { selector: "node[kind = 'external']", style: { "shape": "ellipse", "background-color": "#ffffff", "border-style": "dotted" } },
-  { selector: "node[?card]", style: { "text-max-width": 300, "text-justification": "left", "padding": 14, "font-size": 11 } },
-  { selector: "node[?focus]", style: { "border-color": "#7c3aed", "border-width": 4 } },
-  { selector: "node:selected", style: { "border-color": "#2563eb", "border-width": 3 } },
+      "shape": "round-rectangle", "width": "data(w)", "height": "data(h)",
+      "background-opacity": 0, "border-width": 0, "label": "", "overlay-opacity": 0 } },
   { selector: "edge", style: {
-      "label": "data(label)", "font-size": 8, "color": "#475569", "text-rotation": "autorotate",
-      "text-background-color": "#ffffff", "text-background-opacity": 0.85, "text-background-padding": 1,
-      "curve-style": "bezier", "target-arrow-shape": "triangle", "arrow-scale": 0.7,
-      "width": 1.2, "line-color": "#94a3b8", "target-arrow-color": "#94a3b8" } },
+      "label": "data(label)", "font-size": 9, "font-family": "Inter, system-ui, sans-serif", "color": "#64748b",
+      "text-rotation": "autorotate", "text-background-color": "#f8fafc", "text-background-opacity": 0.9,
+      "text-background-padding": 2, "text-background-shape": "round-rectangle",
+      "curve-style": "bezier", "target-arrow-shape": "triangle", "arrow-scale": 0.8,
+      "width": 1.3, "line-color": "#cbd5e1", "target-arrow-color": "#cbd5e1" } },
   // Relation names can be hidden to declutter; they reappear on the selected node's edges
   { selector: "edge.nolabel", style: { "label": "" } },
-  { selector: "edge.highlight", style: { "line-color": "#2563eb", "target-arrow-color": "#2563eb", "width": 2, "label": "data(label)" } },
+  { selector: "edge.highlight", style: { "line-color": "#2563eb", "target-arrow-color": "#2563eb", "width": 2.2, "label": "data(label)", "color": "#1d4ed8", "z-index": 10 } },
+  { selector: "edge.hover", style: { "line-color": "#64748b", "target-arrow-color": "#64748b", "width": 2.2, "label": "data(label)" } },
+  // Image export / printing: the HTML layer is not in the canvas, so nodes are drawn by Cytoscape
+  { selector: "node.export", style: {
+      "label": "data(label)", "font-size": 10, "font-family": "system-ui, sans-serif",
+      "text-wrap": "wrap", "text-max-width": "data(tw)", "text-valign": "center", "text-halign": "center",
+      "background-color": "data(color)", "background-opacity": 1, "border-width": 1, "border-color": "data(accent)", "color": "#0f172a" } },
+  { selector: "node.export[kind = 'concept']", style: { "shape": "tag", "border-style": "dashed" } },
+  { selector: "node.export[kind = 'external']", style: { "shape": "ellipse", "border-style": "dotted" } },
 ];
 
 export class GraphView {
-  constructor(container, { onSelect, onContext }) {
+  constructor(container, { onSelect, onContext, describe }) {
     this.cy = cytoscape({ container, style: STYLE, wheelSensitivity: 0.3, minZoom: 0.1, maxZoom: 3 });
+    this.container = container;
+    this.describe = describe;    // (id) -> tooltip element for a node; (edge data) for an edge
     this.visible = new Set();
     this.edgeLabels = true;
     this.mode = "tree";          // layout used by "Layout": "tree" | "force"
@@ -40,26 +46,111 @@ export class GraphView {
     this.hiddenNodes = new Set();   // nodes hidden one by one by the user
     this.hiddenWorks = new Set();   // artworks unticked in the "Works" list
     this.hidden = new Set();        // everything currently hidden (see updateHidden)
+    this.fullText = new Set();   // nodes whose full text is shown in the graph
+    this.textMode = "short";     // "short" (clamped text) | "full" (every text in full)
+    this.cards = new Map();      // node id -> card element
+
+    // HTML layer: follows pan and zoom with one transform; cards are placed at node positions
+    this.layer = document.createElement("div");
+    this.layer.className = "card-layer";
+    this.stage = document.createElement("div");
+    this.stage.className = "card-stage";
+    this.layer.append(this.stage);
+    container.append(this.layer);
+    this.tip = document.createElement("div");
+    this.tip.className = "graph-tip";
+    this.tip.hidden = true;
+    document.body.append(this.tip);
+
+    this.cy.on("viewport", () => this.syncViewport());
+    this.cy.on("position", "node", (e) => this.placeCard(e.target));
     this.cy.on("tap", "node", (e) => onSelect(e.target.id()));
     this.cy.on("tap", (e) => { if (e.target === this.cy) onSelect(null); });
     this.cy.on("dbltap", "node", (e) => this.toggle(e.target.id()));
     // right-click (or long press): context menu of the node, at the pointer position
     this.cy.on("cxttap", "node", (e) => {
+      this.hideTip();
       if (!onContext) return;
-      // pointer position in the window (falls back to the node position, e.g. on touch)
-      const box = container.getBoundingClientRect();
-      const ev = e.originalEvent;
-      const at = ev && "clientX" in ev ? { clientX: ev.clientX, clientY: ev.clientY }
-        : { clientX: box.left + e.target.renderedPosition().x, clientY: box.top + e.target.renderedPosition().y };
+      const at = this.clientPoint(e);
       onContext(e.target.id(), at);
     });
-    this.fullText = new Set();   // nodes whose full text is shown in the graph
-    this.textMode = "short";     // "short" (truncated labels) | "full" (every text in full)
-    // highlight the relations of the selected node
+    // highlight the relations of the selected node, and mark its card
     this.cy.on("select unselect", "node", () => {
       this.cy.edges().removeClass("highlight");
       this.cy.$("node:selected").connectedEdges().addClass("highlight");
+      for (const [id, card] of this.cards) card.classList.toggle("selected", this.cy.getElementById(id).selected());
     });
+    // hover: lift the card and explain the element
+    this.cy.on("mouseover", "node", (e) => {
+      this.cards.get(e.target.id())?.classList.add("hover");
+      this.showTip(this.describe?.({ node: e.target.id() }), e);
+    });
+    this.cy.on("mouseout", "node", (e) => { this.cards.get(e.target.id())?.classList.remove("hover"); this.hideTip(); });
+    this.cy.on("mouseover", "edge", (e) => { e.target.addClass("hover"); this.showTip(this.describe?.({ edge: e.target.data() }), e); });
+    this.cy.on("mouseout", "edge", (e) => { e.target.removeClass("hover"); this.hideTip(); });
+    this.cy.on("mousemove", (e) => { if (!this.tip.hidden) this.moveTip(e); });
+    this.cy.on("grab pan zoom", () => this.hideTip());
+  }
+
+  clientPoint(e) {
+    const ev = e.originalEvent;
+    if (ev && "clientX" in ev) return { clientX: ev.clientX, clientY: ev.clientY };
+    const box = this.container.getBoundingClientRect();
+    const p = e.target.renderedPosition ? e.target.renderedPosition() : e.renderedPosition;
+    return { clientX: box.left + p.x, clientY: box.top + p.y };
+  }
+
+  // ---------------------------------------------------------------- tooltip
+  showTip(content, e) {
+    if (!content) return;
+    this.tip.replaceChildren(content);
+    this.tip.hidden = false;
+    this.moveTip(e);
+  }
+  moveTip(e) {
+    const { clientX, clientY } = this.clientPoint(e);
+    const w = this.tip.offsetWidth, hgt = this.tip.offsetHeight;
+    let x = clientX + 16, y = clientY + 16;
+    if (x + w > window.innerWidth - 8) x = clientX - w - 16;
+    if (y + hgt > window.innerHeight - 8) y = clientY - hgt - 16;
+    this.tip.style.left = `${Math.max(8, x)}px`;
+    this.tip.style.top = `${Math.max(8, y)}px`;
+  }
+  hideTip() { this.tip.hidden = true; }
+
+  // ---------------------------------------------------------------- cards
+  syncViewport() {
+    const { x, y } = this.cy.pan();
+    this.stage.style.transform = `translate(${x}px, ${y}px) scale(${this.cy.zoom()})`;
+  }
+
+  placeCard(node) {
+    const card = this.cards.get(node.id());
+    if (!card) return;
+    const p = node.position();
+    card.style.transform = `translate(${p.x}px, ${p.y}px) translate(-50%, -50%)`;
+  }
+
+  /** Card element of a node: class name on top (coloured by module), text, hidden-neighbour badge. */
+  card(id, d) {
+    const el = document.createElement("div");
+    el.className = `node-card kind-${d.kind}${d.full ? " full" : ""}${d.focus ? " focus" : ""}`;
+    el.style.setProperty("--tint", d.color);
+    el.style.setProperty("--accent", d.accent);
+    const kind = document.createElement("div");
+    kind.className = "nc-kind";
+    kind.textContent = d.kindLabel;
+    const title = document.createElement("div");
+    title.className = "nc-title";
+    title.textContent = d.title;
+    el.append(kind, title);
+    if (d.hiddenCount) {
+      const badge = document.createElement("span");
+      badge.className = "nc-badge";
+      badge.textContent = `+${d.hiddenCount}`;
+      el.append(badge);
+    }
+    return el;
   }
 
   /** Bind the data/ontology and the current languages, then redraw. */
@@ -71,16 +162,34 @@ export class GraphView {
 
     const positions = {};
     this.cy.nodes().forEach((n) => { positions[n.id()] = { ...n.position() }; });
+
+    // cards first: they are measured to size the nodes
+    this.cards.clear();
+    const infos = {};
+    const cards = [];
+    for (const id of this.visible) {
+      const d = { ...this.nodeData(id), hiddenCount: this.hiddenCount(id), focus: id === this.focus };
+      infos[id] = d;
+      const card = this.card(id, d);
+      this.cards.set(id, card);
+      cards.push(card);
+    }
+    this.stage.replaceChildren(...cards);
+    const sizes = {};
+    for (const [id, card] of this.cards) sizes[id] = { w: card.offsetWidth, h: card.offsetHeight };
+
     const elements = [];
     for (const id of this.visible) {
+      const d = infos[id];
       elements.push({ group: "nodes", position: positions[id],
-                      data: { id, ...this.nodeData(id), closed: this.hasHidden(id), focus: id === this.focus } });
+        data: { id, w: sizes[id].w || 120, h: sizes[id].h || 40, tw: Math.max(80, (sizes[id].w || 120) - 16),
+                label: `${d.kindLabel}\n${d.title}`, color: d.color, accent: d.accent, kind: d.kind } });
     }
     for (const id of this.visible) {
       for (const { prop, target } of data.outgoing(id)) {
         if (this.visible.has(target)) {
           elements.push({ group: "edges", classes: this.edgeLabels ? "" : "nolabel",
-                          data: { id: `${id}|${prop}|${target}`, source: id, target, label: localName(prop) } });
+                          data: { id: `${id}|${prop}|${target}`, source: id, target, prop, label: localName(prop) } });
         }
       }
     }
@@ -91,25 +200,28 @@ export class GraphView {
     const unplaced = this.cy.nodes().filter((n) => !positions[n.id()]);
     if (relayout || unplaced.length === this.cy.nodes().length) this.layout();
     else if (unplaced.length) this.placeAround(unplaced);
+    this.cy.nodes().forEach((n) => this.placeCard(n));
+    this.syncViewport();
   }
 
-  /** Label, colour and kind of a node (individual, vocabulary concept, external resource). */
+  /** What a node's card shows: kind (class label), title, colours, full or clamped text. */
   nodeData(id) {
     const o = this.ontology;
-    if (o.isConcept(id)) return { label: o.label(id, this.uiLang), color: "#f1f5f9", kind: "concept" };
+    if (o.isConcept(id)) {
+      const scheme = o.conceptTypes(id).find((t) => o.classes[t]);
+      return { kind: "concept", kindLabel: scheme ? o.label(scheme, this.uiLang) : "concept",
+               title: o.label(id, this.uiLang), color: "#f8fafc", accent: "#64748b" };
+    }
     const types = this.data.types(id);
     const cls = types.find((t) => o.classes[t]);
     const name = this.data.name(id, this.contentLang) || localName(id);
     if (!cls) {
-      const typeLabel = types.length ? shortIri(types[0]) : "";
-      return { label: typeLabel ? `${truncate(name, 50)}\n${typeLabel}` : truncate(name, 50), color: "#ffffff", kind: "external" };
+      return { kind: "external", kindLabel: types.length ? shortIri(types[0]) : "IRI", title: name, color: "#ffffff", accent: "#94a3b8" };
     }
-    // Long texts are truncated unless the node (or the whole graph) shows full text;
-    // a full long text is drawn as a wider, left-aligned "content card"
+    const pkg = o.packageOf(cls);
     const full = this.textMode === "full" || this.fullText.has(id);
-    const card = full && name.length > 60;
-    return { label: `${full ? name : truncate(name, 60)}\n‹${o.label(cls, this.uiLang)}›`, card,
-             color: o.packageColor(o.packageOf(cls)), kind: "individual" };
+    return { kind: "individual", kindLabel: o.label(cls, this.uiLang), title: name, full: full && name.length > 60,
+             color: o.packageColor(pkg), accent: o.packageAccent(pkg) };
   }
 
   /** Neighbours of a node, hidden nodes excluded. */
@@ -160,8 +272,12 @@ export class GraphView {
     this.hidden = hidden;
   }
 
+  hiddenCount(id) {
+    return this.neighbours(id).filter((n) => !this.visible.has(n)).length;
+  }
+
   hasHidden(id) {
-    return this.neighbours(id).some((n) => !this.visible.has(n));
+    return this.hiddenCount(id) > 0;
   }
 
   /** Open a closed node (show all neighbours) or close an open one (hide leaf neighbours). */
@@ -201,14 +317,14 @@ export class GraphView {
       const centre = pid ? this.cy.getElementById(pid).position() : { x: 0, y: 0 };
       // group by relation name so related nodes are adjacent on the ring
       kids.sort((a, b) => this.relationTo(pid, a.id()).localeCompare(this.relationTo(pid, b.id())));
-      let radius = 170;
+      let radius = 230;
       const step = (2 * Math.PI) / Math.max(kids.length, 6);
       kids.forEach((k, i) => {
         let pos;
         for (let tries = 0; tries < 6; tries++) {
           const angle = -Math.PI / 2 + i * step + tries * 0.15;
-          pos = { x: centre.x + (radius + tries * 70) * Math.cos(angle), y: centre.y + (radius + tries * 70) * Math.sin(angle) };
-          if (occupied.every((o) => Math.hypot(o.x - pos.x, o.y - pos.y) > 110)) break;
+          pos = { x: centre.x + (radius + tries * 90) * Math.cos(angle), y: centre.y + (radius + tries * 90) * Math.sin(angle) };
+          if (occupied.every((o) => Math.hypot(o.x - pos.x, o.y - pos.y) > 150)) break;
         }
         k.position(pos);
         occupied.push(pos);
@@ -268,9 +384,9 @@ export class GraphView {
       const roots = this.focus ? this.cy.getElementById(this.focus)
         : this.cy.nodes().filter((n) => this.data.types(n.id()).includes(NS.aro + "Artwork"));
       this.cy.layout({ name: "breadthfirst", directed: false, roots: roots.nonempty() ? roots : undefined,
-                       circle: !!this.focus, spacingFactor: 1.15, padding: 30, animate: false, avoidOverlap: true }).run();
+                       circle: !!this.focus, spacingFactor: 1.1, padding: 30, animate: false, avoidOverlap: true }).run();
     } else {
-      this.cy.layout({ name: "cose", animate: false, nodeRepulsion: 12000, idealEdgeLength: 120, padding: 30, randomize: true }).run();
+      this.cy.layout({ name: "cose", animate: false, nodeRepulsion: 16000, idealEdgeLength: 150, padding: 30, randomize: true }).run();
     }
   }
 
@@ -291,17 +407,17 @@ export class GraphView {
 
   /** PNG data URL of the whole graph (used for image export and printing). */
   png() {
-    return this.cy.png({ full: true, scale: 2, bg: "#ffffff" });
+    // the cards live outside the canvas: draw plain labelled boxes for the picture
+    const nodes = this.cy.nodes();
+    nodes.addClass("export");
+    try { return this.cy.png({ full: true, scale: 2, bg: "#ffffff" }); }
+    finally { nodes.removeClass("export"); }
   }
 }
 
 export function shortIri(iri) {
   for (const [p, ns] of Object.entries(NS)) if (iri.startsWith(ns)) return `${p}:${iri.slice(ns.length)}`;
   return localName(iri);
-}
-
-function truncate(s, n) {
-  return s.length > n ? s.slice(0, n - 1) + "…" : s;
 }
 
 function cssEscape(s) {

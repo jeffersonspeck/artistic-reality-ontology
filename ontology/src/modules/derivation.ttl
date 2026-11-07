@@ -782,37 +782,55 @@ aro:aspectConcernsPattern a owl:ObjectProperty ;
     rdfs:label "aspect concerns a situation pattern"@en,
         "aspecto envolve padrão situacional"@pt-BR ;
     rdfs:domain aro:TransformationAspect ;
-    rdfs:range aro:SituationPattern .
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/derivation> ;
+    rdfs:range aro:SituationPattern ;
+    skos:definition "Links a transformation aspect to a situation pattern it affects, when a derivation keeps, changes or relocates a represented situation."@en,
+        "Liga um aspecto de transformação a um padrão situacional que ele afeta, quando a derivação mantém, altera ou desloca uma situação representada."@pt-BR .
 
 aro:aspectDerivedSelection a owl:ObjectProperty ;
     rdfs:label "aspect points to derived selection"@en,
         "aspecto aponta recorte derivado"@pt-BR ;
     rdfs:domain aro:TransformationAspect ;
-    rdfs:range aro:Selection .
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/derivation> ;
+    rdfs:range aro:Selection ;
+    skos:definition "Points a transformation aspect to the excerpt of the derived entity where the transformed dimension can be observed."@en,
+        "Aponta um aspecto de transformação para o trecho da entidade derivada em que a dimensão transformada pode ser observada."@pt-BR .
 
 aro:aspectSourceSelection a owl:ObjectProperty ;
     rdfs:label "aspect points to source selection"@en,
         "aspecto aponta recorte de origem"@pt-BR ;
     rdfs:domain aro:TransformationAspect ;
-    rdfs:range aro:Selection .
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/derivation> ;
+    rdfs:range aro:Selection ;
+    skos:definition "Points a transformation aspect to the excerpt of the source where the dimension can be observed."@en,
+        "Aponta um aspecto de transformação para o trecho da origem em que a dimensão pode ser observada."@pt-BR .
 
 aro:claimProducedByAct a owl:ObjectProperty ;
     rdfs:label "analytical act that recorded the claim"@en,
         "ato analítico que registrou a alegação"@pt-BR ;
     rdfs:domain aro:DerivationClaim ;
-    rdfs:range aro:InterpretiveAct .
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/derivation> ;
+    rdfs:range aro:InterpretiveAct ;
+    skos:definition "Links a derivation claim to the analytical act that recorded it, so that the claim has an author and a date like any interpretation."@en,
+        "Liga uma alegação de derivação ao ato analítico que a registrou, para que a alegação tenha autor e data como qualquer interpretação."@pt-BR .
 
 aro:contributionBy a owl:ObjectProperty ;
     rdfs:label "contribution made by agent"@en,
         "contribuição feita por agente"@pt-BR ;
     rdfs:domain aro:CreativeContribution ;
-    rdfs:range aro:CreativeAgent .
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/derivation> ;
+    rdfs:range aro:CreativeAgent ;
+    skos:definition "Links a creative contribution to the agent who made it, identified by an external IRI (Wikidata, ISNI, MusicBrainz, schema.org)."@en,
+        "Liga uma contribuição criativa ao agente que a fez, identificado por um IRI externo (Wikidata, ISNI, MusicBrainz, schema.org)."@pt-BR .
 
 aro:contributionRole a owl:ObjectProperty ;
     rdfs:label "contribution qualified by role"@en,
         "contribuição qualificada por papel"@pt-BR ;
     rdfs:domain aro:CreativeContribution ;
-    rdfs:range aro:CreativeRole .
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/derivation> ;
+    rdfs:range aro:CreativeRole ;
+    skos:definition "Qualifies a creative contribution with one or more roles of the creative-role vocabulary (composer, performer, translator, remixer...)."@en,
+        "Qualifica uma contribuição criativa com um ou mais papéis do vocabulário de papéis criativos (compositor, intérprete, tradutor, remixador...)."@pt-BR .
 
 aro:derivationExtent a owl:DatatypeProperty ;
     rdfs:label "derivation extent"@en,
@@ -826,82 +844,112 @@ aro:derivationJustifiedBy a owl:ObjectProperty ;
     rdfs:label "derivation claim explained by argument"@en,
         "alegação de derivação explicada por argumento"@pt-BR ;
     rdfs:domain aro:DerivationClaim ;
-    rdfs:range aro:InterpretiveJustification .
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/derivation> ;
+    rdfs:range aro:InterpretiveJustification ;
+    skos:definition "Links a derivation claim to the argument that explains why the derivation is asserted (similarities found, documented intent, credits)."@en,
+        "Liga uma alegação de derivação ao argumento que explica por que a derivação é afirmada (semelhanças encontradas, intenção documentada, créditos)."@pt-BR .
 
 aro:derivationRealizedBy a owl:ObjectProperty ;
     rdfs:label "derivation carried out by creative act"@en,
         "derivação realizada por ato criativo"@pt-BR ;
     rdfs:domain aro:DerivationClaim ;
-    rdfs:range aro:CreativeAct .
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/derivation> ;
+    rdfs:range aro:CreativeAct ;
+    skos:definition "Links a derivation claim to the creative act that carried out the derivation (the recording, writing or adaptation that produced the derived entity)."@en,
+        "Liga uma alegação de derivação ao ato criativo que realizou a derivação (a gravação, escrita ou adaptação que produziu a entidade derivada)."@pt-BR .
 
 aro:derivationReferencesSource a owl:ObjectProperty ;
     rdfs:label "derivation claim cites source"@en,
         "alegação de derivação cita fonte"@pt-BR ;
     rdfs:domain aro:DerivationClaim ;
-    rdfs:range aro:ReferenceSource .
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/derivation> ;
+    rdfs:range aro:ReferenceSource ;
+    skos:definition "Links a derivation claim to the reference sources that document the derivation (credits, interviews, liner notes, studies)."@en,
+        "Liga uma alegação de derivação às fontes de referência que documentam a derivação (créditos, entrevistas, encartes, estudos)."@pt-BR .
 
 aro:hasContribution a owl:ObjectProperty ;
     rdfs:label "act includes contribution"@en,
         "ato inclui contribuição"@pt-BR ;
     rdfs:domain aro:CreativeAct ;
-    rdfs:range aro:CreativeContribution .
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/derivation> ;
+    rdfs:range aro:CreativeContribution ;
+    skos:definition "Links a creative act to the contributions that make it up, one per agent taking part."@en,
+        "Liga um ato criativo às contribuições que o compõem, uma por agente participante."@pt-BR .
 
 aro:hasDerivationType a owl:ObjectProperty ;
     rdfs:label "claim is typed by derivation kind"@en,
         "alegação tipificada por tipo de derivação"@pt-BR ;
     rdfs:domain aro:DerivationClaim ;
-    rdfs:range aro:DerivationType .
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/derivation> ;
+    rdfs:range aro:DerivationType ;
+    skos:definition "Classifies a derivation claim with one or more concepts of the derivation-type vocabulary (cover, sampling, translation, parody...)."@en,
+        "Classifica uma alegação de derivação com um ou mais conceitos do vocabulário de tipos de derivação (cover, sampling, tradução, paródia...)."@pt-BR .
 
 aro:hasDerivedAnchor a owl:ObjectProperty ;
     rdfs:label "claim names the derived entity"@en,
         "alegação indica entidade derivada"@pt-BR ;
     rdfs:domain aro:DerivationClaim ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/derivation> ;
     rdfs:range [ a owl:Class ;
-            owl:unionOf ( aro:Artwork aro:Manifestation aro:Selection ) ] .
+            owl:unionOf ( aro:Artwork aro:Manifestation aro:Selection ) ] ;
+    skos:definition "Links a derivation claim to the entity said to derive from the source (artwork, manifestation or selection): the derived side of the claim. It must differ from the source anchor."@en,
+        "Liga uma alegação de derivação à entidade que se diz derivar da origem (obra, manifestação ou recorte): o lado derivado da alegação. Deve ser diferente da âncora de origem."@pt-BR .
 
 aro:hasDimension a owl:ObjectProperty ;
     rdfs:label "aspect concerns a dimension"@en,
         "aspecto incide sobre dimensão"@pt-BR ;
     rdfs:domain aro:TransformationAspect ;
-    rdfs:range aro:ArtisticDimension .
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/derivation> ;
+    rdfs:range aro:ArtisticDimension ;
+    skos:definition "States which artistic dimension (melody, lyrics, plot, character, medium...) a transformation aspect is about."@en,
+        "Diz de qual dimensão artística (melodia, letra, enredo, personagem, meio...) trata um aspecto de transformação."@pt-BR .
 
 aro:hasOperation a owl:ObjectProperty ;
     rdfs:label "aspect applies an operation"@en,
         "aspecto aplica operação"@pt-BR ;
     rdfs:domain aro:TransformationAspect ;
-    rdfs:range aro:TransformationOperation .
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/derivation> ;
+    rdfs:range aro:TransformationOperation ;
+    skos:definition "States what was done to the dimension in a transformation aspect: retain, modify, add, remove or recontextualize."@en,
+        "Diz o que foi feito com a dimensão num aspecto de transformação: manter, modificar, adicionar, remover ou recontextualizar."@pt-BR .
 
 aro:hasRegime a owl:ObjectProperty ;
     rdfs:label "claim records derivation regime"@en,
         "alegação registra regime de derivação"@pt-BR ;
     rdfs:domain aro:DerivationClaim ;
-    rdfs:range aro:DerivationRegime .
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/derivation> ;
+    rdfs:range aro:DerivationRegime ;
+    skos:definition "Qualifies a derivation claim with its regime: the stance taken toward the source (playful, satirical, serious, reverential)."@en,
+        "Qualifica uma alegação de derivação com seu regime: a postura tomada diante da origem (lúdica, satírica, séria, reverente)."@pt-BR .
 
 aro:hasSourceAnchor a owl:ObjectProperty ;
     rdfs:label "claim names the source entity"@en,
         "alegação indica entidade de origem"@pt-BR ;
     rdfs:domain aro:DerivationClaim ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/derivation> ;
     rdfs:range [ a owl:Class ;
-            owl:unionOf ( aro:Artwork aro:Manifestation aro:Selection ) ] .
+            owl:unionOf ( aro:Artwork aro:Manifestation aro:Selection ) ] ;
+    skos:definition "Links a derivation claim to the entity the derivation starts from (artwork, manifestation or selection): the source side of the claim."@en,
+        "Liga uma alegação de derivação à entidade de onde a derivação parte (obra, manifestação ou recorte): o lado de origem da alegação."@pt-BR .
 
 aro:hasTransformation a owl:ObjectProperty ;
     rdfs:label "claim details a transformation aspect"@en,
         "alegação detalha aspecto de transformação"@pt-BR ;
     rdfs:domain aro:DerivationClaim ;
-    rdfs:range aro:TransformationAspect .
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/derivation> ;
+    rdfs:range aro:TransformationAspect ;
+    skos:definition "Links a derivation claim to the transformation aspects that detail it, one per artistic dimension that was retained, modified, added, removed or recontextualized."@en,
+        "Liga uma alegação de derivação aos aspectos de transformação que a detalham, um por dimensão artística mantida, modificada, adicionada, removida ou recontextualizada."@pt-BR .
 
 aro:producesCreation a owl:ObjectProperty ;
     rdfs:label "act brings about artwork or manifestation"@en,
         "ato origina obra ou manifestação"@pt-BR ;
     rdfs:domain aro:CreativeAct ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/derivation> ;
     rdfs:range [ a owl:Class ;
-            owl:unionOf ( aro:Artwork aro:Manifestation ) ] .
-
-<https://w3id.org/aro/ontology/module/derivation> a owl:Ontology ;
-    dcterms:isPartOf <https://w3id.org/aro/ontology> ;
-    dcterms:title "ARO module: Derivation and creation"@en,
-        "Módulo ARO: Derivação e criação"@pt-BR ;
-    owl:versionInfo "0.2.0-beta" .
+            owl:unionOf ( aro:Artwork aro:Manifestation ) ] ;
+    skos:definition "Links a creative act to the artworks or manifestations it brings into existence, including derivative ones."@en,
+        "Liga um ato criativo às obras ou manifestações que ele faz existir, inclusive as derivadas."@pt-BR .
 
 aro:Adaptation a skos:Concept,
         aro:DerivationType ;
@@ -963,6 +1011,7 @@ aro:CreativeAgent a owl:Class ;
         "agente criativo"@pt-BR ;
     rdfs:comment "OntoUML stereotype (provisional): roleMixin; foundation: UFO-A anti-rigid non-sortal (roleMixin); agents are individuals of external ontologies; dependency: relationally on a CreativeContribution; identity supplied by external kinds"@en,
         "Estereótipo OntoUML (provisório): roleMixin; fundamentação: não-sortal anti-rígido UFO-A (roleMixin); agentes são indivíduos de ontologias externas; dependência: relacionalmente de uma CreativeContribution; identidade fornecida por tipos externos"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/derivation> ;
     rdfs:seeAlso prov:Agent,
         foaf:Agent,
         schema:Organization,
@@ -1135,6 +1184,7 @@ aro:CreativeAct a owl:Class ;
         "ato criativo"@pt-BR ;
     rdfs:comment "OntoUML stereotype (provisional): event; foundation: UFO-B event; UFO-C intentional action; dependency: participating agents and temporal occurrence"@en,
         "Estereótipo OntoUML (provisório): event; fundamentação: evento UFO-B; ação intencional UFO-C; dependência: agentes participantes e ocorrência temporal"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/derivation> ;
     skos:definition "Intentional temporal activity that brings an artwork or manifestation into existence, including derivative ones."@en,
         "Atividade intencional temporal que dá origem a uma obra ou manifestação, inclusive derivadas."@pt-BR .
 
@@ -1143,6 +1193,7 @@ aro:CreativeContribution a owl:Class ;
         "contribuição criativa"@pt-BR ;
     rdfs:comment "OntoUML stereotype (provisional): relator; foundation: UFO-A relator; role qualification via CreativeRole; dependency: existentially on the act and the agent"@en,
         "Estereótipo OntoUML (provisório): relator; fundamentação: relator UFO-A; papel qualificado via CreativeRole; dependência: existencialmente do ato e do agente"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/derivation> ;
     skos:definition "Participation of one creative agent in one creative act under one or more roles."@en,
         "Participação de um agente criativo num ato criativo sob um ou mais papéis."@pt-BR .
 
@@ -1191,6 +1242,7 @@ aro:DerivationRegime a owl:Class ;
         "regime de derivação"@pt-BR ;
     rdfs:comment "OntoUML stereotype (provisional): type; foundation: UFO high-order type (provisional); operationalized as skos:Concept; dependency: controlled vocabulary membership"@en,
         "Estereótipo OntoUML (provisório): type; fundamentação: tipo de alta ordem UFO (provisório); operacionalizado como skos:Concept; dependência: pertencimento a vocabulário controlado"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/derivation> ;
     skos:definition "Stance of a derivation toward its source (playful, satirical, serious, reverential); its instances are SKOS concepts."@en,
         "Postura da derivação em relação à origem (lúdica, satírica, séria, reverencial); suas instâncias são conceitos SKOS."@pt-BR .
 
@@ -1237,6 +1289,7 @@ aro:TransformationAspect a owl:Class ;
         "aspecto de transformação"@pt-BR ;
     rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-C information object; dependency: host derivation claim; one dimension and one operation"@en,
         "Estereótipo OntoUML (provisório): kind; fundamentação: objeto informacional UFO-C; dependência: alegação de derivação hospedeira; uma dimensão e uma operação"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/derivation> ;
     skos:definition "Recorded statement of what happened to one artistic dimension in a derivation (retained, modified, added, removed or recontextualized)."@en,
         "Registro do que ocorreu com uma dimensão artística numa derivação (mantida, modificada, acrescentada, removida ou recontextualizada)."@pt-BR .
 
@@ -1245,6 +1298,7 @@ aro:TransformationOperation a owl:Class ;
         "operação de transformação"@pt-BR ;
     rdfs:comment "OntoUML stereotype (provisional): type; foundation: UFO high-order type (provisional); operationalized as skos:Concept; dependency: controlled vocabulary membership"@en,
         "Estereótipo OntoUML (provisório): type; fundamentação: tipo de alta ordem UFO (provisório); operacionalizado como skos:Concept; dependência: pertencimento a vocabulário controlado"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/derivation> ;
     skos:definition "What a derivation does to a dimension: retain, modify, add, remove or recontextualize."@en,
         "O que a derivação faz com uma dimensão: manter, modificar, acrescentar, remover ou recontextualizar."@pt-BR .
 
@@ -1283,6 +1337,7 @@ aro:DerivationClaim a owl:Class ;
         "alegação de derivação"@pt-BR ;
     rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-C information object; not a UFO relator nor an asserted fact; dependency: exactly one source anchor and one derived anchor; typed by at least one derivation type"@en,
         "Estereótipo OntoUML (provisório): kind; fundamentação: objeto informacional UFO-C; nem relator UFO nem fato afirmado; dependência: exatamente uma âncora de origem e uma derivada; tipificada por ao menos um tipo de derivação"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/derivation> ;
     rdfs:seeAlso prov:wasDerivedFrom,
         wdt:P144,
         schema:isBasedOn ;
@@ -1315,6 +1370,7 @@ aro:CreativeRole a owl:Class ;
         "papel criativo"@pt-BR ;
     rdfs:comment "OntoUML stereotype (provisional): type; foundation: UFO role type (provisional); operationalized as skos:Concept; dependency: controlled vocabulary membership"@en,
         "Estereótipo OntoUML (provisório): type; fundamentação: tipo de papel UFO (provisório); operacionalizado como skos:Concept; dependência: pertencimento a vocabulário controlado"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/derivation> ;
     skos:definition "Role qualifying a creative contribution (composer, performer, translator, remixer...)."@en,
         "Papel que qualifica uma contribuição criativa (compositor, intérprete, tradutor, remixador...)."@pt-BR .
 
@@ -1354,11 +1410,20 @@ aro:CreativeRoleScheme a skos:ConceptScheme ;
     skos:prefLabel "Creative roles"@en,
         "Papéis criativos"@pt-BR .
 
+<https://w3id.org/aro/ontology/module/derivation> a owl:Ontology ;
+    dcterms:description "How works derive from other works (cover, sampling, adaptation, parody...): derivation claims with types, regimes and transformation aspects, and the creative acts and contributions behind them."@en,
+        "Como obras derivam de outras (cover, sampling, adaptação, paródia...): alegações de derivação com tipos, regimes e aspectos de transformação, e os atos e contribuições criativas por trás delas."@pt-BR ;
+    dcterms:isPartOf <https://w3id.org/aro/ontology> ;
+    dcterms:title "ARO module: Derivation and creation"@en,
+        "Módulo ARO: Derivação e criação"@pt-BR ;
+    owl:versionInfo "0.2.1-beta" .
+
 aro:DerivationType a owl:Class ;
     rdfs:label "derivation type"@en,
         "tipo de derivação"@pt-BR ;
     rdfs:comment "OntoUML stereotype (provisional): type; foundation: UFO high-order type (provisional); operationalized as skos:Concept; dependency: controlled vocabulary membership"@en,
         "Estereótipo OntoUML (provisório): type; fundamentação: tipo de alta ordem UFO (provisório); operacionalizado como skos:Concept; dependência: pertencimento a vocabulário controlado"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/derivation> ;
     skos:definition "Kind of derivation (translation, cover, sampling, parody...); its instances are SKOS concepts."@en,
         "Tipo de derivação (tradução, cover, sample, paródia...); suas instâncias são conceitos SKOS."@pt-BR .
 
@@ -1378,6 +1443,7 @@ aro:ArtisticDimension a owl:Class ;
         "dimensão artística"@pt-BR ;
     rdfs:comment "OntoUML stereotype (provisional): type; foundation: UFO high-order type (provisional); operationalized as skos:Concept; dependency: controlled vocabulary membership"@en,
         "Estereótipo OntoUML (provisório): type; fundamentação: tipo de alta ordem UFO (provisório); operacionalizado como skos:Concept; dependência: pertencimento a vocabulário controlado"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/derivation> ;
     skos:definition "Aspect of a work along which derivation can be compared (melody, lyrics, plot, character, medium...)."@en,
         "Aspecto da obra segundo o qual a derivação pode ser comparada (melodia, letra, enredo, personagem, mídia...)."@pt-BR .
 

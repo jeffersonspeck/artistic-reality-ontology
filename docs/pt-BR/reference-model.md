@@ -44,6 +44,7 @@ aro:Artwork a owl:Class ;
         "obra"@pt-BR ;
     rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-C social/information object (domain commitment); dependency: historically on creation; not on a single copy"@en,
         "Estereótipo OntoUML (provisório): kind; fundamentação: objeto social/informacional UFO-C (compromisso de domínio); dependência: historicamente da criação; não de uma cópia específica"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/artwork> ;
     skos:definition "Identifiable artistic creation across media and manifestations."@en,
         "Criação artística identificável em diversas mídias e manifestações."@pt-BR .
 ```
@@ -74,6 +75,7 @@ aro:Manifestation a owl:Class ;
         "manifestação"@pt-BR ;
     rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-A enduring object; UFO-C information artifact; dependency: semantic identity relative to an artwork"@en,
         "Estereótipo OntoUML (provisório): kind; fundamentação: objeto persistente UFO-A; artefato informacional UFO-C; dependência: identidade semântica relativa a uma obra"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/artwork> ;
     skos:definition "Specific expression, version or realization of an artwork."@en,
         "Expressão, versão ou realização específica de uma obra."@pt-BR .
 ```
@@ -105,6 +107,7 @@ aro:Selection a owl:Class ;
         "recorte"@pt-BR ;
     rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-C information object; domain category; dependency: reference to manifestation and selectors"@en,
         "Estereótipo OntoUML (provisório): kind; fundamentação: objeto informacional UFO-C; categoria de domínio; dependência: referência a manifestação e seletores"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/artwork> ;
     rdfs:seeAlso oa:SpecificResource ;
     skos:definition "Addressable selected portion of a manifestation (not its physical component)."@en,
         "Seleção endereçável de uma parte de manifestação (não componente físico)."@pt-BR .
@@ -136,6 +139,7 @@ aro:AnalysisUnit a owl:Class ;
         "unidade de análise"@pt-BR ;
     rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-C information object; dependency: organizational reference to selections"@en,
         "Estereótipo OntoUML (provisório): kind; fundamentação: objeto informacional UFO-C; dependência: referência organizacional a recortes"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/artwork> ;
     skos:definition "Intentional grouping of selections for analytical purposes."@en,
         "Agrupamento intencional de recortes com finalidade analítica."@pt-BR .
 ```
@@ -166,6 +170,7 @@ aro:InterpretationRecord a owl:Class ;
         "registro de interpretação"@pt-BR ;
     rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-C information object; not an event; dependency: anchor selection; historical interpretive act"@en,
         "Estereótipo OntoUML (provisório): kind; fundamentação: objeto informacional UFO-C; não é evento; dependência: recorte de ancoragem; ato interpretativo histórico"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/interpretation> ;
     skos:definition "Persistent authored record of an interpretation of a selection."@en,
         "Registro autoral persistente de uma interpretação de recorte."@pt-BR .
 ```
@@ -196,6 +201,7 @@ aro:InterpretiveAct a owl:Class ;
         "ato interpretativo"@pt-BR ;
     rdfs:comment "OntoUML stereotype (provisional): event; foundation: UFO-B event; UFO-C intentional action; dependency: participating agents and temporal occurrence"@en,
         "Estereótipo OntoUML (provisório): event; fundamentação: evento UFO-B; ação intencional UFO-C; dependência: agentes participantes e ocorrência temporal"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/interpretation> ;
     skos:definition "Temporal intentional activity yielding interpretation records."@en,
         "Atividade intencional temporal que produz interpretações registradas."@pt-BR .
 ```
@@ -227,6 +233,7 @@ aro:Analyst a owl:Class ;
         "analista"@pt-BR ;
     rdfs:comment "OntoUML stereotype (provisional): roleMixin; foundation: UFO-A anti-rigid non-sortal (roleMixin); agents are individuals of external ontologies; dependency: relationally on participation in an InterpretiveAct; identity supplied by external kinds"@en,
         "Estereótipo OntoUML (provisório): roleMixin; fundamentação: não-sortal anti-rígido UFO-A (roleMixin); agentes são indivíduos de ontologias externas; dependência: relacionalmente da participação num InterpretiveAct; identidade fornecida por tipos externos"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/interpretation> ;
     rdfs:seeAlso prov:Agent,
         foaf:Person,
         schema:Person ;
@@ -260,6 +267,7 @@ aro:InterpretiveJustification a owl:Class ;
         "justificativa interpretativa"@pt-BR ;
     rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-C information object; dependency: target interpretation, articulated premises"@en,
         "Estereótipo OntoUML (provisório): kind; fundamentação: objeto informacional UFO-C; dependência: interpretação ou alegação-alvo, premissas articuladas"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/interpretation> ;
     skos:definition "Recorded argument connecting premises to an interpretation or to a derivation claim."@en,
         "Argumento registrado que liga premissas a uma interpretação ou a uma alegação de derivação."@pt-BR .
 ```
@@ -290,6 +298,7 @@ aro:InterpretationChallenge a owl:Class ;
         "contestação de interpretação"@pt-BR ;
     rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-C information object; dependency: challenged interpretation and argument"@en,
         "Estereótipo OntoUML (provisório): kind; fundamentação: objeto informacional UFO-C; dependência: interpretação contestada e argumento"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/interpretation> ;
     skos:definition "Recorded criticism or alternative reasoning about an interpretation."@en,
         "Crítica ou raciocínio alternativo registrado sobre interpretação."@pt-BR .
 ```
@@ -320,6 +329,7 @@ aro:InterpretationAssessment a owl:Class ;
         "avaliação de interpretação"@pt-BR ;
     rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-C information object; dependency: target and criteria"@en,
         "Estereótipo OntoUML (provisório): kind; fundamentação: objeto informacional UFO-C; dependência: alvo e critérios"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/interpretation> ;
     skos:definition "Explicit epistemic or axiological judgment of an interpretation."@en,
         "Julgamento epistêmico ou axiológico explícito de interpretação."@pt-BR .
 ```
@@ -350,6 +360,7 @@ aro:AssessmentCriterion a owl:Class ;
         "critério de avaliação"@pt-BR ;
     rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-C normative/social information object; dependency: specified normative meaning"@en,
         "Estereótipo OntoUML (provisório): kind; fundamentação: objeto informacional normativo/social UFO-C; dependência: significado normativo especificado"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/interpretation> ;
     skos:definition "Specified epistemic or value-based assessment rule."@en,
         "Regra especificada de avaliação epistêmica ou de valores."@pt-BR .
 ```
@@ -380,6 +391,7 @@ aro:DepictedElement a owl:Class ;
         "elemento representado"@pt-BR ;
     rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-C representation; not a real-world entity; dependency: representational context"@en,
         "Estereótipo OntoUML (provisório): kind; fundamentação: representação UFO-C; não é entidade do mundo real; dependência: contexto representacional"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/representation> ;
     skos:definition "Information-level representation of a referent in an artwork."@en,
         "Representação informacional de um referente na obra."@pt-BR .
 ```
@@ -410,6 +422,7 @@ aro:DepictedAgent a owl:Class ;
         "agente representado"@pt-BR ;
     rdfs:comment "OntoUML stereotype (provisional): subkind; foundation: UFO-C representation; dependency: inherits DepictedElement identity"@en,
         "Estereótipo OntoUML (provisório): subkind; fundamentação: representação UFO-C; dependência: herda a identidade de DepictedElement"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/representation> ;
     rdfs:subClassOf aro:DepictedElement ;
     skos:definition "Depicted element referring to an agent or character."@en,
         "Elemento representado que se refere a agente ou personagem."@pt-BR .
@@ -441,6 +454,7 @@ aro:SituationDescription a owl:Class ;
         "descrição de situação"@pt-BR ;
     rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-C information object, not gufo:Situation; dependency: interpretive support and conceptual content"@en,
         "Estereótipo OntoUML (provisório): kind; fundamentação: objeto informacional UFO-C, não gufo:Situation; dependência: suporte interpretativo e conteúdo conceitual"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/representation> ;
     skos:definition "Recorded description of a represented situation."@en,
         "Descrição registrada de situação representada."@pt-BR .
 ```
@@ -471,6 +485,7 @@ aro:IntentionalStateDescription a owl:Class ;
         "descrição de estado intencional"@pt-BR ;
     rdfs:comment "OntoUML stereotype (provisional): subkind; foundation: UFO-C intentional content attribution; dependency: inherits SituationDescription identity"@en,
         "Estereótipo OntoUML (provisório): subkind; fundamentação: atribuição de conteúdo intencional UFO-C; dependência: herda a identidade de SituationDescription"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/representation> ;
     rdfs:subClassOf aro:SituationDescription ;
     skos:definition "Situation description attributing desire, belief or intention to a depicted agent."@en,
         "Descrição de situação que atribui desejo, crença ou intenção a agente representado."@pt-BR .
@@ -502,6 +517,7 @@ aro:SituationPattern a owl:Class ;
         "padrão situacional"@pt-BR ;
     rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-C information object; dependency: defining conditions; not identical to universal"@en,
         "Estereótipo OntoUML (provisório): kind; fundamentação: objeto informacional UFO-C; dependência: condições definidoras; não idêntico a universal"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/pattern> ;
     skos:definition "Reusable informational specification of situation conditions."@en,
         "Especificação informacional reutilizável de condições situacionais."@pt-BR .
 ```
@@ -532,6 +548,7 @@ aro:PatternCondition a owl:Class ;
         "condição de padrão"@pt-BR ;
     rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-C information object; dependency: host pattern and logical specification"@en,
         "Estereótipo OntoUML (provisório): kind; fundamentação: objeto informacional UFO-C; dependência: padrão hospedeiro e especificação lógica"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/pattern> ;
     skos:definition "Individuated mandatory or optional condition within a pattern."@en,
         "Condição individualizada obrigatória ou opcional de um padrão."@pt-BR .
 ```
@@ -562,6 +579,7 @@ aro:EmpiricalCase a owl:Class ;
         "caso empírico"@pt-BR ;
     rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-C information object; dependency: case description and empirical referent"@en,
         "Estereótipo OntoUML (provisório): kind; fundamentação: objeto informacional UFO-C; dependência: descrição do caso e referente empírico"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/evidence> ;
     skos:definition "Documented dossier about one real-world situation or occurrence."@en,
         "Dossiê documentado sobre uma situação ou ocorrência real."@pt-BR .
 ```
@@ -592,6 +610,7 @@ aro:EmpiricalClaim a owl:Class ;
         "afirmação empírica"@pt-BR ;
     rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-C information object; dependency: claim content and intended empirical reference"@en,
         "Estereótipo OntoUML (provisório): kind; fundamentação: objeto informacional UFO-C; dependência: conteúdo da afirmação e referência empírica pretendida"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/evidence> ;
     skos:definition "Recorded testable claim about the empirical world."@en,
         "Afirmação registrada e verificável acerca do mundo empírico."@pt-BR .
 ```
@@ -622,6 +641,7 @@ aro:ReferenceSource a owl:Class ;
         "fonte de referência"@pt-BR ;
     rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-C information object; dependency: source provenance; not tied to one interpretation"@en,
         "Estereótipo OntoUML (provisório): kind; fundamentação: objeto informacional UFO-C; dependência: proveniência da fonte; não vinculada a uma interpretação"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/evidence> ;
     skos:definition "Citable external resource: news, study, report, legal document, testimony, dataset, etc."@en,
         "Recurso externo citável: notícia, estudo, relatório, documento legal, relato, conjunto de dados etc."@pt-BR .
 ```
@@ -652,6 +672,7 @@ aro:EvidenceItem a owl:Class ;
         "item de evidência"@pt-BR ;
     rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-C information object; dependency: reference source and observation content"@en,
         "Estereótipo OntoUML (provisório): kind; fundamentação: objeto informacional UFO-C; dependência: fonte de referência e conteúdo observado"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/evidence> ;
     skos:definition "Extracted contextual assertion or observation from a reference source."@en,
         "Afirmação ou observação contextualizada extraída de uma fonte."@pt-BR .
 ```
@@ -682,6 +703,7 @@ aro:CorrespondenceClaim a owl:Class ;
         "alegação de correspondência"@pt-BR ;
     rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-C information object; not UFO relator; dependency: compared pattern/case and dimensions"@en,
         "Estereótipo OntoUML (provisório): kind; fundamentação: objeto informacional UFO-C; não é relator UFO; dependência: padrão/caso comparados e dimensões"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/evidence> ;
     skos:definition "Contestable assertion of similarity, instantiation or explanatory relevance between pattern and empirical case."@en,
         "Alegação contestável de similaridade, instanciação ou relevância explicativa entre padrão e caso empírico."@pt-BR .
 ```
@@ -712,6 +734,7 @@ aro:EvidenceAssessment a owl:Class ;
         "avaliação de evidência"@pt-BR ;
     rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-C information object; dependency: claim and evidence and criteria"@en,
         "Estereótipo OntoUML (provisório): kind; fundamentação: objeto informacional UFO-C; dependência: afirmação, evidência e critérios"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/evidence> ;
     skos:definition "Judgment whether evidence supports, challenges or is irrelevant to a specified claim."@en,
         "Julgamento de apoio, contestação ou irrelevância de evidência para afirmação específica."@pt-BR .
 ```
@@ -742,6 +765,7 @@ aro:ExplanationHypothesis a owl:Class ;
         "hipótese explicativa"@pt-BR ;
     rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-C information object; dependency: explicit explanandum and explanatory content"@en,
         "Estereótipo OntoUML (provisório): kind; fundamentação: objeto informacional UFO-C; dependência: explanandum explícito e conteúdo explicativo"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/evidence> ;
     skos:definition "Proposed mechanism or factors explaining a represented or observed phenomenon."@en,
         "Mecanismo ou fatores propostos para explicar fenômeno representado ou observado."@pt-BR .
 ```
@@ -772,6 +796,7 @@ aro:EmpiricalSituation a owl:Class ;
         "situação empírica"@pt-BR ;
     rdfs:comment "OntoUML stereotype (provisional): situation; foundation: UFO-B situation; separate from descriptions; dependency: real-world constituents"@en,
         "Estereótipo OntoUML (provisório): situation; fundamentação: situação UFO-B; separada de descrições; dependência: constituintes do mundo real"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/evidence> ;
     skos:definition "Configuration of entities and conditions in the real world."@en,
         "Configuração de entidades e condições no mundo real."@pt-BR .
 ```
@@ -802,6 +827,7 @@ aro:EmpiricalEvent a owl:Class ;
         "evento empírico"@pt-BR ;
     rdfs:comment "OntoUML stereotype (provisional): event; foundation: UFO-B event; dependency: real occurrence and participants"@en,
         "Estereótipo OntoUML (provisório): event; fundamentação: evento UFO-B; dependência: ocorrência real e participantes"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/evidence> ;
     skos:definition "Real-world temporally bounded occurrence."@en,
         "Ocorrência do mundo real delimitada temporalmente."@pt-BR .
 ```
@@ -833,6 +859,7 @@ aro:DerivationClaim a owl:Class ;
         "alegação de derivação"@pt-BR ;
     rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-C information object; not a UFO relator nor an asserted fact; dependency: exactly one source anchor and one derived anchor; typed by at least one derivation type"@en,
         "Estereótipo OntoUML (provisório): kind; fundamentação: objeto informacional UFO-C; nem relator UFO nem fato afirmado; dependência: exatamente uma âncora de origem e uma derivada; tipificada por ao menos um tipo de derivação"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/derivation> ;
     rdfs:seeAlso prov:wasDerivedFrom,
         wdt:P144,
         schema:isBasedOn ;
@@ -866,6 +893,7 @@ aro:TransformationAspect a owl:Class ;
         "aspecto de transformação"@pt-BR ;
     rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-C information object; dependency: host derivation claim; one dimension and one operation"@en,
         "Estereótipo OntoUML (provisório): kind; fundamentação: objeto informacional UFO-C; dependência: alegação de derivação hospedeira; uma dimensão e uma operação"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/derivation> ;
     skos:definition "Recorded statement of what happened to one artistic dimension in a derivation (retained, modified, added, removed or recontextualized)."@en,
         "Registro do que ocorreu com uma dimensão artística numa derivação (mantida, modificada, acrescentada, removida ou recontextualizada)."@pt-BR .
 ```
@@ -896,6 +924,7 @@ aro:CreativeAct a owl:Class ;
         "ato criativo"@pt-BR ;
     rdfs:comment "OntoUML stereotype (provisional): event; foundation: UFO-B event; UFO-C intentional action; dependency: participating agents and temporal occurrence"@en,
         "Estereótipo OntoUML (provisório): event; fundamentação: evento UFO-B; ação intencional UFO-C; dependência: agentes participantes e ocorrência temporal"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/derivation> ;
     skos:definition "Intentional temporal activity that brings an artwork or manifestation into existence, including derivative ones."@en,
         "Atividade intencional temporal que dá origem a uma obra ou manifestação, inclusive derivadas."@pt-BR .
 ```
@@ -927,6 +956,7 @@ aro:CreativeAgent a owl:Class ;
         "agente criativo"@pt-BR ;
     rdfs:comment "OntoUML stereotype (provisional): roleMixin; foundation: UFO-A anti-rigid non-sortal (roleMixin); agents are individuals of external ontologies; dependency: relationally on a CreativeContribution; identity supplied by external kinds"@en,
         "Estereótipo OntoUML (provisório): roleMixin; fundamentação: não-sortal anti-rígido UFO-A (roleMixin); agentes são indivíduos de ontologias externas; dependência: relacionalmente de uma CreativeContribution; identidade fornecida por tipos externos"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/derivation> ;
     rdfs:seeAlso prov:Agent,
         foaf:Agent,
         schema:Organization,
@@ -961,6 +991,7 @@ aro:CreativeContribution a owl:Class ;
         "contribuição criativa"@pt-BR ;
     rdfs:comment "OntoUML stereotype (provisional): relator; foundation: UFO-A relator; role qualification via CreativeRole; dependency: existentially on the act and the agent"@en,
         "Estereótipo OntoUML (provisório): relator; fundamentação: relator UFO-A; papel qualificado via CreativeRole; dependência: existencialmente do ato e do agente"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/derivation> ;
     skos:definition "Participation of one creative agent in one creative act under one or more roles."@en,
         "Participação de um agente criativo num ato criativo sob um ou mais papéis."@pt-BR .
 ```
@@ -991,6 +1022,7 @@ aro:DerivationType a owl:Class ;
         "tipo de derivação"@pt-BR ;
     rdfs:comment "OntoUML stereotype (provisional): type; foundation: UFO high-order type (provisional); operationalized as skos:Concept; dependency: controlled vocabulary membership"@en,
         "Estereótipo OntoUML (provisório): type; fundamentação: tipo de alta ordem UFO (provisório); operacionalizado como skos:Concept; dependência: pertencimento a vocabulário controlado"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/derivation> ;
     skos:definition "Kind of derivation (translation, cover, sampling, parody...); its instances are SKOS concepts."@en,
         "Tipo de derivação (tradução, cover, sample, paródia...); suas instâncias são conceitos SKOS."@pt-BR .
 ```
@@ -1021,6 +1053,7 @@ aro:DerivationRegime a owl:Class ;
         "regime de derivação"@pt-BR ;
     rdfs:comment "OntoUML stereotype (provisional): type; foundation: UFO high-order type (provisional); operationalized as skos:Concept; dependency: controlled vocabulary membership"@en,
         "Estereótipo OntoUML (provisório): type; fundamentação: tipo de alta ordem UFO (provisório); operacionalizado como skos:Concept; dependência: pertencimento a vocabulário controlado"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/derivation> ;
     skos:definition "Stance of a derivation toward its source (playful, satirical, serious, reverential); its instances are SKOS concepts."@en,
         "Postura da derivação em relação à origem (lúdica, satírica, séria, reverencial); suas instâncias são conceitos SKOS."@pt-BR .
 ```
@@ -1051,6 +1084,7 @@ aro:ArtisticDimension a owl:Class ;
         "dimensão artística"@pt-BR ;
     rdfs:comment "OntoUML stereotype (provisional): type; foundation: UFO high-order type (provisional); operationalized as skos:Concept; dependency: controlled vocabulary membership"@en,
         "Estereótipo OntoUML (provisório): type; fundamentação: tipo de alta ordem UFO (provisório); operacionalizado como skos:Concept; dependência: pertencimento a vocabulário controlado"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/derivation> ;
     skos:definition "Aspect of a work along which derivation can be compared (melody, lyrics, plot, character, medium...)."@en,
         "Aspecto da obra segundo o qual a derivação pode ser comparada (melodia, letra, enredo, personagem, mídia...)."@pt-BR .
 ```
@@ -1081,6 +1115,7 @@ aro:TransformationOperation a owl:Class ;
         "operação de transformação"@pt-BR ;
     rdfs:comment "OntoUML stereotype (provisional): type; foundation: UFO high-order type (provisional); operationalized as skos:Concept; dependency: controlled vocabulary membership"@en,
         "Estereótipo OntoUML (provisório): type; fundamentação: tipo de alta ordem UFO (provisório); operacionalizado como skos:Concept; dependência: pertencimento a vocabulário controlado"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/derivation> ;
     skos:definition "What a derivation does to a dimension: retain, modify, add, remove or recontextualize."@en,
         "O que a derivação faz com uma dimensão: manter, modificar, acrescentar, remover ou recontextualizar."@pt-BR .
 ```
@@ -1111,6 +1146,7 @@ aro:CreativeRole a owl:Class ;
         "papel criativo"@pt-BR ;
     rdfs:comment "OntoUML stereotype (provisional): type; foundation: UFO role type (provisional); operationalized as skos:Concept; dependency: controlled vocabulary membership"@en,
         "Estereótipo OntoUML (provisório): type; fundamentação: tipo de papel UFO (provisório); operacionalizado como skos:Concept; dependência: pertencimento a vocabulário controlado"@pt-BR ;
+    rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/derivation> ;
     skos:definition "Role qualifying a creative contribution (composer, performer, translator, remixer...)."@en,
         "Papel que qualifica uma contribuição criativa (compositor, intérprete, tradutor, remixador...)."@pt-BR .
 ```
@@ -1121,55 +1157,55 @@ aro:CreativeRole a owl:Class ;
 
 | Relation | Source → target | Multiplicity at target | Meaning |
 |---|---|---|---|
-| `hasManifestation` | `Artwork` → `Manifestation` | `1..*` | obra se realiza por manifestação |
-| `realizesArtwork` | `Manifestation` → `Artwork` | `1` | manifestação realiza obra |
-| `selectsFrom` | `Selection` → `Manifestation` | `1` | recorte referencia manifestação |
-| `hasSelector` | `Selection` → `oa:Selector` | `0..*` | recorte localizado por seletor W3C Web Annotation |
-| `groupsSelection` | `AnalysisUnit` → `Selection` | `1..*` | unidade agrupa recortes |
-| `hasPrimarySelection` | `InterpretationRecord` → `Selection` | `1` | interpretação se ancora em recorte |
-| `hasSupportingSelection` | `InterpretationRecord` → `Selection` | `0..*` | interpretação usa recorte de apoio |
-| `producedByAct` | `InterpretationRecord` → `InterpretiveAct` | `1` | ato produz registro |
-| `hasParticipant` | `InterpretiveAct` → `Analyst` | `1..*` | agente participa de ato |
-| `hasJustification` | `InterpretationRecord` → `InterpretiveJustification` | `0..*` | interpretação tem fundamentação |
-| `challenges` | `InterpretationChallenge` → `InterpretationRecord` | `1` | contestação questiona interpretação |
-| `assessesInterpretation` | `InterpretationAssessment` → `InterpretationRecord` | `1` | avaliação incide sobre interpretação |
-| `usesCriterion` | `InterpretationAssessment` → `AssessmentCriterion` | `1..*` | avaliação usa critérios |
-| `describesSituation` | `InterpretationRecord` → `SituationDescription` | `0..*` | interpretação descreve situação |
-| `mentionsDepictedElement` | `SituationDescription` → `DepictedElement` | `0..*` | descrição menciona elemento |
-| `generalizesAs` | `SituationDescription` → `SituationPattern` | `0..*` | descrição motiva abstração |
-| `hasCondition` | `SituationPattern` → `PatternCondition` | `1..*` | padrão especifica condições |
-| `caseAboutSituation` | `EmpiricalCase` → `EmpiricalSituation` | `0..*` | dossiê descreve situação real |
-| `caseAboutEvent` | `EmpiricalCase` → `EmpiricalEvent` | `0..*` | dossiê descreve evento |
-| `assertsPattern` | `CorrespondenceClaim` → `SituationPattern` | `1` | alegação referencia padrão |
-| `assertsCase` | `CorrespondenceClaim` → `EmpiricalCase` | `1` | alegação referencia caso |
-| `derivedFromSource` | `EvidenceItem` → `ReferenceSource` | `1` | evidência obtida de fonte |
-| `supportsClaim` | `EvidenceAssessment` → `EmpiricalClaim` | `0..1` | avaliação examina afirmação |
-| `assessesCorrespondence` | `EvidenceAssessment` → `CorrespondenceClaim` | `0..1` | avaliação examina correspondência |
-| `assessesEvidence` | `EvidenceAssessment` → `EvidenceItem` | `1..*` | avaliação considera evidência |
-| `citesSource` | `InterpretationRecord` → `ReferenceSource` | `0..*` | interpretação cita fonte |
-| `referencesSource` | `CorrespondenceClaim` → `ReferenceSource` | `0..*` | correspondência cita fonte |
-| `caseHasReference` | `EmpiricalCase` → `ReferenceSource` | `0..*` | caso cita fontes |
-| `explainsPattern` | `ExplanationHypothesis` → `SituationPattern` | `0..*` | hipótese explica padrão |
-| `supportsInterpretation` | `InterpretationRecord` → `InterpretationRecord` | `0..*` | interpretação apoia outra |
-| `hasSourceAnchor` | `DerivationClaim` → `Artwork` ∪ `Manifestation` ∪ `Selection` | `1` | alegação indica entidade de origem |
-| `hasDerivedAnchor` | `DerivationClaim` → `Artwork` ∪ `Manifestation` ∪ `Selection` | `1` | alegação indica entidade derivada |
-| `hasDerivationType` | `DerivationClaim` → `DerivationType` | `1..*` | alegação tipificada por tipo de derivação |
-| `hasRegime` | `DerivationClaim` → `DerivationRegime` | `0..*` | alegação registra regime de derivação |
-| `hasTransformation` | `DerivationClaim` → `TransformationAspect` | `0..*` | alegação detalha aspecto de transformação |
-| `hasDimension` | `TransformationAspect` → `ArtisticDimension` | `1` | aspecto incide sobre dimensão |
-| `hasOperation` | `TransformationAspect` → `TransformationOperation` | `1` | aspecto aplica operação |
-| `aspectSourceSelection` | `TransformationAspect` → `Selection` | `0..1` | aspecto aponta recorte de origem |
-| `aspectDerivedSelection` | `TransformationAspect` → `Selection` | `0..1` | aspecto aponta recorte derivado |
-| `aspectConcernsPattern` | `TransformationAspect` → `SituationPattern` | `0..*` | aspecto envolve padrão situacional |
-| `derivationJustifiedBy` | `DerivationClaim` → `InterpretiveJustification` | `0..*` | alegação de derivação explicada por argumento |
-| `derivationRealizedBy` | `DerivationClaim` → `CreativeAct` | `0..1` | derivação realizada por ato criativo |
-| `claimProducedByAct` | `DerivationClaim` → `InterpretiveAct` | `0..1` | ato analítico que registrou a alegação |
-| `derivationReferencesSource` | `DerivationClaim` → `ReferenceSource` | `0..*` | alegação de derivação cita fonte |
-| `assessesDerivation` | `EvidenceAssessment` → `DerivationClaim` | `0..1` | avaliação examina alegação de derivação |
-| `producesCreation` | `CreativeAct` → `Artwork` ∪ `Manifestation` | `1..*` | ato origina obra ou manifestação |
-| `hasContribution` | `CreativeAct` → `CreativeContribution` | `0..*` | ato inclui contribuição |
-| `contributionBy` | `CreativeContribution` → `CreativeAgent` | `1` | contribuição feita por agente |
-| `contributionRole` | `CreativeContribution` → `CreativeRole` | `1..*` | contribuição qualificada por papel |
+| `hasManifestation` | `Artwork` → `Manifestation` | `1..*` | **obra se realiza por manifestação.** Liga uma obra a uma expressão, versão ou realização concreta dela (gravação, edição, apresentação, montagem de filme). Use para dizer por quais manifestações a obra existe. |
+| `realizesArtwork` | `Manifestation` → `Artwork` | `1` | **manifestação realiza obra.** Liga uma manifestação à obra que ela realiza; lida do lado da manifestação, diz de qual obra esta gravação, edição ou apresentação é versão. |
+| `selectsFrom` | `Selection` → `Manifestation` | `1` | **recorte referencia manifestação.** Liga um recorte à manifestação de onde ele é tirado. Todo recorte vem de exatamente uma manifestação, para que sua localização (linhas, segundos, região) tenha sentido. |
+| `hasSelector` | `Selection` → `oa:Selector` | `0..*` | **recorte localizado por seletor W3C Web Annotation.** Liga um recorte a um seletor W3C Web Annotation que o localiza dentro da manifestação (fragmento de tempo, citação ou posição de texto, região de imagem, forma SVG). |
+| `groupsSelection` | `AnalysisUnit` → `Selection` | `1..*` | **unidade agrupa recortes.** Liga uma unidade de análise aos recortes que ela agrupa, para que vários trechos sejam analisados juntos como uma unidade (uma cena, um refrão, um motivo). |
+| `hasPrimarySelection` | `InterpretationRecord` → `Selection` | `1` | **interpretação se ancora em recorte.** Liga um registro de interpretação ao único recorte de que ele trata: o trecho da obra em que a interpretação se ancora. |
+| `hasSupportingSelection` | `InterpretationRecord` → `Selection` | `0..*` | **interpretação usa recorte de apoio.** Liga um registro de interpretação a outros recortes citados em seu apoio, além do principal (outros trechos da mesma obra ou de outras). |
+| `producedByAct` | `InterpretationRecord` → `InterpretiveAct` | `1` | **ato produz registro.** Liga um registro de interpretação ao ato interpretativo que o produziu, registrando quem interpretou, e quando, como fato histórico distinto do conteúdo da interpretação. |
+| `hasParticipant` | `InterpretiveAct` → `Analyst` | `1..*` | **agente participa de ato.** Liga um ato interpretativo aos agentes (analistas) que participaram dele. Os agentes são identificados por IRIs externos (Wikidata, ORCID, FOAF, schema.org). |
+| `hasJustification` | `InterpretationRecord` → `InterpretiveJustification` | `0..*` | **interpretação tem fundamentação.** Liga um registro de interpretação ao argumento que o sustenta: as premissas e o raciocínio que levam do trecho à interpretação. |
+| `challenges` | `InterpretationChallenge` → `InterpretationRecord` | `1` | **contestação questiona interpretação.** Liga uma contestação ao registro de interpretação que ela critica ou para o qual propõe alternativa, de modo que a divergência fique registrada, e não apagada. |
+| `assessesInterpretation` | `InterpretationAssessment` → `InterpretationRecord` | `1` | **avaliação incide sobre interpretação.** Liga uma avaliação de interpretação ao registro de interpretação que ela julga (plausibilidade, coerência, relevância...). |
+| `usesCriterion` | `InterpretationAssessment` → `AssessmentCriterion` | `1..*` | **avaliação usa critérios.** Liga uma avaliação de interpretação aos critérios explícitos que ela aplica, para que a base do julgamento possa ser examinada e comparada. |
+| `describesSituation` | `InterpretationRecord` → `SituationDescription` | `0..*` | **interpretação descreve situação.** Liga um registro de interpretação às descrições de situações representadas que ele produz: o que, segundo a interpretação, acontece no trecho. |
+| `mentionsDepictedElement` | `SituationDescription` → `DepictedElement` | `0..*` | **descrição menciona elemento.** Liga uma descrição de situação aos elementos representados que ela envolve (personagens, lugares, objetos, grupos representados na obra). |
+| `generalizesAs` | `SituationDescription` → `SituationPattern` | `0..*` | **descrição motiva abstração.** Liga uma descrição de situação a um padrão situacional abstraído dela: a configuração reutilizável que a situação representada é tomada como exemplo. |
+| `hasCondition` | `SituationPattern` → `PatternCondition` | `1..*` | **padrão especifica condições.** Liga um padrão situacional às condições que o definem, cada uma individualizada para poder ser marcada como obrigatória ou opcional e comparada com casos reais. |
+| `caseAboutSituation` | `EmpiricalCase` → `EmpiricalSituation` | `0..*` | **dossiê descreve situação real.** Liga um caso empírico (dossiê documentado) às situações do mundo real que ele documenta. |
+| `caseAboutEvent` | `EmpiricalCase` → `EmpiricalEvent` | `0..*` | **dossiê descreve evento.** Liga um caso empírico (dossiê documentado) aos eventos do mundo real que ele documenta. |
+| `assertsPattern` | `CorrespondenceClaim` → `SituationPattern` | `1` | **alegação referencia padrão.** Liga uma alegação de correspondência ao padrão situacional que ela compara com um caso real: o lado da arte na alegação de que arte e realidade se correspondem. |
+| `assertsCase` | `CorrespondenceClaim` → `EmpiricalCase` | `1` | **alegação referencia caso.** Liga uma alegação de correspondência ao caso empírico que ela compara com um padrão: o lado da realidade na alegação de que arte e realidade se correspondem. |
+| `derivedFromSource` | `EvidenceItem` → `ReferenceSource` | `1` | **evidência obtida de fonte.** Liga um item de evidência à fonte de referência de onde foi extraído, para que toda evidência possa ser rastreada até uma fonte citável. |
+| `supportsClaim` | `EvidenceAssessment` → `EmpiricalClaim` | `0..1` | **avaliação examina afirmação.** Liga uma avaliação de evidência à afirmação empírica cujo apoio ela avalia. |
+| `assessesCorrespondence` | `EvidenceAssessment` → `CorrespondenceClaim` | `0..1` | **avaliação examina correspondência.** Liga uma avaliação de evidência à alegação de correspondência (padrão ↔ caso) cujo apoio ela avalia. |
+| `assessesEvidence` | `EvidenceAssessment` → `EvidenceItem` | `1..*` | **avaliação considera evidência.** Liga uma avaliação de evidência aos itens de evidência que ela pondera; toda avaliação considera pelo menos um item. |
+| `citesSource` | `InterpretationRecord` → `ReferenceSource` | `0..*` | **interpretação cita fonte.** Liga um registro de interpretação diretamente a uma fonte de referência em que se apoia (crítica, entrevista, estudo), quando não se registra um item de evidência separado. |
+| `referencesSource` | `CorrespondenceClaim` → `ReferenceSource` | `0..*` | **correspondência cita fonte.** Liga uma alegação de correspondência diretamente a uma fonte de referência em que se apoia. |
+| `caseHasReference` | `EmpiricalCase` → `ReferenceSource` | `0..*` | **caso cita fontes.** Liga um caso empírico às fontes de referência que o documentam (notícias, relatórios, estudos, depoimentos). |
+| `explainsPattern` | `ExplanationHypothesis` → `SituationPattern` | `0..*` | **hipótese explica padrão.** Liga uma hipótese explicativa ao padrão situacional que ela se propõe explicar (mecanismos ou fatores por trás da configuração recorrente). |
+| `supportsInterpretation` | `InterpretationRecord` → `InterpretationRecord` | `0..*` | **interpretação apoia outra.** Liga um registro de interpretação a outra interpretação que ele apoia, formando cadeias de interpretações. |
+| `hasSourceAnchor` | `DerivationClaim` → `Artwork` ∪ `Manifestation` ∪ `Selection` | `1` | **alegação indica entidade de origem.** Liga uma alegação de derivação à entidade de onde a derivação parte (obra, manifestação ou recorte): o lado de origem da alegação. |
+| `hasDerivedAnchor` | `DerivationClaim` → `Artwork` ∪ `Manifestation` ∪ `Selection` | `1` | **alegação indica entidade derivada.** Liga uma alegação de derivação à entidade que se diz derivar da origem (obra, manifestação ou recorte): o lado derivado da alegação. Deve ser diferente da âncora de origem. |
+| `hasDerivationType` | `DerivationClaim` → `DerivationType` | `1..*` | **alegação tipificada por tipo de derivação.** Classifica uma alegação de derivação com um ou mais conceitos do vocabulário de tipos de derivação (cover, sampling, tradução, paródia...). |
+| `hasRegime` | `DerivationClaim` → `DerivationRegime` | `0..*` | **alegação registra regime de derivação.** Qualifica uma alegação de derivação com seu regime: a postura tomada diante da origem (lúdica, satírica, séria, reverente). |
+| `hasTransformation` | `DerivationClaim` → `TransformationAspect` | `0..*` | **alegação detalha aspecto de transformação.** Liga uma alegação de derivação aos aspectos de transformação que a detalham, um por dimensão artística mantida, modificada, adicionada, removida ou recontextualizada. |
+| `hasDimension` | `TransformationAspect` → `ArtisticDimension` | `1` | **aspecto incide sobre dimensão.** Diz de qual dimensão artística (melodia, letra, enredo, personagem, meio...) trata um aspecto de transformação. |
+| `hasOperation` | `TransformationAspect` → `TransformationOperation` | `1` | **aspecto aplica operação.** Diz o que foi feito com a dimensão num aspecto de transformação: manter, modificar, adicionar, remover ou recontextualizar. |
+| `aspectSourceSelection` | `TransformationAspect` → `Selection` | `0..1` | **aspecto aponta recorte de origem.** Aponta um aspecto de transformação para o trecho da origem em que a dimensão pode ser observada. |
+| `aspectDerivedSelection` | `TransformationAspect` → `Selection` | `0..1` | **aspecto aponta recorte derivado.** Aponta um aspecto de transformação para o trecho da entidade derivada em que a dimensão transformada pode ser observada. |
+| `aspectConcernsPattern` | `TransformationAspect` → `SituationPattern` | `0..*` | **aspecto envolve padrão situacional.** Liga um aspecto de transformação a um padrão situacional que ele afeta, quando a derivação mantém, altera ou desloca uma situação representada. |
+| `derivationJustifiedBy` | `DerivationClaim` → `InterpretiveJustification` | `0..*` | **alegação de derivação explicada por argumento.** Liga uma alegação de derivação ao argumento que explica por que a derivação é afirmada (semelhanças encontradas, intenção documentada, créditos). |
+| `derivationRealizedBy` | `DerivationClaim` → `CreativeAct` | `0..1` | **derivação realizada por ato criativo.** Liga uma alegação de derivação ao ato criativo que realizou a derivação (a gravação, escrita ou adaptação que produziu a entidade derivada). |
+| `claimProducedByAct` | `DerivationClaim` → `InterpretiveAct` | `0..1` | **ato analítico que registrou a alegação.** Liga uma alegação de derivação ao ato analítico que a registrou, para que a alegação tenha autor e data como qualquer interpretação. |
+| `derivationReferencesSource` | `DerivationClaim` → `ReferenceSource` | `0..*` | **alegação de derivação cita fonte.** Liga uma alegação de derivação às fontes de referência que documentam a derivação (créditos, entrevistas, encartes, estudos). |
+| `assessesDerivation` | `EvidenceAssessment` → `DerivationClaim` | `0..1` | **avaliação examina alegação de derivação.** Liga uma avaliação de evidência à alegação de derivação cujo apoio ela avalia. |
+| `producesCreation` | `CreativeAct` → `Artwork` ∪ `Manifestation` | `1..*` | **ato origina obra ou manifestação.** Liga um ato criativo às obras ou manifestações que ele faz existir, inclusive as derivadas. |
+| `hasContribution` | `CreativeAct` → `CreativeContribution` | `0..*` | **ato inclui contribuição.** Liga um ato criativo às contribuições que o compõem, uma por agente participante. |
+| `contributionBy` | `CreativeContribution` → `CreativeAgent` | `1` | **contribuição feita por agente.** Liga uma contribuição criativa ao agente que a fez, identificado por um IRI externo (Wikidata, ISNI, MusicBrainz, schema.org). |
+| `contributionRole` | `CreativeContribution` → `CreativeRole` | `1..*` | **contribuição qualificada por papel.** Qualifica uma contribuição criativa com um ou mais papéis do vocabulário de papéis criativos (compositor, intérprete, tradutor, remixador...). |
 
 ## Propriedades de dados
 
