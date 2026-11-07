@@ -28,7 +28,9 @@ const PACKAGE_ACCENTS = {
 /** Parse a Turtle string into an N3.Store. */
 export function parseTurtle(text, baseIRI) {
   const store = new N3.Store();
-  store.addQuads(new N3.Parser({ baseIRI }).parse(text));
+  // blankNodePrefix "": keep blank node labels as written, so parsing a saved draft and writing it
+  // again gives the same text (the default prefix grew the labels on every round trip)
+  store.addQuads(new N3.Parser({ baseIRI, blankNodePrefix: "" }).parse(text));
   return store;
 }
 

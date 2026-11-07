@@ -35,7 +35,8 @@ const STYLE = [
 ];
 
 export class GraphView {
-  constructor(container, { onSelect, onContext, describe }) {
+  constructor(container, { onSelect, onContext, describe, onRender }) {
+    this.onRender = onRender;    // called after every redraw (e.g. to update the node counter)
     this.cy = cytoscape({ container, style: STYLE, wheelSensitivity: 0.3, minZoom: 0.1, maxZoom: 3 });
     this.container = container;
     this.describe = describe;    // (id) -> tooltip element for a node; (edge data) for an edge
@@ -202,6 +203,7 @@ export class GraphView {
     else if (unplaced.length) this.placeAround(unplaced);
     this.cy.nodes().forEach((n) => this.placeCard(n));
     this.syncViewport();
+    this.onRender?.();
   }
 
   /** What a node's card shows: kind (class label), title, colours, full or clamped text. */

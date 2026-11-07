@@ -53,8 +53,20 @@ function loadPrefs() {
 function savePrefs() {
   try { localStorage.setItem(PREFS_KEY, JSON.stringify({ ui: uiLanguage(), content: state.contentLang, base: state.data.base })); } catch { /* storage unavailable */ }
 }
+// The draft is shared by every annotator tab (the "storage" listener reloads it in the others),
+// so a tab must never overwrite it with nothing: a focus tab that found no data is locked, and
+// an empty graph is saved only right after "New" (state.allowEmptyDraft).
 async function saveDraft() {
+  if (state.draftLocked) return;
+  if (!state.data.nodes().length && !state.allowEmptyDraft) return;
+  state.allowEmptyDraft = false;
   try { localStorage.setItem(DRAFT_KEY, await state.data.toTurtle()); } catch { /* storage unavailable */ }
+}
+
+/** Shown / total nodes (hidden works and nodes are not counted as shown); also run after each redraw. */
+function updateCount() {
+  const el = $("#count");
+  if (el && state.graph) el.textContent = `${state.graph.visible.size} / ${state.data.nodes().length} ${t("nodes")}`;
 }
 
 /** Call after every change to the data: redraw, refresh the inspector, keep a local draft. */
@@ -63,9 +75,8 @@ function changed(opts) {
   renderInspector();
   renderWorksPanel();
   renderAddPanel();
-  // shown / total nodes (hidden works and nodes are not counted as shown)
-  $("#count").textContent = `${state.graph.visible.size} / ${state.data.nodes().length} ${t("nodes")}`;
-  saveDraft();
+  updateCount();
+  if (opts?.save !== false) saveDraft();
 }
 
 // ------------------------------------------------------------------ toolbar
@@ -1076,6 +1087,7 @@ async function main() {
     onSelect: (id) => { closeContextMenu(); state.selected = id; addUi.open = null; renderInspector(); renderAddPanel(); },
     onContext: (id, event) => showContextMenu(id, event),
     describe,
+    onRender: updateCount,   // opening/closing neighbours redraws without a data change
   });
   // menus, hideable/resizable panels; the graph is redrawn whenever its area changes size
   initLayout(() => state.graph.cy.resize());
@@ -1084,6 +1096,9 @@ async function main() {
   document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeContextMenu(); });
   document.addEventListener("mousedown", (e) => { if (!$("#context-menu").contains(e.target)) closeContextMenu(); });
   state.graph.data = state.data;   // the Data object is kept; loading a file only replaces its store
+  // A focus tab opened from this one reads the current data from here (see "Focus mode" below)
+  window.aroDraftTurtle = () => state.data.toTurtle();
+  window.aroBase = () => state.data.base;
 
   // Toolbar events
   $("#ui-lang").addEventListener("change", (e) => { setUiLanguage(e.target.value); savePrefs(); renderToolbar(); changed(); });
@@ -1093,7 +1108,7 @@ async function main() {
     state.contentLang = lang; savePrefs(); renderToolbar(); changed();
   });
   $("#base-iri").addEventListener("change", (e) => { state.data.base = e.target.value.trim() || state.data.base; savePrefs(); });
-  $("#new").addEventListener("click", () => { if (confirm(t("confirmNew"))) { state.data.clear(); state.graph.visible.clear(); state.graph.hiddenWorks.clear(); state.graph.hiddenNodes.clear(); state.selected = null; changed(); } });
+  $("#new").addEventListener("click", () => { if (confirm(t("confirmNew"))) { state.data.clear(); state.allowEmptyDraft = true; state.graph.visible.clear(); state.graph.hiddenWorks.clear(); state.graph.hiddenNodes.clear(); state.selected = null; changed(); } });
   $("#load").addEventListener("click", () => $("#file").click());
   $("#file").addEventListener("change", async (e) => { const f = e.target.files[0]; if (f) loadText(await f.text(), f.name); e.target.value = ""; });
   $("#example").addEventListener("click", async () => loadText(await fetch("../examples/case-studies.ttl").then((r) => r.text()), "case-studies.ttl"));
@@ -1116,18 +1131,34 @@ async function main() {
   try { draft = localStorage.getItem(DRAFT_KEY); } catch { /* storage unavailable */ }
   if (draft) { state.data.loadTurtle(draft); if (prefs.base) state.data.base = prefs.base; }
 
-  // Focus mode (?focus=<IRI>): only that node and its neighbourhood, in its own tab
+  // Focus mode (?focus=<IRI>): only that node and its neighbourhood, in its own tab.
+  // The data comes from the tab that opened this one (window.opener); browser storage is
+  // only a fallback, since tracking prevention (e.g. Edge) may block it in the new tab.
   const focus = new URLSearchParams(location.search).get("focus");
+  if (focus) {
+    try {
+      const ttl = await window.opener?.aroDraftTurtle?.();
+      if (ttl) { state.data.loadTurtle(ttl); state.data.base = window.opener.aroBase?.() || state.data.base; }
+    } catch { /* opener closed or not the annotator */ }
+  }
   if (focus && state.data.nodes().includes(focus)) startFocus(focus);
-  else state.graph.showRoots();
+  else {
+    state.graph.showRoots();
+    // without its node this tab has no (or other) data: it must not overwrite the shared draft
+    if (focus) { state.draftLocked = true; alert(t("focusNotFound")); }
+  }
   changed({ relayout: true });
 
   // Keep tabs in sync: another tab (e.g. a focus tab) saved the draft
   window.addEventListener("storage", (e) => {
     if (e.key !== DRAFT_KEY || !e.newValue) return;
+    if (state.draftLocked) return;
     state.data.loadTurtle(e.newValue);
-    if (state.graph.focus) state.graph.setFocus(state.graph.focus, Number($("#focus-depth")?.value || 1));
-    changed();
+    // keep the nodes this focus tab has opened; render drops the ones that no longer exist
+    if (state.graph.focus) state.graph.visible.add(state.graph.focus);
+    // not saved back: the draft just came from storage, and writing it again made the tabs
+    // bounce it between them, redrawing the graph non-stop (dragging a node was impossible)
+    changed({ save: false });
   });
 }
 
