@@ -2,9 +2,9 @@
 
 # ARO Annotator / Anotador ARO
 
-🇺🇸 [English](#english) · 🇧🇷 [Português](#português)
+[English](#english) · [Português](#português)
 
-> 🖊️ **Online annotator / Anotador online:** <https://jeffersonspeck.github.io/artistic-reality-ontology/annotator/>
+Online annotator / Anotador online: <https://jeffersonspeck.github.io/artistic-reality-ontology/annotator/>
 
 > Full step-by-step manual / Manual completo passo a passo: [English](../docs/en/annotator-manual.md) · [Português](../docs/pt-BR/manual-anotador.md)
 
@@ -39,7 +39,7 @@ This serves the repository on `http://localhost:8765/annotator/` and opens the b
 | Show only some works | Left panel → **Works shown**: untick a work to hide it together with everything that only it uses (shared patterns, cases and sources stay while another shown work uses them). On an artwork, **Show only this work** unticks all the others. |
 | More room for the graph | Toolbar actions are grouped in menus (File, Analysis, View, Export, Language). **Create** / **Inspector** show or hide the side panels; drag the line next to a panel to resize it (double-click hides it). **Graph only** leaves the whole screen to the graph. Validation and query panels can be minimized (**–**), closed (**×**) and resized from their top edge. The layout is remembered in the browser. |
 | Hide a node | **Hide node** in the right panel; hidden nodes are listed on the left with **show** to bring them back. |
-| Focus on one node | **Open in focus ↗** opens a new tab with only that node and its neighbours (depth 1–3). Changes made in either tab are shared. |
+| Focus on one node | **Open in focus** opens a new tab with only that node and its neighbours (depth 1–3). Changes made in either tab are shared. |
 | Image / PDF | **Image (PNG)** downloads the current graph. **Print / PDF** prints the graph plus the selected node's details; choose "Save as PDF" in the print dialog. |
 | Locate passages in your own text | On an expression (e.g. the lyrics), **Attach .txt** loads your own copy of the text. Each selection with a line selector (`line=a,b`) then shows its lines (blank lines are not counted). **Store as quotation** copies them into a `TextQuoteSelector` in your data. The text stays only in your browser. |
 | Add a relation | Right panel → *Add relation*. Only properties whose domain fits the node are offered; the target adapts to the range: an existing or new node, a **vocabulary concept** (derivation type, dimension, role…, shown as a hierarchy with definitions), a **W3C selector** (time `t=`, region `xywh=`, text quote/position, SVG), or an **external agent IRI** (Wikidata, schema.org, FOAF…). |
@@ -99,7 +99,7 @@ O comando serve o repositório em `http://localhost:8765/annotator/` e abre o na
 | Ver só algumas obras | Painel esquerdo → **Obras exibidas**: desmarque uma obra para escondê-la junto com tudo o que só ela usa (padrões, casos e fontes compartilhados continuam enquanto outra obra exibida os usar). Numa obra, **Ver só esta obra** desmarca todas as outras. |
 | Mais espaço para o grafo | As ações da barra ficam em menus (Arquivo, Análise, Exibir, Exportar, Idioma). **Criar** / **Inspetor** mostram ou escondem os painéis laterais; arraste a linha ao lado de um painel para redimensioná-lo (clique duplo esconde). **Só o grafo** deixa a tela inteira para o grafo. Os painéis de validação e de consultas podem ser minimizados (**–**), fechados (**×**) e redimensionados pela borda de cima. O layout fica guardado no navegador. |
 | Esconder um nó | **Esconder nó** no painel direito; os nós ocultos ficam listados à esquerda, com **mostrar** para trazê-los de volta. |
-| Foco num nó | **Abrir em foco ↗** abre uma nova aba só com aquele nó e seus vizinhos (profundidade 1–3). Alterações feitas em qualquer aba são compartilhadas. |
+| Foco num nó | **Abrir em foco** abre uma nova aba só com aquele nó e seus vizinhos (profundidade 1–3). Alterações feitas em qualquer aba são compartilhadas. |
 | Imagem / PDF | **Imagem (PNG)** baixa o grafo atual. **Imprimir / PDF** imprime o grafo e os detalhes do nó selecionado; no diálogo de impressão escolha "Salvar como PDF". |
 | Localizar trechos no seu texto | Numa expressão (ex.: a letra), **Anexar .txt** carrega a sua cópia do texto. Cada recorte com seletor de linhas (`line=a,b`) passa a mostrar as linhas correspondentes (linhas em branco não contam). **Gravar como citação** copia essas linhas para um `TextQuoteSelector` nos seus dados. O texto fica só no seu navegador. |
 | Adicionar relação | Painel direito → *Adicionar relação*. Só aparecem propriedades cujo domínio aceita o nó; o destino se adapta à imagem: nó existente ou novo, **conceito de vocabulário** (tipo de derivação, dimensão, papel…, em hierarquia e com definições), **seletor W3C** (tempo `t=`, região `xywh=`, citação/posição de texto, SVG) ou **IRI de agente externo** (Wikidata, schema.org, FOAF…). |

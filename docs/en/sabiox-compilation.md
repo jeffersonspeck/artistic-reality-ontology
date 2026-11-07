@@ -6,7 +6,7 @@ This document puts in one place **everything in the project that was shaped by S
 
 > **Method.** SABiOx (Aguiar & Souza, 2024) has five primary phases — **Requirements → Setup → Capture → Design → Implementation** — and cross-cutting supporting activities: **knowledge acquisition, documentation, configuration management, evaluation, reuse and publication**. Evaluation is a supporting activity, not a sixth phase. Sources: [paper](https://ceur-ws.org/Vol-3905/paper1.pdf) · [official guide](https://nemo.inf.ufes.br/wp-content/uploads/sabiox-guide2024-09.pdf).
 >
-> **Status.** Both cycles are research drafts with automated syntax, structure and query tests. There has been no expert validation and no evaluation with real cases yet.
+> **Status.** Three cycles, consolidated in version 1.0.0, with automated tests of syntax, structure, SHACL conformance, OWL consistency, OntoUML well-formedness and queries. Evaluation with experts and real cases follows the [evaluation protocol](evaluation-protocol.md).
 
 ## Contents
 
@@ -18,7 +18,7 @@ This document puts in one place **everything in the project that was shaped by S
 - [Phase 5 — Implementation](#phase-5--implementation)
 - [Supporting activities](#supporting-activities)
 - [End-to-end traceability](#end-to-end-traceability)
-- [Open items by phase](#open-items-by-phase)
+- [Next versions](#next-versions)
 - [Reverse map: file → SABiOx phase](#reverse-map-file--sabiox-phase)
 
 ---
@@ -66,7 +66,7 @@ Chooses the foundational ontology, conceptual modelling language, operational la
 | Setup decision | Choice | Where |
 |---|---|---|
 | Foundational ontology | UFO-A (identity, types, dependence), UFO-B (events), UFO-C (intentionality, social/information objects) | [foundation-and-mappings.md](foundation-and-mappings.md) |
-| Conceptual language | OntoUML as reference; provisional stereotypes | [ontouml-status.md](../../model/ontouml-status.md) |
+| Conceptual language | OntoUML; stereotypes verified automatically | [ontouml-status.md](../../model/ontouml-status.md) |
 | Operational language | RDF/OWL 2 (Turtle, RDF/XML, JSON-LD), SHACL, JSON Schema 2020-12, SPARQL | [README.md](../../README.md) |
 | gUFO / UFO-C policy | gUFO 1.0.0 covers UFO-A and part of UFO-B; UFO-C is not imported (ADR-008) | [foundation-and-mappings.md](foundation-and-mappings.md), [design-decisions.md](design-decisions.md) |
 | Tools (cycle 1) | Python + `rdflib`, `jsonschema`; Graphviz for diagrams | [requirements.txt](../../requirements.txt) |
@@ -108,7 +108,7 @@ Builds the reference conceptual model: classes, stereotypes, bilingual definitio
 
 Full view: [overview.svg](../../model/diagrams/overview.svg). Definitions, dependencies and grounding of every class: [reference-model.md](reference-model.md) (generated).
 
-### OntoUML stereotypes used (provisional)
+### OntoUML stereotypes used
 
 | Stereotype | Classes | Cycle |
 |---|---|---|
@@ -243,7 +243,7 @@ Automated verification in [test_project.py](../../tests/test_project.py). It con
 | Annotator schema valid; example accepted; invalid annotation rejected | 2 |
 | Every term has en and pt-BR labels/definitions/comments; untagged content text is rejected by SHACL | 2 |
 
-Expert and real-case evaluation: pending ([Open items](#open-items-by-phase)).
+Expert and real-case evaluation: [evaluation protocol](evaluation-protocol.md).
 
 ### Reuse
 
@@ -275,8 +275,8 @@ From requirement to verification. Official matrix: [traceability.md](traceabilit
 | FR-03–FR-04 | CQ-02–CQ-03, CQ-19 | InterpretationRecord, Justification, Claim | inspection; [CQ-19](../../queries/CQ-19-ungrounded-claims.rq) |
 | FR-05–FR-06 | CQ-04 | SituationDescription, SituationPattern | inspection |
 | FR-07–FR-09 | CQ-05–CQ-08 | ReferenceSource, EvidenceItem, CorrespondenceClaim | [CQ-05](../../queries/CQ-05-cases-by-pattern.rq), [CQ-06](../../queries/CQ-06-reference-sources.rq) |
-| FR-10 | CQ-10, CQ-12 | ExplanationHypothesis, EvidenceAssessment | future |
-| FR-11 | CQ-11 | AssessmentCriterion, CriteriaAssessment | future |
+| FR-10 | CQ-10, CQ-12 | ExplanationHypothesis, EvidenceAssessment | [CQ-10](../../queries/CQ-10-explanations-for-patterns.rq), [CQ-12](../../queries/CQ-12-insufficient-causal-evidence.rq) |
+| FR-11 | CQ-11 | AssessmentCriterion, CriteriaAssessment | [CQ-11](../../queries/CQ-11-epistemic-and-value-criteria.rq) |
 | FR-12 | CQ-01–CQ-18 | whole model | documentation review |
 | FR-13–FR-14 | CQ-13–CQ-14 | DerivationClaim, DerivationType | [CQ-13](../../queries/CQ-13-derivations-of-work.rq), [CQ-14](../../queries/CQ-14-derivation-chains.rq), anchor SHACL |
 | FR-15 | CQ-15–CQ-16 | TransformationAspect, ArtisticDimension, TransformationOperation | [CQ-15](../../queries/CQ-15-transformation-aspects.rq), [CQ-16](../../queries/CQ-16-patterns-retained.rq) |
@@ -287,17 +287,17 @@ From requirement to verification. Official matrix: [traceability.md](traceabilit
 
 ---
 
-## Open items by phase
+## Next versions
 
-| Phase / activity | Open item |
+Work planned after 1.0.0; it does not change the published version.
+
+| Phase / activity | Planned work |
 |---|---|
 | Requirements | Vocabulary distinguishing similarity, possibility and divergence in correspondence claims (FR-10) |
-| Capture | Expert review of stereotypes («roleMixin», «type», «relator», «kind» for information objects) |
-| Design | Layout and verification of the OntoUML export in an OntoUML editor (ADR-009: export generated, schema-valid and well formed in cycle 3) |
 | Implementation | JSON-LD context for the annotator; annotation JSON → RDF converter |
 | Knowledge acquisition | Check against the originals the data marked † (Tillett 1991) and Smiraglia's categories (amplifications, extractions) |
-| Evaluation | Run the [evaluation protocol](evaluation-protocol.md) (expert review, real-case annotation study); relation stereotypes for the 33 plain associations if experts propose fitting ones (ADR-032) |
-| Publication | w3id registration, DOI, public repository |
+| Evaluation | Run the [evaluation protocol](evaluation-protocol.md) (expert review of the stereotypes, real-case annotation study); relation stereotypes for the 33 plain associations if experts propose fitting ones (ADR-032) |
+| Publication | w3id registration, DOI |
 
 ---
 

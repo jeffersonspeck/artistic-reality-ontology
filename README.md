@@ -1,12 +1,12 @@
 # Artistic Reality Ontology (ARO)
 
-![ARO](https://img.shields.io/badge/ARO-0.3.0--beta-orange) ![Beta](https://img.shields.io/badge/status-beta%20%C2%B7%20in%20development-orange) ![OWL](https://img.shields.io/badge/RDF%2FOWL-2-orange) ![SHACL](https://img.shields.io/badge/SHACL-validation-green) ![Languages](https://img.shields.io/badge/terms-EN%20%2B%20PT--BR-blue) ![PhD](https://img.shields.io/badge/PhD-PPGInf%2FUFPR-informational) [![Online annotator](https://img.shields.io/badge/annotator-online-2563eb)](https://jeffersonspeck.github.io/artistic-reality-ontology/annotator/)
+![ARO](https://img.shields.io/badge/ARO-1.0.0-orange) ![Status](https://img.shields.io/badge/status-stable-green) ![OWL](https://img.shields.io/badge/RDF%2FOWL-2-orange) ![SHACL](https://img.shields.io/badge/SHACL-validation-green) ![Languages](https://img.shields.io/badge/terms-EN%20%2B%20PT--BR-blue) ![PhD](https://img.shields.io/badge/PhD-PPGInf%2FUFPR-informational) [![Online annotator](https://img.shields.io/badge/annotator-online-2563eb)](https://jeffersonspeck.github.io/artistic-reality-ontology/annotator/)
 
-> 🇧🇷 **[Ler esta documentação em português](LEIA-ME.md)** · 🇺🇸 English (this page)
+> **[Ler esta documentação em português](LEIA-ME.md)** · English (this page)
 
-> 🖊️ **Online annotator:** <https://jeffersonspeck.github.io/artistic-reality-ontology/annotator/> — use ARO in your browser, nothing to install ([manual](docs/en/annotator-manual.md)).
+Online annotator: <https://jeffersonspeck.github.io/artistic-reality-ontology/annotator/> ([manual](docs/en/annotator-manual.md)).
 
-> ⚠️ **Beta — under development.** Version 0.3.0 is a research draft of a doctoral project (PPGInf/UFPR, see [affiliation](#academic-and-institutional-affiliation)); terms and files may still change.
+> Version 1.0.0, part of a doctoral project (PPGInf/UFPR, see [affiliation](#academic-and-institutional-affiliation)). Frozen in [`releases/v1.0.0/`](releases/v1.0.0/).
 
 **ARO** is an OWL ontology for describing **artworks in any medium** (music, text, image, video…) and what is said about them, in a traceable and contestable way:
 
@@ -44,7 +44,7 @@ ARO is a representation: it neither decides nor verifies anything. Interpretatio
 
 Full documentation is available in both languages:
 
-| Document | 🇺🇸 English | 🇧🇷 Português |
+| Document | English | Português |
 |---|---|---|
 | Purpose and scope | [English](docs/en/purpose-and-scope.md) | [Português](docs/pt-BR/purpose-and-scope.md) |
 | Requirements | [English](docs/en/requirements.md) | [Português](docs/pt-BR/requirements.md) |
@@ -60,7 +60,7 @@ Full documentation is available in both languages:
 | Evaluation protocol (experts and real cases) | [English](docs/en/evaluation-protocol.md) | [Português](docs/pt-BR/evaluation-protocol.md) |
 | SABiOx plan | [English](docs/en/sabiox-plan.md) | [Português](docs/pt-BR/sabiox-plan.md) |
 | SABiOx compilation (everything by phase) | [English](docs/en/sabiox-compilation.md) | [Português](docs/pt-BR/sabiox-compilado.md) |
-| Online annotator (open in the browser) | [Open](https://jeffersonspeck.github.io/artistic-reality-ontology/annotator/) | [Acessar](https://jeffersonspeck.github.io/artistic-reality-ontology/annotator/) |
+| Online annotator | [Open](https://jeffersonspeck.github.io/artistic-reality-ontology/annotator/) | [Acessar](https://jeffersonspeck.github.io/artistic-reality-ontology/annotator/) |
 | Annotator manual (step by step) | [English](docs/en/annotator-manual.md) | [Português](docs/pt-BR/manual-anotador.md) |
 | Annotator guide | [English](annotator/README.md#english) | [Português](annotator/README.md#português) |
 | User guide (this file) | [English](README.md) | [Português](LEIA-ME.md) |
@@ -118,8 +118,8 @@ The last command should end with `PASS: ...`. Dependencies are `rdflib`, `jsonsc
 
 | File | Use |
 |---|---|
-| [`ontology/src/aro.ttl`](ontology/src/aro.ttl) | Development version in Turtle (also [`aro.owl`](ontology/src/aro.owl) in RDF/XML and [`aro.jsonld`](ontology/src/aro.jsonld)); one file per package in [`ontology/src/modules/`](ontology/src/modules/) |
-| [`releases/v0.3.0-beta/`](releases/v0.3.0-beta/) | **Frozen version to cite** (version IRI `https://w3id.org/aro/ontology/0.3.0-beta`); all versions in [`releases/`](releases/README.md) |
+| [`ontology/src/aro.ttl`](ontology/src/aro.ttl) | Current version in Turtle (also [`aro.owl`](ontology/src/aro.owl) in RDF/XML and [`aro.jsonld`](ontology/src/aro.jsonld)); one file per package in [`ontology/src/modules/`](ontology/src/modules/) |
+| [`releases/v1.0.0/`](releases/v1.0.0/) | **Frozen version to cite** (version IRI `https://w3id.org/aro/ontology/1.0.0`); all versions in [`releases/`](releases/README.md) |
 | [`validation/aro-shapes.ttl`](validation/aro-shapes.ttl) | SHACL constraints for validating data |
 | [`model/ontouml/aro.ontouml.json`](model/ontouml/aro.ontouml.json) | The model as an **OntoUML project** (official OntoUML JSON Schema 1.0.2), checked by `python scripts/verify_ontouml.py` |
 | [`schemas/derivation-annotation.schema.json`](schemas/derivation-annotation.schema.json) | JSON format for annotation tools |
@@ -245,9 +245,9 @@ Runs a SPARQL query over your data plus the ontology. Texts and labels appear in
 
 The [`annotator/`](annotator/README.md) folder contains a browser tool to instantiate ARO without writing Turtle.
 
-**Online, nothing to install:** <https://jeffersonspeck.github.io/artistic-reality-ontology/annotator/> (GitHub Pages, always the current `main`). Your annotations stay in your browser until you save them as a `.ttl` file; nothing is sent to a server.
+It runs online at <https://jeffersonspeck.github.io/artistic-reality-ontology/annotator/> (GitHub Pages, built from `main`). Annotations are kept in the browser until you save them as `.ttl`.
 
-**Locally** (works offline except for the libraries loaded from a CDN):
+To run it locally:
 
 ```bash
 python scripts/annotator.py
@@ -383,8 +383,8 @@ Overview generated from the catalog; the UFO column gives the OntoUML stereotype
 
 | Folder / file | Contents |
 |---|---|
-| `ontology/src/` | development version of the ontology (Turtle, RDF/XML, JSON-LD) and `modules/` per package — generated |
-| `releases/` | frozen versions (`v0.1.0/`, `v0.2.0-beta/`, `v0.2.1-beta/`, `v0.3.0-beta/`…), each with ontology, modules, SHACL and release notes |
+| `ontology/src/` | current version of the ontology (Turtle, RDF/XML, JSON-LD) and `modules/` per package — generated |
+| `releases/` | frozen versions (`v0.1.0/`, `v0.2.0-beta/`, `v0.2.1-beta/`, `v0.3.0-beta/`, `v1.0.0/`), each with ontology, modules, SHACL and release notes |
 | `validation/` | SHACL constraints — generated |
 | `schemas/` | JSON Schemas (reference source, generic record, derivation annotation) |
 | `examples/` | synthetic example data, all fictional |
@@ -413,8 +413,8 @@ The doctoral research investigates the computational modelling of ethics and mor
 
 ## Status, license and citation
 
-- **Status:** **beta, under development** (v0.3.0) — research draft, developed with the SABiOx methodology and grounded in UFO. OntoUML stereotypes have been revised (one kind for analytical records, categories, role pattern) and the OntoUML export is validated against the official schema and verified for well-formedness (0 errors); layout in an OntoUML editor is pending; expert and real-case evaluation follows the [evaluation protocol](docs/en/evaluation-protocol.md). See [limitations](docs/en/foundation-and-mappings.md#known-limitations).
+- **Status:** stable (v1.0.0), developed with the SABiOx methodology and grounded in UFO. The OntoUML export is valid against the official OntoUML JSON Schema and well formed according to the official ontouml-js library (0 errors). Evaluation with experts and real cases follows the [evaluation protocol](docs/en/evaluation-protocol.md). See [limitations](docs/en/foundation-and-mappings.md#known-limitations).
 - **License:** MIT ([LICENSE](LICENSE)). Third-party ontologies are not redistributed.
 - **Citation** ([CITATION.cff](CITATION.cff), no DOI yet):
-  > Speck, J. R. (2026). *Artistic Reality Ontology (ARO)* (Version 0.3.0-beta) [Ontology and software]. Doctoral project, Graduate Program in Informatics, Federal University of Paraná (UFPR). Supervisor: R. Pereira; co-supervisor: C. Boscarioli.
+  > Speck, J. R. (2026). *Artistic Reality Ontology (ARO)* (Version 1.0.0) [Ontology and software]. Doctoral project, Graduate Program in Informatics, Federal University of Paraná (UFPR). Supervisor: R. Pereira; co-supervisor: C. Boscarioli.
 - **Examples:** synthetic examples are fictional. The case studies use real works and sources, but the readings are an analyst's interpretations, and the correspondences are claims, not facts.

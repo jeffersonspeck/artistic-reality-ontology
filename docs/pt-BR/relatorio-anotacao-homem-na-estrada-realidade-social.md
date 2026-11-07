@@ -1,6 +1,6 @@
 # Relatório da anotação *Homem na Estrada — realidade social sustentada por evidências*
 
-> Anotação na estrutura da **ARO 0.3.0-beta** (claims, nível superior UFO, níveis IFLA LRM, validação OntoUML). Voltar para o [LEIA-ME](../../LEIA-ME.md).
+> Anotação na estrutura da **ARO 1.0.0** (claims, nível superior UFO, níveis IFLA LRM, validação OntoUML). Voltar para o [LEIA-ME](../../LEIA-ME.md).
 
 ## 1. Entrega e procedência
 
@@ -170,7 +170,7 @@ O grafo também contém duas `Challenge` e uma `CriteriaAssessment`:
 
 ## 11. Validação executada
 
-1. `python scripts/validate.py examples/aro_homem_na_estrada_realidade_social.ttl --lang pt-BR`: **conforme** aos shapes SHACL da ARO 0.3 (865 triplas);
+1. `python scripts/validate.py examples/aro_homem_na_estrada_realidade_social.ttl --lang pt-BR`: **conforme** aos shapes SHACL da ARO 1.0.0 (865 triplas);
 2. consistência OWL 2 RL (`owlrl`) da anotação com a ontologia: sem erros (a verificação faz parte de `tests/test_project.py`);
 3. `python scripts/migrate.py --check`: nenhuma migração pendente;
 4. consultas (`scripts/query.py --lang pt-BR`): CQ-19 sem claims sem fundamento (0 linhas); CQ-12 lista as duas hipóteses com evidência inconclusiva; CQ-13 e CQ-15 respondem sobre o sample de *Ela Partiu*; CQ-20 mostra obra → expressões → manifestações; RQ-01 e RQ-03 ligam os recortes aos casos reais e às avaliações;
@@ -189,6 +189,6 @@ O grafo também contém duas `Challenge` e uma `CriteriaAssessment`:
 
 ## 13. Resultado
 
-A anotação representa a tese pretendida na estrutura da ARO 0.3: *Homem na Estrada* formula situações reconhecíveis da realidade social brasileira, e estudos, estatísticas e pesquisas externas sustentam a existência ou a persistência desses padrões. Cada registro tem autor e data, cada avaliação tem resultado explícito e alcance declarado, e nenhuma afirmação fica sem fundamento. A evidência não fica presa ao ano da obra nem é apresentada como identificação de personagens. Assim se preserva a diferença entre representação artística, mundo empírico, correspondência e hipótese causal.
+A anotação representa a tese pretendida na estrutura da ARO 1.0.0: *Homem na Estrada* formula situações reconhecíveis da realidade social brasileira, e estudos, estatísticas e pesquisas externas sustentam a existência ou a persistência desses padrões. Cada registro tem autor e data, cada avaliação tem resultado explícito e alcance declarado, e nenhuma afirmação fica sem fundamento. A evidência não fica presa ao ano da obra nem é apresentada como identificação de personagens. Assim se preserva a diferença entre representação artística, mundo empírico, correspondência e hipótese causal.
 
 > Voltar para o [LEIA-ME](../../LEIA-ME.md).

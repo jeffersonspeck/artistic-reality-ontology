@@ -4,7 +4,7 @@
 
 Diagramas de classes UML com a notação OntoUML, gerados pelo `scripts/build.py` a partir do catálogo [`model/conceptual-model.json`](../../model/conceptual-model.json). Arquivos: [`model/diagrams/ontouml/`](../../model/diagrams/ontouml/) (`.dot`, `.svg` e `.png` a 200 dpi para documentos e slides).
 
-> **Status:** visualizações da ARO em notação OntoUML, com estereótipos **provisórios**. Ainda não são um arquivo de intercâmbio OntoUML nem foram verificadas num editor OntoUML (ADR-009). As escolhas abaixo estão justificadas para revisão por especialistas.
+O mesmo modelo é exportado como arquivo de intercâmbio OntoUML, [`model/ontouml/aro.ontouml.json`](../../model/ontouml/aro.ontouml.json), válido no OntoUML JSON Schema 1.0.2 e bem formado segundo o `scripts/verify_ontouml.py` e a biblioteca oficial ontouml-js (0 erros; ADR-009). As escolhas abaixo estão justificadas classe a classe.
 
 ## Como ler
 
@@ -64,7 +64,7 @@ Esses sortais últimos são declarados disjuntos dois a dois (`owl:AllDisjointCl
 | `hasContribution` (CreativeAct → CreativeContribution) | «creation» | o relator de contribuição é fundado pelo ato criativo |
 | `contributionBy` (CreativeContribution → CreativeAgent) | «mediation» | o relator depende existencialmente do agente que media |
 | `contributionTo` (CreativeContribution → ArtisticEntity) | «mediation» | ...e da entidade artística para a qual contribui: o relator agora media duas entidades (ADR-030) |
-| `contributionRole`, `hasDerivationType`, `hasRegime`, `hasDimension`, `hasOperation` | «instantiation» (provisório) | ligam a um tipo de alta ordem; em OWL os conceitos são indivíduos SKOS, então a instanciação multinível é aproximada |
+| `contributionRole`, `hasDerivationType`, `hasRegime`, `hasDimension`, `hasOperation` | «instantiation» | ligam a um tipo de alta ordem; em OWL os conceitos são indivíduos SKOS, então a instanciação multinível é aproximada |
 | demais associações | sem estereótipo | relações entre objetos informacionais (UFO-C) que não correspondem a relações formais nem a relatores modelados (ex.: `assertsPattern`, `selectsFrom`) |
 
 ## Validação do modelo OntoUML (ADR-009, ADR-032)

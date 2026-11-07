@@ -76,8 +76,8 @@ aro:supportsInterpretation a owl:ObjectProperty ;
 aro:InterpretiveAct a owl:Class ;
     rdfs:label "interpretive act"@en,
         "ato interpretativo"@pt-BR ;
-    rdfs:comment "OntoUML stereotype (provisional): event; foundation: UFO-B event; UFO-C intentional action; dependency: participating agents and temporal occurrence"@en,
-        "Estereótipo OntoUML (provisório): event; fundamentação: evento UFO-B; ação intencional UFO-C; dependência: agentes participantes e ocorrência temporal"@pt-BR ;
+    rdfs:comment "OntoUML stereotype: event; foundation: UFO-B event; UFO-C intentional action; dependency: participating agents and temporal occurrence"@en,
+        "Estereótipo OntoUML: event; fundamentação: evento UFO-B; ação intencional UFO-C; dependência: agentes participantes e ocorrência temporal"@pt-BR ;
     rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/interpretation> ;
     rdfs:seeAlso prov:Activity ;
     skos:definition "Temporal intentional activity yielding interpretation records."@en,
@@ -86,8 +86,8 @@ aro:InterpretiveAct a owl:Class ;
 aro:InterpretationRecord a owl:Class ;
     rdfs:label "interpretation record"@en,
         "registro de interpretação"@pt-BR ;
-    rdfs:comment "OntoUML stereotype (provisional): subkind; foundation: UFO-C information object; subkind of Claim (assessable, justifiable, citable, challengeable); dependency: anchor selection; the interpretive act that produced it"@en,
-        "Estereótipo OntoUML (provisório): subkind; fundamentação: objeto informacional UFO-C; subkind de Claim (avaliável, justificável, citável, contestável); dependência: recorte de ancoragem; o ato interpretativo que o produziu"@pt-BR ;
+    rdfs:comment "OntoUML stereotype: subkind; foundation: UFO-C information object; subkind of Claim (assessable, justifiable, citable, challengeable); dependency: anchor selection; the interpretive act that produced it"@en,
+        "Estereótipo OntoUML: subkind; fundamentação: objeto informacional UFO-C; subkind de Claim (avaliável, justificável, citável, contestável); dependência: recorte de ancoragem; o ato interpretativo que o produziu"@pt-BR ;
     rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/interpretation> ;
     rdfs:seeAlso oa:Annotation ;
     rdfs:subClassOf aro:Claim ;
@@ -100,5 +100,5 @@ aro:InterpretationRecord a owl:Class ;
     dcterms:isPartOf <https://w3id.org/aro/ontology> ;
     dcterms:title "ARO module: Interpretation"@en,
         "Módulo ARO: Interpretação"@pt-BR ;
-    owl:versionInfo "0.3.0-beta" .
+    owl:versionInfo "1.0.0" .
 

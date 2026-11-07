@@ -1,12 +1,12 @@
 # Ontologia de Arte e Realidade (ARO)
 
-![ARO](https://img.shields.io/badge/ARO-0.3.0--beta-orange) ![Beta](https://img.shields.io/badge/status-beta%20%C2%B7%20em%20desenvolvimento-orange) ![OWL](https://img.shields.io/badge/RDF%2FOWL-2-orange) ![SHACL](https://img.shields.io/badge/SHACL-validação-green) ![Idiomas](https://img.shields.io/badge/termos-EN%20%2B%20PT--BR-blue) ![Doutorado](https://img.shields.io/badge/doutorado-PPGInf%2FUFPR-informational) [![Anotador online](https://img.shields.io/badge/anotador-online-2563eb)](https://jeffersonspeck.github.io/artistic-reality-ontology/annotator/)
+![ARO](https://img.shields.io/badge/ARO-1.0.0-orange) ![Status](https://img.shields.io/badge/status-est%C3%A1vel-green) ![OWL](https://img.shields.io/badge/RDF%2FOWL-2-orange) ![SHACL](https://img.shields.io/badge/SHACL-validação-green) ![Idiomas](https://img.shields.io/badge/termos-EN%20%2B%20PT--BR-blue) ![Doutorado](https://img.shields.io/badge/doutorado-PPGInf%2FUFPR-informational) [![Anotador online](https://img.shields.io/badge/anotador-online-2563eb)](https://jeffersonspeck.github.io/artistic-reality-ontology/annotator/)
 
-> 🇺🇸 **[Read this documentation in English](README.md)** · 🇧🇷 Português (esta página)
+> **[Read this documentation in English](README.md)** · Português (esta página)
 
-> 🖊️ **Anotador online:** <https://jeffersonspeck.github.io/artistic-reality-ontology/annotator/> — use a ARO no navegador, sem instalar nada ([manual](docs/pt-BR/manual-anotador.md)).
+Anotador online: <https://jeffersonspeck.github.io/artistic-reality-ontology/annotator/> ([manual](docs/pt-BR/manual-anotador.md)).
 
-> ⚠️ **Beta — em desenvolvimento.** A versão 0.3.0 é um rascunho de pesquisa de um projeto de doutorado (PPGInf/UFPR, ver [vinculação](#vinculação-acadêmica-e-institucional)); termos e arquivos ainda podem mudar.
+> Versão 1.0.0, parte de um projeto de doutorado (PPGInf/UFPR, ver [vinculação](#vinculação-acadêmica-e-institucional)). Congelada em [`releases/v1.0.0/`](releases/v1.0.0/).
 
 A **ARO** é uma ontologia OWL para descrever **obras de arte em qualquer mídia** (música, texto, imagem, vídeo…) e o que se diz sobre elas, de forma rastreável e contestável:
 
@@ -44,7 +44,7 @@ A ARO é uma representação: ela não decide nem verifica nada. Interpretaçõe
 
 A documentação completa está disponível nos dois idiomas:
 
-| Documento | 🇧🇷 Português | 🇺🇸 English |
+| Documento | Português | English |
 |---|---|---|
 | Propósito e escopo | [Português](docs/pt-BR/purpose-and-scope.md) | [English](docs/en/purpose-and-scope.md) |
 | Requisitos | [Português](docs/pt-BR/requirements.md) | [English](docs/en/requirements.md) |
@@ -60,7 +60,7 @@ A documentação completa está disponível nos dois idiomas:
 | Protocolo de avaliação (especialistas e casos reais) | [Português](docs/pt-BR/evaluation-protocol.md) | [English](docs/en/evaluation-protocol.md) |
 | Plano SABiOx | [Português](docs/pt-BR/sabiox-plan.md) | [English](docs/en/sabiox-plan.md) |
 | Compilado SABiOx (tudo por fase) | [Português](docs/pt-BR/sabiox-compilado.md) | [English](docs/en/sabiox-compilation.md) |
-| Anotador online (abrir no navegador) | [Acessar](https://jeffersonspeck.github.io/artistic-reality-ontology/annotator/) | [Open](https://jeffersonspeck.github.io/artistic-reality-ontology/annotator/) |
+| Anotador online | [Acessar](https://jeffersonspeck.github.io/artistic-reality-ontology/annotator/) | [Open](https://jeffersonspeck.github.io/artistic-reality-ontology/annotator/) |
 | Manual do anotador (passo a passo) | [Português](docs/pt-BR/manual-anotador.md) | [English](docs/en/annotator-manual.md) |
 | Guia do anotador | [Português](annotator/README.md#português) | [English](annotator/README.md#english) |
 | Guia de uso (este arquivo) | [Português](LEIA-ME.md) | [English](README.md) |
@@ -118,8 +118,8 @@ O último comando deve terminar com `PASS: ...`. As dependências são `rdflib`,
 
 | Arquivo | Uso |
 |---|---|
-| [`ontology/src/aro.ttl`](ontology/src/aro.ttl) | Versão em desenvolvimento em Turtle (também [`aro.owl`](ontology/src/aro.owl) em RDF/XML e [`aro.jsonld`](ontology/src/aro.jsonld)); um arquivo por pacote em [`ontology/src/modules/`](ontology/src/modules/) |
-| [`releases/v0.3.0-beta/`](releases/v0.3.0-beta/) | **Versão congelada para citar** (IRI de versão `https://w3id.org/aro/ontology/0.3.0-beta`); todas as versões em [`releases/`](releases/README.md) |
+| [`ontology/src/aro.ttl`](ontology/src/aro.ttl) | Versão atual em Turtle (também [`aro.owl`](ontology/src/aro.owl) em RDF/XML e [`aro.jsonld`](ontology/src/aro.jsonld)); um arquivo por pacote em [`ontology/src/modules/`](ontology/src/modules/) |
+| [`releases/v1.0.0/`](releases/v1.0.0/) | **Versão congelada para citar** (IRI de versão `https://w3id.org/aro/ontology/1.0.0`); todas as versões em [`releases/`](releases/README.md) |
 | [`validation/aro-shapes.ttl`](validation/aro-shapes.ttl) | Restrições SHACL para validar dados |
 | [`model/ontouml/aro.ontouml.json`](model/ontouml/aro.ontouml.json) | O modelo como **projeto OntoUML** (JSON Schema oficial da OntoUML 1.0.2), verificado por `python scripts/verify_ontouml.py` |
 | [`schemas/derivation-annotation.schema.json`](schemas/derivation-annotation.schema.json) | Formato JSON para ferramentas de anotação |
@@ -245,9 +245,9 @@ Executa uma consulta SPARQL sobre seus dados mais a ontologia. Textos e rótulos
 
 A pasta [`annotator/`](annotator/README.md) traz uma ferramenta no navegador para instanciar a ARO sem escrever Turtle.
 
-**Online, sem instalar nada:** <https://jeffersonspeck.github.io/artistic-reality-ontology/annotator/> (GitHub Pages, sempre a versão atual do `main`). As anotações ficam no seu navegador até você salvá-las num arquivo `.ttl`; nada é enviado a um servidor.
+Ele roda online em <https://jeffersonspeck.github.io/artistic-reality-ontology/annotator/> (GitHub Pages, a partir do `main`). As anotações ficam no navegador até você salvá-las em `.ttl`.
 
-**No seu computador** (funciona sem internet, exceto as bibliotecas carregadas de um CDN):
+Para rodar localmente:
 
 ```bash
 python scripts/annotator.py
@@ -394,8 +394,8 @@ Visão geral gerada a partir do catálogo; a coluna UFO traz o estereótipo Onto
 
 | Pasta / arquivo | Conteúdo |
 |---|---|
-| `ontology/src/` | versão em desenvolvimento da ontologia (Turtle, RDF/XML, JSON-LD) e `modules/` por pacote — gerada |
-| `releases/` | versões congeladas (`v0.1.0/`, `v0.2.0-beta/`, `v0.2.1-beta/`, `v0.3.0-beta/`…), cada uma com ontologia, módulos, SHACL e notas de versão |
+| `ontology/src/` | versão atual da ontologia (Turtle, RDF/XML, JSON-LD) e `modules/` por pacote — gerada |
+| `releases/` | versões congeladas (`v0.1.0/`, `v0.2.0-beta/`, `v0.2.1-beta/`, `v0.3.0-beta/`, `v1.0.0/`), cada uma com ontologia, módulos, SHACL e notas de versão |
 | `validation/` | restrições SHACL — gerada |
 | `schemas/` | JSON Schemas (fonte de referência, registro genérico, anotação de derivação) |
 | `examples/` | dados sintéticos de exemplo, todos fictícios |
@@ -424,8 +424,8 @@ A pesquisa de doutorado investiga a modelagem computacional da ética e da moral
 
 ## Status, licença e citação
 
-- **Status:** **beta, em desenvolvimento** (v0.3.0) — rascunho de pesquisa, desenvolvido com a metodologia SABiOx e fundamentado na UFO. Os estereótipos OntoUML foram revistos (um único kind para registros analíticos, categorias, padrão de papéis), e a exportação OntoUML é validada no schema oficial e verificada quanto à boa formação (0 erros); falta diagramar num editor OntoUML; a avaliação por especialistas e com casos reais segue o [protocolo de avaliação](docs/pt-BR/evaluation-protocol.md). Ver [limitações](docs/pt-BR/foundation-and-mappings.md#limitações-conhecidas).
+- **Status:** estável (v1.0.0), desenvolvida com a metodologia SABiOx e fundamentada na UFO. A exportação OntoUML é válida no OntoUML JSON Schema oficial e bem formada segundo a biblioteca oficial ontouml-js (0 erros). A avaliação por especialistas e com casos reais segue o [protocolo de avaliação](docs/pt-BR/evaluation-protocol.md). Ver [limitações](docs/pt-BR/foundation-and-mappings.md#limitações-conhecidas).
 - **Licença:** MIT ([LICENSE](LICENSE)). Ontologias de terceiros não são redistribuídas.
 - **Citação** ([CITATION.cff](CITATION.cff), ainda sem DOI):
-  > SPECK, Jefferson Rodrigo. *Artistic Reality Ontology (ARO)*, versão 0.3.0-beta. Curitiba: Universidade Federal do Paraná, Programa de Pós-Graduação em Informática, 2026. Ontologia e software. Projeto de doutorado; orientação: Roberto Pereira; coorientação: Clodis Boscarioli.
+  > SPECK, Jefferson Rodrigo. *Artistic Reality Ontology (ARO)*, versão 1.0.0. Curitiba: Universidade Federal do Paraná, Programa de Pós-Graduação em Informática, 2026. Ontologia e software. Projeto de doutorado; orientação: Roberto Pereira; coorientação: Clodis Boscarioli.
 - **Exemplos:** os exemplos sintéticos são fictícios. Os estudos de caso usam obras e fontes reais, mas as leituras são interpretações de um analista, e as correspondências são alegações, não fatos.

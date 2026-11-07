@@ -2,7 +2,7 @@
 
 # ARO Annotator manual
 
-> 🖊️ **Open the online annotator:** <https://jeffersonspeck.github.io/artistic-reality-ontology/annotator/> (nothing to install; to run it on your computer, see [section 2](#2-starting-the-annotator)).
+Online version: <https://jeffersonspeck.github.io/artistic-reality-ontology/annotator/>. To run it on your computer, see [section 2](#2-starting-the-annotator).
 
 The ARO Annotator is a web tool to **instantiate the ARO ontology** without writing RDF by hand. With it you record works, versions and passages, interpretations, situations, patterns, real cases and sources, as well as derivations between works. Everything appears in a graph that you open step by step, and your work is saved as Turtle (`.ttl`).
 
@@ -40,9 +40,9 @@ python -m pip install -r requirements.txt
 
 ## 2. Starting the annotator
 
-**Online:** open <https://jeffersonspeck.github.io/artistic-reality-ontology/annotator/>. Nothing to install; your annotations stay in your browser until you save them as a `.ttl` file (section 9), and local texts (section 7) never leave your computer. After a new version is published, reload with **Ctrl+F5** if the page looks outdated.
+The annotator runs online at <https://jeffersonspeck.github.io/artistic-reality-ontology/annotator/>. Annotations are kept in the browser until you save them as `.ttl` (section 9); local texts (section 7) stay on your computer. After an update, reload with Ctrl+F5 if the page looks outdated.
 
-**On your computer:**
+To run it on your computer:
 
 ```bash
 python scripts/annotator.py
@@ -134,7 +134,7 @@ For **derivations** (cover, sample, adaptation…), create a *derivation claim* 
 | Less clutter | untick **Relation names** |
 | Show only some works | **Works shown**: untick works, or use **Show only this work** on a work. Whatever is shared with visible works stays |
 | Hide a node | **Hide node**; to bring it back, use **show** in the *Hidden nodes* list |
-| Analyse one node apart | **Open in focus ↗**: a new tab with only the node and its neighbours (depth 1–3). Changes are shared between tabs |
+| Analyse one node apart | **Open in focus**: a new tab with only the node and its neighbours (depth 1–3). Changes are shared between tabs |
 | Start the view again | **Collapse to works** or **Show all** |
 
 ## 6. Texts, languages and links
@@ -187,7 +187,7 @@ The SPARQL engine (Oxigraph) is downloaded on first use, which needs internet.
 
 ## 10. Image and PDF
 
-- **Image (PNG):** downloads the whole visible graph at high resolution.
+- **Image (PNG):** downloads the whole visible graph at high resolution, drawn as on screen (cards with their class, colour and text, hidden-neighbour badges, highlighted relations of the selected node).
 - **Print / PDF:** builds a page with the graph and the details of the selected node. In the print dialog, choose **Save as PDF**.
 
 ## 11. After annotating: full validation and queries

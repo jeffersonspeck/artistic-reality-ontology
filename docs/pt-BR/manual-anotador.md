@@ -2,7 +2,7 @@
 
 # Manual do Anotador ARO
 
-> 🖊️ **Acesse o anotador online:** <https://jeffersonspeck.github.io/artistic-reality-ontology/annotator/> (sem instalar nada; para rodar no seu computador, ver a [seção 2](#2-iniciar-o-anotador)).
+Versão online: <https://jeffersonspeck.github.io/artistic-reality-ontology/annotator/>. Para rodar no seu computador, ver a [seção 2](#2-iniciar-o-anotador).
 
 O Anotador ARO é uma ferramenta web para **instanciar a ontologia ARO** sem escrever RDF à mão. Com ele você registra obras, versões e trechos, interpretações, situações, padrões, casos reais e fontes, além de derivações entre obras. Tudo aparece num grafo que você abre passo a passo, e o trabalho é salvo em Turtle (`.ttl`).
 
@@ -40,9 +40,9 @@ python -m pip install -r requirements.txt
 
 ## 2. Iniciar o anotador
 
-**Online:** abra <https://jeffersonspeck.github.io/artistic-reality-ontology/annotator/>. Não é preciso instalar nada; as anotações ficam no seu navegador até você salvá-las num arquivo `.ttl` (seção 9), e os textos locais (seção 7) nunca saem do seu computador. Depois que uma versão nova for publicada, recarregue com **Ctrl+F5** se a página parecer desatualizada.
+O anotador roda online em <https://jeffersonspeck.github.io/artistic-reality-ontology/annotator/>. As anotações ficam no navegador até você salvá-las em `.ttl` (seção 9); os textos locais (seção 7) ficam no seu computador. Depois de uma atualização, recarregue com Ctrl+F5 se a página parecer desatualizada.
 
-**No seu computador:**
+Para rodar no seu computador:
 
 ```bash
 python scripts/annotator.py
@@ -134,7 +134,7 @@ Para **derivações** (cover, sample, adaptação…), crie uma *alegação de d
 | Menos poluição visual | desmarque **Nomes das relações** |
 | Ver só algumas obras | **Obras exibidas**: desmarque obras, ou use **Ver só esta obra** numa obra. O que é compartilhado com obras visíveis continua |
 | Esconder um nó | **Esconder nó**; para trazê-lo de volta, use **mostrar** na lista *Nós ocultos* |
-| Analisar um nó à parte | **Abrir em foco ↗**: nova aba só com o nó e seus vizinhos (profundidade 1–3). As alterações são compartilhadas entre as abas |
+| Analisar um nó à parte | **Abrir em foco**: nova aba só com o nó e seus vizinhos (profundidade 1–3). As alterações são compartilhadas entre as abas |
 | Recomeçar a visão | **Recolher às obras** ou **Mostrar tudo** |
 
 ## 6. Textos, idiomas e links
@@ -187,7 +187,7 @@ O motor SPARQL (Oxigraph) é baixado no primeiro uso; para isso é preciso inter
 
 ## 10. Imagem e PDF
 
-- **Imagem (PNG):** baixa o grafo visível inteiro em alta resolução.
+- **Imagem (PNG):** baixa o grafo visível inteiro em alta resolução, com o mesmo visual da tela (cartões com classe, cor e texto, selos de vizinhos ocultos, relações do nó selecionado em destaque).
 - **Imprimir / PDF:** monta uma página com o grafo e os detalhes do nó selecionado. No diálogo de impressão, escolha **Salvar como PDF**.
 
 ## 11. Depois de anotar: validação completa e consultas

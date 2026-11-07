@@ -6,7 +6,7 @@ Este documento reúne, em um só lugar, **tudo o que no projeto foi moldado pelo
 
 > **Método.** SABiOx (Aguiar & Souza, 2024) tem cinco fases principais — **Requisitos → Preparação (Setup) → Captura → Projeto (Design) → Implementação** — e atividades de apoio transversais: **aquisição de conhecimento, documentação, gerência de configuração, avaliação, reúso e publicação**. Avaliação é atividade de apoio, não sexta fase. Fontes: [artigo](https://ceur-ws.org/Vol-3905/paper1.pdf) · [guia oficial](https://nemo.inf.ufes.br/wp-content/uploads/sabiox-guide2024-09.pdf).
 >
-> **Estado.** Os dois ciclos são rascunhos de pesquisa com testes automatizados de sintaxe, estrutura e consultas. Não houve ainda validação por especialistas nem avaliação com casos reais.
+> **Estado.** Três ciclos, consolidados na versão 1.0.0, com testes automatizados de sintaxe, estrutura, conformidade SHACL, consistência OWL, boa formação OntoUML e consultas. A avaliação por especialistas e com casos reais segue o [protocolo de avaliação](evaluation-protocol.md).
 
 ## Sumário
 
@@ -18,7 +18,7 @@ Este documento reúne, em um só lugar, **tudo o que no projeto foi moldado pelo
 - [Fase 5 — Implementação](#fase-5--implementação)
 - [Atividades de apoio](#atividades-de-apoio)
 - [Rastreabilidade ponta a ponta](#rastreabilidade-ponta-a-ponta)
-- [Pendências por fase](#pendências-por-fase)
+- [Próximas versões](#próximas-versões)
 - [Mapa reverso: arquivo → fase SABiOx](#mapa-reverso-arquivo--fase-sabiox)
 
 ---
@@ -66,7 +66,7 @@ Escolhe a ontologia de fundamentação, a linguagem de modelagem conceitual, a l
 | Decisão de setup | Escolha | Onde |
 |---|---|---|
 | Ontologia de fundamentação | UFO-A (identidade, tipos, dependência), UFO-B (eventos), UFO-C (intencionalidade, objetos sociais/informacionais) | [foundation-and-mappings.md](foundation-and-mappings.md) |
-| Linguagem conceitual | OntoUML como referência; estereótipos provisórios | [ontouml-status.md](../../model/ontouml-status.md) |
+| Linguagem conceitual | OntoUML; estereótipos verificados automaticamente | [ontouml-status.md](../../model/ontouml-status.md) |
 | Linguagem operacional | RDF/OWL 2 (Turtle, RDF/XML, JSON-LD), SHACL, JSON Schema 2020-12, SPARQL | [README.md](../../README.md) |
 | Política gUFO / UFO-C | gUFO 1.0.0 cobre UFO-A e parte de UFO-B; UFO-C não é importada (ADR-008) | [foundation-and-mappings.md](foundation-and-mappings.md), [design-decisions.md](design-decisions.md) |
 | Ferramentas (ciclo 1) | Python + `rdflib`, `jsonschema`; Graphviz para diagramas | [requirements.txt](../../requirements.txt) |
@@ -108,7 +108,7 @@ Constrói o modelo conceitual de referência: classes, estereótipos, definiçõ
 
 Visão completa: [overview.svg](../../model/diagrams/overview.svg). Definições, dependências e fundamentação de cada classe: [reference-model.md](reference-model.md) (gerado).
 
-### Estereótipos OntoUML usados (provisórios)
+### Estereótipos OntoUML usados
 
 | Estereótipo | Classes | Ciclo |
 |---|---|---|
@@ -243,7 +243,7 @@ Verificação automatizada em [test_project.py](../../tests/test_project.py) —
 | Schema do anotador válido; exemplo aceito; anotação inválida rejeitada | 2 |
 | Todo termo tem rótulos/definições/comentários en e pt-BR; texto de conteúdo sem idioma é rejeitado pelo SHACL | 2 |
 
-Avaliação por especialistas e com casos reais: pendente ([Pendências](#pendências-por-fase)).
+Avaliação por especialistas e com casos reais: [protocolo de avaliação](evaluation-protocol.md).
 
 ### Reúso
 
@@ -275,8 +275,8 @@ Do requisito à verificação. Matriz oficial: [traceability.md](traceability.md
 | FR-03–FR-04 | CQ-02–CQ-03, CQ-19 | InterpretationRecord, Justification, Claim | inspeção; [CQ-19](../../queries/CQ-19-ungrounded-claims.rq) |
 | FR-05–FR-06 | CQ-04 | SituationDescription, SituationPattern | inspeção |
 | FR-07–FR-09 | CQ-05–CQ-08 | ReferenceSource, EvidenceItem, CorrespondenceClaim | [CQ-05](../../queries/CQ-05-cases-by-pattern.rq), [CQ-06](../../queries/CQ-06-reference-sources.rq) |
-| FR-10 | CQ-10, CQ-12 | ExplanationHypothesis, EvidenceAssessment | futuro |
-| FR-11 | CQ-11 | AssessmentCriterion, CriteriaAssessment | futuro |
+| FR-10 | CQ-10, CQ-12 | ExplanationHypothesis, EvidenceAssessment | [CQ-10](../../queries/CQ-10-explanations-for-patterns.rq), [CQ-12](../../queries/CQ-12-insufficient-causal-evidence.rq) |
+| FR-11 | CQ-11 | AssessmentCriterion, CriteriaAssessment | [CQ-11](../../queries/CQ-11-epistemic-and-value-criteria.rq) |
 | FR-12 | CQ-01–CQ-18 | modelo inteiro | revisão da documentação |
 | FR-13–FR-14 | CQ-13–CQ-14 | DerivationClaim, DerivationType | [CQ-13](../../queries/CQ-13-derivations-of-work.rq), [CQ-14](../../queries/CQ-14-derivation-chains.rq), SHACL de âncoras |
 | FR-15 | CQ-15–CQ-16 | TransformationAspect, ArtisticDimension, TransformationOperation | [CQ-15](../../queries/CQ-15-transformation-aspects.rq), [CQ-16](../../queries/CQ-16-patterns-retained.rq) |
@@ -287,17 +287,17 @@ Do requisito à verificação. Matriz oficial: [traceability.md](traceability.md
 
 ---
 
-## Pendências por fase
+## Próximas versões
 
-| Fase / atividade | Pendência |
+Trabalho previsto depois da 1.0.0; não altera a versão publicada.
+
+| Fase / atividade | Trabalho previsto |
 |---|---|
 | Requisitos | Vocabulário que distinga semelhança, possibilidade e divergência nas alegações de correspondência (FR-10) |
-| Captura | Revisão especializada dos estereótipos («roleMixin», «type», «relator», «kind» de objetos informacionais) |
-| Projeto | Diagramar e verificar a exportação OntoUML num editor OntoUML (ADR-009: exportação gerada, válida no schema e bem formada no ciclo 3) |
 | Implementação | JSON-LD context para o anotador; conversor anotação JSON → RDF |
 | Aquisição de conhecimento | Conferir no original os dados marcados com † (Tillett 1991) e as categorias de Smiraglia (ampliações, extrações) |
-| Avaliação | Executar o [protocolo de avaliação](evaluation-protocol.md) (revisão por especialistas, estudo de anotação com casos reais); estereótipos de relação para as 33 associações simples se especialistas propuserem estereótipos adequados (ADR-032) |
-| Publicação | Registro do w3id, DOI, repositório público |
+| Avaliação | Executar o [protocolo de avaliação](evaluation-protocol.md) (revisão dos estereótipos por especialistas, estudo de anotação com casos reais); estereótipos de relação para as 33 associações simples se especialistas propuserem estereótipos adequados (ADR-032) |
+| Publicação | Registro do w3id, DOI |
 
 ---
 
@@ -319,7 +319,7 @@ Do requisito à verificação. Matriz oficial: [traceability.md](traceability.md
 | [datatypes-and-validation.md](datatypes-and-validation.md) | Projeto | não |
 | [aro-shapes.ttl](../../validation/aro-shapes.ttl) | Projeto | **sim** |
 | [schemas/](../../schemas/) | Projeto | `record` e `derivation-annotation` **sim**; `reference-source` não |
-| [ontology/src/](../../ontology/src/) | Implementação (versão em desenvolvimento, módulos) | **sim** |
+| [ontology/src/](../../ontology/src/) | Implementação (versão atual, módulos) | **sim** |
 | [releases/](../../releases/README.md) | Gerência de configuração · Publicação (versões congeladas) | copiadas por `build.py --release` e nunca mais alteradas |
 | [build.py](../../scripts/build.py) | Setup · Implementação · Gerência de configuração | não |
 | [validate.py](../../scripts/validate.py), [query.py](../../scripts/query.py) | Implementação · Publicação (ferramentas de uso) | não |

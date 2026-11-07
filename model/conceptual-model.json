@@ -4,7 +4,7 @@
     "version: release number, also written to owl:versionInfo.",
     "ontology: bilingual title/description of the ontology document.",
     "packages: modules with diagram colour and bilingual label/description (written to the ontology as module IRIs, linked from each term by rdfs:isDefinedBy); show_context draws neighbouring classes in the package diagram.",
-    "classes: name (English IRI local name), label_en/label_pt, provisional OntoUML stereotype, package, definition_*, dependency_*, grounding_* (UFO), optional specializes and alignments.",
+    "classes: name (English IRI local name), label_en/label_pt, OntoUML stereotype, package, definition_*, dependency_*, grounding_* (UFO), optional specializes and alignments.",
     "relations: object properties; description_* is the short label, definition_* (skos:definition) says what the relation is for; source/target are class names, lists (owl:unionOf) or prefixed external classes; target_cardinality is documentation; shacl holds the constraints actually enforced.",
     "datatype_properties: range is an XSD local name or a prefixed datatype (rdf:langString = multilingual text); label_* and comment_* in both languages.",
     "concept_schemes: SKOS vocabularies; member_class is the high-order class typing each concept; broader builds the hierarchy; source cites the literature.",
@@ -12,7 +12,7 @@
     "module_diagram: relations drawn in the README module diagram (model/diagrams/modules.*.svg); a union range inside one package is drawn as a single edge to that package.",
     "relations[].ontouml: OntoUML association stereotype when one applies (participation, creation, mediation, instantiation); otherwise a plain association."
   ],
-  "version": "0.3.0-beta",
+  "version": "1.0.0",
   "ontology": {
     "title_en": "Artistic Reality Ontology",
     "title_pt": "Ontologia de Arte e Realidade",
@@ -25,7 +25,7 @@
     ],
     "affiliation_en": "Integral part of the doctoral research of Jefferson Rodrigo Speck in the Graduate Program in Informatics (PPGInf) of the Federal University of Paraná (UFPR), supervised by Prof. Dr. Roberto Pereira (UFPR) and co-supervised by Prof. Dr. Clodis Boscarioli (UNIOESTE), linked to the Research Group on Technology and Innovation in Education (GTIE), UNIOESTE.",
     "affiliation_pt": "Parte integrante da pesquisa de doutorado de Jefferson Rodrigo Speck no Programa de Pós-Graduação em Informática (PPGInf) da Universidade Federal do Paraná (UFPR), sob orientação do Prof. Dr. Roberto Pereira (UFPR) e coorientação do Prof. Dr. Clodis Boscarioli (UNIOESTE), com vinculação ao Grupo de Pesquisa em Tecnologia e Inovação na Educação (GTIE), UNIOESTE.",
-    "prior_version": "0.2.1-beta"
+    "prior_version": "0.3.0-beta"
   },
   "packages": [
     {
@@ -836,8 +836,8 @@
       "definition_pt": "Tipo de derivação (tradução, cover, sample, paródia...); suas instâncias são conceitos SKOS.",
       "dependency_en": "controlled vocabulary membership",
       "dependency_pt": "pertencimento a vocabulário controlado",
-      "grounding_en": "UFO high-order type (provisional); operationalized as skos:Concept",
-      "grounding_pt": "tipo de alta ordem UFO (provisório); operacionalizado como skos:Concept"
+      "grounding_en": "UFO high-order type; operationalized as skos:Concept",
+      "grounding_pt": "tipo de alta ordem UFO; operacionalizado como skos:Concept"
     },
     {
       "name": "DerivationRegime",
@@ -849,8 +849,8 @@
       "definition_pt": "Postura da derivação em relação à origem (lúdica, satírica, séria, reverencial); suas instâncias são conceitos SKOS.",
       "dependency_en": "controlled vocabulary membership",
       "dependency_pt": "pertencimento a vocabulário controlado",
-      "grounding_en": "UFO high-order type (provisional); operationalized as skos:Concept",
-      "grounding_pt": "tipo de alta ordem UFO (provisório); operacionalizado como skos:Concept"
+      "grounding_en": "UFO high-order type; operationalized as skos:Concept",
+      "grounding_pt": "tipo de alta ordem UFO; operacionalizado como skos:Concept"
     },
     {
       "name": "ArtisticDimension",
@@ -862,8 +862,8 @@
       "definition_pt": "Aspecto da obra segundo o qual a derivação pode ser comparada (melodia, letra, enredo, personagem, mídia...).",
       "dependency_en": "controlled vocabulary membership",
       "dependency_pt": "pertencimento a vocabulário controlado",
-      "grounding_en": "UFO high-order type (provisional); operationalized as skos:Concept",
-      "grounding_pt": "tipo de alta ordem UFO (provisório); operacionalizado como skos:Concept"
+      "grounding_en": "UFO high-order type; operationalized as skos:Concept",
+      "grounding_pt": "tipo de alta ordem UFO; operacionalizado como skos:Concept"
     },
     {
       "name": "TransformationOperation",
@@ -875,8 +875,8 @@
       "definition_pt": "O que a derivação faz com uma dimensão: manter, modificar, acrescentar, remover ou recontextualizar.",
       "dependency_en": "controlled vocabulary membership",
       "dependency_pt": "pertencimento a vocabulário controlado",
-      "grounding_en": "UFO high-order type (provisional); operationalized as skos:Concept",
-      "grounding_pt": "tipo de alta ordem UFO (provisório); operacionalizado como skos:Concept"
+      "grounding_en": "UFO high-order type; operationalized as skos:Concept",
+      "grounding_pt": "tipo de alta ordem UFO; operacionalizado como skos:Concept"
     },
     {
       "name": "CreativeRole",
@@ -888,8 +888,8 @@
       "definition_pt": "Papel que qualifica uma contribuição criativa (compositor, intérprete, tradutor, remixador...).",
       "dependency_en": "controlled vocabulary membership",
       "dependency_pt": "pertencimento a vocabulário controlado",
-      "grounding_en": "UFO role type (provisional); operationalized as skos:Concept",
-      "grounding_pt": "tipo de papel UFO (provisório); operacionalizado como skos:Concept"
+      "grounding_en": "UFO role type; operationalized as skos:Concept",
+      "grounding_pt": "tipo de papel UFO; operacionalizado como skos:Concept"
     }
   ],
   "relations": [

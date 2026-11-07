@@ -1,8 +1,8 @@
-# aro_homem_na_estrada_realidade_social.ttl — ARO 0.3.0-beta
+# aro_homem_na_estrada_realidade_social.ttl — ARO 1.0.0
 # Homem na Estrada (Racionais MC's, 1993): realidade social sustentada por evidências.
 #
-# Anotação refeita na estrutura da ARO 0.3 (claims, nível superior UFO, níveis IFLA LRM,
-# validação OntoUML). Substitui as anotações de Homem na Estrada feitas na 0.2
+# Anotação na estrutura da ARO 1.0.0 (claims, nível superior UFO, níveis IFLA LRM,
+# validação OntoUML), a mesma introduzida na 0.3. Substitui as anotações de Homem na Estrada feitas na 0.2
 # (aro_homem_na_estrada_refeita.ttl, sua cópia e example_homem_na_estrada_revisado.ttl),
 # reunindo a camada empírica desta anotação e a derivação do sample de "Ela Partiu".
 # Relatório: docs/pt-BR/relatorio-anotacao-homem-na-estrada-realidade-social.md
@@ -10,13 +10,13 @@
 # Nenhum verso da letra é reproduzido: os recortes guardam só coordenadas de linha
 # (RFC 5147) e uma descrição temática. Textos protegidos ficam em private/ (fora do git).
 #
-# Padrão 0.3 seguido aqui:
+# Padrão seguido aqui:
 #   - agentes tipados como aro:Person / aro:Collective (ADR-029), além do tipo schema.org;
 #   - obra (Artwork) → expressões (Expression: gravação e letra) → manifestações
 #     (Manifestation: álbum e transcrição pública) (ADR-028);
 #   - todo registro analítico tem autoria por aro:producedByAct (ADR-033);
 #   - avaliações declaram aro:assessmentOutcome e usam aro:assessesClaim;
-#   - fontes citadas por aro:citesSource (relação única de citação, 0.3);
+#   - fontes citadas por aro:citesSource (relação única de citação);
 #   - atos e situações empíricas datados por aro:startDate / aro:endDate (ADR-030).
 
 @prefix aro: <https://w3id.org/aro/ontology#> .
@@ -36,7 +36,7 @@ hnr:anotacao2026 a schema:Dataset ;
     dcterms:title "Homem na Estrada — realidade social sustentada por evidências"@pt-BR ;
     dcterms:created "2026-11-05"^^xsd:date ;
     dcterms:modified "2026-11-07"^^xsd:date ;
-    dcterms:conformsTo <https://w3id.org/aro/ontology/0.3.0-beta> ;
+    dcterms:conformsTo <https://w3id.org/aro/ontology/1.0.0> ;
     dcterms:creator hnr:analistaPesquisador ;
     dcterms:description "Anotação autossuficiente. As fontes sustentam que os tipos de situação representados existem ou persistem no mundo social. Não se exige contemporaneidade entre a obra e a fonte, e não se afirma que a fonte documente o personagem, o bairro ou o episódio ficcional. A cadeia empírica é: fonte de referência → item de evidência → afirmação empírica e caso empírico → alegação de correspondência com um padrão → avaliação explícita do alcance."@pt-BR .
 

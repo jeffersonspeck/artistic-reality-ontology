@@ -11,8 +11,8 @@
 aro:EmpiricalClaim a owl:Class ;
     rdfs:label "empirical claim"@en,
         "afirmação empírica"@pt-BR ;
-    rdfs:comment "OntoUML stereotype (provisional): subkind; foundation: UFO-C information object; subkind of Claim (assessable, justifiable, citable, challengeable); dependency: claim content and intended empirical reference"@en,
-        "Estereótipo OntoUML (provisório): subkind; fundamentação: objeto informacional UFO-C; subkind de Claim (avaliável, justificável, citável, contestável); dependência: conteúdo da afirmação e referência empírica pretendida"@pt-BR ;
+    rdfs:comment "OntoUML stereotype: subkind; foundation: UFO-C information object; subkind of Claim (assessable, justifiable, citable, challengeable); dependency: claim content and intended empirical reference"@en,
+        "Estereótipo OntoUML: subkind; fundamentação: objeto informacional UFO-C; subkind de Claim (avaliável, justificável, citável, contestável); dependência: conteúdo da afirmação e referência empírica pretendida"@pt-BR ;
     rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/evidence> ;
     rdfs:subClassOf aro:Claim ;
     skos:definition "Recorded testable claim about the empirical world."@en,
@@ -110,8 +110,8 @@ aro:startDate a owl:DatatypeProperty ;
 aro:EvidenceAssessment a owl:Class ;
     rdfs:label "evidence assessment"@en,
         "avaliação de evidência"@pt-BR ;
-    rdfs:comment "OntoUML stereotype (provisional): subkind; foundation: UFO-C information object; subkind of Assessment; dependency: the assessed claim and the evidence weighed"@en,
-        "Estereótipo OntoUML (provisório): subkind; fundamentação: objeto informacional UFO-C; subkind de Assessment; dependência: a alegação avaliada e a evidência ponderada"@pt-BR ;
+    rdfs:comment "OntoUML stereotype: subkind; foundation: UFO-C information object; subkind of Assessment; dependency: the assessed claim and the evidence weighed"@en,
+        "Estereótipo OntoUML: subkind; fundamentação: objeto informacional UFO-C; subkind de Assessment; dependência: a alegação avaliada e a evidência ponderada"@pt-BR ;
     rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/evidence> ;
     rdfs:subClassOf aro:Assessment ;
     skos:definition "Assessment of whether evidence items support, challenge or are irrelevant to a claim."@en,
@@ -120,8 +120,8 @@ aro:EvidenceAssessment a owl:Class ;
 aro:ExplanationHypothesis a owl:Class ;
     rdfs:label "explanation hypothesis"@en,
         "hipótese explicativa"@pt-BR ;
-    rdfs:comment "OntoUML stereotype (provisional): subkind; foundation: UFO-C information object; subkind of Claim (assessable, justifiable, citable, challengeable); dependency: explicit explanandum and explanatory content"@en,
-        "Estereótipo OntoUML (provisório): subkind; fundamentação: objeto informacional UFO-C; subkind de Claim (avaliável, justificável, citável, contestável); dependência: explanandum explícito e conteúdo explicativo"@pt-BR ;
+    rdfs:comment "OntoUML stereotype: subkind; foundation: UFO-C information object; subkind of Claim (assessable, justifiable, citable, challengeable); dependency: explicit explanandum and explanatory content"@en,
+        "Estereótipo OntoUML: subkind; fundamentação: objeto informacional UFO-C; subkind de Claim (avaliável, justificável, citável, contestável); dependência: explanandum explícito e conteúdo explicativo"@pt-BR ;
     rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/evidence> ;
     rdfs:subClassOf aro:Claim ;
     skos:definition "Proposed mechanism or factors explaining a represented or observed phenomenon."@en,
@@ -130,8 +130,8 @@ aro:ExplanationHypothesis a owl:Class ;
 aro:CorrespondenceClaim a owl:Class ;
     rdfs:label "correspondence claim"@en,
         "alegação de correspondência"@pt-BR ;
-    rdfs:comment "OntoUML stereotype (provisional): subkind; foundation: UFO-C information object; subkind of Claim; not a UFO relator; dependency: compared pattern/case and dimensions"@en,
-        "Estereótipo OntoUML (provisório): subkind; fundamentação: objeto informacional UFO-C; subkind de Claim; não é relator UFO; dependência: padrão/caso comparados e dimensões"@pt-BR ;
+    rdfs:comment "OntoUML stereotype: subkind; foundation: UFO-C information object; subkind of Claim; not a UFO relator; dependency: compared pattern/case and dimensions"@en,
+        "Estereótipo OntoUML: subkind; fundamentação: objeto informacional UFO-C; subkind de Claim; não é relator UFO; dependência: padrão/caso comparados e dimensões"@pt-BR ;
     rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/evidence> ;
     rdfs:subClassOf aro:Claim ;
     skos:definition "Contestable assertion of similarity, instantiation or explanatory relevance between pattern and empirical case."@en,
@@ -140,8 +140,8 @@ aro:CorrespondenceClaim a owl:Class ;
 aro:EvidenceItem a owl:Class ;
     rdfs:label "evidence item"@en,
         "item de evidência"@pt-BR ;
-    rdfs:comment "OntoUML stereotype (provisional): subkind; foundation: UFO-C information object; subkind of AnalyticalRecord, whose identity it inherits; dependency: reference source and observation content"@en,
-        "Estereótipo OntoUML (provisório): subkind; fundamentação: objeto informacional UFO-C; subkind de AnalyticalRecord, cuja identidade herda; dependência: fonte de referência e conteúdo observado"@pt-BR ;
+    rdfs:comment "OntoUML stereotype: subkind; foundation: UFO-C information object; subkind of AnalyticalRecord, whose identity it inherits; dependency: reference source and observation content"@en,
+        "Estereótipo OntoUML: subkind; fundamentação: objeto informacional UFO-C; subkind de AnalyticalRecord, cuja identidade herda; dependência: fonte de referência e conteúdo observado"@pt-BR ;
     rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/evidence> ;
     rdfs:subClassOf aro:AnalyticalRecord ;
     skos:definition "Extracted contextual assertion or observation from a reference source."@en,
@@ -150,8 +150,8 @@ aro:EvidenceItem a owl:Class ;
 aro:ReferenceSource a owl:Class ;
     rdfs:label "reference source"@en,
         "fonte de referência"@pt-BR ;
-    rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-C information object; dependency: source provenance; not tied to one interpretation"@en,
-        "Estereótipo OntoUML (provisório): kind; fundamentação: objeto informacional UFO-C; dependência: proveniência da fonte; não vinculada a uma interpretação"@pt-BR ;
+    rdfs:comment "OntoUML stereotype: kind; foundation: UFO-C information object; dependency: source provenance; not tied to one interpretation"@en,
+        "Estereótipo OntoUML: kind; fundamentação: objeto informacional UFO-C; dependência: proveniência da fonte; não vinculada a uma interpretação"@pt-BR ;
     rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/evidence> ;
     rdfs:seeAlso dcterms:BibliographicResource,
         schema:CreativeWork ;
@@ -161,8 +161,8 @@ aro:ReferenceSource a owl:Class ;
 aro:EmpiricalCase a owl:Class ;
     rdfs:label "empirical case"@en,
         "caso empírico"@pt-BR ;
-    rdfs:comment "OntoUML stereotype (provisional): subkind; foundation: UFO-C information object; subkind of AnalyticalRecord, whose identity it inherits; dependency: case description and empirical referent"@en,
-        "Estereótipo OntoUML (provisório): subkind; fundamentação: objeto informacional UFO-C; subkind de AnalyticalRecord, cuja identidade herda; dependência: descrição do caso e referente empírico"@pt-BR ;
+    rdfs:comment "OntoUML stereotype: subkind; foundation: UFO-C information object; subkind of AnalyticalRecord, whose identity it inherits; dependency: case description and empirical referent"@en,
+        "Estereótipo OntoUML: subkind; fundamentação: objeto informacional UFO-C; subkind de AnalyticalRecord, cuja identidade herda; dependência: descrição do caso e referente empírico"@pt-BR ;
     rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/evidence> ;
     rdfs:subClassOf aro:AnalyticalRecord ;
     skos:definition "Documented dossier about one real-world situation or occurrence."@en,
@@ -171,8 +171,8 @@ aro:EmpiricalCase a owl:Class ;
 aro:EmpiricalEvent a owl:Class ;
     rdfs:label "empirical event"@en,
         "evento empírico"@pt-BR ;
-    rdfs:comment "OntoUML stereotype (provisional): event; foundation: UFO-B event; dependency: real occurrence and participants"@en,
-        "Estereótipo OntoUML (provisório): event; fundamentação: evento UFO-B; dependência: ocorrência real e participantes"@pt-BR ;
+    rdfs:comment "OntoUML stereotype: event; foundation: UFO-B event; dependency: real occurrence and participants"@en,
+        "Estereótipo OntoUML: event; fundamentação: evento UFO-B; dependência: ocorrência real e participantes"@pt-BR ;
     rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/evidence> ;
     skos:definition "Real-world temporally bounded occurrence."@en,
         "Ocorrência do mundo real delimitada temporalmente."@pt-BR .
@@ -180,8 +180,8 @@ aro:EmpiricalEvent a owl:Class ;
 aro:EmpiricalSituation a owl:Class ;
     rdfs:label "empirical situation"@en,
         "situação empírica"@pt-BR ;
-    rdfs:comment "OntoUML stereotype (provisional): situation; foundation: UFO-B situation; separate from descriptions; dependency: real-world constituents"@en,
-        "Estereótipo OntoUML (provisório): situation; fundamentação: situação UFO-B; separada de descrições; dependência: constituintes do mundo real"@pt-BR ;
+    rdfs:comment "OntoUML stereotype: situation; foundation: UFO-B situation; separate from descriptions; dependency: real-world constituents"@en,
+        "Estereótipo OntoUML: situation; fundamentação: situação UFO-B; separada de descrições; dependência: constituintes do mundo real"@pt-BR ;
     rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/evidence> ;
     skos:definition "Configuration of entities and conditions in the real world."@en,
         "Configuração de entidades e condições no mundo real."@pt-BR .
@@ -192,5 +192,5 @@ aro:EmpiricalSituation a owl:Class ;
     dcterms:isPartOf <https://w3id.org/aro/ontology> ;
     dcterms:title "ARO module: Evidence and empirical world"@en,
         "Módulo ARO: Evidência e mundo empírico"@pt-BR ;
-    owl:versionInfo "0.3.0-beta" .
+    owl:versionInfo "1.0.0" .
 

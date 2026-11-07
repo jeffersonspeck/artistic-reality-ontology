@@ -2,7 +2,7 @@
 
 # Foundational ontology and reuse mapping
 
-- **UFO-A:** identity, rigidity, endurants, sortal kinds/subkinds and dependency. Some class stereotypes are provisional commitments and still require expert review.
+- **UFO-A:** identity, rigidity, endurants, sortal kinds/subkinds and dependency. Every class has an OntoUML stereotype, checked automatically for well-formedness ([OntoUML diagrams](ontouml.md)).
 - **UFO-B:** acts and events; descriptions of represented fictional events are *not* themselves empirical UFO-B events.
 - **UFO-C:** agency, intentionality, social/information objects, documents and normative interpretation are conceptual grounding only.
 - **gUFO 1.0.0:** lightweight OWL implementation mainly of UFO-A and limited UFO-B. It **does not** fully implement UFO-C. We do not assert OWL imports or equivalences that imply full UFO-C implementation.

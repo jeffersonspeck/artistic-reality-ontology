@@ -57,7 +57,7 @@ Instrumento (por participante, cerca de 60 minutos):
 
 **Medidas.**
 
-| Medida | Como | Meta (provisória) |
+| Medida | Como | Meta |
 |---|---|---|
 | Conclusão e tempo por tarefa | registros do anotador e observação | ≥ 80 % das tarefas concluídas |
 | Validade dos dados produzidos | `python scripts/validate.py` em cada arquivo | nenhuma violação após a validação do próprio anotador |

@@ -25,13 +25,6 @@ const STYLE = [
   { selector: "edge.nolabel", style: { "label": "" } },
   { selector: "edge.highlight", style: { "line-color": "#2563eb", "target-arrow-color": "#2563eb", "width": 2.2, "label": "data(label)", "color": "#1d4ed8", "z-index": 10 } },
   { selector: "edge.hover", style: { "line-color": "#64748b", "target-arrow-color": "#64748b", "width": 2.2, "label": "data(label)" } },
-  // Image export / printing: the HTML layer is not in the canvas, so nodes are drawn by Cytoscape
-  { selector: "node.export", style: {
-      "label": "data(label)", "font-size": 10, "font-family": "system-ui, sans-serif",
-      "text-wrap": "wrap", "text-max-width": "data(tw)", "text-valign": "center", "text-halign": "center",
-      "background-color": "data(color)", "background-opacity": 1, "border-width": 1, "border-color": "data(accent)", "color": "#0f172a" } },
-  { selector: "node.export[kind = 'concept']", style: { "shape": "tag", "border-style": "dashed" } },
-  { selector: "node.export[kind = 'external']", style: { "shape": "ellipse", "border-style": "dotted" } },
 ];
 
 export class GraphView {
@@ -407,14 +400,183 @@ export class GraphView {
     this.cy.fit(undefined, 30);
   }
 
-  /** PNG data URL of the whole graph (used for image export and printing). */
-  png() {
-    // the cards live outside the canvas: draw plain labelled boxes for the picture
-    const nodes = this.cy.nodes();
-    nodes.addClass("export");
-    try { return this.cy.png({ full: true, scale: 2, bg: "#ffffff" }); }
-    finally { nodes.removeClass("export"); }
+  /**
+   * PNG data URL of the visible graph as it looks on screen (image export and printing).
+   * Cytoscape draws the relations (the nodes themselves are invisible); each card is then
+   * drawn on top from its own layout and computed style, at the position of its node.
+   */
+  async png(scale = 2) {
+    const pad = 24;                                   // margin around the graph, in CSS pixels
+    const bb = this.cy.elements().boundingBox();      // the area cy.png({ full: true }) covers
+    const edges = await loadImage(this.cy.png({ full: true, scale }));
+    const canvas = document.createElement("canvas");
+    canvas.width = edges.width + 2 * pad * scale;
+    canvas.height = edges.height + 2 * pad * scale;
+    const ctx = canvas.getContext("2d");
+    ctx.fillStyle = "#ffffff";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.drawImage(edges, pad * scale, pad * scale);
+    for (const [id, card] of this.cards) {
+      const node = this.cy.getElementById(id);
+      if (node.empty()) continue;
+      const p = node.position();
+      drawCard(ctx, card, (pad + p.x - bb.x1) * scale, (pad + p.y - bb.y1) * scale, scale);
+    }
+    return canvas.toDataURL("image/png");
   }
+}
+
+function loadImage(src) {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.onload = () => resolve(img);
+    img.onerror = reject;
+    img.src = src;
+  });
+}
+
+// Canvas text is measured slightly wider than the browser lays it out (letter spacing,
+// sub-pixel rounding); this tolerance keeps a line that fits on screen on one line.
+const SLACK = 2;
+
+/** Rounded rectangle path (ctx.roundRect is missing in older browsers). */
+function roundedRect(ctx, x, y, w, h, r) {
+  r = Math.max(0, Math.min(r, w / 2, h / 2));
+  ctx.beginPath();
+  ctx.moveTo(x + r, y);
+  ctx.arcTo(x + w, y, x + w, y + h, r);
+  ctx.arcTo(x + w, y + h, x, y + h, r);
+  ctx.arcTo(x, y + h, x, y, r);
+  ctx.arcTo(x, y, x + w, y, r);
+  ctx.closePath();
+}
+
+/** Font, colour and spacing of an element, applied to the canvas. */
+function useTextStyle(ctx, cs) {
+  ctx.font = `${cs.fontStyle} ${cs.fontWeight} ${cs.fontSize} ${cs.fontFamily}`;
+  ctx.fillStyle = cs.color;
+  if ("letterSpacing" in ctx) ctx.letterSpacing = cs.letterSpacing === "normal" ? "0px" : cs.letterSpacing;
+  ctx.textBaseline = "middle";
+}
+
+function lineHeightOf(cs) {
+  const lh = parseFloat(cs.lineHeight);
+  return Number.isFinite(lh) ? lh : parseFloat(cs.fontSize) * 1.2;
+}
+
+/** Cut `text` with "…" so that it fits in `width`. */
+function ellipsize(ctx, text, width) {
+  if (ctx.measureText(text).width <= width) return text;
+  let s = text;
+  while (s && ctx.measureText(s + "…").width > width) s = s.slice(0, -1);
+  return s.trimEnd() + "…";
+}
+
+/** Break `text` into lines of at most `width` (words first, long words by characters). */
+function wrapText(ctx, text, width) {
+  const lines = [];
+  for (const para of text.split("\n")) {
+    let line = "";
+    for (const word of para.split(/\s+/).filter(Boolean)) {
+      const candidate = line ? `${line} ${word}` : word;
+      if (ctx.measureText(candidate).width <= width) { line = candidate; continue; }
+      if (line) lines.push(line);
+      line = "";
+      let rest = word;
+      while (ctx.measureText(rest).width > width && rest.length > 1) {
+        let n = rest.length - 1;
+        while (n > 1 && ctx.measureText(rest.slice(0, n)).width > width) n--;
+        lines.push(rest.slice(0, n));
+        rest = rest.slice(n);
+      }
+      line = rest;
+    }
+    lines.push(line);
+  }
+  return lines;
+}
+
+/** Draw one node card centred at (cx, cy) in canvas pixels, `k` canvas pixels per CSS pixel. */
+function drawCard(ctx, card, cx, cy, k) {
+  const cs = getComputedStyle(card);
+  const w = card.offsetWidth, h = card.offsetHeight;
+  const r = Math.min(parseFloat(cs.borderTopLeftRadius) || 0, h / 2);
+  ctx.save();
+  ctx.translate(cx - (w * k) / 2, cy - (h * k) / 2);
+  ctx.scale(k, k);
+
+  // highlight ring of the selected node or the focus node
+  const ring = card.classList.contains("selected") ? "rgba(37, 99, 235, .33)"
+    : card.classList.contains("focus") ? "rgba(124, 58, 237, .4)" : null;
+  if (ring) {
+    roundedRect(ctx, -1.5, -1.5, w + 3, h + 3, r + 1.5);
+    ctx.lineWidth = 3; ctx.strokeStyle = ring; ctx.stroke();
+  }
+
+  // body with a soft shadow
+  ctx.save();
+  ctx.shadowColor = "rgba(15, 23, 42, .08)"; ctx.shadowBlur = 3; ctx.shadowOffsetY = 1;
+  roundedRect(ctx, 0, 0, w, h, r);
+  ctx.fillStyle = cs.backgroundColor; ctx.fill();
+  ctx.restore();
+
+  // coloured strips: module tint on top (individuals), accent on the left
+  ctx.save();
+  roundedRect(ctx, 0, 0, w, h, r);
+  ctx.clip();
+  const tint = card.style.getPropertyValue("--tint");
+  if (card.classList.contains("kind-individual") && tint) { ctx.fillStyle = tint; ctx.fillRect(0, 0, w, 3); }
+  const left = parseFloat(cs.borderLeftWidth) || 0;
+  if (left > 1) { ctx.fillStyle = cs.borderLeftColor; ctx.fillRect(0, 0, left, h); }
+  ctx.restore();
+
+  // outline (solid, dashed for concepts, dotted for external resources)
+  roundedRect(ctx, 0.5, 0.5, w - 1, h - 1, r);
+  ctx.lineWidth = 1; ctx.strokeStyle = cs.borderTopColor;
+  ctx.setLineDash(cs.borderTopStyle === "dashed" ? [4, 3] : cs.borderTopStyle === "dotted" ? [1, 2] : []);
+  ctx.stroke();
+  ctx.setLineDash([]);
+
+  // class name
+  const kind = card.querySelector(".nc-kind");
+  if (kind) {
+    const ks = getComputedStyle(kind);
+    useTextStyle(ctx, ks);
+    const text = ks.textTransform === "uppercase" ? kind.textContent.toUpperCase() : kind.textContent;
+    ctx.fillText(ellipsize(ctx, text, kind.clientWidth + SLACK), kind.offsetLeft, kind.offsetTop + lineHeightOf(ks) / 2);
+  }
+
+  // text: as many lines as the card shows on screen (three at most, unless it shows the full text)
+  const title = card.querySelector(".nc-title");
+  if (title) {
+    const ts = getComputedStyle(title);
+    useTextStyle(ctx, ts);
+    const lh = lineHeightOf(ts);
+    const width = title.clientWidth + SLACK;
+    let lines = wrapText(ctx, title.textContent, width);
+    const max = Math.max(1, Math.round(title.clientHeight / lh));
+    if (lines.length > max) {
+      lines = lines.slice(0, max);
+      lines[max - 1] = ellipsize(ctx, lines[max - 1] + "…", width);
+    }
+    lines.forEach((line, i) => ctx.fillText(line, title.offsetLeft, title.offsetTop + lh * i + lh / 2));
+  }
+
+  // badge with the number of hidden neighbours
+  const badge = card.querySelector(".nc-badge");
+  if (badge) {
+    const bs = getComputedStyle(badge);
+    const bx = badge.offsetLeft, by = badge.offsetTop, bw = badge.offsetWidth, bh = badge.offsetHeight;
+    roundedRect(ctx, bx - 2, by - 2, bw + 4, bh + 4, (bh + 4) / 2);
+    ctx.fillStyle = "#ffffff"; ctx.fill();
+    roundedRect(ctx, bx, by, bw, bh, bh / 2);
+    ctx.fillStyle = bs.backgroundColor; ctx.fill();
+    useTextStyle(ctx, bs);
+    ctx.textAlign = "center";
+    ctx.fillText(badge.textContent, bx + bw / 2, by + bh / 2);
+    ctx.textAlign = "start";
+  }
+  ctx.restore();
 }
 
 export function shortIri(iri) {

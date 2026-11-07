@@ -12,8 +12,8 @@
 aro:EpistemicCriterion a owl:Class ;
     rdfs:label "epistemic criterion"@en,
         "critério epistêmico"@pt-BR ;
-    rdfs:comment "OntoUML stereotype (provisional): subkind; foundation: UFO-C normative information object (subkind of AssessmentCriterion); dependency: inherits AssessmentCriterion identity"@en,
-        "Estereótipo OntoUML (provisório): subkind; fundamentação: objeto informacional normativo UFO-C (subkind de AssessmentCriterion); dependência: herda a identidade de AssessmentCriterion"@pt-BR ;
+    rdfs:comment "OntoUML stereotype: subkind; foundation: UFO-C normative information object (subkind of AssessmentCriterion); dependency: inherits AssessmentCriterion identity"@en,
+        "Estereótipo OntoUML: subkind; fundamentação: objeto informacional normativo UFO-C (subkind de AssessmentCriterion); dependência: herda a identidade de AssessmentCriterion"@pt-BR ;
     rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/claim> ;
     rdfs:subClassOf aro:AssessmentCriterion ;
     skos:definition "Criterion about knowledge: whether a claim is supported, coherent, plausible or well documented (textual evidence, source reliability, coherence with the work)."@en,
@@ -22,8 +22,8 @@ aro:EpistemicCriterion a owl:Class ;
 aro:ValueCriterion a owl:Class ;
     rdfs:label "value criterion"@en,
         "critério de valor"@pt-BR ;
-    rdfs:comment "OntoUML stereotype (provisional): subkind; foundation: UFO-C normative information object (subkind of AssessmentCriterion); dependency: inherits AssessmentCriterion identity"@en,
-        "Estereótipo OntoUML (provisório): subkind; fundamentação: objeto informacional normativo UFO-C (subkind de AssessmentCriterion); dependência: herda a identidade de AssessmentCriterion"@pt-BR ;
+    rdfs:comment "OntoUML stereotype: subkind; foundation: UFO-C normative information object (subkind of AssessmentCriterion); dependency: inherits AssessmentCriterion identity"@en,
+        "Estereótipo OntoUML: subkind; fundamentação: objeto informacional normativo UFO-C (subkind de AssessmentCriterion); dependência: herda a identidade de AssessmentCriterion"@pt-BR ;
     rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/claim> ;
     rdfs:subClassOf aro:AssessmentCriterion ;
     skos:definition "Criterion about worth: whether a claim or reading is relevant, fair, original or ethically adequate, independently of being true."@en,
@@ -96,8 +96,8 @@ aro:usesCriterion a owl:ObjectProperty ;
 aro:Challenge a owl:Class ;
     rdfs:label "challenge"@en,
         "contestação"@pt-BR ;
-    rdfs:comment "OntoUML stereotype (provisional): subkind; foundation: UFO-C information object; subkind of Claim (assessable, justifiable, citable, challengeable); dependency: the challenged claim and its own argument"@en,
-        "Estereótipo OntoUML (provisório): subkind; fundamentação: objeto informacional UFO-C; subkind de Claim (avaliável, justificável, citável, contestável); dependência: a alegação contestada e seu próprio argumento"@pt-BR ;
+    rdfs:comment "OntoUML stereotype: subkind; foundation: UFO-C information object; subkind of Claim (assessable, justifiable, citable, challengeable); dependency: the challenged claim and its own argument"@en,
+        "Estereótipo OntoUML: subkind; fundamentação: objeto informacional UFO-C; subkind de Claim (avaliável, justificável, citável, contestável); dependência: a alegação contestada e seu próprio argumento"@pt-BR ;
     rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/claim> ;
     rdfs:subClassOf aro:Claim ;
     skos:definition "Claim that criticizes another claim or offers an alternative to it; being a claim itself, it can be justified, assessed and challenged in turn."@en,
@@ -106,8 +106,8 @@ aro:Challenge a owl:Class ;
 aro:CriteriaAssessment a owl:Class ;
     rdfs:label "criteria assessment"@en,
         "avaliação por critérios"@pt-BR ;
-    rdfs:comment "OntoUML stereotype (provisional): subkind; foundation: UFO-C information object; subkind of Assessment; dependency: the assessed claim and its criteria"@en,
-        "Estereótipo OntoUML (provisório): subkind; fundamentação: objeto informacional UFO-C; subkind de Assessment; dependência: a alegação avaliada e seus critérios"@pt-BR ;
+    rdfs:comment "OntoUML stereotype: subkind; foundation: UFO-C information object; subkind of Assessment; dependency: the assessed claim and its criteria"@en,
+        "Estereótipo OntoUML: subkind; fundamentação: objeto informacional UFO-C; subkind de Assessment; dependência: a alegação avaliada e seus critérios"@pt-BR ;
     rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/claim> ;
     rdfs:subClassOf aro:Assessment ;
     skos:definition "Assessment of a claim against explicit epistemic or value criteria (plausibility, coherence, fidelity...)."@en,
@@ -116,8 +116,8 @@ aro:CriteriaAssessment a owl:Class ;
 aro:Justification a owl:Class ;
     rdfs:label "justification"@en,
         "justificativa"@pt-BR ;
-    rdfs:comment "OntoUML stereotype (provisional): subkind; foundation: UFO-C information object; subkind of AnalyticalRecord, whose identity it inherits; dependency: the claim it supports and its articulated premises"@en,
-        "Estereótipo OntoUML (provisório): subkind; fundamentação: objeto informacional UFO-C; subkind de AnalyticalRecord, cuja identidade herda; dependência: a alegação que sustenta e suas premissas articuladas"@pt-BR ;
+    rdfs:comment "OntoUML stereotype: subkind; foundation: UFO-C information object; subkind of AnalyticalRecord, whose identity it inherits; dependency: the claim it supports and its articulated premises"@en,
+        "Estereótipo OntoUML: subkind; fundamentação: objeto informacional UFO-C; subkind de AnalyticalRecord, cuja identidade herda; dependência: a alegação que sustenta e suas premissas articuladas"@pt-BR ;
     rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/claim> ;
     rdfs:subClassOf aro:AnalyticalRecord ;
     skos:definition "Recorded argument connecting premises to a claim: why an interpretation, derivation, correspondence or hypothesis is asserted."@en,
@@ -126,8 +126,8 @@ aro:Justification a owl:Class ;
 aro:Assessment a owl:Class ;
     rdfs:label "assessment"@en,
         "avaliação"@pt-BR ;
-    rdfs:comment "OntoUML stereotype (provisional): subkind; foundation: UFO-C information object; subkind of AnalyticalRecord, whose identity it inherits; dependency: the assessed claims"@en,
-        "Estereótipo OntoUML (provisório): subkind; fundamentação: objeto informacional UFO-C; subkind de AnalyticalRecord, cuja identidade herda; dependência: as alegações avaliadas"@pt-BR ;
+    rdfs:comment "OntoUML stereotype: subkind; foundation: UFO-C information object; subkind of AnalyticalRecord, whose identity it inherits; dependency: the assessed claims"@en,
+        "Estereótipo OntoUML: subkind; fundamentação: objeto informacional UFO-C; subkind de AnalyticalRecord, cuja identidade herda; dependência: as alegações avaliadas"@pt-BR ;
     rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/claim> ;
     rdfs:seeAlso schema:ClaimReview ;
     rdfs:subClassOf aro:AnalyticalRecord ;
@@ -138,8 +138,8 @@ aro:Assessment a owl:Class ;
 aro:AssessmentCriterion a owl:Class ;
     rdfs:label "assessment criterion"@en,
         "critério de avaliação"@pt-BR ;
-    rdfs:comment "OntoUML stereotype (provisional): subkind; foundation: UFO-C information object; subkind of AnalyticalRecord, whose identity it inherits; dependency: specified normative meaning"@en,
-        "Estereótipo OntoUML (provisório): subkind; fundamentação: objeto informacional UFO-C; subkind de AnalyticalRecord, cuja identidade herda; dependência: significado normativo especificado"@pt-BR ;
+    rdfs:comment "OntoUML stereotype: subkind; foundation: UFO-C information object; subkind of AnalyticalRecord, whose identity it inherits; dependency: specified normative meaning"@en,
+        "Estereótipo OntoUML: subkind; fundamentação: objeto informacional UFO-C; subkind de AnalyticalRecord, cuja identidade herda; dependência: significado normativo especificado"@pt-BR ;
     rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/claim> ;
     rdfs:subClassOf aro:AnalyticalRecord ;
     skos:definition "Explicit rule an assessment applies to judge a claim; epistemic criteria judge whether the claim is well grounded, value criteria judge its worth."@en,
@@ -148,8 +148,8 @@ aro:AssessmentCriterion a owl:Class ;
 aro:Claim a owl:Class ;
     rdfs:label "claim"@en,
         "alegação"@pt-BR ;
-    rdfs:comment "OntoUML stereotype (provisional): subkind; foundation: UFO-C information object (propositional content as authored record, ADR-010); dependency: the act or agent that asserts it"@en,
-        "Estereótipo OntoUML (provisório): subkind; fundamentação: objeto informacional UFO-C (conteúdo proposicional como registro autoral, ADR-010); dependência: o ato ou agente que a afirma"@pt-BR ;
+    rdfs:comment "OntoUML stereotype: subkind; foundation: UFO-C information object (propositional content as authored record, ADR-010); dependency: the act or agent that asserts it"@en,
+        "Estereótipo OntoUML: subkind; fundamentação: objeto informacional UFO-C (conteúdo proposicional como registro autoral, ADR-010); dependência: o ato ou agente que a afirma"@pt-BR ;
     rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/claim> ;
     rdfs:seeAlso schema:Claim ;
     rdfs:subClassOf aro:AnalyticalRecord ;
@@ -160,8 +160,8 @@ aro:Claim a owl:Class ;
 aro:AnalyticalRecord a owl:Class ;
     rdfs:label "analytical record"@en,
         "registro analítico"@pt-BR ;
-    rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-C information object; the single kind supplying the identity of every analytical record (ADR-026); dependency: historically on the act or agent that recorded it"@en,
-        "Estereótipo OntoUML (provisório): kind; fundamentação: objeto informacional UFO-C; o único kind que fornece a identidade de todo registro analítico (ADR-026); dependência: historicamente do ato ou agente que o registrou"@pt-BR ;
+    rdfs:comment "OntoUML stereotype: kind; foundation: UFO-C information object; the single kind supplying the identity of every analytical record (ADR-026); dependency: historically on the act or agent that recorded it"@en,
+        "Estereótipo OntoUML: kind; fundamentação: objeto informacional UFO-C; o único kind que fornece a identidade de todo registro analítico (ADR-026); dependência: historicamente do ato ou agente que o registrou"@pt-BR ;
     rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/claim> ;
     owl:disjointUnionOf ( aro:AnalysisUnit aro:Claim aro:Justification aro:Assessment aro:AssessmentCriterion aro:DepictedElement aro:SituationDescription aro:SituationPattern aro:PatternCondition aro:EmpiricalCase aro:EvidenceItem aro:TransformationAspect ) ;
     skos:definition "Information object recorded by an agent in the course of an analysis: the common sort of interpretations, descriptions, patterns, cases, evidence items, claims, justifications and assessments. Two records with the same text by different agents or acts are different records."@en,
@@ -173,5 +173,5 @@ aro:AnalyticalRecord a owl:Class ;
     dcterms:isPartOf <https://w3id.org/aro/ontology> ;
     dcterms:title "ARO module: Claims and records"@en,
         "Módulo ARO: Alegações e registros"@pt-BR ;
-    owl:versionInfo "0.3.0-beta" .
+    owl:versionInfo "1.0.0" .
 

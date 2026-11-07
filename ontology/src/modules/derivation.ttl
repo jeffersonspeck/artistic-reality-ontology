@@ -1166,8 +1166,8 @@ aro:Continuation a skos:Concept,
 aro:CreativeContribution a owl:Class ;
     rdfs:label "creative contribution"@en,
         "contribuição criativa"@pt-BR ;
-    rdfs:comment "OntoUML stereotype (provisional): relator; foundation: UFO-A relator mediating an agent and an artistic entity; role qualification via CreativeRole; dependency: existentially on the contributing agent and on the artistic entity contributed to; founded by the creative act"@en,
-        "Estereótipo OntoUML (provisório): relator; fundamentação: relator UFO-A que media um agente e uma entidade artística; papel qualificado via CreativeRole; dependência: existencialmente do agente que contribui e da entidade artística para a qual contribui; fundada pelo ato criativo"@pt-BR ;
+    rdfs:comment "OntoUML stereotype: relator; foundation: UFO-A relator mediating an agent and an artistic entity; role qualification via CreativeRole; dependency: existentially on the contributing agent and on the artistic entity contributed to; founded by the creative act"@en,
+        "Estereótipo OntoUML: relator; fundamentação: relator UFO-A que media um agente e uma entidade artística; papel qualificado via CreativeRole; dependência: existencialmente do agente que contribui e da entidade artística para a qual contribui; fundada pelo ato criativo"@pt-BR ;
     rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/derivation> ;
     skos:definition "Participation of one creative agent in one creative act under one or more roles."@en,
         "Participação de um agente criativo num ato criativo sob um ou mais papéis."@pt-BR .
@@ -1215,8 +1215,8 @@ aro:AudiovisualDimension a skos:Concept,
 aro:CreativeAct a owl:Class ;
     rdfs:label "creative act"@en,
         "ato criativo"@pt-BR ;
-    rdfs:comment "OntoUML stereotype (provisional): event; foundation: UFO-B event; UFO-C intentional action; dependency: participating agents and temporal occurrence"@en,
-        "Estereótipo OntoUML (provisório): event; fundamentação: evento UFO-B; ação intencional UFO-C; dependência: agentes participantes e ocorrência temporal"@pt-BR ;
+    rdfs:comment "OntoUML stereotype: event; foundation: UFO-B event; UFO-C intentional action; dependency: participating agents and temporal occurrence"@en,
+        "Estereótipo OntoUML: event; fundamentação: evento UFO-B; ação intencional UFO-C; dependência: agentes participantes e ocorrência temporal"@pt-BR ;
     rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/derivation> ;
     rdfs:seeAlso lrmoo:F28_Expression_Creation,
         prov:Activity ;
@@ -1226,8 +1226,8 @@ aro:CreativeAct a owl:Class ;
 aro:DerivationRegime a owl:Class ;
     rdfs:label "derivation regime"@en,
         "regime de derivação"@pt-BR ;
-    rdfs:comment "OntoUML stereotype (provisional): type; foundation: UFO high-order type (provisional); operationalized as skos:Concept; dependency: controlled vocabulary membership"@en,
-        "Estereótipo OntoUML (provisório): type; fundamentação: tipo de alta ordem UFO (provisório); operacionalizado como skos:Concept; dependência: pertencimento a vocabulário controlado"@pt-BR ;
+    rdfs:comment "OntoUML stereotype: type; foundation: UFO high-order type; operationalized as skos:Concept; dependency: controlled vocabulary membership"@en,
+        "Estereótipo OntoUML: type; fundamentação: tipo de alta ordem UFO; operacionalizado como skos:Concept; dependência: pertencimento a vocabulário controlado"@pt-BR ;
     rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/derivation> ;
     skos:definition "Stance of a derivation toward its source (playful, satirical, serious, reverential); its instances are SKOS concepts."@en,
         "Postura da derivação em relação à origem (lúdica, satírica, séria, reverencial); suas instâncias são conceitos SKOS."@pt-BR .
@@ -1273,8 +1273,8 @@ aro:TextDimension a skos:Concept,
 aro:TransformationAspect a owl:Class ;
     rdfs:label "transformation aspect"@en,
         "aspecto de transformação"@pt-BR ;
-    rdfs:comment "OntoUML stereotype (provisional): subkind; foundation: UFO-C information object; subkind of AnalyticalRecord, whose identity it inherits; dependency: host derivation claim; one dimension and one operation"@en,
-        "Estereótipo OntoUML (provisório): subkind; fundamentação: objeto informacional UFO-C; subkind de AnalyticalRecord, cuja identidade herda; dependência: alegação de derivação hospedeira; uma dimensão e uma operação"@pt-BR ;
+    rdfs:comment "OntoUML stereotype: subkind; foundation: UFO-C information object; subkind of AnalyticalRecord, whose identity it inherits; dependency: host derivation claim; one dimension and one operation"@en,
+        "Estereótipo OntoUML: subkind; fundamentação: objeto informacional UFO-C; subkind de AnalyticalRecord, cuja identidade herda; dependência: alegação de derivação hospedeira; uma dimensão e uma operação"@pt-BR ;
     rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/derivation> ;
     rdfs:subClassOf aro:AnalyticalRecord ;
     skos:definition "Recorded statement of what happened to one artistic dimension in a derivation (retained, modified, added, removed or recontextualized)."@en,
@@ -1283,8 +1283,8 @@ aro:TransformationAspect a owl:Class ;
 aro:TransformationOperation a owl:Class ;
     rdfs:label "transformation operation"@en,
         "operação de transformação"@pt-BR ;
-    rdfs:comment "OntoUML stereotype (provisional): type; foundation: UFO high-order type (provisional); operationalized as skos:Concept; dependency: controlled vocabulary membership"@en,
-        "Estereótipo OntoUML (provisório): type; fundamentação: tipo de alta ordem UFO (provisório); operacionalizado como skos:Concept; dependência: pertencimento a vocabulário controlado"@pt-BR ;
+    rdfs:comment "OntoUML stereotype: type; foundation: UFO high-order type; operationalized as skos:Concept; dependency: controlled vocabulary membership"@en,
+        "Estereótipo OntoUML: type; fundamentação: tipo de alta ordem UFO; operacionalizado como skos:Concept; dependência: pertencimento a vocabulário controlado"@pt-BR ;
     rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/derivation> ;
     skos:definition "What a derivation does to a dimension: retain, modify, add, remove or recontextualize."@en,
         "O que a derivação faz com uma dimensão: manter, modificar, acrescentar, remover ou recontextualizar."@pt-BR .
@@ -1292,8 +1292,8 @@ aro:TransformationOperation a owl:Class ;
 aro:DerivationClaim a owl:Class ;
     rdfs:label "derivation claim"@en,
         "alegação de derivação"@pt-BR ;
-    rdfs:comment "OntoUML stereotype (provisional): subkind; foundation: UFO-C information object; subkind of Claim; neither a UFO relator nor an asserted fact; dependency: exactly one source anchor and one derived anchor; typed by at least one derivation type"@en,
-        "Estereótipo OntoUML (provisório): subkind; fundamentação: objeto informacional UFO-C; subkind de Claim; nem relator UFO nem fato afirmado; dependência: exatamente uma âncora de origem e uma derivada; tipificada por ao menos um tipo de derivação"@pt-BR ;
+    rdfs:comment "OntoUML stereotype: subkind; foundation: UFO-C information object; subkind of Claim; neither a UFO relator nor an asserted fact; dependency: exactly one source anchor and one derived anchor; typed by at least one derivation type"@en,
+        "Estereótipo OntoUML: subkind; fundamentação: objeto informacional UFO-C; subkind de Claim; nem relator UFO nem fato afirmado; dependência: exatamente uma âncora de origem e uma derivada; tipificada por ao menos um tipo de derivação"@pt-BR ;
     rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/derivation> ;
     rdfs:seeAlso prov:wasDerivedFrom,
         wdt:P144,
@@ -1356,8 +1356,8 @@ aro:TransformationOperationScheme a skos:ConceptScheme ;
 aro:CreativeRole a owl:Class ;
     rdfs:label "creative role"@en,
         "papel criativo"@pt-BR ;
-    rdfs:comment "OntoUML stereotype (provisional): type; foundation: UFO role type (provisional); operationalized as skos:Concept; dependency: controlled vocabulary membership"@en,
-        "Estereótipo OntoUML (provisório): type; fundamentação: tipo de papel UFO (provisório); operacionalizado como skos:Concept; dependência: pertencimento a vocabulário controlado"@pt-BR ;
+    rdfs:comment "OntoUML stereotype: type; foundation: UFO role type; operationalized as skos:Concept; dependency: controlled vocabulary membership"@en,
+        "Estereótipo OntoUML: type; fundamentação: tipo de papel UFO; operacionalizado como skos:Concept; dependência: pertencimento a vocabulário controlado"@pt-BR ;
     rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/derivation> ;
     skos:definition "Role qualifying a creative contribution (composer, performer, translator, remixer...)."@en,
         "Papel que qualifica uma contribuição criativa (compositor, intérprete, tradutor, remixador...)."@pt-BR .
@@ -1404,13 +1404,13 @@ aro:CreativeRoleScheme a skos:ConceptScheme ;
     dcterms:isPartOf <https://w3id.org/aro/ontology> ;
     dcterms:title "ARO module: Derivation and creation"@en,
         "Módulo ARO: Derivação e criação"@pt-BR ;
-    owl:versionInfo "0.3.0-beta" .
+    owl:versionInfo "1.0.0" .
 
 aro:DerivationType a owl:Class ;
     rdfs:label "derivation type"@en,
         "tipo de derivação"@pt-BR ;
-    rdfs:comment "OntoUML stereotype (provisional): type; foundation: UFO high-order type (provisional); operationalized as skos:Concept; dependency: controlled vocabulary membership"@en,
-        "Estereótipo OntoUML (provisório): type; fundamentação: tipo de alta ordem UFO (provisório); operacionalizado como skos:Concept; dependência: pertencimento a vocabulário controlado"@pt-BR ;
+    rdfs:comment "OntoUML stereotype: type; foundation: UFO high-order type; operationalized as skos:Concept; dependency: controlled vocabulary membership"@en,
+        "Estereótipo OntoUML: type; fundamentação: tipo de alta ordem UFO; operacionalizado como skos:Concept; dependência: pertencimento a vocabulário controlado"@pt-BR ;
     rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/derivation> ;
     skos:definition "Kind of derivation (translation, cover, sampling, parody...); its instances are SKOS concepts."@en,
         "Tipo de derivação (tradução, cover, sample, paródia...); suas instâncias são conceitos SKOS."@pt-BR .
@@ -1429,8 +1429,8 @@ aro:DerivationTypeScheme a skos:ConceptScheme ;
 aro:ArtisticDimension a owl:Class ;
     rdfs:label "artistic dimension"@en,
         "dimensão artística"@pt-BR ;
-    rdfs:comment "OntoUML stereotype (provisional): type; foundation: UFO high-order type (provisional); operationalized as skos:Concept; dependency: controlled vocabulary membership"@en,
-        "Estereótipo OntoUML (provisório): type; fundamentação: tipo de alta ordem UFO (provisório); operacionalizado como skos:Concept; dependência: pertencimento a vocabulário controlado"@pt-BR ;
+    rdfs:comment "OntoUML stereotype: type; foundation: UFO high-order type; operationalized as skos:Concept; dependency: controlled vocabulary membership"@en,
+        "Estereótipo OntoUML: type; fundamentação: tipo de alta ordem UFO; operacionalizado como skos:Concept; dependência: pertencimento a vocabulário controlado"@pt-BR ;
     rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/derivation> ;
     skos:definition "Aspect of a work along which derivation can be compared (melody, lyrics, plot, character, medium...)."@en,
         "Aspecto da obra segundo o qual a derivação pode ser comparada (melodia, letra, enredo, personagem, mídia...)."@pt-BR .

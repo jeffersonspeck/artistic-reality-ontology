@@ -56,8 +56,8 @@ aro:selectsFrom a owl:ObjectProperty ;
 aro:AnalysisUnit a owl:Class ;
     rdfs:label "analysis unit"@en,
         "unidade de análise"@pt-BR ;
-    rdfs:comment "OntoUML stereotype (provisional): subkind; foundation: UFO-C information object; subkind of AnalyticalRecord, whose identity it inherits; dependency: organizational reference to selections"@en,
-        "Estereótipo OntoUML (provisório): subkind; fundamentação: objeto informacional UFO-C; subkind de AnalyticalRecord, cuja identidade herda; dependência: referência organizacional a recortes"@pt-BR ;
+    rdfs:comment "OntoUML stereotype: subkind; foundation: UFO-C information object; subkind of AnalyticalRecord, whose identity it inherits; dependency: organizational reference to selections"@en,
+        "Estereótipo OntoUML: subkind; fundamentação: objeto informacional UFO-C; subkind de AnalyticalRecord, cuja identidade herda; dependência: referência organizacional a recortes"@pt-BR ;
     rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/artwork> ;
     rdfs:subClassOf aro:AnalyticalRecord ;
     skos:definition "Intentional grouping of selections for analytical purposes."@en,
@@ -109,8 +109,8 @@ aro:realizesArtwork a owl:ObjectProperty ;
 aro:Artwork a owl:Class ;
     rdfs:label "artwork"@en,
         "obra"@pt-BR ;
-    rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-C social/information object (domain commitment); dependency: historically on creation; not on a single copy"@en,
-        "Estereótipo OntoUML (provisório): kind; fundamentação: objeto social/informacional UFO-C (compromisso de domínio); dependência: historicamente da criação; não de uma cópia específica"@pt-BR ;
+    rdfs:comment "OntoUML stereotype: kind; foundation: UFO-C social/information object (domain commitment); dependency: historically on creation; not on a single copy"@en,
+        "Estereótipo OntoUML: kind; fundamentação: objeto social/informacional UFO-C (compromisso de domínio); dependência: historicamente da criação; não de uma cópia específica"@pt-BR ;
     rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/artwork> ;
     rdfs:seeAlso lrmoo:F1_Work ;
     rdfs:subClassOf aro:ArtisticEntity ;
@@ -120,8 +120,8 @@ aro:Artwork a owl:Class ;
 aro:ArtisticEntity a owl:Class ;
     rdfs:label "artistic entity"@en,
         "entidade artística"@pt-BR ;
-    rdfs:comment "OntoUML stereotype (provisional): category; foundation: UFO-A rigid non-sortal (category) generalizing kinds with different identity principles; dependency: none of its own; each instance takes the identity of its kind"@en,
-        "Estereótipo OntoUML (provisório): category; fundamentação: não-sortal rígido UFO-A (category) que generaliza kinds com princípios de identidade diferentes; dependência: nenhuma própria; cada instância tem a identidade de seu kind"@pt-BR ;
+    rdfs:comment "OntoUML stereotype: category; foundation: UFO-A rigid non-sortal (category) generalizing kinds with different identity principles; dependency: none of its own; each instance takes the identity of its kind"@en,
+        "Estereótipo OntoUML: category; fundamentação: não-sortal rígido UFO-A (category) que generaliza kinds com princípios de identidade diferentes; dependência: nenhuma própria; cada instância tem a identidade de seu kind"@pt-BR ;
     rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/artwork> ;
     owl:disjointUnionOf ( aro:Artwork aro:Expression aro:Manifestation aro:Selection ) ;
     skos:definition "Anything artistic that can be the origin or result of a derivation or a creative act: an artwork, an expression, a manifestation or a selection."@en,
@@ -130,8 +130,8 @@ aro:ArtisticEntity a owl:Class ;
 aro:Manifestation a owl:Class ;
     rdfs:label "manifestation"@en,
         "manifestação"@pt-BR ;
-    rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-C information artifact (carrier level); dependency: embodies at least one expression"@en,
-        "Estereótipo OntoUML (provisório): kind; fundamentação: artefato informacional UFO-C (nível de suporte); dependência: materializa ao menos uma expressão"@pt-BR ;
+    rdfs:comment "OntoUML stereotype: kind; foundation: UFO-C information artifact (carrier level); dependency: embodies at least one expression"@en,
+        "Estereótipo OntoUML: kind; fundamentação: artefato informacional UFO-C (nível de suporte); dependência: materializa ao menos uma expressão"@pt-BR ;
     rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/artwork> ;
     rdfs:seeAlso lrmoo:F3_Manifestation ;
     rdfs:subClassOf aro:ArtisticEntity ;
@@ -141,8 +141,8 @@ aro:Manifestation a owl:Class ;
 aro:Expression a owl:Class ;
     rdfs:label "expression"@en,
         "expressão"@pt-BR ;
-    rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-C information object (content level); dependency: realizes exactly one artwork"@en,
-        "Estereótipo OntoUML (provisório): kind; fundamentação: objeto informacional UFO-C (nível de conteúdo); dependência: realiza exatamente uma obra"@pt-BR ;
+    rdfs:comment "OntoUML stereotype: kind; foundation: UFO-C information object (content level); dependency: realizes exactly one artwork"@en,
+        "Estereótipo OntoUML: kind; fundamentação: objeto informacional UFO-C (nível de conteúdo); dependência: realiza exatamente uma obra"@pt-BR ;
     rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/artwork> ;
     rdfs:seeAlso lrmoo:F2_Expression ;
     rdfs:subClassOf aro:ArtisticEntity ;
@@ -152,8 +152,8 @@ aro:Expression a owl:Class ;
 aro:Selection a owl:Class ;
     rdfs:label "selection"@en,
         "recorte"@pt-BR ;
-    rdfs:comment "OntoUML stereotype (provisional): kind; foundation: UFO-C information object; domain category; dependency: the expression it is taken from and its selectors"@en,
-        "Estereótipo OntoUML (provisório): kind; fundamentação: objeto informacional UFO-C; categoria de domínio; dependência: a expressão de onde é tirado e seus seletores"@pt-BR ;
+    rdfs:comment "OntoUML stereotype: kind; foundation: UFO-C information object; domain category; dependency: the expression it is taken from and its selectors"@en,
+        "Estereótipo OntoUML: kind; fundamentação: objeto informacional UFO-C; categoria de domínio; dependência: a expressão de onde é tirado e seus seletores"@pt-BR ;
     rdfs:isDefinedBy <https://w3id.org/aro/ontology/module/artwork> ;
     rdfs:seeAlso oa:SpecificResource ;
     rdfs:subClassOf aro:ArtisticEntity ;
@@ -166,5 +166,5 @@ aro:Selection a owl:Class ;
     dcterms:isPartOf <https://w3id.org/aro/ontology> ;
     dcterms:title "ARO module: Artwork and selection"@en,
         "Módulo ARO: Obra e recorte"@pt-BR ;
-    owl:versionInfo "0.3.0-beta" .
+    owl:versionInfo "1.0.0" .
 

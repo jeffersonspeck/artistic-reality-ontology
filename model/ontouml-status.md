@@ -1,17 +1,19 @@
 [← Back to README](../README.md) · [← Voltar para o LEIA-ME](../LEIA-ME.md)
 
-# OntoUML delivery status
+# OntoUML
 
-The files under `model/diagrams/` are **Graphviz DOT source files plus SVG view exports** of a conceptual catalog with OntoUML stereotypes; they are **not** official OntoUML JSON model-exchange files.
+| File | Content |
+|---|---|
+| [`model/conceptual-model.json`](conceptual-model.json) | ARO catalog (classes, stereotypes, relations, vocabularies); every artifact is generated from it by `scripts/build.py` |
+| [`model/ontouml/aro.ontouml.json`](ontouml/aro.ontouml.json) | OntoUML exchange file in the official OntoUML JSON format (schema 1.0.2), generated from the catalog |
+| [`model/diagrams/ontouml/`](diagrams/ontouml/) | OntoUML class diagrams (DOT, SVG, PNG), generated from the catalog |
 
-The machine-readable `model/conceptual-model.json` is an ARO-specific conceptual catalog, not a conformant OntoUML schema serialization.
+The exchange file is valid against the OntoUML JSON Schema and well formed: `python scripts/verify_ontouml.py` reports 0 errors, and `scripts/verify_ontouml.mjs` gives the same result with the official ontouml-js 1.0.0 library. The 33 warnings are associations between information objects that keep no relation stereotype (ADR-032).
 
-To produce an actual native OntoUML model, import/redraw these concepts in an OntoUML editor, check OntoUML well-formedness, classify each association ontologically, review role/relator/rigidity decisions, and export a JSON file conforming to https://w3id.org/ontouml/schema/v1.0.2.
-
-Do NOT rename the catalog file as a native OntoUML exchange file.
-
-OntoUML-notation class diagrams (class and association stereotypes, multiplicities, generalizations) are generated in `model/diagrams/ontouml/` and explained in [docs/en/ontouml.md](../docs/en/ontouml.md) / [docs/pt-BR/ontouml.md](../docs/pt-BR/ontouml.md).
+Diagrams and modelling choices: [docs/en/ontouml.md](../docs/en/ontouml.md) · [docs/pt-BR/ontouml.md](../docs/pt-BR/ontouml.md).
 
 ---
+
+O arquivo de intercâmbio é válido no OntoUML JSON Schema e bem formado: `python scripts/verify_ontouml.py` relata 0 erros, e `scripts/verify_ontouml.mjs` dá o mesmo resultado com a biblioteca oficial ontouml-js 1.0.0. Os 33 avisos são associações entre objetos informacionais sem estereótipo de relação (ADR-032).
 
 [← Back to README](../README.md) · [← Voltar para o LEIA-ME](../LEIA-ME.md)

@@ -2,12 +2,18 @@
 
 All notable changes to ARO. Versions follow the SABiOx development cycles (see `docs/*/sabiox-plan.md`).
 
-## [Unreleased]
+## [1.0.0] - 2026-11-07
+
+Frozen files: [releases/v1.0.0](releases/v1.0.0/RELEASE-NOTES.md). First stable version: the 0.3 model frozen without the provisional marks. **No class, relation, domain, range or constraint changed**; 0.3 data stays valid (only `owl:versionIRI` and `owl:versionInfo` change, and `owl:priorVersion` points to 0.3.0-beta).
 
 ### Changed
 
-- **Homem na Estrada (researcher's annotation)**: `examples/aro_homem_na_estrada_realidade_social.ttl` redone in the 0.3 structure: agents typed `aro:Person`/`aro:Collective`; IFLA LRM levels (recording and lyric text as expressions, the album *Raio X do Brasil* and the public transcription as manifestations, passages located in the transcription); every analytical record authored by `producedByAct` through two dated interpretive acts (replacing `prov:wasAttributedTo`); every assessment with `assessmentOutcome`; `citesSource` instead of `prov:wasDerivedFrom`; dated empirical situations; depicted agents and elements; an `IntentionalStateDescription`; a criteria assessment and a justified challenge; the two explanatory hypotheses assessed as inconclusive (CQ-12); the sample of Tim Maia's *Ela Partiu* as a `DerivationClaim`. No claim is left without grounds (CQ-19). Report updated (`docs/pt-BR/relatorio-anotacao-homem-na-estrada-realidade-social.md`).
-- **Tests**: the OWL 2 RL consistency check also covers this annotation.
+- **Version 1.0.0, stable**: version IRI `https://w3id.org/aro/ontology/1.0.0`; README/LEIA-ME, `CITATION.cff` and the releases index no longer describe ARO as beta or a research draft.
+- **OntoUML commitments**: class comments read "OntoUML stereotype: …" (was "provisional"); the high-order vocabulary types and «instantiation» lose the provisional mark. Basis: the OntoUML export is valid against the official schema and well formed with `scripts/verify_ontouml.py` and the official ontouml-js 1.0.0 library (0 errors, 33 warnings accepted by ADR-032). ADR-009 and ADR-016 updated.
+- **Documentation aligned with what is implemented**: the reference model intro, `docs/*/ontouml.md` and `model/ontouml-status.md` describe the OntoUML exchange file that already exists; the UFO notes for «kind», «event» and «situation» mention the disjointness of ultimate sortals and the `startDate`/`endDate` dates; the SABiOx plan and compilation record completed phases (with a 1.0.0 section) and list later work under "Next versions"; FR-10/FR-11 in the traceability table point to the CQ-10–CQ-12 queries.
+- **Homem na Estrada (researcher's annotation)**: `examples/aro_homem_na_estrada_realidade_social.ttl` redone in the current structure: agents typed `aro:Person`/`aro:Collective`; IFLA LRM levels (recording and lyric text as expressions, the album *Raio X do Brasil* and the public transcription as manifestations, passages located in the transcription); every analytical record authored by `producedByAct` through two dated interpretive acts (replacing `prov:wasAttributedTo`); every assessment with `assessmentOutcome`; `citesSource` instead of `prov:wasDerivedFrom`; dated empirical situations; depicted agents and elements; an `IntentionalStateDescription`; a criteria assessment and a justified challenge; the two explanatory hypotheses assessed as inconclusive (CQ-12); the sample of Tim Maia's *Ela Partiu* as a `DerivationClaim`. No claim is left without grounds (CQ-19). Report updated (`docs/pt-BR/relatorio-anotacao-homem-na-estrada-realidade-social.md`).
+- **Annotator**: published on GitHub Pages (<https://jeffersonspeck.github.io/artistic-reality-ontology/annotator/>, `.nojekyll`), linked from README/LEIA-ME and the manuals; a focus tab reads its data from the tab that opened it and never overwrites the shared draft with an empty graph; tabs no longer bounce the draft between them (nodes can be dragged again with several tabs open; blank-node labels stay stable); the node counter follows every redraw; PNG export and Print / PDF draw the graph as it looks on screen (cards, colours, badges, highlighted relations) instead of plain boxes; action buttons and menus are plain text; help texts rewritten.
+- **Tests**: the OWL 2 RL consistency check also covers the Homem na Estrada annotation.
 
 ### Removed
 

@@ -50,7 +50,7 @@ def module_iri(package: str) -> URIRef:
 
 
 def version_iri(version: str) -> URIRef:
-    """IRI of one version of the ontology (owl:versionIRI), e.g. https://w3id.org/aro/ontology/0.2.0-beta."""
+    """IRI of one version of the ontology (owl:versionIRI), e.g. https://w3id.org/aro/ontology/1.0.0."""
     return URIRef(f"{ONTOLOGY_IRI}/{version}")
 
 # External vocabularies referenced by the catalog (SHACL, alignments, selectors, agents)
@@ -149,7 +149,7 @@ def build_ontology(cat: dict) -> Graph:
         g.add((m, DCTERMS.description, Literal(pkg["description_pt"], lang="pt-BR")))
     package_of = {c["name"]: c["package"] for c in cat["classes"]}
 
-    # Classes: label, definition and a comment recording the provisional OntoUML
+    # Classes: label, definition and a comment recording the OntoUML
     # stereotype, UFO grounding and existential dependency, in both languages
     for c in cat["classes"]:
         s = ARO[c["name"]]
@@ -157,10 +157,10 @@ def build_ontology(cat: dict) -> Graph:
         g.add((s, RDFS.label, Literal(c["label_en"], lang="en")))
         g.add((s, RDFS.label, Literal(c["label_pt"], lang="pt-BR")))
         g.add((s, RDFS.comment, Literal(
-            f"OntoUML stereotype (provisional): {c['stereotype']}; foundation: {c['grounding_en']}; "
+            f"OntoUML stereotype: {c['stereotype']}; foundation: {c['grounding_en']}; "
             f"dependency: {c['dependency_en']}", lang="en")))
         g.add((s, RDFS.comment, Literal(
-            f"Estereótipo OntoUML (provisório): {c['stereotype']}; fundamentação: {c['grounding_pt']}; "
+            f"Estereótipo OntoUML: {c['stereotype']}; fundamentação: {c['grounding_pt']}; "
             f"dependência: {c['dependency_pt']}", lang="pt-BR")))
         g.add((s, SKOS.definition, Literal(c["definition_en"], lang="en")))
         g.add((s, SKOS.definition, Literal(c["definition_pt"], lang="pt-BR")))
@@ -545,9 +545,10 @@ def build_annotation_schema(cat: dict) -> dict:
 DOC_TEXT = {
     "en": {
         "title": "# Reference conceptual model",
-        "intro": "**Important:** stereotype annotations in this catalog are provisional modelling commitments, "
-                 "not a claim of automated OntoUML validation. The DOT/SVG diagrams are visual views, not native "
-                 "OntoUML exchange files.",
+        "intro": "Each class carries its OntoUML stereotype and UFO foundation. The stereotypes are checked "
+                 "against the OntoUML JSON Schema and well-formedness rules (`scripts/verify_ontouml.py`, "
+                 "cross-checked with ontouml-js); the exchange file is `model/ontouml/aro.ontouml.json`. The DOT/SVG "
+                 "diagrams are visual views of the same model.",
         "definition": "Definition", "dependency": "Dependency", "foundation": "Foundation",
         "package": "Package", "specializes": "Specializes", "alignments": "Alignments",
         "relations": "## Relations",
@@ -561,9 +562,10 @@ DOC_TEXT = {
     },
     "pt-BR": {
         "title": "# Modelo conceitual de referência",
-        "intro": "**Importante:** as anotações de estereótipos são compromissos provisórios, não comprovação de "
-                 "validação automática OntoUML. Os diagramas DOT/SVG são visualizações, não arquivos nativos de "
-                 "intercâmbio OntoUML.",
+        "intro": "Cada classe traz seu estereótipo OntoUML e sua fundamentação UFO. Os estereótipos são verificados "
+                 "contra o OntoUML JSON Schema e as regras de boa formação (`scripts/verify_ontouml.py`, "
+                 "conferido com a ontouml-js); o arquivo de intercâmbio é `model/ontouml/aro.ontouml.json`. Os "
+                 "diagramas DOT/SVG são visualizações do mesmo modelo.",
         "definition": "Definição", "dependency": "Dependência", "foundation": "Fundamentação",
         "package": "Pacote", "specializes": "Especializa", "alignments": "Alinhamentos",
         "relations": "## Relações",
@@ -599,8 +601,8 @@ STEREOTYPES = {
         "ufo_pt": "Sortal rígido: fornece o princípio de identidade de suas instâncias, que não podem deixar de instanciá-lo enquanto existirem.",
         "owl_en": "Declared as `owl:Class`.",
         "owl_pt": "Declarada como `owl:Class`.",
-        "gap_en": "Rigidity and the identity principle are not expressible in OWL; disjointness between kinds is not declared.",
-        "gap_pt": "Rigidez e princípio de identidade não são expressáveis em OWL; a disjunção entre kinds não é declarada.",
+        "gap_en": "Rigidity and the identity principle are not expressible in OWL; only the disjointness between ultimate sortals is declared (`owl:AllDisjointClasses`).",
+        "gap_pt": "Rigidez e princípio de identidade não são expressáveis em OWL; só a disjunção entre sortais últimos é declarada (`owl:AllDisjointClasses`).",
         "gufo": "`rdf:type gufo:Kind`",
     },
     "subkind": {
@@ -637,8 +639,8 @@ STEREOTYPES = {
         "ufo_pt": "Perdurante (UFO-B): ocorrência que se desenrola no tempo e tem participantes; não é um objeto.",
         "owl_en": "`owl:Class`; participation is represented by object properties.",
         "owl_pt": "`owl:Class`; a participação é representada por propriedades de objeto.",
-        "gap_en": "Temporal extent and ordering of events are not represented in this version (no time properties).",
-        "gap_pt": "Extensão temporal e ordenação de eventos não são representadas nesta versão (sem propriedades de tempo).",
+        "gap_en": "Dates are recorded with `startDate`/`endDate` (year to date-time); temporal relations between events (before, during) are not represented.",
+        "gap_pt": "As datas são registradas com `startDate`/`endDate` (de ano a data-hora); relações temporais entre eventos (antes, durante) não são representadas.",
         "gufo": "`rdfs:subClassOf gufo:Event`",
     },
     "situation": {
@@ -646,8 +648,8 @@ STEREOTYPES = {
         "ufo_pt": "Situação (UFO-B): configuração de entidades que se dá num instante e pode disparar eventos ou resultar deles.",
         "owl_en": "`owl:Class`.",
         "owl_pt": "`owl:Class`.",
-        "gap_en": "The time point at which the situation obtains and its constituents are not represented.",
-        "gap_pt": "O instante em que a situação se dá e seus constituintes não são representados.",
+        "gap_en": "When the situation obtains is recorded with `startDate`/`endDate`; its constituents are not represented.",
+        "gap_pt": "Quando a situação se dá é registrado com `startDate`/`endDate`; seus constituintes não são representados.",
         "gufo": "`rdfs:subClassOf gufo:Situation`",
     },
     "relator": {

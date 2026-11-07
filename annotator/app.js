@@ -210,8 +210,8 @@ function renderAddPanel() {
   const parents = parentOptions(types);
   if (addUi.tab === "children" && !children.length) addUi.tab = "parents";
   const tabs = h("div", { class: "tabs" },
-    tabButton("children", "↓ " + t("children"), children.length),
-    tabButton("parents", "↑ " + t("parents"), parents.length));
+    tabButton("children", t("children"), children.length),
+    tabButton("parents", t("parents"), parents.length));
   const filter = h("input", { type: "search", class: "filter", placeholder: t("filterPlaceholder"), value: addUi.filter });
   const list = h("div", { class: "rel-list" });
   const options = addUi.tab === "children" ? children : parents;
@@ -364,18 +364,17 @@ function renderInspector() {
 /** Bar of actions on a node: neighbours, add child/parent, focus tab, only this work, hide, search, delete. */
 function actionBar(id, { individual = false, deletable = true, search = false } = {}) {
   const isWork = state.data.types(id).includes(NS.aro + "Artwork");
-  const act = (icon, label, onclick, cls = "") => tip(h("button", { class: `act ${cls}`, "aria-label": label, onclick }, h("span", {}, icon), h("small", {}, label)),
-    () => h("div", {}, label));
+  const act = (label, onclick, cls = "") => h("button", { class: `act ${cls}`, onclick }, label);
   const query = state.data.name(id, state.contentLang) || localName(id);
   return h("div", { class: "actions" },
-    act("⊕", t("actNeighbours"), () => { state.graph.toggle(id); state.graph.select(id); }),
-    individual ? act("↓", t("children"), () => openAddPanel(id, "children")) : null,
-    act("↑", t("parents"), () => openAddPanel(id, "parents")),
-    act("↗", t("actFocus"), async () => { await saveDraft(); window.open(`?focus=${encodeURIComponent(id)}`, "_blank"); }),
-    isWork ? act("◎", t("actOnlyWork"), () => onlyWork(id)) : null,
-    id !== state.graph.focus ? act("⊘", t("actHide"), () => hideNode(id)) : null,
-    search ? act("🔎", "Google", () => window.open("https://www.google.com/search?q=" + encodeURIComponent(query), "_blank", "noopener")) : null,
-    deletable ? act("🗑", t("actDelete"), () => {
+    act(t("actNeighbours"), () => { state.graph.toggle(id); state.graph.select(id); }),
+    individual ? act(t("children"), () => openAddPanel(id, "children")) : null,
+    act(t("parents"), () => openAddPanel(id, "parents")),
+    act(t("actFocus"), async () => { await saveDraft(); window.open(`?focus=${encodeURIComponent(id)}`, "_blank"); }),
+    isWork ? act(t("actOnlyWork"), () => onlyWork(id)) : null,
+    id !== state.graph.focus ? act(t("actHide"), () => hideNode(id)) : null,
+    search ? act("Google", () => window.open("https://www.google.com/search?q=" + encodeURIComponent(query), "_blank", "noopener")) : null,
+    deletable ? act(t("actDelete"), () => {
       if (!confirm(t("confirmDelete"))) return;
       state.data.deleteNode(id); state.selected = null; changed();
     }, "danger") : null);
@@ -619,7 +618,6 @@ function linksSection(id, types) {
     try { const u = new URL(l.value); host = u.hostname.replace(/^www\./, ""); path = u.pathname + u.search; } catch { /* not a URL */ }
     return h("div", { class: "item ref-card" },
       h("a", { class: "ref-link", href: l.value, target: "_blank", rel: "noopener", title: l.value },
-        h("span", { class: "ref-icon" }, "↗"),
         h("span", { class: "ref-text" }, h("strong", {}, host), path && path !== "/" ? h("span", { class: "ref-path" }, path) : null)),
       h("span", { class: "item-label" }, o.label(l.prop, lang)), removeButton(l.quad));
   });
@@ -940,15 +938,15 @@ function showContextMenu(id, event) {
   const full = state.graph.fullText.has(id);
   menu.replaceChildren(
     h("div", { class: "muted small", style: "padding:4px 8px" }, short(displayName(id), 60)),
-    isIndividual ? item("↓ " + t("addChild"), () => openAddPanel(id, "children")) : null,
-    isIndividual || state.ontology.isConcept(id) ? item("↑ " + t("addParent"), () => openAddPanel(id, "parents")) : null,
+    isIndividual ? item(t("addChild"), () => openAddPanel(id, "children")) : null,
+    isIndividual || state.ontology.isConcept(id) ? item(t("addParent"), () => openAddPanel(id, "parents")) : null,
     item((full ? "↤ " : "↦ ") + t(full ? "hideFullText" : "showFullText"), () => {
       if (full) state.graph.fullText.delete(id); else state.graph.fullText.add(id);
       changed();
     }),
-    item("⊕ " + t("toggleNeighbours"), () => { state.graph.toggle(id); state.graph.select(id); }),
+    item(t("toggleNeighbours"), () => { state.graph.toggle(id); state.graph.select(id); }),
     item(t("focusOpen"), async () => { await saveDraft(); window.open(`?focus=${encodeURIComponent(id)}`, "_blank"); }),
-    id !== state.graph.focus ? item("⊘ " + t("hideNode"), () => hideNode(id)) : null);
+    id !== state.graph.focus ? item(t("hideNode"), () => hideNode(id)) : null);
   menu.hidden = false;
   // keep the menu inside the window
   const x = Math.min(event.clientX, window.innerWidth - 380), y = Math.min(event.clientY, window.innerHeight - 260);
@@ -1063,7 +1061,7 @@ function runValidation() {
   const problems = validate(state.data, state.ontology, uiLanguage());
   const list = problems.length
     ? h("ul", {}, problems.map((p) => h("li", {}, h("button", { class: "link", onclick: () => focusNode(p.node) }, displayName(p.node)), " — ", p.message)))
-    : h("p", {}, "✅ " + t("validationOk"));
+    : h("p", {}, t("validationOk"));
   floatPanel($("#validation"), t("validationTitle"), list, h("p", { class: "muted small" }, t("validationNote")));
 }
 
@@ -1186,15 +1184,16 @@ function download(url, filename) {
 }
 
 /** Download the whole graph as a PNG image. */
-function exportPng() {
-  download(state.graph.png(), state.graph.focus ? `aro-focus-${localName(state.graph.focus)}.png` : "aro-graph.png");
+async function exportPng() {
+  download(await state.graph.png(), state.graph.focus ? `aro-focus-${localName(state.graph.focus)}.png` : "aro-graph.png");
 }
 
 /**
  * Print (or "Save as PDF" in the browser's print dialog): a page with the graph image
  * and, when a node is selected, its details as shown in the inspector.
  */
-function printView() {
+async function printView() {
+  const image = await state.graph.png();
   const details = state.selected ? $("#inspector").cloneNode(true) : null;
   if (details) {
     details.querySelectorAll(".actions, details.subtle, button:not(.pill), select, input, textarea, .form, h4").forEach((el) => el.remove());
@@ -1203,7 +1202,7 @@ function printView() {
   $("#print-area").replaceChildren(
     h("h1", {}, state.graph.focus ? `${t("focusTitle")}: ${displayName(state.graph.focus)}` : t("title")),
     h("p", { class: "muted small" }, `${t("printedOn")} ${new Date().toLocaleString(uiLanguage())}`),
-    h("img", { src: state.graph.png(), alt: "graph" }),
+    h("img", { src: image, alt: "graph" }),
     details ? h("div", { class: "print-details" }, ...details.childNodes) : null);
   setTimeout(() => window.print(), 100);   // let the image load first
 }

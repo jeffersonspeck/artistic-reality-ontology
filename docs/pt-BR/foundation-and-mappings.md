@@ -2,7 +2,7 @@
 
 # Fundamentação ontológica e mapeamentos
 
-- **UFO-A:** identidade, rigidez, continuantes, kinds/subkinds e dependência. Alguns estereótipos são compromissos provisórios e requerem revisão especializada.
+- **UFO-A:** identidade, rigidez, continuantes, kinds/subkinds e dependência. Toda classe tem um estereótipo OntoUML, verificado automaticamente quanto à boa formação ([diagramas OntoUML](ontouml.md)).
 - **UFO-B:** atos e eventos; descrições de eventos ficcionais *não* são eventos empíricos UFO-B.
 - **UFO-C:** agência, intencionalidade, objetos sociais/informacionais, documentos e interpretação normativa fundamentam o modelo conceitualmente.
 - **gUFO 1.0.0:** implementação OWL leve, majoritariamente de UFO-A e parte limitada da UFO-B. **Não** implementa integralmente a UFO-C. Não declaramos imports/equivalências que impliquem o contrário.
