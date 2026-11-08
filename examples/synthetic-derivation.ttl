@@ -3,6 +3,7 @@
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
 @prefix oa: <http://www.w3.org/ns/oa#> .
 @prefix schema: <https://schema.org/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 # Entirely fictional derivation network. No real artworks or people.
 # Derivations are represented as claims with their explanations; legality and originality are out of scope.
 # Textual values are language-tagged; any BCP 47 language may be used (en, pt-BR, es...).
@@ -16,11 +17,11 @@ ex:songA-riff-sel a oa:FragmentSelector ; oa:value "t=12,16" ;
 
 # 1. Cover: a new expression of the same artwork, by artists in their own right
 ex:songA-cover a aro:Expression ; aro:realizesArtwork ex:songA .
-# Agents are individuals of external vocabularies; ARO represents only their contribution
-# (an RDFS reasoner classifies them as aro:CreativeAgent from the range of aro:contributionBy)
-ex:bandX a schema:MusicGroup ; schema:name "Fictional Band X" .
-ex:arrangerY a foaf:Person .
-ex:coverAct a aro:CreativeAct ; aro:producesCreation ex:songA-cover ;
+# Agents are external IRIs typed aro:Person or aro:Collective (OntoUML role pattern); ARO
+# represents only their contribution, and a reasoner classifies them as creators from it
+ex:bandX a schema:MusicGroup, aro:Collective ; schema:name "Fictional Band X" .
+ex:arrangerY a foaf:Person, aro:Person .
+ex:coverAct a aro:CreativeAct ; aro:startDate "2025"^^xsd:gYear ; aro:producesCreation ex:songA-cover ;
   aro:hasContribution ex:coverPerf, ex:coverArr .
 ex:coverPerf a aro:CreativeContribution ; aro:contributionTo ex:songA-cover ; aro:contributionBy ex:bandX ; aro:contributionRole aro:PerformerRole .
 ex:coverArr a aro:CreativeContribution ; aro:contributionTo ex:songA-cover ; aro:contributionBy ex:arrangerY ; aro:contributionRole aro:ArrangerRole .
@@ -28,6 +29,7 @@ ex:deriv-cover a aro:DerivationClaim ;
   aro:hasSourceAnchor ex:songA-rec ; aro:hasDerivedAnchor ex:songA-cover ;
   aro:hasDerivationType aro:CoverVersion, aro:Arrangement ; aro:hasRegime aro:ReverentialRegime ;
   aro:derivationRealizedBy ex:coverAct ;
+  aro:producedByAct ex:act ;
   aro:hasTransformation ex:cover-melody, ex:cover-vocal .
 ex:cover-melody a aro:TransformationAspect ; aro:hasDimension aro:MelodyDimension ; aro:hasOperation aro:Retained .
 ex:cover-vocal a aro:TransformationAspect ; aro:hasDimension aro:VocalDeliveryDimension ; aro:hasOperation aro:Modified ;
@@ -54,7 +56,8 @@ ex:sample-sound a aro:TransformationAspect ; aro:hasDimension aro:RecordedSoundD
   aro:aspectSourceSelection ex:songA-riff ; aro:aspectDerivedSelection ex:trackC-loop .
 ex:interview a aro:ReferenceSource ; aro:textValue "Fictional producer interview (synthetic)"@en ; aro:languageTag "pt-BR" .
 ex:interviewExcerpt a aro:EvidenceItem ; aro:derivedFromSource ex:interview .
-ex:sampleAssessment a aro:EvidenceAssessment ; aro:assessesClaim ex:deriv-sample ; aro:assessesEvidence ex:interviewExcerpt .
+ex:sampleAssessment a aro:EvidenceAssessment ; aro:assessesClaim ex:deriv-sample ; aro:assessesEvidence ex:interviewExcerpt ;
+  aro:assessmentOutcome "supports" ; aro:producedByAct ex:act .
 
 # 3. Intermedial adaptation (artwork level) that retains a situation pattern from synthetic-data.ttl
 ex:novel a aro:Artwork .
@@ -62,6 +65,7 @@ ex:film a aro:Artwork .
 ex:deriv-film a aro:DerivationClaim ;
   aro:hasSourceAnchor ex:novel ; aro:hasDerivedAnchor ex:film ;
   aro:hasDerivationType aro:IntermedialAdaptation ; aro:hasRegime aro:SeriousRegime ;
+  aro:producedByAct ex:act ;
   aro:hasTransformation ex:film-situation, ex:film-medium, ex:film-setting, ex:film-focal .
 ex:film-situation a aro:TransformationAspect ; aro:hasDimension aro:SituationDimension ; aro:hasOperation aro:Retained ;
   aro:aspectConcernsPattern ex:pattern .
@@ -73,4 +77,5 @@ ex:film-focal a aro:TransformationAspect ; aro:hasDimension aro:FocalizationDime
 ex:fanStory a aro:Artwork .
 ex:deriv-fan a aro:DerivationClaim ;
   aro:hasSourceAnchor ex:film ; aro:hasDerivedAnchor ex:fanStory ;
-  aro:hasDerivationType aro:FanWork, aro:Sequel ; aro:hasRegime aro:ReverentialRegime .
+  aro:hasDerivationType aro:FanWork, aro:Sequel ; aro:hasRegime aro:ReverentialRegime ;
+  aro:producedByAct ex:act .

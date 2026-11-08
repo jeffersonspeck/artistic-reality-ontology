@@ -49,7 +49,7 @@ This serves the repository on `http://localhost:8765/annotator/` and opens the b
 | Queries (CQ/RQ) | **Queries (CQ/RQ)** lists every query of `queries/` with the question it answers (in the interface language), runs it over your current annotations plus the ontology — same results as `python scripts/query.py` — and shows a table; annotated nodes in the results are clickable. The SPARQL can be edited before running. Engine: Oxigraph (WebAssembly), loaded on first use. |
 | Validate | **Validate** runs in-browser checks (cardinality, classes, language tags, derivation anchors) and lists problems; click one to jump to the node. Full SHACL: `python scripts/validate.py file.ttl`. |
 | Files from ARO 0.2 | Converted on opening (renames of 0.3, e.g. *manifestation* → *expression*, `assessesCorrespondence` → `assessesClaim`); the status bar says so. Same rules as `python scripts/migrate.py`. |
-| Save / load | **Save .ttl** downloads `aro-annotations.ttl`; **Load .ttl** opens any ARO Turtle file to browse or continue it; **Load example** opens `examples/synthetic-derivation.ttl`. A draft is also kept in the browser between sessions. |
+| Save / load | **Save .ttl** downloads `aro-annotations.ttl`; **Load .ttl** opens any ARO Turtle file to browse or continue it; **Load example** opens the case studies (`examples/case-studies.ttl`). A draft is also kept in the browser between sessions. |
 | Languages | **Interface**: English or Português (class and concept names come from the ontology's own labels). **Content language**: language of the texts you write. |
 
 ### Files
@@ -109,7 +109,7 @@ O comando serve o repositório em `http://localhost:8765/annotator/` e abre o na
 | Consultas (CQ/RQ) | **Consultas (CQ/RQ)** lista todas as consultas de `queries/` com a pergunta que respondem (no idioma da interface), executa sobre as suas anotações atuais mais a ontologia — mesmos resultados que `python scripts/query.py` — e mostra uma tabela; os nós anotados nos resultados são clicáveis. O SPARQL pode ser editado antes de executar. Motor: Oxigraph (WebAssembly), carregado no primeiro uso. |
 | Validar | **Validar** executa verificações no navegador (cardinalidade, classes, idioma, âncoras de derivação) e lista os problemas; clique num deles para ir ao nó. SHACL completo: `python scripts/validate.py arquivo.ttl --lang pt-BR`. |
 | Arquivos da ARO 0.2 | Convertidos ao abrir (renomeações da 0.3, ex.: *manifestação* → *expressão*, `assessesCorrespondence` → `assessesClaim`); a barra de status avisa. Mesmas regras de `python scripts/migrate.py`. |
-| Salvar / carregar | **Salvar .ttl** baixa `aro-annotations.ttl`; **Carregar .ttl** abre qualquer arquivo Turtle da ARO para navegar ou continuar; **Carregar exemplo** abre `examples/synthetic-derivation.ttl`. Um rascunho também fica guardado no navegador entre sessões. |
+| Salvar / carregar | **Salvar .ttl** baixa `aro-annotations.ttl`; **Carregar .ttl** abre qualquer arquivo Turtle da ARO para navegar ou continuar; **Carregar exemplo** abre os estudos de caso (`examples/case-studies.ttl`). Um rascunho também fica guardado no navegador entre sessões. |
 | Idiomas | **Interface**: English ou Português (nomes de classes e conceitos vêm dos rótulos da própria ontologia). **Idioma do conteúdo**: idioma dos textos que você escreve. |
 
 ### Arquivos

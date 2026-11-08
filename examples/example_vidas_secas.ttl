@@ -12,23 +12,18 @@ ex:assess-carandiru a aro:EvidenceAssessment ;
     aro:assessesClaim ex:corr-carandiru ;
     aro:assessesEvidence ex:ev-carandiru ;
     aro:assessmentOutcome "supports" ;
-    aro:textValue "Supports the pattern as a real possibility in the song's historical context; the song is not claimed to describe this event."@en,
-        "Apoia o padrão como possibilidade real no contexto histórico da canção; não se alega que a canção descreva este evento."@pt-BR .
+    aro:producedByAct ex:reading-act ;
+    aro:textValue "Supports the pattern as historically documented; no work is claimed to describe this event."@en,
+        "Apoia o padrão como historicamente documentado; não se alega que alguma obra descreva este evento."@pt-BR .
 
 ex:assess-drought a aro:EvidenceAssessment ;
     aro:assessesClaim ex:corr-drought ;
     aro:assessesEvidence ex:ev-ceara-camps,
         ex:ev-patu ;
     aro:assessmentOutcome "supports" ;
-    aro:textValue "Supports the pattern as historically documented; the novel's family is fictional and is not claimed to have been in these camps."@en,
-        "Apoia o padrão como historicamente documentado; a família do romance é ficcional e não se alega que tenha estado nesses campos."@pt-BR .
-
-ex:assess-hne-police a aro:EvidenceAssessment ;
-    aro:assessesClaim ex:corr-hne-police ;
-    aro:assessesEvidence ex:ev-fbsp ;
-    aro:assessmentOutcome "supports" ;
-    aro:textValue "Supports that the represented situation is possible and recurrent; does not show that the song narrates a specific real event, nor any cause."@en,
-        "Apoia que a situação representada é possível e recorrente; não mostra que a canção narra um evento real específico, nem causa alguma."@pt-BR .
+    aro:producedByAct ex:reading-act ;
+    aro:textValue "Supports the pattern as historically documented; no fictional family is claimed to have been in these camps."@en,
+        "Apoia o padrão como historicamente documentado; não se alega que alguma família ficcional tenha estado nesses campos."@pt-BR .
 
 ex:assess-hyp-policing a aro:EvidenceAssessment ;
     aro:assessesClaim ex:hyp-selective-policing ;
@@ -38,6 +33,14 @@ ex:assess-hyp-policing a aro:EvidenceAssessment ;
     aro:textValue "The report shows who the victims are (a correlation), not why: insufficient to infer selective policing as the cause."@en,
         "O relatório mostra quem são as vítimas (uma correlação), não por quê: insuficiente para inferir o policiamento seletivo como causa."@pt-BR .
 
+ex:assess-police-lethality a aro:EvidenceAssessment ;
+    aro:assessesClaim ex:corr-police-lethality ;
+    aro:assessesEvidence ex:ev-fbsp ;
+    aro:assessmentOutcome "supports" ;
+    aro:producedByAct ex:reading-act ;
+    aro:textValue "Supports that the pattern is real and recurrent; does not show that any work narrates a specific real event, nor any cause."@en,
+        "Apoia que o padrão é real e recorrente; não mostra que alguma obra narre um evento real específico, nem causa alguma."@pt-BR .
+
 ex:deriv-vs-film a aro:DerivationClaim ;
     aro:citesSource ex:src-barren-lives-wiki ;
     aro:derivationRealizedBy ex:vidas-secas-film-production ;
@@ -46,7 +49,8 @@ ex:deriv-vs-film a aro:DerivationClaim ;
     aro:hasRegime aro:SeriousRegime ;
     aro:hasSourceAnchor ex:vidas-secas ;
     aro:hasTransformation ex:deriv-vs-medium,
-        ex:deriv-vs-situation .
+        ex:deriv-vs-situation ;
+    aro:producedByAct ex:reading-act .
 
 ex:vidas-secas-creation a aro:CreativeAct ;
     aro:hasContribution ex:vs-author ;
@@ -143,22 +147,25 @@ ex:corr-carandiru a aro:CorrespondenceClaim ;
     aro:assertsCase ex:case-carandiru ;
     aro:assertsPattern ex:pattern-state-violence ;
     aro:citesSource ex:src-carandiru ;
-    aro:textValue "A documented, large-scale instance of lethal state violence against marginalized men, one year before the song."@en,
-        "Instância documentada e de grande escala de violência letal do Estado contra homens marginalizados, um ano antes da canção."@pt-BR .
+    aro:producedByAct ex:reading-act ;
+    aro:textValue "A documented, large-scale instance of the pattern: lethal violence by state security agents against marginalized men (São Paulo, 1992)."@en,
+        "Instância documentada e de grande escala do padrão: violência letal de agentes de segurança do Estado contra homens marginalizados (São Paulo, 1992)."@pt-BR .
 
 ex:corr-drought a aro:CorrespondenceClaim ;
     aro:assertsCase ex:case-ceara-1932 ;
     aro:assertsPattern ex:pattern-drought-migration ;
     aro:citesSource ex:src-fapesp-seca ;
-    aro:textValue "The forced migration represented in the novel corresponds to documented drought migrations, contemporary with its writing."@en,
-        "A migração forçada representada no romance corresponde a migrações documentadas por seca, contemporâneas à sua escrita."@pt-BR .
+    aro:producedByAct ex:reading-act ;
+    aro:textValue "The forced migration of the pattern corresponds to documented drought migrations (Ceará, 1932)."@en,
+        "A migração forçada do padrão corresponde a migrações documentadas por seca (Ceará, 1932)."@pt-BR .
 
-ex:corr-hne-police a aro:CorrespondenceClaim ;
+ex:corr-police-lethality a aro:CorrespondenceClaim ;
     aro:assertsCase ex:case-police-lethality ;
     aro:assertsPattern ex:pattern-state-violence ;
     aro:citesSource ex:src-fbsp-2020 ;
-    aro:textValue "The pattern represented in the song is similar to documented, recurrent police lethality in Brazil."@en,
-        "O padrão representado na canção é semelhante à letalidade policial documentada e recorrente no Brasil."@pt-BR .
+    aro:producedByAct ex:reading-act ;
+    aro:textValue "The pattern is similar to documented, recurrent police lethality in Brazil."@en,
+        "O padrão é semelhante à letalidade policial documentada e recorrente no Brasil."@pt-BR .
 
 ex:deriv-vs-medium a aro:TransformationAspect ;
     aro:hasDimension aro:MediumDimension ;
@@ -193,6 +200,7 @@ ex:event-ceara-1932 a aro:EmpiricalEvent .
 
 ex:hyp-selective-policing a aro:ExplanationHypothesis ;
     aro:explainsPattern ex:pattern-state-violence ;
+    aro:producedByAct ex:reading-act ;
     aro:textValue "Hypothesis: selective policing of poor and Black populations increases their exposure to state violence."@en,
         "Hipótese: o policiamento seletivo de populações pobres e negras aumenta sua exposição à violência do Estado."@pt-BR .
 
@@ -319,10 +327,6 @@ ex:pattern-drought-migration a aro:SituationPattern ;
     aro:textValue "Drought-driven forced migration of rural families"@en,
         "Migração forçada de famílias rurais causada pela seca"@pt-BR .
 
-ex:reading-act a aro:InterpretiveAct ;
-    aro:hasParticipant ex:analyst ;
-    aro:startDate "2026-10"^^xsd:gYearMonth .
-
 ex:vidas-secas a aro:Artwork ;
     aro:externalLink "https://pt.wikipedia.org/wiki/Vidas_Secas"^^xsd:anyURI ;
     aro:textValue "Vidas Secas (Barren Lives)"@en,
@@ -345,4 +349,8 @@ ex:vidas-secas-1938 a aro:Expression ;
     aro:realizesArtwork ex:vidas-secas ;
     aro:textValue "Original Portuguese text of the novel (1938)"@en,
         "Texto original do romance em português (1938)"@pt-BR .
+
+ex:reading-act a aro:InterpretiveAct ;
+    aro:hasParticipant ex:analyst ;
+    aro:startDate "2026-10"^^xsd:gYearMonth .
 

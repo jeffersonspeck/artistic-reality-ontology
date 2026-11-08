@@ -14,15 +14,9 @@ ex:assess-carandiru a aro:EvidenceAssessment ;
     aro:assessesClaim ex:corr-carandiru ;
     aro:assessesEvidence ex:ev-carandiru ;
     aro:assessmentOutcome "supports" ;
-    aro:textValue "Supports the pattern as a real possibility in the song's historical context; the song is not claimed to describe this event."@en,
-        "Apoia o padrão como possibilidade real no contexto histórico da canção; não se alega que a canção descreva este evento."@pt-BR .
-
-ex:assess-hne-police a aro:EvidenceAssessment ;
-    aro:assessesClaim ex:corr-hne-police ;
-    aro:assessesEvidence ex:ev-fbsp ;
-    aro:assessmentOutcome "supports" ;
-    aro:textValue "Supports that the represented situation is possible and recurrent; does not show that the song narrates a specific real event, nor any cause."@en,
-        "Apoia que a situação representada é possível e recorrente; não mostra que a canção narra um evento real específico, nem causa alguma."@pt-BR .
+    aro:producedByAct ex:reading-act ;
+    aro:textValue "Supports the pattern as historically documented; no work is claimed to describe this event."@en,
+        "Apoia o padrão como historicamente documentado; não se alega que alguma obra descreva este evento."@pt-BR .
 
 ex:assess-hne-r15 a aro:CriteriaAssessment ;
     aro:assessesClaim ex:hne-r15 ;
@@ -41,10 +35,19 @@ ex:assess-hyp-policing a aro:EvidenceAssessment ;
     aro:textValue "The report shows who the victims are (a correlation), not why: insufficient to infer selective policing as the cause."@en,
         "O relatório mostra quem são as vítimas (uma correlação), não por quê: insuficiente para inferir o policiamento seletivo como causa."@pt-BR .
 
+ex:assess-police-lethality a aro:EvidenceAssessment ;
+    aro:assessesClaim ex:corr-police-lethality ;
+    aro:assessesEvidence ex:ev-fbsp ;
+    aro:assessmentOutcome "supports" ;
+    aro:producedByAct ex:reading-act ;
+    aro:textValue "Supports that the pattern is real and recurrent; does not show that any work narrates a specific real event, nor any cause."@en,
+        "Apoia que o padrão é real e recorrente; não mostra que alguma obra narre um evento real específico, nem causa alguma."@pt-BR .
+
 ex:assess-reintegration a aro:EvidenceAssessment ;
     aro:assessesClaim ex:corr-reintegration ;
     aro:assessesEvidence ex:ev-ipea ;
     aro:assessmentOutcome "partiallySupports" ;
+    aro:producedByAct ex:reading-act ;
     aro:textValue "Partial support: documents recidivism and the profile of former prisoners, but does not by itself measure job refusal due to a criminal record."@en,
         "Apoio parcial: documenta a reincidência e o perfil dos egressos, mas não mede por si a recusa de emprego por antecedentes."@pt-BR .
 
@@ -52,8 +55,9 @@ ex:assess-sanitation a aro:EvidenceAssessment ;
     aro:assessesClaim ex:corr-sanitation ;
     aro:assessesEvidence ex:ev-sanitation ;
     aro:assessmentOutcome "supports" ;
-    aro:textValue "Supports the pattern at national scale, decades after the song; does not describe the specific neighbourhood."@en,
-        "Apoia o padrão em escala nacional, décadas depois da canção; não descreve o bairro específico."@pt-BR .
+    aro:producedByAct ex:reading-act ;
+    aro:textValue "Supports the pattern at national scale (2017 data); does not describe any specific neighbourhood."@en,
+        "Apoia o padrão em escala nacional (dados de 2017); não descreve nenhum bairro específico."@pt-BR .
 
 ex:deriv-hne-sample a aro:DerivationClaim ;
     aro:citesSource ex:src-raio-x-wiki ;
@@ -61,7 +65,8 @@ ex:deriv-hne-sample a aro:DerivationClaim ;
     aro:hasDerivationType aro:Sampling ;
     aro:hasDerivedAnchor ex:homem-na-estrada ;
     aro:hasSourceAnchor ex:ela-partiu ;
-    aro:hasTransformation ex:deriv-hne-sound .
+    aro:hasTransformation ex:deriv-hne-sound ;
+    aro:producedByAct ex:reading-act .
 
 ex:hne-challenge15 a aro:Challenge ;
     aro:challenges ex:hne-r15 ;
@@ -263,29 +268,33 @@ ex:corr-carandiru a aro:CorrespondenceClaim ;
     aro:assertsCase ex:case-carandiru ;
     aro:assertsPattern ex:pattern-state-violence ;
     aro:citesSource ex:src-carandiru ;
-    aro:textValue "A documented, large-scale instance of lethal state violence against marginalized men, one year before the song."@en,
-        "Instância documentada e de grande escala de violência letal do Estado contra homens marginalizados, um ano antes da canção."@pt-BR .
+    aro:producedByAct ex:reading-act ;
+    aro:textValue "A documented, large-scale instance of the pattern: lethal violence by state security agents against marginalized men (São Paulo, 1992)."@en,
+        "Instância documentada e de grande escala do padrão: violência letal de agentes de segurança do Estado contra homens marginalizados (São Paulo, 1992)."@pt-BR .
 
-ex:corr-hne-police a aro:CorrespondenceClaim ;
+ex:corr-police-lethality a aro:CorrespondenceClaim ;
     aro:assertsCase ex:case-police-lethality ;
     aro:assertsPattern ex:pattern-state-violence ;
     aro:citesSource ex:src-fbsp-2020 ;
-    aro:textValue "The pattern represented in the song is similar to documented, recurrent police lethality in Brazil."@en,
-        "O padrão representado na canção é semelhante à letalidade policial documentada e recorrente no Brasil."@pt-BR .
+    aro:producedByAct ex:reading-act ;
+    aro:textValue "The pattern is similar to documented, recurrent police lethality in Brazil."@en,
+        "O padrão é semelhante à letalidade policial documentada e recorrente no Brasil."@pt-BR .
 
 ex:corr-reintegration a aro:CorrespondenceClaim ;
     aro:assertsCase ex:case-reintegration ;
     aro:assertsPattern ex:pattern-reintegration ;
     aro:citesSource ex:src-ipea-2015 ;
-    aro:textValue "The difficulties represented in the song correspond to a documented field of research on reintegration and recidivism."@en,
-        "As dificuldades representadas na canção correspondem a um campo documentado de pesquisa sobre reintegração e reincidência."@pt-BR .
+    aro:producedByAct ex:reading-act ;
+    aro:textValue "The barriers of the pattern correspond to a documented field of research on reintegration and recidivism."@en,
+        "As barreiras do padrão correspondem a um campo documentado de pesquisa sobre reintegração e reincidência."@pt-BR .
 
 ex:corr-sanitation a aro:CorrespondenceClaim ;
     aro:assertsCase ex:case-sanitation ;
     aro:assertsPattern ex:pattern-precarious-housing ;
     aro:citesSource ex:src-sanitation ;
-    aro:textValue "The precarious housing represented in the song is similar to a widespread, measured lack of sanitation."@en,
-        "A moradia precária representada na canção é semelhante a uma falta de saneamento ampla e medida."@pt-BR .
+    aro:producedByAct ex:reading-act ;
+    aro:textValue "The precarious housing of the pattern is similar to a widespread, measured lack of sanitation."@en,
+        "A moradia precária do padrão é semelhante a uma falta de saneamento ampla e medida."@pt-BR .
 
 ex:crit-social-relevance a aro:ValueCriterion ;
     aro:textValue "Social relevance: the reading helps discuss a documented social problem."@en,
@@ -589,6 +598,7 @@ ex:homem-na-estrada-creation a aro:CreativeAct ;
 
 ex:hyp-selective-policing a aro:ExplanationHypothesis ;
     aro:explainsPattern ex:pattern-state-violence ;
+    aro:producedByAct ex:reading-act ;
     aro:textValue "Hypothesis: selective policing of poor and Black populations increases their exposure to state violence."@en,
         "Hipótese: o policiamento seletivo de populações pobres e negras aumenta sua exposição à violência do Estado."@pt-BR .
 
@@ -729,12 +739,12 @@ ex:hne-man a aro:DepictedAgent ;
     aro:textValue "the man on the road (protagonist)"@en,
         "o homem na estrada (protagonista)"@pt-BR .
 
-ex:reading-act a aro:InterpretiveAct ;
-    aro:hasParticipant ex:analyst ;
-    aro:startDate "2026-10"^^xsd:gYearMonth .
-
 ex:homem-na-estrada-lyrics a aro:Expression ;
     aro:realizesArtwork ex:homem-na-estrada ;
     aro:textValue "Lyric text (LyricFind transcription, 151 lines; composer Pedro Paulo Soares Pereira)"@en,
         "Texto da letra (transcrição LyricFind, 151 linhas; compositor Pedro Paulo Soares Pereira)"@pt-BR .
+
+ex:reading-act a aro:InterpretiveAct ;
+    aro:hasParticipant ex:analyst ;
+    aro:startDate "2026-10"^^xsd:gYearMonth .
 

@@ -1,5 +1,6 @@
 @prefix aro: <https://w3id.org/aro/ontology#> .
 @prefix ex: <https://example.org/aro-test/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 # Entirely fictional, generic example of the core ARO chain (cycle 1). No real artworks.
 # artwork -> expression -> selection -> interpretation -> situation -> pattern
 #   -> correspondence claim <- empirical case <- reference source / evidence
@@ -10,8 +11,8 @@ ex:version a aro:Expression ; aro:realizesArtwork ex:work .
 ex:selection a aro:Selection ; aro:selectsFrom ex:version .
 
 # An interpretive act by an analyst produces an interpretation anchored in the selection
-ex:act a aro:InterpretiveAct ; aro:hasParticipant ex:analyst .
-ex:analyst a aro:Analyst .
+ex:act a aro:InterpretiveAct ; aro:hasParticipant ex:analyst ; aro:startDate "2026"^^xsd:gYear .
+ex:analyst a aro:Person .
 ex:interpretation a aro:InterpretationRecord ; aro:hasPrimarySelection ex:selection ; aro:producedByAct ex:act ; aro:describesSituation ex:depiction .
 
 # The interpretation describes a represented situation, generalized as a reusable pattern
@@ -25,5 +26,6 @@ ex:reference a aro:ReferenceSource .
 ex:evidence a aro:EvidenceItem ; aro:derivedFromSource ex:reference .
 
 # Contestable claim that the pattern corresponds to the case, and its assessment
-ex:correspondence a aro:CorrespondenceClaim ; aro:assertsPattern ex:pattern ; aro:assertsCase ex:case ; aro:citesSource ex:reference .
-ex:assessment a aro:EvidenceAssessment ; aro:assessesClaim ex:correspondence ; aro:assessesEvidence ex:evidence .
+ex:correspondence a aro:CorrespondenceClaim ; aro:assertsPattern ex:pattern ; aro:assertsCase ex:case ; aro:citesSource ex:reference ; aro:producedByAct ex:act .
+ex:assessment a aro:EvidenceAssessment ; aro:assessesClaim ex:correspondence ; aro:assessesEvidence ex:evidence ;
+  aro:assessmentOutcome "supports" ; aro:producedByAct ex:act .

@@ -181,7 +181,8 @@ ex:claim a aro:DerivationClaim ;
   aro:hasDerivationType aro:Sampling ;
   aro:hasRegime aro:PlayfulRegime ;
   aro:hasTransformation ex:aspect ;
-  aro:hasJustification ex:why .
+  aro:hasJustification ex:why ;
+  aro:producedByAct ex:act .
 ex:aspect a aro:TransformationAspect ;
   aro:hasDimension aro:RecordedSoundDimension ;
   aro:hasOperation aro:Recontextualized .

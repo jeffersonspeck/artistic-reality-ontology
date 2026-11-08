@@ -1,8 +1,9 @@
 @prefix aro:    <https://w3id.org/aro/ontology#> .
 @prefix oa:     <http://www.w3.org/ns/oa#> .
 @prefix schema: <https://schema.org/> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
 @prefix ex:     <https://example.org/my-project/> .
-# Quick-start instance used in README.md / LEIA-ME.md. Entirely fictional.
+# Quick-start instance used in README.md / LEIA-ME.md (ARO 1.0.0). Entirely fictional.
 # Validate:  python scripts/validate.py examples/quickstart.ttl
 # Query:     python scripts/query.py examples/quickstart.ttl --query queries/CQ-13-derivations-of-work.rq
 
@@ -12,9 +13,10 @@ ex:song-rec a aro:Expression ; aro:realizesArtwork ex:song .
 ex:riff a aro:Selection ; aro:selectsFrom ex:song-rec ; aro:hasSelector ex:riff-sel .
 ex:riff-sel a oa:FragmentSelector ; oa:value "t=12,16" .          # seconds 12 to 16
 
-# 2. An interpretation of that selection, produced by an analyst (any external agent IRI)
-ex:me a schema:Person .
-ex:act a aro:InterpretiveAct ; aro:hasParticipant ex:me .
+# 2. An interpretation of that selection, produced by an act of an analyst (any external IRI,
+#    typed aro:Person or aro:Collective)
+ex:me a schema:Person, aro:Person .
+ex:act a aro:InterpretiveAct ; aro:hasParticipant ex:me ; aro:startDate "2026-11-06"^^xsd:date .
 ex:reading a aro:InterpretationRecord ;
   aro:hasPrimarySelection ex:riff ;
   aro:producedByAct ex:act ;
@@ -34,7 +36,8 @@ ex:claim a aro:DerivationClaim ;
   aro:hasDerivationType aro:Sampling ;          # from DerivationTypeScheme
   aro:hasRegime aro:PlayfulRegime ;             # from DerivationRegimeScheme
   aro:hasTransformation ex:aspect ;
-  aro:hasJustification ex:why .
+  aro:hasJustification ex:why ;
+  aro:producedByAct ex:act .
 ex:aspect a aro:TransformationAspect ;
   aro:hasDimension aro:RecordedSoundDimension ;  # from ArtisticDimensionScheme
   aro:hasOperation aro:Recontextualized .        # from TransformationOperationScheme
