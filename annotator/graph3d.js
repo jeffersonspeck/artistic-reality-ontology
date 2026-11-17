@@ -63,6 +63,18 @@ export class Graph3D {
     this.update(view);
   }
 
+  /** PNG data URL of the 3D view as it is on screen (same camera angle and zoom), `scale` times sharper. */
+  png(scale = 2) {
+    const renderer = this.fg.renderer();
+    const ratio = renderer.getPixelRatio();
+    renderer.setPixelRatio(Math.max(ratio, scale));
+    renderer.render(this.fg.scene(), this.fg.camera());   // read the canvas right after drawing it
+    const url = renderer.domElement.toDataURL("image/png");
+    renderer.setPixelRatio(ratio);
+    renderer.render(this.fg.scene(), this.fg.camera());
+    return url;
+  }
+
   close() {
     this.resizer?.disconnect();
     this.fg?._destructor?.();

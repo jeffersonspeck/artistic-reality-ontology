@@ -79,7 +79,7 @@ As cores dos nós indicam o módulo da ontologia. Conceitos de vocabulário apar
 
 Exemplo: registrar que um trecho de uma canção representa uma situação, generalizá-la num padrão e ligar esse padrão a um caso real.
 
-1. **A obra.** No painel esquerdo, escolha a classe *obra* (`Artwork`), digite o título e clique em **Criar**.
+1. **A obra.** Clique em **Criar nó…**, escolha a classe *obra* (`Artwork`), digite o título e clique em **Criar**. (O [guia de anotação](guia-de-anotacao.md) traz este roteiro em detalhe.)
 2. **A versão.** Com a obra selecionada, abra a aba **Filhos** e escolha *expressão* em `hasExpression`, por exemplo "Gravação de 1993" ou "Texto da letra" (IFLA LRM: expressão é uma realização com conteúdo próprio). Se a edição importa (um álbum, uma edição de livro), acrescente à expressão uma *manifestação* com `hasManifestation`.
 3. **O trecho.** Selecione a expressão, abra a aba **Pais** e crie um *recorte* em `selectsFrom`: o novo recorte já fica ligado à expressão.
 4. **Onde está o trecho.** No recorte, adicione `hasSelector` e escolha o tipo de seletor:
@@ -102,13 +102,10 @@ Para **derivações** (cover, sample, adaptação…), crie uma *alegação de d
 - `hasJustification`, com a explicação (a mesma propriedade usada por todo tipo de alegação; assim também `citesSource`, `producedByAct` e, a partir de uma avaliação, `assessesClaim`).
 
 **Adicionar filhos e pais a partir de um nó**
-- Selecione um nó (clique nele, ou botão direito → **Adicionar filho…** / **Adicionar pai…**). O painel esquerdo mostra duas abas calculadas a partir do tipo do nó:
-  - **Filhos**: novos nós para os quais este nó aponta (este → relação → novo), ex.: de uma obra, uma expressão por `hasExpression`;
-  - **Pais**: novos nós que apontam para ele (novo → relação → este), ex.: de uma expressão, um recorte por `selectsFrom`.
-- Cada relação permitida é um cartão com as classes como etiquetas; as **obrigatórias** vêm primeiro e as que já atingiram o **máximo** ficam esmaecidas. Clique numa etiqueta, digite o nome e tecle Enter: o nó é criado, ligado e selecionado.
-- *Nó existente, conceito, outras opções…* num cartão liga, em vez disso, um nó existente, um conceito de vocabulário, um seletor ou um IRI externo.
-- Sem nó selecionado, o painel lista todas as classes por módulo, para começar um nó solto (também em *Nó solto* quando há um nó selecionado).
-- Passe o mouse sobre uma etiqueta para ler o que é a classe (módulo, natureza OntoUML, definição).
+- Os nós são criados na janela **Criar nó**: botão **Criar nó…** do painel *Criar*, **Filhos** / **Pais** no inspetor, botão direito → **Adicionar filho…** / **Adicionar pai…**, ou uma etiqueta de classe no painel *Criar*.
+- À esquerda, só as relações e classes que a ontologia permite para o nó: **Filhos** (este → relação → novo) e **Pais** (novo → relação → este). À direita, a classe explicada, o texto e o que a ontologia **exige para ele existir**, cada exigência preenchida por um nó existente, um nó novo (com as exigências dele), um conceito de vocabulário ou um agente.
+- **Criar** só é liberado quando todas as exigências estão preenchidas; os nós novos são então validados, e nada é gravado se a ontologia os recusar.
+- O [guia de anotação](guia-de-anotacao.md) explica a janela campo a campo, traz receitas na ordem certa (leitura, padrão e caso real, derivação, autoria, revisão) e lista o que cada classe exige.
 
 **Cartões dos nós:** cada nó mostra a classe ontológica no topo (na cor do módulo) e o texto embaixo; um selo conta os vizinhos ocultos. Passe o mouse sobre um nó ou uma relação para ver que tipo de elemento é e para que serve.
 
@@ -188,7 +185,7 @@ O motor SPARQL (Oxigraph) é baixado no primeiro uso; para isso é preciso inter
 
 ## 10. Imagem e PDF
 
-- **Imagem (PNG):** baixa o grafo visível inteiro em alta resolução, com o mesmo visual da tela (cartões com classe, cor e texto, selos de vizinhos ocultos, relações do nó selecionado em destaque).
+- **Imagem (PNG):** baixa exatamente o que a área do grafo mostra, com o mesmo recorte, zoom e visual (cartões, cores, selos, relações em destaque), em resolução dobrada. Na visão 3D, sai o ângulo atual da câmera. Para exportar o grafo inteiro, enquadre-o antes (**Reorganizar** ou zoom).
 - **Imprimir / PDF:** monta uma página com o grafo e os detalhes do nó selecionado. No diálogo de impressão, escolha **Salvar como PDF**.
 
 ## 11. Depois de anotar: validação completa e consultas

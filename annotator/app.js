@@ -5,9 +5,10 @@ import { loadOntology, NS, localName } from "./ontology.js";
 import { Data } from "./data.js";
 import { GraphView, shortIri } from "./graph.js";
 import { Graph3D } from "./graph3d.js";
+import { initCreator, openCreator } from "./create.js";
 import { validate, readShapes } from "./validate.js";
 import { queryIndex, queryText, runSelect } from "./queries.js";
-import { initLayout, floatPanel, setPanel } from "./layout.js";
+import { initLayout, floatPanel } from "./layout.js";
 import { t, setUiLanguage, uiLanguage, UI_LANGUAGES, CONTENT_LANGUAGES } from "./i18n.js";
 
 const DRAFT_KEY = "aro-annotator-draft";
@@ -204,7 +205,8 @@ function renderAddPanel() {
   const id = state.selected && state.data.nodes().includes(state.selected) ? state.selected : null;
   const o = state.ontology;
   const isIndividual = id && state.data.types(id).some((x) => o.classes[x]);
-  if (!id || (!isIndividual && !o.isConcept(id))) { box.replaceChildren(...standaloneCreator(true)); return; }
+  const createButton = (opts) => h("button", { class: "primary wide", onclick: () => openCreator(opts) }, t("cr_open"));
+  if (!id || (!isIndividual && !o.isConcept(id))) { box.replaceChildren(createButton({}), ...standaloneCreator(true)); return; }
 
   const types = typesOf(id);
   const children = isIndividual ? childOptions(id, types) : [];
@@ -225,6 +227,7 @@ function renderAddPanel() {
   filter.addEventListener("input", () => { addUi.filter = filter.value; draw(); });
   draw();
   box.replaceChildren(
+    createButton({ from: id, dir: addUi.tab === "children" ? "child" : "parent" }),
     h("div", { class: "add-from" },
       h("span", { class: "add-from-label" }, t("addFrom")),
       nodePill(id),
@@ -285,27 +288,10 @@ function relationCard(id, op) {
     head, h("div", { class: "rel-meta" }, flow, h("code", {}, p.name)), showDesc ? h("p", { class: "rel-desc" }, desc) : null);
   if (op.full) return card;
 
-  // chips: one per class that a new node may have
+  // chips: one per class that a new node may have; each opens the creation dialog on it
   const chips = h("div", { class: "chips" }, op.classes.map((c) =>
-    classChip(c, { class: addUi.open?.key === key && addUi.open.cls === c ? "on" : "", onclick: () => {
-      addUi.open = addUi.open?.key === key && addUi.open.cls === c ? null : { key, cls: c }; renderAddPanel();
-    } })));
+    classChip(c, { onclick: () => openCreator({ from: id, dir: op.dir, prop: p.iri, cls: c }) })));
   if (op.classes.length) card.append(chips);
-  // the inline form of the chosen class
-  if (addUi.open?.key === key && addUi.open.cls) {
-    const cls = addUi.open.cls;
-    const name = h("input", { type: "text", placeholder: `${t("nodeName")} — ${o.label(cls, lang)}` });
-    const create = () => {
-      const n = createLinked(cls, name.value.trim(), { dir: op.dir === "child" ? "in" : "out", prop: p, node: id });
-      addUi.open = null;
-      state.graph.show(n);
-      focusNode(n);
-    };
-    name.addEventListener("keydown", (e) => { if (e.key === "Enter") create(); if (e.key === "Escape") { addUi.open = null; renderAddPanel(); } });
-    body.append(h("p", { class: "muted small" }, o.definition(cls, lang)),
-      h("div", { class: "row" }, name, h("button", { class: "primary", onclick: create }, t("create"))));
-    setTimeout(() => name.focus(), 0);
-  }
   // other ways to fill it: existing node, vocabulary concept, selector, external IRI
   const more = h("details", { class: "subtle" }, h("summary", {}, op.classes.length ? t("otherOptions") : t("chooseTarget")));
   more.addEventListener("toggle", () => {
@@ -322,24 +308,13 @@ function standaloneCreator(withHelp) {
   const o = state.ontology, lang = uiLanguage();
   const out = [];
   if (withHelp) out.push(h("p", { class: "muted small" }, t("standaloneHelp")));
-  const open = addUi.open?.key === "standalone" ? addUi.open.cls : null;
   for (const p of o.packages) {
     const classes = Object.values(o.classes).filter((c) => c.package === p.name && o.isCreatable(c.iri));
     if (!classes.length) continue;
     out.push(h("div", { class: "pkg" },
       tip(h("div", { class: "pkg-name", style: `color:${o.packageAccent(p.name)}` }, o.packageLabel(p.name, lang)),
         () => h("div", {}, h("strong", {}, o.packageLabel(p.name, lang)), h("p", { class: "tip-def" }, o.packageDescription(p.name, lang)))),
-      h("div", { class: "chips" }, classes.map((c) => classChip(c.iri, { class: open === c.iri ? "on" : "", onclick: () => {
-        addUi.open = open === c.iri ? null : { key: "standalone", cls: c.iri }; renderAddPanel();
-      } })))));
-    if (open && o.packageOf(open) === p.name) {
-      const name = h("input", { type: "text", placeholder: `${t("nodeName")} — ${o.label(open, lang)}` });
-      const create = () => { const n = state.data.createNode(open, name.value.trim(), state.contentLang); addUi.open = null; focusNode(n); };
-      name.addEventListener("keydown", (e) => { if (e.key === "Enter") create(); });
-      out.push(h("div", { class: "inline-create" }, h("p", { class: "muted small" }, o.definition(open, lang)),
-        h("div", { class: "row" }, name, h("button", { class: "primary", onclick: create }, t("create")))));
-      setTimeout(() => name.focus(), 0);
-    }
+      h("div", { class: "chips" }, classes.map((c) => classChip(c.iri, { onclick: () => openCreator({ cls: c.iri }) })))));
   }
   return out;
 }
@@ -369,8 +344,8 @@ function actionBar(id, { individual = false, deletable = true, search = false } 
   const query = state.data.name(id, state.contentLang) || localName(id);
   return h("div", { class: "actions" },
     act(t("actNeighbours"), () => { state.graph.toggle(id); state.graph.select(id); }),
-    individual ? act(t("children"), () => openAddPanel(id, "children")) : null,
-    act(t("parents"), () => openAddPanel(id, "parents")),
+    individual ? act(t("children"), () => openCreator({ from: id, dir: "child" })) : null,
+    act(t("parents"), () => openCreator({ from: id, dir: "parent" })),
     act(t("actFocus"), async () => { await saveDraft(); window.open(`?focus=${encodeURIComponent(id)}`, "_blank"); }),
     isWork ? act(t("actOnlyWork"), () => onlyWork(id)) : null,
     id !== state.graph.focus ? act(t("actHide"), () => hideNode(id)) : null,
@@ -915,17 +890,6 @@ function fits(n, classes) {
     || (o.isAgentClass(c) && !types.some((x) => o.classes[x]) && !o.isConcept(n)));
 }
 
-/** Create a node of `cls` named `name` and, optionally, link it as described by `link`. */
-function createLinked(cls, name, link) {
-  const id = state.data.createNode(cls, name, state.contentLang);
-  if (link) {
-    if (link.dir === "out") state.data.link(id, link.prop.iri, link.node);
-    else state.data.link(link.node, link.prop.iri, id);
-    state.graph.show(link.node);
-  }
-  return id;
-}
-
 // ------------------------------------------------------------------ right-click menu
 function closeContextMenu() {
   $("#context-menu").hidden = true;
@@ -939,9 +903,9 @@ function showContextMenu(id, event) {
   const full = state.graph.fullText.has(id);
   menu.replaceChildren(
     h("div", { class: "muted small", style: "padding:4px 8px" }, short(displayName(id), 60)),
-    isIndividual ? item(t("addChild"), () => openAddPanel(id, "children")) : null,
-    isIndividual || state.ontology.isConcept(id) ? item(t("addParent"), () => openAddPanel(id, "parents")) : null,
-    item((full ? "↤ " : "↦ ") + t(full ? "hideFullText" : "showFullText"), () => {
+    isIndividual ? item(t("addChild"), () => openCreator({ from: id, dir: "child" })) : null,
+    isIndividual || state.ontology.isConcept(id) ? item(t("addParent"), () => openCreator({ from: id, dir: "parent" })) : null,
+    item(t(full ? "hideFullText" : "showFullText"), () => {
       if (full) state.graph.fullText.delete(id); else state.graph.fullText.add(id);
       changed();
     }),
@@ -954,16 +918,6 @@ function showContextMenu(id, event) {
   menu.style.left = `${Math.max(4, x)}px`;
   menu.style.top = `${Math.max(4, y)}px`;
   state.selected = id; renderInspector(); renderAddPanel(); state.graph.select(id);
-}
-
-/** Open the left panel on the children or parents that the node's type allows. */
-function openAddPanel(id, tab) {
-  setPanel("left", true);
-  addUi.tab = tab; addUi.filter = ""; addUi.open = null;
-  focusNode(id);
-  const section = $("#add-panel").closest("details");
-  if (section) section.open = true;
-  $("#add-panel").scrollIntoView({ block: "start", behavior: "smooth" });
 }
 
 /** Inspector: the node's main text, readable and expandable, with a switch for the graph card. */
@@ -1089,6 +1043,8 @@ async function main() {
     // opening/closing neighbours redraws without a data change; the 3D view follows the 2D one
     onRender: () => { updateCount(); state.g3d?.update(state.graph); },
   });
+  initCreator({ state, h, shapes, limits, creatableClasses, conceptOptions, datatypeFor, displayName, typesOf,
+                nodePill, langSelect, childOptions, parentOptions, focusNode, AGENT_TYPES });
   state.g3d = new Graph3D($("#graph-wrap"), {
     onSelect: (id) => {
       closeContextMenu(); state.selected = id; addUi.open = null; renderInspector(); renderAddPanel();
@@ -1202,9 +1158,14 @@ function download(url, filename) {
   document.body.append(a); a.click(); a.remove();
 }
 
-/** Download the whole graph as a PNG image. */
+/** Exactly what the graph area shows: the 3D view when it is open, otherwise the 2D view. */
+async function viewImage() {
+  return state.g3d?.active ? state.g3d.png() : state.graph.png();
+}
+
+/** Download what the graph area shows as a PNG image. */
 async function exportPng() {
-  download(await state.graph.png(), state.graph.focus ? `aro-focus-${localName(state.graph.focus)}.png` : "aro-graph.png");
+  download(await viewImage(), state.graph.focus ? `aro-focus-${localName(state.graph.focus)}.png` : "aro-graph.png");
 }
 
 /**
@@ -1212,7 +1173,7 @@ async function exportPng() {
  * and, when a node is selected, its details as shown in the inspector.
  */
 async function printView() {
-  const image = await state.graph.png();
+  const image = await viewImage();
   const details = state.selected ? $("#inspector").cloneNode(true) : null;
   if (details) {
     details.querySelectorAll(".actions, details.subtle, button:not(.pill), select, input, textarea, .form, h4").forEach((el) => el.remove());

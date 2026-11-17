@@ -338,3 +338,53 @@ body.focus-mode.right-hidden main { grid-template-columns: 0 0 1fr 18px 0; }
   #print-area .clamp { display: block; -webkit-line-clamp: unset; }
   #print-area a { color: inherit; }
 }
+
+/* Creation dialog (create.js): what to create on the left, what to fill on the right */
+dialog.creator { width: min(1120px, 96vw); height: min(780px, 92vh); padding: 0; border: 1px solid var(--line);
+  border-radius: 14px; box-shadow: var(--shadow-lg); color: var(--text); display: flex; flex-direction: column; }
+dialog.creator:not([open]) { display: none; }
+dialog.creator::backdrop { background: #0f172a59; }
+.cr-head { display: flex; align-items: center; padding: 12px 18px; border-bottom: 1px solid var(--line); }
+.cr-head h2 { flex: 1; margin: 0; font-size: 17px; }
+.cr-head a { margin-right: 12px; }
+.cr-body { flex: 1; min-height: 0; display: grid; grid-template-columns: minmax(280px, 38%) 1fr; }
+.cr-left, .cr-right { overflow: auto; padding: 14px 18px; min-height: 0; }
+.cr-left { border-right: 1px solid var(--line); background: var(--surface); }
+.cr-left h3, .cr-right h3 { margin: 0 0 10px; font-size: 13px; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); }
+.cr-right h4 { margin: 18px 0 4px; font-size: 14px; }
+.cr-from { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-bottom: 8px; }
+.cr-rel { border: 1px solid var(--line); border-radius: 10px; background: var(--panel); padding: 8px 10px; margin: 8px 0; }
+.cr-rel.disabled { opacity: .55; }
+.cr-rel-head { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+.cr-def { margin: 4px 0; font-size: 12.5px; color: var(--muted); }
+.cr-class { display: block; width: 100%; text-align: left; margin: 4px 0; padding: 6px 8px 6px 10px; border-radius: 8px;
+  border: 1px solid var(--line); border-left: 3px solid var(--accent); background: var(--panel); cursor: pointer; }
+.cr-class:hover { border-color: var(--faint); }
+.cr-class.on { background: var(--accent-soft); border-color: var(--accent); box-shadow: 0 0 0 2px #2563eb33; }
+.cr-class-name { display: block; font-weight: 600; font-size: 13px; }
+.cr-class-def { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; font-size: 12px; color: var(--muted); }
+.cr-pkg { margin: 10px 0; }
+.cr-card { border: 1px solid var(--line); border-left: 4px solid var(--accent); border-radius: 10px; padding: 10px 12px; }
+.cr-kind { font-size: 11px; font-weight: 650; letter-spacing: .05em; text-transform: uppercase; color: var(--accent); }
+.cr-name { font-size: 16px; font-weight: 650; margin: 2px 0 4px; }
+.cr-card p { margin: 4px 0; font-size: 13px; }
+.cr-link { color: var(--muted); }
+.cr-field { margin: 12px 0; }
+.cr-field label { display: block; font-weight: 600; font-size: 13px; }
+.cr-field textarea { width: 100%; font: inherit; resize: vertical; }
+.cr-slot { border: 1px solid #fecaca; background: #fffafa; border-radius: 10px; padding: 8px 10px; margin: 8px 0; }
+.cr-slot.done { border-color: #bbf7d0; background: #f7fef9; }
+.cr-slot-head { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.cr-slot select, .cr-slot input { margin-top: 4px; }
+.cr-nested { margin: 6px 0 0 10px; padding-left: 10px; border-left: 2px dashed var(--line-strong); }
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; margin: 4px 0; }
+.seg button { border: 0; border-radius: 0; background: var(--panel); padding: 4px 10px; font-size: 12.5px; }
+.seg button.on { background: var(--accent-soft); color: var(--accent); font-weight: 600; }
+.cr-foot { display: flex; align-items: center; gap: 8px; padding: 10px 18px; border-top: 1px solid var(--line); }
+.cr-status { flex: 1; font-size: 13px; max-height: 5.5em; overflow: auto; }
+.cr-status ul { margin: 4px 0 0 18px; padding: 0; }
+.cr-status .ok { color: #047857; font-weight: 600; }
+button.wide { width: 100%; margin-bottom: 8px; }
+@media (max-width: 760px) { .cr-body { grid-template-columns: 1fr; } .cr-left { border-right: 0; border-bottom: 1px solid var(--line); } }
+.cr-field .row textarea { flex: 1; }
+.cr-field .row select { flex: none; min-width: 110px; align-self: flex-start; }

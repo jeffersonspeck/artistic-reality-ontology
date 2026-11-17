@@ -466,26 +466,27 @@ export class GraphView {
   }
 
   /**
-   * PNG data URL of the visible graph as it looks on screen (image export and printing).
-   * Cytoscape draws the relations (the nodes themselves are invisible); each card is then
-   * drawn on top from its own layout and computed style, at the position of its node.
+   * PNG data URL of exactly what the graph area shows (image export and printing): the same
+   * area, zoom and framing, `scale` times sharper. Cytoscape draws the relations of the current
+   * view (the nodes themselves are invisible); each card is then drawn on top from its own
+   * layout and computed style, at its node's position on screen.
    */
   async png(scale = 2) {
-    const pad = 24;                                   // margin around the graph, in CSS pixels
-    const bb = this.cy.elements().boundingBox();      // the area cy.png({ full: true }) covers
-    const edges = await loadImage(this.cy.png({ full: true, scale }));
+    const edges = await loadImage(this.cy.png({ full: false, scale }));
     const canvas = document.createElement("canvas");
-    canvas.width = edges.width + 2 * pad * scale;
-    canvas.height = edges.height + 2 * pad * scale;
+    canvas.width = edges.width;
+    canvas.height = edges.height;
     const ctx = canvas.getContext("2d");
     ctx.fillStyle = "#ffffff";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
-    ctx.drawImage(edges, pad * scale, pad * scale);
+    ctx.drawImage(edges, 0, 0);
+    const k = canvas.width / this.cy.width();          // canvas pixels per screen pixel
+    const zoom = this.cy.zoom();
     for (const [id, card] of this.cards) {
       const node = this.cy.getElementById(id);
       if (node.empty()) continue;
-      const p = node.position();
-      drawCard(ctx, card, (pad + p.x - bb.x1) * scale, (pad + p.y - bb.y1) * scale, scale);
+      const p = node.renderedPosition();               // cards outside the view are clipped
+      drawCard(ctx, card, p.x * k, p.y * k, zoom * k);
     }
     return canvas.toDataURL("image/png");
   }

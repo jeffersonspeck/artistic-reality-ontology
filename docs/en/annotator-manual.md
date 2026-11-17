@@ -102,13 +102,10 @@ For **derivations** (cover, sample, adaptation…), create a *derivation claim* 
 - `hasJustification`, with the explanation (the same property used by every kind of claim; so are `citesSource`, `producedByAct` and, from an assessment, `assessesClaim`).
 
 **Adding children and parents from a node**
-- Select a node (click it, or right-click → **Add child…** / **Add parent…**). The left panel shows two tabs computed from the node's type:
-  - **Children**: new nodes this node points to (this → relation → new), e.g. from an artwork, an expression by `hasExpression`;
-  - **Parents**: new nodes that point to it (new → relation → this), e.g. from an expression, a selection by `selectsFrom`.
-- Each allowed relation is a card with its classes as chips; **required** relations come first, relations already at their **maximum** are greyed. Click a chip, type the name, press Enter: the node is created, linked and selected.
-- *Existing node, concept, other options…* in a card links an existing node, a vocabulary concept, a selector or an external IRI instead.
-- With no node selected, the panel lists every class by module, to start a standalone node (also under *Standalone node* while a node is selected).
-- Hover a chip to read what the class is (module, OntoUML nature, definition).
+- Nodes are created in the **Create node** window: the **Create node…** button of the *Create* panel, **Children** / **Parents** in the inspector, right-click → **Add child…** / **Add parent…**, or a class chip in the *Create* panel.
+- On the left, only the relations and classes the ontology allows for the node: **Children** (this → relation → new) and **Parents** (new → relation → this). On the right, the class explained, its text, and what the ontology **requires for it to exist**, each requirement filled by an existing node, a new node (with its own requirements), a vocabulary concept or an agent.
+- **Create** is enabled only when every requirement is met; the new nodes are then validated, and nothing is kept if the ontology rejects them.
+- The [annotation guide](annotation-guide.md) explains the window field by field, gives recipes in the right order (reading, pattern and real case, derivation, authorship, review) and lists what every class requires.
 
 **Node cards:** each node shows its ontology class on top (in the module's colour) and its text below; a badge counts hidden neighbours. Hover a node or a relation to see what kind of element it is and what it is for.
 
@@ -188,7 +185,7 @@ The SPARQL engine (Oxigraph) is downloaded on first use, which needs internet.
 
 ## 10. Image and PDF
 
-- **Image (PNG):** downloads the whole visible graph at high resolution, drawn as on screen (cards with their class, colour and text, hidden-neighbour badges, highlighted relations of the selected node).
+- **Image (PNG):** downloads exactly what the graph area shows, with the same framing, zoom and look (cards, colours, badges, highlighted relations), at twice the resolution. In the 3D view, the current camera angle. To export the whole graph, frame it first (**Layout** or zoom).
 - **Print / PDF:** builds a page with the graph and the details of the selected node. In the print dialog, choose **Save as PDF**.
 
 ## 11. After annotating: full validation and queries

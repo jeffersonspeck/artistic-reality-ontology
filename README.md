@@ -61,6 +61,7 @@ Full documentation is available in both languages:
 | SABiOx plan | [English](docs/en/sabiox-plan.md) | [Português](docs/pt-BR/sabiox-plan.md) |
 | SABiOx compilation (everything by phase) | [English](docs/en/sabiox-compilation.md) | [Português](docs/pt-BR/sabiox-compilado.md) |
 | Online annotator | [Open](https://jeffersonspeck.github.io/artistic-reality-ontology/annotator/) | [Acessar](https://jeffersonspeck.github.io/artistic-reality-ontology/annotator/) |
+| Annotation guide (what to create, what each class requires) | [English](docs/en/annotation-guide.md) | [Português](docs/pt-BR/guia-de-anotacao.md) |
 | Annotator manual (step by step) | [English](docs/en/annotator-manual.md) | [Português](docs/pt-BR/manual-anotador.md) |
 | Annotator guide | [English](annotator/README.md#english) | [Português](annotator/README.md#português) |
 | User guide (this file) | [English](README.md) | [Português](LEIA-ME.md) |

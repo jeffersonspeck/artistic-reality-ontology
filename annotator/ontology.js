@@ -224,6 +224,12 @@ export class Ontology {
     return this.catalog.classes.find((c) => NS.aro + c.name === iri) || null;
   }
 
+  /** The declared inverse of an object property (owl:inverseOf, either direction), or null. */
+  inverseOf(iri) {
+    return this.store.getObjects(iri, NS.owl + "inverseOf", null)[0]?.value
+      || this.store.getSubjects(NS.owl + "inverseOf", iri, null)[0]?.value || null;
+  }
+
   /** What a relation is for: its skos:definition in the ontology. */
   relationDescription(iri, lang) {
     return this.definition(iri, lang);

@@ -8,8 +8,12 @@ All notable changes to ARO. Versions follow the SABiOx development cycles (see `
 
 - **Annotator, 3D view** (View → 3D view): the same cards and relations in a space that rotates (drag), zooms (wheel) and pans (right drag), so relations running back and forth and cycles stand apart in depth; click selects, double-click opens or closes neighbours. Uses 3d-force-graph 1.80.1 on three.js 0.186.1, loaded from the CDN only when the view is opened (`annotator/graph3d.js`).
 
+- **Annotator, "Create node" window** (`annotator/create.js`): replaces the inline creation forms. On the left, only the relations and classes the ontology allows from the chosen node (children and parents), or every class that can be created; on the right, the class explained, its text, and what the ontology requires for the node to exist (SHACL minimum cardinalities), each filled by an existing node, a new node with its own requirements, a vocabulary concept or an agent. A relation's declared inverse fills a requirement when the link is created from the other end. "Create" is enabled only when every requirement is met; the new nodes are validated and nothing is kept if the ontology rejects them.
+- **Annotation guide** (`docs/pt-BR/guia-de-anotacao.md`, `docs/en/annotation-guide.md`): the creation window field by field, recipes in the right order (reading, pattern and real case, derivation, authorship, review) and a table of what every class requires, taken from the SHACL constraints.
+
 ### Changed
 
+- **Annotator, image and PDF export**: export exactly what the graph area shows (same framing and zoom, twice the resolution), and the current camera angle in the 3D view; before, the whole 2D graph was exported whatever the view.
 - **Annotator, edge routing**: edges that would run behind other cards, or join the same two nodes, are drawn as curves bent to a free side, recomputed after each layout and after a node is dragged.
 
 ## [1.0.0] - 2026-11-07
