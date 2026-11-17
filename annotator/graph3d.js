@@ -42,13 +42,16 @@ export class Graph3D {
       .warmupTicks(150)            // lay the graph out before the first frame...
       .cooldownTime(3000)          // ...then let it settle for a few seconds
       .nodeThreeObject((n) => this.sprite(n))
+      // the node "radius" is half the card's diagonal: arrows stop at the edge of the card
+      .nodeRelSize(1)
+      .nodeVal((n) => n.r ** 3)
       .nodeLabel((n) => n.tip)
       .linkColor(linkColor)
       .linkDirectionalArrowColor(linkColor)
       .linkWidth((l) => (l.highlight ? 1.2 : 0.4))
       .linkOpacity(0.8)
       .linkDirectionalArrowLength(5)
-      .linkDirectionalArrowRelPos(0.85)
+      .linkDirectionalArrowRelPos(1)
       .linkCurvature((l) => l.curvature)
       .linkLabel((l) => escapeHtml(l.label))
       .onNodeClick((n) => this.click(n))
@@ -77,7 +80,8 @@ export class Graph3D {
       const card = view.cards.get(n.id());
       const kind = card?.querySelector(".nc-kind")?.textContent || "";
       const title = card?.querySelector(".nc-title")?.textContent || n.id();
-      return { id: n.id(), tip: escapeHtml(kind ? `${kind}: ${title}` : title), ...this.positions.get(n.id()) };
+      const r = card ? (Math.hypot(card.offsetWidth, card.offsetHeight) / 2) * SCALE : 4;
+      return { id: n.id(), r, tip: escapeHtml(kind ? `${kind}: ${title}` : title), ...this.positions.get(n.id()) };
     });
     // edges between the same two nodes are bent apart, as in 2D
     const pairs = new Map();
@@ -113,7 +117,14 @@ export class Graph3D {
     this.fg.linkColor(this.fg.linkColor()).linkWidth(this.fg.linkWidth());
   }
 
-  /** A node as its 2D card, drawn on a sprite that always faces the camera. */
+  /**
+   * A node as its 2D card, drawn on a sprite that always faces the camera. Cards take part in
+   * the depth test, so whatever is nearer the camera (another card or a relation) covers what
+   * is behind it. Relations start at the centre of the card, though, and the half of them that
+   * comes towards the camera would run over the card's own text: before each frame the card is
+   * therefore moved towards the camera by its radius (and scaled down by the same perspective
+   * factor, so it looks unchanged), which puts its own relations behind it.
+   */
   sprite(node) {
     const card = this.view.cards.get(node.id);
     if (!card || !card.offsetWidth) return null;      // default sphere
@@ -121,12 +132,25 @@ export class Graph3D {
     const canvas = cardCanvas(card, 2);
     const texture = new T.CanvasTexture(canvas);
     texture.colorSpace = T.SRGBColorSpace;
-    // as in 2D, cards are drawn over the relations (which start at their centres); among
-    // themselves they are drawn from the farthest to the nearest, so near cards stay on top
-    const sprite = new T.Sprite(new T.SpriteMaterial({ map: texture, transparent: true, depthTest: false, depthWrite: false }));
-    sprite.renderOrder = 20;           // 3d-force-graph draws relations and arrows with order 10
-    sprite.scale.set((canvas.width / 2) * SCALE, (canvas.height / 2) * SCALE, 1);
-    return sprite;
+    // alphaTest: the transparent margin around the card neither shows nor hides anything
+    const sprite = new T.Sprite(new T.SpriteMaterial({ map: texture, transparent: true, alphaTest: 0.5 }));
+    const w = (canvas.width / 2) * SCALE, h = (canvas.height / 2) * SCALE;
+    sprite.scale.set(w, h, 1);
+    const group = new T.Group();       // positioned by the layout at the node; the sprite moves inside it
+    group.add(sprite);
+    const toCamera = new T.Vector3(), centre = new T.Vector3();
+    sprite.onBeforeRender = (renderer, scene, camera) => {
+      group.getWorldPosition(centre);
+      toCamera.copy(camera.position).sub(centre);
+      const distance = toCamera.length();
+      const shift = Math.min(node.r, distance * 0.5);
+      sprite.position.copy(toCamera.normalize().multiplyScalar(shift));
+      const k = (distance - shift) / distance;   // same apparent size from the nearer position
+      sprite.scale.set(w * k, h * k, 1);
+      sprite.updateMatrixWorld();
+      sprite.modelViewMatrix.multiplyMatrices(camera.matrixWorldInverse, sprite.matrixWorld);
+    };
+    return group;
   }
 
   click(node) {
