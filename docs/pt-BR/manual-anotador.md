@@ -136,6 +136,7 @@ Para **derivações** (cover, sample, adaptação…), crie uma *alegação de d
 | Esconder um nó | **Esconder nó**; para trazê-lo de volta, use **mostrar** na lista *Nós ocultos* |
 | Analisar um nó à parte | **Abrir em foco**: nova aba só com o nó e seus vizinhos (profundidade 1–3). As alterações são compartilhadas entre as abas |
 | Recomeçar a visão | **Recolher às obras** ou **Mostrar tudo** |
+| Ver em 3D | **Exibir → Visão 3D**: os mesmos nós e relações num espaço que gira (arrastar), aproxima (roda do mouse) e desloca (botão direito). Relações de ida e volta e ciclos ficam separados em profundidade. Clique seleciona, duplo clique abre ou fecha os vizinhos; desmarque para voltar à visão 2D |
 
 ## 6. Textos, idiomas e links
 

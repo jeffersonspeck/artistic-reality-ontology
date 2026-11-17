@@ -136,6 +136,7 @@ For **derivations** (cover, sample, adaptation…), create a *derivation claim* 
 | Hide a node | **Hide node**; to bring it back, use **show** in the *Hidden nodes* list |
 | Analyse one node apart | **Open in focus**: a new tab with only the node and its neighbours (depth 1–3). Changes are shared between tabs |
 | Start the view again | **Collapse to works** or **Show all** |
+| See it in 3D | **View → 3D view**: the same nodes and relations in a space that rotates (drag), zooms (mouse wheel) and pans (right drag). Relations running back and forth and cycles stand apart in depth. Click selects, double-click opens or closes neighbours; untick to go back to 2D |
 
 ## 6. Texts, languages and links
 

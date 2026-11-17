@@ -2,6 +2,16 @@
 
 All notable changes to ARO. Versions follow the SABiOx development cycles (see `docs/*/sabiox-plan.md`).
 
+## [Unreleased]
+
+### Added
+
+- **Annotator, 3D view** (View → 3D view): the same cards and relations in a space that rotates (drag), zooms (wheel) and pans (right drag), so relations running back and forth and cycles stand apart in depth; click selects, double-click opens or closes neighbours. Uses 3d-force-graph 1.80.1 on three.js 0.186.1, loaded from the CDN only when the view is opened (`annotator/graph3d.js`).
+
+### Changed
+
+- **Annotator, edge routing**: edges that would run behind other cards, or join the same two nodes, are drawn as curves bent to a free side, recomputed after each layout and after a node is dragged.
+
 ## [1.0.0] - 2026-11-07
 
 Frozen files: [releases/v1.0.0](releases/v1.0.0/RELEASE-NOTES.md). First stable version: the 0.3 model frozen without the provisional marks. **No class, relation, domain, range or constraint changed**; 0.3 data stays valid (only `owl:versionIRI` and `owl:versionInfo` change, and `owl:priorVersion` points to 0.3.0-beta).

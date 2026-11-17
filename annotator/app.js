@@ -4,6 +4,7 @@
 import { loadOntology, NS, localName } from "./ontology.js";
 import { Data } from "./data.js";
 import { GraphView, shortIri } from "./graph.js";
+import { Graph3D } from "./graph3d.js";
 import { validate, readShapes } from "./validate.js";
 import { queryIndex, queryText, runSelect } from "./queries.js";
 import { initLayout, floatPanel, setPanel } from "./layout.js";
@@ -1085,7 +1086,20 @@ async function main() {
     onSelect: (id) => { closeContextMenu(); state.selected = id; addUi.open = null; renderInspector(); renderAddPanel(); },
     onContext: (id, event) => showContextMenu(id, event),
     describe,
-    onRender: updateCount,   // opening/closing neighbours redraws without a data change
+    // opening/closing neighbours redraws without a data change; the 3D view follows the 2D one
+    onRender: () => { updateCount(); state.g3d?.update(state.graph); },
+  });
+  state.g3d = new Graph3D($("#graph-wrap"), {
+    onSelect: (id) => {
+      closeContextMenu(); state.selected = id; addUi.open = null; renderInspector(); renderAddPanel();
+      if (id) state.graph.select(id); else state.graph.cy.$(":selected").unselect();
+    },
+    onToggle: (id) => { state.graph.toggle(id); state.graph.select(id); },
+  });
+  let refresh3d = 0;   // selection changes redraw the 3D cards once per frame
+  state.graph.cy.on("select unselect", "node", () => {
+    cancelAnimationFrame(refresh3d);
+    refresh3d = requestAnimationFrame(() => state.g3d.refresh());
   });
   // menus, hideable/resizable panels; the graph is redrawn whenever its area changes size
   initLayout(() => state.graph.cy.resize());
@@ -1118,6 +1132,11 @@ async function main() {
   $("#relayout").addEventListener("click", () => state.graph.layout());
   $("#edge-labels").addEventListener("change", (e) => state.graph.setEdgeLabels(e.target.checked));
   $("#full-text").addEventListener("change", (e) => { state.graph.textMode = e.target.checked ? "full" : "short"; changed(); });
+  $("#view-3d").addEventListener("change", async (e) => {
+    if (!e.target.checked) { state.g3d.close(); return; }
+    try { await state.g3d.open(state.graph); }
+    catch (err) { e.target.checked = false; alert(`${t("loading3d")}\n${err.message || err}`); }
+  });
   $("#show-all").addEventListener("click", () => { state.graph.showAll(); changed({ relayout: true }); });
   $("#show-works").addEventListener("click", () => { state.graph.showRoots(); changed({ relayout: true }); });
   $("#export-png").addEventListener("click", exportPng);

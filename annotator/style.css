@@ -70,6 +70,10 @@ details.section[open] > summary { margin-bottom: 6px; }
 #graph-wrap { position: relative; min-height: 0; min-width: 0; overflow: hidden;
   background: radial-gradient(circle, #d6dbe3 1px, transparent 1.2px) 0 0 / 22px 22px, var(--bg); }
 #graph { position: absolute; inset: 0; }
+/* 3D view: covers the 2D graph, which stays laid out underneath (its cards are drawn into the 3D sprites) */
+.graph3d { position: absolute; inset: 0; z-index: 4; background: #f8fafc; }
+.graph3d .scene-tooltip { color: var(--text); background: var(--panel); border: 1px solid var(--line); border-radius: 8px;
+  padding: 4px 8px; font: 12px/1.4 Inter, system-ui, sans-serif; box-shadow: var(--shadow); }
 
 /* Node cards: HTML layer over the canvas (graph.js); pointer events go to the canvas below */
 .card-layer { position: absolute; inset: 0; pointer-events: none; overflow: hidden; z-index: 1; }

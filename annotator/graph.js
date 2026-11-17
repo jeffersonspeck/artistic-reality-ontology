@@ -23,6 +23,10 @@ const STYLE = [
       "width": 1.3, "line-color": "#cbd5e1", "target-arrow-color": "#cbd5e1" } },
   // Relation names can be hidden to declutter; they reappear on the selected node's edges
   { selector: "edge.nolabel", style: { "label": "" } },
+  // Edges that would cross another card, or share their two nodes with other edges, are
+  // drawn as curves bent to a free side (see routeEdges)
+  { selector: "edge.routed", style: {
+      "curve-style": "unbundled-bezier", "control-point-distances": "data(cpd)", "control-point-weights": 0.5 } },
   { selector: "edge.highlight", style: { "line-color": "#2563eb", "target-arrow-color": "#2563eb", "width": 2.2, "label": "data(label)", "color": "#1d4ed8", "z-index": 10 } },
   { selector: "edge.hover", style: { "line-color": "#64748b", "target-arrow-color": "#64748b", "width": 2.2, "label": "data(label)" } },
 ];
@@ -61,6 +65,8 @@ export class GraphView {
     this.cy.on("tap", "node", (e) => onSelect(e.target.id()));
     this.cy.on("tap", (e) => { if (e.target === this.cy) onSelect(null); });
     this.cy.on("dbltap", "node", (e) => this.toggle(e.target.id()));
+    // after a node is dragged, re-route the edges around the new position
+    this.cy.on("free", "node", () => this.routeEdges());
     // right-click (or long press): context menu of the node, at the pointer position
     this.cy.on("cxttap", "node", (e) => {
       this.hideTip();
@@ -195,8 +201,66 @@ export class GraphView {
     if (relayout || unplaced.length === this.cy.nodes().length) this.layout();
     else if (unplaced.length) this.placeAround(unplaced);
     this.cy.nodes().forEach((n) => this.placeCard(n));
+    this.routeEdges();
     this.syncViewport();
     this.onRender?.();
+  }
+
+  /**
+   * Bend edges so they do not run behind other cards or on top of each other. Each edge is
+   * tried as a straight line and then as a curve bent further and further to either side; the
+   * first shape whose path stays clear of every other card is kept. Edges between the same two
+   * nodes (a relation and its inverse, or several relations) start from different offsets.
+   */
+  routeEdges() {
+    const pad = 12;                                   // clearance around a card, in model px
+    const boxes = this.cy.nodes().map((n) => ({ id: n.id(), bb: n.boundingBox({ includeLabels: false, includeOverlays: false }) }));
+    const blocked = (x, y, skip) => boxes.some(({ id, bb }) =>
+      !skip.has(id) && x > bb.x1 - pad && x < bb.x2 + pad && y > bb.y1 - pad && y < bb.y2 + pad);
+    const groups = new Map();                         // unordered node pair -> its edges
+    this.cy.edges().forEach((e) => {
+      const key = [e.source().id(), e.target().id()].sort().join("\u0000");
+      if (!groups.has(key)) groups.set(key, []);
+      groups.get(key).push(e);
+    });
+    this.cy.batch(() => {
+      for (const [key, edges] of groups) {
+        const [a] = key.split("\u0000");
+        edges.forEach((e, i) => {
+          // geometry in the pair's own direction (a -> b), so inverse edges bend consistently
+          const forward = e.source().id() === a;
+          const s = (forward ? e.source() : e.target()).position();
+          const t = (forward ? e.target() : e.source()).position();
+          const len = Math.hypot(t.x - s.x, t.y - s.y) || 1;
+          const nx = -(t.y - s.y) / len, ny = (t.x - s.x) / len;
+          const skip = new Set([e.source().id(), e.target().id()]);
+          // how many points of the curve bent by d fall on another card (0 = clear)
+          const crossings = (d) => {
+            const cx = (s.x + t.x) / 2 + nx * d, cy = (s.y + t.y) / 2 + ny * d;
+            let n = 0;
+            for (let k = 1; k < 12; k++) {
+              const u = k / 12, v = 1 - u;
+              if (blocked(v * v * s.x + 2 * v * u * cx + u * u * t.x, v * v * s.y + 2 * v * u * cy + u * u * t.y, skip)) n++;
+            }
+            return n;
+          };
+          const base = edges.length > 1 ? (i - (edges.length - 1) / 2) * 50 : 0;
+          const tries = [base];
+          for (const step of [50, 100, 160, 240, 340]) tries.push(base + step * (base < 0 ? -1 : 1), base - step * (base < 0 ? -1 : 1));
+          // the first clear shape; otherwise the one crossing the fewest cards
+          let d = base, best = Infinity;
+          for (const c of tries) {
+            const n = crossings(c);
+            if (n < best) { best = n; d = c; }
+            if (n === 0) break;
+          }
+          if (d === 0) { e.removeClass("routed"); return; }
+          // Cytoscape measures the distance on the edge's own direction
+          e.data("cpd", forward ? d : -d);
+          e.addClass("routed");
+        });
+      }
+    });
   }
 
   /** What a node's card shows: kind (class label), title, colours, full or clamped text. */
@@ -383,6 +447,7 @@ export class GraphView {
     } else {
       this.cy.layout({ name: "cose", animate: false, nodeRepulsion: 16000, idealEdgeLength: 150, padding: 30, randomize: true }).run();
     }
+    this.routeEdges();
   }
 
   setEdgeLabels(on) {
@@ -424,6 +489,19 @@ export class GraphView {
     }
     return canvas.toDataURL("image/png");
   }
+}
+
+/**
+ * One node card drawn on its own canvas, as on screen (used by the 3D view). A margin leaves
+ * room for the hidden-neighbour badge and the highlight ring; `k` canvas pixels per CSS pixel.
+ */
+export function cardCanvas(card, k = 2) {
+  const margin = 12;
+  const canvas = document.createElement("canvas");
+  canvas.width = Math.ceil((card.offsetWidth + 2 * margin) * k);
+  canvas.height = Math.ceil((card.offsetHeight + 2 * margin) * k);
+  drawCard(canvas.getContext("2d"), card, canvas.width / 2, canvas.height / 2, k);
+  return canvas;
 }
 
 function loadImage(src) {
