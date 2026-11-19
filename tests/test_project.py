@@ -174,7 +174,7 @@ def owl_errors(data):
 
 
 for name in ('case-studies.ttl', 'synthetic-derivation.ttl', 'quickstart.ttl',
-             'aro_homem_na_estrada_realidade_social.ttl'):
+             'aro_homem_na_estrada_realidade_social.ttl', 'aro_homem_na_estrada_capitulos.ttl'):
     errors = owl_errors(Graph().parse(ROOT / 'examples' / name))
     assert not errors, f'{name}: {errors[:3]}'
 clash = Graph().parse(data='<https://example.org/x> a <https://w3id.org/aro/ontology#Artwork>, '

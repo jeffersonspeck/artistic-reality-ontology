@@ -180,7 +180,7 @@ O motor SPARQL (Oxigraph) é baixado no primeiro uso; para isso é preciso inter
 
 - **Salvar .ttl** baixa `aro-annotations.ttl`.
 - **Carregar .ttl** abre qualquer arquivo da ARO para continuar ou só navegar.
-- **Carregar exemplo** abre os estudos de caso (`examples/case-studies.ttl`). Os arquivos por obra (`examples/example_homem_na_estrada.ttl`, `examples/example_vidas_secas.ttl`) podem ser abertos em **Carregar .ttl**.
+- **Carregar exemplo** abre a anotação por capítulos de *Homem na Estrada* (`examples/aro_homem_na_estrada_capitulos.ttl`); ela também abre na primeira visita, quando ainda não há rascunho. Os estudos de caso (`examples/case-studies.ttl`) e os arquivos por obra (`examples/example_homem_na_estrada.ttl`, `examples/example_vidas_secas.ttl`) podem ser abertos em **Carregar .ttl**.
 - **Rascunho automático:** o navegador guarda o trabalho atual entre sessões. **Novo** descarta o rascunho, mas antes pede confirmação.
 - O **IRI base** define o endereço dos nós novos (ex.: `https://example.org/meu-projeto/`). Ao carregar um arquivo, ele passa a ser o do arquivo.
 

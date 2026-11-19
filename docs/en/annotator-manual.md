@@ -180,7 +180,7 @@ The SPARQL engine (Oxigraph) is downloaded on first use, which needs internet.
 
 - **Save .ttl** downloads `aro-annotations.ttl`.
 - **Load .ttl** opens any ARO file to continue it or just to browse it.
-- **Load example** opens the case studies (`examples/case-studies.ttl`). The per-work files (`examples/example_homem_na_estrada.ttl`, `examples/example_vidas_secas.ttl`) can be opened with **Load .ttl**.
+- **Load example** opens the chapter-by-chapter annotation of *Homem na Estrada* (`examples/aro_homem_na_estrada_capitulos.ttl`); it also opens on the first visit, when there is no draft yet. The case studies (`examples/case-studies.ttl`) and the per-work files (`examples/example_homem_na_estrada.ttl`, `examples/example_vidas_secas.ttl`) can be opened with **Load .ttl**.
 - **Automatic draft:** the browser keeps the current work between sessions. **New** discards the draft, after asking for confirmation.
 - The **base IRI** sets the address of new nodes (e.g. `https://example.org/my-project/`). When you load a file, it becomes that file's base.
 

@@ -944,6 +944,19 @@ async function saveFile() {
   status(t("saved"));
 }
 
+// Default example: the chapter-by-chapter annotation of Homem na Estrada
+const EXAMPLE = "aro_homem_na_estrada_capitulos.ttl";
+
+async function loadExample() {
+  try {
+    const r = await fetch(`../examples/${EXAMPLE}`);
+    if (!r.ok) throw new Error(`HTTP ${r.status}`);
+    loadText(await r.text(), EXAMPLE);
+  } catch (err) {
+    alert(`${t("loadError")}\n${err.message}`);
+  }
+}
+
 function loadText(text, label) {
   try {
     const n = state.data.loadTurtle(text);
@@ -1080,7 +1093,7 @@ async function main() {
   $("#new").addEventListener("click", () => { if (confirm(t("confirmNew"))) { state.data.clear(); state.allowEmptyDraft = true; state.graph.edgeCurves.clear(); state.graph.visible.clear(); state.graph.hiddenWorks.clear(); state.graph.hiddenNodes.clear(); state.selected = null; changed(); } });
   $("#load").addEventListener("click", () => $("#file").click());
   $("#file").addEventListener("change", async (e) => { const f = e.target.files[0]; if (f) loadText(await f.text(), f.name); e.target.value = ""; });
-  $("#example").addEventListener("click", async () => loadText(await fetch("../examples/case-studies.ttl").then((r) => r.text()), "case-studies.ttl"));
+  $("#example").addEventListener("click", loadExample);
   $("#save").addEventListener("click", saveFile);
   $("#save-menu").addEventListener("click", saveFile);
   $("#validate").addEventListener("click", runValidation);
@@ -1105,10 +1118,13 @@ async function main() {
   try { draft = localStorage.getItem(DRAFT_KEY); } catch { /* storage unavailable */ }
   if (draft) { state.data.loadTurtle(draft); if (prefs.base) state.data.base = prefs.base; }
 
+  const focus = new URLSearchParams(location.search).get("focus");
+  // First visit (no draft at all, not even an emptied one): open the default example
+  if (draft === null && !focus) { await loadExample(); return listenForDrafts(); }
+
   // Focus mode (?focus=<IRI>): only that node and its neighbourhood, in its own tab.
   // The data comes from the tab that opened this one (window.opener); browser storage is
   // only a fallback, since tracking prevention (e.g. Edge) may block it in the new tab.
-  const focus = new URLSearchParams(location.search).get("focus");
   if (focus) {
     try {
       const ttl = await window.opener?.aroDraftTurtle?.();
@@ -1122,8 +1138,11 @@ async function main() {
     if (focus) { state.draftLocked = true; alert(t("focusNotFound")); }
   }
   changed({ relayout: true });
+  listenForDrafts();
+}
 
-  // Keep tabs in sync: another tab (e.g. a focus tab) saved the draft
+/** Keep tabs in sync: another tab (e.g. a focus tab) saved the draft. */
+function listenForDrafts() {
   window.addEventListener("storage", (e) => {
     if (e.key !== DRAFT_KEY || !e.newValue) return;
     if (state.draftLocked) return;
