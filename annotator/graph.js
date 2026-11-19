@@ -49,6 +49,8 @@ export class GraphView {
     this.fullText = new Set();   // nodes whose full text is shown in the graph
     this.textMode = "short";     // "short" (clamped text) | "full" (every text in full)
     this.cards = new Map();      // node id -> card element
+    this.followTrail = false;    // "Follow the trail": opening a node keeps only the path to it
+    this.trail = [];             // nodes opened along the trail, in order
 
     // HTML layer: follows pan and zoom with one transform; cards are placed at node positions
     this.layer = document.createElement("div");
@@ -321,6 +323,7 @@ export class GraphView {
 
   /** Open a closed node (show all neighbours) or close an open one (hide leaf neighbours). */
   toggle(id) {
+    if (this.followTrail) return this.step(id);
     const ns = this.neighbours(id);
     if (ns.some((n) => !this.visible.has(n))) {
       this.opening = id;
@@ -334,6 +337,41 @@ export class GraphView {
     }
     this.render(this.data, this.ontology, this.uiLang, this.contentLang);
     this.opening = null;
+  }
+
+  /**
+   * "Follow the trail": opening a node moves forward along a path. Only the nodes opened on
+   * the way (the trail) and the neighbours of the last one stay visible, so branches left
+   * behind (other passages, other chains) close as the path advances. Opening a node already
+   * on the trail goes back to it; opening the last one again steps back one node.
+   */
+  step(id) {
+    const at = this.trail.indexOf(id);
+    if (at >= 0 && at === this.trail.length - 1) this.trail.pop();      // step back
+    else if (at >= 0) this.trail.length = at + 1;                        // go back to it
+    else {
+      // continue from the last trail node next to it; a node off the trail starts a new one
+      let from = -1;
+      for (let i = this.trail.length - 1; i >= 0; i--) {
+        if (this.neighbours(this.trail[i]).includes(id)) { from = i; break; }
+      }
+      this.trail.length = from + 1;
+      this.trail.push(id);
+    }
+    const last = this.trail[this.trail.length - 1];
+    const keep = new Set(this.trail);
+    if (last) this.neighbours(last).forEach((n) => keep.add(n));
+    else { this.roots().forEach((n) => keep.add(n)); keep.add(id); }   // back at the start
+    if (this.focus) keep.add(this.focus);
+    this.visible = keep;    this.opening = last || null;
+    this.render(this.data, this.ontology, this.uiLang, this.contentLang);
+    this.opening = null;
+  }
+
+  /** Turn "Follow the trail" on or off; the trail starts again from the next node opened. */
+  setFollowTrail(on) {
+    this.followTrail = on;
+    this.trail = [];
   }
 
   /**
@@ -385,6 +423,7 @@ export class GraphView {
   }
 
   showAll() {
+    this.trail = [];
     this.updateHidden();
     this.data.nodes().filter((n) => !this.hidden.has(n)).forEach((n) => this.visible.add(n));
   }
@@ -392,6 +431,7 @@ export class GraphView {
   /** Start view: artworks (or, if none, nodes that nothing points to). */
   showRoots() {
     this.focus = null;
+    this.trail = [];
     this.visible.clear();
     this.roots().forEach((n) => this.visible.add(n));
   }

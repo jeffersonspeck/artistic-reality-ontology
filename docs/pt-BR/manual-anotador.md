@@ -59,7 +59,7 @@ python scripts/annotator.py
 
 | Área | Conteúdo |
 |---|---|
-| **Barra superior** | menus **Arquivo** (Novo, Carregar .ttl, Carregar exemplo, Salvar .ttl) · **Análise** (Validar, Consultas) · **Exibir** (Recolher às obras, Mostrar tudo, tipo de layout, Reorganizar, Nomes das relações, Textos completos) · **Exportar** (Imagem (PNG), Imprimir/PDF) · **Idioma** (interface e conteúdo) · **Salvar .ttl** sempre visível · à direita, os botões de painéis **Criar**, **Inspetor** e **Só o grafo** |
+| **Barra superior** | menus **Arquivo** (Novo, Carregar .ttl, Carregar exemplo, Salvar .ttl) · **Análise** (Validar, Consultas) · **Exibir** (Recolher às obras, Mostrar tudo, tipo de layout, Reorganizar, Nomes das relações, Textos completos, Seguir a trilha) · **Exportar** (Imagem (PNG), Imprimir/PDF) · **Idioma** (interface e conteúdo) · **Salvar .ttl** sempre visível · à direita, os botões de painéis **Criar**, **Inspetor** e **Só o grafo** |
 | **Painel esquerdo (Criar)** | seções recolhíveis: *Adicionar um nó* (classe + nome + ligação), *Obras e visibilidade* (**Obras exibidas**, **Nós ocultos**, contador de nós) e *Configurações* (IRI base dos seus dados) |
 | **Centro** | o grafo; os resultados de validação e de consultas abrem em painéis flutuantes sobre ele |
 | **Painel direito (Inspetor)** | o nó selecionado: classe e definição, botões de navegação, trecho, textos, links, dados, relações e "referenciado por" |
@@ -127,6 +127,7 @@ Para **derivações** (cover, sample, adaptação…), crie uma *alegação de d
 |---|---|
 | Selecionar | clique no nó; as relações dele ficam destacadas em azul |
 | Abrir / fechar vizinhos | duplo clique, ou **Abrir / fechar vizinhos**; os vizinhos aparecem num anel em volta do nó, agrupados por relação. Borda dupla = há vizinhos ocultos |
+| Seguir um caminho | marque **Exibir → Seguir a trilha** (vem desmarcado). A cada nó aberto ficam só o caminho percorrido e os vizinhos do último nó; os ramos deixados para trás (outros recortes, outras cadeias) se fecham. Duplo clique num nó do caminho volta até ele; no último, volta um passo. **Recolher às obras** recomeça |
 | Reorganizar | **Árvore** (obras no topo) ou **Rede**, e então **Reorganizar** |
 | Curvar uma relação | as relações são retas; arraste uma para curvá-la, e ela fica como você deixou. Duplo clique, ou arrastar de volta até a linha reta, a endireita |
 | Menos poluição visual | desmarque **Nomes das relações** |

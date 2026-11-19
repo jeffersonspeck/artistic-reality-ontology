@@ -739,7 +739,7 @@ hnr:fonteSINASE2024 a aro:ReferenceSource ;
     dcterms:publisher "Ministério dos Direitos Humanos e da Cidadania" ;
     dcterms:issued "2025"^^xsd:gYear ;
     aro:languageTag "pt-BR" ;
-    aro:sourceURL "https://www.gov.br/mdh/pt-br/navegue-por-temas/crianca-e-adolescente/Levantamento_Nacional_SINASE_2024.pdf"^^xsd:anyURI ;
+    aro:sourceURL "https://www.gov.br/mdh/pt-br/navegue-por-temas/crianca-e-adolescente/levantamentos-nacionais-do-sinase/Levantamento_SINASE_2024_defeso_eleitoral.pdf"^^xsd:anyURI ;
     aro:textValue "Levantamento nacional sobre adolescentes em restrição e privação de liberdade e acesso a direitos"@pt-BR .
 
 hnr:fonteFBSPMulheres2025 a aro:ReferenceSource ;
@@ -763,7 +763,7 @@ hnr:fonteAtlasViolencia2025 a aro:ReferenceSource ;
     dcterms:publisher "Instituto de Pesquisa Econômica Aplicada (Ipea) e Fórum Brasileiro de Segurança Pública" ;
     dcterms:issued "2025"^^xsd:gYear ;
     aro:languageTag "pt-BR" ;
-    aro:sourceURL "https://www.ipea.gov.br/atlasviolencia/arquivos/artigos/5999-atlasdaviolencia2025.pdf"^^xsd:anyURI ;
+    aro:sourceURL "https://repositorio.ipea.gov.br/handle/11058/17165"^^xsd:anyURI ;
     aro:textValue "Relatório sobre homicídios, juventude, desigualdade racial e alcance das políticas públicas"@pt-BR .
 
 hnr:fonteAnuarioSeguranca2025 a aro:ReferenceSource ;

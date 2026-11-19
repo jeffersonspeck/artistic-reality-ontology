@@ -1102,6 +1102,7 @@ async function main() {
   $("#relayout").addEventListener("click", () => state.graph.layout());
   $("#edge-labels").addEventListener("change", (e) => state.graph.setEdgeLabels(e.target.checked));
   $("#full-text").addEventListener("change", (e) => { state.graph.textMode = e.target.checked ? "full" : "short"; changed(); });
+  $("#follow-trail").addEventListener("change", (e) => { state.graph.setFollowTrail(e.target.checked); status(t(e.target.checked ? "followTrailOn" : "followTrailOff")); });
   $("#view-3d").addEventListener("change", async (e) => {
     if (!e.target.checked) { state.g3d.close(); return; }
     try { await state.g3d.open(state.graph); }

@@ -59,7 +59,7 @@ python scripts/annotator.py
 
 | Area | Contents |
 |---|---|
-| **Top bar** | menus **File** (New, Load .ttl, Load example, Save .ttl) · **Analysis** (Validate, Queries) · **View** (Collapse to works, Show all, layout type, Layout, Relation names, Full texts) · **Export** (Image (PNG), Print/PDF) · **Language** (interface and content) · **Save .ttl** always visible · on the right, the panel buttons **Create**, **Inspector** and **Graph only** |
+| **Top bar** | menus **File** (New, Load .ttl, Load example, Save .ttl) · **Analysis** (Validate, Queries) · **View** (Collapse to works, Show all, layout type, Layout, Relation names, Full texts, Follow the trail) · **Export** (Image (PNG), Print/PDF) · **Language** (interface and content) · **Save .ttl** always visible · on the right, the panel buttons **Create**, **Inspector** and **Graph only** |
 | **Left panel (Create)** | folding sections: *Add a node* (class + name + link), *Works and visibility* (**Works shown**, **Hidden nodes**, node counter) and *Settings* (base IRI of your data) |
 | **Centre** | the graph; validation and query results open as floating panels over it |
 | **Right panel (Inspector)** | the selected node: class and definition, navigation buttons, excerpt, texts, links, data, relations and "referenced by" |
@@ -127,6 +127,7 @@ For **derivations** (cover, sample, adaptation…), create a *derivation claim* 
 |---|---|
 | Select | click a node; its relations are highlighted in blue |
 | Open / close neighbours | double-click, or **Open / close neighbours**; neighbours appear in a ring around the node, grouped by relation. Double border = hidden neighbours |
+| Follow one path | tick **View → Follow the trail** (off by default). Each node opened keeps only the path walked and the neighbours of the last node; branches left behind (other passages, other chains) close. Double-click a node on the path to go back to it; on the last one, to step back. **Collapse to works** starts again |
 | Rearrange | **Tree** (works at the top) or **Network**, then **Layout** |
 | Curve a relation | relations are straight; drag one to curve it, and it stays as you left it. Double-click it, or drag it back to the straight line, to straighten it |
 | Less clutter | untick **Relation names** |
