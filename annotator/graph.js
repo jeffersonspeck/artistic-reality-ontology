@@ -19,17 +19,19 @@ const STYLE = [
       "label": "data(label)", "font-size": 9, "font-family": "Inter, system-ui, sans-serif", "color": "#64748b",
       "text-rotation": "autorotate", "text-background-color": "#f8fafc", "text-background-opacity": 0.9,
       "text-background-padding": 2, "text-background-shape": "round-rectangle",
-      "curve-style": "bezier", "target-arrow-shape": "triangle", "arrow-scale": 0.8,
+      "curve-style": "straight", "target-arrow-shape": "triangle", "arrow-scale": 0.8,
+      "overlay-opacity": 0, "overlay-padding": 7,   // easier to grab
       "width": 1.3, "line-color": "#cbd5e1", "target-arrow-color": "#cbd5e1" } },
   // Relation names can be hidden to declutter; they reappear on the selected node's edges
   { selector: "edge.nolabel", style: { "label": "" } },
-  // Edges that would cross another card, or share their two nodes with other edges, are
-  // drawn as curves bent to a free side (see routeEdges)
-  { selector: "edge.routed", style: {
-      "curve-style": "unbundled-bezier", "control-point-distances": "data(cpd)", "control-point-weights": 0.5 } },
+  // Edges are straight; dragging one bends it (see bendEdge), and it stays as the user left it
+  { selector: "edge.curved", style: {
+      "curve-style": "unbundled-bezier", "control-point-distances": "data(cpd)", "control-point-weights": "data(cpw)" } },
   { selector: "edge.highlight", style: { "line-color": "#2563eb", "target-arrow-color": "#2563eb", "width": 2.2, "label": "data(label)", "color": "#1d4ed8", "z-index": 10 } },
   { selector: "edge.hover", style: { "line-color": "#64748b", "target-arrow-color": "#64748b", "width": 2.2, "label": "data(label)" } },
 ];
+
+const STRAIGHT_SNAP = 8;   // an edge dragged this close to its straight line becomes straight
 
 export class GraphView {
   constructor(container, { onSelect, onContext, describe, onRender }) {
@@ -65,8 +67,15 @@ export class GraphView {
     this.cy.on("tap", "node", (e) => onSelect(e.target.id()));
     this.cy.on("tap", (e) => { if (e.target === this.cy) onSelect(null); });
     this.cy.on("dbltap", "node", (e) => this.toggle(e.target.id()));
-    // after a node is dragged, re-route the edges around the new position
-    this.cy.on("free", "node", () => this.routeEdges());
+    // drag an edge to curve it, double-click it to make it straight again
+    this.edgeCurves = new Map();   // edge id -> {d, w}, kept across redraws
+    this.bending = null;
+    this.cy.on("tapstart", "edge", (e) => { this.bending = e.target; this.cy.userPanningEnabled(false); this.hideTip(); });
+    this.cy.on("tapdrag", (e) => { if (this.bending) this.bendEdge(this.bending, e.position); });
+    this.cy.on("tapend", () => { if (this.bending) { this.bending = null; this.cy.userPanningEnabled(true); } });
+    this.cy.on("dbltap", "edge", (e) => this.setCurve(e.target, null));
+    this.cy.on("mouseover", "edge", () => { this.container.style.cursor = "grab"; });
+    this.cy.on("mouseout", "edge", () => { this.container.style.cursor = ""; });
     // right-click (or long press): context menu of the node, at the pointer position
     this.cy.on("cxttap", "node", (e) => {
       this.hideTip();
@@ -188,8 +197,10 @@ export class GraphView {
     for (const id of this.visible) {
       for (const { prop, target } of data.outgoing(id)) {
         if (this.visible.has(target)) {
-          elements.push({ group: "edges", classes: this.edgeLabels ? "" : "nolabel",
-                          data: { id: `${id}|${prop}|${target}`, source: id, target, prop, label: localName(prop) } });
+          const edgeId = `${id}|${prop}|${target}`, curve = this.edgeCurves.get(edgeId);
+          elements.push({ group: "edges", classes: `${this.edgeLabels ? "" : "nolabel"}${curve ? " curved" : ""}`,
+                          data: { id: edgeId, source: id, target, prop, label: localName(prop),
+                                  ...(curve ? { cpd: curve.d, cpw: curve.w } : {}) } });
         }
       }
     }
@@ -201,66 +212,35 @@ export class GraphView {
     if (relayout || unplaced.length === this.cy.nodes().length) this.layout();
     else if (unplaced.length) this.placeAround(unplaced);
     this.cy.nodes().forEach((n) => this.placeCard(n));
-    this.routeEdges();
     this.syncViewport();
     this.onRender?.();
   }
 
   /**
-   * Bend edges so they do not run behind other cards or on top of each other. Each edge is
-   * tried as a straight line and then as a curve bent further and further to either side; the
-   * first shape whose path stays clear of every other card is kept. Edges between the same two
-   * nodes (a relation and its inverse, or several relations) start from different offsets.
+   * Bend an edge so that it passes through point `p` (model coordinates). The curve is a quadratic
+   * Bezier: its middle lies halfway to the control point, hence the factors below. Close to the
+   * straight line the edge snaps back to straight.
    */
-  routeEdges() {
-    const pad = 12;                                   // clearance around a card, in model px
-    const boxes = this.cy.nodes().map((n) => ({ id: n.id(), bb: n.boundingBox({ includeLabels: false, includeOverlays: false }) }));
-    const blocked = (x, y, skip) => boxes.some(({ id, bb }) =>
-      !skip.has(id) && x > bb.x1 - pad && x < bb.x2 + pad && y > bb.y1 - pad && y < bb.y2 + pad);
-    const groups = new Map();                         // unordered node pair -> its edges
-    this.cy.edges().forEach((e) => {
-      const key = [e.source().id(), e.target().id()].sort().join("\u0000");
-      if (!groups.has(key)) groups.set(key, []);
-      groups.get(key).push(e);
-    });
-    this.cy.batch(() => {
-      for (const [key, edges] of groups) {
-        const [a] = key.split("\u0000");
-        edges.forEach((e, i) => {
-          // geometry in the pair's own direction (a -> b), so inverse edges bend consistently
-          const forward = e.source().id() === a;
-          const s = (forward ? e.source() : e.target()).position();
-          const t = (forward ? e.target() : e.source()).position();
-          const len = Math.hypot(t.x - s.x, t.y - s.y) || 1;
-          const nx = -(t.y - s.y) / len, ny = (t.x - s.x) / len;
-          const skip = new Set([e.source().id(), e.target().id()]);
-          // how many points of the curve bent by d fall on another card (0 = clear)
-          const crossings = (d) => {
-            const cx = (s.x + t.x) / 2 + nx * d, cy = (s.y + t.y) / 2 + ny * d;
-            let n = 0;
-            for (let k = 1; k < 12; k++) {
-              const u = k / 12, v = 1 - u;
-              if (blocked(v * v * s.x + 2 * v * u * cx + u * u * t.x, v * v * s.y + 2 * v * u * cy + u * u * t.y, skip)) n++;
-            }
-            return n;
-          };
-          const base = edges.length > 1 ? (i - (edges.length - 1) / 2) * 50 : 0;
-          const tries = [base];
-          for (const step of [50, 100, 160, 240, 340]) tries.push(base + step * (base < 0 ? -1 : 1), base - step * (base < 0 ? -1 : 1));
-          // the first clear shape; otherwise the one crossing the fewest cards
-          let d = base, best = Infinity;
-          for (const c of tries) {
-            const n = crossings(c);
-            if (n < best) { best = n; d = c; }
-            if (n === 0) break;
-          }
-          if (d === 0) { e.removeClass("routed"); return; }
-          // Cytoscape measures the distance on the edge's own direction
-          e.data("cpd", forward ? d : -d);
-          e.addClass("routed");
-        });
-      }
-    });
+  bendEdge(edge, p) {
+    const s = edge.source().position(), t = edge.target().position();
+    const dx = t.x - s.x, dy = t.y - s.y, len = Math.hypot(dx, dy);
+    if (len < 1) return;
+    const along = ((p.x - s.x) * dx + (p.y - s.y) * dy) / len;
+    const off = ((p.x - s.x) * -dy + (p.y - s.y) * dx) / len;
+    if (Math.abs(off) < STRAIGHT_SNAP) { this.setCurve(edge, null); return; }
+    this.setCurve(edge, { d: 2 * off, w: Math.min(1, Math.max(0, (2 * along) / len - 0.5)) });
+  }
+
+  /** Give an edge the curve chosen by the user, or make it straight again (null). */
+  setCurve(edge, curve) {
+    if (curve) {
+      this.edgeCurves.set(edge.id(), curve);
+      edge.data({ cpd: curve.d, cpw: curve.w });
+      edge.addClass("curved");
+    } else {
+      this.edgeCurves.delete(edge.id());
+      edge.removeClass("curved");
+    }
   }
 
   /** What a node's card shows: kind (class label), title, colours, full or clamped text. */
@@ -447,7 +427,6 @@ export class GraphView {
     } else {
       this.cy.layout({ name: "cose", animate: false, nodeRepulsion: 16000, idealEdgeLength: 150, padding: 30, randomize: true }).run();
     }
-    this.routeEdges();
   }
 
   setEdgeLabels(on) {

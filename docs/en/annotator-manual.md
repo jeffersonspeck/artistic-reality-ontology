@@ -128,6 +128,7 @@ For **derivations** (cover, sample, adaptation…), create a *derivation claim* 
 | Select | click a node; its relations are highlighted in blue |
 | Open / close neighbours | double-click, or **Open / close neighbours**; neighbours appear in a ring around the node, grouped by relation. Double border = hidden neighbours |
 | Rearrange | **Tree** (works at the top) or **Network**, then **Layout** |
+| Curve a relation | relations are straight; drag one to curve it, and it stays as you left it. Double-click it, or drag it back to the straight line, to straighten it |
 | Less clutter | untick **Relation names** |
 | Show only some works | **Works shown**: untick works, or use **Show only this work** on a work. Whatever is shared with visible works stays |
 | Hide a node | **Hide node**; to bring it back, use **show** in the *Hidden nodes* list |

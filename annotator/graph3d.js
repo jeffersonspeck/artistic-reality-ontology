@@ -10,8 +10,17 @@ const FORCE_GRAPH = "https://cdn.jsdelivr.net/npm/3d-force-graph@1.80.1/+esm";
 const THREE = "https://cdn.jsdelivr.net/npm/three@0.186.1/+esm";   // the version 3d-force-graph imports
 const SCALE = 0.25;            // world units per CSS pixel of a card
 const DOUBLE_CLICK_MS = 350;
+const NEW_NODE_RADIUS = 70;    // distance from a placed neighbour at which a newly opened node appears
+const SPHERE_POINTS = 24;      // positions around a node before the next, wider shell
 
 const escapeHtml = (s) => s.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
+
+/** The i-th point of evenly spread shells around `c` (Fibonacci sphere). */
+function spherePoint(c, i) {
+  const k = i % SPHERE_POINTS, r = NEW_NODE_RADIUS * (1 + Math.floor(i / SPHERE_POINTS) * 0.6);
+  const y = 1 - (2 * (k + 0.5)) / SPHERE_POINTS, ring = Math.sqrt(1 - y * y), a = k * Math.PI * (3 - Math.sqrt(5));
+  return { x: c.x + r * ring * Math.cos(a), y: c.y + r * y, z: c.z + r * ring * Math.sin(a) };
+}
 
 export class Graph3D {
   /** host: element that receives the 3D canvas; onSelect(id|null); onToggle(id) opens/closes neighbours. */
@@ -80,20 +89,34 @@ export class Graph3D {
     this.fg?._destructor?.();
     this.el?.remove();
     this.fg = null;
+    this.framed = false;
   }
 
   /** Rebuild the scene from the 2D view (after nodes are opened, closed, edited or relabelled). */
   update(view) {
     if (!this.fg) return;
     this.view = view;
-    for (const n of this.fg.graphData().nodes) this.positions.set(n.id, { x: n.x, y: n.y, z: n.z });
+    for (const n of this.fg.graphData().nodes) {
+      if (n.x !== undefined) this.positions.set(n.id, { x: n.x, y: n.y, z: n.z });
+    }
     const selected = new Set(view.cy.$("node:selected").map((n) => n.id()));
+    const around = new Map();      // placed neighbour -> how many new nodes were put around it
     const nodes = view.cy.nodes().map((n) => {
       const card = view.cards.get(n.id());
       const kind = card?.querySelector(".nc-kind")?.textContent || "";
       const title = card?.querySelector(".nc-title")?.textContent || n.id();
       const r = card ? (Math.hypot(card.offsetWidth, card.offsetHeight) / 2) * SCALE : 4;
-      return { id: n.id(), r, tip: escapeHtml(kind ? `${kind}: ${title}` : title), ...this.positions.get(n.id()) };
+      const node = { id: n.id(), r, tip: escapeHtml(kind ? `${kind}: ${title}` : title) };
+      const known = this.positions.get(n.id());
+      // nodes already placed stay where they are; new ones are set around a placed neighbour
+      if (known) return { ...node, ...known, fx: known.x, fy: known.y, fz: known.z };
+      const near = n.neighborhood("node").toArray().map((m) => this.positions.get(m.id())).find(Boolean);
+      if (!near) return node;
+      const i = around.get(near) || 0;
+      around.set(near, i + 1);
+      const p = spherePoint(near, i);
+      this.positions.set(n.id(), p);
+      return { ...node, ...p, fx: p.x, fy: p.y, fz: p.z };
     });
     // edges between the same two nodes are bent apart, as in 2D
     const pairs = new Map();
@@ -112,10 +135,12 @@ export class Graph3D {
                highlight: selected.has(source) || selected.has(target),
                curvature: count > 1 ? 0.25 * (i - (count - 1) / 2) * (source < target ? 1 : -1) : 0 };
     });
-    // frame the graph when the view opens or nodes without a 3D position appear
-    const reframe = !this.fg.graphData().nodes.length || nodes.some((n) => n.x === undefined);
     this.fg.graphData({ nodes, links });   // the warm-up ticks lay it out right away
-    if (reframe) this.fg.zoomToFit(400, 30);
+    // the camera is framed once, when the view opens; afterwards it stays where the user left it
+    if (!this.framed && nodes.length) {
+      this.framed = true;
+      setTimeout(() => this.fg?.zoomToFit(400, 30), 100);
+    }
   }
 
   /** Redraw the cards and relation colours after the selection changed. */

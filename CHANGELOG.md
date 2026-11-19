@@ -14,7 +14,8 @@ All notable changes to ARO. Versions follow the SABiOx development cycles (see `
 ### Changed
 
 - **Annotator, image and PDF export**: export exactly what the graph area shows (same framing and zoom, twice the resolution), and the current camera angle in the 3D view; before, the whole 2D graph was exported whatever the view.
-- **Annotator, edge routing**: edges that would run behind other cards, or join the same two nodes, are drawn as curves bent to a free side, recomputed after each layout and after a node is dragged.
+- **Annotator, relations in 2D**: relations are straight and never change by themselves; dragging one curves it, double-clicking it (or dragging it back to the line) makes it straight again.
+- **Annotator, 3D view**: opening or closing neighbours keeps the camera and the nodes in place; new neighbours appear next to the node that was opened.
 
 ## [1.0.0] - 2026-11-07
 

@@ -128,6 +128,7 @@ Para **derivações** (cover, sample, adaptação…), crie uma *alegação de d
 | Selecionar | clique no nó; as relações dele ficam destacadas em azul |
 | Abrir / fechar vizinhos | duplo clique, ou **Abrir / fechar vizinhos**; os vizinhos aparecem num anel em volta do nó, agrupados por relação. Borda dupla = há vizinhos ocultos |
 | Reorganizar | **Árvore** (obras no topo) ou **Rede**, e então **Reorganizar** |
+| Curvar uma relação | as relações são retas; arraste uma para curvá-la, e ela fica como você deixou. Duplo clique, ou arrastar de volta até a linha reta, a endireita |
 | Menos poluição visual | desmarque **Nomes das relações** |
 | Ver só algumas obras | **Obras exibidas**: desmarque obras, ou use **Ver só esta obra** numa obra. O que é compartilhado com obras visíveis continua |
 | Esconder um nó | **Esconder nó**; para trazê-lo de volta, use **mostrar** na lista *Nós ocultos* |

@@ -146,7 +146,8 @@ function describe({ node, edge }) {
       h("div", { class: "tip-head" }, h("strong", {}, p ? o.label(edge.prop, lang) : shortIri(edge.prop))),
       h("p", { class: "tip-def" }, short(displayName(edge.source), 50), " → ", short(displayName(edge.target), 50)),
       desc ? h("p", { class: "tip-meta" }, desc) : null,
-      h("p", { class: "tip-iri" }, shortIri(edge.prop)));
+      h("p", { class: "tip-iri" }, shortIri(edge.prop)),
+      h("p", { class: "tip-foot" }, t("tipEdge")));
   }
   const hidden = state.graph.hiddenCount(node);
   const foot = h("p", { class: "tip-foot" }, hidden ? `+${hidden} ${t("tipHidden")} · ` : "", t("tipOpen"));
@@ -947,7 +948,7 @@ function loadText(text, label) {
   try {
     const n = state.data.loadTurtle(text);
     $("#base-iri").value = state.data.base;   // new nodes will use the loaded file's namespace
-    state.graph.hiddenWorks.clear(); state.graph.hiddenNodes.clear();   // a new file starts fully shown
+    state.graph.hiddenWorks.clear(); state.graph.hiddenNodes.clear(); state.graph.edgeCurves.clear();   // a new file starts fully shown
     state.graph.showRoots();
     state.selected = null;
     changed({ relayout: true });
@@ -1076,7 +1077,7 @@ async function main() {
     state.contentLang = lang; savePrefs(); renderToolbar(); changed();
   });
   $("#base-iri").addEventListener("change", (e) => { state.data.base = e.target.value.trim() || state.data.base; savePrefs(); });
-  $("#new").addEventListener("click", () => { if (confirm(t("confirmNew"))) { state.data.clear(); state.allowEmptyDraft = true; state.graph.visible.clear(); state.graph.hiddenWorks.clear(); state.graph.hiddenNodes.clear(); state.selected = null; changed(); } });
+  $("#new").addEventListener("click", () => { if (confirm(t("confirmNew"))) { state.data.clear(); state.allowEmptyDraft = true; state.graph.edgeCurves.clear(); state.graph.visible.clear(); state.graph.hiddenWorks.clear(); state.graph.hiddenNodes.clear(); state.selected = null; changed(); } });
   $("#load").addEventListener("click", () => $("#file").click());
   $("#file").addEventListener("change", async (e) => { const f = e.target.files[0]; if (f) loadText(await f.text(), f.name); e.target.value = ""; });
   $("#example").addEventListener("click", async () => loadText(await fetch("../examples/case-studies.ttl").then((r) => r.text()), "case-studies.ttl"));
