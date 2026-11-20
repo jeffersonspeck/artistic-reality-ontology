@@ -244,7 +244,6 @@ hnc:aspectoBaseElaPartiu a aro:TransformationAspect ;
     aro:producedByAct hnc:atoLeitura ;
     aro:hasDimension aro:RecordedSoundDimension ;
     aro:hasOperation aro:Recontextualized ;
-    aro:aspectConcernsPattern hnc:pViolenciaPolicial, hnc:pReinsercao ;
     aro:textValue "O som de uma canção romântica de soul passa a acompanhar a história de um egresso da prisão ameaçado de morte."@pt-BR, "The sound of a romantic soul song comes to accompany the story of a former prisoner threatened with death."@en .
 
 hnc:aspectoVozTimMaia a aro:TransformationAspect ;
@@ -398,7 +397,6 @@ hnc:interpretacaoCap1 a aro:InterpretationRecord ;
 
 hnc:situacaoCap1 a aro:SituationDescription ;
     aro:producedByAct hnc:atoLeitura ;
-    aro:generalizesAs hnc:pReinsercao, hnc:pEncarceramento, hnc:pPobrezaInfantil, hnc:pSocioeducacao, hnc:pEconomiaIlicita, hnc:pMorteJovem, hnc:pDesigualdadeTerritorial, hnc:pReligiosidade ;
     aro:mentionsDepictedElement hnr:protagonista ;
     aro:textValue "O capítulo apresenta a saída da prisão como promessa de recomeço e, em seguida, reúne o que pesa sobre ela: a infância difícil, a FEBEM, a busca por dinheiro, as mortes de quem tentou o mesmo caminho e a pobreza que já alcança os filhos."@pt-BR, "The chapter presents leaving prison as a promise of a fresh start and then gathers what weighs on it: the hard childhood, the FEBEM, the search for money, the deaths of those who tried the same path and the poverty that already reaches the children."@en .
 
@@ -622,7 +620,7 @@ hnc:interpretacao1-08 a aro:InterpretationRecord ;
 
 hnc:situacao1-08 a aro:SituationDescription ;
     aro:producedByAct hnc:atoLeitura ;
-    aro:generalizesAs hnc:pMorteJovem ;
+    aro:generalizesAs hnc:pEconomiaIlicita ;
     aro:mentionsDepictedElement hnr:protagonista ;
     aro:textValue "Outros homens morreram tentando alcançar o mesmo objetivo de enriquecer."@pt-BR, "Other men died trying to reach the same goal of getting rich."@en .
 
@@ -715,7 +713,6 @@ hnc:interpretacaoCap2 a aro:InterpretationRecord ;
 
 hnc:situacaoCap2 a aro:SituationDescription ;
     aro:producedByAct hnc:atoLeitura ;
-    aro:generalizesAs hnc:pMoradiaRisco, hnc:pDesigualdadeTerritorial, hnc:pPrecariedadeConhecida, hnc:pViolenciaMulher, hnc:pCorpoIndigno ;
     aro:mentionsDepictedElement hnr:protagonista ;
     aro:textValue "O capítulo descreve a casa e o lugar onde o homem vive (moradia precária, esgoto, risco de chuva), a visita do recenseamento sem mudança posterior e a morte violenta de uma mulher cujo corpo espera horas pelo IML."@pt-BR, "The chapter describes the house and the place where the man lives (precarious housing, sewage, risk from rain), the census visit with no change afterwards and the violent death of a woman whose body waits hours for the IML."@en .
 
@@ -976,7 +973,6 @@ hnc:interpretacaoCap3 a aro:InterpretationRecord ;
 
 hnc:situacaoCap3 a aro:SituationDescription ;
     aro:producedByAct hnc:atoLeitura ;
-    aro:generalizesAs hnc:pPobrezaInfantil, hnc:pSofrimentoPsiquico, hnc:pReinsercao ;
     aro:mentionsDepictedElement hnr:protagonista ;
     aro:textValue "O capítulo volta ao filho: o desejo de lhe dar uma vida melhor, o medo de que ele repita a trajetória do pai, as noites sem sono, o desemprego e a desconfiança que o passado provoca."@pt-BR, "The chapter returns to the son: the wish to give him a better life, the fear that he will repeat his father's path, the sleepless nights, unemployment and the distrust that the past provokes."@en .
 
@@ -1181,7 +1177,6 @@ hnc:interpretacaoCap4 a aro:InterpretationRecord ;
 
 hnc:situacaoCap4 a aro:SituationDescription ;
     aro:producedByAct hnc:atoLeitura ;
-    aro:generalizesAs hnc:pDesigualdadeTerritorial, hnc:pAgua, hnc:pViolenciaIntrafamiliar, hnc:pLinchamento, hnc:pDrogasSeletivas, hnc:pFomeEscola, hnc:pAprendizagemDesigual ;
     aro:mentionsDepictedElement hnr:protagonista ;
     aro:textValue "O capítulo descreve um dia comum na comunidade: calor, falta de água, um filho que agride a mãe e é linchado, o discurso dos ricos contra as drogas ao lado do lucro com o álcool, crianças com fome e a escola como lugar de comida e de aprendizagem difícil."@pt-BR, "The chapter describes an ordinary day in the community: heat, lack of water, a son who attacks his mother and is lynched, the rich people's discourse against drugs next to the profit from alcohol, hungry children and school as a place for food and for difficult learning."@en .
 
@@ -1470,7 +1465,6 @@ hnc:interpretacaoCap5 a aro:InterpretationRecord ;
 
 hnc:situacaoCap5 a aro:SituationDescription ;
     aro:producedByAct hnc:atoLeitura ;
-    aro:generalizesAs hnc:pEconomiaIlicita, hnc:pMorteJovem, hnc:pMidiaViolencia, hnc:pCrack, hnc:pDrogasSeletivas, hnc:pCorpoIndigno ;
     aro:mentionsDepictedElement hnr:protagonista ;
     aro:textValue "O capítulo mostra o tráfico como promessa de dinheiro e como risco de morte: o conhecido que enriquece, o jovem morto ao entregar drogas, a morte transformada em notícia, a chegada do crack, quem lucra e quem consome, e o medo de morrer sem ser identificado."@pt-BR, "The chapter shows drug trafficking as a promise of money and as a risk of death: the acquaintance who gets rich, the young man killed delivering drugs, the death turned into news, the arrival of crack, who profits and who consumes, and the fear of dying unidentified."@en .
 
@@ -1758,7 +1752,6 @@ hnc:interpretacaoCap6 a aro:InterpretationRecord ;
 
 hnc:situacaoCap6 a aro:SituationDescription ;
     aro:producedByAct hnc:atoLeitura ;
-    aro:generalizesAs hnc:pSuspeicao, hnc:pReinsercao, hnc:pEncarceramento ;
     aro:mentionsDepictedElement hnr:protagonista ;
     aro:textValue "O capítulo mostra como a suspeita chega ao protagonista: a favela é culpada pelos assaltos, o nome dele vai para uma lista num bar, seus antecedentes circulam, o passado vira marca, ele fica sozinho e a punição continua depois da pena."@pt-BR, "The chapter shows how suspicion reaches the protagonist: the favela is blamed for the robberies, his name goes on a list in a bar, his record circulates, his past becomes a mark, he is left alone and the punishment goes on after the sentence."@en .
 
@@ -1991,7 +1984,6 @@ hnc:interpretacaoCap7 a aro:InterpretationRecord ;
 
 hnc:situacaoCap7 a aro:SituationDescription ;
     aro:producedByAct hnc:atoLeitura ;
-    aro:generalizesAs hnc:pViolenciaPolicial, hnc:pSilencio, hnc:pReligiosidade, hnc:pOrfandade, hnc:pSocioeducacao, hnc:pPobrezaInfantil, hnc:pMorteJovem ;
     aro:mentionsDepictedElement hnr:protagonista ;
     aro:textValue "O capítulo acompanha a noite em que o homem espera ser morto: o medo da polícia, a decisão de se proteger, os sinais na madrugada, o silêncio dos vizinhos, o grupo armado que se anuncia como polícia, a fé, a decisão de atirar, o medo pelo filho e o fim dos planos."@pt-BR, "The chapter follows the night in which the man expects to be killed: fear of the police, the decision to protect himself, the signs in the small hours, the neighbours' silence, the armed group announcing itself as the police, faith, the decision to shoot, the fear for his son and the end of his plans."@en .
 
@@ -2327,7 +2319,7 @@ hnc:interpretacao7-12 a aro:InterpretationRecord ;
 
 hnc:situacao7-12 a aro:SituationDescription ;
     aro:producedByAct hnc:atoLeitura ;
-    aro:generalizesAs hnc:pMorteJovem ;
+    aro:generalizesAs hnc:pViolenciaPolicial ;
     aro:mentionsDepictedElement hnr:protagonista ;
     aro:textValue "Nos momentos finais, fica evidente a distância entre os sonhos do homem e o destino que se aproxima."@pt-BR, "In the final moments, the distance between the man's dreams and the fate that is approaching becomes clear."@en .
 
@@ -2364,7 +2356,6 @@ hnc:interpretacaoCap8 a aro:InterpretationRecord ;
 
 hnc:situacaoCap8 a aro:SituationDescription ;
     aro:producedByAct hnc:atoLeitura ;
-    aro:generalizesAs hnc:pVersaoOficial, hnc:pMidiaViolencia, hnc:pSuspeicao ;
     aro:mentionsDepictedElement hnr:protagonista ;
     aro:textValue "O capítulo troca a voz do homem pela de uma notícia: um corpo descrito de forma impessoal, a hipótese de acerto de contas e a ficha criminal como última informação sobre ele."@pt-BR, "The chapter replaces the man's voice with that of a news report: a body described impersonally, the hypothesis of a settling of scores and the criminal record as the last information about him."@en .
 
@@ -2392,7 +2383,7 @@ hnc:interpretacao8-01 a aro:InterpretationRecord ;
 
 hnc:situacao8-01 a aro:SituationDescription ;
     aro:producedByAct hnc:atoLeitura ;
-    aro:generalizesAs hnc:pVersaoOficial, hnc:pMidiaViolencia ;
+    aro:generalizesAs hnc:pVersaoOficial ;
     aro:mentionsDepictedElement hnr:protagonista, hnr:mboiMirim, hnc:imprensa ;
     aro:textValue "O homem morto passa a ser descrito por características físicas, idade aproximada e local da morte."@pt-BR, "The dead man comes to be described by physical features, approximate age and place of death."@en .
 
@@ -2421,7 +2412,7 @@ hnc:interpretacao8-02 a aro:InterpretationRecord ;
 hnc:situacao8-02 a aro:SituationDescription ;
     aro:producedByAct hnc:atoLeitura ;
     aro:generalizesAs hnc:pVersaoOficial ;
-    aro:mentionsDepictedElement hnr:policia, hnc:imprensa ;
+    aro:mentionsDepictedElement hnc:imprensa ;
     aro:textValue "A notícia apresenta como explicação provável um acerto de contas entre grupos criminosos."@pt-BR, "The news report gives a settling of scores between criminal groups as the likely explanation."@en .
 
 hnc:justificativa8-02 a aro:Justification ;
@@ -2448,7 +2439,7 @@ hnc:interpretacao8-03 a aro:InterpretationRecord ;
 
 hnc:situacao8-03 a aro:SituationDescription ;
     aro:producedByAct hnc:atoLeitura ;
-    aro:generalizesAs hnc:pVersaoOficial, hnc:pSuspeicao ;
+    aro:generalizesAs hnc:pVersaoOficial ;
     aro:mentionsDepictedElement hnr:protagonista, hnc:imprensa ;
     aro:textValue "A ficha criminal encerra a notícia e define publicamente quem era o morto."@pt-BR, "The criminal record closes the news report and publicly defines who the dead man was."@en .
 
@@ -2536,7 +2527,7 @@ hnc:condReproducao a aro:PatternCondition ;
 
 hnc:pEconomiaIlicita a aro:SituationPattern ;
     aro:producedByAct hnc:atoLeitura ;
-    aro:hasCondition hnc:condFaltaRenda, hnc:condRecrutamentoIlicito ;
+    aro:hasCondition hnc:condFaltaRenda, hnc:condRecrutamentoIlicito, hnc:condRiscoDeMorte ;
     aro:textValue "Mercado ilícito como promessa de renda onde faltam oportunidades"@pt-BR, "The illicit market as a promise of income where opportunities are lacking"@en .
 
 hnc:condFaltaRenda a aro:PatternCondition ;
@@ -2548,6 +2539,11 @@ hnc:condRecrutamentoIlicito a aro:PatternCondition ;
     aro:producedByAct hnc:atoLeitura ;
     aro:isRequiredCondition true ;
     aro:textValue "O comércio ilegal oferece renda imediata e recruta nesses contextos."@pt-BR, "The illegal trade offers immediate income and recruits in these contexts."@en .
+
+hnc:condRiscoDeMorte a aro:PatternCondition ;
+    aro:producedByAct hnc:atoLeitura ;
+    aro:isRequiredCondition false ;
+    aro:textValue "Quem trabalha no comércio ilegal fica exposto ao risco de ser morto."@pt-BR, "Those who work in the illegal trade are exposed to the risk of being killed."@en .
 
 hnc:pMorteJovem a aro:SituationPattern ;
     aro:producedByAct hnc:atoLeitura ;
@@ -2934,14 +2930,14 @@ hnc:fonteWikiHomemNaEstrada a aro:ReferenceSource ;
     dcterms:publisher "Wikipédia" ;
     aro:languageTag "pt-BR" ;
     aro:sourceURL "https://pt.wikipedia.org/wiki/Homem_na_Estrada"^^xsd:anyURI ;
-    aro:textValue "Verbete da Wikipédia em português sobre a canção"@pt-BR, "Portuguese Wikipedia entry on the song"@en .
+    aro:textValue "Verbete da Wikipédia em português sobre Homem na Estrada"@pt-BR, "Portuguese Wikipedia entry on Homem na Estrada"@en .
 
 hnc:fonteWikiElaPartiu a aro:ReferenceSource ;
     rdfs:label "Ela Partiu (verbete sobre a canção de Tim Maia: compositores, lançamento e samples)"@pt-BR, "Ela Partiu (entry on Tim Maia's song: composers, release and samples)"@en ;
     dcterms:publisher "Wikipédia" ;
     aro:languageTag "pt-BR" ;
     aro:sourceURL "https://pt.wikipedia.org/wiki/Ela_Partiu"^^xsd:anyURI ;
-    aro:textValue "Verbete da Wikipédia em português sobre a canção"@pt-BR, "Portuguese Wikipedia entry on the song"@en .
+    aro:textValue "Verbete da Wikipédia em português sobre Ela Partiu"@pt-BR, "Portuguese Wikipedia entry on Ela Partiu"@en .
 
 hnc:fonteDataFavelaAgenciaBrasil a aro:ReferenceSource ;
     rdfs:label "Metade dos envolvidos com tráfico de drogas não chega ao ensino médio (pesquisa Data Favela)"@pt-BR, "Half of those involved in drug trafficking do not reach secondary school (Data Favela survey)"@en ;
@@ -3484,7 +3480,7 @@ hnc:avaliacaoEconomiaIlicita a aro:EvidenceAssessment ;
     aro:assessesClaim hnc:afirmacaoEconomiaIlicita, hnc:correspondenciaEconomiaIlicita ;
     aro:assessmentOutcome "supports" ;
     aro:producedByAct hnc:atoAvaliacao ;
-    aro:textValue "Apoio forte ao padrão de recrutamento em contexto de falta de renda. Dimensões do caso real não representadas na letra: a idade de entrada, a divisão do tempo entre tráfico e trabalho lícito e as diferenças entre facções e regiões."@pt-BR, "Strongly supports the pattern of recruitment where income is lacking. Dimensions of the real case not represented in the lyric: the age of entry, the division of time between trafficking and lawful work and differences between factions and regions."@en .
+    aro:textValue "Apoio forte ao padrão de recrutamento em contexto de falta de renda. A condição opcional de risco de morte (linha 11) não é medida por estas fontes; a morte de jovens tem cadeia própria, no padrão de letalidade juvenil. Dimensões do caso real não representadas na letra: a idade de entrada, a divisão do tempo entre tráfico e trabalho lícito e as diferenças entre facções e regiões."@pt-BR, "Strongly supports the pattern of recruitment where income is lacking. The optional risk-of-death condition (line 11) is not measured by these sources; the deaths of young people have their own chain, in the youth lethality pattern. Dimensions of the real case not represented in the lyric: the age of entry, the division of time between trafficking and lawful work and differences between factions and regions."@en .
 
 # 8. Violência letal concentrada sobre jovens, sobretudo jovens negros
 
@@ -3519,7 +3515,7 @@ hnc:correspondenciaMorteJovem a aro:CorrespondenceClaim ;
     aro:assertsCase hnc:casoMorteJovem ;
     aro:citesSource hnr:fonteAtlasViolencia2025, hnc:fonteAtlasViolencia2026 ;
     aro:producedByAct hnc:atoAvaliacao ;
-    aro:textValue "As mortes de quem buscou enriquecer, a morte do jovem que entregava drogas e o futuro interrompido do protagonista correspondem a um padrão de letalidade juvenil documentado em escala nacional."@pt-BR, "The deaths of those who sought to get rich, the death of the young man delivering drugs and the protagonist's interrupted future correspond to a pattern of youth lethality documented on a national scale."@en .
+    aro:textValue "A morte do jovem que entregava drogas corresponde a um padrão de letalidade juvenil documentado em escala nacional."@pt-BR, "The death of the young man delivering drugs corresponds to a pattern of youth lethality documented on a national scale."@en .
 
 hnc:avaliacaoMorteJovem a aro:EvidenceAssessment ;
     aro:assessesEvidence hnc:evidenciaMorteJovem1, hnc:evidenciaMorteJovem2 ;
@@ -3831,7 +3827,7 @@ hnc:casoAgua a aro:EmpiricalCase ;
 hnc:afirmacaoAgua a aro:EmpiricalClaim ;
     aro:citesSource hnc:fonteIBGEAgua, hnr:fonteIBGECensoFavelas ;
     aro:producedByAct hnc:atoAvaliacao ;
-    aro:textValue "Estar ligado à rede de água não garante abastecimento diário; a falta de água é frequente em parte do país e das favelas."@pt-BR, "Being connected to the water network does not guarantee a daily supply; water shortages are frequent in part of the country and of the favelas."@en .
+    aro:textValue "Estar ligado à rede de água não garante abastecimento diário, e a regularidade do abastecimento varia entre as regiões do país."@pt-BR, "Being connected to the water network does not guarantee a daily supply, and the regularity of supply varies between regions of the country."@en .
 
 hnc:evidenciaAgua1 a aro:EvidenceItem ;
     aro:derivedFromSource hnc:fonteIBGEAgua ;
@@ -4199,7 +4195,7 @@ hnc:correspondenciaSuspeicao a aro:CorrespondenceClaim ;
     aro:assertsCase hnc:casoSuspeicao ;
     aro:citesSource hnc:fonteCONDEGE ;
     aro:producedByAct hnc:atoAvaliacao ;
-    aro:textValue "A favela acusada pelos assaltos, o nome na lista de suspeitos e os antecedentes usados como prova correspondem a um padrão de suspeição seletiva que chega à prisão de inocentes."@pt-BR, "The favela blamed for the robberies, the name on the list of suspects and the criminal record used as evidence correspond to a pattern of selective suspicion that leads to the imprisonment of innocent people."@en .
+    aro:textValue "A favela acusada pelos assaltos, o nome na lista de suspeitos e os antecedentes repassados a terceiros correspondem a um padrão de suspeição seletiva que, nos casos documentados, chega à prisão de inocentes."@pt-BR, "The favela blamed for the robberies, the name on the list of suspects and the criminal record passed on to third parties correspond to a pattern of selective suspicion that, in the documented cases, leads to the imprisonment of innocent people."@en .
 
 hnc:avaliacaoSuspeicao a aro:EvidenceAssessment ;
     aro:assessesEvidence hnc:evidenciaSuspeicao ;
@@ -4265,13 +4261,13 @@ hnc:avaliacaoLetalidadePolicial a aro:EvidenceAssessment ;
 
 hnc:situacaoEmpiricaDomicilio a aro:EmpiricalSituation ;
     aro:startDate "2015-11-05"^^xsd:date ;
-    aro:textValue "Em 2015, o STF fixou que a entrada forçada em casa sem mandado só é lícita quando há fundadas razões de flagrante, justificadas depois."@pt-BR, "In 2015, the STF ruled that forced entry into a home without a warrant is lawful only when there are well-founded reasons to believe a crime is in progress, justified afterwards."@en .
+    aro:textValue "A entrada da polícia em casas sem mandado judicial chegou ao STF a partir de um caso de Rondônia (RE 603.616); em 2015 o tribunal fixou, com repercussão geral, que ela só é lícita com fundadas razões de flagrante, justificadas depois."@pt-BR, "Police entry into homes without a court warrant reached the STF from a case in Rondônia (RE 603.616); in 2015 the court ruled, with general repercussion, that it is lawful only with well-founded reasons to believe a crime is in progress, justified afterwards."@en .
 
 hnc:casoDomicilio a aro:EmpiricalCase ;
     aro:caseAboutSituation hnc:situacaoEmpiricaDomicilio ;
     aro:citesSource hnc:fonteSTFTema280 ;
     aro:producedByAct hnc:atoAvaliacao ;
-    aro:textValue "Limites legais da entrada da polícia em domicílio"@pt-BR, "Legal limits on police entry into homes"@en .
+    aro:textValue "Entrada policial em domicílio sem mandado levada ao STF"@pt-BR, "Police entry into a home without a warrant brought before the STF"@en .
 
 hnc:afirmacaoDomicilio a aro:EmpiricalClaim ;
     aro:citesSource hnc:fonteSTFTema280 ;
@@ -4393,11 +4389,6 @@ hnc:evidenciaVersaoOficial1 a aro:EvidenceItem ;
     aro:producedByAct hnc:atoAvaliacao ;
     aro:textValue "A pesquisa de Michel Misse e colaboradores analisou mais de dez mil autos de resistência no Rio de Janeiro entre 2001 e 2011 e mostrou que a investigação se concentrava na vítima, inclusive em seus antecedentes, e que a maior parte dos casos era arquivada."@pt-BR, "The research by Michel Misse and colleagues analysed more than ten thousand autos de resistência (deaths recorded as resistance to arrest) in Rio de Janeiro between 2001 and 2011 and showed that the investigation focused on the victim, including his criminal record, and that most cases were shelved."@en .
 
-hnc:evidenciaVersaoOficial2 a aro:EvidenceItem ;
-    aro:derivedFromSource hnc:fonteSouDaPaz2025 ;
-    aro:producedByAct hnc:atoAvaliacao ;
-    aro:textValue "Segundo a oitava edição do relatório do Instituto Sou da Paz, a média nacional de esclarecimento foi de 36% para os homicídios de 2023."@pt-BR, "According to the eighth edition of the Instituto Sou da Paz report, the national clearance average was 36% for the homicides of 2023."@en .
-
 hnc:correspondenciaVersaoOficial a aro:CorrespondenceClaim ;
     aro:assertsPattern hnc:pVersaoOficial ;
     aro:assertsCase hnc:casoVersaoOficial ;
@@ -4406,7 +4397,7 @@ hnc:correspondenciaVersaoOficial a aro:CorrespondenceClaim ;
     aro:textValue "A descrição impessoal, a hipótese de acerto de contas e a ficha criminal no fim da notícia correspondem a um padrão de versão oficial que enquadra a vítima pelo passado."@pt-BR, "The impersonal description, the hypothesis of a settling of scores and the criminal record at the end of the news report correspond to a pattern of official version that frames the victim by his past."@en .
 
 hnc:avaliacaoVersaoOficial a aro:EvidenceAssessment ;
-    aro:assessesEvidence hnc:evidenciaVersaoOficial1, hnc:evidenciaVersaoOficial2 ;
+    aro:assessesEvidence hnc:evidenciaVersaoOficial1, hnc:evidenciaSilencio ;
     aro:assessesClaim hnc:afirmacaoVersaoOficial, hnc:correspondenciaVersaoOficial ;
     aro:assessmentOutcome "supports" ;
     aro:producedByAct hnc:atoAvaliacao ;
